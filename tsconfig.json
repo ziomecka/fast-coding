@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // "alwaysStrict": true,
+    "module": "esnext",
+    // "module": "commonjs",
+    "types": [ "node", "react" ],
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "outDir": "dist",
+    "jsx": "react",
+    "target": "es2016",
+    // "noFallthroughCasesInSwitch": true,
+    // "noImplicitAny": true,
+    // "noImplicitReturns": true,
+    // "noImplicitThis": true,
+    // "noUnusedLocals": true,
+    "pretty": true,
+    // "removeComments": true,
+    // "skipLibCheck": true,
+    "sourceMap": true,
+    // "strictNullChecks": true,
+    "lib": ["es7", "dom"],
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "root/*": ["*"]
+    }
+  }
+}

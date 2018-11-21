@@ -1,0 +1,9 @@
+node_modules
+yarn-error*
+yarn.lock
+fast-coding.code-workspace
+.yarnclean
+.env*
+bundle
+out*
+todo.md
