@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NavView from '../nav/';
+import Nav from '../../app/Nav';
 
 import { HomeViewProps } from './container';
 
@@ -52,7 +52,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
           timeout={1000}
         />
 
-        <NavView />
+        <Nav />
 
         <Content>
           {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}

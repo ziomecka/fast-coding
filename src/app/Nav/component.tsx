@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { NavViewProps } from './container';
+import { NavProps } from './container';
 
 import AppMenu from '../../app/AppMenu';
 
@@ -14,7 +14,7 @@ const { userMenu, mainMenu } = MenuContainers;
 
 const appBarColor = 'primary';
 
-const NavViewComponent: React.StatelessComponent<NavViewProps> = props => {
+const NavComponent: React.StatelessComponent<NavProps> = props => {
   const mainMenuItems = [
     ['Home', '/'],
     ['Lessons', '/lessons'],
@@ -46,4 +46,4 @@ const NavViewComponent: React.StatelessComponent<NavViewProps> = props => {
   );
 };
 
-export default NavViewComponent;
+export default NavComponent;
