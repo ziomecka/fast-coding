@@ -17,8 +17,7 @@ const { components } = ApplicationContainers;
 const { lessonsLoader } = ComponentsContainers;
 
 const mapStateToProps = (state: ApplicationState): LessonsLoaderState => ({
-    ...state[components][lessonsLoader],
-    lessons: Array.from(state[components][lessonsLoader].lessons)
+    ...state[components][lessonsLoader]
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonsDispatch => ({
