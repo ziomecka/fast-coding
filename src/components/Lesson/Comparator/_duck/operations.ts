@@ -14,11 +14,15 @@ import {
 } from './actions';
 
 export const onHandleBackSpace = (): any => (dispatch: Dispatch, getState: () => ApplicationState): void => {
-    let { errors, correctedErrors, currentSignIndex } = getState()[comparator]
+    let { errors, correctedErrors, currentSignIndex } = getState()[components][comparator]
     const wasAnError = errors[errors.length - 1] === currentSignIndex;
 
     if (wasAnError) {
-        dispatch(correctError(correctedErrors.push(currentSignIndex + 1))); // TODO improve
+        /** Add to corrected errors only if not already included */
+        if (!correctedErrors.includes(currentSignIndex)) {
+            correctedErrors.push(currentSignIndex);
+        }
+        dispatch(correctError(correctedErrors));
     } else {
         dispatch(registerBackspace());
     }
@@ -31,11 +35,15 @@ export const onHandleKeyDown = (key: string): any => (dispatch: Dispatch, getSta
     let state = getState()[components];
     let { errors, allErrors, currentSignIndex } = state[comparator];
 
-    const expectedSign = state[lesson].text[currentSignIndex + 1];
     const nextCurrentSignIndex = currentSignIndex + 1;
+    const expectedSign = state[lesson].text[nextCurrentSignIndex];
 
     if (key !== expectedSign) {
-        dispatch(registerError(allErrors.push(nextCurrentSignIndex))); // TODO improve
+        /** Add to all errors only if not already included */
+        if (!allErrors.includes(nextCurrentSignIndex)) {
+            allErrors.push(nextCurrentSignIndex);
+        }
+        dispatch(registerError(allErrors)); // TODO improve
     } else {
         dispatch(registerNewKey());
     }

@@ -51,7 +51,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_COMPARATOR_CORRECT_ERROR: {
             return {
                 ...state,
-                errors: [ ...state.errors.slice(state.errors.length) ],
+                errors: [ ...state.errors.slice(0, state.errors.length - 1) ],
                 // @ts-ignore
                 correctedErrors: [ ...action.correctedErrors ],
                 currentSignIndex: state.currentSignIndex - 1
