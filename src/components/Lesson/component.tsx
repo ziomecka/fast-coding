@@ -3,29 +3,30 @@ import * as React from 'react';
 import { LessonProps } from './container';
 import Comparator from './Comparator/';
 
+import Stats from './Stats';
+
 /** Materials */
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 
 const LessonComponent: React.StatelessComponent<LessonProps> = props => {
     const { title, currentSignIndex } = props;
 
     const invite = () => <p> You can start typing :-) </p>;
-    const showStats = () => (
-        <>
-            <Divider />
-            <Paper>
-                stats
-            </Paper>
-        </>
-    );
+
+    const style = {
+        maxWidth: '900px',
+        position: 'relative',
+        left: '50%',
+        transform: 'translateX(-50%)',
+    };
 
     return (
-        <Paper>
+        // @ts-ignore
+        <Paper {...{ style }}>
             <h2>Lesson: "{title? title.toLowerCase() : ''}"</h2>
-            { currentSignIndex === 0 && invite() }
+            { currentSignIndex === -1 && invite() }
             <Comparator />
-            { currentSignIndex !== 0 && showStats() }
+            { currentSignIndex !== -1 && <Stats /> }
         </Paper>
     );
 }
