@@ -8,40 +8,37 @@ import AppMenu from '../../app/AppMenu';
 import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
 import Face from '@material-ui/icons/Face';
+import Home from '@material-ui/icons/Home';
 
 import { MenuContainers } from '../../_common/';
 const { userMenu, mainMenu } = MenuContainers;
 
 const appBarColor = 'primary';
 
-const NavComponent: React.StatelessComponent<NavProps> = props => {
-  const mainMenuItems = [
-    ['Home', '/'],
-    ['Lessons', '/lessons'],
-    ['About', '/about'],
-  ];
+import * as submenus from './submenus';
+import { __SubMenuProps } from '../SubMenu/container';
 
-  const userMenuItems = [
-    ['Login', '/login'],
-    ['Newuser', '/newuser'],
-  ];
+const NavComponent: React.StatelessComponent<NavProps> = props => {
+    const subMenus = [
+        {
+            menuItem: submenus.homeMenuItem,
+            icon: <Home />
+        },
+        {
+            menuItems: submenus.userMenuItems,
+            icon: <Face />,
+            container: userMenu,
+        },
+        {
+            menuItems: submenus.mainMenuItems,
+            icon: <MenuIcon />,
+            container: mainMenu
+        }
+    ] as __SubMenuProps[];
 
   return (
     <AppBar color={appBarColor}>
-      <AppMenu
-        subMenus={[
-          {
-            menuItems: userMenuItems,
-            icon: <Face />,
-            container: userMenu
-          },
-          {
-            menuItems: mainMenuItems,
-            icon: <MenuIcon />,
-            container: mainMenu
-          }
-        ]}
-      />
+      <AppMenu {...{ subMenus }} />
     </AppBar>
   );
 };

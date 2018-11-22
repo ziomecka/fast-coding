@@ -14,13 +14,11 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
     const {
       menuItems,
+      menuItem,
       icon,
       setNavAnchorEl,
       container,
     } = props;
-
-    // console.log('props[container]')
-    // console.log(props[container])
 
     const { anchorEl = null} = Object(props[container]);
 
@@ -29,8 +27,10 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
     );
 
     const handleClose = (loc: string) => {
-      props.history.push(loc);
-      setNavAnchorEl(container);
+        props.history.push(loc);
+        if (container) {
+            setNavAnchorEl(container);
+        }
     };
 
     const handleClickAway = () => {
@@ -39,43 +39,60 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
       }
     };
 
-    const style = {
-      maxWidth: "100px"
-    };
+    const style = { maxWidth: "100px" };
 
-    return (
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <Toolbar {...{ style }}>
-          <IconButton onClick={handleClick}>
-            {icon}
-          </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-              >
-                {menuItems.map((menuItem, ind) => {
-                    /** Render if not current pathname */
-                    if (menuItem[1] !== props.location.pathname) {
-                      return (
-                        <MenuItem
-                          onClick={() => handleClose(menuItem[1])}
-                          key={`${menuItem[0]}-${ind}`}
-                          divider={true}
-                        >
-                          <NavLink to={menuItem[1]}>
-                            {menuItem[0]}
-                          </NavLink>
-                        </MenuItem>
-                      );
+    if (menuItems && container && !menuItem) {
+        return (
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <Toolbar {...{ style }}>
+              <IconButton onClick={handleClick}>
+                {icon}
+              </IconButton>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                  >
+                    {menuItems.map((menuItem, ind) => {
+                        /** Render if not current pathname */
+                        if (menuItem[1] !== props.location.pathname) {
+                          return (
+                            <MenuItem
+                              onClick={() => handleClose(menuItem[1])}
+                              key={`${menuItem[0]}-${ind}`}
+                              divider={true}
+                            >
+                              <NavLink to={menuItem[1]}>
+                                {menuItem[0]}
+                              </NavLink>
+                            </MenuItem>
+                          );
+                        }
+                        /** Do not render if current pathname */
+                        return null;
+                      })
                     }
-                    /** Do not render if current pathname */
-                    return null;
-                  })
-                }
-              </Menu>
-        </Toolbar>
-      </ClickAwayListener>
-    );
+                  </Menu>
+            </Toolbar>
+          </ClickAwayListener>
+        );
+    }
+
+    if (menuItem && !container && !menuItems) {
+        /** Render if not current pathname */
+        if (menuItem[1] !== props.location.pathname) {
+            return (
+                <Toolbar {...{ style }}>
+                    <IconButton onClick={() => handleClose(menuItem[1])}>
+                        {icon}
+                    </IconButton>
+                </Toolbar>
+            );
+        }
+
+        return null;
+    }
+
+    throw new Error('SubMenu received incorrect props.');
 };
 
 export default SubMenuComponent;

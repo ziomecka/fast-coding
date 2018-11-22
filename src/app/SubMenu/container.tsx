@@ -36,9 +36,10 @@ export interface SubMenuDispatch {
 };
 
 export interface __SubMenuProps {
-    menuItems: string[][];
+    menuItems?: [string, string][];
+    menuItem?: [string, string];
     icon: JSX.Element;
-    container: MenuContainers;
+    container?: MenuContainers;
 };
 
 export interface SubMenuProps extends __SubMenuProps, SubMenuDispatch, MenuState, RouteComponentProps<{}> {
