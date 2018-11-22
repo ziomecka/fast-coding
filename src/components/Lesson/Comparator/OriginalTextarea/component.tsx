@@ -69,7 +69,6 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
 
     return (
         <Paper>
-            {/* <p id="originalText" className="typing-field"> */}
             <p>
                 {textRender()}
             </p>

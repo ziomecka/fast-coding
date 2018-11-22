@@ -4,21 +4,19 @@ $background--error: #ff99c8 // almost pink
 $background--correct: #d0f4de // green
 $background--corrected: #ffe9b2 // orange
 
-// TODO - change font size
-$typed-text-font-size: 60px
-$typed-text-padding: 2px
-$typed-text-margin: 2px
-
 // TODO - change default value
 @mixin textFont($background-color: '#ffffff')
     display: inline-block
-
-    font-size: $typed-text-font-size
-
-    padding: $typed-text-padding #{$typed-text-padding * 2}
-    margin: $typed-text-margin * 3 $typed-text-margin
-
+    box-sizing: border-box
     background-color: $background-color
+    margin: .1em
+    min-width: 1em
+
+    font-size: 4em
+    white-space: pre
+    text-align: center
+
+    border: 1px solid black
 
 .text
     @include textFont()
