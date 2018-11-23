@@ -3,19 +3,30 @@ import { connect } from 'react-redux';
 import { default as Stats } from './component';
 import { ApplicationState } from '../../../store';
 
-import { ComparatorState } from '../Comparator/_duck/reducers';
+import { StatsState } from './_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
+import { ComponentsContainers, ApplicationContainers, ComparatorContainers } from '../../../_common/';
 
 const { components } = ApplicationContainers;
-const { comparator } = ComponentsContainers;
+const { comparator, lesson } = ComponentsContainers;
+const { stats } = ComparatorContainers;
 
-const mapStateToProps = (state: ApplicationState): ComparatorState => ({
-    ...state[components][comparator]
+const mapStateToProps = (state: ApplicationState): ExtendedStatsState => ({
+    allErrors: state[components][comparator].allErrors,
+    text: state[components][lesson].text,
+    endedLesson: state[components][lesson].ended,
+    ...state[components][comparator][stats]
 });
 
 const StatsContainer = connect(mapStateToProps)(Stats);
 
 export default StatsContainer;
 
-export interface StatsProps extends ComparatorState {};
+interface ExtendedStatsState extends StatsState {
+    allErrors: number[];
+    text: string;
+    endedLesson: boolean;
+}
+
+export interface StatsProps extends ExtendedStatsState {
+};
