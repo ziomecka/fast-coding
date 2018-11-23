@@ -2,7 +2,6 @@ import { Action, ActionCreator } from 'redux';
 import { ComparatorTypes } from './types';
 
 const {
-    COMPONENTS_COMPARATOR_TURNON,
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
     COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
@@ -10,13 +9,16 @@ const {
     COMPONENTS_COMPARATOR_RESET
 } = ComparatorTypes;
 
-export const registerNewKey: ActionCreator<RegisterNewKeyAction> = () => ({
-    type: COMPONENTS_COMPARATOR_REGISTER_NEW_KEY
+export const registerNewKey: ActionCreator<RegisterNewKeyAction> = (currentSignIndex: number) => ({
+    type: COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
+    currentSignIndex
 });
 
-export const registerError: ActionCreator<RegisterErrorAction> = (allErrors: number[]) => ({
+export const registerError: ActionCreator<RegisterErrorAction> = (errors: number[], allErrors: number[], currentSignIndex: number) => ({
     type: COMPONENTS_COMPARATOR_REGISTER_ERROR,
-    allErrors
+    errors,
+    allErrors,
+    currentSignIndex
 });
 
 export const correctError: ActionCreator<CorrectErrorAction> = (correctedErrors: number[]) => ({
@@ -24,16 +26,11 @@ export const correctError: ActionCreator<CorrectErrorAction> = (correctedErrors:
     correctedErrors
 });
 
-export const registerBackspace: ActionCreator<RegisterBackspaceAction> = () => ({
+export const registerBackspace: ActionCreator<Action> = () => ({
     type: COMPONENTS_COMPARATOR_REGISTER_BACKSPACE
 });
 
-export const turnOn: ActionCreator<TurnOnAction> = (turnedOn: boolean) => ({
-    type: COMPONENTS_COMPARATOR_TURNON,
-    turnedOn
-});
-
-export const resetComparator: ActionCreator<ResetAction> = () => ({
+export const resetComparator: ActionCreator<Action> = () => ({
     type: COMPONENTS_COMPARATOR_RESET
 });
 
@@ -42,17 +39,19 @@ export default {
     registerError,
     registerBackspace,
     correctError,
-    turnOn,
     resetComparator
 };
 
 export interface RegisterNewKeyAction extends Action {
     readonly type: string;
+    currentSignIndex: number;
 };
 
 export interface RegisterErrorAction extends Action {
     readonly type: string;
+    errors: number[];
     allErrors: number[];
+    currentSignIndex: number;
 };
 
 export interface CorrectErrorAction extends Action {
@@ -60,22 +59,6 @@ export interface CorrectErrorAction extends Action {
     correctedErrors: number[];
 };
 
-export interface RegisterBackspaceAction extends Action {
-    readonly type: string;
-};
-
-export interface TurnOnAction extends Action {
-    readonly type: string;
-    turnedOn: boolean;
-};
-
-export interface ResetAction extends Action {
-    readonly type: string;
-};
-
 export type ComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |
-    RegisterBackspaceAction |
-    CorrectErrorAction |
-    TurnOnAction |
-    ResetAction;
+    CorrectErrorAction;
