@@ -1,7 +1,6 @@
-import { Reducer } from 'redux';
+import { Action, Reducer } from 'redux';
 
 import { DialogTypes } from './types';
-
 import { DialogActions } from './actions';
 import { DialogProps } from '@material-ui/core/Dialog';
 
@@ -12,21 +11,27 @@ const {
 
 export const INITIAL_STATE: DialogState = {
     open: false,
-    title: ''
+    title: '',
+    message: '',
+    buttons: []
 };
 
-const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, action) => {
+const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_DIALOG_OPEN:
             return {
                 ...state,
-                open: true
+                open: true,
+                // @ts-ignore
+                ...action.options
             };
 
         case APP_DIALOG_CLOSE:
             return {
-                ...state,
-                open: false
+                open: false,
+                title: '',
+                message: '',
+                buttons: []
             };
 
         default:
@@ -36,5 +41,19 @@ const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, act
 
 export { reducer as dialogReducer };
 
-export interface DialogState extends DialogProps {
+interface AppDialogOptions {
+    message: string;
+    buttons: Array<[string, () => void]>;
 };
+
+export interface DialogOptions extends AppDialogOptions {
+    title: string;
+    onClose: () => void;
+    onEnter?: () => void;
+    onEscapeClickDown?: () => void;
+    onBackdropClick?: () => void;
+    onExited?: () => void;
+    onExiting?: () => void;
+};
+
+export interface DialogState extends AppDialogOptions, DialogProps {};
