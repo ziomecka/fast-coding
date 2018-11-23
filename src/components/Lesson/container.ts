@@ -11,19 +11,17 @@ import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispat
 import { ApplicationContainers, ComponentsContainers } from '../../_common/';
 
 const { components } = ApplicationContainers;
-const { lesson, comparator } = ComponentsContainers;
+const { lesson } = ComponentsContainers;
 
-import { turnOnTextGenerator } from '../TextGenerator/_duck/actions';
+import { onReset } from './_duck/operations';
 
 const mapStateToProps = (state: ApplicationState): LessonState => ({
-    ...state[components][lesson],
-    currentSignIndex: state[components][comparator].currentSignIndex
-
+    ...state[components][lesson]
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     ...notificationMapDiaptchToProps(dispatch),
-    turnOnTextGenerator: () => dispatch(turnOnTextGenerator())
+    reset: () => dispatch(onReset())
 });
 
 const LessonContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Lesson));
@@ -31,9 +29,7 @@ const LessonContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(
 export default LessonContainer;
 
 export interface LessonDispatch extends NotificationDispatch {
-    turnOnTextGenerator: () => void
+    reset: () => void;
 };
 
-export interface LessonProps extends LessonDispatch, LessonState, RouteComponentProps<{}> {
-    currentSignIndex: number;
-};
+export interface LessonProps extends LessonDispatch, LessonState, RouteComponentProps<{}> {}

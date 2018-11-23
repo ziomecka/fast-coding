@@ -6,7 +6,12 @@ import { LessonActions, OpenLessonAction, UpdateTextAction } from './actions';
 const {
     COMPONENTS_LESSON_OPEN,
     COMPONENTS_LESSON_TEXT_UPDATE,
-    COMPONENTS_LESSON_UPDATE
+    COMPONENTS_LESSON_UPDATE,
+    COMPONENTS_LESSON_START,
+    COMPONENTS_LESSON_END,
+    COMPONENTS_LESSON_ENDING,
+    COMPONENTS_LESSON_NOT_ENDING,
+    COMPONENTS_LESSON_RESET
 } = LessonTypes;
 
 export const INITIAL_STATE: LessonState = {
@@ -14,15 +19,16 @@ export const INITIAL_STATE: LessonState = {
     title: '',
     text: '',
     signs: [],
-    otherSigns: []
+    otherSigns: [],
+    started: false,
+    ended: false,
+    ending: false
 };
 
 const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case COMPONENTS_LESSON_UPDATE:
         case COMPONENTS_LESSON_OPEN: {
-            console.log("action");
-            console.log(action);
             return {
                 ...state,
                 ...(action as OpenLessonAction).lessonData
@@ -33,6 +39,44 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
             return {
                 ...state,
                 text: (action as UpdateTextAction).text
+            };
+        }
+
+        case COMPONENTS_LESSON_START: {
+            return {
+                ...state,
+                started: true
+            };
+        }
+
+        case COMPONENTS_LESSON_ENDING: {
+            return {
+                ...state,
+                ended: false,
+                ending: true
+            };
+        }
+
+        case COMPONENTS_LESSON_NOT_ENDING: {
+            return {
+                ...state,
+                ending: false,
+            };
+        }
+
+        case COMPONENTS_LESSON_END: {
+            return {
+                ...state,
+                ending: false,
+                ended: true
+            };
+        }
+
+        case COMPONENTS_LESSON_RESET: {
+            return {
+                ...INITIAL_STATE,
+                signs: [],
+                otherSigns: [],
             };
         }
 
@@ -50,6 +94,9 @@ export interface LessonData {
     text: string;
     signs: string[];
     otherSigns: string[];
+    started: boolean;
+    ended: boolean;
+    ending: boolean;
 };
 
 export interface LessonState extends LessonData {};

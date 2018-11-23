@@ -1,34 +1,51 @@
-
 import * as React from 'react';
 import { LessonProps } from './container';
-import Comparator from './Comparator/';
+
+import Comparator from './Comparator/container';
 
 import Stats from './Stats';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';
 
-const LessonComponent: React.StatelessComponent<LessonProps> = props => {
-    const { title, currentSignIndex } = props;
+class LessonComponent extends React.Component<LessonProps> {
+    style: React.CSSProperties;
+    constructor(props) {
+        super(props);
+        this.style = {
+            maxWidth: '900px',
+            position: 'relative',
+            left: '50%',
+            transform: 'translateX(-50%)',
+        };
+    }
 
-    const invite = () => <p> You can start typing :-) </p>;
+    componentWillUnmount() {
+        /** no matter if running or not, cheaper than checking */
+        this.props.reset();
+    }
 
-    const style = {
-        maxWidth: '900px',
-        position: 'relative',
-        left: '50%',
-        transform: 'translateX(-50%)',
-    };
+    get invite (): JSX.Element {
+        return (
+            <p> You can start typing :-) </p>
+        );
+    }
 
-    return (
-        // @ts-ignore
-        <Paper {...{ style }}>
-            <h2>Lesson: "{title? title.toLowerCase() : ''}"</h2>
-            { currentSignIndex === -1 && invite() }
-            <Comparator />
-            { currentSignIndex !== -1 && <Stats /> }
-        </Paper>
-    );
+    render() {
+        const { title, ended, started } = this.props;
+
+        return (
+            // @ts-ignore
+            <>
+                <Paper {...{ style: this.style }}>
+                    <h2>Lesson: "{title? title.toLowerCase() : ''}"</h2>
+                    { !started && this.invite }
+                    <Comparator />
+                    { ended && <Stats /> }
+                </Paper>
+            </>
+        );
+    }
 }
 
 export default LessonComponent;
