@@ -1,8 +1,9 @@
 import { Reducer } from 'redux';
 import { ComponentsActions } from '../_actions/';
-import { ComponentsContainers } from '../_common/';
+import { ComponentsContainers, ComparatorContainers } from '../_common/';
 
 const { comparator, lesson, textGenerator, lessons, lessonsLoader } = ComponentsContainers;
+const { stats, keyboardListener } = ComparatorContainers;
 
 import {
     ComparatorState,
@@ -31,7 +32,7 @@ export const INITIAL_STATE = {
     [comparator]: { ...COMPARATOR_INITIAL_STATE },
     [lesson]: { ...LESSON_INITIAL_STATE },
     [textGenerator]: { ...TEXT_GENERATOR_INITIAL_STATE },
-    [lessonsLoader]: { ...LESSONSLOADER_INITIAL_STATE }
+    [lessonsLoader]: { ...LESSONSLOADER_INITIAL_STATE },
 };
 
 // @@components_comparator
@@ -48,6 +49,8 @@ const reducer: Reducer<ComponentsState, ComponentsActions> = (state = INITIAL_ST
             };
         }
 
+        case testRegExp(type, keyboardListener):
+        case testRegExp(type, stats):
         case testRegExp(type, comparator): {
             return {
                 ...state,
