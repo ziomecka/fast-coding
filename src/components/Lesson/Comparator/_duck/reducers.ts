@@ -9,7 +9,8 @@ const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
     COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
-    COMPONENTS_COMPARATOR_CORRECT_ERROR
+    COMPONENTS_COMPARATOR_CORRECT_ERROR,
+    COMPONENTS_COMPARATOR_RESET
 } = ComparatorTypes;
 
 /**
@@ -63,6 +64,10 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
                 ...state,
                 turnedOn: true
             };
+        }
+
+        case COMPONENTS_COMPARATOR_RESET: {
+            return { ...INITIAL_STATE };
         }
 
         default: {

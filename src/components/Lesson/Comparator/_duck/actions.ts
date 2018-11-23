@@ -6,7 +6,8 @@ const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
     COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
-    COMPONENTS_COMPARATOR_CORRECT_ERROR
+    COMPONENTS_COMPARATOR_CORRECT_ERROR,
+    COMPONENTS_COMPARATOR_RESET
 } = ComparatorTypes;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = () => ({
@@ -32,12 +33,17 @@ export const turnOn: ActionCreator<TurnOnAction> = (turnedOn: boolean) => ({
     turnedOn
 });
 
+export const resetComparator: ActionCreator<ResetAction> = () => ({
+    type: COMPONENTS_COMPARATOR_RESET
+});
+
 export default {
     registerNewKey,
     registerError,
     registerBackspace,
     correctError,
-    turnOn
+    turnOn,
+    resetComparator
 };
 
 export interface RegisterNewKeyAction extends Action {
@@ -63,8 +69,13 @@ export interface TurnOnAction extends Action {
     turnedOn: boolean;
 };
 
+export interface ResetAction extends Action {
+    readonly type: string;
+};
+
 export type ComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |
     RegisterBackspaceAction |
     CorrectErrorAction |
-    TurnOnAction;
+    TurnOnAction |
+    ResetAction;
