@@ -38,6 +38,26 @@ export default {
                 width: "100%",
                 // padding: navPadding
             }
+        },
+        MuiDialogContent: {
+            root: {
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between"
+            }
+        },
+        MuiDialogContentText: {
+            root: {
+                width: "100%"
+            }
+        },
+        MuiDialogActions: {
+            root: {
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-end"
+            }
         }
     }
 };

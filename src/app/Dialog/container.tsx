@@ -9,7 +9,7 @@ import { closeDialog, openDialog } from './_duck/actions';
 
 import { DialogState } from './_duck/reducers';
 import { default as operations } from './_duck/';
-import { DialogProps } from '@material-ui/core/Dialog'
+
 
 const { } = operations;
 
@@ -36,5 +36,4 @@ export interface DialogDispatch {
     dialogClose: () => void
 };
 
-export interface AppDialogProps extends DialogDispatch, DialogState, DialogProps {
-};
+export interface AppDialogProps extends DialogDispatch, DialogState {};
