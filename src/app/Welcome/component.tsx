@@ -13,9 +13,10 @@ import styles from './styles';
 require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
-    style: CSSProperties;
-        constructor(props) {
+    classFalling: string;
+    constructor(props) {
         super(props);
+        this.classFalling = 'title-falling';
     }
 
     componentDidUpdate(prevProps: WelcomeProps) {
@@ -29,6 +30,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
     heading = () => {
         const { animated, heading, classes } = this.props;
+        const { classFalling } = this;
+        const { fallingLetters } = classes;
 
         if (animated) {
             const lastSpace = heading.lastIndexOf(' ');
@@ -40,7 +43,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                     {remainingHeading} {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
-                                className={`${classes.fallingLetters} title-falling`}
+                                className={`${fallingLetters} ${classFalling}`}
                                 key={`${ind}-${letter}`}
                             >
                                 {letter}
@@ -58,16 +61,17 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         const { classes, location } = this.props;
         const { heading } = this;
         const isHome = location.pathname === '/';
+        const { welcomePaper, welcomeHome, welcomeOther, welcomeButton } = classes;
 
         return (
             <Paper className={
-                `${classes.welcomePaper} ${isHome ? classes.welcomeHome : classes.welcomeOther}`
+                `${welcomePaper} ${isHome ? welcomeHome : welcomeOther}`
             }>
                 <h1>{heading()}</h1>
                     {isHome && (
                         <Button
                             onClick={() => {}}
-                            className={classes.welcomeButton}
+                            className={welcomeButton}
                         >
                             Start typing
                         </Button>
