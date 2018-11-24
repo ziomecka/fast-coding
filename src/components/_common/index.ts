@@ -7,3 +7,8 @@ export enum ComponentsContainers {
     lessonsLoader = 'LESSONS_LOADER',
     lessons = 'LESSONS'
 };
+
+export enum LessonsCategoriesEnum {
+    JS = 'js',
+    basics = 'basics'
+}
