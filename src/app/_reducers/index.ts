@@ -9,6 +9,7 @@ import { ContentTypes } from '../Content/_duck/types';
 import { LoginTypes } from '../Login/_duck/types';
 import { PasswordTypes } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
+import { UserTypes } from '../User/_duck/types';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
@@ -52,6 +53,12 @@ import {
     ContentState
 } from '../Content/_duck/reducers';
 
+import {
+    INITIAL_STATE as USER_INITIAL_STATE,
+    userReducer,
+    UserState
+} from '../User/_duck/reducers';
+
 import { AppContainers } from '../_common/';
 import { AppActions, actions } from '../_actions/';
 
@@ -63,6 +70,7 @@ const {
     appMenu,
     welcome,
     content,
+    user
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -72,7 +80,8 @@ export const INITIAL_STATE = {
     [newUserForm]: NEWUSERFORM_INITIAL_STATE,
     [appMenu]: MENU_INITIAL_STATE,
     [welcome]: WELCOME_INITIAL_STATE,
-    [content]: CONTENT_INITIAL_STATE
+    [content]: CONTENT_INITIAL_STATE,
+    [user]: USER_INITIAL_STATE
 };
 
 const { APP_DIALOG_CLOSE, APP_DIALOG_OPEN } = DialogTypes;
@@ -88,6 +97,7 @@ const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
 const { APP_CONTENT_CHANGE_LOCATION } = ContentTypes;
 const { APP_NOTIFICATION_CLOSE, APP_NOTIFICATION_OPEN } = NotificationTypes;
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
+const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -151,7 +161,16 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_SUBMENU_SET_ANCHOREL: {
             return {
                 ...state,
+                // @ts-ignore
                 [appMenu]: menuReducer(state[appMenu], action)
+            };
+        }
+
+        case APP_USER_AUTHORIZE_USER:
+        case APP_USER_UNAUTHORIZE: {
+            return {
+                ...state,
+                [user]: userReducer(state[user], action)
             };
         }
 
@@ -171,4 +190,5 @@ export interface AppState {
     [appMenu]: MenuState;
     [welcome]: WelcomeState;
     [content]: ContentState;
+    [user]: UserState;
 };
