@@ -1,69 +1,27 @@
-$title-background: blue
-$title-border-color: darken($title-background, 10%)
-// $title-color-home: color('background-secondary')
-// $title-color-other: color('font-primary')
-
-$home-height: 60px
-$title-height: 60px
-$title-transition: 0.7s
-$title-transition-delay: 0.3s
-$title-font-size-home: 30px
-$title-font-size-other: 1em
-$falling-time: .9s
+$falling-time: .1s
 $falling-delay: .2s
+$falling-start-position: -150px
 
-// Keyframes used to make the leters 'free!' falling
+$color-start: #757575
+$color-middle: #e65100
+$color-end: #000000
+
 @keyframes titleFalling
     from
-        top: -200px
+        top: $falling-start-position
     to
         top: 0
 
-// TODO
 @keyframes titleInvisible
     0%
-        // color: //$nav-background
-    65%
-        // color: //$nav-background
+        color: $color-start
+    70%
+        color: $color-middle
+    80%
+        color: $color-middle
     100%
-        // color: color('background-secondary')
+        color: $color-end
 
-.MuiPaper-root-1
-    &.welcome
-        display: flex
-        position: fixed
-        align-items: center
-        width: 100%
-        // background-color: $title-background
-        height: 100%
-        top: 60px
-        transition: height $title-transition ease-out, font-size $title-transition ease-out, color $title-transition / 4 ease-out
-        // border-bottom: $title-border-width solid $title-border-color
-
-    &.welcome-home
-        height: 100%
-        font-size: $title-font-size-home
-        // color: $title-color-home
-
-    &.welcome-other
-        height: $title-height
-        font-size: $title-font-size-other
-        // color: $title-color-other
-
-/** Position relative: letters fall one after other */
-h1 span
-    position: relative
-
-.title-falling
-    &:nth-child(1)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling $falling-time linear
-    &:nth-child(2)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling ($falling-time + $falling-delay * 1) linear
-    &:nth-child(3)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling ($falling-time + $falling-delay * 2) linear
-    &:nth-child(4)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling ($falling-time + $falling-delay * 3) linear
-    &:nth-child(5)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling ($falling-time + $falling-delay * 4) linear
-    &:nth-child(6)
-        animation: titleInvisible ($falling-delay + $falling-time * 1) linear, titleFalling ($falling-time + $falling-delay * 5) linear
+@for $i from 1 through 10
+    h1 span.title-falling:nth-child(#{$i})
+            animation: titleInvisible ($falling-delay * $i * 1.2 + $falling-time) linear, titleFalling ($falling-time  + $falling-delay * $i * 0.9 ) ease-in $falling-delay

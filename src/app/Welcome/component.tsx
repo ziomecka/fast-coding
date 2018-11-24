@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { CSSProperties } from 'react'
-require('./style.sass');
-
-import Paper from '@material-ui/core/Paper';
 
 import { WelcomeProps } from './container';
-import { colors } from '../../theme/';
+
+/** Materials core */
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
+require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
   style: CSSProperties;
   constructor(props) {
     super(props);
-    this.style = {
-      backgroundColor: colors.primary.main
-    };
   }
 
   componentDidUpdate(prevProps: WelcomeProps) {
@@ -26,7 +28,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
   }
 
   heading = () => {
-    const { animated, heading, classAnimated } = this.props;
+    const { animated, heading, classes } = this.props;
 
     if (animated) {
       const lastSpace = heading.lastIndexOf(' ');
@@ -38,8 +40,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
           {remainingHeading} {
             Array.from(lastWord).map((letter, ind) => (
               <span
-              className={classAnimated}
-              key={`${ind}-${letter}`}
+                className={`${classes.fallingLetters} title-falling`}
+                key={`${ind}-${letter}`}
               >
                 {letter}
               </span>
@@ -53,15 +55,26 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
   };
 
   render()  {
-    const { classTitle } = this.props;
+    const { classes, location } = this.props;
     const { heading } = this;
+    const isHome = location.pathname === '/';
 
     return (
-        <Paper className={classTitle} style={this.style}>
+        <Paper className={
+            `${classes.welcomePaper} ${isHome ? classes.welcomeHome : classes.welcomeOther}`
+        }>
           <h1>{heading()}</h1>
+            {isHome && (
+                <Button
+                    onClick={() => {}}
+                    className={classes.welcomeButton}
+                >
+                    Start typing
+                </Button>
+            )}
         </Paper>
     );
   }
 };
 
-export default WelcomeComponent;
+export default withStyles(styles)(WelcomeComponent);

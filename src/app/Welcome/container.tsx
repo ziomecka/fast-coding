@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as Welcome } from './component';
 import { ApplicationState } from '../../store';
@@ -11,6 +11,8 @@ import { AppLocation } from '../_common/';
 import { WelcomeState } from './_duck/reducers';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
+
+import { WithStyles } from '@material-ui/core';
 
 const { app } = ApplicationContainers;
 const { welcome } = AppContainers;
@@ -23,7 +25,8 @@ const mapDispatchToProps = (dispatch: Dispatch): WelcomeDispatch => ({
     changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation))
 });
 
-const WelcomeContainer = connect(mapStateToProps, mapDispatchToProps)(Welcome);
+// @ts-ignore
+const WelcomeContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Welcome));
 
 export default WelcomeContainer;
 
@@ -31,8 +34,11 @@ export interface WelcomeDispatch {
     changeLocation: (appLocation: AppLocation) => void;
 };
 
-export interface WelcomeProps extends WelcomeDispatch, WelcomeState {
-    heading: string;
-    animated: boolean;
-    timeout: number;
-};
+export interface WelcomeProps extends WelcomeDispatch,
+    WelcomeState,
+    WithStyles,
+    RouteComponentProps<{}> {
+        heading: string;
+        animated: boolean;
+        timeout: number;
+    };
