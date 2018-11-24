@@ -1,10 +1,16 @@
 {
   "name": "fast-coding",
-  "description": "Application for learning how to type fast.",
+  "description": "Touch typing application",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Katarzyna Ziomek-Zdanowicz",
-  "license": "MIT",
+  "keywords": [
+    "react",
+    "redux",
+    "mongo",
+    "redis",
+    "heroku"
+  ],
   "scripts": {
     "bundle": "webpack --watch --progress --config ./webpack/webpack.bundle.js",
     "deploy": "SET NODE_ENV=production & webpack --config ./webpack/webpack.deploy.js",
