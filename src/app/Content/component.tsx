@@ -4,9 +4,10 @@ import { ContentProps } from './container';
 import { default as Dialog } from '../../app/Dialog/';
 import { default as Notification } from '../../app/Notification/';
 
-require('./style.sass');
-
 /** Materials */
+import { withStyles } from '@material-ui/core';
+import styles from './styles';
+
 import Paper from '@material-ui/core/Paper';
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
@@ -24,10 +25,12 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   render() {
-    const { contentClass } = this.props;
+    const { location, classes } = this.props;
+    const isHome = location.pathname === '/';
+    const { contentBox, contentBoxHome, contentBoxOther } = classes;
 
     return (
-      <Paper className={contentClass} id="content">
+      <Paper className={`${contentBox} ${isHome? contentBoxHome : contentBoxOther}`} id="content">
         {this.props.children}
         <Dialog />
         <Notification />
@@ -36,4 +39,4 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 }
 
-export default ContentComponent;
+export default withStyles(styles)(ContentComponent);
