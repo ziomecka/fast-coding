@@ -2,6 +2,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
+import { WithStyles } from '@material-ui/core';
+
 import { default as Lessons } from './component';
 
 import { LessonData } from '../Lesson/_duck/reducers';
@@ -34,5 +36,5 @@ export interface LessonsDispatch {
     handleOpenRandomLesson: (lessonData: LessonData) => void;
 };
 
-export interface LessonsProps extends LessonsDispatch, LessonsLoaderState, RouteComponentProps<{}> {
+export interface LessonsProps extends LessonsDispatch, LessonsLoaderState, RouteComponentProps<{}>, WithStyles {
 };
