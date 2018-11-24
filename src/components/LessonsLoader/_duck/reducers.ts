@@ -6,10 +6,19 @@ export const INITIAL_STATE: LessonsLoaderState = {
     lessons: []
 };
 
+export interface LessonsData {
+    title: string;
+    description: string;
+    lessons: LessonData[];
+    collection: string;
+    type: string;
+    _id: string;
+}
+
 export interface LessonsLoaderState {
     loading: boolean;
     error: string;
-    lessons: LessonData[];
+    lessons: LessonsData[];
 };
 
 export default INITIAL_STATE;
