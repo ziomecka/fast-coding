@@ -23,7 +23,7 @@ export const onLoadLessons = (params: URLParamsI = defaultParamNames, url: strin
     const container = lessonsLoader;
     const lsItem = LocalStorageItemTypes.lessons;
 
-    dispatch(onLoadData(buildUrl(params, url), applicationContainer, container, lsItem));
+    dispatch(onLoadData(buildUrl(params, url), applicationContainer, container, lsItem, 'lessons'));
 };
 
 export default {

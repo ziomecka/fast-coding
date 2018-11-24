@@ -12,7 +12,7 @@ import {
 import { LocalStorageItemTypes } from '../../_common/index';
 
 export const onLoadData =
-(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainers | AppContainers, lsItem: LocalStorageItemTypes): any => (
+(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainers | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (
     async (dispatch: Dispatch): Promise<any> => {
         dispatch(updateData(localStorageGetItem(lsItem), applicationContainer, container));
 
@@ -20,7 +20,7 @@ export const onLoadData =
 
         try {
             let data = await getData(url);
-            dispatch(updateData(data, applicationContainer, container));
+            dispatch(updateData({ [stateName]: data }, applicationContainer, container));
             localStorageSetItem(lsItem, data);
             // console.log('in LS')
             // console.log(localStorageGetItem(lsItem))
