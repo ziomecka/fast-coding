@@ -9,8 +9,17 @@ import Welcome from '../../app/Welcome/';
 import Content from '../../app/Content/';
 import TextGenerator from '../../components/TextGenerator/container';
 import LessonsLoader from '../../components/LessonsLoader/container';
+import User from '../../app/User/container';
 
 import { AppContainers } from '../../_common/';
+
+import {
+    HOME_HEADING,
+    HOME_HEADING_ANIMATED,
+    HOME_NOTIFICATION,
+    NOTIFICATION_DURATION,
+    HOME_WELCOME_TIMEOUT
+} from '../../constants';
 
 const { content, welcome } = AppContainers;
 
@@ -20,10 +29,10 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
   constructor(props: HomeViewProps) {
     super(props);
 
-    this.defaultHeading = "Learn fast coding for free!"
-    this.defaultAnimateHeading = true;
+    this.defaultHeading = HOME_HEADING;
+    this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
 
-    props.openNotification('Nice to see you', 3000);
+    props.openNotification(HOME_NOTIFICATION, NOTIFICATION_DURATION);
   }
 
   render() {
@@ -42,14 +51,14 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
           welcome
         ]} />
 
-        {/*
-        // @ts-ignore */}
+        <User />
+
         <LessonsLoader />
 
         <Welcome
           heading={heading}
           animated={animateHeading}
-          timeout={1000}
+          timeout={HOME_WELCOME_TIMEOUT}
         />
 
         <Nav />
