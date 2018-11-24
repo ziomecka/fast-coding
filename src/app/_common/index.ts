@@ -6,7 +6,8 @@ export enum AppContainers {
     appMenu = 'APP_MENU',
     welcome = 'WELCOME',
     content = 'CONTENT',
-    csr = 'CSR'
+    csr = 'CSR',
+    user = 'USER'
 };
 
 export enum MenuContainers {
