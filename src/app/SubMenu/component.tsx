@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
 const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
     const {
       menuItems,
@@ -18,6 +21,7 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
       icon,
       setNavAnchorEl,
       container,
+      classes
     } = props;
 
     const { anchorEl = null} = Object(props[container]);
@@ -39,18 +43,20 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
       }
     };
 
-    const style = { maxWidth: "100px" };
-
     if (menuItems && container && !menuItem) {
         return (
           <ClickAwayListener onClickAway={handleClickAway}>
-            <Toolbar {...{ style }}>
-              <IconButton onClick={handleClick}>
+            <Toolbar className={classes.menuToolbar}>
+              <IconButton
+                onClick={handleClick}
+                className={classes.menuIcon}
+              >
                 {icon}
               </IconButton>
                   <Menu
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
+                    className={classes.menu}
                   >
                     {menuItems.map((menuItem, ind) => {
                         /** Render if not current pathname */
@@ -81,8 +87,11 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         /** Render if not current pathname */
         if (menuItem[1] !== props.location.pathname) {
             return (
-                <Toolbar {...{ style }}>
-                    <IconButton onClick={() => handleClose(menuItem[1])}>
+                <Toolbar className={classes.menuToolbar}>
+                    <IconButton
+                        onClick={() => handleClose(menuItem[1])}
+                        className={classes.menuIcon}
+                    >
                         {icon}
                     </IconButton>
                 </Toolbar>
@@ -95,4 +104,4 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
     throw new Error('SubMenu received incorrect props.');
 };
 
-export default SubMenuComponent;
+export default withStyles(styles)(SubMenuComponent);

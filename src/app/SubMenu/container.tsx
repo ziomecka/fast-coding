@@ -15,6 +15,8 @@ import { MenuContainers } from '../_common/';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
+import { WithStyles } from '@material-ui/core/';
+
 const { app } = ApplicationContainers;
 const { appMenu } = AppContainers;
 
@@ -42,5 +44,9 @@ export interface __SubMenuProps {
     container?: MenuContainers;
 };
 
-export interface SubMenuProps extends __SubMenuProps, SubMenuDispatch, MenuState, RouteComponentProps<{}> {
+export interface SubMenuProps extends __SubMenuProps,
+    SubMenuDispatch,
+    MenuState,
+    RouteComponentProps<{}>,
+    WithStyles {
 };
