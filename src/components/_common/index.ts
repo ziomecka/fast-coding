@@ -5,10 +5,11 @@ export enum ComponentsContainers {
     lesson = 'LESSON',
     textGenerator = 'TEXT_GENERATOR',
     lessonsLoader = 'LESSONS_LOADER',
-    lessons = 'LESSONS'
+    lessons = 'LESSONS',
+    lessonButtons = 'LESSON_BUTTONS'
 };
 
 export enum LessonsCategoriesEnum {
     JS = 'js',
     basics = 'basics'
-}
+};

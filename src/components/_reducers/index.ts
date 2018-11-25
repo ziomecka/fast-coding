@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { ComponentsActions } from '../_actions/';
 import { ComponentsContainers, ComparatorContainers } from '../_common/';
 
-const { comparator, lesson, textGenerator, lessons, lessonsLoader } = ComponentsContainers;
+const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainers;
 const { stats, keyboardListener } = ComparatorContainers;
 
 import {
@@ -28,11 +28,18 @@ import {
     INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
 } from '../LessonsLoader/_duck/reducers';
 
+import {
+    LessonButtonsState,
+    lessonButtonsReducer,
+    INITIAL_STATE as LESSONBUTTONS_INITIAL_STATE
+} from '../Lesson/LessonButtons/_duck/reducers';
+
 export const INITIAL_STATE = {
     [comparator]: { ...COMPARATOR_INITIAL_STATE },
     [lesson]: { ...LESSON_INITIAL_STATE },
     [textGenerator]: { ...TEXT_GENERATOR_INITIAL_STATE },
     [lessonsLoader]: { ...LESSONSLOADER_INITIAL_STATE },
+    [lessonButtons]: { ...LESSONBUTTONS_INITIAL_STATE }
 };
 
 // @@components_comparator
@@ -65,6 +72,13 @@ const reducer: Reducer<ComponentsState, ComponentsActions> = (state = INITIAL_ST
             };
         }
 
+        case testRegExp(type, lessonButtons): {
+            return {
+                ...state,
+                [lessonButtons]: lessonButtonsReducer(state[lessonButtons], action)
+            };
+        }
+
         default: {
             return { ...state };
         }
@@ -78,4 +92,5 @@ export interface ComponentsState {
     [lesson]: LessonState;
     [textGenerator]: TextGeneratorState;
     [lessonsLoader]: LessonsLoaderState;
+    [lessonButtons]: LessonButtonsState;
 };
