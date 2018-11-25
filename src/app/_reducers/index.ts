@@ -94,7 +94,11 @@ const {
 
 const { APP_LOGIN_SET_LOGIN } = LoginTypes;
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
-const { APP_CONTENT_CHANGE_LOCATION } = ContentTypes;
+const {
+    APP_CONTENT_CHANGE_LOCATION,
+    APP_CONTENT_ONDROP_REGISTER,
+    APP_CONTENT_ONDROP_DEREGISTER
+} = ContentTypes;
 const {
     APP_NOTIFICATION_CLOSE,
     APP_NOTIFICATION_OPEN,
@@ -148,6 +152,8 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
             };
         }
 
+        case APP_CONTENT_ONDROP_REGISTER:
+        case APP_CONTENT_ONDROP_DEREGISTER:
         case APP_CONTENT_CHANGE_LOCATION: {
             return {
                 ...state,
