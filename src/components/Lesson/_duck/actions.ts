@@ -11,7 +11,8 @@ const {
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
     COMPONENTS_LESSON_END,
-    COMPONENTS_LESSON_RESET
+    COMPONENTS_LESSON_RESET,
+    COMPONENTS_LESSON_OPEN_DEMO
 } = LessonTypes;
 
 export const openLesson: ActionCreator<OpenLessonAction> = (lessonData: LessonData) => ({
@@ -50,6 +51,10 @@ export const resetLesson: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_RESET
 });
 
+export const openDemoLesson: ActionCreator<Action> = () => ({
+    type: COMPONENTS_LESSON_OPEN_DEMO
+});
+
 export default {
     endLesson,
     resetLesson
@@ -65,6 +70,6 @@ export interface UpdateTextAction extends Action {
     text: string;
 };
 
-
-export type LessonActions = OpenLessonAction |
+export type LessonActions = Action |
+    OpenLessonAction |
     UpdateTextAction;

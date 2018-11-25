@@ -8,5 +8,6 @@ export enum LessonTypes {
     COMPONENTS_LESSON_ENDING = '@@components_lesson/ENDING',
     COMPONENTS_LESSON_NOT_ENDING = '@@components_lesson/NOT_ENDING',
     COMPONENTS_LESSON_END = '@@components_lesson/END',
-    COMPONENTS_LESSON_RESET = '@@components_lesson/RESET'
+    COMPONENTS_LESSON_RESET = '@@components_lesson/RESET',
+    COMPONENTS_LESSON_OPEN_DEMO = '@@components_lesson/OPEN_DEMO'
 };

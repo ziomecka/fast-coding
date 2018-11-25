@@ -2,6 +2,7 @@ import { Reducer } from 'redux';
 
 import { LessonTypes } from './types';
 import { LessonActions, OpenLessonAction, UpdateTextAction } from './actions';
+import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../../../constants';
 
 const {
     COMPONENTS_LESSON_OPEN,
@@ -11,7 +12,8 @@ const {
     COMPONENTS_LESSON_END,
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
-    COMPONENTS_LESSON_RESET
+    COMPONENTS_LESSON_RESET,
+    COMPONENTS_LESSON_OPEN_DEMO
 } = LessonTypes;
 
 export const INITIAL_STATE: LessonState = {
@@ -77,6 +79,16 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
                 ...INITIAL_STATE,
                 signs: [],
                 otherSigns: [],
+            };
+        }
+
+        case COMPONENTS_LESSON_OPEN_DEMO: {
+            return {
+                ...INITIAL_STATE,
+                signs: [],
+                otherSigns: [],
+                text: LESSON_DEMO_TEXT,
+                title: LESSON_DEMO_TITLE
             };
         }
 
