@@ -12,7 +12,7 @@ import { LessonButtonsState } from './_duck/reducers';
 import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
 import { DialogDispatch, mapDispatchToProps as dialogMapsDispatchToProps } from '../../../shared/dialog';
 
-import { onRestartLesson } from './_duck/operations';
+import { onRestartLesson } from '../_duck/operations';
 import { onReset } from '../_duck/operations';
 
 const { components } = ApplicationContainers;
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     turnOnDraggable: () => dispatch(turnOnDraggableLessonButtons()),
     turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons()),
     resetLessonButtons: () => dispatch(resetDraggableLessonButtons())
-})
+});
 
 const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
     ...state[components][lesson],

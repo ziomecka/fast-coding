@@ -57,6 +57,13 @@ export const onReset = (): any => (dispatch: Dispatch) => {
     clearTimeout(timeout);
 };
 
+export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
+    dispatch(resetComparator());
+    dispatch(resetStats());
+    dispatch(resetKeyboardListener());
+    clearTimeout(timeout);
+};
+
 export default {
     onEndingLesson,
     onReset

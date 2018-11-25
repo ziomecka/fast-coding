@@ -42,8 +42,12 @@ class KeyboardListenerComponent extends React.Component<KeyboardListenerProps> {
         const { turnedOn } = this.props;
         const prevTurnedOn = prevProps.turnedOn;
 
-        if (turnedOn !== prevTurnedOn && !turnedOn) {
-            this.removeEventListener();
+        if (turnedOn !== prevTurnedOn) {
+            if (!turnedOn) {
+                this.removeEventListener();
+            } else {
+                this.addEventListener();
+            }
         }
     }
 

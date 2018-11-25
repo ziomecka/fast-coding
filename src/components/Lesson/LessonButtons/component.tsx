@@ -36,6 +36,9 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const INITIAL_LEFT = INITIAL_STATE.left;
     const INITIAL_WIDTH = 'calc(100vw - 2em * 4)';
 
+    const leaveText = 'Leave lesson';
+    const restartText = 'Restart lesson';
+
     const isMoved = (top !== INITIAL_TOP || left !== INITIAL_LEFT);
 
     const dialogLeaveCallback = () => {
@@ -61,7 +64,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 className={classes.lessonButtonsButton}
                 value="Leave"
             >
-                Leave
+                {leaveText}
             </Button>
         </>
     );
@@ -85,7 +88,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 })}
                 className={classes.lessonButtonsButton}
             >
-                Leave
+                {leaveText}
             </Button>
         </>
     );
@@ -98,7 +101,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 onClick={leaveLesson}
                 className={classes.lessonButtonsButton}
             >
-                Leave
+                {leaveText}
             </Button>
 
             <Button
@@ -108,7 +111,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 className={classes.lessonButtonsButton}
                 value="Restart"
             >
-                Restart
+                {restartText}
             </Button>
         </>
     );
