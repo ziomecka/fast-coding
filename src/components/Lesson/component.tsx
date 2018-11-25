@@ -2,27 +2,25 @@ import * as React from 'react';
 import { LessonProps } from './container';
 
 import Comparator from './Comparator/container';
-
-import Stats from './Stats';
-
-/** Materials */
+import LessonButtons from './LessonButtons/container';
+import Stats from './Stats/container';
 import Paper from '@material-ui/core/Paper';
 
 class LessonComponent extends React.Component<LessonProps> {
     style: React.CSSProperties;
     constructor(props) {
         super(props);
-        this.style = {
-            maxWidth: '900px',
-            position: 'relative',
-            left: '50%',
-            transform: 'translateX(-50%)',
-        };
+        this.onDrop = this.onDrop.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.registerOnDrop(this.onDrop);
     }
 
     componentWillUnmount() {
         /** no matter if running or not, cheaper than checking */
         this.props.reset();
+        this.props.deregisterOnDrop(this.onDrop);
     }
 
     get invite (): JSX.Element {
@@ -31,18 +29,27 @@ class LessonComponent extends React.Component<LessonProps> {
         );
     }
 
+    onDrop (e: React.DragEvent<HTMLElement>) {
+        e.preventDefault();
+        const { clientX, clientY, pageX, pageY } = e;
+        this.props.onMoveLesonButtons(clientX, clientY);
+    }
+
     render() {
         const { title, ended, started } = this.props;
 
         return (
-            // @ts-ignore
             <>
-                <Paper {...{ style: this.style }}>
-                    <h2>Lesson: "{title? title.toLowerCase() : ''}"</h2>
-                    { !started && this.invite }
+                <Paper>
+                    <h2>
+                        Lesson: "{title? title.toLowerCase() : ' '}"
+                    </h2>
+                    {/* Whitespace - leave even empty paragraph */}
+                    { !started? this.invite : <p style={{whiteSpace: "pre"}}>&nbsp;</p>}
                     <Comparator />
                     { ended && <Stats /> }
                 </Paper>
+                <LessonButtons />
             </>
         );
     }
