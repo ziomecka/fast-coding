@@ -73,6 +73,11 @@ class KeyboardListenerComponent extends React.Component<KeyboardListenerProps> {
     handleKeyboardPress(event: KeyboardEvent): void {
         const { key, keyCode } = event;
 
+        /** Do not scroll when space pressed */
+        if (keyCode === 32) {
+            event.preventDefault();
+        }
+
         switch (true) {
             case this.isValidCode(keyCode): {
                 this.props.handleKeyDown(key);
