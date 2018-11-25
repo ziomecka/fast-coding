@@ -4,7 +4,9 @@ import { LessonButtonsTypes } from './types';
 const {
     COMPONENTS_LESSON_BUTTONS_MOVE,
     COMPONENTS_LESSON_DRAGABLE_TURNON,
-    COMPONENTS_LESSON_DRAGABLE_TURNOFF
+    COMPONENTS_LESSON_DRAGABLE_TURNOFF,
+    COMPONENTS_LESSON_DRAGABLE_RESET
+
 } = LessonButtonsTypes;
 
 export const moveLessonButtons: ActionCreator<MoveLessonButtonsAction> = (top, left) => ({
@@ -19,6 +21,10 @@ export const turnOnDraggableLessonButtons: ActionCreator<Action> = () => ({
 
 export const turnOffDraggableLessonButtons: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_DRAGABLE_TURNOFF
+});
+
+export const resetDraggableLessonButtons: ActionCreator<Action> = () => ({
+    type: COMPONENTS_LESSON_DRAGABLE_RESET
 });
 
 export interface MoveLessonButtonsAction extends Action {

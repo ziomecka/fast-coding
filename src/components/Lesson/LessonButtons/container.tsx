@@ -20,14 +20,19 @@ const { lesson, lessonButtons } = ComponentsContainers;
 
 import { WithStyles } from '@material-ui/core';
 
-import { turnOnDraggableLessonButtons, turnOffDraggableLessonButtons } from './_duck/actions';
+import {
+    turnOnDraggableLessonButtons,
+    turnOffDraggableLessonButtons,
+    resetDraggableLessonButtons
+} from './_duck/actions';
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     ...dialogMapsDispatchToProps(dispatch),
     restartLesson: () => dispatch(onRestartLesson()),
     resetLesson: () => dispatch(onReset()),
     turnOnDraggable: () => dispatch(turnOnDraggableLessonButtons()),
-    turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons())
+    turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons()),
+    resetLessonButtons: () => dispatch(resetDraggableLessonButtons())
 })
 
 const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
@@ -44,6 +49,7 @@ export interface LessonButtonsDispatch extends DialogDispatch {
     resetLesson: () => void;
     turnOnDraggable: () => void;
     turnOffDraggable: () => void;
+    resetLessonButtons: () => void;
 };
 
 export interface LessonButtonsProps extends

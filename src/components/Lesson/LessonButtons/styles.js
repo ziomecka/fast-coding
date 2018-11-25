@@ -1,20 +1,32 @@
+import { callbackify } from "util";
+
 // TODO improve
 const styles = theme => ({
     lessonButtonsMenu: {
+        boxSizing: 'border-box',
         display: 'flex',
-        flexDirection: 'column',
-        maxHeight: '200px',
-        maxWidth: '200px',
+        flexDirection: 'row',
+        minWidth: 'auto',
+        minHeight: 'auto',
+        height: 'auto',
         position: 'absolute',
+        justifyContent: 'space-around',
+        padding: '3em',
+        marginTop: '1em'
     },
     lessonButtonsButton: {
-        maxHeight: '2em'
+        maxHeight: '2em',
+        maxWidth: '200px',
+        margin: '1em'
     },
     lessonButtonsDragHandle: {
         position: 'absolute',
         top: '.1em',
-        right: '.1em',
-        color: theme.palette.primary.light
+        left: '.1em',
+        color: theme.palette.primary.light,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between'
     }
 
 });

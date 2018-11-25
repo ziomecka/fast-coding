@@ -6,7 +6,8 @@ import { LessonButtonsTypes } from './types';
 const {
     COMPONENTS_LESSON_BUTTONS_MOVE,
     COMPONENTS_LESSON_DRAGABLE_TURNON,
-    COMPONENTS_LESSON_DRAGABLE_TURNOFF
+    COMPONENTS_LESSON_DRAGABLE_TURNOFF,
+    COMPONENTS_LESSON_DRAGABLE_RESET
 } = LessonButtonsTypes;
 
 export const INITIAL_STATE: LessonButtonsState = {
@@ -40,6 +41,12 @@ const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = (state = INIT
             };
         }
 
+        case COMPONENTS_LESSON_DRAGABLE_RESET: {
+            return {
+                ...INITIAL_STATE
+            };
+        }
+
         default: {
             return { ...state };
         }
@@ -51,5 +58,5 @@ export { reducer as lessonButtonsReducer };
 export interface LessonButtonsState {
     left: number | 'auto';
     top: number | 'auto';
-    draggable: boolean
+    draggable: boolean;
 };
