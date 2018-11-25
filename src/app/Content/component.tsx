@@ -3,16 +3,16 @@ import * as React from 'react';
 import { ContentProps } from './container';
 import { default as Dialog } from '../../app/Dialog/';
 import { default as Notification } from '../../app/Notification/';
+import DragOverable from '../DragOverable';
 
 /** Materials */
 import { withStyles } from '@material-ui/core';
 import styles from './styles';
 
-import Paper from '@material-ui/core/Paper';
-
 const ContentComponent = class Content extends React.Component<ContentProps> {
   constructor(props: ContentProps) {
     super(props);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   componentDidUpdate(prevProps: ContentProps) {
@@ -24,17 +24,25 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     }
   }
 
+  onDrop(e: React.DragEvent<HTMLElement>) {
+      this.props.onDrop.forEach(fun => fun(e));
+  }
+
   render() {
     const { location, classes } = this.props;
     const isHome = location.pathname === '/';
     const { contentBox, contentBoxHome, contentBoxOther } = classes;
 
     return (
-      <Paper className={`${contentBox} ${isHome? contentBoxHome : contentBoxOther}`} id="content">
-        {this.props.children}
-        <Dialog />
-        <Notification />
-      </Paper>
+        <DragOverable
+            className={`${contentBox} ${isHome? contentBoxHome : contentBoxOther}`}
+            id="content"
+            onDrop={this.onDrop}
+        >
+            {this.props.children}
+            <Dialog />
+            <Notification />
+        </DragOverable>
     );
   }
 }
