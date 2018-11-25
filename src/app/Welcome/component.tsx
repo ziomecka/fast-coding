@@ -9,16 +9,18 @@ import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { Link } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
+import { WELCOME_LESSON_DEMO_URL } from '../../constants';
 
 require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
     classFalling: string;
+    demoUrl: string;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
+        this.onClick = this.onClick.bind(this);
+        this.demoUrl = WELCOME_LESSON_DEMO_URL;
     }
 
     componentDidUpdate(prevProps: WelcomeProps) {
@@ -28,6 +30,15 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         if (appLocation !== prevAppLocation) {
             this.props.changeLocation(appLocation);
         }
+    }
+
+    async onClick () {
+        let answer = await this.props.openDemoLesson();
+        // @ts-ignore
+        if (answer) {
+            this.props.history.push(this.demoUrl);
+        }
+        answer = null; //GC
     }
 
     heading = () => {
@@ -63,7 +74,12 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         const { classes, location } = this.props;
         const { heading } = this;
         const isHome = location.pathname === '/';
-        const { welcomePaper, welcomeHome, welcomeOther, welcomeButton } = classes;
+        const {
+            welcomePaper,
+            welcomeHome,
+            welcomeOther,
+            welcomeButton
+        } = classes;
 
         return (
             <Paper className={
@@ -71,15 +87,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             }>
                 <h1>{heading()}</h1>
                     {isHome && (
-                        <Button className={welcomeButton}>
-                            <Typography variant="button">
-                                <Link
-                                    to={`/lessons/lesson-demo`}
-                                    onClick={this.props.openDemoLesson}
-                                >
-                                    Start typing
-                                </Link>
-                            </Typography>
+                        <Button
+                            className={welcomeButton}
+                            onClick={this.onClick}
+                        >
+                            Start typing
                         </Button>
                     )}
             </Paper>
