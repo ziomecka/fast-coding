@@ -2,10 +2,8 @@
 // Important for components reducer
 
 export enum LessonButtonsTypes {
-    COMPONENTS_COMPARATOR_TURNON = '@@components_lessonButtons/TURNON',
-    COMPONENTS_COMPARATOR_REGISTER_NEW_KEY = '@@components_lessonButtons/REGISTER_NEW_KEY',
-    COMPONENTS_COMPARATOR_REGISTER_ERROR = '@@components_lessonButtons/REGISTER_ERROR',
-    COMPONENTS_COMPARATOR_REGISTER_BACKSPACE = '@@components_lessonButtons/REGISTER_BACKSPACE',
-    COMPONENTS_COMPARATOR_CORRECT_ERROR = '@@components_lessonButtons/CORRECT_ERROR',
-    COMPONENTS_COMPARATOR_RESET = '@@components_lessonButtons/_RESET'
+    COMPONENTS_LESSON_BUTTONS_MOVE = '@@components_lesson_Buttons/MOVE',
+    COMPONENTS_LESSON_DRAGABLE_TURNON = '@@components_lesson_Buttons/DRAGABLE_TURNON',
+    COMPONENTS_LESSON_DRAGABLE_TURNOFF = '@@components_lesson_Buttons/DRAGABLE_TURNOFF',
+    COMPONENTS_LESSON_DRAGABLE_RESET = '@@components_lesson_Buttons/RESET_POSITION',
 };
