@@ -1,6 +1,13 @@
-import { COLOR_SUCCESS, COLOR_CORRECTED } from '../../../../constants';
+import {
+    COLOR_SUCCESS,
+    COLOR_CORRECTED,
+    LESSON_MAX_WIDTH
+} from '../../../../constants';
 
 const styles = theme => ({
+    comparatorTextAreaPaper: {
+        maxWidth: `${LESSON_MAX_WIDTH}px`
+    },
     comparatorTextAreaFont: {
         boxSizing: 'border-box',
         display: 'inline-block',

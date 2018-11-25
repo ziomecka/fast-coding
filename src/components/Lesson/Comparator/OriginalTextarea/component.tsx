@@ -68,7 +68,10 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     };
 
     return (
-        <Paper>
+        <Paper
+            elevation={0}
+            className={classes.comparatorTextAreaPaper}
+        >
             <p>
                 {textRender()}
             </p>

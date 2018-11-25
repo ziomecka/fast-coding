@@ -19,6 +19,7 @@ export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 3
 
 export const LESSON_BUTTONS_TOP = 200;
 export const LESSON_BUTTONS_LEFT = 200;
+export const LESSON_MAX_WIDTH = 900;
 
 export const TITLE_TRANSITION = 0.7;
 
