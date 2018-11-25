@@ -5,6 +5,7 @@ import { LessonButtonsProps } from './container';
 /** Materials */
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import DragHandle from '@material-ui/icons/DragHandle';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
@@ -105,6 +106,12 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             { ( !started && !ended ) && buttonsWhenNotStarted }
             { ( started && !ended ) && buttonsWhenRunning }
             { ( started && ended ) && buttonsWhenEnded }
+
+            <span title="You can drag me">
+                <DragHandle
+                    className={classes.lessonButtonsDragHandle}
+                />
+            </span>
         </Paper>
     );
 };

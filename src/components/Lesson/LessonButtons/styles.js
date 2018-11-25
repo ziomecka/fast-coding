@@ -9,6 +9,12 @@ const styles = theme => ({
     },
     lessonButtonsButton: {
         maxHeight: '2em'
+    },
+    lessonButtonsDragHandle: {
+        position: 'absolute',
+        top: '.1em',
+        right: '.1em',
+        color: theme.palette.primary.light
     }
 
 });
