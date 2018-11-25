@@ -32,7 +32,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
     this.defaultHeading = HOME_HEADING;
     this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
 
-    props.openNotification(HOME_NOTIFICATION, NOTIFICATION_DURATION);
+    props.openNotification(HOME_NOTIFICATION);
   }
 
   render() {
