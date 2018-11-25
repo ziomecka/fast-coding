@@ -6,6 +6,9 @@ import LessonButtons from './LessonButtons/container';
 import Stats from './Stats/container';
 import Paper from '@material-ui/core/Paper';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
 class LessonComponent extends React.Component<LessonProps> {
     style: React.CSSProperties;
     constructor(props) {
@@ -37,22 +40,20 @@ class LessonComponent extends React.Component<LessonProps> {
 
     render() {
         const { title, ended, started } = this.props;
-
+        const { lessonPaper } = this.props.classes;
         return (
-            <>
-                <Paper>
-                    <h2>
-                        Lesson: "{title? title.toLowerCase() : ' '}"
-                    </h2>
-                    {/* Whitespace - leave even empty paragraph */}
-                    { !started? this.invite : <p style={{whiteSpace: "pre"}}>&nbsp;</p>}
-                    <Comparator />
-                    { ended && <Stats /> }
+            <Paper className={lessonPaper}>
+                <h2>
+                    Lesson: "{title? title.toLowerCase() : ' '}"
+                </h2>
+                {/* Whitespace - leave even empty paragraph */}
+                { !started? this.invite : <p style={{whiteSpace: "pre"}}>&nbsp;</p>}
+                <Comparator />
                 <LessonButtons />
-                </Paper>
-            </>
+                { ended && <Stats /> }
+            </Paper>
         );
     }
 }
 
-export default LessonComponent;
+export default withStyles(styles)(LessonComponent);

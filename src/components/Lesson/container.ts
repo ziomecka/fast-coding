@@ -17,6 +17,8 @@ import { onReset } from './_duck/operations';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
 import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/actions';
 
+import { WithStyles } from '@material-ui/core';
+
 const mapStateToProps = (state: ApplicationState): LessonState => ({
     ...state[components][lesson]
 });
@@ -41,4 +43,7 @@ export interface LessonDispatch extends NotificationDispatch {
     onMoveLesonButtons: (x: number | 'auto', y: number | 'auto') => void;
 };
 
-export interface LessonProps extends LessonDispatch, LessonState, RouteComponentProps<{}> {}
+export interface LessonProps extends LessonDispatch,
+    LessonState,
+    RouteComponentProps<{}>,
+    WithStyles {};
