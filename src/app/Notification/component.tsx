@@ -2,42 +2,66 @@ import * as React from 'react';
 
 import { AppNotificationProps } from './container';
 
+import * as constants from '../../constants';
+
+const { NOTIFICATION_DURATION } = constants;
+
 /** Materials */
-import Paper from '@material-ui/core/Paper';
-import Modal from '@material-ui/core/Modal';
+import SnackBar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Slide from '@material-ui/core/Slide';
+import Mood from '@material-ui/icons/Mood';
+
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
 
 const NotificationComponent: React.StatelessComponent<AppNotificationProps> = props => {
-  let {
-    open = false,
-    text,
-  } = props;
+    let {
+        open = false,
+        text,
+        classes
+    } = props;
 
-  const style = {
-    display: 'inline-flex',
-    top: 'auto',
-    bottom: '0px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: 'auto'
-  };
+    const variant = "smile";
 
-  const stylePaper = {
-    display: 'inline-flex',
-    justifyContent: 'center'
-  };
+    const autoHideDuration = NOTIFICATION_DURATION;
 
-  return (
-    <Modal {...{ open, style }} hideBackdrop={true}>
-      <Slide direction="up" in={open}>
-        <Slide direction="down" in={!open}>
-          <Paper style={ stylePaper} elevation={10}>
-            <p>{text}</p>
-          </Paper>
-        </Slide>
-      </Slide>
-    </Modal>
-  );
+    const _icons = {
+        smile: Mood
+    };
+
+    const _classes = {
+        smile: {
+            message: 'notificationMessageSmile',
+            content: 'notificationContentSmile',
+            icon: 'notificationIconSmile'
+        }
+    };
+
+    const Icon = _icons[variant];
+    const _text = text;
+
+    const message = (
+        <>
+            <span className={`${classes.notificationMessage} ${classes[_classes[variant].message]}`}>
+                {_text}
+                <Icon className={`${classes.notificationIcon} ${classes[_classes[variant].icon]}`} />
+            </span>
+        </>
+    );
+
+    return (
+        <SnackBar
+            {...{ open, autoHideDuration }}
+            TransitionComponent={Slide}
+        >
+            <SnackbarContent
+                {...{ message }}
+                aria-describedby="client-snackbar"
+                className={classes[_classes[variant].content]}
+            />
+        </SnackBar>
+    );
 };
 
-export default NotificationComponent;
+export default withStyles(styles)(NotificationComponent);

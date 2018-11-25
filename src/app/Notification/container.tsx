@@ -9,9 +9,10 @@ import { closeNotification } from './_duck/actions';
 
 import { NotificationState } from './_duck/reducers';
 import { default as operations } from './_duck/';
-import { ModalProps as NotificationProps } from '@material-ui/core/Modal'
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
+
+import { WithStyles } from '@material-ui/core';
 
 const { app } = ApplicationContainers;
 const { notification } = AppContainers;
@@ -36,5 +37,6 @@ export interface NotificationDispatch {
     notificationClose: () => void
 };
 
-export interface AppNotificationProps extends NotificationDispatch, NotificationProps, NotificationState {
-};
+export interface AppNotificationProps extends NotificationDispatch,
+    NotificationState,
+    WithStyles {};
