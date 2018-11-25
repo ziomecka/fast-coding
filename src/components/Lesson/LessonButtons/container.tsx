@@ -7,14 +7,18 @@ import { default as LessonButtons } from './component';
 import { ApplicationState } from '../../../store';
 
 import { LessonState } from '../_duck/reducers';
+import { LessonButtonsState } from './_duck/reducers';
 
 import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
 import { DialogDispatch, mapDispatchToProps as dialogMapsDispatchToProps } from '../../../shared/dialog';
 
 import { onRestartLesson } from './_duck/operations';
 import { onReset } from '../_duck/operations';
+
 const { components } = ApplicationContainers;
-const { lesson } = ComponentsContainers;
+const { lesson, lessonButtons } = ComponentsContainers;
+
+import { WithStyles } from '@material-ui/core';
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     ...dialogMapsDispatchToProps(dispatch),
@@ -22,8 +26,9 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     resetLesson: () => dispatch(onReset())
 })
 
-const mapStateToProps = (state: ApplicationState): LessonState => ({
-    ...state[components][lesson]
+const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
+    ...state[components][lesson],
+    ...state[components][lessonButtons]
 });
 
 const LessonButtonsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LessonButtons));
@@ -35,5 +40,9 @@ export interface LessonButtonsDispatch extends DialogDispatch {
     resetLesson: () => void;
 };
 
-export interface LessonButtonsProps extends LessonState, LessonButtonsDispatch, RouteComponentProps<{}> {
-};
+export interface LessonButtonsProps extends
+    LessonState,
+    LessonButtonsState,
+    LessonButtonsDispatch,
+    RouteComponentProps<{}>,
+    WithStyles {};

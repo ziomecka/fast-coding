@@ -1,73 +1,27 @@
 import { Reducer } from 'redux';
 
 import { LessonButtonsActions } from './actions';
-
 import { LessonButtonsTypes } from './types';
 
+import { LESSON_BUTTONS_TOP, LESSON_BUTTONS_LEFT } from '../../../../constants';
+
 const {
-    COMPONENTS_COMPARATOR_TURNON,
-    COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
-    COMPONENTS_COMPARATOR_REGISTER_ERROR,
-    COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
-    COMPONENTS_COMPARATOR_CORRECT_ERROR,
-    COMPONENTS_COMPARATOR_RESET
+    COMPONENTS_LESSON_BUTTONS_MOVE
 } = LessonButtonsTypes;
 
-/**
- * @param errors - Errors that are still not corrected
- * @param allErrors - All errors that were made, no matter if corrected
- */
 export const INITIAL_STATE: LessonButtonsState = {
-    currentSignIndex: -1,
-    errors: [],
-    allErrors: [],
-    turnedOn: false,
-    correctedErrors: []
+    top: LESSON_BUTTONS_TOP,
+    left: LESSON_BUTTONS_LEFT
 };
 
 const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case COMPONENTS_COMPARATOR_REGISTER_NEW_KEY: {
+        case COMPONENTS_LESSON_BUTTONS_MOVE: {
+            const { top, left } = action;
             return {
-                ...state,
-                currentSignIndex: state.currentSignIndex + 1
+                top,
+                left
             };
-        }
-
-        case COMPONENTS_COMPARATOR_REGISTER_ERROR: {
-            return {
-                ...state,
-                errors: [ ...state.errors, state.currentSignIndex + 1 ],
-                currentSignIndex: state.currentSignIndex + 1
-            };
-        }
-
-        case COMPONENTS_COMPARATOR_REGISTER_BACKSPACE: {
-            return {
-                ...state,
-                currentSignIndex: state.currentSignIndex - 1
-            };
-        }
-
-        case COMPONENTS_COMPARATOR_CORRECT_ERROR: {
-            return {
-                ...state,
-                errors: [ ...state.errors.slice(0, state.errors.length - 1) ],
-                // @ts-ignore
-                correctedErrors: [ ...action.correctedErrors ],
-                currentSignIndex: state.currentSignIndex - 1
-            };
-        }
-
-        case COMPONENTS_COMPARATOR_TURNON: {
-            return {
-                ...state,
-                turnedOn: true
-            };
-        }
-
-        case COMPONENTS_COMPARATOR_RESET: {
-            return { ...INITIAL_STATE };
         }
 
         default: {
@@ -79,9 +33,6 @@ const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = (state = INIT
 export { reducer as lessonButtonsReducer };
 
 export interface LessonButtonsState {
-    currentSignIndex: number;
-    errors: number[];
-    allErrors: number[];
-    turnedOn: boolean;
-    correctedErrors: number[];
+    left: number | 'auto';
+    top: number | 'auto';
 };

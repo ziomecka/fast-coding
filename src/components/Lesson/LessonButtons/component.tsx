@@ -6,6 +6,9 @@ import { LessonButtonsProps } from './container';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {
         ended,
@@ -14,7 +17,10 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         started,
         restartLesson,
         history,
-        resetLesson
+        resetLesson,
+        classes,
+        top,
+        left
     } = props;
 
     const dialogLeaveCallback = () => {
@@ -37,6 +43,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={leaveLesson}
+                className={classes.lessonButtonsButton}
             >
                 Leave
             </Button>
@@ -60,6 +67,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                     message: "Are you sure?",
                     onClose: dialogCancelLeavingCallback
                 })}
+                className={classes.lessonButtonsButton}
             >
                 Leave
             </Button>
@@ -72,6 +80,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={leaveLesson}
+                className={classes.lessonButtonsButton}
             >
                 Leave
             </Button>
@@ -80,6 +89,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={restartLesson}
+                className={classes.lessonButtonsButton}
             >
                 Restart
             </Button>
@@ -87,7 +97,11 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 
     return (
-        <Paper className="flex-row flex-row-center-h flex-row-center-v">
+        <Paper
+            className={classes.lessonButtonsMenu}
+            draggable
+            style={ { top, left }}
+        >
             { ( !started && !ended ) && buttonsWhenNotStarted }
             { ( started && !ended ) && buttonsWhenRunning }
             { ( started && ended ) && buttonsWhenEnded }
@@ -95,4 +109,4 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 };
 
-export default LessonButtonsComponent;
+export default withStyles(styles)(LessonButtonsComponent);
