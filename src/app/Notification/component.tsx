@@ -19,7 +19,8 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     let {
         open = false,
         text,
-        classes
+        classes,
+        notificationReset
     } = props;
 
     const variant = "smile";
@@ -54,6 +55,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
         <SnackBar
             {...{ open, autoHideDuration }}
             TransitionComponent={Slide}
+            onExited={notificationReset}
         >
             <SnackbarContent
                 {...{ message }}

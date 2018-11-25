@@ -5,7 +5,8 @@ import { NotificationActions, OpenNotificationAction } from './actions';
 
 const {
     APP_NOTIFICATION_OPEN,
-    APP_NOTIFICATION_CLOSE
+    APP_NOTIFICATION_CLOSE,
+    APP_NOTIFICATION_RESET
 } = NotificationTypes;
 
 export const INITIAL_STATE: NotificationState = {
@@ -27,8 +28,14 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
         case APP_NOTIFICATION_CLOSE: {
             return {
                 ...state,
-                text: '',
                 open: false
+            };
+        }
+
+        case APP_NOTIFICATION_RESET: {
+            return {
+                ...state,
+                text: '',
             };
         }
 
