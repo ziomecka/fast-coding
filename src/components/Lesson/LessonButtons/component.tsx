@@ -6,6 +6,7 @@ import { LessonButtonsProps } from './container';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import DragHandle from '@material-ui/icons/DragHandle';
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
@@ -21,7 +22,10 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         resetLesson,
         classes,
         top,
-        left
+        left,
+        draggable,
+        turnOnDraggable,
+        turnOffDraggable
     } = props;
 
     const dialogLeaveCallback = () => {
@@ -100,18 +104,22 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     return (
         <Paper
             className={classes.lessonButtonsMenu}
-            draggable
+            draggable={draggable}
             style={ { top, left }}
         >
             { ( !started && !ended ) && buttonsWhenNotStarted }
             { ( started && !ended ) && buttonsWhenRunning }
             { ( started && ended ) && buttonsWhenEnded }
 
-            <span title="You can drag me">
-                <DragHandle
+                <Button
+                    title="You can drag me"
                     className={classes.lessonButtonsDragHandle}
-                />
-            </span>
+                    onMouseEnter={turnOnDraggable}
+                    onMouseLeave={turnOffDraggable}
+                >
+                    <TouchRipple />
+                    <DragHandle />
+                </Button>
         </Paper>
     );
 };

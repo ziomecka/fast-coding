@@ -1,26 +1,42 @@
 import { Reducer } from 'redux';
 
-import { LessonButtonsActions } from './actions';
+import { LessonButtonsActions, MoveLessonButtonsAction } from './actions';
 import { LessonButtonsTypes } from './types';
 
-import { LESSON_BUTTONS_TOP, LESSON_BUTTONS_LEFT } from '../../../../constants';
-
 const {
-    COMPONENTS_LESSON_BUTTONS_MOVE
+    COMPONENTS_LESSON_BUTTONS_MOVE,
+    COMPONENTS_LESSON_DRAGABLE_TURNON,
+    COMPONENTS_LESSON_DRAGABLE_TURNOFF
 } = LessonButtonsTypes;
 
 export const INITIAL_STATE: LessonButtonsState = {
-    top: LESSON_BUTTONS_TOP,
-    left: LESSON_BUTTONS_LEFT
+    top: 'auto',
+    left: 'auto',
+    draggable: false
 };
 
 const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case COMPONENTS_LESSON_BUTTONS_MOVE: {
-            const { top, left } = action;
+            const { top, left } = action as MoveLessonButtonsAction;
             return {
+                ...state,
                 top,
                 left
+            };
+        }
+
+        case COMPONENTS_LESSON_DRAGABLE_TURNON: {
+            return {
+                ...state,
+                draggable: true
+            };
+        }
+
+        case COMPONENTS_LESSON_DRAGABLE_TURNOFF: {
+            return {
+                ...state,
+                draggable: false
             };
         }
 
@@ -35,4 +51,5 @@ export { reducer as lessonButtonsReducer };
 export interface LessonButtonsState {
     left: number | 'auto';
     top: number | 'auto';
+    draggable: boolean
 };
