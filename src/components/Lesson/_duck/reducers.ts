@@ -22,7 +22,7 @@ export const INITIAL_STATE: LessonState = {
     otherSigns: [],
     started: false,
     ended: false,
-    ending: false
+    ending: false,
 };
 
 const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, action) => {
