@@ -13,7 +13,7 @@ export const openNotification: ActionCreator<OpenNotificationAction> = (text: st
     text
 });
 
-export const closeNotification: ActionCreator<CloseNotificationAction> = () => ({
+export const closeNotification: ActionCreator<Action> = () => ({
     type: APP_NOTIFICATION_CLOSE
 });
 
@@ -28,8 +28,4 @@ export interface OpenNotificationAction extends Action {
     text: string;
 };
 
-export interface CloseNotificationAction extends Action {
-    readonly type: string;
-};
-
-export type NotificationActions = OpenNotificationAction | CloseNotificationAction;
+export type NotificationActions = Action | OpenNotificationAction;
