@@ -15,7 +15,8 @@ const DragOverableComponent: React.StatelessComponent<DragOverableProps> = props
     return (
         <Paper
             onDragOver={(e) => _onDragOver(e)}
-            {...{ onDrop, other }}
+            {...{ onDrop }}
+            {...other}
         >
             {props.children}
         </Paper>
