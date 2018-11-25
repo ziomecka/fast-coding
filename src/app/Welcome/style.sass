@@ -24,4 +24,5 @@ $color-end: #000000
 
 @for $i from 1 through 10
     h1 span.title-falling:nth-child(#{$i})
+            color: $color-middle
             animation: titleInvisible ($falling-delay * $i * 1.2 + $falling-time) linear, titleFalling ($falling-time  + $falling-delay * $i * 0.9 ) ease-in $falling-delay

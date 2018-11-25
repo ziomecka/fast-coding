@@ -38,7 +38,6 @@ const styles = theme => ({
     },
     fallingLetters: {
         position: 'relative',
-        color: '#000000'
     }
 })
 
