@@ -9,18 +9,20 @@ import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { WELCOME_LESSON_DEMO_URL } from '../../constants';
+import { AppRoutes } from '../../_common/';
 
 require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
     classFalling: string;
     demoUrl: string;
+    home: string;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
         this.onClick = this.onClick.bind(this);
-        this.demoUrl = WELCOME_LESSON_DEMO_URL;
+        this.demoUrl = AppRoutes.demo;
+        this.home = AppRoutes.home;
     }
 
     componentDidUpdate(prevProps: WelcomeProps) {
@@ -72,8 +74,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
     render()  {
         const { classes, location } = this.props;
-        const { heading } = this;
-        const isHome = location.pathname === '/';
+        const { heading, home } = this;
+        const isHome = location.pathname === home;
         const {
             welcomePaper,
             welcomeHome,

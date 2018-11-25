@@ -41,3 +41,14 @@ export enum LocalStorageItemTypes {
 export enum NotificationVariantTypes {
     smile = 'SMILE'
 };
+
+export enum AppRoutes {
+    home = '/',
+    lessons = '/lessons',
+    lesson = '/lessons/lesson-',
+    about = '/about',
+    login = '/login',
+    newuser = '/newuser',
+    demo = '/lessons/lesson-demo',
+    lessonsGet = '/lessons/get'
+}

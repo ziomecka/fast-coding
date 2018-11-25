@@ -13,7 +13,6 @@ export const NAV_LEFT = 0;
 
 export const WELCOME_HEIGHT = 60;
 export const WELCOME_ZINDEX = 10;
-export const WELCOME_LESSON_DEMO_URL = '/lessons/lesson-demo';
 
 export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 3
 

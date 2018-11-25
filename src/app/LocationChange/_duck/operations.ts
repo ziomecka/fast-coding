@@ -1,8 +1,9 @@
 import { AppLocation } from '../../_common/';
+import { AppRoutes } from '../../../_common/';
 
 const locations: [(pathname: string)=> boolean, AppLocation][] = [
     [
-        (pathname: string) => pathname === '/' || pathname === '',
+        (pathname: string) => pathname === AppRoutes.home,
         AppLocation.isHome
     ],
     [

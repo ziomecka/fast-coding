@@ -9,10 +9,14 @@ import DragOverable from '../DragOverable';
 import { withStyles } from '@material-ui/core';
 import styles from './styles';
 
+import { AppRoutes } from '../../_common';
+
 const ContentComponent = class Content extends React.Component<ContentProps> {
-  constructor(props: ContentProps) {
+    home: string;
+    constructor(props: ContentProps) {
     super(props);
     this.onDrop = this.onDrop.bind(this);
+    this.home = AppRoutes.home;
   }
 
   componentDidUpdate(prevProps: ContentProps) {
@@ -30,7 +34,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
   render() {
     const { location, classes } = this.props;
-    const isHome = location.pathname === '/';
+    const isHome = location.pathname === this.home;
     const { contentBox, contentBoxHome, contentBoxOther } = classes;
 
     return (

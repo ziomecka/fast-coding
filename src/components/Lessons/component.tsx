@@ -5,6 +5,7 @@ import { LessonsProps } from './container';
 import { LessonData } from  '../Lesson/_duck/reducers';
 import TextGenerator from '../TextGenerator/container';
 
+import { AppRoutes } from '../../_common/';
 import styles from './styles';
 
 /** Materials */
@@ -33,6 +34,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
 
     const elevation = 3;
     const randomLesson = true;
+
+    const lessonsRoute = AppRoutes.lessons;
 
     const handleOnClick = (lesson: LessonData): void => {
         if (randomLesson) {
@@ -71,7 +74,7 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
             >
                 <Link
                     id={`link-${_id}`}
-                    to={`/lessons/${_id}`}
+                    to={`${lessonsRoute}/${_id}`}
                     onClick={() => handleOnClick(lesson)}
                 >
                     {title}

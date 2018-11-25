@@ -3,6 +3,7 @@ import * as React from 'react';
 import { LessonButtonsProps } from './container';
 
 import { INITIAL_STATE } from './_duck/reducers';
+import { AppRoutes } from '../../../_common/';
 
 /** Materials */
 import Button from '@material-ui/core/Button';
@@ -32,6 +33,8 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         resetLessonButtons
     } = props;
 
+    const { lessons } = AppRoutes;
+
     const INITIAL_TOP = INITIAL_STATE.top;
     const INITIAL_LEFT = INITIAL_STATE.left;
     const INITIAL_WIDTH = 'calc(100vw - 2em * 4)';
@@ -52,7 +55,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     };
 
     const leaveLesson = () => {
-        history.push('/lessons');
+        history.push(lessons);
     };
 
     const buttonsWhenNotStarted = (
