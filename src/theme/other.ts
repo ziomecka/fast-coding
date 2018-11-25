@@ -1,24 +1,26 @@
-import constants from './constants';
-
-const {
-    navHeight,
-    navLeft,
-    navTop
-} = constants;
+import {
+    NAV_HEIGHT,
+    NAV_LEFT,
+    NAV_TOP
+} from '../constants';
 
 export default {
+    typography: {
+        useNextVariants: true
+    },
     props: {
         MuiAppBar: {
-            elevation: 0
+            height: NAV_HEIGHT,
+            elevation: 0,
         },
         MuiPaper: {
-            elevation: 3
+            elevation: 2
         },
     },
     overrides: {
         MuiPaper: {
             root: {
-                padding: "2em"
+                padding: "4em"
             }
         },
         MuiAppBar: {
@@ -27,16 +29,17 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
+                padding: "1em",
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "row",
                 justifyContent: "flex-end",
                 position: "fixed",
-                top: navTop,
-                left: navLeft,
-                height: navHeight,
-                width: "100%",
-                // padding: navPadding
+                top: NAV_TOP,
+                left: NAV_LEFT,
+                height: `${NAV_HEIGHT}px`,
+                maxHeight: `${NAV_HEIGHT}px`,
+                width: "100%"
             }
         },
         MuiDialogContent: {
@@ -57,6 +60,11 @@ export default {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "flex-end"
+            }
+        },
+        MuiSvgIcon: {
+            root: {
+                fontSize: 'inherit'
             }
         }
     }

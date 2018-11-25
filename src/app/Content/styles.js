@@ -1,14 +1,14 @@
-import { NAV_HEIGHT } from '../../constants';
+import { CONTENT_PADDING_TOP } from '../../constants';
 
 const styles = () => ({
     contentBox: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         position: 'relative',
         width: '100%',
-        paddingTop: NAV_HEIGHT * 2
+        paddingTop: CONTENT_PADDING_TOP
     },
     contentBoxHome: {
         height: '0',
