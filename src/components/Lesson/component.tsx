@@ -31,8 +31,8 @@ class LessonComponent extends React.Component<LessonProps> {
 
     onDrop (e: React.DragEvent<HTMLElement>) {
         e.preventDefault();
-        const { clientX, clientY, pageX, pageY } = e;
-        this.props.onMoveLesonButtons(clientX, clientY);
+        const { clientX, clientY } = e;
+        this.props.onMoveLesonButtons(clientY, clientX);
     }
 
     render() {
@@ -48,8 +48,8 @@ class LessonComponent extends React.Component<LessonProps> {
                     { !started? this.invite : <p style={{whiteSpace: "pre"}}>&nbsp;</p>}
                     <Comparator />
                     { ended && <Stats /> }
-                </Paper>
                 <LessonButtons />
+                </Paper>
             </>
         );
     }
