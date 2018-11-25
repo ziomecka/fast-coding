@@ -18,7 +18,8 @@ export default {
     overrides: {
         MuiPaper: {
             root: {
-                padding: "2em"
+                padding: "2em",
+                boxSizing: 'border-box'
             }
         },
         MuiAppBar: {
@@ -35,8 +36,7 @@ export default {
                 top: navTop,
                 left: navLeft,
                 height: navHeight,
-                width: "100%",
-                // padding: navPadding
+                width: "100%"
             }
         },
         MuiDialogContent: {
