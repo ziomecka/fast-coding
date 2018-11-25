@@ -17,6 +17,14 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         classes
     } = props;
 
+    const {
+        comparatorTextAreaFont,
+        comparatorTextAreaFontCorrect,
+        comparatorTextAreaFontCorrected,
+        comparatorTextAreaFontError,
+        comparatorTextAreaPaper
+    } = classes;
+
     const isCorrect = (ind: number): boolean => {
       return (
         ind <= currentSignIndex &&
@@ -43,15 +51,15 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
             /** Check if letter is incorrect */
             switch (true) {
                 case isErrors(index): {
-                    name = classes.comparatorTextAreaFontError;
+                    name = comparatorTextAreaFontError;
                     break;
                 }
                 case isCorrectedErrors(index): {
-                    name = classes.comparatorTextAreaFontCorrected;
+                    name = comparatorTextAreaFontCorrected;
                     break;
                 }
                 case isCorrect(index): {
-                    name = classes.comparatorTextAreaFontCorrect;
+                    name = comparatorTextAreaFontCorrect;
                     break;
                 }
                 default: {
@@ -60,7 +68,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
             };
 
             return (
-                <span className={`${classes.comparatorTextAreaFont} ${name}`} key={index}>
+                <span className={`${comparatorTextAreaFont} ${name}`} key={index}>
                     {cv}
                 </span>
             );
@@ -70,7 +78,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     return (
         <Paper
             elevation={0}
-            className={classes.comparatorTextAreaPaper}
+            className={comparatorTextAreaPaper}
         >
             <p>
                 {textRender()}
