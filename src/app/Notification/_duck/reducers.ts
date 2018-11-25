@@ -3,16 +3,24 @@ import { Reducer } from 'redux';
 import { NotificationTypes } from './types';
 import { NotificationActions, OpenNotificationAction } from './actions';
 
+import { NOTIFICATION_DURATION } from '../../../constants';
+import { NotificationVariantTypes } from '../../../_common';
+
+const { smile } = NotificationVariantTypes;
+
 const {
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_CLOSE,
-    APP_NOTIFICATION_RESET
+    APP_NOTIFICATION_RESET,
+    APP_NOTIFICATION_SET_TIME
 } = NotificationTypes;
 
 export const INITIAL_STATE: NotificationState = {
     open: false,
     anchorEl: null,
-    text: ''
+    text: '',
+    autoHideDuration: NOTIFICATION_DURATION,
+    variant: smile
 };
 
 const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIAL_STATE, action) => {
@@ -39,6 +47,14 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             };
         }
 
+        case APP_NOTIFICATION_SET_TIME: {
+            return {
+                ...state,
+                // @ts-ignore
+                autoHideDuration: action.autoHideDuration
+            };
+        }
+
         default: {
             return { ...state };
         }
@@ -51,4 +67,6 @@ export interface NotificationState {
     open: boolean;
     anchorEl: HTMLElement;
     text: string;
+    autoHideDuration: number;
+    variant: NotificationVariantTypes;
 };

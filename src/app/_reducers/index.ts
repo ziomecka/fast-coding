@@ -95,7 +95,12 @@ const {
 const { APP_LOGIN_SET_LOGIN } = LoginTypes;
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
 const { APP_CONTENT_CHANGE_LOCATION } = ContentTypes;
-const { APP_NOTIFICATION_CLOSE, APP_NOTIFICATION_OPEN } = NotificationTypes;
+const {
+    APP_NOTIFICATION_CLOSE,
+    APP_NOTIFICATION_OPEN,
+    APP_NOTIFICATION_RESET,
+    APP_NOTIFICATION_SET_TIME
+ } = NotificationTypes;
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
 const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
 
@@ -151,7 +156,9 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         }
 
         case APP_NOTIFICATION_CLOSE:
-        case APP_NOTIFICATION_OPEN: {
+        case APP_NOTIFICATION_OPEN:
+        case APP_NOTIFICATION_RESET:
+        case APP_NOTIFICATION_SET_TIME: {
             return {
                 ...state,
                 [notification]: notificationReducer(state[notification], action)

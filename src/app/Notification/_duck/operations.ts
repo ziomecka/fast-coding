@@ -1,16 +1,22 @@
 import { Dispatch } from 'redux';
-import { closeNotification, openNotification } from './actions';
 
-export const onOpenNotification = (text: string, time?: number): any => (
+import { openNotification, closeNotification, setTimeNotification } from './actions';
+import { NOTIFICATION_DURATION } from '../../../constants';
+
+let timeout;
+
+export const onOpenNotification = (text: string, time: number = NOTIFICATION_DURATION): any => (
     async (dispatch: Dispatch): Promise<any> => {
-        if (time) {
-            const timeout = setTimeout(() => {
+        let answer = dispatch(setTimeNotification(time));
+
+        if (answer) {
+            dispatch(openNotification(text));
+            timeout = setTimeout(() => {
                 dispatch(closeNotification());
                 clearTimeout(timeout);
-            }, time);
+                answer = null; // GC?
+            }, time)
         }
-
-        dispatch(openNotification(text));
     }
 );
 

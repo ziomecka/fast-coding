@@ -2,9 +2,8 @@ import * as React from 'react';
 
 import { AppNotificationProps } from './container';
 
-import * as constants from '../../constants';
-
-const { NOTIFICATION_DURATION } = constants;
+import { NotificationVariantTypes } from '../../_common';
+const { smile } = NotificationVariantTypes;
 
 /** Materials */
 import SnackBar from '@material-ui/core/Snackbar';
@@ -20,33 +19,31 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
         open = false,
         text,
         classes,
-        notificationReset
+        notificationReset,
+        autoHideDuration,
+        variant
     } = props;
 
-    const variant = "smile";
-
-    const autoHideDuration = NOTIFICATION_DURATION;
-
     const _icons = {
-        smile: Mood
+        [smile]: Mood
     };
 
     const _classes = {
-        smile: {
+        [smile]: {
             message: 'notificationMessageSmile',
             content: 'notificationContentSmile',
             icon: 'notificationIconSmile'
         }
     };
 
+    const variantClasses = _classes[variant];
     const Icon = _icons[variant];
-    const _text = text;
 
     const message = (
         <>
-            <span className={`${classes.notificationMessage} ${classes[_classes[variant].message]}`}>
-                {_text}
-                <Icon className={`${classes.notificationIcon} ${classes[_classes[variant].icon]}`} />
+            <span className={`${classes.notificationMessage} ${classes[variantClasses.message]}`}>
+                {text}
+                <Icon className={`${classes.notificationIcon} ${classes[variantClasses.icon]}`} />
             </span>
         </>
     );
@@ -60,7 +57,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
             <SnackbarContent
                 {...{ message }}
                 aria-describedby="client-snackbar"
-                className={classes[_classes[variant].content]}
+                className={classes[variantClasses.content]}
             />
         </SnackBar>
     );
