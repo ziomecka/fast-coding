@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CSSProperties } from 'react'
 
 import { WelcomeProps } from './container';
 
@@ -9,6 +8,9 @@ import Button from '@material-ui/core/Button';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
+
+import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
 require('./style.sass');
 
@@ -69,11 +71,15 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             }>
                 <h1>{heading()}</h1>
                     {isHome && (
-                        <Button
-                            onClick={() => {}}
-                            className={welcomeButton}
-                        >
-                            Start typing
+                        <Button className={welcomeButton}>
+                            <Typography variant="button">
+                                <Link
+                                    to={`/lessons/lesson-demo`}
+                                    onClick={this.props.openDemoLesson}
+                                >
+                                    Start typing
+                                </Link>
+                            </Typography>
                         </Button>
                     )}
             </Paper>

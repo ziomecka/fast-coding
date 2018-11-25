@@ -13,6 +13,7 @@ import { WelcomeState } from './_duck/reducers';
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
 import { WithStyles } from '@material-ui/core';
+import { openDemoLesson } from '../../components/Lesson/_duck/actions';
 
 const { app } = ApplicationContainers;
 const { welcome } = AppContainers;
@@ -22,7 +23,8 @@ const mapStateToProps = (state: ApplicationState): WelcomeState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): WelcomeDispatch => ({
-    changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation))
+    changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation)),
+    openDemoLesson: () => dispatch(openDemoLesson())
 });
 
 // @ts-ignore
@@ -32,6 +34,7 @@ export default WelcomeContainer;
 
 export interface WelcomeDispatch {
     changeLocation: (appLocation: AppLocation) => void;
+    openDemoLesson: () => void;
 };
 
 export interface WelcomeProps extends WelcomeDispatch,
