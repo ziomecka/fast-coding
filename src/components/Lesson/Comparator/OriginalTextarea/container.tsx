@@ -8,6 +8,8 @@ import { ComponentsContainers, ApplicationContainers } from '../../../../_common
 import { ComparatorState } from '../_duck/reducers';
 import { LessonState } from '../../_duck/reducers';
 
+import { WithStyles } from '@material-ui/core';
+
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
@@ -20,4 +22,6 @@ const OriginalTextAreaContainer = connect(mapStateToProps)(OriginalTextArea);
 
 export default OriginalTextAreaContainer;
 
-export interface OriginalTextAreaProps extends ComparatorState, LessonState {};
+export interface OriginalTextAreaProps extends ComparatorState,
+    LessonState,
+    WithStyles {};

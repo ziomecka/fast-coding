@@ -5,14 +5,16 @@ import { OriginalTextAreaProps } from './container';
 /** Materials */
 import Paper from '@material-ui/core/Paper';
 
-require('./style.sass');
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
 
 const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps> = props => {
     const {
         errors,
         correctedErrors,
         currentSignIndex,
-        text
+        text,
+        classes
     } = props;
 
     const isCorrect = (ind: number): boolean => {
@@ -35,33 +37,31 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     };
 
     const textRender = () => {
-        // TODO improve
         return Array.from(text || '').map((cv, index) => {
-            let name: string;
+            let name = '';
 
             /** Check if letter is incorrect */
             switch (true) {
                 case isErrors(index): {
-                    name = 'text text-error';
+                    name = classes.comparatorTextAreaFontError;
                     break;
                 }
                 case isCorrectedErrors(index): {
-                    name = 'text text-corrected';
+                    name = classes.comparatorTextAreaFontCorrected;
                     break;
                 }
                 case isCorrect(index): {
-                    name = 'text text-correct';
+                    name = classes.comparatorTextAreaFontCorrect;
                     break;
                 }
                 default: {
-                    name = 'text';
                     break;
                 }
             };
 
             return (
-                <span className={name} key={index}>
-                {cv}
+                <span className={`${classes.comparatorTextAreaFont} ${name}`} key={index}>
+                    {cv}
                 </span>
             );
         });
@@ -76,4 +76,4 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     );
 };
 
-export default OriginalTextareaComponent;
+export default withStyles(styles)(OriginalTextareaComponent);

@@ -190,6 +190,7 @@ const palette = {
       "divider": "rgba(0, 0, 0, 0.12)",
       "secondary": {
         "main": "#E65100",
+        "veryLight": "rgb(241, 160, 115)",
         "light": "rgb(235, 115, 51)",
         "dark": "rgb(161, 56, 0)",
         "contrastText": "#FAFAFA"
