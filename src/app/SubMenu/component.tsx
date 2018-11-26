@@ -3,6 +3,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { SubMenuProps } from './container';
+import { AppRoutes, SubMenuRulesEnum, NavRulesEnum } from '../../_common/';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -24,7 +25,17 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
       classes
     } = props;
 
+    const currentPathname = props.location.pathname;
     const { anchorEl = null} = Object(props[container]);
+
+    const {
+        onlyAuthorized,
+        onlyUnauthorized,
+        notCurrentLocation,
+    } = SubMenuRulesEnum;
+
+    const { lesson, demo, home } = AppRoutes;
+    const { notLesson, notAnyLesson, notDemoLesson, notHome } = NavRulesEnum;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => (
       setNavAnchorEl(container, event.currentTarget)
@@ -43,65 +54,97 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
       }
     };
 
-    if (menuItems && container && !menuItem) {
-        return (
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <Toolbar className={classes.menuToolbar}>
-              <IconButton
-                onClick={handleClick}
-                className={classes.menuIcon}
-              >
-                {icon}
-              </IconButton>
-                  <Menu
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    className={classes.menu}
-                  >
-                    {menuItems.map((menuItem, ind) => {
-                        /** Render if not current pathname */
-                        if (menuItem[1] !== props.location.pathname) {
-                          return (
-                            <MenuItem
-                              onClick={() => handleClose(menuItem[1])}
-                              key={`${menuItem[0]}-${ind}`}
-                              divider={true}
-                            >
-                              <NavLink to={menuItem[1]}>
-                                {menuItem[0]}
-                              </NavLink>
-                            </MenuItem>
-                          );
-                        }
-                        /** Do not render if current pathname */
-                        return null;
-                      })
-                    }
-                  </Menu>
-            </Toolbar>
-          </ClickAwayListener>
-        );
-    }
+    // @ts-ignore
+    const subMenuRules: {[key: SubMenuRulesEnum]: () => boolean} = {
+        [onlyAuthorized]: () => props.authorized,
+        [onlyUnauthorized]: () => !props.authorized,
+        [notCurrentLocation]: (path: string) => path !== currentPathname
+    };
 
-    if (menuItem && !container && !menuItems) {
-        /** Render if not current pathname */
-        if (menuItem[1] !== props.location.pathname) {
+    // TODO moze sie zdarzyc zefunkcja nie zaimplementowana, bedzie blad
+    // TODO
+    // powinny pokryc testy?
+    const areSubMenuRulesMet: (rules: SubMenuRulesEnum[] | null, pathname: string) => boolean = (rules, pathname) => {
+        return (!rules || rules.every(rule => subMenuRules[rule](pathname)));
+    };
+
+    // @ts-ignore
+    const navRules: {[key: NavRulesEnum]: () => boolean} = {
+        [notLesson]: () => currentPathname !== lesson,
+        [notDemoLesson]: () => currentPathname !== lesson,
+        [notAnyLesson]: () => currentPathname !== lesson && currentPathname !== demo,
+        [notHome]: () => currentPathname !== home
+    };
+
+    // TODO moze sie zdarzyc zefunkcja nie zaimplementowana, bedzie blad
+    // TODO
+    // powinny pokryc testy?
+    const areNavRulesMet: (rules: NavRulesEnum[] | null) => boolean = (rules) => {
+        return (!rules || rules.every(rule => navRules[rule]()));
+    };
+
+    if (areNavRulesMet(props.rules)) {
+        if (menuItems && container && !menuItem) {
             return (
+              <ClickAwayListener onClickAway={handleClickAway}>
                 <Toolbar className={classes.menuToolbar}>
-                    <IconButton
-                        onClick={() => handleClose(menuItem[1])}
-                        className={classes.menuIcon}
-                    >
-                        {icon}
-                    </IconButton>
+                  <IconButton
+                    onClick={handleClick}
+                    className={classes.menuIcon}
+                  >
+                    {icon}
+                  </IconButton>
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        className={classes.menu}
+                      >
+                        {menuItems.map((menuItem, ind) => {
+                            if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
+                              return (
+                                <MenuItem
+                                  onClick={() => handleClose(menuItem[1])}
+                                  key={`${menuItem[0]}-${ind}`}
+                                  divider={true}
+                                >
+                                  <NavLink to={menuItem[1]}>
+                                    {menuItem[0]}
+                                  </NavLink>
+                                </MenuItem>
+                              );
+                            }
+                            /** Do not render if current pathname */
+                            return null;
+                          })
+                        }
+                      </Menu>
                 </Toolbar>
+              </ClickAwayListener>
             );
         }
 
-        return null;
+        if (menuItem && !container && !menuItems) {
+            /** Render if not current pathname */
+            if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
+                return (
+                    <Toolbar className={classes.menuToolbar}>
+                        <IconButton
+                            onClick={() => handleClose(menuItem[1])}
+                            className={classes.menuIcon}
+                        >
+                            {icon}
+                        </IconButton>
+                    </Toolbar>
+                );
+            }
+
+            return null;
+        }
+
+        throw new Error('SubMenu received incorrect props.');
     }
 
-    throw new Error('SubMenu received incorrect props.');
+    return null;
 };
 
 export default withStyles(styles)(SubMenuComponent);

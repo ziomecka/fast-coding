@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { default as SubMenuComponent } from './component';
@@ -11,18 +10,19 @@ import { setNavAnchorEl } from './_duck/actions';
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
-import { MenuContainers } from '../_common/';
+import { MenuContainers, SubMenuRulesEnum, NavRulesEnum } from '../_common/';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
 import { WithStyles } from '@material-ui/core/';
 
 const { app } = ApplicationContainers;
-const { appMenu } = AppContainers;
+const { appMenu, user } = AppContainers;
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = (state: ApplicationState): MenuState => ({
-    ...state[app][appMenu]
+    ...state[app][appMenu],
+    authorized: state[app][user].authorized
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SubMenuDispatch => ({
@@ -37,11 +37,14 @@ export interface SubMenuDispatch {
     setNavAnchorEl: (container: MenuContainers, element?: HTMLElement | null) => void
 };
 
+export type SubMenuItemType = [string, string, SubMenuRulesEnum[]?];
+
 export interface __SubMenuProps {
-    menuItems?: [string, string][];
-    menuItem?: [string, string];
+    menuItems?: SubMenuItemType[];
+    menuItem?: SubMenuItemType;
     icon: JSX.Element;
     container?: MenuContainers;
+    rules?: NavRulesEnum[]
 };
 
 export interface SubMenuProps extends __SubMenuProps,
@@ -49,4 +52,5 @@ export interface SubMenuProps extends __SubMenuProps,
     MenuState,
     RouteComponentProps<{}>,
     WithStyles {
+      authorized: boolean
 };
