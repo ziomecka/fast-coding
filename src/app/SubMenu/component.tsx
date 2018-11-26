@@ -70,9 +70,9 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
 
     // @ts-ignore
     const navRules: {[key: NavRulesEnum]: () => boolean} = {
-        [notLesson]: () => currentPathname !== lesson,
-        [notDemoLesson]: () => currentPathname !== lesson,
-        [notAnyLesson]: () => currentPathname !== lesson && currentPathname !== demo,
+        [notLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname),
+        [notDemoLesson]: () => currentPathname !== demo,
+        [notAnyLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname) && currentPathname !== demo,
         [notHome]: () => currentPathname !== home
     };
 
