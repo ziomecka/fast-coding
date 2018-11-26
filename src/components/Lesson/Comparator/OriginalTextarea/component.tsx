@@ -77,7 +77,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
                 <span
                     className={`${comparatorTextAreaFont} ${name}`}
                     key={index}
-                    id={`letter-$`}
+                    id={`letter-${index}`}
                 >
                     {cv}
                 </span>
