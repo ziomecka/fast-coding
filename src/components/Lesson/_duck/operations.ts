@@ -5,7 +5,13 @@ import { ApplicationContainers, ComponentsContainers } from '../../../_common';
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
-import { resetLesson, endingLesson, notEndingLesson, endLesson } from './actions';
+import {
+    resetLesson,
+    endingLesson,
+    notEndingLesson,
+    endLesson,
+    restartLesson
+} from './actions';
 
 import { resetComparator } from '../Comparator/_duck/actions';
 import { onTurnOffComparator } from '../Comparator/_duck/operations';
@@ -61,6 +67,7 @@ export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(resetComparator());
     dispatch(resetStats());
     dispatch(resetKeyboardListener());
+    dispatch(restartLesson());
     clearTimeout(timeout);
 };
 

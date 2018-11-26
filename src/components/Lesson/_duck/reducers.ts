@@ -13,7 +13,8 @@ const {
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
     COMPONENTS_LESSON_RESET,
-    COMPONENTS_LESSON_OPEN_DEMO
+    COMPONENTS_LESSON_OPEN_DEMO,
+    COMPONENTS_LESSON_RESTART
 } = LessonTypes;
 
 export const INITIAL_STATE: LessonState = {
@@ -79,6 +80,15 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
                 ...INITIAL_STATE,
                 signs: [],
                 otherSigns: [],
+            };
+        }
+
+        case COMPONENTS_LESSON_RESTART: {
+            return {
+                ...state,
+                started: false,
+                ended: false,
+                ending: false
             };
         }
 

@@ -12,7 +12,8 @@ const {
     COMPONENTS_LESSON_NOT_ENDING,
     COMPONENTS_LESSON_END,
     COMPONENTS_LESSON_RESET,
-    COMPONENTS_LESSON_OPEN_DEMO
+    COMPONENTS_LESSON_OPEN_DEMO,
+    COMPONENTS_LESSON_RESTART
 } = LessonTypes;
 
 export const openLesson: ActionCreator<OpenLessonAction> = (lessonData: LessonData) => ({
@@ -53,6 +54,10 @@ export const resetLesson: ActionCreator<Action> = () => ({
 
 export const openDemoLesson: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_OPEN_DEMO
+});
+
+export const restartLesson: ActionCreator<Action> = () => ({
+    type: COMPONENTS_LESSON_RESTART
 });
 
 export default {
