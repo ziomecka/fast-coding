@@ -16,13 +16,18 @@ require('./style.sass');
 class WelcomeComponent extends React.Component<WelcomeProps> {
     classFalling: string;
     demoUrl: string;
+    lessonsUrl: string;
     home: string;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
-        this.onClick = this.onClick.bind(this);
+
         this.demoUrl = AppRoutes.demo;
         this.home = AppRoutes.home;
+        this.lessonsUrl = AppRoutes.lessons;
+
+        this.goToDemo = this.goToDemo.bind(this);
+        this.goToLessons = this.goToLessons.bind(this);
     }
 
     componentDidUpdate(prevProps: WelcomeProps) {
@@ -34,13 +39,17 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         }
     }
 
-    async onClick () {
+    async goToDemo () {
         let answer = await this.props.openDemoLesson();
         // @ts-ignore
         if (answer) {
             this.props.history.push(this.demoUrl);
         }
         answer = null; //GC
+    }
+
+    goToLessons() {
+        this.props.history.push(this.lessonsUrl);
     }
 
     heading = () => {
@@ -80,7 +89,10 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             welcomePaper,
             welcomeHome,
             welcomeOther,
-            welcomeButton
+            welcomeButtons,
+            welcomeButton,
+            welcomeButtonMain,
+            lessonsButton
         } = classes;
 
         return (
@@ -89,12 +101,20 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             }>
                 <h1>{heading()}</h1>
                     {isHome && (
-                        <Button
-                            className={welcomeButton}
-                            onClick={this.onClick}
-                        >
-                            Start typing
-                        </Button>
+                        <div className={welcomeButtons}>
+                            <Button
+                                onClick={this.goToLessons}
+                                className={welcomeButton}
+                            >
+                                See lessons
+                            </Button>
+                            <Button
+                                className={`${welcomeButton} ${welcomeButtonMain}`}
+                                onClick={this.goToDemo}
+                            >
+                                Start typing
+                            </Button>
+                        </div>
                     )}
             </Paper>
         );

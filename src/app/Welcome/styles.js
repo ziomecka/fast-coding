@@ -24,7 +24,6 @@ const styles = theme => ({
         fontSize: theme.typography.pxToRem(30)
     },
     welcomeOther: {
-        // minHeight: `${NAV_HEIGHT * 3}px`,
         height: `${WELCOME_HEIGHT}px`,
         fontSize: theme.typography.pxToRem(16),
         color: theme.palette.secondary.main,
@@ -34,12 +33,14 @@ const styles = theme => ({
         paddingTop: 0
     },
     welcomeButton: {
-        backgroundColor: theme.palette.secondary.main
+        margin: `${theme.spacing.unit} ${theme.spacing.unit} ${theme.spacing.unit} 0`,
     },
     fallingLetters: {
         position: 'relative',
+    },
+    welcomeButtonMain: {
+        backgroundColor: theme.palette.secondary.main
     }
-})
-
+});
 
 export default styles;
