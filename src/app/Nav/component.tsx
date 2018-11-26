@@ -31,7 +31,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
             menuItems: submenus.userMenuItems,
             icon: <Face />,
             container: userMenu,
-            rules: [ notAnyLesson, notHome ]
+            rules: [ notAnyLesson ]
         },
         {
             menuItems: submenus.mainMenuItems,
