@@ -3,6 +3,13 @@ const styles = theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        position: 'relative',
+        boxSizing: 'border-box'
+    },
+    lessonInvite: {
+        whiteSpace: 'pre',
+        padding: 0,
+        margin: 0
     }
 });
 

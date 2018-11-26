@@ -9,6 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
+import Smile from '@material-ui/icons/Mood';
+
 class LessonComponent extends React.Component<LessonProps> {
     style: React.CSSProperties;
     constructor(props) {
@@ -26,9 +28,13 @@ class LessonComponent extends React.Component<LessonProps> {
         this.props.deregisterOnDrop(this.onDrop);
     }
 
-    get invite (): JSX.Element {
+    invite (txt: JSX.Element): JSX.Element {
         return (
-            <p> You can start typing :-) </p>
+            <p
+                className={this.props.classes.lessonInvite}
+            >
+                {txt}
+            </p>
         );
     }
 
@@ -40,17 +46,22 @@ class LessonComponent extends React.Component<LessonProps> {
 
     render() {
         const { title, ended, started } = this.props;
-        const { lessonPaper } = this.props.classes;
+        const { lessonPaper, lessonInviteEmpty } = this.props.classes;
+
         return (
             <Paper className={lessonPaper}>
                 <h2>
                     Lesson: "{title? title.toLowerCase() : ' '}"
                 </h2>
-                {/* Whitespace - leave even empty paragraph */}
-                { !started? this.invite : <p style={{whiteSpace: "pre"}}>&nbsp;</p>}
+
+                { !started
+                    ? this.invite(<span>You can start typing <Smile /> </span>)
+                    : this.invite(<span>&nbsp;</span>)
+                }
+
                 <Comparator />
-                <LessonButtons />
                 { ended && <Stats /> }
+                <LessonButtons />
             </Paper>
         );
     }
