@@ -19,7 +19,9 @@ export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 3
 export const LESSON_BUTTONS_TOP = 200;
 export const LESSON_BUTTONS_LEFT = 200;
 export const LESSON_MAX_WIDTH = 900;
-
+export const LESSON_FONT_SIZE_REM = 3.5;
+export const LESSON_PARAGRAPH_SIZE_REM = 8;
+export let LESSON_WRAPPER_SIZE = 15;
 export const TITLE_TRANSITION = 0.7;
 
 export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#ccdad1'

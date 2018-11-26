@@ -10,6 +10,13 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
         super(props);
     }
 
+    scroll(id: string): void {
+        try {
+            document.getElementById(id).scrollIntoView(false);
+        } catch (err) {
+        }
+    };
+
     componentDidUpdate(prevProps: ComparatorProps) {
         const { currentSignIndex, text } = this.props
         const prevCurrentSignIndex= prevProps.currentSignIndex;
@@ -23,6 +30,8 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
             if (currentSignIndex === text.length - 1) {
                 this.props.endingLesson();
             }
+
+            this.scroll(`letter-${currentSignIndex + 3}`);
         }
     }
 

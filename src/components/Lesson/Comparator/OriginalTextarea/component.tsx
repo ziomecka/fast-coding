@@ -22,8 +22,14 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         comparatorTextAreaFontCorrect,
         comparatorTextAreaFontCorrected,
         comparatorTextAreaFontError,
-        comparatorTextAreaPaper
+        comparatorTextAreaPaper,
+        comparatorTextAreaPaperShort,
+        comparatorTextAreaParagraph
     } = classes;
+
+    const scroll = (id: string): void => {
+        document.getElementById(id).scrollIntoView();
+    };
 
     const isCorrect = (ind: number): boolean => {
       return (
@@ -68,7 +74,11 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
             };
 
             return (
-                <span className={`${comparatorTextAreaFont} ${name}`} key={index}>
+                <span
+                    className={`${comparatorTextAreaFont} ${name}`}
+                    key={index}
+                    id={`letter-$`}
+                >
                     {cv}
                 </span>
             );
@@ -78,11 +88,16 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     return (
         <Paper
             elevation={0}
-            className={comparatorTextAreaPaper}
-        >
-            <p>
-                {textRender()}
-            </p>
+            className={`${comparatorTextAreaPaper}`}
+            >
+            <Paper
+                elevation={0}
+                className={`${comparatorTextAreaPaperShort}`}
+            >
+                <p className={comparatorTextAreaParagraph}>
+                    {textRender()}
+                </p>
+            </Paper>
         </Paper>
     );
 };
