@@ -8,7 +8,9 @@ const styles = () => ({
         alignItems: 'center',
         position: 'relative',
         width: '100%',
-        paddingTop: CONTENT_PADDING_TOP
+        maxWidth: '100%', // do not allow to increase size if draggable moved outside
+        paddingTop: CONTENT_PADDING_TOP,
+        overflow: 'hidden'
     },
     contentBoxHome: {
         height: '0',

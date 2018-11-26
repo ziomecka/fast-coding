@@ -9,7 +9,8 @@ import {
 const styles = theme => ({
     comparatorTextAreaPaper: {
         maxWidth: `${LESSON_MAX_WIDTH}px`,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        paddingTop: '2em'
     },
     comparatorTextAreaPaperShort: {
         overflow: 'hidden',
