@@ -1,5 +1,3 @@
-import { callbackify } from "util";
-
 // TODO improve
 const styles = theme => ({
     lessonButtonsMenu: {
@@ -9,10 +7,13 @@ const styles = theme => ({
         minWidth: 'auto',
         minHeight: 'auto',
         height: 'auto',
-        position: 'absolute',
+        position: 'relative',
         justifyContent: 'space-around',
         padding: '3em',
         marginTop: '1em'
+    },
+    lessonButtonsMenuDragged: {
+        position: 'absolute'
     },
     lessonButtonsButton: {
         maxHeight: '2em',
@@ -28,7 +29,6 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'space-between'
     }
-
 });
 
 export default styles;

@@ -35,9 +35,16 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
 
     const { lessons } = AppRoutes;
 
+    const {
+        lessonButtonsButton,
+        lessonButtonsDragHandle,
+        lessonButtonsMenu,
+        lessonButtonsMenuDragged
+    } = classes;
+
     const INITIAL_TOP = INITIAL_STATE.top;
     const INITIAL_LEFT = INITIAL_STATE.left;
-    const INITIAL_WIDTH = 'calc(100vw - 2em * 4)';
+    const INITIAL_WIDTH = '100%';
 
     const leaveText = 'Leave lesson';
     const restartText = 'Restart lesson';
@@ -64,7 +71,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={leaveLesson}
-                className={classes.lessonButtonsButton}
+                className={lessonButtonsButton}
                 value="Leave"
             >
                 {leaveText}
@@ -89,7 +96,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                     message: "Are you sure?",
                     onClose: dialogCancelLeavingCallback
                 })}
-                className={classes.lessonButtonsButton}
+                className={lessonButtonsButton}
             >
                 {leaveText}
             </Button>
@@ -102,7 +109,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={leaveLesson}
-                className={classes.lessonButtonsButton}
+                className={lessonButtonsButton}
             >
                 {leaveText}
             </Button>
@@ -111,7 +118,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 variant="contained"
                 color="primary"
                 onClick={restartLesson}
-                className={classes.lessonButtonsButton}
+                className={lessonButtonsButton}
                 value="Restart"
             >
                 {restartText}
@@ -121,7 +128,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
 
     return (
         <Paper
-            className={classes.lessonButtonsMenu}
+            className={`${lessonButtonsMenu} ${isMoved ? lessonButtonsMenuDragged : '' }`}
             draggable={draggable}
             style={ {
                 top,
@@ -136,7 +143,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             { ( started && ended ) && buttonsWhenEnded }
 
             {/* Buttons for managing draggable menu */}
-            <div className={classes.lessonButtonsDragHandle}>
+            <div className={lessonButtonsDragHandle}>
                 <Button
                     title="You can drag me"
                     onMouseEnter={turnOnDraggable}
