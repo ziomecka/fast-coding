@@ -92,14 +92,15 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             welcomeButtons,
             welcomeButton,
             welcomeButtonMain,
-            lessonsButton
+            lessonsButton,
+            welcomeHeading
         } = classes;
 
         return (
             <Paper className={
                 `${welcomePaper} ${isHome ? welcomeHome : welcomeOther}`
             }>
-                <h1>{heading()}</h1>
+                <h1 className={welcomeHeading}>{heading()}</h1>
                     {isHome && (
                         <div className={welcomeButtons}>
                             <Button

@@ -32,6 +32,9 @@ const styles = theme => ({
         paddingTop: 0,
         paddingTop: 0
     },
+    welcomeHeading: {
+        whiteSpace: 'nowrap'
+    },
     welcomeButton: {
         margin: `${theme.spacing.unit} ${theme.spacing.unit} ${theme.spacing.unit} 0`,
     },
