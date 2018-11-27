@@ -26,7 +26,7 @@ const styles = theme => ({
     welcomeOther: {
         height: `${WELCOME_HEIGHT}px`,
         fontSize: theme.typography.pxToRem(16),
-        color: theme.palette.secondary.main,
+        color: theme.palette.text.primary,
         boxSizing: 'border-box',
         paddingBottom: 0,
         paddingTop: 0,
