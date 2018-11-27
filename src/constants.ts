@@ -14,7 +14,7 @@ export const NAV_LEFT = 0;
 export const WELCOME_HEIGHT = 60;
 export const WELCOME_ZINDEX = 10;
 
-export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 3
+export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 2;
 
 export const LESSON_BUTTONS_TOP = 200;
 export const LESSON_BUTTONS_LEFT = 200;
@@ -37,4 +37,4 @@ export const LESSON_DEMO_TEXT =
 
 export const LESSON_DEMO_TITLE = 'Demonstration lesson';
 
-export const LESSONS_DEFAULT_TAG = 'Basic';
+export const LESSONS_DEFAULT_TAG = 'basic';
