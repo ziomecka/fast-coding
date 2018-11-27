@@ -56,6 +56,22 @@ module.exports = {
   },
   module: {
     rules: [
+        {
+            test: /\.svg$/,
+            use: [
+                "babel-loader",
+                {
+                    loader: "react-svg-loader",
+                    options: {
+                        jsx: true,
+                        svgo: {
+                            plugins: [{ removeTitle: false }],
+                            floatPrecision: 2
+                        }
+                    }
+                }
+            ]
+        },
       {
         test: /\.hbs$/,
         loader: 'handlebars-loader',
