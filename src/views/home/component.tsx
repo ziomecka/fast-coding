@@ -11,66 +11,97 @@ import TextGenerator from '../../components/TextGenerator/container';
 import LessonsLoader from '../../components/LessonsLoader/container';
 import User from '../../app/User/container';
 
-import { AppContainers } from '../../_common/';
+import { AppContainers, AppRoutes } from '../../_common/';
 
 import {
     HOME_HEADING,
     HOME_HEADING_ANIMATED,
     HOME_NOTIFICATION,
-    NOTIFICATION_DURATION,
     HOME_WELCOME_TIMEOUT
 } from '../../constants';
 
 const { content, welcome } = AppContainers;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
-  defaultHeading: string;
-  defaultAnimateHeading: boolean;
-  constructor(props: HomeViewProps) {
-    super(props);
+    defaultHeading: string;
+    defaultAnimateHeading: boolean;
+    homeUrl: string;
+    lessonsUrl: string;
+    _listener: (e: any) => void
+    constructor(props: HomeViewProps) {
+        super(props);
 
-    this.defaultHeading = HOME_HEADING;
-    this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
+        this.defaultHeading = HOME_HEADING;
+        this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
+        this.homeUrl = AppRoutes.home;
+        this.lessonsUrl = AppRoutes.lessons;
+        this._listener = null;
 
-    props.openNotification(HOME_NOTIFICATION);
-  }
+        props.openNotification(HOME_NOTIFICATION);
+        this.addKeyboardListener();
+    }
 
-  render() {
-    const {
-      heading = this.defaultHeading,
-      animateHeading = this.defaultAnimateHeading
-    } = this.props;
+    componentDidUpdate(prevProps: HomeViewProps) {
+        const { pathname } = this.props.location;
+        const prevPathname = prevProps.location.pathname;
 
-    return (
-      <>
-        {/* Containers will be informed about location change before it happens, because
-            LocationChange uses 'shouldComponentUpdate'
-         */}
-        <LocationChange containers={[
-          content,
-          welcome
-        ]} />
+        if (pathname !== prevPathname) {
+            if (pathname === this.homeUrl) {
+            this.addKeyboardListener();
+        } else {
+            this.removeKeyboardListener();
+            }
+        }
+    }
 
-        <User />
+    listener() {
+        this.props.history.push(this.lessonsUrl);
+    }
 
-        <LessonsLoader />
+    addKeyboardListener() {
+        this._listener = this.listener.bind(this);
+        window.addEventListener('keydown', this._listener);
+    }
 
-        <Welcome
-          heading={heading}
-          animated={animateHeading}
-          timeout={HOME_WELCOME_TIMEOUT}
-        />
+    removeKeyboardListener() {
+        window.removeEventListener('keydown', this._listener);
+    }
+    render() {
+        const {
+            heading = this.defaultHeading,
+            animateHeading = this.defaultAnimateHeading
+        } = this.props;
 
-        <Nav />
+        return (
+            <>
+            {/* Containers will be informed about location change before it happens, because
+                LocationChange uses 'shouldComponentUpdate'
+                */}
+            <LocationChange containers={[
+                content,
+                welcome
+            ]} />
 
-        <Content>
-          {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}
-          <TextGenerator />
-          {this.props.children}
-        </Content>
-      </>
-    );
-  }
+            <User />
+
+            <LessonsLoader />
+
+            <Welcome
+                heading={heading}
+                animated={animateHeading}
+                timeout={HOME_WELCOME_TIMEOUT}
+            />
+
+            <Nav />
+
+            <Content>
+                {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}
+                <TextGenerator />
+                {this.props.children}
+            </Content>
+            </>
+        );
+    }
 }
 
 export default HomeViewComponent;
