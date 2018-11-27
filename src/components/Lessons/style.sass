@@ -1,10 +1,46 @@
-div[id^="card-lesson"]
-    padding: 0
-    margin: 1em 0
-
-// 2em - as for Paper in material design
-a[id^=link-lesson]
-    box-sizing: border-box
+svg.svg-letter
     display: inline-block
-    padding: 2em
-    width: 100%
+    height: 100%
+    width: auto
+    margin: 0 -1rem
+
+a svg.svg-letter
+    max-height: 4rem
+
+svg.svg-letter-narrow
+    margin: 0 -2rem
+
+svg
+    path.sl1
+        fill: #c5d1eb
+
+    path.sl2
+        fill: #a2acc1 // shadow at the bottom
+
+    path.sl3 // stroke around letter
+        fill: none
+        stroke: #161616
+        stroke-width: 1px
+        stroke-linejoin: round
+
+    path.sl4 // bright shadows inside
+        fill: none
+        stroke: #f9fafd
+        stroke-width: 1px
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 1,2,6,2,3
+
+a svg
+    path.sl1
+        fill: #c5d1eb
+
+    path.sl2
+        fill: none // shadow at the bottom
+
+    path.sl3 // stroke around letter
+        fill: none
+        stroke: #161616
+
+    path.sl4 // bright shadows inside
+        stroke: none
