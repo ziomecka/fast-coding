@@ -17,12 +17,13 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
       title,
       message,
       buttons,
-      onClose
+      onClose,
+      onKeyDown
      } = props;
 
   return (
     <Dialog
-        {...{ open, onClose }}
+        {...{ open, onClose, onKeyDown }}
         disableBackdropClick={false}
         disableEscapeKeyDown={false}
     >

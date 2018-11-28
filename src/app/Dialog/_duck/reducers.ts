@@ -32,7 +32,14 @@ const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_S
                 open: false,
                 title: '',
                 message: '',
-                buttons: []
+                buttons: [],
+                onClose: null,
+                onEnter: null,
+                onEscapeClickDown: null,
+                onBackdropClick: null,
+                onExited: null,
+                onExiting: null,
+                onKeyDown: null
             };
 
         default:
@@ -55,6 +62,7 @@ export interface DialogOptions extends AppDialogOptions {
     onBackdropClick?: () => void;
     onExited?: () => void;
     onExiting?: () => void;
+    onKeydown?: () => void;
 };
 
 export interface DialogState extends AppDialogOptions, DialogProps {};
