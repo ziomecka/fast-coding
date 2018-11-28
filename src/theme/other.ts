@@ -36,16 +36,10 @@ export default {
                 flexDirection: "row",
                 justifyContent: "flex-end",
                 position: "fixed",
-<<<<<<< HEAD
                 top: NAV_TOP,
                 left: NAV_LEFT,
                 height: `${NAV_HEIGHT}px`,
                 maxHeight: `${NAV_HEIGHT}px`,
-=======
-                top: navTop,
-                left: navLeft,
-                height: navHeight,
->>>>>>> dragoverable
                 width: "100%"
             }
         },
