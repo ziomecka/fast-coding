@@ -27,6 +27,7 @@ export const TITLE_TRANSITION = 0.7;
 
 export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#ccdad1'
 export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
+export const COLOR_HINTS = '#90ab8e';
 
 export const LESSON_DEMO_TEXT =
 'This is a demonstration lesson. ' +
