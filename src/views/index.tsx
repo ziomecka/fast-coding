@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
+import history from '../shared/history';
 
 import HomeView from './home/';
 import LessonsView from './lessons/';
@@ -18,7 +19,7 @@ const Root: React.StatelessComponent<{}> = () => {
 
     return (
         <MuiThemeProvider {...{ theme }}>
-        <BrowserRouter>
+        <Router {...{ history }}>
             <Route path="/">
             <HomeView>
                 <Switch>
@@ -30,7 +31,7 @@ const Root: React.StatelessComponent<{}> = () => {
                 </Switch>
             </HomeView>
             </Route>
-        </BrowserRouter>
+        </Router>
         </MuiThemeProvider>
     );
 };
