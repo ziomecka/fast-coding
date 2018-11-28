@@ -10,6 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { AppRoutes } from '../../_common/';
+import { buttonsIds } from '../../views/home/_duck/operations';
 
 require('./style.sass');
 
@@ -106,12 +107,14 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                             <Button
                                 onClick={this.goToLessons}
                                 className={welcomeButton}
+                                id={buttonsIds[0]}
                             >
                                 See lessons
                             </Button>
                             <Button
                                 className={`${welcomeButton} ${welcomeButtonMain}`}
                                 onClick={this.goToDemo}
+                                id={buttonsIds[1]}
                             >
                                 Start typing
                             </Button>
