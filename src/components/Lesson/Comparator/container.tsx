@@ -14,7 +14,7 @@ const { comparator, lesson } = ComponentsContainers;
 
 import { onEndingLesson } from '../_duck/operations';
 import { startLesson } from '../_duck/actions';
-import { onTurnOnComparator, onTurnOffComparator } from './_duck/operations';
+import { onTurnOnComparator, onTurnOffComparator, onAddEventListener } from './_duck/operations';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = (state: ApplicationState): ComparatorState & LessonState => ({
@@ -26,7 +26,8 @@ const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     turnOnComparator: () => dispatch(onTurnOnComparator()),
     turnOffComparator: () => dispatch(onTurnOffComparator()),
     startLesson: () => dispatch(startLesson()),
-    endingLesson: () => dispatch(onEndingLesson())
+    endingLesson: () => dispatch(onEndingLesson()),
+    addEventListener: () => dispatch(onAddEventListener())
 });
 
 const ComparatorContainer = connect(mapStateToProps, mapDispatchToProps)(Comparator);
@@ -38,7 +39,8 @@ export interface ComparatorDispatch {
     turnOffComparator: () => void;
     startLesson: () => void;
     endingLesson: () => void;
-}
+    addEventListener: () => void;
+};
 
 // TODO verify
 export interface ComparatorProps extends ComparatorState, ComparatorDispatch, LessonState {

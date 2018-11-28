@@ -13,10 +13,9 @@ import {
     restartLesson
 } from './actions';
 
-import { resetComparator } from '../Comparator/_duck/actions';
+import { onResetComparator } from '../Comparator/_duck/operations';
 import { onTurnOffComparator } from '../Comparator/_duck/operations';
 import { resetStats } from '../Stats/_duck/actions';
-import { resetKeyboardListener } from '../Comparator/KeyboardListener/_duck/actions';
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;
@@ -56,17 +55,15 @@ export const onEndingLesson = (): any => (dispatch: Dispatch, getState: () => Ap
 };
 
 export const onReset = (): any => (dispatch: Dispatch) => {
-    dispatch(resetComparator());
+    dispatch(onResetComparator());
     dispatch(resetStats());
     dispatch(resetLesson());
-    dispatch(resetKeyboardListener());
     clearTimeout(timeout);
 };
 
 export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
-    dispatch(resetComparator());
+    dispatch(onResetComparator());
     dispatch(resetStats());
-    dispatch(resetKeyboardListener());
     dispatch(restartLesson());
     clearTimeout(timeout);
 };

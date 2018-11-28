@@ -11,29 +11,68 @@ import {
     registerError,
     registerBackspace,
     correctError,
+    resetComparator
 } from './actions';
 
 import { startTimer, stopTimer } from '../../Stats/_duck/actions';
-import { turnOffKeyboardListener } from '../KeyboardListener/_duck/actions';
 import { onEndLesson, onNotEndingLesson } from '../../_duck/operations';
+
+const event = 'keydown';
+let listener;
+
+const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+    const { key, keyCode } = event;
+
+    /**
+     * @constant {array}
+     * [32] - space
+     * [48, 90] - digits, letters
+     * [96, 111] - numpad
+     * [186, 192] - special chars
+     * [219, 222] - special chars
+     */
+    const validCodes = [
+        [32, 32],
+        [48, 90],
+        [96, 111],
+        [186, 192],
+        [219, 222],
+    ];
+
+    const backspace = 8;
+
+    const isValidCode = (code: number): boolean => {
+        return validCodes.some(range => (
+            (code >= range[0]) &&
+            (code <= range[1])
+        ));
+    };
+
+    const isBackspace = (code: number): boolean => code === backspace;
+
+    /** Do not scroll when space pressed */
+    if (keyCode === 32) event.preventDefault();
+    if (isValidCode(keyCode)) handleKeyDown(key, dispatch, getState);
+    if (isBackspace(keyCode)) handleBackSpace(dispatch, getState);
+};
 
 export const onTurnOnComparator = (): any => (dispatch: Dispatch) => {
     dispatch(startTimer());
 };
 
 export const onTurnOffComparator = (): any => async (dispatch: Dispatch): Promise<Boolean> => {
-    let keyboardListenerTurnedOff = await dispatch(turnOffKeyboardListener());
+    document.removeEventListener(event, listener);
+
     let timerStopped = await dispatch(stopTimer());
 
-    if (keyboardListenerTurnedOff && timerStopped) {
+    if (timerStopped) {
         dispatch(onEndLesson());
-        keyboardListenerTurnedOff = null; // TODO GC
         timerStopped = null; // TODO GC
         return true;
     }
 };
 
-export const onHandleBackSpace = (): any => (dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const handleBackSpace = (dispatch: Dispatch, getState: () => ApplicationState): void => {
     let state = getState()[components];
 
     let { errors, correctedErrors, currentSignIndex } = state[comparator];
@@ -58,7 +97,7 @@ export const onHandleBackSpace = (): any => (dispatch: Dispatch, getState: () =>
     correctedErrors = null;
 };
 
-export const onHandleKeyDown = (key: string): any => (dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => ApplicationState): void => {
     let state = getState()[components];
     let { errors, allErrors, currentSignIndex } = state[comparator];
     let { text } = state[lesson];
@@ -86,9 +125,20 @@ export const onHandleKeyDown = (key: string): any => (dispatch: Dispatch, getSta
     allErrors = null;
 };
 
+export const onResetComparator = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+    listener = (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState);
+    document.addEventListener(event, listener);
+    dispatch(resetComparator());
+};
+
+export const onAddEventListener = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+    listener = (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState);
+    document.addEventListener(event, listener);
+};
+
 export default {
-    onHandleBackSpace,
-    onHandleKeyDown,
     onTurnOnComparator,
-    onTurnOffComparator
+    onTurnOffComparator,
+    onResetComparator,
+    onAddEventListener
 };

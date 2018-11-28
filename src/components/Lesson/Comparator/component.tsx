@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { ComparatorProps } from './container';
 
-import KeyboardListener from './KeyboardListener/container';
 import OriginalTextarea from './OriginalTextarea/';
 
 class ComparatorComponent extends React.Component<ComparatorProps> {
@@ -16,6 +15,10 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
         } catch (err) {
         }
     };
+
+    componentDidMount() {
+        this.props.addEventListener();
+    }
 
     componentDidUpdate(prevProps: ComparatorProps) {
         const { currentSignIndex, text } = this.props
@@ -37,10 +40,7 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
 
     render () {
         return (
-            <>
-                <KeyboardListener />
-                <OriginalTextarea />
-            </>
+            <OriginalTextarea />
         );
     }
 };
