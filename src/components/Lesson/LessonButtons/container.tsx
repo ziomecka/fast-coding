@@ -10,7 +10,6 @@ import { LessonState } from '../_duck/reducers';
 import { LessonButtonsState } from './_duck/reducers';
 
 import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
-import { DialogDispatch, mapDispatchToProps as dialogMapsDispatchToProps } from '../../../shared/dialog';
 
 import { onRestartLesson } from '../_duck/operations';
 import { onReset } from '../_duck/operations';
@@ -26,13 +25,15 @@ import {
     resetDraggableLessonButtons
 } from './_duck/actions';
 
+import { onStartLeaving } from './_duck/operations';
+
 const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
-    ...dialogMapsDispatchToProps(dispatch),
     restartLesson: () => dispatch(onRestartLesson()),
     resetLesson: () => dispatch(onReset()),
     turnOnDraggable: () => dispatch(turnOnDraggableLessonButtons()),
     turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons()),
-    resetLessonButtons: () => dispatch(resetDraggableLessonButtons())
+    resetLessonButtons: () => dispatch(resetDraggableLessonButtons()),
+    startLeaving: () => dispatch(onStartLeaving())
 });
 
 const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
@@ -44,12 +45,13 @@ const LessonButtonsContainer = withRouter(connect(mapStateToProps, mapDispatchTo
 
 export default LessonButtonsContainer;
 
-export interface LessonButtonsDispatch extends DialogDispatch {
+export interface LessonButtonsDispatch {
     restartLesson: () => void;
     resetLesson: () => void;
     turnOnDraggable: () => void;
     turnOffDraggable: () => void;
     resetLessonButtons: () => void;
+    startLeaving: () => void;
 };
 
 export interface LessonButtonsProps extends

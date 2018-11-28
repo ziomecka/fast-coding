@@ -18,19 +18,17 @@ import styles from './styles';
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {
         ended,
-        openDialog,
-        closeDialog,
         started,
         restartLesson,
         history,
-        resetLesson,
         classes,
         top,
         left,
         draggable,
         turnOnDraggable,
         turnOffDraggable,
-        resetLessonButtons
+        resetLessonButtons,
+        startLeaving
     } = props;
 
     const { lessons } = AppRoutes;
@@ -51,19 +49,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
 
     const isMoved = (top !== INITIAL_TOP || left !== INITIAL_LEFT);
 
-    const dialogLeaveCallback = () => {
-        closeDialog();
-        leaveLesson();
-        resetLesson();
-    };
-
-    const dialogCancelLeavingCallback = () => {
-        closeDialog();
-    };
-
-    const leaveLesson = () => {
-        history.push(lessons);
-    };
+    const leaveLesson = () => history.push(lessons);
 
     const buttonsWhenNotStarted = (
         <>
@@ -87,15 +73,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             <Button
                 variant="contained"
                 color="primary"
-                onClick={() => openDialog({
-                    buttons: [
-                        [ 'leave', dialogLeaveCallback ],
-                        [ 'cancel', dialogCancelLeavingCallback, {color: "secondary"} ]
-                    ],
-                    title: "Do you want to leave lesson?",
-                    message: "Are you sure?",
-                    onClose: dialogCancelLeavingCallback
-                })}
+                onClick={startLeaving}
                 className={lessonButtonsButton}
             >
                 {leaveText}

@@ -3,14 +3,7 @@ import { Reducer } from 'redux';
 import { ComparatorActions } from './actions';
 
 import { ComparatorTypes } from './types';
-import { KeyboardListenerTypes } from '../KeyboardListener/_duck/types';
 import { StatsTypes } from '../../Stats/_duck/types';
-
-import {
-    keyboardListenerReducer,
-    KeyboardListenerState,
-    INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE
-} from '../KeyboardListener/_duck/reducers'
 
 import {
     statsReducer,
@@ -30,11 +23,6 @@ const {
 } = ComparatorTypes;
 
 const {
-    COMPONENTS_KEYBOARD_LISTENER_TURN_OFF,
-    COMPONENTS_KEYBOARD_LISTENER_RESET
-} = KeyboardListenerTypes;
-
-const {
     COMPONENTS_STATS_TIMER_START,
     COMPONENTS_STATS_TIMER_STOP,
     COMPONENTS_STATS_RESET
@@ -49,7 +37,6 @@ export const INITIAL_STATE: ComparatorState = {
     errors: [],
     allErrors: [],
     correctedErrors: [],
-    [keyboardListener]: { ...KEYBOARD_LISTENER_INITIAL_STATE },
     [stats]: { ...STATS_INITIAL_STATE }
 };
 
@@ -92,14 +79,6 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
             };
         }
 
-        case COMPONENTS_KEYBOARD_LISTENER_TURN_OFF:
-        case COMPONENTS_KEYBOARD_LISTENER_RESET: {
-            return {
-                ...state,
-                [keyboardListener]: keyboardListenerReducer(state[keyboardListener], action)
-            };
-        }
-
         case COMPONENTS_STATS_TIMER_START:
         case COMPONENTS_STATS_TIMER_STOP:
         case COMPONENTS_STATS_RESET: {
@@ -133,6 +112,5 @@ export interface ComparatorState {
     errors: number[];
     allErrors: number[];
     correctedErrors: number[];
-    [keyboardListener]: KeyboardListenerState;
     [stats]: StatsState;
 };

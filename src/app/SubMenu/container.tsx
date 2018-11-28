@@ -6,6 +6,7 @@ import { ApplicationState } from '../../store';
 import { Dispatch } from 'redux';
 
 import { setNavAnchorEl } from './_duck/actions';
+import { onSetNavAnchorEl } from './_duck/operations';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
@@ -26,7 +27,7 @@ const mapStateToProps = (state: ApplicationState): MenuState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SubMenuDispatch => ({
-    setNavAnchorEl: (container, element) => dispatch(setNavAnchorEl(container, element || null))
+    setNavAnchorEl: (container, element) => dispatch(onSetNavAnchorEl(container, element || null))
 });
 
 const SubMenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SubMenuComponent));
