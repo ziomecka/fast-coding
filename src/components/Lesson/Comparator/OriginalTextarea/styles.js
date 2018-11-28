@@ -27,6 +27,31 @@ const styles = theme => ({
         margin: 0,
         padding: 0
     },
+    comparatorTextAreaParagraphInvite: {
+        '& > span:nth-child(1)': {
+            position: 'relative',
+        },
+        '& > span:nth-child(1):before': {
+            content: "' '",
+            display: 'inline-block',
+            width: '100%',
+            position: 'absolute',
+            bottom: '-2px',
+            left: '0px',
+            height: '1px',
+            animation: `invite .4s infinite alternate`
+        }
+    },
+    '@global': {
+        '@keyframes invite': {
+            '0%': {
+                borderBottom: `1px solid ${theme.palette.primary.main}`
+            },
+            '100%': {
+                borderBottom: `3px solid ${theme.palette.secondary.main}`
+            }
+        }
+    },
     comparatorTextAreaFont: {
         boxSizing: 'border-box',
         display: 'inline-block',

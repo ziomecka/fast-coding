@@ -24,12 +24,9 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         comparatorTextAreaFontError,
         comparatorTextAreaPaper,
         comparatorTextAreaPaperShort,
-        comparatorTextAreaParagraph
+        comparatorTextAreaParagraph,
+        comparatorTextAreaParagraphInvite
     } = classes;
-
-    const scroll = (id: string): void => {
-        document.getElementById(id).scrollIntoView();
-    };
 
     const isCorrect = (ind: number): boolean => {
       return (
@@ -39,15 +36,13 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
       );
     };
 
-    const isErrors = (ind: number): boolean => {
-      return errors.indexOf(ind) > -1;
-    };
+    const isErrors = (ind: number): boolean => errors.indexOf(ind) > -1;
 
     const isCorrectedErrors = (ind: number): boolean => {
-      return (
-        ind <= currentSignIndex &&
-        correctedErrors.indexOf(ind) > -1
-      );
+        return (
+            ( ind <= currentSignIndex ) &&
+            ( correctedErrors.indexOf(ind) > -1 )
+        );
     };
 
     const textRender = () => {
@@ -85,16 +80,20 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         });
     };
 
+    const inviteClass = (currentSignIndex === -1)
+        ? comparatorTextAreaParagraphInvite
+        : '';
+
     return (
         <Paper
             elevation={0}
             className={`${comparatorTextAreaPaper}`}
-            >
+        >
             <Paper
                 elevation={0}
                 className={`${comparatorTextAreaPaperShort}`}
-            >
-                <p className={comparatorTextAreaParagraph}>
+                >
+                <p className={`${comparatorTextAreaParagraph} ${inviteClass}`}>
                     {textRender()}
                 </p>
             </Paper>
