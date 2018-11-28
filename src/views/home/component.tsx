@@ -26,19 +26,16 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
     defaultHeading: string;
     defaultAnimateHeading: boolean;
     homeUrl: string;
-    lessonsUrl: string;
-    _listener: (e: any) => void
     constructor(props: HomeViewProps) {
         super(props);
 
         this.defaultHeading = HOME_HEADING;
         this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
         this.homeUrl = AppRoutes.home;
-        this.lessonsUrl = AppRoutes.lessons;
-        this._listener = null;
 
         props.openNotification(HOME_NOTIFICATION);
-        this.addKeyboardListener();
+
+        this.props.addKeyDownListener();
     }
 
     componentDidUpdate(prevProps: HomeViewProps) {
@@ -47,25 +44,13 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
         if (pathname !== prevPathname) {
             if (pathname === this.homeUrl) {
-            this.addKeyboardListener();
-        } else {
-            this.removeKeyboardListener();
+                this.props.addKeyDownListener();
+            } else {
+                this.props.removeKeyDownListener();
             }
         }
     }
 
-    listener() {
-        this.props.history.push(this.lessonsUrl);
-    }
-
-    addKeyboardListener() {
-        this._listener = this.listener.bind(this);
-        window.addEventListener('keydown', this._listener);
-    }
-
-    removeKeyboardListener() {
-        window.removeEventListener('keydown', this._listener);
-    }
     render() {
         const {
             heading = this.defaultHeading,
