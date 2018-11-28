@@ -13,6 +13,7 @@ export interface LessonsData {
     collection: string;
     type: string;
     _id: string;
+    tag: string;
 }
 
 export interface LessonsLoaderState {
