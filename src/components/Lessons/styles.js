@@ -58,6 +58,9 @@ const styles = theme => ({
         bottom: '3rem',
         left: '50%',
         transform: 'translateX(-50%)'
+    },
+    divider: {
+        margin: '2rem 0'
     }
 });
 

@@ -22,6 +22,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -46,7 +47,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
         lessonCardContent,
         lessonCardLinkSVG,
         lessonCardLinkText,
-        expansionPanelSummaryHeading
+        expansionPanelSummaryHeading,
+        divider
     } = classes;
 
     const elevation = 3;
@@ -91,6 +93,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                     </Typography>
 
                 </ExpansionPanelSummary>
+
+                <Divider className={divider} />
 
                 <ExpansionPanelDetails classes={{root: expansionPanelDetails}}>
 
