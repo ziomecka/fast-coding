@@ -1,10 +1,11 @@
 import { Dispatch } from 'redux';
 import { ApplicationState } from '../../../../_reducers';
 
-import { ApplicationContainers, ComponentsContainers } from '../../../../_common/';
+import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../../_common/';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
+const { lessons } = AppRoutes;
 
 import {
     registerNewKey,
@@ -16,6 +17,9 @@ import {
 
 import { startTimer, stopTimer } from '../../Stats/_duck/actions';
 import { onEndLesson, onNotEndingLesson } from '../../_duck/operations';
+
+import history from '../../../../shared/history';
+import { onStartLeaving } from '../../LessonButtons/_duck/operations';
 
 const event = 'keydown';
 let listener;
@@ -40,6 +44,7 @@ const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: 
     ];
 
     const backspace = 8;
+    const escape = 27;
 
     const isValidCode = (code: number): boolean => {
         return validCodes.some(range => (
@@ -49,11 +54,13 @@ const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: 
     };
 
     const isBackspace = (code: number): boolean => code === backspace;
+    const isEscape = (code: number): boolean => code === escape;
 
     /** Do not scroll when space pressed */
     if (keyCode === 32) event.preventDefault();
     if (isValidCode(keyCode)) handleKeyDown(key, dispatch, getState);
     if (isBackspace(keyCode)) handleBackSpace(dispatch, getState);
+    if (isEscape(keyCode)) handleEscape(dispatch, getState);
 };
 
 export const onTurnOnComparator = (): any => (dispatch: Dispatch) => {
@@ -123,6 +130,14 @@ export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => A
 
     state = null; // TODO GC?
     allErrors = null;
+};
+
+const handleEscape = (dispatch: Dispatch, getState: () => ApplicationState): void => {
+    if (getState()[components][comparator].currentSignIndex >= 0) {
+        dispatch(onStartLeaving());
+    } else {
+        history.push(lessons);
+    }
 };
 
 export const onResetComparator = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
