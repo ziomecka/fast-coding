@@ -92,12 +92,12 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                         { lesson.description }
                     </Typography>
 
+                    <Divider  />
                 </ExpansionPanelSummary>
 
                 <Divider className={divider} />
 
                 <ExpansionPanelDetails classes={{root: expansionPanelDetails}}>
-
                     { listLessons(lesson.lessons) }
 
                 </ExpansionPanelDetails>
