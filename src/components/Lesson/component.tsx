@@ -46,7 +46,7 @@ class LessonComponent extends React.Component<LessonProps> {
 
     render() {
         const { title, ended, started } = this.props;
-        const { lessonPaper, lessonInviteEmpty } = this.props.classes;
+        const { lessonPaper, lessonInvite } = this.props.classes;
 
         return (
             <>
@@ -56,7 +56,7 @@ class LessonComponent extends React.Component<LessonProps> {
                     </h2>
 
                     { !started
-                        ? this.invite(<span>You can start typing <Smile /> </span>)
+                        ? this.invite(<span className={lessonInvite}>You can start typing <Smile /> </span>)
                         : this.invite(<span>&nbsp;</span>)
                     }
 
