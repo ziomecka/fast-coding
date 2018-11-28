@@ -3,7 +3,7 @@ import { ComponentsActions } from '../_actions/';
 import { ComponentsContainers, ComparatorContainers } from '../_common/';
 
 const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainers;
-const { stats, keyboardListener } = ComparatorContainers;
+const { stats } = ComparatorContainers;
 
 import {
     ComparatorState,
@@ -56,7 +56,6 @@ const reducer: Reducer<ComponentsState, ComponentsActions> = (state = INITIAL_ST
             };
         }
 
-        case testRegExp(type, keyboardListener):
         case testRegExp(type, stats):
         case testRegExp(type, comparator): {
             return {

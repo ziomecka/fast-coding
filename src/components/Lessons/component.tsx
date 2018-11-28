@@ -92,7 +92,6 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                         { lesson.description }
                     </Typography>
 
-                    <Divider  />
                 </ExpansionPanelSummary>
 
                 <Divider className={divider} />

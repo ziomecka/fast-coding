@@ -193,7 +193,7 @@ const palette = {
         "veryLight": "rgb(241, 160, 115)",
         "light": "rgb(235, 115, 51)",
         "dark": "rgb(161, 56, 0)",
-        "contrastText": "#FAFAFA"
+        "contrastText": "#fafafa"
       },
       "common": { "black": "#000", "white": "#fff" },
       "error": {
@@ -215,7 +215,7 @@ const palette = {
         "main": "#757575",
         "light": "rgb(144, 144, 144)",
         "dark": "rgb(81, 81, 81)",
-        "contrastText": "#FAFAFA"
+        "contrastText": "#fafafa"
       }
     },
     "themeName": "Boulder Trinidad Lion"

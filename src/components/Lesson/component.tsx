@@ -49,20 +49,22 @@ class LessonComponent extends React.Component<LessonProps> {
         const { lessonPaper, lessonInviteEmpty } = this.props.classes;
 
         return (
-            <Paper className={lessonPaper}>
-                <h2>
-                    Lesson: "{title? title.toLowerCase() : ' '}"
-                </h2>
+            <>
+                <Paper className={lessonPaper}>
+                    <h2>
+                        Lesson: "{title? title.toLowerCase() : ' '}"
+                    </h2>
 
-                { !started
-                    ? this.invite(<span>You can start typing <Smile /> </span>)
-                    : this.invite(<span>&nbsp;</span>)
-                }
+                    { !started
+                        ? this.invite(<span>You can start typing <Smile /> </span>)
+                        : this.invite(<span>&nbsp;</span>)
+                    }
 
-                <Comparator />
+                    <Comparator />
+                </Paper>
                 { ended && <Stats /> }
                 <LessonButtons />
-            </Paper>
+            </>
         );
     }
 }

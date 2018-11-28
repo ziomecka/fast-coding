@@ -10,7 +10,7 @@ const styles = theme => ({
         position: 'relative',
         justifyContent: 'space-around',
         padding: '3em',
-        marginTop: '1em'
+        marginTop: '1em',
     },
     lessonButtonsMenuDragged: {
         position: 'absolute'

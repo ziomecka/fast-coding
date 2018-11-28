@@ -7,3 +7,6 @@ fast-coding.code-workspace
 bundle
 out*
 todo.md
+test
+__mocks__
+LICENSE*

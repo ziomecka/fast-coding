@@ -43,6 +43,9 @@ export interface ComparatorDispatch {
 };
 
 // TODO verify
-export interface ComparatorProps extends ComparatorState, ComparatorDispatch, LessonState {
-    verify?(): boolean;
-};
+export interface ComparatorProps extends
+    ComparatorState,
+    ComparatorDispatch,
+    LessonState {
+        verify?(): boolean;
+    };

@@ -12,7 +12,7 @@ import {
 } from '../../Stats/_duck/reducers'
 
 import { ComparatorContainers } from '../_common/index';
-const { keyboardListener, stats } = ComparatorContainers;
+const { stats } = ComparatorContainers;
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
