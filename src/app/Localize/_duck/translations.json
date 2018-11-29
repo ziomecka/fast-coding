@@ -2,5 +2,7 @@
     "lessonButtonsLeave": [ "Leave lesson", "Opuść lekcję" ],
     "lessonButtonsRestart": [ "Restart lesson", "Jeszcze raz" ],
     "welcomeGoToCourses": [ "Courses", "Kursy" ],
-    "welcomeGoToDemo": [ "Demo lesson", "Lekcja pokazowa" ]
+    "welcomeGoToDemo": [ "Demo lesson", "Lekcja pokazowa" ],
+    "coursesTitle": [ "Courses", "Kursy" ],
+    "welcomeHeading": [ "Learn touch typing in coding!", "Naucz się bezwzrokowego kodowania!"]
 }
