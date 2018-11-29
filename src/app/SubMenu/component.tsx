@@ -9,7 +9,6 @@ import { AppRoutes, SubMenuRulesEnum, NavRulesEnum } from '../../_common/';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import Toolbar from '@material-ui/core/Toolbar';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -89,7 +88,6 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         if (menuItems && container && !menuItem) {
             return (
               <ClickAwayListener onClickAway={handleClickAway}>
-                <Toolbar className={classes.menuToolbar}>
                   <IconButton
                     onClick={handleClick}
                     className={classes.menuIcon}
@@ -120,7 +118,6 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
                           })
                         }
                       </Menu>
-                </Toolbar>
               </ClickAwayListener>
             );
         }
@@ -129,14 +126,12 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
             /** Render if not current pathname */
             if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
                 return (
-                    <Toolbar className={classes.menuToolbar}>
-                        <IconButton
-                            onClick={() => handleClose(menuItem[1])}
-                            className={classes.menuIcon}
-                        >
-                            {icon}
-                        </IconButton>
-                    </Toolbar>
+                    <IconButton
+                        onClick={() => handleClose(menuItem[1])}
+                        className={classes.menuIcon}
+                    >
+                        {icon}
+                    </IconButton>
                 );
             }
 
