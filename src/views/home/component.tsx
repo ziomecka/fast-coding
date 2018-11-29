@@ -14,22 +14,21 @@ import User from '../../app/User/container';
 import { AppContainers, AppRoutes } from '../../_common/';
 
 import {
-    HOME_HEADING,
     HOME_HEADING_ANIMATED,
     HOME_NOTIFICATION,
     HOME_WELCOME_TIMEOUT
 } from '../../constants';
 
+import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
+
 const { content, welcome } = AppContainers;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
-    defaultHeading: string;
     defaultAnimateHeading: boolean;
     homeUrl: string;
     constructor(props: HomeViewProps) {
         super(props);
 
-        this.defaultHeading = HOME_HEADING;
         this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
         this.homeUrl = AppRoutes.home;
 
@@ -53,7 +52,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
     render() {
         const {
-            heading = this.defaultHeading,
             animateHeading = this.defaultAnimateHeading
         } = this.props;
 
@@ -71,8 +69,16 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
             <LessonsLoader />
 
+            {/* Get translated heading */}
             <Welcome
-                heading={heading}
+                heading={
+                    getTranslations(this.props.localize).welcomeHeading[
+                        getLanguages(this.props.localize)
+                        .findIndex(lang => (
+                            lang.code === getActiveLanguage(this.props.localize).code)
+                        )
+                    ]
+                }
                 animated={animateHeading}
                 timeout={HOME_WELCOME_TIMEOUT}
             />
