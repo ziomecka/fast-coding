@@ -119,31 +119,40 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         if (manyItems) {
             return (
                 <ClickAwayListener onClickAway={handleClickAway}>
-                    <>
-                        <IconButton
-                            onClick={handleClick}
-                            className={classes.menuIcon}
-                        >
-                            {icon}
-                        </IconButton>
+                    <IconButton
+                        onClick={handleClick}
+                        className={classes.menuIcon}
+                    >
+                        {icon}
+                    </IconButton>
 
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            className={classes.menu}
-                        >
-                            {menuItems.map((menuItem, ind) => {
-                                const { rules, appRoute, title, onClick } = menuItem;
-                                if (areSubMenuRulesMet(rules, appRoute)) {
-                                    return (
-                                        (appRoute && getLink(appRoute, title)) ||
-                                        (onClick && getButton(onClick, title))
-                                    );
-                                }
-                                return null;
-                            })}
-                        </Menu>
-                    </>
+                    {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        className={classes.menu}
+                    >
+                        {menuItems.map((menuItem, ind) => {
+                            if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
+                                return (
+                                    <MenuItem
+                                        onClick={() => handleClose(menuItem[1])}
+                                        key={`${menuItem[0]}-${ind}`}
+                                        divider={true}
+                                    >
+
+                                        <NavLink to={menuItem[1]}>
+                                            {menuItem[0]}
+                                        </NavLink>
+
+                                    </MenuItem>
+                                );
+                            }
+
+                            /** Do not render if current pathname */
+                            return null;
+                        })}
+                    </Menu>
                 </ClickAwayListener>
             );
         }
