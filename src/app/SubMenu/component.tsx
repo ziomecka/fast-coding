@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { SubMenuProps } from './container';
-import { AppRoutes, SubMenuRulesEnum, NavRulesEnum } from '../../_common/';
+import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, MenuContainers } from '../../_common/';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -14,79 +14,117 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
-    const {
-      menuItems,
-      menuItem,
-      icon,
-      setNavAnchorEl,
-      container,
-      classes
-    } = props;
+const { about, demo, lesson, lessons, home, login, newuser } = AppRoutes;
+const { notAbout, notAnyLesson, notDemoLesson, notHome, notLesson, onlyAbout} = NavRulesEnum;
+const { notCurrentLocation, onlyAuthorized, onlyUnauthorized} = SubMenuRulesEnum;
 
-    const currentPathname = props.location.pathname;
-    const { anchorEl = null} = Object(props[container]);
+/** Iternal state needed because otherwise React does not see change of state */
+interface InternalState {
+    render: boolean;
+};
 
-    const {
-        onlyAuthorized,
-        onlyUnauthorized,
-        notCurrentLocation,
-    } = SubMenuRulesEnum;
+class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
+    private _renderMethod: () => JSX.Element;
+    constructor (props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClickAway = this.handleClickAway.bind(this);
+        this.handleClose = this.handleClose.bind(this);
 
-    const { lesson, demo, home, about } = AppRoutes;
-    const { notLesson, notAnyLesson, notDemoLesson, notHome, onlyAbout, notAbout } = NavRulesEnum;
+        this.state = {
+            render: this.areNavRulesMet
+        }
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => (
-      setNavAnchorEl(container, event.currentTarget)
-    );
+        /**
+         * Check if either menuItems or menuItem provided in props.
+         * If both or neither menuItems nor menuIteme provided in props then throw an error.
+         */
+        if (this.manyItems) {
+            this._renderMethod = this.renderList
+        }
+        else if (this.oneItem) {
+            this._renderMethod = this.renderOneItem;
+        }
+        else {
+            throw new Error('SubMenu received incorrect props.');
+        }
+    }
 
-    const handleClose = (loc: string) => {
-        props.history.push(loc);
-        if (container) {
-            setNavAnchorEl(container);
+    get currentPathname () {
+        return this.props.location.pathname;
+    }
+
+    get anchorEl () {
+        let achorEl = this.props[this.props.container].anchorEl;
+        return this.props[this.props.container].anchorEl;
+    }
+
+    componentDidUpdate(prevProps: SubMenuProps) {
+        const { pathname } = this.props.location;
+        const prevPathname = prevProps.location.pathname;
+
+        if (pathname !== prevPathname) {
+            this.setState({
+                render: this.areNavRulesMet
+            });
+        }
+    }
+
+    handleClick (event: React.MouseEvent<HTMLButtonElement>) {
+        this.props.setNavAnchorEl(this.props.container, event.currentTarget);
+    }
+
+    handleClose (loc: string) {
+        this.props.history.push(loc);
+        if (this.props.container) {
+            this.props.setNavAnchorEl(this.props.container);
         }
     };
 
-    const handleClickAway = () => {
-      if (anchorEl) {
-        setNavAnchorEl(container);
-      }
+    handleClickAway () {
+        if (this.anchorEl) {
+            this.props.setNavAnchorEl(this.props.container);
+        }
     };
 
     // @ts-ignore
-    const subMenuRules: {[key: SubMenuRulesEnum]: () => boolean} = {
-        [onlyAuthorized]: () => props.authorized,
-        [onlyUnauthorized]: () => !props.authorized,
-        [notCurrentLocation]: (path: string) => path !== currentPathname
+    get subMenuRules (): {[key: SubMenuRulesEnum]: () => boolean } {
+        return {
+            [onlyAuthorized]: () => this.props.authorized,
+            [onlyUnauthorized]: () => !this.props.authorized,
+            [notCurrentLocation]: (path: string) => path !== this.currentPathname
+        }
     };
 
     /** If function for rule is not implemented an error will be thrown */
-    const areSubMenuRulesMet: (rules: SubMenuRulesEnum[] | null, pathname: string) => boolean = (rules, pathname) => {
-        return (!rules || rules.every(rule => subMenuRules[rule](pathname)));
+    areSubMenuRulesMet (rules, pathname): (rules: SubMenuRulesEnum[] | null, pathname: string) => boolean {
+        return (!rules || rules.every(rule => this.subMenuRules[rule](pathname)));
     };
 
     // @ts-ignore
-    const navRules: {[key: NavRulesEnum]: () => boolean} = {
-        [notLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname),
-        [notDemoLesson]: () => currentPathname !== demo,
-        [notAnyLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname) && currentPathname !== demo,
-        [notHome]: () => currentPathname !== home,
-        [onlyAbout]: () => currentPathname === about,
-        [notAbout]: () => currentPathname !== about
+    get navRules (): {[key: NavRulesEnum]: () => boolean} {
+        return {
+            [notLesson]: () => !RegExp(`.*${lesson}.*`, 'g').test(this.currentPathname),
+            [notDemoLesson]: () => this.currentPathname !== demo,
+            [notAnyLesson]: () => !RegExp(`.*${lesson}.*`,'g').test(this.currentPathname) && this.currentPathname !== demo,
+            [notHome]: () => this.currentPathname !== home,
+            [onlyAbout]: () => this.currentPathname === about,
+            [notAbout]: () => this.currentPathname !== about
+        };
     };
 
     /** If function for rule is not implemented an error will be thrown */
-    const areNavRulesMet: (rules: NavRulesEnum[] | null) => boolean = (rules) => {
-        return (!rules || rules.every(rule => navRules[rule]()));
+    get areNavRulesMet (): boolean {
+        return (!this.props.rules || this.props.rules.every(rule => this.navRules[rule]()));
     };
 
-    const getLink = (appRoute: AppRoutes, title: string) => {
+    getLink (appRoute: AppRoutes, title: string) {
         let ind = 0;
         return (
             <MenuItem
-            onClick={() => handleClose(appRoute)}
-            key={`link-${title}-${ind++}`}
-            divider={true}
+                onClick={() => this.handleClose(appRoute)}
+                key={`link-${title}-${ind++}`}
+                divider={true}
             >
                 <NavLink to={appRoute}>
                     {title}
@@ -95,7 +133,7 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         );
     };
 
-    const getButton = (onClick, title) => {
+    getButton (onClick, title) {
         let ind = 0;
         return (
             <MenuItem
@@ -108,70 +146,81 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         );
     };
 
-    const manyItems = ( menuItems && container && !menuItem );
-    const oneItem = (menuItem && !container && !menuItems);
+    get manyItems ()  {
+        return ( this.props.menuItems && this.props.container && !this.props.menuItem )
+    };
 
-    if (areNavRulesMet(props.rules)) {
-        /** Check if either menuItems or menuItem provided in props.
-         *  If both or none then throw an error.
-         *  */
+    get oneItem  () {
+        return (this.props.menuItem && !this.props.container && !this.props.menuItems);
+    }
 
-        if (manyItems) {
-            return (
-                <ClickAwayListener onClickAway={handleClickAway}>
+    renderList () {
+        return (
+            <ClickAwayListener onClickAway={this.handleClickAway}>
+                <>
                     <IconButton
-                        onClick={handleClick}
-                        className={classes.menuIcon}
+                        onClick={this.handleClick}
+                        className={this.props.classes.menuIcon}
                     >
-                        {icon}
+                        {this.props.icon}
                     </IconButton>
 
                     {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        className={classes.menu}
+                    {<Menu
+                        anchorEl={this.anchorEl}
+                        open={Boolean(this.anchorEl)}
+                        className={this.props.classes.menu}
                     >
-                        {menuItems.map((menuItem, ind) => {
+                        {this.props.menuItems.map((menuItem, ind) => {
                             const { rules, appRoute, title, onClick } = menuItem;
-                            if (areSubMenuRulesMet(rules, appRoute)) {
+                            if (this.areSubMenuRulesMet(rules, appRoute)) {
                                 return (
-                                    (appRoute && getLink(appRoute, title)) ||
-                                    (onClick && getButton(onClick, title))
+                                    (appRoute && this.getLink(appRoute, title)) ||
+                                    (onClick && this.getButton(onClick, title))
                                 );
                             }
 
                             return null;
                         })}
-                    </Menu>
-                </ClickAwayListener>
+                    </Menu>}
+                </>
+            </ClickAwayListener>
+        );
+    }
+
+    renderOneItem() {
+        const { rules, appRoute } = this.props.menuItem;
+
+        /** Render if not current pathname */
+        if (this.areSubMenuRulesMet(rules, appRoute)) {
+            return (
+                <IconButton
+                    onClick={() => this.handleClose(appRoute)}
+                    className={this.props.classes.menuIcon}
+                >
+                    {this.props.icon}
+                </IconButton>
             );
         }
 
-        if (oneItem) {
-
-            const { rules, appRoute } = menuItem;
-
-            /** Render if not current pathname */
-            if (areSubMenuRulesMet(rules, appRoute)) {
-                return (
-                    <IconButton
-                        onClick={() => handleClose(appRoute)}
-                        className={classes.menuIcon}
-                    >
-                        {icon}
-                    </IconButton>
-                );
-            }
-
-            return null;
-        }
-
-        /** If both or neither menuItems nor menuIteme provided in props then throw an error. */
-        throw new Error('SubMenu received incorrect props.');
+        return null;
     }
 
-    return null;
-};
+    get renderMethod () {
+        return this._renderMethod;
+    }
+
+    render () {
+        if (this.state.render) {
+            return (
+                <>
+                    { this.renderMethod() }
+                </>
+            );
+        }
+
+        return null;
+    }
+}
 
 export default withStyles(styles)(SubMenuComponent);
