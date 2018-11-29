@@ -1,10 +1,10 @@
 import { FONT_BOLD } from '../../constants';
 const style = theme => ({
     lessons: {
-        color: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
         fontSize: '1.5rem',
         fontWeight: FONT_BOLD,
-        textTransform: 'uppercase'
+        letterSpacing: '.05rem'
     }
 });
 
