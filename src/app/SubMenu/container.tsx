@@ -16,6 +16,7 @@ import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/'
 
 import { WithStyles } from '@material-ui/core/';
 
+import { IconButtonProps } from '@material-ui/core/IconButton';
 const { app } = ApplicationContainers;
 const { appMenu, user } = AppContainers;
 
@@ -51,6 +52,7 @@ export interface __SubMenuProps {
     icon: JSX.Element;
     container?: MenuContainers;
     rules?: NavRulesEnum[];
+    iconButton?: IconButtonProps;
 };
 
 interface ExtendedMenuState extends MenuState {

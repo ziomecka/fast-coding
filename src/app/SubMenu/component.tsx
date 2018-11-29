@@ -155,12 +155,15 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     renderList () {
+        const { iconButton = {} } = this.props;
+
         return (
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
                     <IconButton
                         onClick={this.handleClick}
                         className={this.props.classes.menuIcon}
+                        {...iconButton}
                     >
                         {this.props.icon}
                     </IconButton>
@@ -190,6 +193,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
     renderOneItem() {
         const { rules, appRoute } = this.props.menuItem;
+        const { iconButton = {} } = this.props;
 
         /** Render if not current pathname */
         if (this.areSubMenuRulesMet(rules, appRoute)) {
@@ -197,6 +201,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                 <IconButton
                     onClick={() => this.handleClose(appRoute)}
                     className={this.props.classes.menuIcon}
+                    {...iconButton}
                 >
                     {this.props.icon}
                 </IconButton>
