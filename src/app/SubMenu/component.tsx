@@ -133,23 +133,14 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
                         className={classes.menu}
                     >
                         {menuItems.map((menuItem, ind) => {
-                            if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
+                            const { rules, appRoute, title, onClick } = menuItem;
+                            if (areSubMenuRulesMet(rules, appRoute)) {
                                 return (
-                                    <MenuItem
-                                        onClick={() => handleClose(menuItem[1])}
-                                        key={`${menuItem[0]}-${ind}`}
-                                        divider={true}
-                                    >
-
-                                        <NavLink to={menuItem[1]}>
-                                            {menuItem[0]}
-                                        </NavLink>
-
-                                    </MenuItem>
+                                    (appRoute && getLink(appRoute, title)) ||
+                                    (onClick && getButton(onClick, title))
                                 );
                             }
 
-                            /** Do not render if current pathname */
                             return null;
                         })}
                     </Menu>
