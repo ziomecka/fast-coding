@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 /** VIEWS */
 // import { INITIAL_STATE as VIEWS_INITIAL_STATE, ViewsState, viewsReducer } from '../views/_reducers/';
-import { actions as viewsActions, ViewsActions } from '../views/_actions';
+// import { actions as viewsActions, ViewsActions } from '../views/_actions';
 
 /** COMPONENTS */
 import { INITIAL_STATE as COMPONENTS_INITIAL_STATE, ComponentsState, componentsReducer } from '../components/_reducers/';
@@ -24,12 +24,17 @@ import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app
 
 import { ApplicationContainers } from '../_common/';
 
+import { localizeReducer, LocalizeState } from 'react-localize-redux';
+import { renderToStaticMarkup } from 'react-dom/server';
+
+import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '../app/Localize/_duck/reducers';
 const { views, components, app } = ApplicationContainers;
 
 const INITIAL_STATE = {
     // [views]: { ...VIEWS_INITIAL_STATE },
     [components]: { ...COMPONENTS_INITIAL_STATE },
-    [app]: { ...APP_INITIAL_STATE }
+    [app]: { ...APP_INITIAL_STATE },
+    localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
 const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeTypes;
@@ -66,6 +71,7 @@ const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): App
         case (actionType === '@@app'): {
             return {
                 ...state,
+                // @ts-ignore
                 [app]: { ...appReducer(state[app], action) }
             };
         }
@@ -74,6 +80,7 @@ const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): App
         case (actionType === '@@components'): {
             return {
                 ...state,
+                // @ts-ignore
                 [components]: { ...componentsReducer(state[components], action as ComponentsActions) }
             };
         }
@@ -88,6 +95,8 @@ const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): App
         default: {
             return {
                 ...state,
+                // @ts-ignore
+                localize: localizeReducer(state.localize, action)
             };
         }
     }
@@ -98,5 +107,6 @@ export { reducers as applicationReducer };
 export interface ApplicationState {
     // @ts-ignore
     [key: ApplicationContainers ]: ComponentsState | AppState;
+    localize: LocalizeState;
 };
 

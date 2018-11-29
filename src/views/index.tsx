@@ -14,24 +14,29 @@ import { theme } from '../theme/';
 
 import { AppRoutes } from '../_common/';
 
+import { LocalizeProvider } from 'react-localize-redux';
+import store from '../store';
+
 const Root: React.StatelessComponent<{}> = () => {
     const { lessons, about, login, newuser } = AppRoutes;
 
     return (
         <MuiThemeProvider {...{ theme }}>
-            <Router {...{ history }}>
-                <Route path="/">
-                <HomeView>
-                    <Switch>
-                    <Route exact path={`${lessons}`} component={LessonsView} />
-                    <Route path={`${lessons}/:id`} component={LessonView} />
-                    <Route path={`${about}`} component={AboutView} />
-                    <Route path={`${login}`} component={LoginView} />
-                    <Route path={`${newuser}`} component={NewUserView} />
-                    </Switch>
-                </HomeView>
-                </Route>
-            </Router>
+            <LocalizeProvider {...{ store }} >
+                <Router {...{ history }}>
+                    <Route path="/">
+                    <HomeView>
+                        <Switch>
+                        <Route exact path={`${lessons}`} component={LessonsView} />
+                        <Route path={`${lessons}/:id`} component={LessonView} />
+                        <Route path={`${about}`} component={AboutView} />
+                        <Route path={`${login}`} component={LoginView} />
+                        <Route path={`${newuser}`} component={NewUserView} />
+                        </Switch>
+                    </HomeView>
+                    </Route>
+                </Router>
+            </LocalizeProvider>
         </MuiThemeProvider>
     );
 };
