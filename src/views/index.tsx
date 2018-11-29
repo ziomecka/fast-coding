@@ -19,19 +19,19 @@ const Root: React.StatelessComponent<{}> = () => {
 
     return (
         <MuiThemeProvider {...{ theme }}>
-        <Router {...{ history }}>
-            <Route path="/">
-            <HomeView>
-                <Switch>
-                <Route exact path={`${lessons}`} component={LessonsView} />
-                <Route path={`${lessons}/:id`} component={LessonView} />
-                <Route path={`${about}`} component={AboutView} />
-                <Route path={`${login}`} component={LoginView} />
-                <Route path={`${newuser}`} component={NewUserView} />
-                </Switch>
-            </HomeView>
-            </Route>
-        </Router>
+            <Router {...{ history }}>
+                <Route path="/">
+                <HomeView>
+                    <Switch>
+                    <Route exact path={`${lessons}`} component={LessonsView} />
+                    <Route path={`${lessons}/:id`} component={LessonView} />
+                    <Route path={`${about}`} component={AboutView} />
+                    <Route path={`${login}`} component={LoginView} />
+                    <Route path={`${newuser}`} component={NewUserView} />
+                    </Switch>
+                </HomeView>
+                </Route>
+            </Router>
         </MuiThemeProvider>
     );
 };
