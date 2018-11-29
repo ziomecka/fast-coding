@@ -8,7 +8,6 @@ import AppMenu from '../../app/AppMenu';
 import AppBar from '@material-ui/core/AppBar';
 import MenuIcon from '@material-ui/icons/Menu';
 import Face from '@material-ui/icons/Face';
-import Home from '@material-ui/icons/Home';
 import Language from '@material-ui/icons/Language';
 
 /* Materials */
@@ -51,11 +50,6 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
             menuItem: submenus.lessonsMenuItem,
             icon: <span className={lessons}> Lessons </span>,
             rules: [ notAnyLesson ]
-        },
-        {
-            menuItem: submenus.homeMenuItem,
-            icon: <Home />,
-            rules: [ notAnyLesson, notHome ]
         },
         {
             menuItems: submenus.userMenuItems,
