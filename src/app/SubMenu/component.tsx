@@ -95,6 +95,7 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
                         {icon}
                     </IconButton>
 
+                    {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
                     <Menu
                         anchorEl={anchorEl}
                         open={Boolean(anchorEl)}
