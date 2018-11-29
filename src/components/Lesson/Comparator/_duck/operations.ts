@@ -121,8 +121,9 @@ export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => A
         /** Add to all errors only if not already included */
         if (!allErrors.includes(nextCurrentSignIndex)) {
             allErrors.push(nextCurrentSignIndex);
-            errors.push(nextCurrentSignIndex);
         }
+
+        errors.push(nextCurrentSignIndex);
 
         dispatch(registerError(errors, allErrors, nextCurrentSignIndex ));
     } else {
