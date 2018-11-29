@@ -5,7 +5,7 @@ import { WelcomeProps } from './container';
 /** Materials core */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-
+import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
@@ -123,32 +123,36 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             welcomeButton,
             welcomeButtonMain,
             lessonsButton,
-            welcomeHeading
+            welcomeHeading,
+            welcomeHeadingOther
         } = classes;
 
         return (
             <Paper className={
                 `${welcomePaper} ${isHome ? welcomeHome : welcomeOther}`
             }>
-                <h1 className={welcomeHeading}>{heading()}</h1>
-                    {isHome && (
-                        <div className={welcomeButtons}>
-                            <Button
-                                onClick={this.goToLessons}
-                                className={welcomeButton}
-                                id={buttonsIds[0]}
-                            >
-                                See lessons
-                            </Button>
-                            <Button
-                                className={`${welcomeButton} ${welcomeButtonMain}`}
-                                onClick={this.goToDemo}
-                                id={buttonsIds[1]}
-                            >
-                                Start typing
-                            </Button>
-                        </div>
-                    )}
+                <Typography variant="h1" className={`${welcomeHeading} ${!isHome && welcomeHeadingOther}`}>
+                    {heading()}
+                </Typography>
+
+                {isHome && (
+                    <div className={welcomeButtons}>
+                        <Button
+                            onClick={this.goToLessons}
+                            className={welcomeButton}
+                            id={buttonsIds[0]}
+                        >
+                            See lessons
+                        </Button>
+                        <Button
+                            className={`${welcomeButton} ${welcomeButtonMain}`}
+                            onClick={this.goToDemo}
+                            id={buttonsIds[1]}
+                        >
+                            Start typing
+                        </Button>
+                    </div>
+                )}
             </Paper>
         );
     }
