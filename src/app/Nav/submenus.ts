@@ -4,16 +4,40 @@ import { SubMenuItemType } from '../SubMenu/container';
 const { home, lessons, about, login, newuser } = AppRoutes;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation } = SubMenuRulesEnum;
 
-export const lessonsMenuItem: SubMenuItemType = [ 'Lessons', lessons, [ notCurrentLocation ]];
+export const lessonsMenuItem: SubMenuItemType = {
+    title: 'Lessons',
+    appRoute: lessons,
+    rules: [ notCurrentLocation ]
+};
 
-export const homeMenuItem: SubMenuItemType = [ 'Home', home, [ notCurrentLocation ]];
+export const homeMenuItem: SubMenuItemType = {
+    title: 'Home',
+    appRoute: home,
+    rules: [ notCurrentLocation ]
+};
 
 export const mainMenuItems: SubMenuItemType[] = [
-    [ 'Lessons', lessons, [ notCurrentLocation ] ],
-    [ 'About', about, [ notCurrentLocation ] ]
+    {
+        title: 'Lessons',
+        appRoute: lessons,
+        rules: [ notCurrentLocation ]
+    },
+    {
+        title: 'About',
+        appRoute: about,
+        rules: [ notCurrentLocation ] 
+    }
 ];
 
 export const userMenuItems: SubMenuItemType[] = [
-    [ 'Login', login, [ onlyUnauthorized, notCurrentLocation ] ],
-    [ 'Newuser', newuser, [ onlyUnauthorized, notCurrentLocation ] ]
+    {
+        title: 'Login',
+        appRoute: login,
+        rules: [ onlyUnauthorized, notCurrentLocation ]
+    },
+    {
+        title: 'Newuser',
+        appRoute: newuser,
+        rules: [ onlyUnauthorized, notCurrentLocation ]
+    }
 ];

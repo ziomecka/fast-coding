@@ -13,7 +13,7 @@ import { withRouter, RouteComponentProps} from 'react-router-dom';
 import { MenuState } from '../AppMenu/_duck/reducers';
 import { MenuContainers, SubMenuRulesEnum, NavRulesEnum } from '../_common/';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/';
 
 import { WithStyles } from '@material-ui/core/';
 
@@ -38,7 +38,12 @@ export interface SubMenuDispatch {
     setNavAnchorEl: (container: MenuContainers, element?: HTMLElement | null) => void
 };
 
-export type SubMenuItemType = [string, string, SubMenuRulesEnum[]?];
+export type SubMenuItemType = {
+    title: string;
+    appRoute?: AppRoutes;
+    rules: SubMenuRulesEnum[];
+    onClick?: () => void;
+};
 
 export interface __SubMenuProps {
     menuItems?: SubMenuItemType[];
