@@ -60,9 +60,7 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         [notCurrentLocation]: (path: string) => path !== currentPathname
     };
 
-    // TODO moze sie zdarzyc zefunkcja nie zaimplementowana, bedzie blad
-    // TODO
-    // powinny pokryc testy?
+    /** If function for rule is not implemented an error will be thrown */
     const areSubMenuRulesMet: (rules: SubMenuRulesEnum[] | null, pathname: string) => boolean = (rules, pathname) => {
         return (!rules || rules.every(rule => subMenuRules[rule](pathname)));
     };
@@ -77,14 +75,16 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         [notAbout]: () => currentPathname !== about
     };
 
-    // TODO moze sie zdarzyc zefunkcja nie zaimplementowana, bedzie blad
-    // TODO
-    // powinny pokryc testy?
+    /** If function for rule is not implemented an error will be thrown */
     const areNavRulesMet: (rules: NavRulesEnum[] | null) => boolean = (rules) => {
         return (!rules || rules.every(rule => navRules[rule]()));
     };
 
     if (areNavRulesMet(props.rules)) {
+        /** Check if either menuItems or menuItem provided in props.
+         *  If both or none then throw an error.
+         *  */
+
         if (menuItems && container && !menuItem) {
             return (
                 <ClickAwayListener onClickAway={handleClickAway}>
@@ -141,6 +141,7 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
             return null;
         }
 
+        /** If both or neither menuItems nor menuIteme provided in props then throw an error. */
         throw new Error('SubMenu received incorrect props.');
     }
 
