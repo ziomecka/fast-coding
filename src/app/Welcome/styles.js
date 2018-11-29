@@ -43,6 +43,21 @@ const styles = theme => ({
     },
     welcomeButtonMain: {
         backgroundColor: theme.palette.secondary.main
+    },
+    welcomeHeadingWrapper: {
+        position: 'relative'
+    },
+    welcomeHomeSubMenu: {
+        position: 'absolute',
+        left: 0,
+        display: 'inline-block',
+        width: '430px',
+        height: '100%',
+        padding: 0,
+        color: theme.palette.primary.main,
+        '&:hover': {
+            backgroundColor: 'inherit'
+        }
     }
 });
 

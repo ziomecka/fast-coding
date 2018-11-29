@@ -12,13 +12,22 @@ import styles from './styles';
 import { AppRoutes } from '../../_common/';
 import { buttonsIds } from '../../views/home/_duck/operations';
 
+/** SubMenu */
+import  SubMenu from '../SubMenu/';
+import  { __SubMenuProps } from '../SubMenu/container';
+import { NavRulesEnum, SubMenuRulesEnum } from '../../_common/';
+
+const { notAnyLesson, notHome } = NavRulesEnum;
+const { notCurrentLocation } = SubMenuRulesEnum;
+
 require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
     classFalling: string;
-    demoUrl: string;
-    lessonsUrl: string;
-    home: string;
+    demoUrl: AppRoutes;
+    lessonsUrl: AppRoutes;
+    home: AppRoutes;
+    subMenu: __SubMenuProps;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
@@ -29,6 +38,21 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
         this.goToDemo = this.goToDemo.bind(this);
         this.goToLessons = this.goToLessons.bind(this);
+
+        this.subMenu = {
+            menuItem: {
+                title: 'Home',
+                appRoute: this.home,
+                rules: [ notCurrentLocation ]
+            },
+            icon: <div></div>,
+            rules: [ notAnyLesson, notHome ],
+            iconButton: {
+                disableRipple: true,
+                disableTouchRipple: true,
+                classes: { root: this.props.classes.welcomeHomeSubMenu }
+            }
+        };
     }
 
     componentDidUpdate(prevProps: WelcomeProps) {
@@ -56,7 +80,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     heading = () => {
         const { animated, heading, classes } = this.props;
         const { classFalling } = this;
-        const { fallingLetters } = classes;
+        const { fallingLetters, welcomeHeadingWrapper } = classes;
 
         if (animated) {
             const lastSpace = heading.lastIndexOf(' ');
@@ -64,7 +88,12 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             const remainingHeading = heading.slice(0, lastSpace);
 
             return (
-                <>
+                <div className={welcomeHeadingWrapper}>
+                    {/* Renders the link to home
+                     /* Only on specific paths
+                     */}
+                    <SubMenu {...this.subMenu} />
+
                     {remainingHeading} {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
@@ -75,7 +104,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                             </span>
                         ))
                     }
-                </>
+                </div>
             );
         }
 
