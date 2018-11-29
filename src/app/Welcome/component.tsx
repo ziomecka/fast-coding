@@ -77,6 +77,10 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         this.props.history.push(this.lessonsUrl);
     }
 
+    get isHome() {
+        return this.props.location.pathname === this.home;
+    }
+
     heading = () => {
         const { animated, heading, classes } = this.props;
         const { classFalling } = this;
@@ -97,7 +101,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                     {remainingHeading} {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
-                                className={`${fallingLetters} ${classFalling}`}
+                                className={`${fallingLetters} ${this.isHome ? classFalling : ''}`}
                                 key={`${ind}-${letter}`}
                             >
                                 {letter}
@@ -112,9 +116,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     };
 
     render()  {
-        const { classes, location } = this.props;
-        const { heading, home } = this;
-        const isHome = location.pathname === home;
+        const { classes } = this.props;
+        const { heading, isHome } = this;
         const {
             welcomePaper,
             welcomeHome,
@@ -135,6 +138,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                     {heading()}
                 </Typography>
 
+                {/* Render buttons only when Home */}
                 {isHome && (
                     <div className={welcomeButtons}>
                         <Button
