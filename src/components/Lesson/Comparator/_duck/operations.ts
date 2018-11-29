@@ -22,7 +22,7 @@ import history from '../../../../shared/history';
 import { onStartLeaving } from '../../LessonButtons/_duck/operations';
 
 const event = 'keydown';
-let listener;
+let listeners: [string, EventListenerOrEventListenerObject][] = [];
 
 const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
     const { key, keyCode } = event;
@@ -68,7 +68,8 @@ export const onTurnOnComparator = (): any => (dispatch: Dispatch) => {
 };
 
 export const onTurnOffComparator = (): any => async (dispatch: Dispatch): Promise<Boolean> => {
-    document.removeEventListener(event, listener);
+    listeners.forEach(listener => document.removeEventListener(listener[0], listener[1]));
+    listeners = [];
 
     let timerStopped = await dispatch(stopTimer());
 
@@ -141,19 +142,25 @@ const handleEscape = (dispatch: Dispatch, getState: () => ApplicationState): voi
 };
 
 export const onResetComparator = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
-    listener = (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState);
-    document.addEventListener(event, listener);
+    listeners.push([ event, (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState) ]);
+    document.addEventListener(event, listeners[listeners.length - 1][1]);
     dispatch(resetComparator());
 };
 
 export const onAddEventListener = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
-    listener = (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState);
-    document.addEventListener(event, listener);
+    listeners.push([ event, (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState) ]);
+    document.addEventListener(event, listeners[listeners.length - 1][1]);
+};
+
+export const onRemoveEventListener = (): any => () => {
+    listeners.forEach(listener => document.removeEventListener(listener[0], listener[1]));
+    listeners = [];
 };
 
 export default {
     onTurnOnComparator,
     onTurnOffComparator,
     onResetComparator,
-    onAddEventListener
+    onAddEventListener,
+    onRemoveEventListener
 };

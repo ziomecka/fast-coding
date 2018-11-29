@@ -20,6 +20,10 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
         this.props.addEventListener();
     }
 
+    componentWillUnmount() {
+        this.props.removeEventListener();
+    }
+
     componentDidUpdate(prevProps: ComparatorProps) {
         const { currentSignIndex, text } = this.props
         const prevCurrentSignIndex= prevProps.currentSignIndex;
