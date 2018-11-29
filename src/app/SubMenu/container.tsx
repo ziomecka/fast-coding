@@ -5,7 +5,6 @@ import { default as SubMenuComponent } from './component';
 import { ApplicationState } from '../../store';
 import { Dispatch } from 'redux';
 
-import { setNavAnchorEl } from './_duck/actions';
 import { onSetNavAnchorEl } from './_duck/operations';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
@@ -21,7 +20,7 @@ const { app } = ApplicationContainers;
 const { appMenu, user } = AppContainers;
 
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): MenuState => ({
+const mapStateToProps = (state: ApplicationState): ExtendedMenuState => ({
     ...state[app][appMenu],
     authorized: state[app][user].authorized
 });
@@ -30,6 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch): SubMenuDispatch => ({
     setNavAnchorEl: (container, element) => dispatch(onSetNavAnchorEl(container, element || null))
 });
 
+// @ts-ignore
 const SubMenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SubMenuComponent));
 
 export default SubMenuContainer;
@@ -53,8 +53,12 @@ export interface __SubMenuProps {
     rules?: NavRulesEnum[];
 };
 
+interface ExtendedMenuState extends MenuState {
+    authorized: boolean;
+};
+
 export interface SubMenuProps extends __SubMenuProps,
     SubMenuDispatch,
-    MenuState,
+    ExtendedMenuState,
     RouteComponentProps<{}>,
     WithStyles {};
