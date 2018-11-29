@@ -87,38 +87,41 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
     if (areNavRulesMet(props.rules)) {
         if (menuItems && container && !menuItem) {
             return (
-              <ClickAwayListener onClickAway={handleClickAway}>
-                  <IconButton
-                    onClick={handleClick}
-                    className={classes.menuIcon}
-                  >
-                    {icon}
-                  </IconButton>
-                      <Menu
+                <ClickAwayListener onClickAway={handleClickAway}>
+                    <IconButton
+                        onClick={handleClick}
+                        className={classes.menuIcon}
+                    >
+                        {icon}
+                    </IconButton>
+
+                    <Menu
                         anchorEl={anchorEl}
                         open={Boolean(anchorEl)}
                         className={classes.menu}
-                      >
+                    >
                         {menuItems.map((menuItem, ind) => {
                             if (areSubMenuRulesMet(menuItem[2], menuItem[1])) {
-                              return (
-                                <MenuItem
-                                  onClick={() => handleClose(menuItem[1])}
-                                  key={`${menuItem[0]}-${ind}`}
-                                  divider={true}
-                                >
-                                  <NavLink to={menuItem[1]}>
-                                    {menuItem[0]}
-                                  </NavLink>
-                                </MenuItem>
-                              );
+                                return (
+                                    <MenuItem
+                                        onClick={() => handleClose(menuItem[1])}
+                                        key={`${menuItem[0]}-${ind}`}
+                                        divider={true}
+                                    >
+
+                                        <NavLink to={menuItem[1]}>
+                                            {menuItem[0]}
+                                        </NavLink>
+
+                                    </MenuItem>
+                                );
                             }
+
                             /** Do not render if current pathname */
                             return null;
-                          })
-                        }
-                      </Menu>
-              </ClickAwayListener>
+                        })}
+                    </Menu>
+                </ClickAwayListener>
             );
         }
 
