@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Face from '@material-ui/icons/Face';
 import Home from '@material-ui/icons/Home';
 
+/* Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
@@ -31,7 +32,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         {
             menuItem: submenus.lessonsMenuItem,
             icon: <span className={lessons}> Lessons </span>,
-            rules: [ onlyAbout ]
+            rules: [ notAnyLesson ]
         },
         {
             menuItem: submenus.homeMenuItem,
