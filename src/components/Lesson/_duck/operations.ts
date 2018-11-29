@@ -16,6 +16,7 @@ import {
 import { onResetComparator } from '../Comparator/_duck/operations';
 import { onTurnOffComparator } from '../Comparator/_duck/operations';
 import { resetStats } from '../Stats/_duck/actions';
+import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;
@@ -58,6 +59,7 @@ export const onReset = (): any => (dispatch: Dispatch) => {
     dispatch(onResetComparator());
     dispatch(resetStats());
     dispatch(resetLesson());
+    dispatch(resetDraggableLessonButtons());
     clearTimeout(timeout);
 };
 
