@@ -52,6 +52,4 @@ export interface SubMenuProps extends __SubMenuProps,
     SubMenuDispatch,
     MenuState,
     RouteComponentProps<{}>,
-    WithStyles {
-      authorized: boolean
-};
+    WithStyles {};
