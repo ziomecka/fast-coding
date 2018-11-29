@@ -1,4 +1,6 @@
 {
     "lessonButtonsLeave": [ "Leave lesson", "Opuść lekcję" ],
-    "lessonButtonsRestart": [ "Restart lesson", "Jeszcze raz" ]
+    "lessonButtonsRestart": [ "Restart lesson", "Jeszcze raz" ],
+    "welcomeGoToCourses": [ "Courses", "Kursy" ],
+    "welcomeGoToDemo": [ "Demo lesson", "Lekcja pokazowa" ]
 }
