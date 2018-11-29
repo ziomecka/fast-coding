@@ -50,7 +50,7 @@ export interface __SubMenuProps {
     menuItem?: SubMenuItemType;
     icon: JSX.Element;
     container?: MenuContainers;
-    rules?: NavRulesEnum[]
+    rules?: NavRulesEnum[];
 };
 
 export interface SubMenuProps extends __SubMenuProps,
