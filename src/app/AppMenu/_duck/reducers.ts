@@ -12,11 +12,12 @@ import { MenuContainers } from '../../_common/';
 
 import { AppMenuActions } from './actions';
 
-const { mainMenu, userMenu } = MenuContainers;
+const { mainMenu, userMenu, languagesMenu} = MenuContainers;
 
 export const INITIAL_STATE: MenuState = {
     [mainMenu]: { ...SUMBENU_INITIAL_STATE },
-    [userMenu]: { ...SUMBENU_INITIAL_STATE }
+    [userMenu]: { ...SUMBENU_INITIAL_STATE },
+    [languagesMenu]: { ...SUMBENU_INITIAL_STATE }
 };
 
 const reducer: Reducer<MenuState, AppMenuActions> = (state = INITIAL_STATE, action) => {
