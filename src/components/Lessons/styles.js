@@ -1,67 +1,80 @@
-// TODO improve
-const styles = theme => ({
-    expansionPanel: {
-        overflow: 'hidden'
-    },
-    expansionPanelSummary: {
-        display: 'flex',
-        flexDirection: 'column',
-        whiteSpace: 'nowrap'
-    },
-    expansionPanelSummarySVG: {
-        display: 'inline-block',
-        height: '6rem',
-        minWidth: '100%'
-    },
-    expansionPanelSummaryHeading: {
-        whiteSpace: 'nowrap'
-    },
-    expansionPanelDetails: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
-    },
-    lessonCard: {
-        boxSizing: 'border-box',
-        margin: theme.spacing.unit,
-        flex: '0 0 20%',
-        padding: '0.5em',
-        display: 'flex',
-        flexDirection: 'column',
-        // justifyItems: 'stretch',
-        minHeight: '250px',
-        minWidth: '250px',
-        position: 'relative'
-    },
-    expansionButton: {
-        maxWidth: '4rem',
-        maxHeight: '4rem'
-    },
-    lessonCardContent: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        padding: '3rem',
-        width: '100%',
-    },
-    lessonCardLinkText: {
-        whiteSpace: 'nowrap'
-    },
-    lessonCardLinkSVG: {
-        maxHeight: '4em',
-        display: 'inline-flex',
-        width: '60%',
-        justifyContent: 'space-around',
-        justifySelf: 'flex-end',
-        position: 'absolute',
-        bottom: '3rem',
-        left: '50%',
-        transform: 'translateX(-50%)'
-    },
-    divider: {
-        margin: '2rem 0'
-    }
-});
+import { LESSONS_HEIGHT } from '../../constants';
+
+const styles = theme => {
+    const {
+        typography: { fontWeightMedium },
+        spacing: { unit: spacingUnit }
+    } = theme;
+
+    return {
+        expansionPanel: {
+            overflow: 'hidden'
+        },
+        expansionPanelSummary: {
+            display: 'flex',
+            flexDirection: 'column',
+            whiteSpace: 'nowrap'
+        },
+        expansionPanelSummaryHeading: {
+            whiteSpace: 'nowrap'
+        },
+        expansionPanelDetails: {
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap'
+        },
+        lessonCard: {
+            boxSizing: 'border-box',
+            margin: spacingUnit,
+            flex: '0 0 20%',
+            padding: '2rem',
+            display: 'flex',
+            height: LESSONS_HEIGHT,
+            minWidth: LESSONS_HEIGHT,
+        },
+        expansionButton: {
+            maxWidth: '4rem',
+            maxHeight: '4rem'
+        },
+        lessonCardContent: {
+            boxSizing: 'border-box',
+            padding: '1rem',
+            width: '100%',
+            height: '100%'
+        },
+        lessonCardLink: {
+            boxSizing: 'border-box',
+            textAlign: 'center',
+            height: '100%',
+            '& > a': {
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                height: '100%',
+                width: '100%'
+            }
+        },
+        lessonCardLinkText: {
+            display: 'flex-box',
+            boxSizing: 'border-box',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            textAlign: 'center',
+            '&:nth-child(1)': {
+                fontWeight: fontWeightMedium,
+                display: 'inline-block',
+                padding: '1em 0'
+            },
+            '&:nth-child(2)': {
+                display: 'inline-block',
+                padding: '1em 0'
+            }
+        },
+        divider: {
+            margin: '2rem 0'
+        }
+    };
+};
 
 export default styles;

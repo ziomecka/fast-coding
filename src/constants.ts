@@ -24,6 +24,7 @@ export const LESSON_FONT_SIZE_REM = 3.5;
 export const LESSON_PARAGRAPH_SIZE_REM = 8;
 export const LESSON_WRAPPER_SIZE = 15;
 
+
 export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#ccdad1'
 export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
 export const COLOR_HINTS = '#90ab8e';
@@ -37,4 +38,4 @@ export const LESSON_DEMO_TEXT =
 
 export const LESSON_DEMO_TITLE = 'Demonstration lesson';
 
-export const LESSONS_DEFAULT_TAG = 'basic';
+export const LESSONS_HEIGHT = '250px';

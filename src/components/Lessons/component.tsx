@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { LessonsProps } from './container';
 import { LessonData } from  '../Lesson/_duck/reducers';
-// import TextGenerator from '../TextGenerator/container';
 
-import letters from '../../shared/letters.svg';
 import { AppRoutes } from '../../_common/';
 import styles from './styles';
-
-import { LESSONS_DEFAULT_TAG } from '../../constants';
 
 /** Materials */
 import { withStyles } from '@material-ui/core';
@@ -27,6 +23,8 @@ import Divider from '@material-ui/core/Divider';
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import { Translate } from 'react-localize-redux';
+
 require('./style.sass');
 
 const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
@@ -40,12 +38,11 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     const {
         expansionPanel,
         expansionPanelSummary,
-        expansionPanelSummarySVG,
         expansionButton,
         expansionPanelDetails,
         lessonCard,
         lessonCardContent,
-        lessonCardLinkSVG,
+        lessonCardLink,
         lessonCardLinkText,
         expansionPanelSummaryHeading,
         divider
@@ -64,41 +61,35 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
         }
     };
 
-    const getTag = (tag: string): (() => JSX.Element | null)[] => {
-        return Array.from(tag).map(l => {
-            return letters[l] || (() => null)
-        });
-    };
-
     const getLessons = () => (lessons.map((lesson, ind) => {
-        const tag = getTag(lesson.tag || LESSONS_DEFAULT_TAG);
+        const { title, description } = lesson;
 
         return (
             <ExpansionPanel
-                key={`lesson-${lesson.title}-${ind}`}
+                key={`lesson-${title}-${ind}`}
                 className={expansionPanel}
+                elevation={0}
+                expanded={true}
             >
                 <ExpansionPanelSummary
-                    expandIcon={ <ExpandMore /> }
-                    title={lesson.title}
+                    // expandIcon={ <ExpandMore /> }
                     classes={{content: expansionPanelSummary}}
-                    IconButtonProps={{className: expansionButton}}
+                    expanded={true}
+                    // IconButtonProps={{ className: expansionButton }}
                 >
-                    <h2 className={expansionPanelSummarySVG}>
-                        { tag.map((Item, ind) => <Item key={ind} />) }
-                    </h2>
-
-                    <Typography variant="h3" className={expansionPanelSummaryHeading}>
-                        { lesson.description }
+                    <Typography variant="h3">
+                        {title}
                     </Typography>
 
-                    <Divider  />
+                    <Typography variant="h4" className={expansionPanelSummaryHeading}>
+                        { description }
+                    </Typography>
                 </ExpansionPanelSummary>
 
+                <Divider className={divider}/>
 
                 <ExpansionPanelDetails classes={{root: expansionPanelDetails}}>
                     { listLessons(lesson.lessons) }
-
                 </ExpansionPanelDetails>
             </ExpansionPanel>
          );
@@ -107,7 +98,7 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     const listLessons = (lessons: LessonData[]) => (
         lessons.map((lesson: LessonData, ind) => {
             const { _id, title } = lesson;
-            const tag = getTag(lesson.signs.join(' '));
+
             return (
                 <Card
                     key={_id}
@@ -116,26 +107,17 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                     className={lessonCard}
                 >
                     <CardContent classes={{ root: lessonCardContent }} >
-                        <Typography variant="h4">
+                        <Typography variant="h5" className={lessonCardLink}>
                             <Link
                                 id={`link-${_id}`}
                                 to={`${lessonsRoute}/${_id}`}
                                 onClick={() => handleOnClick(lesson)}
                                 title={title}
                             >
-                            <span className={lessonCardLinkText}>
-                                {`Lesson ${ind + 1}`}
-                            </span>
-                            {/* </Link> */}
+                                <span className={lessonCardLinkText}>{`Lesson ${ind + 1}`}</span>
+                                <span className={lessonCardLinkText}>{title}</span>
 
-                        <span
-                            className={lessonCardLinkSVG}
-                            >
-                            { tag && tag.map((Item, ind) => (
-                                <Item key={ind} />
-                                )) }
-                        </span>
-                        </Link>
+                         </Link>
                         </Typography>
                     </CardContent>
                 </Card>
@@ -145,8 +127,10 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
 
     if (lessons && lessons.length) {
         return (
-            //  {/* < TextGenerator /> */}
             <Paper id="lessons" elevation={0}>
+                <Typography variant="h2">
+                    <Translate id="coursesTitle" />
+                </Typography>
                 { getLessons() }
             </Paper>
         );
