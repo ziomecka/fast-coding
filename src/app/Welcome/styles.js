@@ -1,6 +1,8 @@
 import {
     WELCOME_HEIGHT,
-    NAV_HEIGHT
+    NAV_HEIGHT,
+    WELCOME_BUTTON_MARGIN_RIGHT,
+    WELCOME_BUTTON_MARGIN_TOP
 } from '../../constants';
 
 const styles = theme => {
@@ -57,7 +59,7 @@ const styles = theme => {
             color: contrastTextSecondary
         },
         welcomeButton: {
-            margin: `${spacingUnit} ${spacingUnit * 2} ${spacingUnit} 0`,
+            margin: `${spacingUnit * WELCOME_BUTTON_MARGIN_TOP} ${spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT} ${spacingUnit} 0`,
         },
         fallingLetters: {
             position: 'relative',
