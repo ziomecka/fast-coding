@@ -63,5 +63,7 @@ export enum NavRulesEnum {
     'notHome' = 'NOT_HOME',
     'notLesson' = 'NOT_LESSON',
     'notDemoLesson' = 'NOT_DEMO_LESSON',
-    'notAnyLesson' = 'NOT_ANY_LESSON'
+    'notAnyLesson' = 'NOT_ANY_LESSON',
+    'onlyAbout' = 'ONLY_ABOUT',
+    'notAbout' = 'NOT_ABOUT'
 };

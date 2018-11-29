@@ -34,8 +34,8 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         notCurrentLocation,
     } = SubMenuRulesEnum;
 
-    const { lesson, demo, home } = AppRoutes;
-    const { notLesson, notAnyLesson, notDemoLesson, notHome } = NavRulesEnum;
+    const { lesson, demo, home, about } = AppRoutes;
+    const { notLesson, notAnyLesson, notDemoLesson, notHome, onlyAbout, notAbout } = NavRulesEnum;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => (
       setNavAnchorEl(container, event.currentTarget)
@@ -73,7 +73,9 @@ const SubMenuComponent: React.StatelessComponent<SubMenuProps> = props => {
         [notLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname),
         [notDemoLesson]: () => currentPathname !== demo,
         [notAnyLesson]: () => !RegExp(`${lesson}.*`,'gi').test(currentPathname) && currentPathname !== demo,
-        [notHome]: () => currentPathname !== home
+        [notHome]: () => currentPathname !== home,
+        [onlyAbout]: () => currentPathname === about,
+        [notAbout]: () => currentPathname !== about
     };
 
     // TODO moze sie zdarzyc zefunkcja nie zaimplementowana, bedzie blad
