@@ -11,11 +11,17 @@ export default {
     props: {
         MuiAppBar: {
             height: NAV_HEIGHT,
-            elevation: 0,
+            elevation: 0
         },
         MuiPaper: {
-            elevation: 2
+            elevation: 0
         },
+        MuiExpansionPanel: {
+            elevation: 0
+        },
+        MuiExpansionPanelSummary: {
+            elevation: 0
+        }
     },
     overrides: {
         MuiPaper: {
