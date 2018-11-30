@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 
 import { default as store } from './store';
 
-require('./styles/style.sass');
+/** Resets */
+import './styles/';
 
 const App = () => {
     return (
