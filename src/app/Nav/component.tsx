@@ -6,16 +6,16 @@ import AppMenu from '../../app/AppMenu';
 
 /** Materials */
 import AppBar from '@material-ui/core/AppBar';
-import MenuIcon from '@material-ui/icons/Menu';
 import Face from '@material-ui/icons/Face';
 import Language from '@material-ui/icons/Language';
+import Dashboard from '@material-ui/icons/Dashboard';
 
 /* Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
 import { MenuContainers, NavRulesEnum } from '../../_common/';
-const { userMenu, mainMenu, languagesMenu } = MenuContainers;
+const { userMenu, languagesMenu } = MenuContainers;
 
 const appBarColor = 'primary';
 
@@ -24,44 +24,41 @@ import { __SubMenuProps } from '../SubMenu/container';
 import { withLocalize } from 'react-localize-redux';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
-    const { notAnyLesson, notHome, onlyAbout, notAbout } = NavRulesEnum;
-    const { classes } = props;
-    const { languages, setActiveLanguage } = props;
-
-    const { lessons } = classes;
+    const { notAnyLesson } = NavRulesEnum;
+    const { languages, setActiveLanguage, activeLanguage } = props;
 
     const subMenus: __SubMenuProps[] = [
         {
             menuItems: Object.keys(languages)
                 .reduce((acc, cv) => {
-                    const { name, code } = languages[cv];
+                    const { code } = languages[cv];
                     acc.push({
-                        title: name,
+                        title: code,
                         onClick: () => {
                             setActiveLanguage(code)
                         } });
                     return acc;
                 }, []),
-            icon: <Language />,
+            icon: <span>{activeLanguage? activeLanguage.code : ''}</span>,
             container: languagesMenu,
-            rules: []
+            rules: [],
         },
         {
             menuItem: submenus.lessonsMenuItem,
-            icon: <span className={lessons}> Lessons </span>,
-            rules: [ notAnyLesson ]
+            icon: <Dashboard />,
+            rules: [ notAnyLesson ],
+            iconButton: {
+                title: 'Courses'
+            }
         },
         {
             menuItems: submenus.userMenuItems,
             icon: <Face />,
             container: userMenu,
-            rules: [ notAnyLesson ]
-        },
-        {
-            menuItems: submenus.mainMenuItems,
-            icon: <MenuIcon />,
-            container: mainMenu,
-            rules: [ notAnyLesson, notHome, notAbout ]
+            rules: [ notAnyLesson ],
+            iconButton: {
+                title: 'User'
+            }
         }
     ] as __SubMenuProps[];
 
