@@ -1,7 +1,14 @@
 import { CONTENT_PADDING_TOP } from '../../constants';
 
 const styles = theme => {
-    const {  palette: { background: { default: defaultBackground }}} = theme;
+    const {
+        palette: {
+                background: { default: defaultBackground }
+        },
+        typography: {
+            h4: { fontSize: titleFontSize }
+        }
+    } = theme;
 
     return {
         contentBox: {
@@ -19,6 +26,14 @@ const styles = theme => {
         },
         contentBoxOther: {
             minHeight: 'calc(100vh)'
+        },
+        contentTitle: {
+            position: 'relative',
+            display: 'block',
+            width: '100%',
+            left: 0,
+            fontSize: titleFontSize,
+            margin: `1em 0`
         }
     };
 };

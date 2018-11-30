@@ -8,9 +8,15 @@ import DragOverable from '../DragOverable';
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
+import Typography from '@material-ui/core/Typography';
 
 import { AppRoutes } from '../../_common';
+import {} from 'react-redux';
 
+import { Translate } from 'react-localize-redux';
+import { renderToStaticMarkup } from 'react-dom/server';
+
+const { demo, home, lesson, lessons, login, newuser } = AppRoutes;
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
     constructor(props: ContentProps) {
@@ -19,12 +25,40 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     this.home = AppRoutes.home;
   }
 
+  get titles() {
+    return {
+        [home]: '',
+        [demo]: 'demoLessonTitle',
+        [lessons]: 'coursesTitle',
+        [login]: 'loginTitle',
+        [newuser]: 'newuserTitle'
+    };
+  }
+
+  componentDidMount() {
+    const { pathname } = this.props.location;
+
+    if (pathname !== this.home) {
+        let id = this.titles[pathname];
+        if (id !== undefined) {
+            this.props.changeTitle(this.titles[pathname]);
+        }
+    }
+  }
+
   componentDidUpdate(prevProps: ContentProps) {
     const { appLocation } = this.props;
     const prevAppLocation = prevProps.appLocation;
+    const { pathname } = this.props.location;
+    const prevPathname = prevProps.location.pathname;
 
+    // TODO - improve / change?
     if (appLocation !== prevAppLocation) {
       this.props.changeLocation(appLocation);
+    }
+
+    if ( pathname !== prevPathname ) {
+        this.props.changeTitle(this.titles[pathname])
     }
   }
 
@@ -33,9 +67,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   render() {
-    const { location, classes } = this.props;
+    const { location, classes, title } = this.props;
     const isHome = location.pathname === this.home;
-    const { contentBox, contentBoxHome, contentBoxOther } = classes;
+    const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
 
     return (
         <DragOverable
@@ -43,8 +77,17 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             id="content"
             onDrop={this.onDrop}
         >
+            <Typography variant="h2" className={contentTitle}>
+                <Translate id={title} options={ {
+                    onMissingTranslation: () => '',
+                    renderToStaticMarkup
+                }} />
+            </Typography>
+
             {this.props.children}
+
             <Dialog />
+
             <Notification />
         </DragOverable>
     );

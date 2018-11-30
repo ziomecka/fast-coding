@@ -23,8 +23,6 @@ import Divider from '@material-ui/core/Divider';
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import { Translate } from 'react-localize-redux';
-
 require('./style.sass');
 
 const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
@@ -127,9 +125,6 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     if (lessons && lessons.length) {
         return (
             <Paper id="lessons">
-                <Typography variant="h2">
-                    <Translate id="coursesTitle" />
-                </Typography>
                 { getLessons() }
             </Paper>
         );

@@ -6,13 +6,15 @@ import { getClasses, contentClassHome } from './operations';
 const {
     APP_CONTENT_CHANGE_LOCATION,
     APP_CONTENT_ONDROP_REGISTER,
-    APP_CONTENT_ONDROP_DEREGISTER
+    APP_CONTENT_ONDROP_DEREGISTER,
+    APP_CONTENT_TITLE_CHANGE
 } = ContentTypes;
 
 export const INITIAL_STATE: ContentState = {
     contentClass: contentClassHome,
     appLocation: AppLocation.isHome,
-    onDrop: []
+    onDrop: [],
+    title: ''
 };
 
 const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
@@ -42,6 +44,13 @@ const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
             };
         }
 
+        case APP_CONTENT_TITLE_CHANGE: {
+            return {
+                ...state,
+                title: action.title
+            };
+        }
+
         default: {
             return { ...state };
         }
@@ -55,6 +64,7 @@ export interface ContentClasses {
 };
 
 export interface ContentState extends ContentClasses {
-    appLocation: AppLocation,
-    onDrop: Array<(e: React.DragEvent<HTMLElement>)=> void>
+    appLocation: AppLocation;
+    onDrop: Array<(e: React.DragEvent<HTMLElement>)=> void>;
+    title: string;
 };
