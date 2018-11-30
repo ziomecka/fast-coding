@@ -15,16 +15,16 @@ module.exports = merge(base, {
     path: DEPLOY_DIR,
   },
   externals: [
-    {
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: ['react'],
-        amd: 'react',
-      },
-    },
-    /@material-ui\/core\/*./,
-    /@material-ui\/icons\/*./
+    // {
+    //   react: {
+    //     root: 'React',
+    //     commonjs2: 'react',
+    //     commonjs: ['react'],
+    //     amd: 'react',
+    //   },
+    // },
+    // /@material-ui\/core\/*./,
+    // /@material-ui\/icons\/*./
   ],
   module: {
     rules: [
