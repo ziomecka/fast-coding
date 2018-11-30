@@ -68,7 +68,6 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
             <ExpansionPanel
                 key={`lesson-${title}-${ind}`}
                 className={expansionPanel}
-                elevation={0}
                 expanded={true}
             >
                 <ExpansionPanelSummary
@@ -127,7 +126,7 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
 
     if (lessons && lessons.length) {
         return (
-            <Paper id="lessons" elevation={0}>
+            <Paper id="lessons">
                 <Typography variant="h2">
                     <Translate id="coursesTitle" />
                 </Typography>

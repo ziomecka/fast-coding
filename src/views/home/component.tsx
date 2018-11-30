@@ -5,7 +5,6 @@ import { HomeViewProps } from './container';
 
 import LocationChange from '../../app/LocationChange';
 
-import Welcome from '../../app/Welcome/';
 import Content from '../../app/Content/';
 import TextGenerator from '../../components/TextGenerator/container';
 import LessonsLoader from '../../components/LessonsLoader/container';
@@ -14,22 +13,16 @@ import User from '../../app/User/container';
 import { AppContainers, AppRoutes } from '../../_common/';
 
 import {
-    HOME_HEADING_ANIMATED,
     HOME_NOTIFICATION,
-    HOME_WELCOME_TIMEOUT
 } from '../../constants';
-
-import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
 
 const { content, welcome } = AppContainers;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
-    defaultAnimateHeading: boolean;
     homeUrl: string;
     constructor(props: HomeViewProps) {
         super(props);
 
-        this.defaultAnimateHeading = HOME_HEADING_ANIMATED;
         this.homeUrl = AppRoutes.home;
 
         props.openNotification(HOME_NOTIFICATION);
@@ -51,10 +44,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
     }
 
     render() {
-        const {
-            animateHeading = this.defaultAnimateHeading
-        } = this.props;
-
         return (
             <>
             {/* Containers will be informed about location change before it happens, because
@@ -68,20 +57,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
             <User />
 
             <LessonsLoader />
-
-            {/* Get translated heading */}
-            <Welcome
-                heading={
-                    getTranslations(this.props.localize).welcomeHeading[
-                        getLanguages(this.props.localize)
-                        .findIndex(lang => (
-                            lang.code === getActiveLanguage(this.props.localize).code)
-                        )
-                    ]
-                }
-                animated={animateHeading}
-                timeout={HOME_WELCOME_TIMEOUT}
-            />
 
             <Nav />
 

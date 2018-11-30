@@ -41,7 +41,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
 
     const message = (
         <>
-            <span className={`${classes.notificationMessage} ${classes[variantClasses.message]}`}>
+            <span className={ classes[variantClasses.message] }>
                 {text}
                 <Icon className={`${classes.notificationIcon} ${classes[variantClasses.icon]}`} />
             </span>

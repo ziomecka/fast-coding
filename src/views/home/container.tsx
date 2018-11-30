@@ -7,12 +7,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
 import { onAddKeyDownListener, onRemoveKeyDownListener} from './_duck/operations';
 
-import { ApplicationState } from '../../_reducers/';
-import { LocalizeState } from 'react-localize-redux';
-
-const mapStateToProps = (state: ApplicationState): ExtendedState => ({
-    localize: { ...state.localize }
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch): HomeViewDispatch => ({
     ...notificationMapDiaptchToProps(dispatch),
@@ -29,14 +24,9 @@ export interface HomeViewDispatch extends NotificationDispatch {
     removeKeyDownListener: () => void;
 };
 
-interface ExtendedState {
-    localize: LocalizeState
-};
-
 export interface HomeViewProps extends
     HomeViewDispatch,
-    RouteComponentProps<{}>,
-    ExtendedState {
+    RouteComponentProps<{}> {
         heading?: string;
         animateHeading?: boolean;
     };

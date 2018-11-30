@@ -3,7 +3,8 @@
         [
             "@babel/preset-env", {
                 "targets": {
-                    "browsers": ["last 2 versions", "> 5% in PL"]
+                    "browsers": ["last 2 versions", "> 5% in PL"],
+                    "node": "current"
                 },
                 "forceAllTransforms": true,
                 "modules": false
@@ -12,7 +13,8 @@
         [
             "@babel/preset-react", {
                 "targets": {
-                    "browsers": ["last 2 versions", "> 5% in PL"]
+                    "browsers": ["last 2 versions", "> 5% in PL"],
+                    "node": "current"
                 },
                 "forceAllTransforms": true,
                 "modules": false
@@ -28,6 +30,9 @@
             }
         ],
         "syntax-dynamic-import",
-        "syntax-object-rest-spread"
+        "syntax-object-rest-spread",
+        ["@babel/plugin-transform-runtime", {
+            "corejs": 2
+        }]
     ]
 }

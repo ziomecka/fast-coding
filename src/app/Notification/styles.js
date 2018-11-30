@@ -2,11 +2,6 @@
 import { COLOR_SUCCESS } from '../../constants';
 
 const styles = theme => ({
-    notificationMessage: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     notificationIcon: {
         fontSize: 30,
         // opacity: 0.9,

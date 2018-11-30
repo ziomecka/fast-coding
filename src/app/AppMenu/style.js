@@ -1,7 +1,6 @@
-const style = theme => ({
+const style = () => ({
     toolbar: {
-        display: 'flex',
-        justifyContent: 'flex-end'
+        width: 'auto' // without it takes 100% and is over the main title
     }
 });
 

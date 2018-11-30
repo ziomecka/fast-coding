@@ -11,24 +11,18 @@ const styles = theme => {
             overflow: 'hidden'
         },
         expansionPanelSummary: {
-            display: 'flex',
-            flexDirection: 'column',
             whiteSpace: 'nowrap'
         },
         expansionPanelSummaryHeading: {
             whiteSpace: 'nowrap'
         },
         expansionPanelDetails: {
-            display: 'flex',
-            flexDirection: 'row',
             flexWrap: 'wrap'
         },
         lessonCard: {
-            boxSizing: 'border-box',
             margin: spacingUnit,
             flex: '0 0 20%',
             padding: '2rem',
-            display: 'flex',
             height: LESSONS_HEIGHT,
             minWidth: LESSONS_HEIGHT,
         },
@@ -37,7 +31,6 @@ const styles = theme => {
             maxHeight: '4rem'
         },
         lessonCardContent: {
-            boxSizing: 'border-box',
             padding: '1rem',
             width: '100%',
             height: '100%'
