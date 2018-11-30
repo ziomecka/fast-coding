@@ -4,5 +4,8 @@
     "welcomeGoToCourses": [ "Courses", "Kursy" ],
     "welcomeGoToDemo": [ "Demo lesson", "Lekcja pokazowa" ],
     "coursesTitle": [ "Courses", "Kursy" ],
-    "welcomeHeading": [ "Learn touch typing in coding!", "Naucz się bezwzrokowego kodowania!"]
+    "welcomeHeading": [ "Learn touch typing in coding!", "Naucz się bezwzrokowego kodowania!"],
+    "demoLessonTitle": [ "Demo lesson", "Lekcja pokazowa"],
+    "loginTitle": [ "Login", "Logowanie"],
+    "newuserTitle": [ "New user", "Nowy użytkownik"]
 }

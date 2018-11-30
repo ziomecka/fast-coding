@@ -11,7 +11,12 @@ import styles from './styles';
 import Typography from '@material-ui/core/Typography';
 
 import { AppRoutes } from '../../_common';
+import {} from 'react-redux';
 
+import { Translate } from 'react-localize-redux';
+import { renderToStaticMarkup } from 'react-dom/server';
+
+const { demo, home, lesson, lessons, login, newuser } = AppRoutes;
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
     constructor(props: ContentProps) {
@@ -20,12 +25,40 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     this.home = AppRoutes.home;
   }
 
+  get titles() {
+    return {
+        [home]: '',
+        [demo]: 'demoLessonTitle',
+        [lessons]: 'coursesTitle',
+        [login]: 'loginTitle',
+        [newuser]: 'newuserTitle'
+    };
+  }
+
+  componentDidMount() {
+    const { pathname } = this.props.location;
+
+    if (pathname !== this.home) {
+        let id = this.titles[pathname];
+        if (id !== undefined) {
+            this.props.changeTitle(this.titles[pathname]);
+        }
+    }
+  }
+
   componentDidUpdate(prevProps: ContentProps) {
     const { appLocation } = this.props;
     const prevAppLocation = prevProps.appLocation;
+    const { pathname } = this.props.location;
+    const prevPathname = prevProps.location.pathname;
 
+    // TODO - improve / change?
     if (appLocation !== prevAppLocation) {
       this.props.changeLocation(appLocation);
+    }
+
+    if ( pathname !== prevPathname ) {
+        this.props.changeTitle(this.titles[pathname])
     }
   }
 
@@ -45,7 +78,10 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             onDrop={this.onDrop}
         >
             <Typography variant="h2" className={contentTitle}>
-                { title }
+                <Translate id={title} options={ {
+                    onMissingTranslation: () => '',
+                    renderToStaticMarkup
+                }} />
             </Typography>
 
             {this.props.children}
