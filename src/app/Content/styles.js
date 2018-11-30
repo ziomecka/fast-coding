@@ -1,6 +1,9 @@
 import { CONTENT_PADDING_TOP } from '../../constants';
 
-const styles = theme => ({
+const styles = theme => {
+    const {  palette: { background: { default: defaultBackground }}} = theme;
+
+    return {
     contentBox: {
         display: 'flex',
         flexDirection: 'column',
@@ -11,7 +14,7 @@ const styles = theme => ({
         maxWidth: '100%', // do not allow to increase size if draggable moved outside
         paddingTop: CONTENT_PADDING_TOP,
         overflow: 'hidden',
-        backgroundColor: theme.palette.grey[100]
+        backgroundColor: defaultBackground
     },
     contentBoxHome: {
         height: '0',
@@ -23,6 +26,7 @@ const styles = theme => ({
         display: 'flex',
         minHeight: 'calc(100vh)'
     }
-});
+};
+};
 
 export default styles;
