@@ -14,8 +14,8 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const { about, demo, lesson, lessons, home, login, newuser } = AppRoutes;
-const { notAbout, notAnyLesson, notDemoLesson, notHome, notLesson, onlyAbout} = NavRulesEnum;
+const { demo, lesson, lessons, home, login, newuser } = AppRoutes;
+const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
 const { notCurrentLocation, onlyAuthorized, onlyUnauthorized} = SubMenuRulesEnum;
 
 /** Iternal state needed because otherwise React does not see change of state */
@@ -107,9 +107,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
             [notLesson]: () => !RegExp(`.*${lesson}.*`, 'g').test(this.currentPathname),
             [notDemoLesson]: () => this.currentPathname !== demo,
             [notAnyLesson]: () => !RegExp(`.*${lesson}.*`,'g').test(this.currentPathname) && this.currentPathname !== demo,
-            [notHome]: () => this.currentPathname !== home,
-            [onlyAbout]: () => this.currentPathname === about,
-            [notAbout]: () => this.currentPathname !== about
+            [notHome]: () => this.currentPathname !== home
         };
     };
 
