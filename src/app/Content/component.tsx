@@ -8,6 +8,7 @@ import DragOverable from '../DragOverable';
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
+import Typography from '@material-ui/core/Typography';
 
 import { AppRoutes } from '../../_common';
 
@@ -33,9 +34,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   render() {
-    const { location, classes } = this.props;
+    const { location, classes, title } = this.props;
     const isHome = location.pathname === this.home;
-    const { contentBox, contentBoxHome, contentBoxOther } = classes;
+    const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
 
     return (
         <DragOverable
@@ -43,8 +44,14 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             id="content"
             onDrop={this.onDrop}
         >
+            <Typography variant="h2" className={contentTitle}>
+                { title }
+            </Typography>
+
             {this.props.children}
+
             <Dialog />
+
             <Notification />
         </DragOverable>
     );
