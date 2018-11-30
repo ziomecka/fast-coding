@@ -1,9 +1,6 @@
 // TODO improve
 const styles = theme => ({
     lessonButtonsMenu: {
-        boxSizing: 'border-box',
-        display: 'flex',
-        flexDirection: 'row',
         minWidth: 'auto',
         minHeight: 'auto',
         height: 'auto',

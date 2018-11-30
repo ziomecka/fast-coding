@@ -4,6 +4,15 @@ import {
     NAV_TOP
 } from '../constants';
 
+import {
+    flexColumn,
+    flexColumnJustifyFlexStartAlignCenter,
+    flexColumnJustifySpaceBetween,
+    flexRowJustifyCenterAlignCenter,
+    flexRowJustifyFlexEnd,
+    flexRowJustifyFlexEndAlignCenter
+} from './flexes';
+
 export default {
     typography: {
         useNextVariants: true
@@ -13,7 +22,7 @@ export default {
             height: NAV_HEIGHT,
             elevation: 0
         },
-        MuiPaper: {
+        MuiPaper:{
             elevation: 0
         },
         MuiExpansionPanel: {
@@ -24,11 +33,25 @@ export default {
         }
     },
     overrides: {
+        MuiExpansionPanelSummary: {
+            ...flexColumn,
+            expanded: { ...flexColumn }
+        },
+        MuiExpansionPanelDetails: {
+            root: { flexWrap: 'wrap' }
+        },
+        MuiToolbar: {
+            root: { ...flexRowJustifyFlexEnd }
+        },
         MuiPaper: {
             root: {
+                ...flexColumnJustifyFlexStartAlignCenter,
                 padding: "4em",
                 boxSizing: 'border-box'
             }
+        },
+        MuiSnackbarContent: {
+            message: { ...flexRowJustifyCenterAlignCenter }
         },
         MuiAppBar: {
             /** props: display, position, top, left, width are not needed, but
@@ -36,11 +59,8 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: "1em",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "flex-end",
+                flexDirection: "row", // needed to override column
+                ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
                 top: NAV_TOP,
                 left: NAV_LEFT,
@@ -50,11 +70,7 @@ export default {
             }
         },
         MuiDialogContent: {
-            root: {
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between"
-            }
+            root: { ... flexColumnJustifySpaceBetween }
         },
         MuiDialogContentText: {
             root: {
@@ -62,12 +78,7 @@ export default {
             }
         },
         MuiDialogActions: {
-            root: {
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "flex-end"
-            }
+            root: { ...flexRowJustifyFlexEndAlignCenter }
         },
         MuiSvgIcon: {
             root: {

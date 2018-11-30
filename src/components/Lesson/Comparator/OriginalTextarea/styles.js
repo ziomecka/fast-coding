@@ -14,9 +14,7 @@ const styles = theme => ({
     },
     comparatorTextAreaPaperShort: {
         overflow: 'hidden',
-        boxSizing: 'border-box',
         padding: `${LESSON_FONT_SIZE_REM}rem 0`,
-        display: 'flex',
         maxHeight: '15rem',
         alignItems: 'center',
         margin: 0

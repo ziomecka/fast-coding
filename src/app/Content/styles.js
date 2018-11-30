@@ -5,10 +5,6 @@ const styles = theme => {
 
     return {
         contentBox: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
@@ -22,8 +18,6 @@ const styles = theme => {
             overflow: 'hidden'
         },
         contentBoxOther: {
-            boxSizing: 'border-box',
-            display: 'flex',
             minHeight: 'calc(100vh)'
         }
     };

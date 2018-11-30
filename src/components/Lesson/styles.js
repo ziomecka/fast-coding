@@ -2,11 +2,7 @@ import { COLOR_HINTS } from '../../constants';
 
 const styles = () => ({
     lessonPaper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         position: 'relative',
-        boxSizing: 'border-box'
     },
     lessonInvite: {
         whiteSpace: 'pre',

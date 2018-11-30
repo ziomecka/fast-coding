@@ -1,8 +1,3 @@
-const style = theme => ({
-    toolbar: {
-        display: 'flex',
-        justifyContent: 'flex-end'
-    }
-});
+const style = theme => ({});
 
 export default style;

@@ -22,8 +22,6 @@ const styles = theme => {
 
     return {
         welcomePaper: {
-            display: 'flex',
-            flexDirection: 'column',
             alignItems: 'flex-start',
             justifyContent: 'center',
             position: 'fixed',
@@ -44,7 +42,6 @@ const styles = theme => {
             height: `${WELCOME_HEIGHT}px`,
             fontSize: theme.typography.pxToRem(16),
             color: textPrimary,
-            boxSizing: 'border-box',
             paddingBottom: 0,
             paddingTop: 0,
             paddingTop: 0
