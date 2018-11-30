@@ -10,7 +10,10 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRTypes;
 
+import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '../../../_reducers/';
+
 export const INITIAL_STATE: ApplicationState = {
+    ...APPLICATION_INITIAL_STATE,
     loading: false,
     error: '',
 };
