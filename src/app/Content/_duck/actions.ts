@@ -5,7 +5,8 @@ import { AppLocation } from '../../_common/';
 const {
     APP_CONTENT_CHANGE_LOCATION,
     APP_CONTENT_ONDROP_REGISTER,
-    APP_CONTENT_ONDROP_DEREGISTER
+    APP_CONTENT_ONDROP_DEREGISTER,
+    APP_CONTENT_TITLE_CHANGE
  } = ContentTypes;
 
 
@@ -24,6 +25,11 @@ export const deregisterOnDrop: ActionCreator<DeregisterOnDropAction> = (onDrop: 
     onDrop
 });
 
+export const changeTitle: ActionCreator<ChangeTitleAction> = (title: string) => ({
+    type: APP_CONTENT_TITLE_CHANGE,
+    title
+});
+
 export interface ChangeLocationAction extends Action {
     readonly type: string;
     appLocation: AppLocation;
@@ -39,6 +45,12 @@ export interface DeregisterOnDropAction extends Action {
     onDrop
 };
 
+export interface ChangeTitleAction extends Action {
+    readonly type: string;
+    title: string
+};
+
 export type ContentActions = ChangeLocationAction |
     RegisterOnDropAction |
-    DeregisterOnDropAction;
+    DeregisterOnDropAction |
+    ChangeTitleAction;
