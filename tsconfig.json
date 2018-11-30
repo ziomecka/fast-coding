@@ -26,6 +26,7 @@
     "baseUrl": "src",
     "paths": {
       "root/*": ["*"]
-    }
+    },
+    "resolveJsonModule": true
   }
 }
