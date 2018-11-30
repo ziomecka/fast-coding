@@ -59,6 +59,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
+                padding: "3em",
                 flexDirection: "row", // needed to override column
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
