@@ -87,7 +87,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     heading = () => {
         const { animated, heading, classes } = this.props;
         const { classFalling } = this;
-        const { fallingLetters, welcomeHeadingWrapper } = classes;
+        const { fallingLetters } = classes;
 
         if (animated) {
             const lastSpace = heading.lastIndexOf(' ');
@@ -95,12 +95,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             const remainingHeading = heading.slice(0, lastSpace);
 
             return (
-                <div className={welcomeHeadingWrapper}>
-                    {/* Renders the link to home
-                     /* Only on specific paths
-                     */}
-                    <SubMenu {...this.subMenu} />
-
+                <>
                     {remainingHeading} {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
@@ -111,7 +106,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                             </span>
                         ))
                     }
-                </div>
+                </>
             );
         }
 
@@ -128,7 +123,6 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             welcomeButtons,
             welcomeButton,
             welcomeButtonMain,
-            lessonsButton,
             welcomeHeading,
             welcomeHeadingOther
         } = classes;
@@ -140,6 +134,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 <Typography variant="h1" className={`${welcomeHeading} ${!isHome && welcomeHeadingOther}`}>
                     {heading()}
                 </Typography>
+
+                { /* Renders the link to home
+                  /* Only on specific paths
+                  */}
+                <SubMenu {...this.subMenu} />
 
                 {/* Render buttons only when Home */}
                 {isHome && (
