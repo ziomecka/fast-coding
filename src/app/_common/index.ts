@@ -47,7 +47,6 @@ export enum AppRoutes {
     home = '/',
     lessons = '/lessons',
     lesson = '/lessons/lesson-',
-    about = '/about',
     login = '/login',
     newuser = '/newuser',
     demo = '/lessons/lesson-demo',
@@ -64,7 +63,5 @@ export enum NavRulesEnum {
     'notHome' = 'NOT_HOME',
     'notLesson' = 'NOT_LESSON',
     'notDemoLesson' = 'NOT_DEMO_LESSON',
-    'notAnyLesson' = 'NOT_ANY_LESSON',
-    'onlyAbout' = 'ONLY_ABOUT',
-    'notAbout' = 'NOT_ABOUT'
+    'notAnyLesson' = 'NOT_ANY_LESSON'
 };
