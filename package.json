@@ -16,7 +16,8 @@
     "deploy": "webpack --config ./webpack/webpack.deploy.js",
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
-    "inspectNode": "node --inspect  ./bundle/server.js"
+    "inspectNode": "node --inspect  ./bundle/server.js",
+    "start": "node deploy/server.js"
   },
   "repository": {
     "type": "git",
