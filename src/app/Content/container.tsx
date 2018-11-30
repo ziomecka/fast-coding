@@ -16,7 +16,7 @@ const { content } = AppContainers;
 import { changeLocation } from './_duck/actions';
 import { AppLocation } from '../_common/';
 
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 const mapStateToProps = (state: ApplicationState): ContentState => ({
     ...state[app][content]
@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch): ContentDispatch => ({
     changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation))
 });
 
+// @ts-ignore
 const ContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));
 
 export default ContentContainer;

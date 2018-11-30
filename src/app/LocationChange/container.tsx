@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch): LocationChangeDispatch => ({
     handleChangeLocation: (pathname, container) => dispatch(changeLocation(pathname, container)),
 });
 
+// @ts-ignore
 const LocationChangeContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LocationChange));
 
 export default LocationChangeContainer;

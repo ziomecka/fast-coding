@@ -6,7 +6,7 @@ import { default as Notification } from '../../app/Notification/';
 import DragOverable from '../DragOverable';
 
 /** Materials */
-import { withStyles } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { AppRoutes } from '../../_common';

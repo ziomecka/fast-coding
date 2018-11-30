@@ -1,4 +1,3 @@
-// import { } from 'redux-thunk';
 import { Dispatch } from 'redux';
 
 import { turnOnTextGenerator } from '../../TextGenerator/_duck/actions';

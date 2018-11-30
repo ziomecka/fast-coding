@@ -10,7 +10,7 @@ import { NotificationState } from './_duck/reducers';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 const { app } = ApplicationContainers;
 const { notification } = AppContainers;

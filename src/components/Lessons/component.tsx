@@ -8,7 +8,7 @@ import { AppRoutes } from '../../_common/';
 import styles from './styles';
 
 /** Materials */
-import { withStyles } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 /** Materials core */
 import Paper from '@material-ui/core/Paper';

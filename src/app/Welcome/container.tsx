@@ -12,7 +12,7 @@ import { WelcomeState } from './_duck/reducers';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 import { openDemoLesson } from '../../components/Lesson/_duck/actions';
 
 const { app } = ApplicationContainers;

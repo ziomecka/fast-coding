@@ -1,7 +1,7 @@
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { default as NavComponent } from './component';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 const mapStateToProps = state => ({
     ...state.localize

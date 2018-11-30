@@ -17,7 +17,7 @@ import { onReset } from './_duck/operations';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
 import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/actions';
 
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 const mapStateToProps = (state: ApplicationState): LessonState => ({
     ...state[components][lesson]

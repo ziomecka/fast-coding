@@ -7,7 +7,7 @@ import Lessons from '../../components/Lessons';
 import Paper from '@material-ui/core/Paper';
 import Progress from '@material-ui/core/CircularProgress';
 
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props => {

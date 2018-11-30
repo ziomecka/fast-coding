@@ -14,7 +14,7 @@ import { MenuContainers, SubMenuRulesEnum, NavRulesEnum } from '../_common/';
 
 import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/';
 
-import { WithStyles } from '@material-ui/core/';
+import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
 const { app } = ApplicationContainers;

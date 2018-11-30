@@ -17,7 +17,7 @@ import { onReset } from '../_duck/operations';
 const { components } = ApplicationContainers;
 const { lesson, lessonButtons } = ComponentsContainers;
 
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core/styles';
 
 import {
     turnOnDraggableLessonButtons,
