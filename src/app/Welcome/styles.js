@@ -1,12 +1,11 @@
 import {
-    WELCOME_HEIGHT,
     NAV_HEIGHT,
     WELCOME_BUTTON_MARGIN_RIGHT,
     WELCOME_BUTTON_MARGIN_TOP
 } from '../../constants';
 
 const styles = theme => {
-    let {
+    const {
         palette: {
             primary: { main: mainPrimary },
             secondary: { main: mainSecondary, contrastText: contrastTextSecondary },
@@ -16,42 +15,45 @@ const styles = theme => {
             duration: { complex, shorter },
             easing: { easeOut }
         },
-        zIndex: { modal: zIndexModal },
         spacing: { unit: spacingUnit }
     } = theme;
+
+    const transHeightFontSizeColor = `${theme.transitions.create(
+        ['height', 'font-size' ], { duration: complex, easing: easeOut },
+    )}, ${theme.transitions.create(
+        [ 'color' ], { duration: shorter, easing: easeOut }
+    )}`;
 
     return {
         welcomePaper: {
             alignItems: 'flex-start',
             justifyContent: 'center',
             position: 'fixed',
-            top: `${NAV_HEIGHT}px`,
-            width: '100%',
+            top: 0,
+            left: 0,
+            paddingBottom: 0,
+            paddingTop: 0,
             backgroundColor: mainPrimary,
-            transition: `${theme.transitions.create(
-                ['height', 'font-size' ], { duration: complex, easing: easeOut },
-            )}, ${theme.transitions.create([ 'color' ], { duration: shorter, easing: easeOut })}`,
-            zIndex: zIndexModal,
             borderRadius: 0
         },
         welcomeHome: {
             height: '100%',
-            fontSize: theme.typography.pxToRem(30)
+            width: '100%',
+            fontSize: theme.typography.pxToRem(30),
+            transition: `${transHeightFontSizeColor}, width 0s linear 0s`,
         },
         welcomeOther: {
-            height: `${WELCOME_HEIGHT}px`,
+            height: `${NAV_HEIGHT}px`,
             fontSize: theme.typography.pxToRem(16),
             color: textPrimary,
-            paddingBottom: 0,
-            paddingTop: 0,
-            paddingTop: 0
+            transition: `${transHeightFontSizeColor}, width 0s linear .${complex + 2}s`,
         },
         welcomeHeading: {
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
         },
         welcomeHeadingOther: {
-            whiteSpace: 'nowrap',
+            position: 'relative',
             fontSize: theme.typography.display2.fontSize,
             color: contrastTextSecondary
         },
@@ -64,19 +66,16 @@ const styles = theme => {
         welcomeButtonMain: {
             backgroundColor: mainSecondary
         },
-        welcomeHeadingWrapper: {
-            position: 'relative'
-        },
         welcomeHomeSubMenu: {
             position: 'absolute',
             left: 0,
             display: 'inline-block',
-            width: '430px',
+            width: '50%', // arbitrary value
             height: '100%',
             padding: 0,
-            color: mainPrimary,
+            backgroundColor: 'transparent',
             '&:hover': {
-                backgroundColor: 'inherit'
+                backgroundColor: 'transparent'
             }
         }
     };

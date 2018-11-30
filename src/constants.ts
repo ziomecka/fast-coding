@@ -6,15 +6,14 @@ export const HOME_WELCOME_TIMEOUT = 1000;
 
 export const NOTIFICATION_DURATION = 2500;
 
-export const NAV_HEIGHT = 80;
+export const NAV_HEIGHT = 120;
 export const NAV_TOP = 0;
 export const NAV_LEFT = 0;
 
-export const WELCOME_HEIGHT = 60;
 export const WELCOME_BUTTON_MARGIN_TOP = 6;
 export const WELCOME_BUTTON_MARGIN_RIGHT = 2;
 
-export const CONTENT_PADDING_TOP = NAV_HEIGHT + WELCOME_HEIGHT * 2;
+export const CONTENT_PADDING_TOP = NAV_HEIGHT;
 
 export const LESSON_BUTTONS_TOP = 200;
 export const LESSON_BUTTONS_LEFT = 200;
