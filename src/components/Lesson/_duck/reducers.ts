@@ -1,8 +1,12 @@
 import { Reducer } from 'redux';
 
 import { LessonTypes } from './types';
-import { LessonActions, OpenLessonAction, UpdateTextAction } from './actions';
+import { LessonActions, OpenLessonAction, UpdateTextAction, OpenDemoLessonAction} from './actions';
 import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../../../constants';
+
+import { TextTranslationsI, LanguagesEnum } from '../../../_common';
+
+const { en, pl } = LanguagesEnum;
 
 const {
     COMPONENTS_LESSON_OPEN,
@@ -19,8 +23,12 @@ const {
 
 export const INITIAL_STATE: LessonState = {
     _id: 0,
-    title: '',
+    title: {
+        [en]: '',
+        [pl]: '',
+    },
     text: '',
+    lessonText: '',
     signs: [],
     otherSigns: [],
     started: false,
@@ -32,6 +40,7 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
     switch (action.type) {
         case COMPONENTS_LESSON_UPDATE:
         case COMPONENTS_LESSON_OPEN: {
+            console.log(action);
             return {
                 ...state,
                 ...(action as OpenLessonAction).lessonData
@@ -93,12 +102,14 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
         }
 
         case COMPONENTS_LESSON_OPEN_DEMO: {
+            const { language } = action as OpenDemoLessonAction;
+
             return {
                 ...INITIAL_STATE,
                 signs: [],
                 otherSigns: [],
-                text: LESSON_DEMO_TEXT,
-                title: LESSON_DEMO_TITLE
+                text: LESSON_DEMO_TEXT[language],
+                title: LESSON_DEMO_TITLE[language]
             };
         }
 
@@ -110,12 +121,18 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
 
 export { reducer as lessonReducer };
 
-export interface LessonData {
+// TODO improve. Has to be either text or translatedTexts
+export interface OriginalLessonData {
     _id: number;
-    title: string;
-    text: string;
+    title: TextTranslationsI;
+    text?: string;
+    translatedTexts?: TextTranslationsI;
     signs: string[];
     otherSigns: string[];
+};
+
+export interface LessonData extends OriginalLessonData {
+    lessonText: string;
     started: boolean;
     ended: boolean;
     ending: boolean;

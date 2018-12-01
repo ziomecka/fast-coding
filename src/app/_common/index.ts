@@ -65,3 +65,8 @@ export enum NavRulesEnum {
     'notDemoLesson' = 'NOT_DEMO_LESSON',
     'notAnyLesson' = 'NOT_ANY_LESSON'
 };
+
+export enum LanguagesEnum {
+    pl = 'pl',
+    en = 'en'
+};
