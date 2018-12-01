@@ -23,6 +23,8 @@ import Divider from '@material-ui/core/Divider';
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import { getActiveLanguage, Translate } from 'react-localize-redux';
+
 require('./style.sass');
 
 const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
@@ -47,7 +49,7 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     } = classes;
 
     const elevation = 3;
-    const randomLesson = true;
+    const randomLesson = false;
 
     const lessonsRoute = AppRoutes.lessons;
 
@@ -59,12 +61,18 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
         }
     };
 
+    const langCode = getActiveLanguage(props.localize).code;
+
     const getLessons = () => (lessons.map((lesson, ind) => {
-        const { title, description } = lesson;
+        let { title, description } = lesson;
+        let _title = title[langCode];
+        let _description = description[langCode];
+        title = null; // GC
+        description = null; // GC
 
         return (
             <ExpansionPanel
-                key={`lesson-${title}-${ind}`}
+                key={`lesson-${_title}-${ind}`}
                 className={expansionPanel}
                 expanded={true}
             >
@@ -75,11 +83,11 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                     // IconButtonProps={{ className: expansionButton }}
                 >
                     <Typography variant="h3">
-                        {title}
+                        { _title }
                     </Typography>
 
                     <Typography variant="h4" className={expansionPanelSummaryHeading}>
-                        { description }
+                        { _description }
                     </Typography>
                 </ExpansionPanelSummary>
 
@@ -94,7 +102,9 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
 
     const listLessons = (lessons: LessonData[]) => (
         lessons.map((lesson: LessonData, ind) => {
-            const { _id, title } = lesson;
+            let { _id, title } = lesson;
+            const _title = title[langCode];
+            title = null; // GC
 
             return (
                 <Card
@@ -109,10 +119,10 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                                 id={`link-${_id}`}
                                 to={`${lessonsRoute}/${_id}`}
                                 onClick={() => handleOnClick(lesson)}
-                                title={title}
+                                title={ _title }
                             >
-                                <span className={lessonCardLinkText}>{`Lesson ${ind + 1}`}</span>
-                                <span className={lessonCardLinkText}>{title}</span>
+                                <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
+                                <span className={lessonCardLinkText}>{ _title }</span>
 
                          </Link>
                         </Typography>
