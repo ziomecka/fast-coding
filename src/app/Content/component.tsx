@@ -35,6 +35,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     };
   }
 
+  get isHome() {
+      return this.props.location.pathname === this.home;
+  }
   componentDidMount() {
     const { pathname } = this.props.location;
 
@@ -67,8 +70,8 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   render() {
-    const { location, classes, title } = this.props;
-    const isHome = location.pathname === this.home;
+    const { classes, title } = this.props;
+    const { isHome } = this;
     const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
 
     return (
