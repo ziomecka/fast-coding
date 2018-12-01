@@ -38,8 +38,13 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   get isHome() {
       return this.props.location.pathname === this.home;
   }
+
+  get pathname() {
+      return this.props.location.pathname;
+  }
+
   componentDidMount() {
-    const { pathname } = this.props.location;
+    const { pathname } = this;
 
     if (pathname !== this.home) {
         let id = this.titles[pathname];
