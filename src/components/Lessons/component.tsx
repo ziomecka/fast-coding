@@ -23,6 +23,8 @@ import Divider from '@material-ui/core/Divider';
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import { getActiveLanguage, Translate } from 'react-localize-redux';
+
 require('./style.sass');
 
 const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
@@ -47,7 +49,7 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     } = classes;
 
     const elevation = 3;
-    const randomLesson = true;
+    const randomLesson = false;
 
     const lessonsRoute = AppRoutes.lessons;
 
@@ -58,6 +60,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
             handleOpenLesson(lesson);
         }
     };
+
+    const langCode = getActiveLanguage(props.localize).code;
 
     const getLessons = () => (lessons.map((lesson, ind) => {
         const { title, description } = lesson;
@@ -75,11 +79,11 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                     // IconButtonProps={{ className: expansionButton }}
                 >
                     <Typography variant="h3">
-                        {title}
+                        {title[langCode]}
                     </Typography>
 
                     <Typography variant="h4" className={expansionPanelSummaryHeading}>
-                        { description }
+                        { description[langCode] }
                     </Typography>
                 </ExpansionPanelSummary>
 
@@ -109,10 +113,10 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                                 id={`link-${_id}`}
                                 to={`${lessonsRoute}/${_id}`}
                                 onClick={() => handleOnClick(lesson)}
-                                title={title}
+                                title={title[langCode]}
                             >
-                                <span className={lessonCardLinkText}>{`Lesson ${ind + 1}`}</span>
-                                <span className={lessonCardLinkText}>{title}</span>
+                                <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
+                                <span className={lessonCardLinkText}>{title[langCode]}</span>
 
                          </Link>
                         </Typography>
