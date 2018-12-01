@@ -1,16 +1,16 @@
-import { COLOR_HINTS } from '../../constants';
+const styles = theme => {
+    const { typography: { h6: { fontSize: inviteFontSize } } } = theme;
 
-const styles = () => ({
-    lessonPaper: {
-        position: 'relative',
-    },
-    lessonInvite: {
-        whiteSpace: 'pre',
-        color: COLOR_HINTS,
-        fontWeight: 600,
-        padding: 0,
-        margin: 0
-    }
-});
+    return {
+        lessonPaper: {
+            position: 'relative',
+        },
+        lessonInvite: {
+            padding: 0,
+            margin: 0,
+            fontSize: inviteFontSize
+        }
+    };
+};
 
 export default styles;

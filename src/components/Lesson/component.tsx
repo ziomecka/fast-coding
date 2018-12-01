@@ -5,11 +5,12 @@ import Comparator from './Comparator/container';
 import LessonButtons from './LessonButtons/container';
 import Stats from './Stats/container';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import Smile from '@material-ui/icons/Mood';
+import { Translate } from 'react-localize-redux';
 
 class LessonComponent extends React.Component<LessonProps> {
     style: React.CSSProperties;
@@ -28,16 +29,6 @@ class LessonComponent extends React.Component<LessonProps> {
         this.props.deregisterOnDrop(this.onDrop);
     }
 
-    invite (txt: JSX.Element): JSX.Element {
-        return (
-            <p
-                className={this.props.classes.lessonInvite}
-            >
-                {txt}
-            </p>
-        );
-    }
-
     onDrop (e: React.DragEvent<HTMLElement>) {
         e.preventDefault();
         const { clientX, clientY } = e;
@@ -45,20 +36,18 @@ class LessonComponent extends React.Component<LessonProps> {
     }
 
     render() {
-        const { title, ended, started } = this.props;
+        const { ended, started } = this.props;
         const { lessonPaper, lessonInvite } = this.props.classes;
 
         return (
             <>
                 <Paper className={lessonPaper}>
-                    <h2>
-                        Lesson: "{title? title.toLowerCase() : ' '}"
-                    </h2>
-
-                    { !started
-                        ? this.invite(<span className={lessonInvite}>You can start typing <Smile /> </span>)
-                        : this.invite(<span>&nbsp;</span>)
-                    }
+                    <Typography variant="h3" className={lessonInvite}>
+                        { !started
+                            ? <Translate id="lessonInvite" />
+                            : <span>&nbsp;</span>
+                        }
+                    </Typography>
 
                     <Comparator />
                 </Paper>

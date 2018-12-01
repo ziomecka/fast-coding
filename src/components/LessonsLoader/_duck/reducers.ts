@@ -1,4 +1,5 @@
 import { LessonData } from '../../Lesson/_duck/reducers';
+import { TextTranslationsI } from '../../_common/';
 
 export const INITIAL_STATE: LessonsLoaderState = {
     loading: true,
@@ -7,13 +8,13 @@ export const INITIAL_STATE: LessonsLoaderState = {
 };
 
 export interface LessonsData {
-    title: string;
-    description: string;
+    title: TextTranslationsI;
+    description: TextTranslationsI;
     lessons: LessonData[];
     collection: string;
     type: string;
     _id: string;
-    tag: string;
+    tag: TextTranslationsI;
 }
 
 export interface LessonsLoaderState {

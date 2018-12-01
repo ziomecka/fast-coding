@@ -1,4 +1,5 @@
 export * from '../Lesson/Comparator/_common';
+import { LanguagesEnum } from '../../_common/';
 
 export enum ComponentsContainers {
     comparator = 'COMPARATOR',
@@ -13,3 +14,8 @@ export enum LessonsCategoriesEnum {
     JS = 'js',
     basics = 'basics'
 };
+
+export interface TextTranslationsI {
+    // @ts-ignore
+    [language: LanguagesEnum]: string
+}
