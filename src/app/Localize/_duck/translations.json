@@ -7,5 +7,7 @@
     "welcomeHeading": [ "Learn touch typing in coding!", "Naucz się bezwzrokowego kodowania!"],
     "demoLessonTitle": [ "Demo lesson", "Lekcja pokazowa"],
     "loginTitle": [ "Login", "Logowanie"],
-    "newuserTitle": [ "New user", "Nowy użytkownik"]
+    "newuserTitle": [ "New user", "Nowy użytkownik" ],
+    "lessonsLesson": [ "Lesson", "Lekcja" ],
+    "lessonInvite": [ "You can start typing", "Możesz zacząć pisać" ]
 }
