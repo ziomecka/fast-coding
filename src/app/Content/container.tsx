@@ -8,10 +8,11 @@ import { ApplicationState } from '../../store';
 import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers, ComponentsContainers } from '../../_common/';
 
-const { app } = ApplicationContainers;
+const { app, components } = ApplicationContainers;
 const { content } = AppContainers;
+const { lesson } = ComponentsContainers;
 
 import { changeLocation, changeTitle } from './_duck/actions';
 import { AppLocation } from '../_common/';
@@ -19,14 +20,17 @@ import { AppLocation } from '../_common/';
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
+import { LessonState } from '../../components/Lesson/_duck/reducers';
 
-interface ExtendedContentState extends ContentState {
-    localize: LocalizeState
+interface MapStateToPropsI extends ContentState {
+    localize: LocalizeState,
+    lessonTitle: string
 };
 
-const mapStateToProps = (state: ApplicationState): ExtendedContentState => ({
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][content],
-    localize: { ...state.localize }
+    localize: { ...state.localize },
+    lessonTitle: state[components][lesson].title
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ContentDispatch => ({
@@ -46,6 +50,6 @@ export interface ContentDispatch extends NotificationDispatch {
 };
 
 export interface ContentProps extends ContentDispatch,
-    ExtendedContentState,
+    MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles {};
