@@ -13,7 +13,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         errors,
         correctedErrors,
         currentSignIndex,
-        text,
+        lessonText,
         classes
     } = props;
 
@@ -46,7 +46,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     };
 
     const textRender = () => {
-        return Array.from(text || '').map((cv, index) => {
+        return Array.from(lessonText || '').map((cv, index) => {
             let name = '';
 
             /** Check if letter is incorrect */
