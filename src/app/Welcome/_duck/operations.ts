@@ -1,5 +1,11 @@
+import { Dispatch } from 'redux';
+import { ApplicationState} from '../../../_reducers/';
+
 import { WelcomeClasses } from './reducers';
 import { AppLocation } from '../../_common/';
+import { openDemoLesson } from '../../../components/Lesson/_duck/actions';
+
+import { getActiveLanguage } from 'react-localize-redux';
 
 const { isHome, isOther } = AppLocation;
 
@@ -23,4 +29,9 @@ const states: {
 
 export const getClasses = (location: AppLocation): WelcomeClasses => {
     return states[location] || states[isOther];
+};
+
+export const onOpenDemoLesson = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+    const language = getActiveLanguage(getState().localize).code;
+    return dispatch(openDemoLesson(language));
 };
