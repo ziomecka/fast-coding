@@ -1,0 +1,85 @@
+{
+    "title": {
+        "pl": "Podstawy",
+        "en": "Basics"
+    },
+    "tag": {
+        "pl": "Podstawy",
+        "en": "Basics"
+    },
+    "description": {
+        "pl": "Naucz się podstaw pisania bezwzrokowego",
+        "en": "Learn touch typing basics"
+    },
+    "type": "free",
+    "lessons": [
+        {
+            "title": {
+                "en": "Keys a & ;",
+                "pl": "Klawisze a & ;"
+            },
+            "signs": ["a", ";"],
+            "otherSigns": [" "],
+            "level": "0",
+            "_id": "lesson-88799202-4a50-49a8-8f6b-f05f7f142b78",
+            "category": "basic",
+            "no": 1,
+            "translatedTexts": {
+                "en": "eng a;;a;a a;a ;a;a a;;a;a a;a ;a;a a;;a;a a;a ;a;a a;;a;a a;a ;a;aa;;a;a a;a ;a;a",
+                "pl": "pl a;;a;a a;a ;a;a a;;a;a a;a ;a;a a;;a;a a;a ;a;a a;;a;a a;a ;a;aa;;a;a a;a ;a;a"
+            }
+        },
+        {
+            "title": {
+                "en": "Keys s & l",
+                "pl": "Klawisze s & l"
+            },
+            "signs": ["s", "l"],
+            "otherSigns": [" "],
+            "level": "0",
+            "_id": "lesson-bea76a82-c9c7-44d7-9de9-ce87539929cd",
+            "category": "basic",
+            "no": 2,
+            "text": "ss l sl sl ss l sl sl ss l sl sl ss l sl sl ss l sl sl"
+        },
+        {
+            "title": {
+                "en": "Keys d & k",
+                "pl": "Klawisze d & k"
+            },
+            "signs": ["d", "k"],
+            "otherSigns": [" "],
+            "level": "0",
+            "_id": "lesson-5e1c469a-fc2e-4f50-8b4c-dc105e555c9d",
+            "category": "basic",
+            "no": 3,
+            "text": "dkdkd kd dkd kd dkdkd kd dkd kddkdkd kd dkd kd dkdkd kd dkd kd"
+        },
+        {
+            "title": {
+                "en": "Keys f & j",
+                "pl": "Klawisze f & j"
+            },
+            "signs": ["f", "j"],
+            "otherSigns": [" "],
+            "level": "0",
+            "_id": "lesson-5ee27480-2e9f-47a9-8bf6-de9b25262b9e",
+            "category": "basic",
+            "no": 4,
+            "text": "fjfjf jfjf jf fjfjf jfjf jffjfjf jfjf jf fjfjf jfjf jf"
+        },
+        {
+            "title": {
+                "en": "Keys g & h",
+                "pl": "Klawisze g & h"
+            },
+            "signs": ["g", "h"],
+            "otherSigns": [" "],
+            "level": "0",
+            "_id": "lesson-f3b3d457-482f-46de-92f2-33149068c7a4",
+            "category": "basic",
+            "no": 5,
+            "text": "ghg hghghgh hgg ghg hghghgh hgg ghg hghghgh hgg ghg hghghgh hgg"
+        }
+    ]
+}
