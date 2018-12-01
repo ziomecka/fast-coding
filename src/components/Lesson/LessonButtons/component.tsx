@@ -15,6 +15,8 @@ import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
+import { Translate } from 'react-localize-redux';
+
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {
         ended,
@@ -44,9 +46,6 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const INITIAL_LEFT = INITIAL_STATE.left;
     const INITIAL_WIDTH = '100%';
 
-    const leaveText = 'Leave lesson';
-    const restartText = 'Restart lesson';
-
     const isMoved = (top !== INITIAL_TOP || left !== INITIAL_LEFT);
 
     const leaveLesson = () => history.push(lessons);
@@ -60,7 +59,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 className={lessonButtonsButton}
                 value="Leave"
             >
-                {leaveText}
+                <Translate id="lessonButtonsLeave" />
             </Button>
         </>
     );
@@ -76,7 +75,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 onClick={startLeaving}
                 className={lessonButtonsButton}
             >
-                {leaveText}
+                <Translate id="lessonButtonsLeave" />
             </Button>
         </>
     );
@@ -89,7 +88,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 onClick={leaveLesson}
                 className={lessonButtonsButton}
             >
-                {leaveText}
+                <Translate id="lessonButtonsLeave" />
             </Button>
 
             <Button
@@ -99,7 +98,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 className={lessonButtonsButton}
                 value="Restart"
             >
-                {restartText}
+                <Translate id="lessonButtonsRestart" />
             </Button>
         </>
     );
@@ -123,7 +122,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             {/* Buttons for managing draggable menu */}
             <div className={lessonButtonsDragHandle}>
                 <Button
-                    title="You can drag me"
+                    title="Drag the buttons menu"
                     onMouseEnter={turnOnDraggable}
                     onMouseLeave={turnOffDraggable}
                 >
@@ -134,7 +133,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
                 {/* Display clear button only if the menu has been moved */}
                 {isMoved && (
                     <Button
-                        title="Reset menu"
+                        title="Resize the buttons menu"
                         onClick={resetLessonButtons}
                     >
                         <TouchRipple />
