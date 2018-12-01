@@ -2,6 +2,7 @@ import { Action, ActionCreator } from 'redux';
 import { LessonTypes } from './types';
 
 import { LessonData} from './reducers';
+import { LanguagesEnum } from '../../../_common/';
 
 const {
     COMPONENTS_LESSON_OPEN,
@@ -52,8 +53,9 @@ export const resetLesson: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_RESET
 });
 
-export const openDemoLesson: ActionCreator<Action> = () => ({
-    type: COMPONENTS_LESSON_OPEN_DEMO
+export const openDemoLesson: ActionCreator<OpenDemoLessonAction> = (language: LanguagesEnum) => ({
+    type: COMPONENTS_LESSON_OPEN_DEMO,
+    language
 });
 
 export const restartLesson: ActionCreator<Action> = () => ({
@@ -75,6 +77,12 @@ export interface UpdateTextAction extends Action {
     text: string;
 };
 
+export interface OpenDemoLessonAction extends Action {
+    readonly type: string;
+    language: LanguagesEnum;
+};
+
 export type LessonActions = Action |
     OpenLessonAction |
-    UpdateTextAction;
+    UpdateTextAction |
+    OpenDemoLessonAction;
