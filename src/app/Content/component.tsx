@@ -11,12 +11,12 @@ import styles from './styles';
 import Typography from '@material-ui/core/Typography';
 
 import { AppRoutes } from '../../_common';
-import {} from 'react-redux';
 
-import { Translate } from 'react-localize-redux';
+import { Translate, getActiveLanguage } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-const { demo, home, lesson, lessons, login, newuser } = AppRoutes;
+const { demo, home, lessons, login, newuser } = AppRoutes;
+
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
     constructor(props: ContentProps) {
@@ -33,6 +33,10 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         [login]: 'loginTitle',
         [newuser]: 'newuserTitle'
     };
+  }
+
+  get isLesson() {
+      return RegExp(`.*\lesson-.*`).test(this.props.location.pathname);
   }
 
   get isHome() {
@@ -74,9 +78,17 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
       this.props.onDrop.forEach(fun => fun(e));
   }
 
+  get langCode() {
+      return getActiveLanguage(this.props.localize).code
+  }
+
+  get lessonTitle(): string {
+      return this.props.lessonTitle[this.langCode];
+  }
+
   render() {
     const { classes, title } = this.props;
-    const { isHome } = this;
+    const { isHome, isLesson, lessonTitle } = this;
     const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
 
     return (
@@ -87,7 +99,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         >
             <Typography variant="h2" className={contentTitle}>
                 <Translate id={title} options={ {
-                    onMissingTranslation: () => '',
+                    onMissingTranslation: () => (isLesson && lessonTitle) || '',
                     renderToStaticMarkup
                 }} />
             </Typography>
