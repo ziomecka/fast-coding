@@ -9,8 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
 const AppMenuComponent: React.StatelessComponent<AppMenuProps> = (props) => {
-    const { subMenus, classes } = props;
-    const { toolbar } = classes;
+    const { subMenus, classes: { toolbar } } = props;
 
     return (
         <Toolbar className={toolbar}>

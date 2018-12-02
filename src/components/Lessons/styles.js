@@ -11,13 +11,15 @@ const styles = theme => {
             overflow: 'hidden'
         },
         expansionPanelSummary: {
-            whiteSpace: 'nowrap'
+            margin: '0',
+            marginBottom: '0 !important' // to ovveride material design.
         },
         expansionPanelSummaryHeading: {
-            whiteSpace: 'nowrap'
+            paddingTop: '2rem'
         },
         expansionPanelDetails: {
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            paddingTop: 0
         },
         lessonCard: {
             margin: spacingUnit,

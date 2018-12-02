@@ -30,12 +30,26 @@ export default {
         },
         MuiExpansionPanelSummary: {
             elevation: 0
+        },
+        MuiMenu: {
+            elevation: 2
         }
     },
     overrides: {
+        MuiMenu: {
+            paper: {
+                padding: '3rem'
+            }
+        },
         MuiExpansionPanelSummary: {
-            ...flexColumn,
-            expanded: { ...flexColumn }
+            root: { ...flexColumn },
+            expanded: {
+                ...flexColumn,
+                width: '100%',
+                '&:hover': {
+                    cursor: 'auto !important'
+                }
+            }
         },
         MuiExpansionPanelDetails: {
             root: { flexWrap: 'wrap' }
@@ -46,7 +60,6 @@ export default {
         MuiPaper: {
             root: {
                 ...flexColumnJustifyFlexStartAlignCenter,
-                padding: "4em",
                 boxSizing: 'border-box'
             }
         },
@@ -59,7 +72,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: "3em",
+                padding: "0 6rem",
                 flexDirection: "row", // needed to override column
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",

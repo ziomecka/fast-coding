@@ -114,18 +114,22 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     };
 
     render()  {
-        const { classes } = this.props;
-        const { heading, isHome } = this;
         const {
-            welcomePaper,
-            welcomeHome,
-            welcomeOther,
-            welcomeButtons,
-            welcomeButton,
-            welcomeButtonMain,
-            welcomeHeading,
-            welcomeHeadingOther
-        } = classes;
+            heading,
+            isHome,
+            props: {
+                classes: {
+                    welcomePaper,
+                    welcomeHome,
+                    welcomeOther,
+                    welcomeButtons,
+                    welcomeButton,
+                    welcomeButtonMain,
+                    welcomeHeading,
+                    welcomeHeadingOther
+                }
+            }
+        } = this;
 
         return (
             <Paper className={
@@ -142,7 +146,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
                 {/* Render buttons only when Home */}
                 {isHome && (
-                    <div className={welcomeButtons}>
+                    <div className={ welcomeButtons }>
                         <Button
                             onClick={this.goToLessons}
                             className={welcomeButton}

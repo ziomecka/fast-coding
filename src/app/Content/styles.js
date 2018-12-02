@@ -15,7 +15,7 @@ const styles = theme => {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
-            paddingTop: CONTENT_PADDING_TOP,
+            padding: `${CONTENT_PADDING_TOP} 6rem 0 6rem`,
             overflow: 'hidden',
             backgroundColor: defaultBackground
         },

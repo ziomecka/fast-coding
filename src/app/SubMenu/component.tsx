@@ -116,13 +116,15 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         return (!this.props.rules || this.props.rules.every(rule => this.navRules[rule]()));
     };
 
-    getLink (appRoute: AppRoutes, title: string) {
+    getLink (appRoute: AppRoutes, title: string, className: string) {
         let ind = 0;
+
         return (
             <MenuItem
                 onClick={() => this.handleClose(appRoute)}
                 key={`link-${title}-${ind++}`}
                 divider={true}
+                {...{ className }}
             >
                 <NavLink to={appRoute}>
                     {title}
@@ -131,13 +133,14 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         );
     };
 
-    getButton (onClick, title) {
+    getButton (onClick, title: string, className: string) {
         let ind = 0;
         return (
             <MenuItem
                 {...{ onClick }}
                 key={`button-${title}-${ind++}`}
                 divider={true}
+                {...{ className }}
             >
                 {title}
             </MenuItem>
@@ -153,14 +156,17 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     renderList () {
-        const { iconButton = {} } = this.props;
+        const {
+            iconButton = {},
+            classes: { menuItemClass, menuIconClass, menuClass }
+        } = this.props;
 
         return (
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
                     <IconButton
                         onClick={this.handleClick}
-                        className={this.props.classes.menuIcon}
+                        className={menuIconClass}
                         {...iconButton}
                     >
                         {this.props.icon}
@@ -170,14 +176,14 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                     {<Menu
                         anchorEl={this.anchorEl}
                         open={Boolean(this.anchorEl)}
-                        className={this.props.classes.menu}
+                        classes={{ paper : menuClass }}
                     >
                         {this.props.menuItems.map((menuItem, ind) => {
                             const { rules, appRoute, title, onClick } = menuItem;
                             if (this.areSubMenuRulesMet(rules, appRoute)) {
                                 return (
-                                    (appRoute && this.getLink(appRoute, title)) ||
-                                    (onClick && this.getButton(onClick, title))
+                                    (appRoute && this.getLink(appRoute, title, menuItemClass)) ||
+                                    (onClick && this.getButton(onClick, title, menuItemClass))
                                 );
                             }
 
@@ -190,18 +196,22 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     renderOneItem() {
-        const { rules, appRoute } = this.props.menuItem;
-        const { iconButton = {} } = this.props;
+        const {
+            iconButton = {},
+            classes: { menuIconClass },
+            menuItem: { rules, appRoute },
+            icon // TODO GC?
+        } = this.props;
 
         /** Render if not current pathname */
         if (this.areSubMenuRulesMet(rules, appRoute)) {
             return (
                 <IconButton
                     onClick={() => this.handleClose(appRoute)}
-                    className={this.props.classes.menuIcon}
-                    {...iconButton}
+                    className={ menuIconClass }
+                    { ...iconButton }
                 >
-                    {this.props.icon}
+                    { icon }
                 </IconButton>
             );
         }
