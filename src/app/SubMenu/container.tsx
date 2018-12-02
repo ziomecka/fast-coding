@@ -21,7 +21,7 @@ const { app } = ApplicationContainers;
 const { appMenu, user } = AppContainers;
 
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): ExtendedMenuState => ({
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][appMenu],
     authorized: state[app][user].authorized
 });
@@ -55,12 +55,12 @@ export interface __SubMenuProps {
     iconButton?: IconButtonProps;
 };
 
-interface ExtendedMenuState extends MenuState {
+interface MapStateToPropsI extends MenuState {
     authorized: boolean;
 };
 
 export interface SubMenuProps extends __SubMenuProps,
     SubMenuDispatch,
-    ExtendedMenuState,
+    MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles {};
