@@ -9,9 +9,9 @@ const middlewares = [ thunk ];
 
 export default createStore(
     applicationReducer,
-    // composeWithDevTools(
+    composeWithDevTools(
         applyMiddleware(...middlewares)
-    // )
+    )
 );
 
 export { ApplicationState } from './_reducers/reducers';
