@@ -34,18 +34,17 @@ const styles = theme => {
             padding: '0',
             backgroundColor: mainPrimary,
             borderRadius: 0,
-            width: '100%'
+            width: '100%',
+            transition: `${transHeightFontSizeColor}`
         },
         welcomeHome: {
             height: '100%',
-            fontSize: theme.typography.pxToRem(30),
-            transition: `${transHeightFontSizeColor}`,
+            fontSize: theme.typography.pxToRem(30)
         },
         welcomeOther: {
             height: `${NAV_HEIGHT}px`,
             fontSize: theme.typography.pxToRem(16),
-            color: textPrimary,
-            transition: `${transHeightFontSizeColor}`,
+            color: textPrimary
         },
         welcomeHeading: {
             color: textPrimary,
