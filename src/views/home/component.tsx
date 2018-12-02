@@ -12,12 +12,6 @@ import User from '../../app/User/container';
 
 import { AppContainers, AppRoutes } from '../../_common/';
 
-import {
-    HOME_NOTIFICATION,
-} from '../../constants';
-
-import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
-
 const { content, welcome } = AppContainers;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
@@ -26,8 +20,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
         super(props);
 
         this.homeUrl = AppRoutes.home;
-
-        props.openNotification(HOME_NOTIFICATION);
 
         this.props.addKeyDownListener();
     }
@@ -59,23 +51,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
             <User />
 
             <LessonsLoader />
-<<<<<<< HEAD
-=======
-            
-            {/* Get translated heading */}
-            <Welcome
-                heading={
-                    getTranslations(this.props.localize).welcomeHeading[
-                        getLanguages(this.props.localize)
-                        .findIndex(lang => (
-                            lang.code === getActiveLanguage(this.props.localize).code)
-                        )
-                    ]
-                }
-                animated={animateHeading}
-                timeout={HOME_WELCOME_TIMEOUT}
-            />
->>>>>>> de476ad... Home. Translated heading
 
             <Nav />
 
