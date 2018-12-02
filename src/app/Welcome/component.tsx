@@ -84,6 +84,10 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         return this.props.location.pathname === this.home;
     }
 
+    get isLesson() {
+        return RegExp(/.*lessons\/lesson-.*/).test(this.props.location.pathname);
+    }
+
     heading = () => {
         const { animated, heading, classes } = this.props;
         const { classFalling } = this;
@@ -117,6 +121,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         const {
             heading,
             isHome,
+            isLesson,
             props: {
                 classes: {
                     welcomePaper,
@@ -126,14 +131,21 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                     welcomeButton,
                     welcomeButtonMain,
                     welcomeHeading,
-                    welcomeHeadingOther
+                    welcomeHeadingOther,
+                    welcomeLesson
                 }
             }
         } = this;
 
         return (
             <Paper className={
-                `${welcomePaper} ${isHome ? welcomeHome : welcomeOther}`
+                `${welcomePaper} ${
+                    isHome
+                    ? welcomeHome
+                    : isLesson
+                        ? welcomeLesson
+                        : welcomeOther
+                    }`
             }>
                 <Typography variant="h1" className={`${welcomeHeading} ${!isHome && welcomeHeadingOther}`}>
                     {heading()}

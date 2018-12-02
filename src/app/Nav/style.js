@@ -1,17 +1,25 @@
+import {
+    NAV_HEIGHT,
+    NAV_WELCOME_GO_UP
+} from '../../constants';
+
 const style = theme => {
     const {
-        palette: {
-            secondary: { contrastText },
+        transitions: {
+            duration: { complex },
+            easing: { easeOut }
         },
-        typography: { fontWeightMedium }
     } = theme;
+
     return {
-        lessons: {
-            color: contrastText,
-            fontSize: '1.5rem',
-            fontWeight: fontWeightMedium,
-            letterSpacing: '.05rem'
+        navClass: {
+            transition: `${theme.transitions.create(
+                ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut})}`
+        },
+        navLessonClass: {
+            top: `-${NAV_HEIGHT}px`
         }
-    }};
+    }
+};
 
 export default style;

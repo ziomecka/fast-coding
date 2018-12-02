@@ -34,7 +34,12 @@ import { withLocalize } from 'react-localize-redux';
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson } = NavRulesEnum;
     const { notActiveLanguage } = SubMenuRulesEnum;
-    const { languages, setActiveLanguage, activeLanguage } = props;
+    const {
+        languages,
+        setActiveLanguage,
+        activeLanguage,
+        classes: { navClass, navLessonClass }
+    } = props;
 
     const subMenus: __SubMenuProps[] = [
         /** Languages menu */
@@ -70,15 +75,16 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
             menuItems: submenus.userMenuItems,
             icon: <Face />,
             container: userMenu,
-            rules: [ notAnyLesson ],
             iconButton: {
                 title: 'User'
             }
         }
     ] as __SubMenuProps[];
 
+    const isLesson = () => RegExp(/.*lessons\/lesson-.*/).test(props.location.pathname);
+
     return (
-        <AppBar color={appBarColor}>
+        <AppBar color={appBarColor} className={`${navClass} ${isLesson() ? navLessonClass : ''}`}>
             <Welcome
                 heading={
                     getTranslations(props.localize).welcomeHeading[

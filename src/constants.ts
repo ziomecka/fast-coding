@@ -17,6 +17,8 @@ export const NAV_LEFT = 0;
 export const WELCOME_BUTTON_MARGIN_TOP = 6;
 export const WELCOME_BUTTON_MARGIN_RIGHT = 2;
 
+export const NAV_WELCOME_GO_UP = 3;
+
 export const CONTENT_PADDING_TOP = NAV_HEIGHT;
 
 export const LESSON_BUTTONS_TOP = 200;

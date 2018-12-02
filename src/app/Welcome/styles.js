@@ -1,7 +1,8 @@
 import {
     NAV_HEIGHT,
     WELCOME_BUTTON_MARGIN_RIGHT,
-    WELCOME_BUTTON_MARGIN_TOP
+    WELCOME_BUTTON_MARGIN_TOP,
+    NAV_WELCOME_GO_UP
 } from '../../constants';
 
 const styles = theme => {
@@ -22,6 +23,8 @@ const styles = theme => {
         ['height', 'font-size' ], { duration: complex, easing: easeOut },
     )}, ${theme.transitions.create(
         [ 'color' ], { duration: shorter, easing: easeOut }
+    )}, ${theme.transitions.create(
+        ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
     )}`;
 
     return {
@@ -45,6 +48,9 @@ const styles = theme => {
             height: `${NAV_HEIGHT}px`,
             fontSize: theme.typography.pxToRem(16),
             color: textPrimary
+        },
+        welcomeLesson: {
+            top: `-${NAV_HEIGHT}px`
         },
         welcomeHeading: {
             color: textPrimary,
