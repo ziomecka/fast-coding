@@ -27,6 +27,8 @@ import {
 
 import { onStartLeaving } from './_duck/operations';
 
+import { LocalizeContextProps } from 'react-localize-redux';
+
 const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     restartLesson: () => dispatch(onRestartLesson()),
     resetLesson: () => dispatch(onReset()),
@@ -38,7 +40,8 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
 
 const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
     ...state[components][lesson],
-    ...state[components][lessonButtons]
+    ...state[components][lessonButtons],
+    ...state.localize
 });
 
 const LessonButtonsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LessonButtons));
@@ -59,4 +62,5 @@ export interface LessonButtonsProps extends
     LessonButtonsState,
     LessonButtonsDispatch,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles,
+    LocalizeContextProps {};

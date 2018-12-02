@@ -15,7 +15,7 @@ import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { Translate } from 'react-localize-redux';
+import { withLocalize, Translate } from 'react-localize-redux';
 
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {
@@ -145,4 +145,4 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 };
 
-export default withStyles(styles)(LessonButtonsComponent);
+export default withStyles(styles)(withLocalize(LessonButtonsComponent));
