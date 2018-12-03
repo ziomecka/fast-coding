@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     turnOnComparator: () => dispatch(onTurnOnComparator()),
     startLesson: () => dispatch(startLesson()),
     endingLesson: () => dispatch(onEndingLesson()),
-    addEventListener: () => dispatch(onAddEventListener()),
+    addEventListener: () => dispatch(onAddEventListener(handleKeyboardDown)),
     removeEventListener: () => dispatch(onRemoveEventListener())
 });
 
