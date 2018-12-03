@@ -31,13 +31,13 @@ if (!PROD_ENV) {
 }
 
 app.use(express.static(ROOT, {
-    cacheControl: true, setHeaders: (res, path, next) => {
-        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+    cacheControl: true, setHeaders: (res, req, next) => {
+        if (RegExp(/.*vendor.chunkhash.*/).test(req.url)) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Headers', 'cache-control');
-            res.setHeader("Cache-Control", "public, max-age=0"); //31536000
+            res.setHeader("Cache-Control", "public, max-age=20"); //31536000
         }
-        res.setHeader("Cache-Control", "public, max-age=0"); //31536000
+        res.setHeader("Cache-Control", "public, max-age=0");
         next();
 }}));
 
