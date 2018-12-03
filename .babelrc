@@ -30,13 +30,9 @@
             }
         ],
         "syntax-dynamic-import",
-<<<<<<< HEAD
         "syntax-object-rest-spread",
         ["@babel/plugin-transform-runtime", {
             "corejs": 2
         }]
-=======
-        "syntax-object-rest-spread"
->>>>>>> 2c5e1b4... Babel, Webpack, Ts setting modified
     ]
 }
