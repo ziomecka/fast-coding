@@ -3,24 +3,38 @@ import * as React from 'react';
 import { StatsProps } from './container';
 
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const StatsComponent:React.StatelessComponent<StatsProps> = (props)  => {
-    const { start, stop, endedLesson, allErrors, text } = props;
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
+import { Translate } from 'react-localize-redux';
+import withTable from '../../../app/Table';
+
+const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
+    const { start, stop, allErrors, text,
+            classes: { statsPaper },
+            createTable
+    } = props;
+
+    const time = Math.round((stop - start) / 10) / 100;
+    const accuracy = Math.round(100 - 100 * (allErrors.length / text.length));
 
     return (
-        <Paper>
-            {
-                (endedLesson && start && stop && (stop > start))
-                ? (
-                    <>
-                        <p>{`Time: ${Math.round((stop - start) / 10) / 100} seconds.`}</p>
-                        <p>{`Accuracy: ${Math.round(100 - 100 * (allErrors.length / text.length))}%`}</p>
-                    </>
-                )
-                : null
-            }
+        <Paper className={statsPaper} id="lessonStats">
+            <Typography variant="h4">
+                <Translate id="lessonStatsHeading" />
+            </Typography>
+
+            {createTable({
+                body: [
+                    [ <Translate id="lessonStatsTime" />,  <>{ time } <Translate id="lessonStatsTimeUnit" /></>, <></>  ],
+                    [ <Translate id="lessonStatsAccuracy" />, <>{ accuracy }%</>, <CircularProgress value={accuracy} variant="static" /> ]
+                ]
+            })}
         </Paper>
     );
 };
 
-export default StatsComponent;
+export default withStyles(styles)(withTable(StatsComponent));
