@@ -30,7 +30,7 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use(express.static(ROOT));
+// app.use(express.static(ROOT));
 
 app.get('/lessons/get', async (req, res, next) => {
     try {
