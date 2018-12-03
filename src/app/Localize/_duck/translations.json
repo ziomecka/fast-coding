@@ -13,5 +13,9 @@
     "loginTitle": [ "Login", "Logowanie"],
     "newuserTitle": [ "New user", "Nowy użytkownik" ],
     "lessonsLesson": [ "Lesson", "Lekcja" ],
-    "lessonInvite": [ "You can start typing", "Możesz zacząć pisać" ]
+    "lessonInvite": [ "You can start typing", "Możesz zacząć pisać" ],
+    "lessonStatsHeading": [ "Your result", "Twój wynik" ],
+    "lessonStatsTime": [ "Time: ", "Czas: " ],
+    "lessonStatsTimeUnit": [ "seconds", "sekund" ],
+    "lessonStatsAccuracy": [ "Accuracy: ", "Dokładność" ]
 }
