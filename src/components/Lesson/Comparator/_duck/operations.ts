@@ -24,37 +24,37 @@ import { onStartLeaving } from '../../LessonButtons/_duck/operations';
 const event = 'keydown';
 let listeners: [string, EventListenerOrEventListenerObject][] = [];
 
-const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+/**
+ * @constant {array}
+ * [32] - space
+ * [48, 90] - digits, letters
+ * [96, 111] - numpad
+ * [186, 192] - special chars
+ * [219, 222] - special chars
+ */
+const validCodes = [
+    [32, 32],
+    [48, 90],
+    [96, 111],
+    [186, 192],
+    [219, 222],
+];
+
+const backspace = 8;
+const escape = 27;
+
+const isValidCode = (code: number): boolean => {
+    return validCodes.some(range => (
+        (code >= range[0]) &&
+        (code <= range[1])
+    ));
+};
+
+const isBackspace = (code: number): boolean => code === backspace;
+const isEscape = (code: number): boolean => code === escape;
+
+export const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
     const { key, keyCode } = event;
-
-    /**
-     * @constant {array}
-     * [32] - space
-     * [48, 90] - digits, letters
-     * [96, 111] - numpad
-     * [186, 192] - special chars
-     * [219, 222] - special chars
-     */
-    const validCodes = [
-        [32, 32],
-        [48, 90],
-        [96, 111],
-        [186, 192],
-        [219, 222],
-    ];
-
-    const backspace = 8;
-    const escape = 27;
-
-    const isValidCode = (code: number): boolean => {
-        return validCodes.some(range => (
-            (code >= range[0]) &&
-            (code <= range[1])
-        ));
-    };
-
-    const isBackspace = (code: number): boolean => code === backspace;
-    const isEscape = (code: number): boolean => code === escape;
 
     /** Do not scroll when space pressed */
     if (keyCode === 32) event.preventDefault();
