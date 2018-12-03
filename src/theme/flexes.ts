@@ -42,6 +42,16 @@ const flexRowJustifyFlexEndAlignCenter = {
     alignItems: 'center'
 };
 
+const flexRowJustifyFlexStart = {
+    ...flexRow,
+    justifyContent: 'flex-end'
+};
+
+const flexRowJustifyFlexStartAlignCenter = {
+    ...flexRowJustifyFlexStart,
+    alignItems: 'center',
+};
+
 export {
     flexColumn,
     flexColumnJustifyFlexStart,
@@ -51,5 +61,7 @@ export {
     flexRowJustifyCenter,
     flexRowJustifyCenterAlignCenter,
     flexRowJustifyFlexEnd,
-    flexRowJustifyFlexEndAlignCenter
+    flexRowJustifyFlexEndAlignCenter,
+    flexRowJustifyFlexStart,
+    flexRowJustifyFlexStartAlignCenter
 };
