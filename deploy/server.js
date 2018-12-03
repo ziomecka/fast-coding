@@ -42,6 +42,11 @@ app.get('/lessons/get', async (req, res, next) => {
     }
 });
 
+app.get('/vendor.chunkhash.bundle.js', (req, res, next) => {
+    res.setHeader("Cache-Control", "public, max-age=2592000");
+    next();
+});
+
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });
 });
