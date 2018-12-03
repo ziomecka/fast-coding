@@ -15,12 +15,14 @@ import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { withLocalize, Translate } from 'react-localize-redux';
+import getTranslation from '../../../shared/get.translations';
 
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {
         ended,
+        dialogOpened,
         started,
+        paused,
         restartLesson,
         history,
         classes,
@@ -30,7 +32,9 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         turnOnDraggable,
         turnOffDraggable,
         resetLessonButtons,
-        startLeaving
+        startLeaving,
+        pauseLesson,
+        unpauseLesson
     } = props;
 
     const { lessons } = AppRoutes;
@@ -145,4 +149,4 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 };
 
-export default withStyles(styles)(withLocalize(LessonButtonsComponent));
+export default withStyles(styles)(LessonButtonsComponent);
