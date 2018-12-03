@@ -30,7 +30,16 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-// app.use(express.static(ROOT));
+app.use(express.static(ROOT, {
+    cacheControl: true, setHeaders: (res, path, next) => {
+        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Headers', 'cache-control');
+            res.setHeader("Cache-Control", "public, max-age=0"); //31536000
+        }
+        res.setHeader("Cache-Control", "public, max-age=0"); //31536000
+        next();
+}}));
 
 app.get('/lessons/get', async (req, res, next) => {
     try {
@@ -42,10 +51,13 @@ app.get('/lessons/get', async (req, res, next) => {
     }
 });
 
-app.get('/vendor.chunkhash.bundle.js', (req, res, next) => {
-    res.setHeader("Cache-Control", "public, max-age=31536000");
-    return res.sendFile(HTML_PATH, { root: ROOT });
-});
+// app.get('/vendor.chunkhash.bundle.js', (req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Headers', 'cache-control');
+//     res.setHeader("Cache-Control", "public, max-age=31536000");
+//     next();
+// });
+
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });
