@@ -1,6 +1,10 @@
 {
     "lessonButtonsLeave": [ "Leave lesson", "Opuść lekcję" ],
     "lessonButtonsRestart": [ "Restart lesson", "Jeszcze raz" ],
+    "lessonButtonsPause": [ "Pause lesson", "Wstrzymaj lekcję" ],
+    "lessonButtonsUnpause": [ "Run lesson", "Wznów lekcję" ],
+    "lessonButtonsJustType": [ "just type", "pisz dalej" ],
+    "buttonsPress": [ "press", "naciśnij" ],
     "welcomeGoToCourses": [ "Courses", "Kursy" ],
     "welcomeGoToDemo": [ "Demo lesson", "Lekcja pokazowa" ],
     "coursesTitle": [ "Courses", "Kursy" ],
