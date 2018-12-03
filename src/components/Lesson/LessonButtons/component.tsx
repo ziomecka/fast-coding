@@ -5,8 +5,10 @@ import { LessonButtonsProps } from './container';
 import { INITIAL_STATE } from './_duck/reducers';
 import { AppRoutes } from '../../../_common/';
 
+import ButtonWithHint from '../../../app/ButtonWithHint/';
+
 /** Materials */
-import Button from '@material-ui/core/Button';
+import Button, { ButtonProps } from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import DragHandle from '@material-ui/icons/DragHandle';
 import Clear from '@material-ui/icons/Clear';
@@ -54,18 +56,76 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
 
     const leaveLesson = () => history.push(lessons);
 
-    const buttonsWhenNotStarted = (
-        <>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={leaveLesson}
-                className={lessonButtonsButton}
-                value="Leave"
-            >
-                <Translate id="lessonButtonsLeave" />
-            </Button>
-        </>
+
+    const justType = getTranslation(props.localize, "lessonButtonsJustType");
+    const press = getTranslation(props.localize, "buttonsPress");
+
+    const commonProps = {
+        variant: "contained",
+        color: "primary",
+    } as ButtonProps;
+
+    const buttonStartLeaving = (
+        <ButtonWithHint
+            buttonProps={{
+                ...commonProps,
+                onClick: startLeaving,
+                className: lessonButtonsButton
+            }}
+            // @ts-ignore
+            aftertext={`${press} ESC`}
+            translationId="lessonButtonsLeave"
+        />
+    );
+
+    const buttonPause = (
+        <ButtonWithHint
+            buttonProps={{
+                ...commonProps,
+                onClick: pauseLesson,
+                className: lessonButtonsButton
+            }}
+            translationId="lessonButtonsPause"
+        />
+    );
+
+    const buttonUnpause = (
+        <ButtonWithHint
+            buttonProps={{
+                ...commonProps,
+                onClick: unpauseLesson,
+                className: lessonButtonsButton,
+            }}
+            // @ts-ignore
+            aftertext={justType}
+            translationId="lessonButtonsUnpause"
+        />
+    );
+
+    const buttonLeave = (
+        <ButtonWithHint
+            buttonProps={{
+                ...commonProps,
+                onClick: leaveLesson,
+                className: lessonButtonsButton,
+            }}
+            // @ts-ignore
+            aftertext={`${press} ESC`}
+            translationId="lessonButtonsLeave"
+        />
+    );
+
+    const buttonRestart = (
+        <ButtonWithHint
+            buttonProps={{
+                ...commonProps,
+                onClick: restartLesson,
+                className: lessonButtonsButton
+            }}
+            // @ts-ignore
+            aftertext={`${press} Enter`}
+            translationId="lessonButtonsRestart"
+        />
     );
 
     /**
@@ -73,41 +133,50 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
      */
     const buttonsWhenRunning = (
         <>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={startLeaving}
-                className={lessonButtonsButton}
-            >
-                <Translate id="lessonButtonsLeave" />
-            </Button>
+            { buttonStartLeaving }
+            { buttonPause }
+        </>
+    );
+
+    const buttonsWhenNotStarted = (
+        <>
+            { buttonLeave }
+        </>
+    );
+
+    const buttonsWhenPaused = (
+        <>
+            { buttonStartLeaving }
+            { buttonUnpause }
         </>
     );
 
     const buttonsWhenEnded = (
         <>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={leaveLesson}
-                className={lessonButtonsButton}
-            >
-                <Translate id="lessonButtonsLeave" />
-            </Button>
-
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={restartLesson}
-                className={lessonButtonsButton}
-                value="Restart"
-            >
-                <Translate id="lessonButtonsRestart" />
-            </Button>
+            { buttonLeave }
+            { buttonRestart }
         </>
     );
 
-    return (
+    const getButtons = (): JSX.Element => {
+        if ( !started && !ended ) {
+            return buttonsWhenNotStarted;
+        }
+
+        if (started && ended) {
+            return buttonsWhenEnded;
+        }
+
+        if (!paused) {
+            return buttonsWhenRunning;
+        }
+
+        return buttonsWhenPaused;
+
+    }
+
+    /** Render only if dialog is not opened */
+    return ( !dialogOpened &&
         <Paper
             className={`${lessonButtonsMenu} ${isMoved ? lessonButtonsMenuDragged : '' }`}
             draggable={draggable}
@@ -119,9 +188,9 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             }}
         >
             {/* Lesson's buttons */}
-            { ( !started && !ended ) && buttonsWhenNotStarted }
-            { ( started && !ended ) && buttonsWhenRunning }
-            { ( started && ended ) && buttonsWhenEnded }
+            <div>
+                { getButtons() }
+            </div>
 
             {/* Buttons for managing draggable menu */}
             <div className={lessonButtonsDragHandle}>
