@@ -8,8 +8,7 @@ const {
     COMPONENTS_STATS_TIMER_STOP,
     COMPONENTS_STATS_RESET,
     COMPONENTS_STATS_PAUSE,
-    COMPONENTS_STATS_UNPAUSE,
-    COMPONENTS_STATS_TIMER_UPDATE
+    COMPONENTS_STATS_UNPAUSE
 } = StatsTypes;
 
 export const INITIAL_STATE: StatsState = {
@@ -34,13 +33,6 @@ const reducer: Reducer<StatsState, StatsActions> = (state = INITIAL_STATE, actio
             return {
                 ...state,
                 running: false,
-                stop: Date.now()
-            };
-        }
-
-        case COMPONENTS_STATS_TIMER_UPDATE: {
-            return {
-                ...state,
                 stop: Date.now()
             };
         }
