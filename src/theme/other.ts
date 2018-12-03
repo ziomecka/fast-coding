@@ -1,7 +1,10 @@
 import {
     NAV_HEIGHT,
     NAV_LEFT,
-    NAV_TOP
+    NAV_TOP,
+    PAPER_PADDING,
+    PAPER_PADDING_MAX,
+    ELEVATION
 } from '../constants';
 
 import {
@@ -32,7 +35,7 @@ export default {
             elevation: 0
         },
         MuiMenu: {
-            elevation: 2
+            elevation: ELEVATION
         },
         MuiButtonBase: {
             disableRipple: false,
@@ -43,7 +46,7 @@ export default {
     overrides: {
         MuiMenu: {
             paper: {
-                padding: '3rem'
+                padding: PAPER_PADDING
             }
         },
         MuiExpansionPanelSummary: {
@@ -77,7 +80,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: "0 6rem",
+                padding: `0 ${PAPER_PADDING_MAX}`,
                 flexDirection: "row", // needed to override column
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
@@ -86,6 +89,14 @@ export default {
                 height: `${NAV_HEIGHT}px`,
                 maxHeight: `${NAV_HEIGHT}px`,
                 width: "100%"
+            }
+        },
+        MuiDialog: {
+            container: {
+                width: "100%"
+            },
+            paper: {
+                padding: PAPER_PADDING
             }
         },
         MuiDialogContent: {

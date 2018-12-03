@@ -38,6 +38,8 @@ export const COLOR_HINTS = '#90ab8e';
 export const FONT_BOLD = 500;
 export const BORDER_THIN = '.5px';
 
+export const ELEVATION = 2;
+
 export const LESSON_DEMO_TEXT = {
     [pl]: 'To jest lekcja pokazowa. ' +
     'Jeśli nigdy nie ćwiczyłeś bezwzrokowego pisania na klawiaturze, ' +
