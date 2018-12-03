@@ -9,13 +9,15 @@ import { ApplicationState } from '../../../store';
 import { LessonState } from '../_duck/reducers';
 import { LessonButtonsState } from './_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
+import { ComponentsContainers, ApplicationContainers, AppContainers } from '../../../_common/';
 
-import { onRestartLesson } from '../_duck/operations';
+import { onRestartLesson, onPauseLesson, onUnpauseLesson } from '../_duck/operations';
 import { onReset } from '../_duck/operations';
+import { unpauseLessonOnJustType } from '../Comparator/_duck/operations';
 
-const { components } = ApplicationContainers;
+const { components, app } = ApplicationContainers;
 const { lesson, lessonButtons } = ComponentsContainers;
+const { dialog } = AppContainers;
 
 import { WithStyles } from '@material-ui/core/styles';
 
@@ -27,7 +29,7 @@ import {
 
 import { onStartLeaving } from './_duck/operations';
 
-import { LocalizeContextProps } from 'react-localize-redux';
+import { LocalizeState } from 'react-localize-redux';
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     restartLesson: () => dispatch(onRestartLesson()),
@@ -35,18 +37,26 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
     turnOnDraggable: () => dispatch(turnOnDraggableLessonButtons()),
     turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons()),
     resetLessonButtons: () => dispatch(resetDraggableLessonButtons()),
-    startLeaving: () => dispatch(onStartLeaving())
+    startLeaving: () => dispatch(onStartLeaving()),
+    pauseLesson: () => dispatch(onPauseLesson(unpauseLessonOnJustType)),
+    unpauseLesson: () => dispatch(onUnpauseLesson())
 });
 
-const mapStateToProps = (state: ApplicationState): LessonState & LessonButtonsState => ({
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[components][lesson],
     ...state[components][lessonButtons],
-    ...state.localize
+    dialogOpened: state[app][dialog].dialogProps.open,
+    localize: state.localize
 });
 
 const LessonButtonsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LessonButtons));
 
 export default LessonButtonsContainer;
+
+interface MapStateToPropsI extends LessonState, LessonButtonsState {
+    localize: LocalizeState,
+    dialogOpened: boolean;
+};
 
 export interface LessonButtonsDispatch {
     restartLesson: () => void;
@@ -55,12 +65,12 @@ export interface LessonButtonsDispatch {
     turnOffDraggable: () => void;
     resetLessonButtons: () => void;
     startLeaving: () => void;
+    pauseLesson: () => void;
+    unpauseLesson: () => void;
 };
 
 export interface LessonButtonsProps extends
-    LessonState,
-    LessonButtonsState,
+    MapStateToPropsI,
     LessonButtonsDispatch,
     RouteComponentProps<{}>,
-    WithStyles,
-    LocalizeContextProps {};
+    WithStyles {};
