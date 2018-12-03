@@ -36,17 +36,13 @@ export default ComparatorContainer;
 
 export interface ComparatorDispatch {
     turnOnComparator: () => void;
-    turnOffComparator: () => void;
     startLesson: () => void;
     endingLesson: () => void;
     addEventListener: () => void;
     removeEventListener: () => void;
 };
 
-// TODO verify
 export interface ComparatorProps extends
     ComparatorState,
     ComparatorDispatch,
-    LessonState {
-        verify?(): boolean;
-    };
+    LessonState {};
