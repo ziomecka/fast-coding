@@ -11,7 +11,7 @@ const PORT = !PROD_ENV ? require('./constants').PORT : process.env.PORT;
 const ROOT = !PROD_ENV ? path.join(__dirname, '/') : __dirname;
 const HTML_PATH = !PROD_ENV
     ? path.resolve(__dirname, '/')
-    : path.resolve(__dirname, '../../../DEPLOY/index.html');
+    : path.resolve(__dirname, '../../../index.html');
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
