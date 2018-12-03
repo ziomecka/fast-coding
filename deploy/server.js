@@ -31,14 +31,14 @@ if (!PROD_ENV) {
 }
 
 app.use(express.static(ROOT, {
-    cacheControl: true, setHeaders: (res, req, next) => {
-        if (RegExp(/.*vendor.chunkhash.*/).test(req.url)) {
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Headers', 'cache-control');
-            res.setHeader("Cache-Control", "public, max-age=20"); //31536000
+    setHeaders: (res, path) => {
+        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+            res.set('Access-Control-Allow-Origin', '*');
+            res.set('Access-Control-Allow-Headers', 'cache-control');
+            res.set("Cache-Control", "public, max-age=20"); //31536000
+        } else {
+            res.set("Cache-Control", "public, max-age=30");
         }
-        res.setHeader("Cache-Control", "public, max-age=0");
-        next();
 }}));
 
 app.get('/lessons/get', async (req, res, next) => {
