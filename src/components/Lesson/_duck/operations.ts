@@ -18,13 +18,40 @@ import { onTurnOffComparator } from '../Comparator/_duck/operations';
 import { resetStats } from '../Stats/_duck/actions';
 import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
 
+import keydownListeners from '../../../shared/keydown.listener';
+
 /** Time to correct the last sign */
 const waitForLastSign = 800;
 let timeout;
 
 export const onEndLesson = (): any => (dispatch: Dispatch) => {
     clearTimeout(timeout);
-    dispatch(endLesson());
+    let answer = dispatch(endLesson());
+    if (answer) {
+        addEscapeReturnListener(dispatch);
+        document.getElementById("lessonStats").scrollIntoView(true);
+    }
+};
+
+let manageKeyDownListeners = keydownListeners();
+
+const escapeReturnListener = (e: KeyboardEvent, dispatch: Dispatch) => {
+    if (e.keyCode === 27) {
+        // TODO reset everything
+        history.push(lessons);
+    }
+
+    if (e.keyCode === 13) {
+        dispatch(onRestartLesson());
+    }
+}
+
+const addEscapeReturnListener = (dispatch: Dispatch) => {
+    manageKeyDownListeners.addKeyDownListener((e: KeyboardEvent) => escapeReturnListener(e, dispatch));
+};
+
+const removeAllKeyDownListeners = () => {
+    manageKeyDownListeners.removeAllKeyDownListeners();
 };
 
 const _endLesson = (dispatch, getState) => {
@@ -61,6 +88,7 @@ export const onReset = (): any => (dispatch: Dispatch) => {
     dispatch(resetLesson());
     dispatch(resetDraggableLessonButtons());
     clearTimeout(timeout);
+    removeAllKeyDownListeners();
 };
 
 export const onRestartLesson = (): any => (dispatch: Dispatch): void => {

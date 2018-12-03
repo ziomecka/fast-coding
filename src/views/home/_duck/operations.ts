@@ -1,5 +1,5 @@
 import { manageButtonFocus as buttonFocus } from '../../../shared/button.focus';
-import { addKeyDownListener, removeKeyDownListener } from '../../../shared/keydown.listener';
+import keydownListeners from '../../../shared/keydown.listener';
 import history from '../../../shared/history';
 import { AppRoutes } from '../../../_common/';
 const { lessons } = AppRoutes;
@@ -7,6 +7,7 @@ const { lessons } = AppRoutes;
 export const buttonsIds = [ 'homeSeeLessons', 'homeStartTyping' ];
 
 const manageButtonFocus = buttonFocus(buttonsIds, 1);
+const manageKeydownListeners = keydownListeners();
 
 const manageFocus = (e: KeyboardEvent): void => manageButtonFocus(e);
 
@@ -19,12 +20,10 @@ const moveToLessons = (e: KeyboardEvent): void => {
 };
 
 export const onAddKeyDownListener = () => {
-    addKeyDownListener(manageFocus);
-    addKeyDownListener(moveToLessons);
+    manageKeydownListeners.addKeyDownListener(manageFocus);
 };
 
 export const onRemoveKeyDownListener = () => {
-    removeKeyDownListener(manageFocus);
-    removeKeyDownListener(moveToLessons);
+    manageKeydownListeners.removeAllKeyDownListeners();
 };
 
