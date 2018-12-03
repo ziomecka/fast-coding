@@ -33,6 +33,11 @@ export default {
         },
         MuiMenu: {
             elevation: 2
+        },
+        MuiButtonBase: {
+            disableRipple: false,
+            disableTouchRipple: true,
+            focusRipple: true
         }
     },
     overrides: {
