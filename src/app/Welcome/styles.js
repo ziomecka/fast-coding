@@ -1,7 +1,8 @@
 import {
     NAV_HEIGHT,
     WELCOME_BUTTON_MARGIN_RIGHT,
-    WELCOME_BUTTON_MARGIN_TOP
+    WELCOME_BUTTON_MARGIN_TOP,
+    NAV_WELCOME_GO_UP
 } from '../../constants';
 
 const styles = theme => {
@@ -22,6 +23,8 @@ const styles = theme => {
         ['height', 'font-size' ], { duration: complex, easing: easeOut },
     )}, ${theme.transitions.create(
         [ 'color' ], { duration: shorter, easing: easeOut }
+    )}, ${theme.transitions.create(
+        ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
     )}`;
 
     return {
@@ -31,31 +34,36 @@ const styles = theme => {
             position: 'fixed',
             top: 0,
             left: 0,
-            paddingBottom: 0,
-            paddingTop: 0,
+            padding: '0',
             backgroundColor: mainPrimary,
-            borderRadius: 0
+            borderRadius: 0,
+            width: '100%',
+            transition: `${transHeightFontSizeColor}`
         },
         welcomeHome: {
             height: '100%',
-            width: '100%',
-            fontSize: theme.typography.pxToRem(30),
-            transition: `${transHeightFontSizeColor}, width 0s linear 0s`,
+            fontSize: theme.typography.pxToRem(30)
         },
         welcomeOther: {
             height: `${NAV_HEIGHT}px`,
             fontSize: theme.typography.pxToRem(16),
-            color: textPrimary,
-            transition: `${transHeightFontSizeColor}, width 0s linear .${complex + 2}s`,
+            color: textPrimary
+        },
+        welcomeLesson: {
+            top: `-${NAV_HEIGHT}px`
         },
         welcomeHeading: {
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
+            padding: '0 6rem'
         },
         welcomeHeadingOther: {
             position: 'relative',
             fontSize: theme.typography.display2.fontSize,
             color: contrastTextSecondary
+        },
+        welcomeButtons: {
+            paddingLeft: '6rem'
         },
         welcomeButton: {
             margin: `${spacingUnit * WELCOME_BUTTON_MARGIN_TOP} ${spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT} ${spacingUnit} 0`,

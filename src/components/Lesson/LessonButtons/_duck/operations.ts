@@ -1,13 +1,16 @@
 import { Dispatch } from 'redux';
 import { AppRoutes } from '../../../../_common/';
+import { ApplicationState } from '../../../../_reducers';
 
 const { lessons } = AppRoutes;
 
 import { openDialog, closeDialog } from '../../../../app/Dialog/_duck/actions';
-import { onReset } from '../../_duck/operations';
+import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations';
 
 import history from '../../../../shared/history';
 import { manageButtonFocus as buttonFocus } from '../../../../shared/button.focus';
+
+import getTranslation from '../../../../shared/get.translation';
 
 const leave = (dispatch: Dispatch) => {
     dispatch(onReset());
@@ -15,24 +18,54 @@ const leave = (dispatch: Dispatch) => {
     history.push(lessons);
 };
 
-const cancelLeave = (dispatch: Dispatch) => dispatch(closeDialog());
+const cancelLeave = (dispatch: Dispatch) => {
+    let answer = dispatch(closeDialog());
+    if (answer) {
+        dispatch(onUnpauseLesson());
+        answer = null; // GC
+    }
+}
 
 const buttonsIds = [ 'dialogLeave', 'dialogCancel' ];
 const manageButtonFocus = buttonFocus(buttonsIds, 1);
 
 const onKeyDown = (e: KeyboardEvent): void => manageButtonFocus(e);
 
-export const onStartLeaving = (): any => (dispatch: Dispatch) => {
+export const onStartLeaving = (): any => (dispatch: Dispatch, getState: ()=> ApplicationState) => {
+    dispatch(onPauseLesson());
+
+    const press = getTranslation(getState().localize, 'buttonsPress');
+
     dispatch(
         openDialog({
             buttons: [
-                [ 'leave', () => leave(dispatch), { id: buttonsIds[1] }],
-                [ 'cancel', () => cancelLeave(dispatch), { id: buttonsIds[0], color: 'secondary', autoFocus: `{true}` } ]
+                {
+                    title: 'leave',
+                    buttonProps: {
+                        id: buttonsIds[1],
+                        onClick: () => leave(dispatch),
+                    },
+                    translationId: 'lessonDialogOKLeave',
+                    // afterText: `${press} Enter`
+                },
+                {
+                    title: 'cancel',
+                    buttonProps: {
+                        id: buttonsIds[0],
+                        color: 'secondary',
+                        autoFocus: `{true}`,
+                        onClick: () => cancelLeave(dispatch),
+                    },
+                    translationId: 'lessonDialogCancelLeave',
+                    aftertext: `${press} ESC`
+                }
             ],
-            title: 'Do you want to leave lesson?',
-            message: 'Are you sure?',
-            onClose: () => cancelLeave(dispatch),
-            onKeyDown: (e: KeyboardEvent) => onKeyDown(e)
+            titleId: 'lessonDialogLeaveQuestion',
+            messageId: 'lessonDialogLeaveExplanation',
+            dialogProps: {
+                onClose: () => cancelLeave(dispatch),
+                onKeyDown: (e: KeyboardEvent) => onKeyDown(e)
+            }
         }
     ));
 };

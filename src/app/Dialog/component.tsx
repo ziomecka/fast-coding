@@ -1,55 +1,52 @@
 import * as React from 'react';
 
 /** Materials */
-import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
+
+import ButtonWithHint from '../ButtonWithHint';
 
 import { AppDialogProps } from './container';
 
+import { Translate } from 'react-localize-redux';
+
 const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
   const {
-      open,
-      title,
-      message,
+      titleId,
+      messageId,
       buttons,
-      onClose,
-      onKeyDown
+      dialogProps
      } = props;
 
   return (
     <Dialog
-        {...{ open, onClose, onKeyDown }}
+        { ...dialogProps }
         disableBackdropClick={false}
         disableEscapeKeyDown={false}
     >
-      <Paper>
         <DialogTitle>
-            {title}
+            <Translate id={titleId} />
         </DialogTitle>
 
         <DialogContent>
             <DialogContentText>
-                {message}
+                <Translate id={messageId} />
             </DialogContentText>
         </DialogContent>
 
         <DialogActions>
             {buttons.map((button, ind) => (
-                <Button
-                    key={`${button[0]}-${ind}`}
-                    onClick={button[1]}
-                    {...button[2] ? button[2] : null}
-                >
-                    {button[0]}
-                </Button>
+                <ButtonWithHint
+                    key={`dialogButton-${ind}`}
+                    buttonProps={button.buttonProps}
+                    translationId={button.translationId}
+                    aftertext={button.aftertext}
+                />
             ))}
         </DialogActions>
-      </Paper>
     </Dialog>
   );
 };

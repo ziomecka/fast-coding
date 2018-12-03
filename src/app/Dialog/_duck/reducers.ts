@@ -1,7 +1,7 @@
 import { Action, Reducer } from 'redux';
 
 import { DialogTypes } from './types';
-import { DialogActions } from './actions';
+import { DialogActions, OpenDialogAction } from './actions';
 import { DialogProps } from '@material-ui/core/Dialog';
 import { ButtonProps } from '@material-ui/core/Button';
 
@@ -11,35 +11,42 @@ const {
 } = DialogTypes;
 
 export const INITIAL_STATE: DialogState = {
-    open: false,
-    title: '',
-    message: '',
-    buttons: []
+    titleId: '',
+    messageId: '',
+    buttons: [],
+    dialogProps: {
+        open: false
+    }
 };
 
 const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_DIALOG_OPEN:
+            const { dialogProps, ...other } = (action as OpenDialogAction).options;
+
             return {
                 ...state,
-                open: true,
                 // @ts-ignore
-                ...action.options
+                ...other,
+                dialogProps: {
+                    ...dialogProps,
+                    open : true
+                }
             };
 
         case APP_DIALOG_CLOSE:
             return {
-                open: false,
-                title: '',
-                message: '',
+                titleId: '',
+                messageId: '',
                 buttons: [],
-                onClose: null,
-                onEnter: null,
-                onEscapeClickDown: null,
-                onBackdropClick: null,
-                onExited: null,
-                onExiting: null,
-                onKeyDown: null
+                dialogProps: {
+                    open: false,
+                    onClose: null,
+                    onEnter: null,
+                    onBackdropClick: null,
+                    onExited: null,
+                    onKeyDown: null
+                }
             };
 
         default:
@@ -49,20 +56,27 @@ const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_S
 
 export { reducer as dialogReducer };
 
+interface DialogButtonsProps {
+    title: string,
+    buttonProps: ButtonProps;
+    translationId: string;
+    aftertext?: string;
+    key?: string
+}
+
 interface AppDialogOptions {
-    message: string;
-    buttons: Array<[string, () => void, ButtonProps?]>;
+    messageId: string;
+    titleId: string;
+    buttons: Array<DialogButtonsProps>;
+    dialogProps: DialogProps;
 };
 
 export interface DialogOptions extends AppDialogOptions {
-    title: string;
     onClose: () => void;
     onEnter?: () => void;
-    onEscapeClickDown?: () => void;
     onBackdropClick?: () => void;
     onExited?: () => void;
-    onExiting?: () => void;
     onKeydown?: () => void;
 };
 
-export interface DialogState extends AppDialogOptions, DialogProps {};
+export interface DialogState extends AppDialogOptions {};

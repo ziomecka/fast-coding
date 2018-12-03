@@ -7,25 +7,13 @@ const base = require('./webpack.base.js');
 const DEPLOY_DIR = path.resolve(__dirname, '..', 'deploy');
 
 const CompressionPlugin = require('compression-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(base, {
   mode: 'production',
   output: {
     path: DEPLOY_DIR,
+    chunkFilename: '[name].chunkhash.bundle.js',
   },
-  externals: [
-    // {
-    //   react: {
-    //     root: 'React',
-    //     commonjs2: 'react',
-    //     commonjs: ['react'],
-    //     amd: 'react',
-    //   },
-    // },
-    // /@material-ui\/core\/*./,
-    // /@material-ui\/icons\/*./
-  ],
   module: {
     rules: [
       {
@@ -36,16 +24,28 @@ module.exports = merge(base, {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': 'production' }),
     new CompressionPlugin(),
-    new BundleAnalyzerPlugin()
   ],
 
   optimization: {
     minimize: true,
     namedModules: true,
-    usedExports: true
+    usedExports: true,
+    splitChunks: {
+        cacheGroups: {
+            commons: {
+                chunks: "initial",
+                minChunks: 2
+            },
+            vendor: {
+                test: /node_modules/,
+                chunks: "initial",
+                name: "vendor",
+                priority: 10,
+                enforce: true
+            }
+        }
+    }
   },
-});
+})

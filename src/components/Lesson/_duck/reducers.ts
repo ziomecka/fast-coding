@@ -13,6 +13,8 @@ const {
     COMPONENTS_LESSON_TEXT_UPDATE,
     COMPONENTS_LESSON_UPDATE,
     COMPONENTS_LESSON_START,
+    COMPONENTS_LESSON_PAUSE,
+    COMPONENTS_LESSON_UNPAUSE,
     COMPONENTS_LESSON_END,
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
@@ -32,6 +34,7 @@ export const INITIAL_STATE: LessonState = {
     signs: [],
     otherSigns: [],
     started: false,
+    paused: false,
     ended: false,
     ending: false,
 };
@@ -40,7 +43,6 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
     switch (action.type) {
         case COMPONENTS_LESSON_UPDATE:
         case COMPONENTS_LESSON_OPEN: {
-            console.log(action);
             return {
                 ...state,
                 ...(action as OpenLessonAction).lessonData
@@ -108,8 +110,23 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
                 ...INITIAL_STATE,
                 signs: [],
                 otherSigns: [],
-                text: LESSON_DEMO_TEXT[language],
+                lessonText: LESSON_DEMO_TEXT[language],
+                text: '',
                 title: LESSON_DEMO_TITLE[language]
+            };
+        }
+
+        case COMPONENTS_LESSON_PAUSE: {
+            return {
+                ...state,
+                paused: true
+            };
+        }
+
+        case COMPONENTS_LESSON_UNPAUSE: {
+            return {
+                ...state,
+                paused: false
             };
         }
 
@@ -134,6 +151,7 @@ export interface OriginalLessonData {
 export interface LessonData extends OriginalLessonData {
     lessonText: string;
     started: boolean;
+    paused: boolean;
     ended: boolean;
     ending: boolean;
 };

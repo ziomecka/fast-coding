@@ -3,6 +3,9 @@ const { pl, en } = LanguagesEnum;
 
 export const ROOT_NODE = document.getElementById('root');
 
+export const PAPER_PADDING = '3rem';
+export const PAPER_PADDING_MAX = '6rem';
+
 export const HOME_HEADING_ANIMATED = true;
 export const HOME_NOTIFICATION = "Nice to see you";
 export const HOME_WELCOME_TIMEOUT = 1000;
@@ -10,11 +13,14 @@ export const HOME_WELCOME_TIMEOUT = 1000;
 export const NOTIFICATION_DURATION = 2500;
 
 export const NAV_HEIGHT = 120;
+export const NAV_MAXWIDTH = 400;
 export const NAV_TOP = 0;
 export const NAV_LEFT = 0;
 
 export const WELCOME_BUTTON_MARGIN_TOP = 6;
 export const WELCOME_BUTTON_MARGIN_RIGHT = 2;
+
+export const NAV_WELCOME_GO_UP = 3;
 
 export const CONTENT_PADDING_TOP = NAV_HEIGHT;
 
@@ -27,6 +33,12 @@ export const LESSON_WRAPPER_SIZE = 15;
 
 export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#ccdad1'
 export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
+export const COLOR_HINTS = '#90ab8e';
+
+export const FONT_BOLD = 500;
+export const BORDER_THIN = '.5px';
+
+export const ELEVATION = 2;
 
 export const LESSON_DEMO_TEXT = {
     [pl]: 'To jest lekcja pokazowa. ' +

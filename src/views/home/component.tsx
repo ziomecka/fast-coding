@@ -12,10 +12,6 @@ import User from '../../app/User/container';
 
 import { AppContainers, AppRoutes } from '../../_common/';
 
-import {
-    HOME_NOTIFICATION,
-} from '../../constants';
-
 const { content, welcome } = AppContainers;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
@@ -24,8 +20,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
         super(props);
 
         this.homeUrl = AppRoutes.home;
-
-        props.openNotification(HOME_NOTIFICATION);
 
         this.props.addKeyDownListener();
     }

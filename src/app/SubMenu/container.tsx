@@ -10,7 +10,7 @@ import { onSetNavAnchorEl } from './_duck/operations';
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
-import { MenuContainers, SubMenuRulesEnum, NavRulesEnum } from '../_common/';
+import { MenuContainers, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '../_common/';
 
 import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/';
 
@@ -20,10 +20,13 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 const { app } = ApplicationContainers;
 const { appMenu, user } = AppContainers;
 
+import { LocalizeState } from 'react-localize-redux';
+
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): ExtendedMenuState => ({
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][appMenu],
-    authorized: state[app][user].authorized
+    authorized: state[app][user].authorized,
+    localize: state.localize
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): SubMenuDispatch => ({
@@ -44,6 +47,7 @@ export type SubMenuItemType = {
     appRoute?: AppRoutes;
     rules: SubMenuRulesEnum[];
     onClick?: () => void;
+    lang?: LanguagesEnum;
 };
 
 export interface __SubMenuProps {
@@ -55,12 +59,13 @@ export interface __SubMenuProps {
     iconButton?: IconButtonProps;
 };
 
-interface ExtendedMenuState extends MenuState {
+interface MapStateToPropsI extends MenuState {
     authorized: boolean;
+    localize: LocalizeState;
 };
 
 export interface SubMenuProps extends __SubMenuProps,
     SubMenuDispatch,
-    ExtendedMenuState,
+    MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles {};

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { SubMenuProps } from './container';
-import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, MenuContainers } from '../../_common/';
+import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, MenuContainers, LanguagesEnum } from '../../_common/';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -16,7 +16,10 @@ import styles from './styles';
 
 const { demo, lesson, lessons, home, login, newuser } = AppRoutes;
 const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
-const { notCurrentLocation, onlyAuthorized, onlyUnauthorized} = SubMenuRulesEnum;
+const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
+const { pl, en } = LanguagesEnum;
+
+import { getActiveLanguage } from 'react-localize-redux';
 
 /** Iternal state needed because otherwise React does not see change of state */
 interface InternalState {
@@ -88,17 +91,18 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     };
 
     // @ts-ignore
-    get subMenuRules (): {[key: SubMenuRulesEnum]: () => boolean } {
+    get subMenuRules (): {[key: SubMenuRulesEnum]: (path?: AppRoutes, lang?: LanguagesEnum) => boolean } {
         return {
             [onlyAuthorized]: () => this.props.authorized,
             [onlyUnauthorized]: () => !this.props.authorized,
-            [notCurrentLocation]: (path: string) => path !== this.currentPathname
+            [notCurrentLocation]: (path: AppRoutes) => path !== this.currentPathname,
+            [notActiveLanguage]: (path: AppRoutes, lang: LanguagesEnum) => lang!== getActiveLanguage(this.props.localize).code
         }
     };
 
     /** If function for rule is not implemented an error will be thrown */
-    areSubMenuRulesMet (rules, pathname): (rules: SubMenuRulesEnum[] | null, pathname: string) => boolean {
-        return (!rules || rules.every(rule => this.subMenuRules[rule](pathname)));
+    areSubMenuRulesMet (rules: SubMenuRulesEnum[], pathname: AppRoutes, lang?: LanguagesEnum | ''): boolean {
+        return (!rules || rules.every(rule => this.subMenuRules[rule](pathname, lang)));
     };
 
     // @ts-ignore
@@ -116,13 +120,15 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         return (!this.props.rules || this.props.rules.every(rule => this.navRules[rule]()));
     };
 
-    getLink (appRoute: AppRoutes, title: string) {
+    getLink (appRoute: AppRoutes, title: string, className: string) {
         let ind = 0;
+
         return (
             <MenuItem
                 onClick={() => this.handleClose(appRoute)}
                 key={`link-${title}-${ind++}`}
                 divider={true}
+                {...{ className }}
             >
                 <NavLink to={appRoute}>
                     {title}
@@ -131,13 +137,14 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         );
     };
 
-    getButton (onClick, title) {
+    getButton (onClick, title: string, className: string) {
         let ind = 0;
         return (
             <MenuItem
                 {...{ onClick }}
                 key={`button-${title}-${ind++}`}
                 divider={true}
+                {...{ className }}
             >
                 {title}
             </MenuItem>
@@ -153,14 +160,17 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     renderList () {
-        const { iconButton = {} } = this.props;
+        const {
+            iconButton = {},
+            classes: { menuItemClass, menuIconClass, menuClass }
+        } = this.props;
 
         return (
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
                     <IconButton
                         onClick={this.handleClick}
-                        className={this.props.classes.menuIcon}
+                        className={menuIconClass}
                         {...iconButton}
                     >
                         {this.props.icon}
@@ -170,14 +180,14 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                     {<Menu
                         anchorEl={this.anchorEl}
                         open={Boolean(this.anchorEl)}
-                        className={this.props.classes.menu}
+                        classes={{ paper : menuClass }}
                     >
                         {this.props.menuItems.map((menuItem, ind) => {
-                            const { rules, appRoute, title, onClick } = menuItem;
-                            if (this.areSubMenuRulesMet(rules, appRoute)) {
+                            const { rules, appRoute, title, onClick, lang = '' } = menuItem;
+                            if (this.areSubMenuRulesMet(rules, appRoute, lang)) {
                                 return (
-                                    (appRoute && this.getLink(appRoute, title)) ||
-                                    (onClick && this.getButton(onClick, title))
+                                    (appRoute && this.getLink(appRoute, title, menuItemClass)) ||
+                                    (onClick && this.getButton(onClick, title, menuItemClass))
                                 );
                             }
 
@@ -190,18 +200,22 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     renderOneItem() {
-        const { rules, appRoute } = this.props.menuItem;
-        const { iconButton = {} } = this.props;
+        const {
+            iconButton = {},
+            classes: { menuIconClass },
+            menuItem: { rules, appRoute },
+            icon // TODO GC?
+        } = this.props;
 
         /** Render if not current pathname */
         if (this.areSubMenuRulesMet(rules, appRoute)) {
             return (
                 <IconButton
                     onClick={() => this.handleClose(appRoute)}
-                    className={this.props.classes.menuIcon}
-                    {...iconButton}
+                    className={ menuIconClass }
+                    { ...iconButton }
                 >
-                    {this.props.icon}
+                    { icon }
                 </IconButton>
             );
         }

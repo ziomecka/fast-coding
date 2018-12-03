@@ -45,6 +45,18 @@ const postcssNext = require('postcss-cssnext');
 const cssDeclarationSorter = require('css-declaration-sorter');
 const cssMqpacker = require('css-mqpacker');
 
+// CLEAN
+let pathToClean = process.argv
+    .filter(item => RegExp(/.*PATH_TO_CLEAN.*/).test(item))[0] || '';
+pathToClean = pathToClean.substr(pathToClean.search('=') + 1) || '';
+
+const CLEAN_WEBPACK_PLUGIN = require('clean-webpack-plugin');
+const pathsToClean = [ pathToClean ];
+const cleanOptions = {
+    root: '/home/kasia/Dokumenty/fast-coding/',
+    verbose: true
+};
+
 module.exports = {
   mode: MODE,
   entry: [`${APP_DIR}/index.tsx`],
@@ -152,12 +164,15 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
+    //   template: path.resolve(__dirname, `${APP_DIR}/index.hbs`),
       template: `${APP_DIR}/index.hbs`,
+    //   stats: { children: false }
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new CLEAN_WEBPACK_PLUGIN( pathsToClean , cleanOptions),
   ],
   optimization: {},
 };

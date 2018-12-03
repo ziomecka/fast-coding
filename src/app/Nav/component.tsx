@@ -21,7 +21,7 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
-import { MenuContainers, NavRulesEnum } from '../../_common/';
+import { MenuContainers, NavRulesEnum, SubMenuRulesEnum } from '../../_common/';
 const { userMenu, languagesMenu } = MenuContainers;
 
 const appBarColor = 'primary';
@@ -30,17 +30,28 @@ import * as submenus from './submenus';
 import { __SubMenuProps } from '../SubMenu/container';
 import { withLocalize } from 'react-localize-redux';
 
+
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson } = NavRulesEnum;
-    const { languages, setActiveLanguage, activeLanguage } = props;
+    const { notActiveLanguage } = SubMenuRulesEnum;
+    const {
+        languages,
+        setActiveLanguage,
+        activeLanguage,
+        classes: { navClass, navLessonClass }
+    } = props;
 
     const subMenus: __SubMenuProps[] = [
+        /** Languages menu */
         {
             menuItems: Object.keys(languages)
                 .reduce((acc, cv) => {
                     const { code } = languages[cv];
+
                     acc.push({
                         title: code,
+                        rules: [ notActiveLanguage ],
+                        lang: code,
                         onClick: () => {
                             setActiveLanguage(code)
                         } });
@@ -50,6 +61,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
             container: languagesMenu,
             rules: [],
         },
+        /** Lessons menu */
         {
             menuItem: submenus.lessonsMenuItem,
             icon: <Dashboard />,
@@ -58,19 +70,21 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                 title: 'Courses'
             }
         },
+        /** User menu */
         {
             menuItems: submenus.userMenuItems,
             icon: <Face />,
             container: userMenu,
-            rules: [ notAnyLesson ],
             iconButton: {
                 title: 'User'
             }
         }
     ] as __SubMenuProps[];
 
+    const isLesson = () => RegExp(/.*lessons\/lesson-.*/).test(props.location.pathname);
+
     return (
-        <AppBar color={appBarColor}>
+        <AppBar color={appBarColor} className={`${navClass} ${isLesson() ? navLessonClass : ''}`}>
             <Welcome
                 heading={
                     getTranslations(props.localize).welcomeHeading[

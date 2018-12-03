@@ -8,10 +8,11 @@ import { ApplicationState } from '../../store';
 import { LessonState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainers, ComponentsContainers, ComparatorContainers } from '../../_common/';
 
 const { components } = ApplicationContainers;
-const { lesson } = ComponentsContainers;
+const { lesson, comparator } = ComponentsContainers;
+const { stats } = ComparatorContainers;
 
 import { onReset } from './_duck/operations';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
@@ -19,9 +20,20 @@ import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/action
 
 import { WithStyles } from '@material-ui/core/styles';
 
-const mapStateToProps = (state: ApplicationState): LessonState => ({
-    ...state[components][lesson]
-});
+import { LocalizeState } from 'react-localize-redux';
+
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => {
+    const { time, start, stop, running } = state[components][comparator][stats];
+
+    return {
+        ...state[components][lesson],
+        time,
+        start,
+        stop,
+        running,
+        localize: { ...state.localize }
+    };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     ...notificationMapDiaptchToProps(dispatch),
@@ -36,6 +48,14 @@ const LessonContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(
 
 export default LessonContainer;
 
+interface MapStateToPropsI extends LessonState {
+    start: number;
+    time: number;
+    stop: number;
+    running: boolean;
+    localize: LocalizeState;
+}
+
 export interface LessonDispatch extends NotificationDispatch {
     reset: () => void;
     registerOnDrop: (fun: Function) => void;
@@ -44,6 +64,6 @@ export interface LessonDispatch extends NotificationDispatch {
 };
 
 export interface LessonProps extends LessonDispatch,
-    LessonState,
+    MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles {};

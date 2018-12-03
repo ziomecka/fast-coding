@@ -12,8 +12,10 @@
     "heroku"
   ],
   "scripts": {
-    "bundle": "webpack --watch --progress --config ./webpack/webpack.bundle.js",
-    "deploy": "webpack --config ./webpack/webpack.deploy.js",
+    "bundle": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle' --profile --json > webpack/webpack-bundle-stats.json",
+    "deploy": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy' --profile --json > webpack/webpack-deploy-stats.json",
+    "aBundle": "webpack-bundle-analyzer ./webpack/webpack-bundle-stats.json",
+    "aDeploy": "webpack-bundle-analyzer ./webpack/webpack-deploy-stats.json",
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
     "inspectNode": "node --inspect  ./bundle/server.js",
@@ -70,7 +72,7 @@
     "global": "^4.3.2",
     "handlebars-loader": "^1.7.0",
     "history": "^4.7.2",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^3.0.7",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^23.6.0",
     "jest-cli": "^23.5.0",

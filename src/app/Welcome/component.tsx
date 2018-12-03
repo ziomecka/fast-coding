@@ -84,6 +84,10 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         return this.props.location.pathname === this.home;
     }
 
+    get isLesson() {
+        return RegExp(/.*lessons\/lesson-.*/).test(this.props.location.pathname);
+    }
+
     heading = () => {
         const { animated, heading, classes } = this.props;
         const { classFalling } = this;
@@ -114,22 +118,34 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     };
 
     render()  {
-        const { classes } = this.props;
-        const { heading, isHome } = this;
         const {
-            welcomePaper,
-            welcomeHome,
-            welcomeOther,
-            welcomeButtons,
-            welcomeButton,
-            welcomeButtonMain,
-            welcomeHeading,
-            welcomeHeadingOther
-        } = classes;
+            heading,
+            isHome,
+            isLesson,
+            props: {
+                classes: {
+                    welcomePaper,
+                    welcomeHome,
+                    welcomeOther,
+                    welcomeButtons,
+                    welcomeButton,
+                    welcomeButtonMain,
+                    welcomeHeading,
+                    welcomeHeadingOther,
+                    welcomeLesson
+                }
+            }
+        } = this;
 
         return (
             <Paper className={
-                `${welcomePaper} ${isHome ? welcomeHome : welcomeOther}`
+                `${welcomePaper} ${
+                    isHome
+                    ? welcomeHome
+                    : isLesson
+                        ? welcomeLesson
+                        : welcomeOther
+                    }`
             }>
                 <Typography variant="h1" className={`${welcomeHeading} ${!isHome && welcomeHeadingOther}`}>
                     {heading()}
@@ -142,7 +158,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
                 {/* Render buttons only when Home */}
                 {isHome && (
-                    <div className={welcomeButtons}>
+                    <div className={ welcomeButtons }>
                         <Button
                             onClick={this.goToLessons}
                             className={welcomeButton}

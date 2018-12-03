@@ -1,7 +1,10 @@
 import {
     NAV_HEIGHT,
     NAV_LEFT,
-    NAV_TOP
+    NAV_TOP,
+    PAPER_PADDING,
+    PAPER_PADDING_MAX,
+    ELEVATION
 } from '../constants';
 
 import {
@@ -30,12 +33,31 @@ export default {
         },
         MuiExpansionPanelSummary: {
             elevation: 0
+        },
+        MuiMenu: {
+            elevation: ELEVATION
+        },
+        MuiButtonBase: {
+            disableRipple: false,
+            disableTouchRipple: true,
+            focusRipple: true
         }
     },
     overrides: {
+        MuiMenu: {
+            paper: {
+                padding: PAPER_PADDING
+            }
+        },
         MuiExpansionPanelSummary: {
-            ...flexColumn,
-            expanded: { ...flexColumn }
+            root: { ...flexColumn },
+            expanded: {
+                ...flexColumn,
+                width: '100%',
+                '&:hover': {
+                    cursor: 'auto !important'
+                }
+            }
         },
         MuiExpansionPanelDetails: {
             root: { flexWrap: 'wrap' }
@@ -46,7 +68,6 @@ export default {
         MuiPaper: {
             root: {
                 ...flexColumnJustifyFlexStartAlignCenter,
-                padding: "4em",
                 boxSizing: 'border-box'
             }
         },
@@ -59,7 +80,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: "3em",
+                padding: `0 ${PAPER_PADDING_MAX}`,
                 flexDirection: "row", // needed to override column
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
@@ -68,6 +89,14 @@ export default {
                 height: `${NAV_HEIGHT}px`,
                 maxHeight: `${NAV_HEIGHT}px`,
                 width: "100%"
+            }
+        },
+        MuiDialog: {
+            container: {
+                width: "100%"
+            },
+            paper: {
+                padding: PAPER_PADDING
             }
         },
         MuiDialogContent: {

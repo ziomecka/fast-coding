@@ -1,4 +1,4 @@
-import { CONTENT_PADDING_TOP } from '../../constants';
+import { CONTENT_PADDING_TOP, PAPER_PADDING_MAX } from '../../constants';
 
 const styles = theme => {
     const {
@@ -15,7 +15,7 @@ const styles = theme => {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
-            paddingTop: CONTENT_PADDING_TOP,
+            padding: `${CONTENT_PADDING_TOP} ${PAPER_PADDING_MAX}`,
             overflow: 'hidden',
             backgroundColor: defaultBackground
         },
