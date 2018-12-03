@@ -108,7 +108,7 @@ export const handleBackSpace = (dispatch: Dispatch, getState: () => ApplicationS
 export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => ApplicationState): void => {
     let state = getState()[components];
     let { errors, allErrors, currentSignIndex } = state[comparator];
-    let { text } = state[lesson];
+    let { lessonText: text } = state[lesson];
 
     /** currentSignIndex cannot be higher then text.length - 1 */
     const nextCurrentSignIndex = (currentSignIndex + 1 > text.length - 1)
