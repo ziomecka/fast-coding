@@ -9,6 +9,8 @@ const {
     COMPONENTS_LESSON_TEXT_UPDATE,
     COMPONENTS_LESSON_UPDATE, // TODO?
     COMPONENTS_LESSON_START,
+    COMPONENTS_LESSON_PAUSE,
+    COMPONENTS_LESSON_UNPAUSE,
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
     COMPONENTS_LESSON_END,
@@ -60,6 +62,14 @@ export const openDemoLesson: ActionCreator<OpenDemoLessonAction> = (language: La
 
 export const restartLesson: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_RESTART
+});
+
+export const pauseLesson: ActionCreator<Action> = () => ({
+    type: COMPONENTS_LESSON_PAUSE
+});
+
+export const unpauseLesson: ActionCreator<Action> = () => ({
+    type: COMPONENTS_LESSON_UNPAUSE
 });
 
 export default {

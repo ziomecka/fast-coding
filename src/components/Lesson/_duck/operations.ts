@@ -1,21 +1,27 @@
 import { Dispatch } from 'redux';
 import { ApplicationState } from '../../../_reducers';
-import { ApplicationContainers, ComponentsContainers } from '../../../_common';
+import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../_common';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
+const { lessons } = AppRoutes;
+
+import history from '../../../shared/history';
 
 import {
     resetLesson,
     endingLesson,
     notEndingLesson,
     endLesson,
-    restartLesson
+    restartLesson,
+    pauseLesson,
+    unpauseLesson
 } from './actions';
 
-import { onResetComparator } from '../Comparator/_duck/operations';
+import { onResetComparator, onPauseComparator, onUnpauseComparator } from '../Comparator/_duck/operations';
 import { onTurnOffComparator } from '../Comparator/_duck/operations';
 import { resetStats } from '../Stats/_duck/actions';
+import { onPauseTimer, onUnpauseTimer } from '../Stats/_duck/operations';
 import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
 
 import keydownListeners from '../../../shared/keydown.listener';
@@ -96,6 +102,19 @@ export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(resetStats());
     dispatch(restartLesson());
     clearTimeout(timeout);
+    removeAllKeyDownListeners();
+};
+
+export const onPauseLesson = (listener?): any => (dispatch: Dispatch): void => {
+    dispatch(onPauseTimer());
+    dispatch(onPauseComparator(listener));
+    dispatch(pauseLesson());
+};
+
+export const onUnpauseLesson = (): any => (dispatch: Dispatch): void => {
+    dispatch(onUnpauseComparator());
+    dispatch(unpauseLesson());
+    dispatch(onUnpauseTimer());
 };
 
 export default {
