@@ -25,7 +25,9 @@ const {
 const {
     COMPONENTS_STATS_TIMER_START,
     COMPONENTS_STATS_TIMER_STOP,
-    COMPONENTS_STATS_RESET
+    COMPONENTS_STATS_RESET,
+    COMPONENTS_STATS_PAUSE,
+    COMPONENTS_STATS_UNPAUSE
 } = StatsTypes;
 
 /**
@@ -79,6 +81,8 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
             };
         }
 
+        case COMPONENTS_STATS_PAUSE:
+        case COMPONENTS_STATS_UNPAUSE:
         case COMPONENTS_STATS_TIMER_START:
         case COMPONENTS_STATS_TIMER_STOP:
         case COMPONENTS_STATS_RESET: {

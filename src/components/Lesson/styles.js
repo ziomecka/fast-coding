@@ -1,5 +1,9 @@
 const styles = theme => {
-    const { typography: { h6: { fontSize: inviteFontSize } } } = theme;
+    const {
+        typography: { h6: { fontSize: inviteFontSize } },
+        palette: { secondary: { main: hintColor } },
+        spacing: { unit: spacingUnit }
+    } = theme;
 
     return {
         lessonPaper: {
@@ -8,7 +12,16 @@ const styles = theme => {
         lessonInvite: {
             padding: 0,
             margin: 0,
-            fontSize: inviteFontSize
+            fontSize: inviteFontSize,
+        },
+        lessonTime: {
+            position: 'relative',
+            '&:after': {
+                content: "attr(aftertext)",
+                color: hintColor,
+                position: 'absolute',
+                marginLeft: spacingUnit
+            }
         }
     };
 };

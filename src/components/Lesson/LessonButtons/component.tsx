@@ -17,7 +17,7 @@ import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import getTranslation from '../../../shared/get.translations';
+import getTranslation from '../../../shared/get.translation';
 
 const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = props => {
     const {

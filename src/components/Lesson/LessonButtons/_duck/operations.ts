@@ -10,8 +10,7 @@ import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations
 import history from '../../../../shared/history';
 import { manageButtonFocus as buttonFocus } from '../../../../shared/button.focus';
 
-import getTranslation from '../../../../shared/get.translations';
-import { unpauseLessonOnEsc } from '../../Comparator/_duck/operations';
+import getTranslation from '../../../../shared/get.translation';
 
 const leave = (dispatch: Dispatch) => {
     dispatch(onReset());

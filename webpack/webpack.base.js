@@ -48,7 +48,7 @@ const cssMqpacker = require('css-mqpacker');
 // CLEAN
 let pathToClean = process.argv
     .filter(item => RegExp(/.*PATH_TO_CLEAN.*/).test(item))[0] || '';
-pathToClean = pathToClean.substr(pathToClean.search('=') + 1) || 'bundle';
+pathToClean = pathToClean.substr(pathToClean.search('=') + 1) || '';
 
 const CLEAN_WEBPACK_PLUGIN = require('clean-webpack-plugin');
 const pathsToClean = [ pathToClean ];

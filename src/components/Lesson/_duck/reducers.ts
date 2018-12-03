@@ -13,6 +13,8 @@ const {
     COMPONENTS_LESSON_TEXT_UPDATE,
     COMPONENTS_LESSON_UPDATE,
     COMPONENTS_LESSON_START,
+    COMPONENTS_LESSON_PAUSE,
+    COMPONENTS_LESSON_UNPAUSE,
     COMPONENTS_LESSON_END,
     COMPONENTS_LESSON_ENDING,
     COMPONENTS_LESSON_NOT_ENDING,
@@ -32,6 +34,7 @@ export const INITIAL_STATE: LessonState = {
     signs: [],
     otherSigns: [],
     started: false,
+    paused: false,
     ended: false,
     ending: false,
 };
@@ -114,6 +117,20 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
             };
         }
 
+        case COMPONENTS_LESSON_PAUSE: {
+            return {
+                ...state,
+                paused: true
+            };
+        }
+
+        case COMPONENTS_LESSON_UNPAUSE: {
+            return {
+                ...state,
+                paused: false
+            };
+        }
+
         default: {
             return { ...state };
         }
@@ -135,6 +152,7 @@ export interface OriginalLessonData {
 export interface LessonData extends OriginalLessonData {
     lessonText: string;
     started: boolean;
+    paused: boolean;
     ended: boolean;
     ending: boolean;
 };
