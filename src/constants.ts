@@ -3,6 +3,9 @@ const { pl, en } = LanguagesEnum;
 
 export const ROOT_NODE = document.getElementById('root');
 
+export const PAPER_PADDING = '3rem';
+export const PAPER_PADDING_MAX = '6rem';
+
 export const HOME_HEADING_ANIMATED = true;
 export const HOME_NOTIFICATION = "Nice to see you";
 export const HOME_WELCOME_TIMEOUT = 1000;
@@ -33,6 +36,7 @@ export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
 export const COLOR_HINTS = '#90ab8e';
 
 export const FONT_BOLD = 500;
+export const BORDER_THIN = '.5px';
 
 export const LESSON_DEMO_TEXT = {
     [pl]: 'To jest lekcja pokazowa. ' +
