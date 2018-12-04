@@ -1,12 +1,14 @@
 import { Action, ActionCreator } from 'redux';
 import { ComparatorTypes } from './types';
+import { ComparatorState } from './reducers';
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
     COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
     COMPONENTS_COMPARATOR_CORRECT_ERROR,
-    COMPONENTS_COMPARATOR_RESET
+    COMPONENTS_COMPARATOR_RESET,
+    COMPONENTS_COMPARATOR_RESTORE_STATE
 } = ComparatorTypes;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = (currentSignIndex: number) => ({
@@ -34,6 +36,11 @@ export const resetComparator: ActionCreator<Action> = () => ({
     type: COMPONENTS_COMPARATOR_RESET
 });
 
+export const restoreState: ActionCreator<Action> = (state: ComparatorState) => ({
+    type: COMPONENTS_COMPARATOR_RESTORE_STATE,
+    state
+});
+
 export default {
     registerNewKey,
     registerError,
@@ -59,6 +66,12 @@ export interface CorrectErrorAction extends Action {
     correctedErrors: number[];
 };
 
+export interface RestoreStateAction extends Action {
+    readonly type: string;
+    state: ComparatorState;
+};
+
 export type ComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |
-    CorrectErrorAction;
+    CorrectErrorAction |
+    RestoreStateAction;
