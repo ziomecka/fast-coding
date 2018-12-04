@@ -13,6 +13,7 @@ const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
 import { onEndingLesson } from '../_duck/operations';
+import { onKeepState, onRestoreState } from './_duck/operations/retore.state';
 import { startLesson } from '../_duck/actions';
 import { onTurnOnComparator, onAddEventListener, handleKeyboardDown, onRemoveEventListener } from './_duck/operations';
 
@@ -27,7 +28,9 @@ const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     startLesson: () => dispatch(startLesson()),
     endingLesson: () => dispatch(onEndingLesson()),
     addEventListener: () => dispatch(onAddEventListener(handleKeyboardDown)),
-    removeEventListener: () => dispatch(onRemoveEventListener())
+    removeEventListener: () => dispatch(onRemoveEventListener()),
+    keepState: () => dispatch(onKeepState()),
+    restoreState: () => dispatch(onRestoreState())
 });
 
 const ComparatorContainer = connect(mapStateToProps, mapDispatchToProps)(Comparator);
@@ -40,6 +43,8 @@ export interface ComparatorDispatch {
     endingLesson: () => void;
     addEventListener: () => void;
     removeEventListener: () => void;
+    keepState: () => void;
+    restoreState: () => void;
 };
 
 export interface ComparatorProps extends

@@ -19,6 +19,8 @@ import { onNotEndingLesson } from '../../../_duck/operations';
 import history from '../../../../../shared/history';
 import { onStartLeaving } from '../../../LessonButtons/_duck/operations';
 
+import { onKeepState } from './restore.state';
+
 /**
  * @constant {array}
  * [32] - space
@@ -58,7 +60,7 @@ export const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, get
     if (isEscape(keyCode)) handleEscape(dispatch, getState);
 };
 
-export const handleBackSpace = (dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const handleBackSpace = async (dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
     let state = getState()[components];
 
     let { errors, correctedErrors, currentSignIndex } = state[comparator];
@@ -66,24 +68,40 @@ export const handleBackSpace = (dispatch: Dispatch, getState: () => ApplicationS
 
     const wasAnError = errors[errors.length - 1] === currentSignIndex;
 
+    /** To keep dispatch answer */
+    let answer: any;
+
     if (wasAnError) {
         /** Add to corrected errors only if not already included */
         if (!correctedErrors.includes(currentSignIndex)) {
             correctedErrors.push(currentSignIndex);
         }
 
-        dispatch(correctError(correctedErrors));
+        answer = await dispatch(correctError(correctedErrors));
+
     } else {
-        dispatch(registerBackspace());
-        if (ending) dispatch(onNotEndingLesson());
+        answer = await dispatch(registerBackspace());
+
+        if (answer && ending) {
+            answer = await dispatch(onNotEndingLesson())
+        };
+    }
+
+    /** Keep state in local storage. In case page is refreshed (like F5) */
+    /** currentSignIndex will be stored */
+    if (answer) {
+        await dispatch(onKeepState());
+        answer = null; // GC
     }
 
     state = null; // TODO GC?
     errors = null; // TODO GC?
     correctedErrors = null;
+
+    return true;
 };
 
-export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
     let state = getState()[components];
     let { errors, allErrors, currentSignIndex } = state[comparator];
     let { lessonText: text } = state[lesson];
@@ -95,6 +113,9 @@ export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => A
 
         const expectedSign = state[lesson].text[nextCurrentSignIndex];
 
+    /** To keep dispatch answer */
+    let answer: any;
+
     if (key !== expectedSign) {
         /** Add to all errors only if not already included */
         if (!allErrors.includes(nextCurrentSignIndex)) {
@@ -103,21 +124,32 @@ export const handleKeyDown = (key: string, dispatch: Dispatch, getState: () => A
 
         errors.push(nextCurrentSignIndex);
 
-        dispatch(registerError(errors, allErrors, nextCurrentSignIndex ));
+        answer = await dispatch(registerError(errors, allErrors, nextCurrentSignIndex ));
     } else {
-        dispatch(registerNewKey(nextCurrentSignIndex));
+        answer = await dispatch(registerNewKey(nextCurrentSignIndex));
+    }
+
+    /** Keep state in local storage. In case page is refreshed (like F5) */
+    /** errors, allErrors and /or currentSignIndex will be kept */
+    if (answer) {
+        await dispatch(onKeepState());
+        answer = null; // GC
     }
 
     state = null; // TODO GC?
     allErrors = null;
+
+    return true;
 };
 
-const handleEscape = (dispatch: Dispatch, getState: () => ApplicationState): void => {
+const handleEscape = async (dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
     if (getState()[components][comparator].currentSignIndex >= 0) {
-        dispatch(onStartLeaving());
+        await dispatch(onStartLeaving());
     } else {
-        history.push(lessons);
+        await history.push(lessons);
     }
+
+    return true;
 };
 
 
