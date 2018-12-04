@@ -1,8 +1,7 @@
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../../../_reducers';
 
 import {
-    ApplicationContainers, ComponentsContainers, AppRoutes
+    ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType
 } from '../../../../../_common/';
 
 const { components } = ApplicationContainers;
@@ -53,7 +52,8 @@ export const isBackspace = (code: number): boolean => code === backspace;
 export const isEscape = (code: number): boolean => code === escape;
 
 export const handleKeyboardDown
-= (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+= (event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
+
     const { key, keyCode } = event;
 
     /** Do not scroll when space pressed */
@@ -63,7 +63,7 @@ export const handleKeyboardDown
     if (isEscape(keyCode)) handleEscape(dispatch, getState);
 };
 
-export const handleBackSpace = async (dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
+export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
     let state = getState()[components];
 
     let { errors, correctedErrors, currentSignIndex } = state[comparator];
@@ -97,14 +97,14 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: () => Applic
         answer = null; // GC
     }
 
-    state = null; // TODO GC?
+    state = null; // TODO GC?ype
     errors = null; // TODO GC?
     correctedErrors = null;
 
     return true;
 };
 
-export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
+export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
     let state = getState()[components];
     let { errors, allErrors, currentSignIndex } = state[comparator];
     let { lessonText: text } = state[lesson];
@@ -145,7 +145,7 @@ export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: (
     return true;
 };
 
-const handleEscape = async (dispatch: Dispatch, getState: () => ApplicationState): Promise<boolean> => {
+const handleEscape = async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
     if (getState()[components][comparator].currentSignIndex >= 0) {
         await dispatch(onStartLeaving());
     } else {
