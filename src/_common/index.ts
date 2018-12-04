@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import { ApplicationState } from '../_reducers/';
 
 export * from '../app/_common';

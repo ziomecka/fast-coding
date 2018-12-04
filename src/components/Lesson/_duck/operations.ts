@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../_reducers';
-import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../_common';
+import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType } from '../../../_common';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
@@ -76,12 +75,12 @@ const _endLesson = (dispatch, getState) => {
     clearTimeout(timeout);
 };
 
-export const onNotEndingLesson = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onNotEndingLesson = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     clearTimeout(timeout);
     dispatch(notEndingLesson());
 };
 
-export const onEndingLesson = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onEndingLesson = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     const { ending } = getState()[components][lesson];
 
     if (!ending) {

@@ -5,11 +5,9 @@
 
 
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../../../_reducers';
+import { ThunkGetStateType } from '../../../../../_common';
 
-import {
-    resetComparator
-} from '../actions';
+import { resetComparator } from '../actions';
 
 import { onStartTimer, onStopTimer } from '../../../Stats/_duck/operations';
 import { onEndLesson } from '../../../_duck/operations';
@@ -38,13 +36,13 @@ export const onTurnOffComparator = (): any => async (dispatch: Dispatch): Promis
     }
 };
 
-export const onResetComparator = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onResetComparator = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     listeners.push([ event, (e: KeyboardEvent) => handleKeyboardDown(e, dispatch, getState) ]);
     document.addEventListener(event, listeners[listeners.length - 1][1]);
     dispatch(resetComparator());
 };
 
-export const onAddEventListener = (listener): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onAddEventListener = (listener): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     if (listener) {
         listeners.push([ event, (e: KeyboardEvent) => listener(e, dispatch, getState) ]);
         document.addEventListener(event, listeners[listeners.length - 1][1]);
@@ -56,7 +54,7 @@ export const onRemoveEventListener = (): any => () => {
     listeners = [];
 };
 
-export const unpauseLessonOnJustType = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const unpauseLessonOnJustType = (event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType): void => {
     const { keyCode } = event;
 
     /** Do not scroll when space pressed */
@@ -69,7 +67,7 @@ export const unpauseLessonOnJustType = (event: KeyboardEvent, dispatch: Dispatch
     };
 };
 
-export const unpauseLessonOnEsc = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const unpauseLessonOnEsc = (event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType): void => {
     const { keyCode } = event;
 
     /** Do not scroll when space pressed */

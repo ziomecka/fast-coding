@@ -1,7 +1,10 @@
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../../../_reducers';
-
-import { ApplicationContainers, ComponentsContainers, LocalStorageItemTypes } from '../../../../../_common/';
+import {
+    ApplicationContainers,
+    ComponentsContainers,
+    LocalStorageItemTypes,
+    ThunkGetStateType
+} from '../../../../../_common/';
 
 const { components } = ApplicationContainers;
 const { comparator } = ComponentsContainers;
@@ -11,11 +14,11 @@ import { ComparatorState } from '../reducers';
 
 import { localStorageSetItem, localStorageGetItem } from '../../../../../app/LocalStorage/_duck/operations';
 
-export const onKeepState = (): any => (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onKeepState = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     localStorageSetItem(LocalStorageItemTypes.comparator, getState()[components][comparator])
 };
 
-export const onRestoreState = (): any => async (dispatch: Dispatch, getState: () => ApplicationState) => {
+export const onRestoreState = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType) => {
     let data = localStorageGetItem(LocalStorageItemTypes.comparator);
 
     if (data) {

@@ -5,8 +5,9 @@ import ApiManager from '../../../shared/apimanager';
 import { invalidError } from '../../_common';
 
 import { openDialog } from '../../Dialog/_duck/actions';
+import { ThunkGetStateType } from '../../../_common/';
 
-const onLoginForm = (): any => async (dispatch: Dispatch, getState: () => ApplicationState) => {
+const onLoginForm = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType) => {
     const response: {status: boolean} = await ApiManager.post();
     if (response.status) {
         dispatch(openDialog());
