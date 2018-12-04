@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../../_reducers';
+import { ApplicationState } from '../../../../../_reducers';
 
-import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../../_common/';
+import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../../../_common/';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
@@ -13,13 +13,13 @@ import {
     registerBackspace,
     correctError,
     resetComparator
-} from './actions';
+} from '../actions';
 
-import { onStartTimer, onStopTimer } from '../../Stats/_duck/operations';
-import { onEndLesson, onNotEndingLesson, onUnpauseLesson } from '../../_duck/operations';
+import { onStartTimer, onStopTimer } from '../../../Stats/_duck/operations';
+import { onEndLesson, onNotEndingLesson, onUnpauseLesson } from '../../../_duck/operations';
 
-import history from '../../../../shared/history';
-import { onStartLeaving } from '../../LessonButtons/_duck/operations';
+import history from '../../../../../shared/history';
+import { onStartLeaving } from '../../../LessonButtons/_duck/operations';
 
 const event = 'keydown';
 let listeners: [string, EventListenerOrEventListenerObject][] = [];

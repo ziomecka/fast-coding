@@ -18,8 +18,8 @@ import {
     unpauseLesson
 } from './actions';
 
-import { onResetComparator, onPauseComparator, onUnpauseComparator } from '../Comparator/_duck/operations';
-import { onTurnOffComparator } from '../Comparator/_duck/operations';
+import { onResetComparator, onPauseComparator, onUnpauseComparator } from '../Comparator/_duck/operations/operations';
+import { onTurnOffComparator } from '../Comparator/_duck/operations/operations';
 import { resetStats } from '../Stats/_duck/actions';
 import { onPauseTimer, onUnpauseTimer } from '../Stats/_duck/operations';
 import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
