@@ -97,6 +97,13 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
         answer = null; // GC
     }
 
+    /** Keep state in local storage. In case page is refreshed (like F5) */
+    /** currentSignIndex will be stored */
+    if (answer) {
+        await dispatch(onKeepState());
+        answer = null; // GC
+    }
+
     state = null; // TODO GC?ype
     errors = null; // TODO GC?
     correctedErrors = null;

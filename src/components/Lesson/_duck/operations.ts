@@ -18,9 +18,15 @@ import {
     unpauseLesson
 } from './actions';
 
-import { onResetComparator, onPauseComparator, onUnpauseComparator } from '../Comparator/_duck/operations/';
-import { onTurnOffComparator } from '../Comparator/_duck/operations/';
-import { resetStats } from '../Stats/_duck/actions';
+import { default as comparatorOperations } from '../Comparator/_duck/operations/index';
+
+const { onResetComparator,
+        onPauseComparator,
+        onUnpauseComparator,
+        onTurnOffComparator
+    } = comparatorOperations;
+
+    import { resetStats } from '../Stats/_duck/actions';
 import { onPauseTimer, onUnpauseTimer } from '../Stats/_duck/operations';
 import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
 

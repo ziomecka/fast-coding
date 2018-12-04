@@ -13,9 +13,17 @@ const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
 import { onEndingLesson } from '../_duck/operations';
-import { onKeepState, onRestoreState } from './_duck/operations/retore.state';
 import { startLesson } from '../_duck/actions';
-import { onTurnOnComparator, onAddEventListener, handleKeyboardDown, onRemoveEventListener } from './_duck/operations';
+
+import { default as operations  } from './_duck/operations/index';
+const {
+    onAddEventListener,
+    onKeepState,
+    onRestoreState,
+    onTurnOnComparator,
+    onRemoveEventListener,
+    handleKeyboardDown
+} = operations;
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = (state: ApplicationState): ComparatorState & LessonState => ({

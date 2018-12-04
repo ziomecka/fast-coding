@@ -99,5 +99,7 @@ export default {
     onTurnOffComparator,
     onResetComparator,
     onAddEventListener,
-    onRemoveEventListener
+    onRemoveEventListener,
+    onPauseComparator,
+    onUnpauseComparator
 };
