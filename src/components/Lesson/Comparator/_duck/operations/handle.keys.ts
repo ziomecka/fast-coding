@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
 import { ApplicationState } from '../../../../../_reducers';
 
-import { ApplicationContainers, ComponentsContainers, AppRoutes } from '../../../../../_common/';
+import {
+    ApplicationContainers, ComponentsContainers, AppRoutes
+} from '../../../../../_common/';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
@@ -50,7 +52,8 @@ export const isValidCode = (code: number): boolean => {
 export const isBackspace = (code: number): boolean => code === backspace;
 export const isEscape = (code: number): boolean => code === escape;
 
-export const handleKeyboardDown = (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
+export const handleKeyboardDown
+= (event: KeyboardEvent, dispatch: Dispatch, getState: () => ApplicationState): void => {
     const { key, keyCode } = event;
 
     /** Do not scroll when space pressed */
