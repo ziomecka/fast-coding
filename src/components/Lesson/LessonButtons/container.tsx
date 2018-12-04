@@ -13,7 +13,7 @@ import { ComponentsContainers, ApplicationContainers, AppContainers } from '../.
 
 import { onRestartLesson, onPauseLesson, onUnpauseLesson } from '../_duck/operations';
 import { onReset } from '../_duck/operations';
-import { unpauseLessonOnJustType } from '../Comparator/_duck/operations/operations';
+import { unpauseLessonOnJustType } from '../Comparator/_duck/operations/life';
 
 const { components, app } = ApplicationContainers;
 const { lesson, lessonButtons } = ComponentsContainers;
