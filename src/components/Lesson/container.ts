@@ -23,6 +23,7 @@ import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/action
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
+import { onStartLeaving } from './LessonButtons/_duck/operations';
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => {
     const { time, start, stop, running } = state[components][comparator][stats];
@@ -45,6 +46,7 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y)),
     restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.lesson, restoreState)),
     keepState: () => dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson)),
+    startLeaving: () => dispatch(onStartLeaving())
 });
 
 // @ts-ignore
@@ -67,6 +69,7 @@ export interface LessonDispatch extends NotificationDispatch {
     onMoveLesonButtons: (x: number | 'auto', y: number | 'auto') => void;
     restoreState: () => Action;
     keepState: () => Action;
+    startLeaving: () => Action;
 };
 
 export interface LessonProps extends LessonDispatch,

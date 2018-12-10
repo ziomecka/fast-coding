@@ -36,6 +36,8 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         this.interval = 0;
         this._interval = 500;
         this.getSeconds = getSeconds;
+
+        this.backForwardButton = this.backForwardButton.bind(this);
     }
 
     async componentDidMount() {
@@ -52,6 +54,14 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
             }
         }
 
+        /** If back or forward button is pressed redirect the user to the same lesson */
+        this.props.history.push(location.href);
+        window.onpopstate = this.backForwardButton;
+    }
+
+    backForwardButton(e: PopStateEvent): any {
+        this.props.history.go(1);
+        this.props.startLeaving();
     }
 
     _setInterval() {
