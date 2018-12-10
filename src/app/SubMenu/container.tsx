@@ -57,6 +57,7 @@ export interface __SubMenuProps {
     container?: MenuContainers;
     rules?: NavRulesEnum[];
     iconButton?: IconButtonProps;
+    title: string;
 };
 
 interface MapStateToPropsI extends MenuState {

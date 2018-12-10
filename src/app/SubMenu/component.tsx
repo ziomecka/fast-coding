@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
@@ -19,6 +20,7 @@ const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
 const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
 const { pl, en } = LanguagesEnum;
 
+import getTranslation from '../../shared/get.translation';
 import { getActiveLanguage } from 'react-localize-redux';
 
 /** Iternal state needed because otherwise React does not see change of state */
@@ -131,7 +133,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                 {...{ className }}
             >
                 <NavLink to={appRoute}>
-                    {title}
+                    { getTranslation(this.props.localize, title, title) }
                 </NavLink>
             </MenuItem>
         );
@@ -146,10 +148,28 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                 divider={true}
                 {...{ className }}
             >
-                {title}
+                { getTranslation(this.props.localize, title, title) }
             </MenuItem>
         );
     };
+
+    getIconButton (onClick) {
+        const {
+            iconButton,
+            classes: { menuIconClass },
+            icon // TODO GC?
+        } = this.props;
+
+        return (
+            <IconButton
+                className={ menuIconClass }
+                { ...iconButton }
+                { ...{ onClick } }
+            >
+                { icon }
+            </IconButton>
+        );
+    }
 
     get manyItems ()  {
         return ( this.props.menuItems && this.props.container && !this.props.menuItem )
@@ -161,20 +181,21 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
     renderList () {
         const {
-            iconButton = {},
-            classes: { menuItemClass, menuIconClass, menuClass }
+            classes: { menuItemClass, menuClass },
+            title
         } = this.props;
 
         return (
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
-                    <IconButton
-                        onClick={this.handleClick}
-                        className={menuIconClass}
-                        {...iconButton}
-                    >
-                        {this.props.icon}
-                    </IconButton>
+                    {
+                        (title && (
+                            <Tooltip title={getTranslation(this.props.localize, title)}>
+                                { this.getIconButton(this.handleClick) }
+                            </Tooltip>
+                        )) ||
+                        this.getIconButton(this.handleClick)
+                    }
 
                     {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
                     {<Menu
@@ -201,22 +222,19 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
     renderOneItem() {
         const {
-            iconButton = {},
-            classes: { menuIconClass },
             menuItem: { rules, appRoute },
-            icon // TODO GC?
+            title
         } = this.props;
 
         /** Render if not current pathname */
         if (this.areSubMenuRulesMet(rules, appRoute)) {
             return (
-                <IconButton
-                    onClick={() => this.handleClose(appRoute)}
-                    className={ menuIconClass }
-                    { ...iconButton }
-                >
-                    { icon }
-                </IconButton>
+                (title && (
+                    <Tooltip title={getTranslation(this.props.localize, title)}>
+                        { this.getIconButton(() => this.handleClose(appRoute)) }
+                    </Tooltip>
+                )) ||
+                this.getIconButton(() => this.handleClose(appRoute))
             );
         }
 
