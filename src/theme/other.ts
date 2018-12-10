@@ -44,6 +44,12 @@ export default {
         }
     },
     overrides: {
+        MuiTooltip: {
+            tooltip: {
+                fontSize: '1rem',
+                padding: '.5rem'
+            }
+        },
         MuiMenu: {
             paper: {
                 padding: PAPER_PADDING
