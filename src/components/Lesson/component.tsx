@@ -38,8 +38,20 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         this.getSeconds = getSeconds;
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.registerOnDrop(this.onDrop);
+
+        /** if new lesson loaded */
+        if (this.props.lessonText) {
+            this.props.keepState();
+        } else {
+            let answer = await this.props.restoreState();
+            if (answer && this.props.running && !this.props.ended) {
+                this._setInterval();
+                answer = null;
+            }
+        }
+
     }
 
     _setInterval() {

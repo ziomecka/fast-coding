@@ -1,11 +1,13 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType } from '../../../../_common';
+import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '../../../../_common';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 const { lessons } = AppRoutes;
 
 import history from '../../../../shared/history';
+
+import { onKeepState, onRemoveState } from './restore.state';
 
 import {
     resetLesson,
@@ -14,7 +16,8 @@ import {
     endLesson,
     restartLesson,
     pauseLesson,
-    unpauseLesson
+    unpauseLesson,
+    startLesson
 } from './../actions';
 
 import { default as comparatorOperations } from '../../Comparator/_duck/operations/index';
@@ -35,12 +38,18 @@ import keydownListeners from '../../../../shared/keydown.listener';
 const waitForLastSign = 800;
 let timeout;
 
+export const onStartLesson = (): any => async (dispatch: Dispatch) => {
+    await dispatch(startLesson());
+    return dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
+};
+
 export const onEndLesson = (): any => (dispatch: Dispatch) => {
     clearTimeout(timeout);
     let answer = dispatch(endLesson());
     if (answer) {
         addEscapeReturnListener(dispatch);
         document.getElementById("lessonStats").scrollIntoView(true);
+        dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
     }
 };
 
@@ -78,6 +87,7 @@ const _endLesson = (dispatch, getState) => {
 export const onNotEndingLesson = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
     clearTimeout(timeout);
     dispatch(notEndingLesson());
+    dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
 };
 
 export const onEndingLesson = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
@@ -100,6 +110,10 @@ export const onReset = (): any => (dispatch: Dispatch) => {
     dispatch(resetDraggableLessonButtons());
     clearTimeout(timeout);
     removeAllKeyDownListeners();
+
+    dispatch(onRemoveState(LocalStorageItemTypes.lesson));
+    dispatch(onRemoveState(LocalStorageItemTypes.comparator));
+    dispatch(onRemoveState(LocalStorageItemTypes.stats));
 };
 
 export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
@@ -108,18 +122,21 @@ export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(restartLesson());
     clearTimeout(timeout);
     removeAllKeyDownListeners();
+    dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
 };
 
 export const onPauseLesson = (listener?): any => (dispatch: Dispatch): void => {
     dispatch(onPauseTimer());
     dispatch(onPauseComparator(listener));
     dispatch(pauseLesson());
+    dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
 };
 
 export const onUnpauseLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(onUnpauseComparator());
     dispatch(unpauseLesson());
     dispatch(onUnpauseTimer());
+    dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
 };
 
 export default {

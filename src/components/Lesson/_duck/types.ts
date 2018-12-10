@@ -12,5 +12,6 @@ export enum LessonTypes {
     COMPONENTS_LESSON_END = '@@components_lesson/END',
     COMPONENTS_LESSON_RESET = '@@components_lesson/RESET',
     COMPONENTS_LESSON_OPEN_DEMO = '@@components_lesson/OPEN_DEMO',
-    COMPONENTS_LESSON_RESTART = '@@components_lesson/RESTART'
+    COMPONENTS_LESSON_RESTART = '@@components_lesson/RESTART',
+    COMPONENTS_LESSON_RESTORE_STATE = '@@components_lesson/RESTORE_STATE'
 };

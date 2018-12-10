@@ -12,8 +12,7 @@ import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } fr
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
-import { onEndingLesson } from '../_duck/operations/life';
-import { startLesson } from '../_duck/actions';
+import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
 import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
 
 import { default as operations  } from './_duck/operations/index';
@@ -34,7 +33,7 @@ const mapStateToProps = (state: ApplicationState): ComparatorState & LessonState
 
 const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     turnOnComparator: () => dispatch(onTurnOnComparator()),
-    startLesson: () => dispatch(startLesson()),
+    startLesson: () => dispatch(onStartLesson()),
     endingLesson: () => dispatch(onEndingLesson()),
     addEventListener: () => dispatch(onAddEventListener(handleKeyboardDown)),
     removeEventListener: () => dispatch(onRemoveEventListener()),

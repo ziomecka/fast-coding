@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -6,15 +6,17 @@ import { default as Lesson } from './component';
 import { ApplicationState } from '../../store';
 
 import { LessonState } from './_duck/reducers';
+import { restoreState } from './_duck/actions';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, ComponentsContainers, ComparatorContainers } from '../../_common/';
+import { ApplicationContainers, ComponentsContainers, ComparatorContainers, LocalStorageItemTypes } from '../../_common/';
 
 const { components } = ApplicationContainers;
 const { lesson, comparator } = ComponentsContainers;
 const { stats } = ComparatorContainers;
 
 import { onReset } from './_duck/operations/life';
+import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
 import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/actions';
 
@@ -40,7 +42,9 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     reset: () => dispatch(onReset()),
     registerOnDrop: (fun) => dispatch(registerOnDrop(fun)),
     deregisterOnDrop: (fun) => dispatch(deregisterOnDrop(fun)),
-    onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y))
+    onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y)),
+    restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.lesson, restoreState)),
+    keepState: () => dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson)),
 });
 
 // @ts-ignore
@@ -61,6 +65,8 @@ export interface LessonDispatch extends NotificationDispatch {
     registerOnDrop: (fun: Function) => void;
     deregisterOnDrop: (fun: Function) => void;
     onMoveLesonButtons: (x: number | 'auto', y: number | 'auto') => void;
+    restoreState: () => Action;
+    keepState: () => Action;
 };
 
 export interface LessonProps extends LessonDispatch,
