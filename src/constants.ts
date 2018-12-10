@@ -35,7 +35,6 @@ export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#
 export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
 export const COLOR_HINTS = '#90ab8e';
 
-export const FONT_BOLD = 500;
 export const BORDER_THIN = '.5px';
 
 export const ELEVATION = 2;

@@ -51,7 +51,6 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
     switch (action.type) {
         case COMPONENTS_LESSON_UPDATE:
         case COMPONENTS_LESSON_OPEN: {
-
             return {
                 ...state,
                 ...(action as OpenLessonAction).lessonData
