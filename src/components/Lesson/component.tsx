@@ -69,21 +69,22 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
         this.interval = setInterval(() => {
             this.setState(() => ({ time: this.getSeconds(Date.now() - start + time) })
-            )}, _interval);
-        }
+            )},
+        _interval);
+    }
 
-        _clearInterval() {
-            clearInterval(this.interval as number);
-        }
+    _clearInterval() {
+        clearInterval(this.interval as number);
+    }
 
-        stopTime() {
-            this._clearInterval();
-            this.setState({ time: '00 : 00' });
-        }
+    stopTime() {
+        this._clearInterval();
+        this.setState({ time: '00 : 00' });
+    }
 
-        componentDidUpdate(prevProps) {
-            const { running, ended } = this.props;
-            const { running: prevRunning } = prevProps;
+    componentDidUpdate(prevProps) {
+        const { running, ended } = this.props;
+        const { running: prevRunning } = prevProps;
 
         /** Calculate time only if timer is running */
         if (running !== prevRunning ) {
