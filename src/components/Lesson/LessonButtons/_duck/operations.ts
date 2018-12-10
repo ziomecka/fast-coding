@@ -42,7 +42,7 @@ export const onStartLeaving = (): any => (dispatch: Dispatch, getState: ()=> App
                 {
                     title: 'leave',
                     buttonProps: {
-                        id: buttonsIds[1],
+                        id: buttonsIds[0],
                         onClick: () => leave(dispatch),
                     },
                     translationId: 'lessonDialogOKLeave',
@@ -51,7 +51,7 @@ export const onStartLeaving = (): any => (dispatch: Dispatch, getState: ()=> App
                 {
                     title: 'cancel',
                     buttonProps: {
-                        id: buttonsIds[0],
+                        id: buttonsIds[1],
                         color: 'secondary',
                         autoFocus: `{true}`,
                         onClick: () => cancelLeave(dispatch),
