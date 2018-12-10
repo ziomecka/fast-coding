@@ -39,6 +39,8 @@ export const BORDER_THIN = '.5px';
 
 export const ELEVATION = 2;
 
+export const LESSON_TIME_INTERVAL = 500;
+
 export const LESSON_DEMO_TEXT = {
     [pl]: 'To jest lekcja pokazowa. ' +
     'Jeśli nigdy nie ćwiczyłeś bezwzrokowego pisania na klawiaturze, ' +

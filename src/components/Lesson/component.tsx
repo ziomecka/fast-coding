@@ -15,6 +15,8 @@ import getTranslation from '../../shared/get.translation';
 
 import { getSeconds } from '../../shared/convert.time';
 
+import { LESSON_TIME_INTERVAL } from '../../constants';
+
 /** Running time is calculate internally and kept in internal state.
  *  Could be got from Stats but it affects negatively the performance.
  */
@@ -34,7 +36,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         this.state = { time: '00 : 00' };
 
         this.interval = 0;
-        this._interval = 500;
+        this._interval = LESSON_TIME_INTERVAL;
         this.getSeconds = getSeconds;
 
         this.backForwardButton = this.backForwardButton.bind(this);
