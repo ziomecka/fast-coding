@@ -13,3 +13,8 @@ export const localStorageSetItem = (name: LocalStorageItemTypes, data: LocalStor
     localStorage.setItem(name, JSON.stringify(data));
     return true;
 };
+
+export const localStorageRemoveItem = (name: LocalStorageItemTypes): boolean => {
+    localStorage.removeItem(name);
+    return true;
+};

@@ -36,7 +36,7 @@ export const resetComparator: ActionCreator<Action> = () => ({
     type: COMPONENTS_COMPARATOR_RESET
 });
 
-export const restoreState: ActionCreator<Action> = (state: ComparatorState) => ({
+export const restoreState: ActionCreator<RestoreStateAction> = (state: ComparatorState) => ({
     type: COMPONENTS_COMPARATOR_RESTORE_STATE,
     state
 });

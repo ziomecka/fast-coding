@@ -1,7 +1,11 @@
 import { Dispatch } from 'redux';
 
 import {
-    ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType
+    ApplicationContainers,
+    ComponentsContainers,
+    AppRoutes,
+    ThunkGetStateType,
+    LocalStorageItemTypes
 } from '../../../../../_common/';
 
 const { components } = ApplicationContainers;
@@ -21,7 +25,8 @@ import { onNotEndingLesson } from '../../../_duck/operations/life';
 import history from '../../../../../shared/history';
 import { onStartLeaving } from '../../../LessonButtons/_duck/operations';
 
-import { onKeepState } from './restore.state';
+import { onKeepState } from '../../../_duck/operations/restore.state';
+// import { onKeepState } from './restore.state';
 
 /**
  * @constant {array}
@@ -94,14 +99,14 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState());
+        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
         answer = null; // GC
     }
 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState());
+        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
         answer = null; // GC
     }
 
@@ -143,7 +148,7 @@ export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: T
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if (answer) {
-        await dispatch(onKeepState());
+        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
         answer = null; // GC
     }
 

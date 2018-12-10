@@ -105,8 +105,6 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         }
 
         case COMPONENTS_COMPARATOR_RESTORE_STATE: {
-            console.log("action")
-            console.log(action)
             return {
                 ...state,
                 ...(action as RestoreStateAction).state
