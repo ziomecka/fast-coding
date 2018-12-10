@@ -12,7 +12,7 @@ import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
-import { onEndingLesson } from '../_duck/operations';
+import { onEndingLesson } from '../_duck/operations/life';
 import { startLesson } from '../_duck/actions';
 
 import { default as operations  } from './_duck/operations/index';

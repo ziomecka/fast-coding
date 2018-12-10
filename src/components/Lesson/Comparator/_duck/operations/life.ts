@@ -10,8 +10,7 @@ import { ThunkGetStateType } from '../../../../../_common';
 import { resetComparator } from '../actions';
 
 import { onStartTimer, onStopTimer } from '../../../Stats/_duck/operations';
-import { onEndLesson } from '../../../_duck/operations';
-import { onUnpauseLesson } from '../../../_duck/operations';
+import { onEndLesson, onUnpauseLesson } from '../../../_duck/operations/life';
 
 import { default as handleKeys } from './handle.keys';
 const { handleKeyboardDown, isValidCode, isBackspace } = handleKeys;

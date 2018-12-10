@@ -14,7 +14,7 @@ const { components } = ApplicationContainers;
 const { lesson, comparator } = ComponentsContainers;
 const { stats } = ComparatorContainers;
 
-import { onReset } from './_duck/operations';
+import { onReset } from './_duck/operations/life';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
 import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/actions';
 

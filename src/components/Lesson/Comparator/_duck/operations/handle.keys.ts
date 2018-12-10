@@ -15,7 +15,8 @@ import {
     correctError,
 } from '../actions';
 
-import { onNotEndingLesson } from '../../../_duck/operations';
+
+import { onNotEndingLesson } from '../../../_duck/operations/life';
 
 import history from '../../../../../shared/history';
 import { onStartLeaving } from '../../../LessonButtons/_duck/operations';

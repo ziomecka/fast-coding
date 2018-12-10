@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../../_reducers';
 const { lessons } = AppRoutes;
 
 import { openDialog, closeDialog } from '../../../../app/Dialog/_duck/actions';
-import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations';
+import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations/life';
 
 import history from '../../../../shared/history';
 import { manageButtonFocus as buttonFocus } from '../../../../shared/button.focus';

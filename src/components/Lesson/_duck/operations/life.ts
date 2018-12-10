@@ -1,11 +1,11 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType } from '../../../_common';
+import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType } from '../../../../_common';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 const { lessons } = AppRoutes;
 
-import history from '../../../shared/history';
+import history from '../../../../shared/history';
 
 import {
     resetLesson,
@@ -15,9 +15,9 @@ import {
     restartLesson,
     pauseLesson,
     unpauseLesson
-} from './actions';
+} from './../actions';
 
-import { default as comparatorOperations } from '../Comparator/_duck/operations/index';
+import { default as comparatorOperations } from '../../Comparator/_duck/operations/index';
 
 const { onResetComparator,
         onPauseComparator,
@@ -25,11 +25,11 @@ const { onResetComparator,
         onTurnOffComparator
     } = comparatorOperations;
 
-    import { resetStats } from '../Stats/_duck/actions';
-import { onPauseTimer, onUnpauseTimer } from '../Stats/_duck/operations';
-import { resetDraggableLessonButtons } from '../LessonButtons/_duck/actions';
+    import { resetStats } from '../../Stats/_duck/actions';
+import { onPauseTimer, onUnpauseTimer } from '../../Stats/_duck/operations';
+import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
 
-import keydownListeners from '../../../shared/keydown.listener';
+import keydownListeners from '../../../../shared/keydown.listener';
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;
@@ -124,5 +124,8 @@ export const onUnpauseLesson = (): any => (dispatch: Dispatch): void => {
 
 export default {
     onEndingLesson,
+    onNotEndingLesson,
+    onEndLesson,
+    onUnpauseLesson,
     onReset
 };

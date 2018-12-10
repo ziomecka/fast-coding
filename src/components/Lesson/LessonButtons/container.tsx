@@ -11,9 +11,8 @@ import { LessonButtonsState } from './_duck/reducers';
 
 import { ComponentsContainers, ApplicationContainers, AppContainers } from '../../../_common/';
 
-import { onRestartLesson, onPauseLesson, onUnpauseLesson } from '../_duck/operations';
-import { onReset } from '../_duck/operations';
 import { unpauseLessonOnJustType } from '../Comparator/_duck/operations/life';
+import { onRestartLesson, onPauseLesson, onUnpauseLesson, onReset } from '../_duck/operations/life';
 
 const { components, app } = ApplicationContainers;
 const { lesson, lessonButtons } = ComponentsContainers;
