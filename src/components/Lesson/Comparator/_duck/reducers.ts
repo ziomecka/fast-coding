@@ -68,7 +68,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_COMPARATOR_REGISTER_BACKSPACE: {
             return {
                 ...state,
-                currentSignIndex: state.currentSignIndex - 1
+                currentSignIndex: Math.max(-1, state.currentSignIndex - 1)
             };
         }
 
