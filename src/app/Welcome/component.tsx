@@ -54,7 +54,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 disableRipple: true,
                 disableTouchRipple: true,
                 classes: { root: this.props.classes.welcomeHomeSubMenu }
-            }
+            },
+            title: 'submenuGoToHome'
         };
     }
 

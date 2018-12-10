@@ -20,12 +20,18 @@
     "lessonDialogOKLeave": [ "Yes, leave lesson", "Tak, opuść lekcję" ],
     "lessonDialogCancelLeave": [ "Return to lesson", "Wróć do lekcji" ],
     "lessonDialogLeaveQuestion": [ "Leave the lesson?", "Opuścić lekcję?" ],
-    "lessonDialogLeaveExplanation": [ 
+    "lessonDialogLeaveExplanation": [
         "If you leave the lesson it will be recorded in your stats.",
         "Jeżeli opuścisz lekcję zostanie to zapisane w Twoich statystykach."
     ],
     "lessonStatsHeading": [ "Your result", "Twój wynik" ],
     "lessonStatsTime": [ "Time: ", "Czas: " ],
     "lessonStatsTimeUnit": [ "seconds", "sekund" ],
-    "lessonStatsAccuracy": [ "Accuracy: ", "Dokładność" ]
+    "lessonStatsAccuracy": [ "Accuracy: ", "Dokładność" ],
+    "submenuGoToHome": [ "Return to home", "Wróć do strony początkowej"],
+    "submenuChangeLanguage": [ "language", "język"],
+    "submenuGoToCourses": [ "courses", "kursy"],
+    "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
+    "subMenuUserLogin": [ "login", "logowanie"],
+    "subMenuUserNewUser": [ "new user", "nowy użytkownik"]
 }

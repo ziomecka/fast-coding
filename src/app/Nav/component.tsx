@@ -30,7 +30,6 @@ import * as submenus from './submenus';
 import { __SubMenuProps } from '../SubMenu/container';
 import { withLocalize } from 'react-localize-redux';
 
-
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson } = NavRulesEnum;
     const { notActiveLanguage } = SubMenuRulesEnum;
@@ -57,27 +56,24 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                         } });
                     return acc;
                 }, []),
-            icon: <span>{activeLanguage? activeLanguage.code : ''}</span>,
+            icon: <>{activeLanguage? activeLanguage.code : ''}</>,
             container: languagesMenu,
             rules: [],
+            title: 'submenuChangeLanguage',
         },
         /** Lessons menu */
         {
             menuItem: submenus.lessonsMenuItem,
             icon: <Dashboard />,
             rules: [ notAnyLesson ],
-            iconButton: {
-                title: 'Courses'
-            }
+            title: 'submenuGoToCourses',
         },
         /** User menu */
         {
             menuItems: submenus.userMenuItems,
             icon: <Face />,
             container: userMenu,
-            iconButton: {
-                title: 'User'
-            }
+            title: 'submenuOpenUserMenu',
         }
     ] as __SubMenuProps[];
 
