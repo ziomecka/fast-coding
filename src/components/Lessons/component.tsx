@@ -22,6 +22,7 @@ import Divider from '@material-ui/core/Divider';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
@@ -115,16 +116,17 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                 >
                     <CardContent classes={{ root: lessonCardContent }} >
                         <Typography variant="h5" className={lessonCardLink}>
-                            <Link
-                                id={`link-${_id}`}
-                                to={`${lessonsRoute}/${_id}`}
-                                onClick={() => handleOnClick(lesson)}
-                                title={ _title }
-                            >
-                                <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
-                                <span className={lessonCardLinkText}>{ _title }</span>
+                            <Tooltip title={ _title }>
+                                <Link
+                                    id={`link-${_id}`}
+                                    to={`${lessonsRoute}/${_id}`}
+                                    onClick={() => handleOnClick(lesson)}
+                                >
+                                    <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
+                                    <span className={lessonCardLinkText}>{ _title }</span>
 
-                         </Link>
+                            </Link>
+                            </Tooltip>
                         </Typography>
                     </CardContent>
                 </Card>
