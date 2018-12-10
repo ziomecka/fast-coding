@@ -77,7 +77,7 @@ const removeAllKeyDownListeners = () => {
 const _endLesson = (dispatch, getState) => {
     let state = getState()[components];
 
-    if ( (state[lesson].text.length - 1) === state[comparator].currentSignIndex) {
+    if ( (state[lesson].lessonText.length - 1) <= state[comparator].currentSignIndex) {
         /** Comparator ends lesson after switching off keyboardListener and stats */
         dispatch(onTurnOffComparator());
     }
