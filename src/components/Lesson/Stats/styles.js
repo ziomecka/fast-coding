@@ -1,3 +1,5 @@
+import { LESSON_MAX_WIDTH } from '../../../constants';
+
 const styles = theme => {
     const {
         palette: {
@@ -9,6 +11,7 @@ const styles = theme => {
         statsPaper: {
             minWidth: 'auto',
             minHeight: 'auto',
+            maxWidth: `${LESSON_MAX_WIDTH}px`,
             height: 'auto',
             width: '100%',
             position: 'relative',
@@ -17,6 +20,11 @@ const styles = theme => {
             padding: '3rem',
             margin: '1rem 0',
             border: `.5px solid ${borderColor}`
+        },
+        statsNote: {
+            '&:after': {
+                content: "':'"
+            }
         }
     }
 };

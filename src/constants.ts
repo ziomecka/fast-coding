@@ -59,4 +59,5 @@ export const LESSON_DEMO_TITLE = {
     [en]: 'Demonstration lesson'
 };
 
-export const LESSONS_HEIGHT = '250px';
+export const STATS_AVERAGE_WORD_LENGTH = 5;
+export const LESSONS_HEIGHT = '200px';

@@ -2,8 +2,10 @@ import * as React from 'react';
 
 import { StatsProps } from './container';
 
+/** Materials */
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
@@ -13,20 +15,26 @@ import withTable from '../../../app/Table';
 
 import { getTime } from '../../../shared/convert.time';
 import { StatsTimeUnitsEnum } from '../../_common/';
+import { STATS_AVERAGE_WORD_LENGTH } from '../../../constants';
 
+import getTranslation from '../../../shared/get.translation';
 const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
 
 const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
     const { start, stop, time, allErrors, text,
-            classes: { statsPaper },
+            classes: { statsPaper, statsNote },
             createTable,
-            endedLesson
+            endedLesson,
+            errors
     } = props;
 
     const totalTime = getTime(stop - start + time);
 
     const { hours, minutes, seconds } = totalTime;
-    const accuracy = Math.round(100 - 100 * (allErrors.length / text.length));
+
+    const accuracy = Math.round(100 - 100 * (errors.length / text.length));
+    const realAccuracy = Math.round(100 - 100 * (allErrors.length / text.length));
+    const WPM = Math.round( text.length / STATS_AVERAGE_WORD_LENGTH / ( minutes + seconds / 60 ) );
 
     const renderTime = (time: number, id: string): JSX.Element => (
         time > 0 && (
@@ -56,7 +64,9 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
             {createTable({
                 body: [
                     [
-                        <Translate id="lessonStatsTime" />,
+                        <span className={statsNote}>
+                            <Translate id="lessonStatsTime" />
+                        </span>,
                         <>
                             { renderTime(hours, getUnitId(hours, Hours) ) }
                             { renderTime(minutes, getUnitId(minutes, Minutes) ) }
@@ -64,8 +74,31 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
                         </>,
                     ],
                     [
-                        <Translate id="lessonStatsAccuracy" />,
+                        <Tooltip title={getTranslation(props.localize, "lessonStatsAccuracyNote")}>
+                            <span className={statsNote}>
+                                <Translate id="lessonStatsAccuracy" />
+                                <sup>*</sup>
+                            </span>
+                        </Tooltip>,
                         <>{ accuracy }%</>
+                    ],
+                    [
+                        <Tooltip title={getTranslation(props.localize, "lessonStatsRealAccuracyNote")}>
+                            <span className={statsNote}>
+                                <Translate id="lessonStatsRealAccuracy" />
+                                <sup>*</sup>
+                            </span>
+                        </Tooltip>,
+                        <>{ realAccuracy }%</>
+                    ],
+                    [
+                        <Tooltip title={getTranslation(props.localize, "lessonStatsWPMNote")}>
+                            <span className={statsNote}>
+                                <Translate id="lessonStatsWPM" />
+                                <sup>*</sup>
+                            </span>
+                        </Tooltip>,
+                        <>{ WPM }</>
                     ]
                 ]
             })}
