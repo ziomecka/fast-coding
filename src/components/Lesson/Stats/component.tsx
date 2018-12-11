@@ -4,7 +4,6 @@ import { StatsProps } from './container';
 
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
@@ -29,8 +28,14 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
 
             {createTable({
                 body: [
-                    [ <Translate id="lessonStatsTime" />,  <>{ time } <Translate id="lessonStatsTimeUnit" /></>, <></>  ],
-                    [ <Translate id="lessonStatsAccuracy" />, <>{ accuracy }%</>, <CircularProgress value={accuracy} variant="static" /> ]
+                    [
+                        <Translate id="lessonStatsTime" />,
+                        <>{ time } <Translate id="lessonStatsTimeUnit" /></>,
+                    ],
+                    [
+                        <Translate id="lessonStatsAccuracy" />,
+                        <>{ accuracy }%</>
+                    ]
                 ]
             })}
         </Paper>
