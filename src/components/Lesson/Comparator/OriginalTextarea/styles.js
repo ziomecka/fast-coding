@@ -23,7 +23,8 @@ const styles = theme => ({
         height: `${LESSON_PARAGRAPH_SIZE_REM}rem`,
         overflow: 'visible',
         margin: 0,
-        padding: 0
+        padding: 0,
+        textAlign: 'center'
     },
     comparatorTextAreaParagraphInvite: {
         '& > span:nth-child(1)': {
