@@ -126,6 +126,11 @@ export default {
             root: {
                 fontSize: 'inherit'
             }
+        },
+        MuiTableCell: {
+            body: {
+                fontSize: '1.5em'
+            }
         }
     }
 };
