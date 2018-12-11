@@ -33,13 +33,14 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         super(props);
         this.onDrop = this.onDrop.bind(this);
 
-        this.state = { time: '00 : 00' };
-
         this.interval = 0;
         this._interval = LESSON_TIME_INTERVAL;
         this.getSeconds = getSeconds;
 
+        this.state = { time: this.time() };
+
         this.backForwardButton = this.backForwardButton.bind(this);
+        this.time = this.time.bind(this);
     }
 
     async componentDidMount() {
@@ -61,27 +62,33 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         window.onpopstate = this.backForwardButton;
     }
 
+    time() {
+        const { props: { start, time, ended }} = this;
+
+        /** Check start because it may have not bee set by stats i.e. may equal 0 */
+        let _time = !ended && start
+            ? Date.now() - start + time
+            : time;
+
+        return this.getSeconds(_time);
+    }
+
     backForwardButton(e: PopStateEvent): any {
         this.props.history.go(1);
         this.props.startLeaving();
     }
 
     _setInterval() {
-        const { _interval, props: { start, time }} = this;
-
+        const { _interval, time } = this;
         this.interval = setInterval(() => {
-            this.setState(() => ({ time: this.getSeconds(Date.now() - start + time) })
+            this.setState(() => ({ time: time() })
             )},
         _interval);
     }
 
-    _clearInterval() {
-        clearInterval(this.interval as number);
-    }
-
     stopTime() {
-        this._clearInterval();
-        this.setState({ time: '00 : 00' });
+        clearInterval(this.interval as number);
+        this.setState({ time: this.time() });
     }
 
     componentDidUpdate(prevProps) {
