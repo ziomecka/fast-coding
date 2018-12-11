@@ -89,19 +89,20 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
     componentDidUpdate(prevProps) {
         const { running, ended } = this.props;
-        const { running: prevRunning } = prevProps;
+        const { running: prevRunning, ended: prevEnded } = prevProps;
 
         /** Calculate time only if timer is running */
         if (running !== prevRunning ) {
             if (running) {
                 this._setInterval();
             } else {
-                if (!ended) {
-                    this._clearInterval();
-                } else {
-                    this.stopTime();
-                }
+                this.stopTime();
             }
+        }
+
+        /** Needed for refreshing page e.g. pressing F5 */
+        if (ended !== prevEnded) {
+            this.stopTime();
         }
     }
 
