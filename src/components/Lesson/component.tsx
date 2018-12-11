@@ -50,11 +50,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         if (this.props.lessonText) {
             this.props.keepState();
         } else {
-            let answer = await this.props.restoreState();
-            if (answer && this.props.running && !this.props.ended) {
-                this._setInterval();
-                answer = null;
-            }
+            this.props.restoreState();
         }
 
         /** If back or forward button is pressed redirect the user to the same lesson */
