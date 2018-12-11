@@ -15,7 +15,7 @@ const { stats } = ComparatorContainers;
 
 const mapStateToProps = (state: ApplicationState): ExtendedStatsState => ({
     allErrors: state[components][comparator].allErrors,
-    text: state[components][lesson].text,
+    text: state[components][lesson].lessonText,
     endedLesson: state[components][lesson].ended,
     ...state[components][comparator][stats]
 });
