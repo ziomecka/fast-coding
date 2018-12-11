@@ -12,40 +12,29 @@ import styles from './styles';
 import { Translate } from 'react-localize-redux';
 import withTable from '../../../app/Table';
 
-class StatsComponent extends React.Component<StatsProps> {
-    constructor(props: StatsProps) {
-        super(props);
-    }
+const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
+    const { start, stop, allErrors, text,
+            classes: { statsPaper },
+            createTable
+    } = props;
 
-    get totalTime() {
-        const { start, stop, time } = this.props;
-        return Math.round((stop - start + time) / 10) / 100;
-    }
+    const time = Math.round((stop - start) / 10) / 100;
+    const accuracy = Math.round(100 - 100 * (allErrors.length / text.length));
 
-    get accuracy() {
-        const { allErrors, text } = this.props;
-        return Math.round(100 - 100 * (allErrors.length / text.length));
-    }
+    return (
+        <Paper className={statsPaper} id="lessonStats">
+            <Typography variant="h4">
+                <Translate id="lessonStatsHeading" />
+            </Typography>
 
-    render() {
-        const { classes: { statsPaper }, createTable } = this.props;
-
-        return (
-            <Paper className={statsPaper} id="lessonStats">
-                <Typography variant="h4">
-                    <Translate id="lessonStatsHeading" />
-                </Typography>
-
-                {createTable({
-                    body: [
-                        [ <Translate id="lessonStatsTime" />,  <>{ this.totalTime } <Translate id="lessonStatsTimeUnit" /></>, <></>  ],
-                        [ <Translate id="lessonStatsAccuracy" />, <>{ this.accuracy }%</>, <CircularProgress value={this.accuracy} variant="static" /> ]
-                    ]
-                })}
-            </Paper>
-        );
-
-    }
+            {createTable({
+                body: [
+                    [ <Translate id="lessonStatsTime" />,  <>{ time } <Translate id="lessonStatsTimeUnit" /></>, <></>  ],
+                    [ <Translate id="lessonStatsAccuracy" />, <>{ accuracy }%</>, <CircularProgress value={accuracy} variant="static" /> ]
+                ]
+            })}
+        </Paper>
+    );
 };
 
 export default withStyles(styles)(withTable(StatsComponent));
