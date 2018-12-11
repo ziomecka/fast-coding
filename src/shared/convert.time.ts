@@ -18,6 +18,18 @@ export const showTwoDigits = (value: number): string => {
 
 let calculate = (value: number) => showTwoDigits(Math.round(value));
 
+export const getTime = (time: number): {hours: number, minutes: number, seconds: number} => {
+    const hours = Math.round(time / hour);
+    const minutes = Math.round((time % hour) / minute);
+    const seconds = Math.round( ( time % hour % minute ) / second );
+
+    return {
+        hours,
+        minutes,
+        seconds
+    };
+};
+
 export const getSeconds = (time: number) => {
     return (
         calculate( time / minute ) + " : " +

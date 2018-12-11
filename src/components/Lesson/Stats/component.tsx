@@ -11,16 +11,43 @@ import styles from './styles';
 import { Translate } from 'react-localize-redux';
 import withTable from '../../../app/Table';
 
+import { getTime } from '../../../shared/convert.time';
+import { StatsTimeUnitsEnum } from '../../_common/';
+
+const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
+
 const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
     const { start, stop, allErrors, text,
             classes: { statsPaper },
-            createTable
+            createTable,
+            endedLesson
     } = props;
 
-    const time = Math.round((stop - start) / 10) / 100;
+    const time = getTime(stop - start);
+
+    const { hours, minutes, seconds } = time;
     const accuracy = Math.round(100 - 100 * (allErrors.length / text.length));
 
-    return (
+    const renderTime = (time: number, id: string): JSX.Element => (
+        time > 0 && (
+            <>
+                { time }
+                &nbsp;
+                <Translate {...{ id }} />
+                &nbsp;
+            </>
+        )
+    );
+
+    const getUnitId = (time: number, unit: StatsTimeUnitsEnum) => (
+        (time === 1)
+            ? `lessonStatsUnit${unit}_1`
+            : ( time < 5 )
+                ? `lessonStatsUnit${unit}_4`
+                : `lessonStatsUnit${unit}_more`
+    );
+
+    return endedLesson && (
         <Paper className={statsPaper} id="lessonStats">
             <Typography variant="h4">
                 <Translate id="lessonStatsHeading" />
@@ -30,7 +57,11 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
                 body: [
                     [
                         <Translate id="lessonStatsTime" />,
-                        <>{ time } <Translate id="lessonStatsTimeUnit" /></>,
+                        <>
+                            { renderTime(hours, getUnitId(hours, Hours) ) }
+                            { renderTime(minutes, getUnitId(minutes, Minutes) ) }
+                            { renderTime(seconds, getUnitId(seconds, Seconds) ) }
+                        </>,
                     ],
                     [
                         <Translate id="lessonStatsAccuracy" />,
