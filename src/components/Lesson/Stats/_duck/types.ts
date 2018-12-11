@@ -7,4 +7,5 @@ export enum StatsTypes {
     COMPONENTS_STATS_RESET = '@@components_stats/RESET',
     COMPONENTS_STATS_PAUSE = '@@components_stats/PAUSE',
     COMPONENTS_STATS_UNPAUSE = '@@components_stats/UNPAUSE',
+    COMPONENTS_STATS_RESTORE_STATE = '@@components_stats/RESTORE_STATE'
 };

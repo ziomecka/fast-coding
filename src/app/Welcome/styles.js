@@ -2,7 +2,8 @@ import {
     NAV_HEIGHT,
     WELCOME_BUTTON_MARGIN_RIGHT,
     WELCOME_BUTTON_MARGIN_TOP,
-    NAV_WELCOME_GO_UP
+    NAV_WELCOME_GO_UP,
+    PAPER_PADDING_MAX
 } from '../../constants';
 
 const styles = theme => {
@@ -55,7 +56,7 @@ const styles = theme => {
         welcomeHeading: {
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
-            padding: '0 6rem'
+            padding: `0 ${PAPER_PADDING_MAX}`
         },
         welcomeHeadingOther: {
             position: 'relative',
@@ -63,7 +64,7 @@ const styles = theme => {
             color: contrastTextSecondary
         },
         welcomeButtons: {
-            paddingLeft: '6rem'
+            paddingLeft: PAPER_PADDING_MAX
         },
         welcomeButton: {
             margin: `${spacingUnit * WELCOME_BUTTON_MARGIN_TOP} ${spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT} ${spacingUnit} 0`,
@@ -76,11 +77,10 @@ const styles = theme => {
         },
         welcomeHomeSubMenu: {
             position: 'absolute',
-            left: 0,
+            left: PAPER_PADDING_MAX,
             display: 'inline-block',
             width: '50%', // arbitrary value
-            height: '100%',
-            padding: 0,
+            height: '1.5em', // dzięki temu tooltip na tej samej wysokości co inne
             backgroundColor: 'transparent',
             '&:hover': {
                 backgroundColor: 'transparent'

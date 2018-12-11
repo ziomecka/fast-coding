@@ -1,8 +1,9 @@
-let second = 1000;
-let minute = 60000;
+const second = 1000;
+const minute = 60000;
+const hour = 3600000;
 
-let showTwoDigits = (value: number): string => {
-    let str = String(value) || '';
+export const showTwoDigits = (value: number): string => {
+    const str = String(value) || '';
 
     if (str.length === 1) {
         return `0${str}`;
@@ -16,6 +17,18 @@ let showTwoDigits = (value: number): string => {
 };
 
 let calculate = (value: number) => showTwoDigits(Math.round(value));
+
+export const getTime = (time: number): {hours: number, minutes: number, seconds: number} => {
+    const hours = Math.round(time / hour);
+    const minutes = Math.round((time % hour) / minute);
+    const seconds = Math.round( ( time % hour % minute ) / second );
+
+    return {
+        hours,
+        minutes,
+        seconds
+    };
+};
 
 export const getSeconds = (time: number) => {
     return (

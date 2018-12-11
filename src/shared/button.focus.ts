@@ -7,16 +7,27 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
     let focusedButton = buttonsIds[focusedIndex];
 
     const manageFocus = (e: KeyboardEvent) => {
-        if (e.keyCode === 9) {
-            e.preventDefault();
-            let index = buttonsIds.findIndex(item => item === focusedButton);
-            const nextIndex = ( ++index <= length - 1 ) ? index : 0;
-            focusedButton = buttonsIds[nextIndex];
-            try {
-                getButton(focusedButton).focus();
-            } catch {}
+        e.preventDefault();
+        const { keyCode } = e;
+
+        let index = buttonsIds.findIndex(item => item === focusedButton);
+        let nextIndex;
+
+        /** If tab or arrow right */
+        if (keyCode === 9 || keyCode === 39) {
+            nextIndex = index++ <= length - 2  ? index : 0;
         }
-    };
+
+        /** If arrow left */
+        if (keyCode === 37) {
+            nextIndex = --index >= 0 ? index : length - 1;
+        };
+
+        try {
+            getButton(buttonsIds[nextIndex]).focus();
+            focusedButton = buttonsIds[nextIndex];
+        } catch {}
+    }
 
     return (e: KeyboardEvent): boolean => {
         const { keyCode } = e;
@@ -31,8 +42,8 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
             return true;
         }
 
-        /** If tab */
-        if (keyCode === 9) {
+        /** If tab or arrow right or arrow left */
+        if (keyCode === 9 || keyCode === 39 || keyCode === 37)  {
             manageFocus(e);
             return true;
         }

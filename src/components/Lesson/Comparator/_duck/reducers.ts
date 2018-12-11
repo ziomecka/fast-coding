@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { ComparatorActions } from './actions';
+import { ComparatorActions, RestoreStateAction } from './actions';
 
 import { ComparatorTypes } from './types';
 import { StatsTypes } from '../../Stats/_duck/types';
@@ -19,7 +19,8 @@ const {
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
     COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
     COMPONENTS_COMPARATOR_CORRECT_ERROR,
-    COMPONENTS_COMPARATOR_RESET
+    COMPONENTS_COMPARATOR_RESET,
+    COMPONENTS_COMPARATOR_RESTORE_STATE
 } = ComparatorTypes;
 
 const {
@@ -67,7 +68,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_COMPARATOR_REGISTER_BACKSPACE: {
             return {
                 ...state,
-                currentSignIndex: state.currentSignIndex - 1
+                currentSignIndex: Math.max(-1, state.currentSignIndex - 1)
             };
         }
 
@@ -101,6 +102,13 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
                 correctedErrors: [],
                 currentSignIndex: -1
             };
+        }
+
+        case COMPONENTS_COMPARATOR_RESTORE_STATE: {
+            return {
+                ...state,
+                ...(action as RestoreStateAction).state
+            }
         }
 
         default: {

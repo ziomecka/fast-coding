@@ -36,7 +36,10 @@ export enum PasswordTypes {
 };
 
 export enum LocalStorageItemTypes {
-    lessons = 'LESSONS'
+    lessons = 'LESSONS',
+    comparator = 'COMPARATOR',
+    lesson = 'LESSON',
+    stats = 'STATS'
 };
 
 export enum NotificationVariantTypes {

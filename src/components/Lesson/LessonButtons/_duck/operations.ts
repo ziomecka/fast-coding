@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../../_reducers';
 const { lessons } = AppRoutes;
 
 import { openDialog, closeDialog } from '../../../../app/Dialog/_duck/actions';
-import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations';
+import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations/life';
 
 import history from '../../../../shared/history';
 import { manageButtonFocus as buttonFocus } from '../../../../shared/button.focus';
@@ -42,7 +42,7 @@ export const onStartLeaving = (): any => (dispatch: Dispatch, getState: ()=> App
                 {
                     title: 'leave',
                     buttonProps: {
-                        id: buttonsIds[1],
+                        id: buttonsIds[0],
                         onClick: () => leave(dispatch),
                     },
                     translationId: 'lessonDialogOKLeave',
@@ -51,7 +51,7 @@ export const onStartLeaving = (): any => (dispatch: Dispatch, getState: ()=> App
                 {
                     title: 'cancel',
                     buttonProps: {
-                        id: buttonsIds[0],
+                        id: buttonsIds[1],
                         color: 'secondary',
                         autoFocus: `{true}`,
                         onClick: () => cancelLeave(dispatch),

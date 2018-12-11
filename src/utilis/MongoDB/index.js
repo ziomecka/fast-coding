@@ -1,4 +1,5 @@
 require('dotenv').config();
+const generateCourses = require('./generate.courses');
 
 async function createCoursesCollection() {
     let fun = require('./create.collection').createCollection;
@@ -26,7 +27,8 @@ function insertCourses() {
 
 module.exports = {
     createCoursesCollection,
-    insertCourses
+    insertCourses,
+    generateCourses
 };
 
 require('make-runnable');

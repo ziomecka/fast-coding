@@ -1,14 +1,13 @@
 
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../_reducers/';
 
-import { ApplicationContainers, AppContainers  } from '../../../_common';
+import { ApplicationContainers, AppContainers, ThunkGetStateType } from '../../../_common';
 
 const { app } = ApplicationContainers;
 const { user } = AppContainers;
 import { onLoadLessons } from '../../../components/LessonsLoader/_duck/operations';
 
-export const onAuthorize = (): any => async (dispatch: Dispatch, getState: () => ApplicationState ) => {
+export const onAuthorize = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType ) => {
     let answer = await true;
 
     if (answer) {

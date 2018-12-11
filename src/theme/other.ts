@@ -17,9 +17,6 @@ import {
 } from './flexes';
 
 export default {
-    typography: {
-        useNextVariants: true
-    },
     props: {
         MuiAppBar: {
             height: NAV_HEIGHT,
@@ -40,10 +37,25 @@ export default {
         MuiButtonBase: {
             disableRipple: false,
             disableTouchRipple: true,
-            focusRipple: true
-        }
+            focusRipple: true,
+        },
     },
     overrides: {
+        MuiButton: {
+            /** Lesson card buttons */
+            text: {
+                '&:hover': {
+                    backgroundColor: 'transparent'
+                },
+                textTransform: 'none'
+            }
+        },
+        MuiTooltip: {
+            tooltip: {
+                fontSize: '1rem',
+                padding: '.5rem'
+            }
+        },
         MuiMenu: {
             paper: {
                 padding: PAPER_PADDING
@@ -113,6 +125,11 @@ export default {
         MuiSvgIcon: {
             root: {
                 fontSize: 'inherit'
+            }
+        },
+        MuiTableCell: {
+            body: {
+                fontSize: '1.5em'
             }
         }
     }

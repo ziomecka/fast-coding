@@ -15,6 +15,8 @@ import getTranslation from '../../shared/get.translation';
 
 import { getSeconds } from '../../shared/convert.time';
 
+import { LESSON_TIME_INTERVAL } from '../../constants';
+
 /** Running time is calculate internally and kept in internal state.
  *  Could be got from Stats but it affects negatively the performance.
  */
@@ -31,49 +33,76 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         super(props);
         this.onDrop = this.onDrop.bind(this);
 
-        this.state = { time: '00 : 00' };
-
         this.interval = 0;
-        this._interval = 500;
+        this._interval = LESSON_TIME_INTERVAL;
         this.getSeconds = getSeconds;
+
+        this.state = { time: this.time() };
+
+        this.backForwardButton = this.backForwardButton.bind(this);
+        this.time = this.time.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.registerOnDrop(this.onDrop);
+
+        /** if new lesson loaded */
+        if (this.props.lessonText) {
+            this.props.keepState();
+        } else {
+            this.props.restoreState();
+        }
+
+        /** If back or forward button is pressed redirect the user to the same lesson */
+        this.props.history.push(location.href);
+        window.onpopstate = this.backForwardButton;
+    }
+
+    time() {
+        const { props: { start, time, ended }} = this;
+
+        /** Check start because it may have not bee set by stats i.e. may equal 0 */
+        let _time = !ended && start
+            ? Date.now() - start + time
+            : time;
+
+        return this.getSeconds(_time);
+    }
+
+    backForwardButton(e: PopStateEvent): any {
+        this.props.history.go(1);
+        this.props.startLeaving();
     }
 
     _setInterval() {
-        const { _interval, props: { start, time }} = this;
-
+        const { _interval, time } = this;
         this.interval = setInterval(() => {
-            this.setState(() => ({ time: this.getSeconds(Date.now() - start + time) })
-            )}, _interval);
-        }
+            this.setState(() => ({ time: time() })
+            )},
+        _interval);
+    }
 
-        _clearInterval() {
-            clearInterval(this.interval as number);
-        }
+    stopTime() {
+        clearInterval(this.interval as number);
+        this.setState({ time: this.time() });
+    }
 
-        stopTime() {
-            this._clearInterval();
-            this.setState({ time: '00 : 00' });
-        }
-
-        componentDidUpdate(prevProps) {
-            const { running, ended } = this.props;
-            const { running: prevRunning } = prevProps;
+    componentDidUpdate(prevProps) {
+        const { running, ended } = this.props;
+        const { running: prevRunning, ended: prevEnded } = prevProps;
 
         /** Calculate time only if timer is running */
         if (running !== prevRunning ) {
             if (running) {
                 this._setInterval();
             } else {
-                if (!ended) {
-                    this._clearInterval();
-                } else {
-                    this.stopTime();
-                }
+                this.stopTime();
             }
+        }
+
+        /** Needed for refreshing page e.g. pressing F5 */
+        if (ended !== prevEnded) {
+            this.stopTime();
         }
     }
 
@@ -113,7 +142,6 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     render() {
         const {
             props: {
-                ended,
                 started,
                 classes: { lessonPaper, lessonInvite, lessonTime }
             },
@@ -139,7 +167,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
                 <LessonButtons />
 
-                { ended && <Stats /> }
+                <Stats />
             </>
         );
     }

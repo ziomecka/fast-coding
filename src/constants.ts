@@ -35,10 +35,11 @@ export const COLOR_SUCCESS = '#c5ebc3'; //'#afdobf' //'#c8ffbe' //'#c5ebc3 // '#
 export const COLOR_CORRECTED = '#fcefe7'; //'#ffe9b2';
 export const COLOR_HINTS = '#90ab8e';
 
-export const FONT_BOLD = 500;
 export const BORDER_THIN = '.5px';
 
 export const ELEVATION = 2;
+
+export const LESSON_TIME_INTERVAL = 500;
 
 export const LESSON_DEMO_TEXT = {
     [pl]: 'To jest lekcja pokazowa. ' +
@@ -58,4 +59,5 @@ export const LESSON_DEMO_TITLE = {
     [en]: 'Demonstration lesson'
 };
 
-export const LESSONS_HEIGHT = '250px';
+export const STATS_AVERAGE_WORD_LENGTH = 5;
+export const LESSONS_HEIGHT = '200px';

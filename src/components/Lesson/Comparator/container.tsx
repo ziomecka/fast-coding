@@ -7,14 +7,23 @@ import { ApplicationState } from '../../../store';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers } from '../../../_common/';
+import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } from '../../../_common/';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;
 
-import { onEndingLesson } from '../_duck/operations';
-import { startLesson } from '../_duck/actions';
-import { onTurnOnComparator, onAddEventListener, handleKeyboardDown, onRemoveEventListener } from './_duck/operations';
+import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
+import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
+
+import { default as operations  } from './_duck/operations/index';
+const {
+    onAddEventListener,
+    onTurnOnComparator,
+    onRemoveEventListener,
+    handleKeyboardDown
+} = operations;
+
+import { restoreState } from './_duck/actions';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = (state: ApplicationState): ComparatorState & LessonState => ({
@@ -24,10 +33,12 @@ const mapStateToProps = (state: ApplicationState): ComparatorState & LessonState
 
 const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     turnOnComparator: () => dispatch(onTurnOnComparator()),
-    startLesson: () => dispatch(startLesson()),
+    startLesson: () => dispatch(onStartLesson()),
     endingLesson: () => dispatch(onEndingLesson()),
     addEventListener: () => dispatch(onAddEventListener(handleKeyboardDown)),
-    removeEventListener: () => dispatch(onRemoveEventListener())
+    removeEventListener: () => dispatch(onRemoveEventListener()),
+    keepState: () => dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator)),
+    restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.comparator, restoreState))
 });
 
 const ComparatorContainer = connect(mapStateToProps, mapDispatchToProps)(Comparator);
@@ -40,6 +51,8 @@ export interface ComparatorDispatch {
     endingLesson: () => void;
     addEventListener: () => void;
     removeEventListener: () => void;
+    keepState: () => void;
+    restoreState: () => void;
 };
 
 export interface ComparatorProps extends

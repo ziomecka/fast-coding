@@ -30,10 +30,17 @@ const reducer: Reducer<StatsState, StatsActions> = (state = INITIAL_STATE, actio
         }
 
         case COMPONENTS_STATS_TIMER_STOP: {
+            const { start, time } = state;
+
+            /** Set time once. In case page is refreshed */
             return {
                 ...state,
                 running: false,
-                stop: Date.now()
+                stop: 0,
+                start: 0,
+                time: start
+                    ? Date.now() - start + time
+                    : time,
             };
         }
 
@@ -42,13 +49,22 @@ const reducer: Reducer<StatsState, StatsActions> = (state = INITIAL_STATE, actio
         }
 
         case COMPONENTS_STATS_PAUSE: {
+            const { start, time } = state;
+
+           /** Time: check if start exists
+            *  Needed in case browser's back button is pressed
+            *  because then the start becomes 0.
+            *  Also in case the page is refreshed
+             */
             return {
                 ...state,
-                time: Date.now() - state.start + state.time,
+                time: start
+                    ? Date.now() - start + time
+                    : time,
                 start: 0,
                 stop: 0,
                 running: false
-             };
+            };
         }
 
         case COMPONENTS_STATS_UNPAUSE: {

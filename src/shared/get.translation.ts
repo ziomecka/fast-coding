@@ -1,6 +1,6 @@
 import { getTranslations, getLanguages, getActiveLanguage, LocalizeState } from 'react-localize-redux';
 
-const getTranslation = (localize: LocalizeState, id: string): string => {
+const getTranslation = (localize: LocalizeState, id: string, missingTranslationString?: string): string => {
     try {
         return getTranslations(localize)[id][
             getLanguages(localize)
@@ -9,7 +9,7 @@ const getTranslation = (localize: LocalizeState, id: string): string => {
             )
         ]
     } catch (err) {
-        return 'Missing translation';
+        return missingTranslationString || 'Missing translation';
     }
 };
 

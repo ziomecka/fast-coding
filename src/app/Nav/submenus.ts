@@ -26,12 +26,12 @@ export const mainMenuItems: SubMenuItemType[] = [
 
 export const userMenuItems: SubMenuItemType[] = [
     {
-        title: 'login',
+        title: 'subMenuUserLogin',
         appRoute: login,
         rules: [ onlyUnauthorized, notCurrentLocation ]
     },
     {
-        title: 'new user',
+        title: 'subMenuUserNewUser',
         appRoute: newuser,
         rules: [ onlyUnauthorized, notCurrentLocation ]
     }

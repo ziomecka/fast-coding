@@ -59,6 +59,7 @@ const palette = {
       }
     },
     "typography": {
+      "useNextVariants": true,
       "headline": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
@@ -105,7 +106,7 @@ const palette = {
         "textTransform": "uppercase",
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "fontSize": "0.875rem",
+        "fontSize": "0.875em",
         "fontWeight": 500
       },
       "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
@@ -123,8 +124,9 @@ const palette = {
         "fontSize": "0.75rem",
         "fontWeight": 400
       },
-      "fontSize": 14,
-      "fontWeightMedium": 500,
+      "fontSize": 20,
+      "htmlFontSize": 20,
+      "fontWeightMedium": 600,
       "title": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",

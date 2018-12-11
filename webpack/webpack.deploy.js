@@ -14,6 +14,29 @@ module.exports = merge(base, {
     path: DEPLOY_DIR,
     chunkFilename: '[name].chunkhash.bundle.js',
   },
+  stats: {
+    builtAt: true,
+    cached: true,
+    cachedAssets: true,
+    chunks: true,
+    chunkGroups: true,
+    chunkModules: true,
+    chunkOrigins: true,
+    chunksSort: "field",
+    colors: true,
+    entrypoints: false,
+    env: true,
+    errors: true,
+    errorDetails: true,
+    hash: true,
+    modules: true,
+    modulesSort: "field",
+    performance: true,
+    publicPath: true,
+    reasons: true,
+    usedExports: true,
+    warnings: true
+  },
   module: {
     rules: [
       {
@@ -24,18 +47,21 @@ module.exports = merge(base, {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': 'production' }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     new CompressionPlugin(),
+    new webpack.HashedModuleIdsPlugin()
   ],
 
   optimization: {
     minimize: true,
     namedModules: true,
     usedExports: true,
+    runtimeChunk: "single",
     splitChunks: {
         cacheGroups: {
             commons: {
                 chunks: "initial",
+                name: "main",
                 minChunks: 2
             },
             vendor: {

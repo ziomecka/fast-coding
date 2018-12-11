@@ -18,14 +18,16 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
 
     componentDidMount() {
         this.props.addEventListener();
+        this.props.restoreState();
     }
 
     componentWillUnmount() {
         this.props.removeEventListener();
+        this.props.keepState();
     }
 
     componentDidUpdate(prevProps: ComparatorProps) {
-        const { currentSignIndex, text } = this.props
+        const { currentSignIndex, lessonText } = this.props
         const prevCurrentSignIndex= prevProps.currentSignIndex;
 
         if (currentSignIndex !== prevCurrentSignIndex) {
@@ -34,7 +36,7 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
                 this.props.turnOnComparator();
             }
 
-            if (currentSignIndex === text.length - 1) {
+            if (currentSignIndex >= lessonText.length - 1) {
                 this.props.endingLesson();
             }
 

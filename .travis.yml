@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- 8.11.3
+cache:
+  bundler: true
+  directories:
+  - node_modules
+script:
+- npm run eslint
+deploy:
+  provider: heroku
+  api_key:
+    secure: kuWZX77NQ92bwhCQsTDuUJcn8UydSEo809w/7OCVtViz7k5a+oNH8ZZP5r5cV91Zdxzd2uxJetnbucwH1b2MfFw/J3jGQUppfJ0Jo/3Xk85MyYPAATHSqRwpOqh1yWF2jFBefXhrtxR78eDkgtADkE0HcBBRGS4WxZFjjvqQJMQiTNkMblUwsTanjH2VFqor9JfcM6zUrM5ICvP7S+X3gXYTeGSJ2bNexFZeWeYQj652cfVA4bIA0/ULXJvIS+h1KGkIC8Xvq/ytwktusQwYSHIqM81VcCmGlbkX3+uDVGd4hXuq4o+w3tSNePziEvPKyQUrJonwTMzUbgFVMUhWGIGCTBEA/sk7u13zQlDSBmaxI6oOEaPfmEHlX1oYYPzjoM7lpohie2NZwyTEcfr7TGbyx6GgDHOv6RxSfwPAbirP6/qUS1FmCqouI4Sq5yY7nMBdcFRbmMfED19OEylXpRls89OeuzlNlXHdCA+QrU18dDe1eCyMP5OHKt75vuMyCyZ4qOgblVWwdu8QmEQZQss0RKV8DAKq3tYPScO+sHUXT0OAVej81zATZx+Q7/CxBEtu6DHEkcD8q3mt2XrkCXzfd9PlMZ3LSyBeReUg5a7StEISzGLm9XQnL6x5c+MARf1mfLfhRq/P1PvoIGk3BcdpyTloOAq3Y0URMGSfIOQ=
+  app: fast-coding
+  on:
+    repo: ziomecka/fast-coding

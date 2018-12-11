@@ -4,6 +4,8 @@ import { LessonTypes } from './types';
 import { LessonData} from './reducers';
 import { LanguagesEnum } from '../../../_common/';
 
+import { LessonState } from './reducers';
+
 const {
     COMPONENTS_LESSON_OPEN,
     COMPONENTS_LESSON_TEXT_UPDATE,
@@ -16,7 +18,8 @@ const {
     COMPONENTS_LESSON_END,
     COMPONENTS_LESSON_RESET,
     COMPONENTS_LESSON_OPEN_DEMO,
-    COMPONENTS_LESSON_RESTART
+    COMPONENTS_LESSON_RESTART,
+    COMPONENTS_LESSON_RESTORE_STATE
 } = LessonTypes;
 
 export const openLesson: ActionCreator<OpenLessonAction> = (lessonData: LessonData) => ({
@@ -72,6 +75,11 @@ export const unpauseLesson: ActionCreator<Action> = () => ({
     type: COMPONENTS_LESSON_UNPAUSE
 });
 
+export const restoreState: ActionCreator<RestoreStateAction> = (state: LessonState) => ({
+    type: COMPONENTS_LESSON_RESTORE_STATE,
+    state
+});
+
 export default {
     endLesson,
     resetLesson
@@ -90,6 +98,11 @@ export interface UpdateTextAction extends Action {
 export interface OpenDemoLessonAction extends Action {
     readonly type: string;
     language: LanguagesEnum;
+};
+
+export interface RestoreStateAction extends Action {
+    readonly type: string;
+    state: LessonState;
 };
 
 export type LessonActions = Action |
