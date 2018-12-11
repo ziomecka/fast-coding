@@ -193,27 +193,32 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             </div>
 
             {/* Buttons for managing draggable menu */}
-            <div className={lessonButtonsDragHandle}>
-                <Button
-                    title="Drag the buttons menu"
-                    onMouseEnter={turnOnDraggable}
-                    onMouseLeave={turnOffDraggable}
-                >
-                    <TouchRipple />
-                    <DragHandle />
-                </Button>
+            {/* Available only if lesson is not started or has been ended */}
+            {
+                (!started || ended) && (
+                    <div className={lessonButtonsDragHandle}>
+                        <Button
+                            title="Drag the buttons menu"
+                            onMouseEnter={turnOnDraggable}
+                            onMouseLeave={turnOffDraggable}
+                        >
+                            <TouchRipple />
+                            <DragHandle />
+                        </Button>
 
-                {/* Display clear button only if the menu has been moved */}
-                {isMoved && (
-                    <Button
-                        title="Resize the buttons menu"
-                        onClick={resetLessonButtons}
-                    >
-                        <TouchRipple />
-                        <Clear />
-                    </Button>
-                )}
-            </div>
+                        {/* Display clear button only if the menu has been moved */}
+                        {isMoved && (
+                            <Button
+                                title="Resize the buttons menu"
+                                onClick={resetLessonButtons}
+                            >
+                                <TouchRipple />
+                                <Clear />
+                            </Button>
+                        )}
+                    </div>
+                )
+            }
         </Paper>
     );
 };
