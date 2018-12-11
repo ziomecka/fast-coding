@@ -1,0 +1,125 @@
+[
+    {
+        "signs": ["f", "j"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["d", "k"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["f", "j", "d", "k"],
+        "otherSigns": [],
+        "level": "0",
+        "type": "review"
+    },
+    {
+        "signs": ["s", "l"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["a", ";"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["s", "l", "a", ";"],
+        "otherSigns": [],
+        "level": "0",
+        "type": "review"
+    },
+    {
+        "signs": ["f", "j", "d", "k", "s", "l", "a", ";"],
+        "otherSigns": [],
+        "level": "0",
+        "type": "review"
+    },
+    {
+        "signs": ["g", "h"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["r", "u"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["e", "i"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["w", "o"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["q", "y"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["c", ","],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["b", "n"],
+        "otherSigns": [],
+        "level": "1"
+    },
+    {
+        "signs": ["$", "&"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["#", "*"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["@", "("],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["!", ")"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["%", "^"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["-", "_"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["=", "+"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["[", "{"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["]", "}"],
+        "otherSigns": [],
+        "level": "2"
+    },
+    {
+        "signs": ["<", ">"],
+        "otherSigns": [],
+        "level": "2"
+    }
+]
