@@ -17,15 +17,15 @@ import { StatsTimeUnitsEnum } from '../../_common/';
 const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
 
 const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
-    const { start, stop, allErrors, text,
+    const { start, stop, time, allErrors, text,
             classes: { statsPaper },
             createTable,
             endedLesson
     } = props;
 
-    const time = getTime(stop - start);
+    const totalTime = getTime(stop - start + time);
 
-    const { hours, minutes, seconds } = time;
+    const { hours, minutes, seconds } = totalTime;
     const accuracy = Math.round(100 - 100 * (allErrors.length / text.length));
 
     const renderTime = (time: number, id: string): JSX.Element => (
