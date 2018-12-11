@@ -141,7 +141,6 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     render() {
         const {
             props: {
-                ended,
                 started,
                 classes: { lessonPaper, lessonInvite, lessonTime }
             },
@@ -167,7 +166,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
                 <LessonButtons />
 
-                { ended && <Stats /> }
+                <Stats />
             </>
         );
     }
