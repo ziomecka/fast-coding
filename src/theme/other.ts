@@ -17,9 +17,6 @@ import {
 } from './flexes';
 
 export default {
-    typography: {
-        useNextVariants: true
-    },
     props: {
         MuiAppBar: {
             height: NAV_HEIGHT,
