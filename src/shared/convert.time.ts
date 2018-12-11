@@ -1,8 +1,9 @@
-let second = 1000;
-let minute = 60000;
+const second = 1000;
+const minute = 60000;
+const hour = 3600000;
 
-let showTwoDigits = (value: number): string => {
-    let str = String(value) || '';
+export const showTwoDigits = (value: number): string => {
+    const str = String(value) || '';
 
     if (str.length === 1) {
         return `0${str}`;
