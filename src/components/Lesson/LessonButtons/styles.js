@@ -1,4 +1,4 @@
-import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN } from '../../../constants';
+import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN, LESSON_MAX_WIDTH } from '../../../constants';
 
 const styles = theme => {
     const {
@@ -13,6 +13,7 @@ const styles = theme => {
         lessonButtonsMenu: {
             minWidth: 'auto',
             minHeight: 'auto',
+            maxWidth: `${LESSON_MAX_WIDTH}px`,
             height: 'auto',
             width: '100%',
             position: 'relative',
