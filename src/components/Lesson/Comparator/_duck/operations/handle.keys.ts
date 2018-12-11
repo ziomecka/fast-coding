@@ -139,7 +139,10 @@ export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: T
             allErrors.push(nextCurrentSignIndex);
         }
 
-        errors.push(nextCurrentSignIndex);
+        /** Prevents adding the last letter several times when lesson is ending */
+        if ( currentSignIndex !== nextCurrentSignIndex ) {
+            errors.push(nextCurrentSignIndex);
+        }
 
         answer = await dispatch(registerError(errors, allErrors, nextCurrentSignIndex ));
     } else {
