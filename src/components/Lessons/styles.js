@@ -19,51 +19,52 @@ const styles = theme => {
         },
         expansionPanelDetails: {
             flexWrap: 'wrap',
-            paddingTop: 0
+            paddingTop: 0,
+            justifyContent: 'center'
+
         },
         lessonCard: {
             margin: spacingUnit,
             flex: '0 0 20%',
-            padding: '2rem',
+            padding: 0,
             height: LESSONS_HEIGHT,
-            minWidth: LESSONS_HEIGHT,
+            maxWidth: LESSONS_HEIGHT
         },
         expansionButton: {
             maxWidth: '4rem',
             maxHeight: '4rem'
         },
         lessonCardContent: {
-            padding: '1rem',
+            padding: 0,
             width: '100%',
-            height: '100%'
-        },
-        lessonCardLink: {
-            boxSizing: 'border-box',
-            textAlign: 'center',
             height: '100%',
-            '& > a': {
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                height: '100%',
-                width: '100%'
+            '&:last-child': {
+                paddingBottom: 0 // to ovveride material design
             }
         },
-        lessonCardLinkText: {
-            display: 'flex-box',
+        lessonCardButton: {
             boxSizing: 'border-box',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            textAlign: 'center',
+            margin: 0,
+            padding: 0,
+            height: LESSONS_HEIGHT,
+            width: '100%'
+        },
+        lessonCardButtonLabel: {
+            display: 'flex-box',
+            flexWrap: 'wrap',
+            height: LESSONS_HEIGHT,
+            width: '100%',
+            padding: '2em',
+            fontSize: '1em',
+            boxSizing: 'border-box',
+        },
+        lessonCardLinkText: {
+            display: 'inline-block',
+            width: '100%',
             '&:nth-child(1)': {
                 fontWeight: fontWeightMedium,
-                display: 'inline-block',
-                padding: '1em 0'
-            },
-            '&:nth-child(2)': {
-                display: 'inline-block',
-                padding: '1em 0'
+                alignSelf: 'flex-start',
+                top: 0
             }
         },
         divider: {

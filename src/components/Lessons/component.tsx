@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { LessonsProps } from './container';
 import { LessonData } from  '../Lesson/_duck/reducers';
@@ -19,10 +18,10 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
@@ -33,7 +32,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
         lessons,
         handleOpenLesson,
         handleOpenRandomLesson,
-        classes
+        classes,
+        history
     } = props;
 
     const {
@@ -45,6 +45,8 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
         lessonCardContent,
         lessonCardLink,
         lessonCardLinkText,
+        lessonCardButton,
+        lessonCardButtonLabel,
         expansionPanelSummaryHeading,
         divider
     } = classes;
@@ -55,11 +57,14 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     const lessonsRoute = AppRoutes.lessons;
 
     const handleOnClick = (lesson: LessonData): void => {
+        const { _id } = lesson;
         if (randomLesson) {
             handleOpenRandomLesson(lesson);
         } else {
             handleOpenLesson(lesson);
         }
+
+        history.push(`${lessonsRoute}/${_id}`);
     };
 
     const langCode = getActiveLanguage(props.localize).code;
@@ -115,18 +120,16 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
                     className={lessonCard}
                 >
                     <CardContent classes={{ root: lessonCardContent }} >
-                        <Typography variant="h5" className={lessonCardLink}>
-                            <Tooltip title={ _title }>
-                                <Link
-                                    id={`link-${_id}`}
-                                    to={`${lessonsRoute}/${_id}`}
-                                    onClick={() => handleOnClick(lesson)}
-                                >
-                                    <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
-                                    <span className={lessonCardLinkText}>{ _title }</span>
-
-                            </Link>
-                            </Tooltip>
+                        <Typography variant="h5">
+                            <Button
+                                onClick={ () => handleOnClick(lesson) }
+                                classes={{root: lessonCardButton, label: lessonCardButtonLabel }}
+                                /** Variant text overriden in theme - no background on hover */
+                                variant="text"
+                            >
+                                <span className={lessonCardLinkText}> <Translate id="lessonsLesson" /> {`${ind + 1}`}</span>
+                                <span className={lessonCardLinkText}>{ _title }</span>
+                            </Button>
                         </Typography>
                     </CardContent>
                 </Card>

@@ -37,10 +37,19 @@ export default {
         MuiButtonBase: {
             disableRipple: false,
             disableTouchRipple: true,
-            focusRipple: true
-        }
+            focusRipple: true,
+        },
     },
     overrides: {
+        MuiButton: {
+            /** Lesson card buttons */
+            text: {
+                '&:hover': {
+                    backgroundColor: 'transparent'
+                },
+                textTransform: 'none'
+            }
+        },
         MuiTooltip: {
             tooltip: {
                 fontSize: '1rem',
