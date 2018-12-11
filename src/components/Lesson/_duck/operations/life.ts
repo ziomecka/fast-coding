@@ -50,6 +50,7 @@ export const onEndLesson = (): any => (dispatch: Dispatch) => {
         addEscapeReturnListener(dispatch);
         document.getElementById("lessonStats").scrollIntoView(true);
         dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
+        dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
     }
 };
 
@@ -123,6 +124,7 @@ export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
     clearTimeout(timeout);
     removeAllKeyDownListeners();
     dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
+    dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
 };
 
 export const onPauseLesson = (listener?): any => (dispatch: Dispatch): void => {
@@ -130,6 +132,7 @@ export const onPauseLesson = (listener?): any => (dispatch: Dispatch): void => {
     dispatch(onPauseComparator(listener));
     dispatch(pauseLesson());
     dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
+    dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
 };
 
 export const onUnpauseLesson = (): any => (dispatch: Dispatch): void => {
@@ -137,6 +140,7 @@ export const onUnpauseLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(unpauseLesson());
     dispatch(onUnpauseTimer());
     dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
+    dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
 };
 
 export default {
