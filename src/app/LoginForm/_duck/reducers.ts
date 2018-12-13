@@ -22,7 +22,7 @@ const {
 } = LoginFormTypes;
 
 import { PasswordTypes as _PasswordTypes } from '../../_common/';
-const { newPass } = _PasswordTypes;
+const { pass } = _PasswordTypes;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CURRENT,
@@ -31,12 +31,12 @@ const {
 } = PasswordTypes;
 
 export const INITIAL_STATE: LoginFormState = {
-    [newPass]: { ...PASSWORD_INITIAL_STATE },
+    [pass]: { ...PASSWORD_INITIAL_STATE },
     ...LOGIN_INITIAL_STATE
 };
 
 export interface LoginFormState extends LoginState {
-    [newPass]: PasswordState
+    [pass]: PasswordState
 };
 
 const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
@@ -45,11 +45,11 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STAT
         case APP_PASSWORD_SET_PASSWORD_CURRENT:
         case APP_PASSWORD_SET_PASSWORD_NEW:
         case APP_PASSWORD_SET_PASSWORD_CONFIRM: {
-            const { password, passwordValid } = state[newPass];
+            const { password, passwordValid } = state[pass];
 
             return {
                 ...state,
-                [newPass]: passwordReducer({ password, passwordValid }, action)
+                [pass]: passwordReducer({ password, passwordValid }, action)
             };
         }
 
@@ -62,7 +62,7 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STAT
 
         case APP_LOGINFORM_RESET: {
             return {
-                [newPass]: { ...PASSWORD_INITIAL_STATE },
+                [pass]: { ...PASSWORD_INITIAL_STATE },
                 ...LOGIN_INITIAL_STATE
             };
         }

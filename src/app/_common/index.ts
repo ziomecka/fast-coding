@@ -31,6 +31,7 @@ export enum invalidError {
 };
 
 export enum PasswordTypes {
+    pass = 'PASS',
     newPass = 'NEW_PASS',
     currentPass = 'CURRENT_PASS',
     confirmPass = 'CONFIRM_PASS'

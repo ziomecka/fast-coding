@@ -16,7 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { Translate } from 'react-localize-redux';
-const { newPass } = PasswordTypes;
+const { pass } = PasswordTypes;
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainers;
@@ -36,7 +36,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     submit () {
-        const { login, [newPass]: { password } } = this.props;
+        const { login, [pass]: { password } } = this.props;
         this.props.log(login, password);
     }
 
@@ -48,7 +48,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
               <form onSubmit={ e => e.preventDefault() }>
                 <FormControl tabIndex={1}>
                     <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
-                    <Password {...{ container, passwordType: newPass }} tabIndex={2} />
+                    <Password {...{ container, passwordType: pass }} tabIndex={2} />
                     <Button
                         onClick={this.submit}
                         type="submit"

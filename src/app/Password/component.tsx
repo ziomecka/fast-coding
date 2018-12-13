@@ -20,11 +20,11 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
       tabIndex
     } = props;
 
-  return (
+    return (
     <TextField
         inputProps={{ tabIndex }}
-        label={getTranslation(props.localize, 'passwordLabel')}
-        placeholder={getTranslation(props.localize, 'passwordPlaceholder')}
+        label={getTranslation(props.localize, `${passwordType}_Label`)}
+        placeholder={getTranslation(props.localize, `${passwordType}_Placeholder`)}
         required
         type="password"
         value={password}
