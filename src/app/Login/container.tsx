@@ -1,36 +1,29 @@
-import * as React from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-
+import { StandardTextFieldProps } from '@material-ui/core/TextField';
 import { default as Login } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
-import { setLogin } from './_duck/actions';
 import { AppContainers } from '../_common';
 import { ApplicationContainers } from '../../_common';
 
+import { LocalizeState } from 'react-localize-redux';
+
 const { app } = ApplicationContainers;
 
-const mapStateToProps = (state: ApplicationState): AppState => ({
-    ...state[app]
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+    ...state[app],
+    localize: state.localize
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): LoginDispatch => ({
-    setLogin: (container, event) => dispatch(setLogin(event.target.value, container))
-});
-
-const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(Login);
+const LoginContainer = connect(mapStateToProps)(Login);
 
 export default LoginContainer;
 
-export interface LoginDispatch {
-    setLogin: (
-        container: AppContainers,
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => void;
-};
+interface MapStateToPropsI extends AppState {
+    localize: LocalizeState
+}
 
-export interface LoginProps extends LoginDispatch, AppState {
+export interface LoginPropsI extends StandardTextFieldProps, MapStateToPropsI {
     container: AppContainers;
 };

@@ -1,13 +1,23 @@
 require('mime');
+require('./Redis/');
 
 const path = require('path');
 const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.Server(app);
+const cookieParser = require('cookie-parser');
+
+const constants = require('./constants');
+
+const serverNewUserSet = require('./server.newuser.set');
+const serverLoginLog = require('./server.login.log');
+const serverLessonsGet = require('./server.lessons.get');
+
+const { PORT: _PORT } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
-const PORT = !PROD_ENV ? require('./constants').PORT : process.env.PORT;
+const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 const ROOT = !PROD_ENV ? path.join(__dirname, '/') : __dirname;
 const HTML_PATH = !PROD_ENV
     ? path.resolve(__dirname, '/')
@@ -41,23 +51,18 @@ app.use(express.static(ROOT, {
         }
 }}));
 
-app.get('/lessons/get', async (req, res, next) => {
-    try {
-        let data = await require('./get.courses')();
-        res.json(data);
-        data = null; // GC
-    } catch (err) {
-        res.json({ error: err.message || err.toString() });
-    }
-});
+app.use( express.json() );
+app.use( express.urlencoded({ extended: false }) );
+app.use( cookieParser() );
 
-// app.get('/vendor.chunkhash.bundle.js', (req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', 'cache-control');
-//     res.setHeader("Cache-Control", "public, max-age=31536000");
-//     next();
-// });
+/** Get lessons */
+app.get( '/lessons/get', serverLessonsGet );
 
+/** Set newuser */
+app.post( '/newuser/set', serverNewUserSet );
+
+/** Log user */
+app.post( '/login/log', serverLoginLog );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });

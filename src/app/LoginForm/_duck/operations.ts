@@ -1,38 +1,31 @@
-import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../store';
-import ApiManager from '../../../shared/apimanager';
+import { Dispatch, Action } from 'redux';
 
-import { invalidError } from '../../_common';
+import { post as postData } from '../../api';
 
-import { openDialog } from '../../Dialog/_duck/actions';
-import { ThunkGetStateType } from '../../../_common/';
+import { AppRoutes } from '../../../_common/';
+import { LoginFormResponseEnum } from './types';
 
-const onLoginForm = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType) => {
-    const response: {status: boolean} = await ApiManager.post();
-    if (response.status) {
-        dispatch(openDialog());
+const { SUCCESS } = LoginFormResponseEnum;
+
+const { loginLog } = AppRoutes;
+
+import { setFormHelperText } from '../../FormHelperText/_duck/actions';
+
+export const onLog = (login, password): any => async (dispatch: Dispatch) => {
+    /** removes formInvalid message */
+    dispatch(setFormHelperText('formBeingSent'));
+
+    const response = await postData({path: loginLog, body: { login, password }});
+    // @ts-ignore
+    const { result } = JSON.parse(response || null);
+
+    if (result === SUCCESS) {
+        return dispatch(setFormHelperText(null));
     } else {
-        dispatch(openDialog());
-
+        return dispatch(setFormHelperText(LoginFormResponseEnum[result]));
     }
 };
-
-const rules = {
-    noSpaces: value => !(/.*[\s].*/.test(value)),
-    notEmpty: value => value && value.length
-};
-
-const applyRules = (value: string = '', _rules: string[] = []): string | undefined => {
-    for (const rule in _rules) {
-        if (!rules[_rules[rule]](value)) {
-            return invalidError[_rules[rule]]
-        }
-    }
-    return undefined;
-};
-
 
 export default {
-    onLoginForm,
-    applyRules
+    onLog
 };

@@ -10,6 +10,8 @@ import { LoginTypes } from '../Login/_duck/types';
 import { PasswordTypes } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
 import { UserTypes } from '../User/_duck/types';
+import { FormHelperTextTypes } from '../FormHelperText/_duck/types';
+import { LoginFormTypes } from '../LoginForm/_duck/types';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
@@ -62,6 +64,12 @@ import {
 import { AppContainers } from '../_common/';
 import { AppActions, actions } from '../_actions/';
 
+import {
+    INITIAL_STATE as FORM_HELPER_TEXT_INITIAL_STATE,
+    formHelperTextReducer,
+    FormHelperTextState
+} from '../FormHelperText/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -70,7 +78,8 @@ const {
     appMenu,
     welcome,
     content,
-    user
+    user,
+    formHelperText,
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -81,7 +90,8 @@ export const INITIAL_STATE = {
     [appMenu]: MENU_INITIAL_STATE,
     [welcome]: WELCOME_INITIAL_STATE,
     [content]: CONTENT_INITIAL_STATE,
-    [user]: USER_INITIAL_STATE
+    [user]: USER_INITIAL_STATE,
+    [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE
 };
 
 const { APP_DIALOG_CLOSE, APP_DIALOG_OPEN } = DialogTypes;
@@ -89,10 +99,14 @@ const { APP_DIALOG_CLOSE, APP_DIALOG_OPEN } = DialogTypes;
 const {
     APP_PASSWORD_SET_PASSWORD_CONFIRM,
     APP_PASSWORD_SET_PASSWORD_CURRENT,
-    APP_PASSWORD_SET_PASSWORD_NEW
+    APP_PASSWORD_SET_PASSWORD_NEW,
+    APP_PASSWORD_SET_PASSWORD,
+    APP_PASSWORD_VALIDATE_NEW,
+    APP_PASSWORD_VALIDATE_CONFIRM,
+    APP_PASSWORD_VALIDATE_CURRENT,
+    APP_PASSWORD_VALIDATE
 } = PasswordTypes;
 
-const { APP_LOGIN_SET_LOGIN } = LoginTypes;
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
 const {
     APP_CONTENT_CHANGE_LOCATION,
@@ -109,6 +123,19 @@ const {
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
 const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
 
+const {
+    APP_NEWUSERFORM_SET_EMAIL,
+    APP_NEWUSERFORM_SET_LOGIN,
+    APP_NEWUSERFORM_RESET,
+ } = NewUserFormTypes;
+
+const { APP_FORM_HELPER_TEXT_SET } = FormHelperTextTypes;
+
+const {
+    APP_LOGINFORM_SET_LOGIN,
+    APP_LOGINFORM_RESET
+} = LoginFormTypes;
+
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_DIALOG_CLOSE:
@@ -119,15 +146,26 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
             };
         }
 
+        case APP_LOGINFORM_RESET:
+        case APP_LOGINFORM_SET_LOGIN: {
+            return {
+                ...state,
+                [loginForm]: loginFormReducer(state[loginForm], action)
+            };
+        }
+
+        case APP_PASSWORD_VALIDATE_NEW:
+        case APP_PASSWORD_VALIDATE_CONFIRM:
+        case APP_PASSWORD_VALIDATE_CURRENT:
+        case APP_PASSWORD_VALIDATE:
+        case APP_PASSWORD_SET_PASSWORD:
         case APP_PASSWORD_SET_PASSWORD_CONFIRM:
         case APP_PASSWORD_SET_PASSWORD_CURRENT:
-        case APP_PASSWORD_SET_PASSWORD_NEW:
-        case APP_LOGIN_SET_LOGIN: {
+        case APP_PASSWORD_SET_PASSWORD_NEW: {
             switch ((action as SetPasswordAction).container) {
                 case loginForm: {
                     return {
                         ...state,
-                        // @ts-ignore
                         [loginForm]: loginFormReducer(state[loginForm], action)
                     };
                 }
@@ -145,10 +183,25 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
             }
         }
 
+        case APP_NEWUSERFORM_RESET:
+        case APP_NEWUSERFORM_SET_EMAIL:
+        case APP_NEWUSERFORM_SET_LOGIN: {
+            return {
+                ...state,
+                [newUserForm]: newUserFormReducer(state[newUserForm], action)
+            }
+        }
+
+        case APP_FORM_HELPER_TEXT_SET: {
+            return {
+                ...state,
+                [formHelperText]: formHelperTextReducer(state[formHelperText], action)
+            }
+        }
+
         case APP_WELCOME_CHANGE_LOCATION: {
             return {
                 ...state,
-                // @ts-ignore
                 [welcome]: welcomeReducer(state[welcome], action)
             };
         }
@@ -176,7 +229,6 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_SUBMENU_SET_ANCHOREL: {
             return {
                 ...state,
-                // @ts-ignore
                 [appMenu]: menuReducer(state[appMenu], action)
             };
         }
@@ -206,4 +258,5 @@ export interface AppState {
     [welcome]: WelcomeState;
     [content]: ContentState;
     [user]: UserState;
+    [formHelperText]: FormHelperTextState;
 };

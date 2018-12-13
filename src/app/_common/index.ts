@@ -7,7 +7,8 @@ export enum AppContainers {
     welcome = 'WELCOME',
     content = 'CONTENT',
     csr = 'CSR',
-    user = 'USER'
+    user = 'USER',
+    formHelperText = 'FORM_HELPER_TEXT'
 };
 
 export enum MenuContainers {
@@ -22,14 +23,8 @@ export enum AppLocation {
     isOther = 'IS_OTHER'
 };
 
-export enum invalidError {
-    noSpaces = 'NO_SPACES',
-    notEmpty = 'NOT_EMPTY',
-    NO_SPACES = 'noSpaces',
-    NOT_EMPTY = 'notEmpty'
-};
-
 export enum PasswordTypes {
+    pass = 'PASS',
     newPass = 'NEW_PASS',
     currentPass = 'CURRENT_PASS',
     confirmPass = 'CONFIRM_PASS'
@@ -53,7 +48,9 @@ export enum AppRoutes {
     login = '/login',
     newuser = '/newuser',
     demo = '/lessons/lesson-demo',
-    lessonsGet = '/lessons/get'
+    lessonsGet = '/lessons/get',
+    newUserSet = '/newuser/set',
+    loginLog = '/login/log'
 };
 
 export enum SubMenuRulesEnum {

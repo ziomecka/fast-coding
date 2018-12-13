@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as LoginForm } from './component';
 import { ApplicationState } from '../../store';
 
 import { LoginFormState } from './_duck/reducers';
-import { LoginFormOperations } from './_duck/';
-const { onLoginForm } = LoginFormOperations;
+import { onLog } from './_duck/operations';
+import { onFormInvalid } from '../Form/_duck/operations';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
+import { setLogin, SetLoginAction, reset } from './_duck/actions';
 
 const { app } = ApplicationContainers;
 const { loginForm } = AppContainers;
@@ -19,7 +19,10 @@ const mapStateToProps = (state: ApplicationState): LoginFormState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginFormDispatch => ({
-    onLoginForm: () => dispatch(onLoginForm()),
+    setLogin: (login) => dispatch(setLogin(login)),
+    log: (login, password) => dispatch(onLog(login, password)),
+    reset: () => dispatch(reset()),
+    formInvalid: () => dispatch(onFormInvalid())
 });
 
 const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
@@ -27,8 +30,10 @@ const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 export default LabelContainer;
 
 export interface LoginFormDispatch {
-    onLoginForm: () => void;
+    setLogin: (login: string) => SetLoginAction;
+    log: (login: string, password: string) => Action;
+    reset: () => Action;
+    formInvalid: () => Action;
 };
 
-export interface LoginFormProps extends LoginFormDispatch, LoginFormState {
-};
+export interface LoginFormPropsI extends LoginFormDispatch, LoginFormState {};

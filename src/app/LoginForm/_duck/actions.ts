@@ -2,23 +2,30 @@ import { Action, ActionCreator } from 'redux';
 import { LoginFormTypes } from './types';
 
 import { SetPasswordAction } from '../../Password/_duck/actions';
-import { SetLoginAction } from '../../Login/_duck/actions';
 
 const {
-    APP_LOGINFORM_SET_LOGINFORM,
+    APP_LOGINFORM_SET_LOGIN,
+    APP_LOGINFORM_RESET
 } = LoginFormTypes;
 
-export const setLoginForm: ActionCreator<SendLoginFormAction> = (loginForm: string) => ({
-    type: APP_LOGINFORM_SET_LOGINFORM,
-    loginForm
+export const setLogin: ActionCreator<SetLoginAction> = (login: string) => ({
+    type: APP_LOGINFORM_SET_LOGIN,
+    login
 });
 
-export interface SendLoginFormAction extends Action {
-    readonly type: string;
-    loginForm: string;
+export const reset: ActionCreator<Action> = () => ({
+    type: APP_LOGINFORM_RESET
+});
+
+export const actions = {
+    setLogin,
+    reset
 };
 
-export type LoginFormActions = SendLoginFormAction |
-    SetPasswordAction |
-    SetLoginAction;
+export interface SetLoginAction extends Action {
+    login: string;
+};
+
+export type LoginFormActions = Action | SetLoginAction |
+    SetPasswordAction;
 

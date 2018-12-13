@@ -47,5 +47,86 @@
     "submenuGoToCourses": [ "courses", "kursy"],
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
     "subMenuUserLogin": [ "login", "logowanie"],
-    "subMenuUserNewUser": [ "new user", "nowy użytkownik"]
+    "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
+    "submitForm": [ "send", "wyślij" ],
+    "ERROR": [
+        "Something went wrong. Please try again.",
+        "Coś poszło nie tak. Spróbuj ponownie."
+    ],
+    "LOGIN_EXISTS": [
+        "Login already exists. Please use other login.",
+        "Login już istnieje. Użyj innego loginu."
+    ],
+    "EMAIL_EXISTS": [
+        "Email already exists. Please use other email.",
+        "Email już istnieje. Użyj innego maila."
+    ],
+    "LOGIN_DOES_NOT_EXIST": [
+        "Login does not exist. Please try again.",
+        "Login nie istnieje. Spróbuj ponownie."
+    ],
+    "INCORRECT_PASSWORD": [
+        "Password is not correct. Please try again.",
+        "Niepoprawne hasło. Spróbuj ponownie."
+    ],
+    "PASS_Label": [ "Password", "Hasło" ],
+    "PASS_Placeholder": [ "Password", "Hasło" ],
+    "NEW_PASS_Label": [ "New password", "Nowe hasło" ],
+    "NEW_PASS_Placeholder": [ "New password", "Nowe hasło" ],
+    "CURRENT_PASS_Label": [ "Current password", "Obecne hasło" ],
+    "CURRENT_PASS_Placeholder": [ "Current password", "Obecne hasło" ],
+    "CONFIRM_PASS_Label": [ "Confirm password", "Potwierdź hasło" ],
+    "CONFIRM_PASS_Placeholder": [ "Confirm password", "Potwierdź hasło" ],
+    "loginLabel": [ "Login", "Login" ],
+    "loginPlaceholder": [ "Login", "Login" ],
+    "emailLabel": [ "Email", "Email" ],
+    "emailPlaceholder": [ "Email", "Email" ],
+    "NO_SPACES_PASSWORD": [
+        "Invalid password: spaces not allowed",
+        "Niepoprawne hasło: nie może zawierać spacji"
+    ],
+    "NO_SPACES_LOGIN": [
+        "Invalid login: spaces not allowed",
+        "Niepoprawny login: nie może zawierać spacji"
+    ],
+    "NOT_LONG_PASSWORD": [
+        "Invalid password: from 8 to 15 signs expected",
+        "Niepoprawne hasło: wpisz od 8 do 15 znaków"
+    ],
+    "NOT_LONG_LOGIN": [
+        "Invalid login: from 8 to 15 signs expected",
+        "Niepoprawny login: wpisz od 8 do 15 znaków"
+    ],
+    "NO_DIGIT_PASSWORD": [
+        "Invalid password: at least one digit expected",
+        "Niepoprawne hasło: użyj co najmniej jednej cyfry"
+    ],
+    "NO_DIGIT_LOGIN": [
+        "Invalid login: digits not allowed",
+        "Niepoprawny login: nie może zawierać cyfry"
+    ],
+    "NO_SPECIALS_PASSWORD": [
+        "Invalid password: at least one special sign expected",
+        "Niepoprawne hasło: użyj co najmniej jednego znaku specjalnego"
+    ],
+    "NO_SPECIALS_LOGIN": [
+        "Invalid login: special signs not allowed",
+        "Niepoprawny login: nie może zawierać znaków specjalnych"
+    ],
+    "NO_MATCH_PASSWORD": [
+        "Invalid password: passwords do not match",
+        "Niepoprawne hasło: hasła nie są identyczne"
+    ],
+    "NOT_EMAIL_EMAIL": [
+        "Invalid email",
+        "Niepoprawny email"
+    ],
+    "formInvalid": [
+        "Invalid form: please correct",
+        "Niepoprawnie wypełniony formularz: proszę popraw"
+    ],
+    "formBeingSent": [
+        "Form is being sent",
+        "Trwa wysyłanie formularza"
+    ]
 }
