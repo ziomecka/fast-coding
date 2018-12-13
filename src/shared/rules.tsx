@@ -1,7 +1,7 @@
 import { invalidError } from './_types/';
 export { invalidError };
 
-const { NOT_EMPTY, NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH } = invalidError;
+const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH } = invalidError;
 
 export const rulesRegexp: RulesRegexpI = {
     [NO_SPACES]: () => /.*[\s].*/,
@@ -13,7 +13,6 @@ export const rulesRegexp: RulesRegexpI = {
 
 const rules: RulesI = {
     [NO_SPACES]: options => !( rulesRegexp[NO_SPACES]().test(options.value) ),
-    [NOT_EMPTY]: options => options.value && !!options.value.length,
     [NOT_LONG]: options => ( rulesRegexp[NOT_LONG](options.min, options.max).test(options.value) ),
     [NOT_EMAIL]: options => ( rulesRegexp[NOT_EMAIL]().test(options.value) ),
     [NO_DIGIT]: options => ( rulesRegexp[NO_DIGIT]().test(options.value) ),

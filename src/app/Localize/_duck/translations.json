@@ -89,14 +89,6 @@
         "Invalid login: spaces not allowed",
         "Niepoprawny login: nie może zawierać spacji"
     ],
-    "notEmpty_PASSWORD": [
-        "Password cannot be empty.",
-        "Hasło nie może być puste."
-    ],
-    "notEmpty_LOGIN": [
-        "Login cannot be empty.",
-        "Login nie może być pusty."
-    ],
     "notLong_PASSWORD": [
         "Invalid password: from 8 to 15 signs expected",
         "Niepoprawne hasło: wpisz od 8 do 15 znaków"

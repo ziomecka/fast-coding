@@ -1,8 +1,6 @@
 export enum invalidError {
     noSpaces = 'NO_SPACES',
-    notEmpty = 'NOT_EMPTY',
     NO_SPACES = 'noSpaces',
-    NOT_EMPTY = 'notEmpty',
     NOT_LONG = 'notLong',
     notLong = 'NOT_LONG',
     NOT_EMAIL = 'notEmail',
