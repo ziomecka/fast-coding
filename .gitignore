@@ -12,3 +12,4 @@ test
 __mocks__
 LICENSE*
 webpack/webpack*stats.json
+package-lock.json
