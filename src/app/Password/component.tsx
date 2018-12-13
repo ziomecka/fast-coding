@@ -7,6 +7,8 @@ import { PasswordProps } from './container';
 
 import { helperTexts } from '../../shared/rules';
 
+import getTranslation from '../../shared/get.translation';
+
 const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
   const {
       setPassword,
@@ -21,7 +23,8 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
   return (
     <TextField
         inputProps={{ tabIndex }}
-        label="Password"
+        label={getTranslation(props.localize, 'passwordLabel')}
+        placeholder={getTranslation(props.localize, 'passwordPlaceholder')}
         required
         type="password"
         value={password}

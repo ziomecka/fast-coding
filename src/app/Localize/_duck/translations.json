@@ -47,5 +47,7 @@
     "submenuGoToCourses": [ "courses", "kursy"],
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
     "subMenuUserLogin": [ "login", "logowanie"],
-    "subMenuUserNewUser": [ "new user", "nowy użytkownik"]
+    "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
+    "passwordLabel": [ "Password", "Hasło" ],
+    "passwordPlaceholder": [ "Password", "Hasło" ]
 }
