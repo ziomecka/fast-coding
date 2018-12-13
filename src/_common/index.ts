@@ -3,6 +3,7 @@ import { ApplicationState } from '../_reducers/';
 export * from '../app/_common';
 export * from '../components/_common';
 export * from '../views/_common';
+export * from '../shared/_types/';
 
 export enum ApplicationContainers {
     views = 'VIEWS',

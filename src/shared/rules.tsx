@@ -1,4 +1,5 @@
-import { invalidError } from '../app/_common/';
+import { invalidError } from './_types/';
+export { invalidError };
 
 const { NOT_EMPTY, NO_SPACES } = invalidError;
 

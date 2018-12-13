@@ -23,13 +23,6 @@ export enum AppLocation {
     isOther = 'IS_OTHER'
 };
 
-export enum invalidError {
-    noSpaces = 'NO_SPACES',
-    notEmpty = 'NOT_EMPTY',
-    NO_SPACES = 'noSpaces',
-    NOT_EMPTY = 'notEmpty'
-};
-
 export enum PasswordTypes {
     pass = 'PASS',
     newPass = 'NEW_PASS',
