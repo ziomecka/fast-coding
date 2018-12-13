@@ -1,3 +1,5 @@
+import { Action } from 'redux';
+
 import { actions as dialogActions, DialogActions } from '../Dialog/_duck/actions';
 import { actions as newUserFormActions, NewUserFormActions } from '../NewUserForm/_duck/actions';
 import { actions as notificationActions, NotificationActions } from '../Notification/_duck/actions';
@@ -12,7 +14,8 @@ export const actions = {
     ...formHelperTextActions
 };
 
-export type AppActions = DialogActions |
+export type AppActions = Action |
+    DialogActions |
     NewUserFormActions |
     NotificationActions |
     PasswordActions |

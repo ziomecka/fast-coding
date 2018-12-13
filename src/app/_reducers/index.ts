@@ -145,7 +145,6 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_LOGINFORM_SET_LOGIN: {
             return {
                 ...state,
-                // @ts-ignore
                 [loginForm]: loginFormReducer(state[loginForm], action)
             };
         }
@@ -157,7 +156,6 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
                 case loginForm: {
                     return {
                         ...state,
-                        // @ts-ignore
                         [loginForm]: loginFormReducer(state[loginForm], action)
                     };
                 }
@@ -194,7 +192,6 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_WELCOME_CHANGE_LOCATION: {
             return {
                 ...state,
-                // @ts-ignore
                 [welcome]: welcomeReducer(state[welcome], action)
             };
         }
@@ -222,7 +219,6 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_SUBMENU_SET_ANCHOREL: {
             return {
                 ...state,
-                // @ts-ignore
                 [appMenu]: menuReducer(state[appMenu], action)
             };
         }

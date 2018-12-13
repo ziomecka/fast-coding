@@ -26,6 +26,6 @@ export interface SetLoginAction extends Action {
     login: string;
 };
 
-export type LoginFormActions = SetLoginAction |
+export type LoginFormActions = Action | SetLoginAction |
     SetPasswordAction;
 

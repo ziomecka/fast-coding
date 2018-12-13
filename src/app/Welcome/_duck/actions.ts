@@ -17,4 +17,4 @@ export interface ChangeLocationAction extends Action {
     appLocation: AppLocation;
 };
 
-export type WelcomeActions = ChangeLocationAction;
+export type WelcomeActions = Action | ChangeLocationAction;

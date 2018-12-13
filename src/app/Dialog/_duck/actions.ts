@@ -27,4 +27,4 @@ export interface OpenDialogAction extends Action {
     options: DialogOptions;
 };
 
-export type DialogActions = OpenDialogAction;
+export type DialogActions = Action | OpenDialogAction;
