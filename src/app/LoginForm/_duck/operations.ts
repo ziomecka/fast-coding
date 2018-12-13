@@ -1,8 +1,6 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 
 import { post as postData } from '../../api';
-
-import { invalidError } from '../../_common';
 
 import { AppRoutes } from '../../../_common/';
 import { LoginFormResponseEnum } from './types';
@@ -14,6 +12,9 @@ const { loginLog } = AppRoutes;
 import { setFormHelperText } from '../../FormHelperText/_duck/actions';
 
 export const onLog = (login, password): any => async (dispatch: Dispatch) => {
+    /** removes formInvalid message */
+    dispatch(setFormHelperText('formBeingSent'));
+
     const response = await postData({path: loginLog, body: { login, password }});
     // @ts-ignore
     const { result } = JSON.parse(response || null);
@@ -25,21 +26,6 @@ export const onLog = (login, password): any => async (dispatch: Dispatch) => {
     }
 };
 
-const rules = {
-    noSpaces: value => !(/.*[\s].*/.test(value)),
-    notEmpty: value => value && value.length
-};
-
-const applyRules = (value: string = '', _rules: string[] = []): string | undefined => {
-    for (const rule in _rules) {
-        if (!rules[_rules[rule]](value)) {
-            return invalidError[_rules[rule]]
-        }
-    }
-    return undefined;
-};
-
 export default {
-    onLog,
-    applyRules
+    onLog
 };

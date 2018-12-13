@@ -36,8 +36,13 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     submit () {
-        const { login, [pass]: { password } } = this.props;
-        this.props.log(login, password);
+        const { login, loginValid, [pass]: { password, passwordValid } } = this.props;
+
+        if ( !login || !password || !!loginValid || !!passwordValid ) {
+            this.props.formInvalid();
+        } else {
+            this.props.log(login, password);
+        }
     }
 
     render() {
@@ -48,11 +53,13 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
               <form onSubmit={ e => e.preventDefault() }>
                 <FormControl tabIndex={1}>
                     <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
-                    <Password {...{ container, passwordType: pass }} tabIndex={2} />
+                    <Password {...{ container, passwordType: pass }} tabIndex={2} rules={[]}/>
                     <Button
                         onClick={this.submit}
                         type="submit"
                         tabIndex={3}
+                        variant="contained"
+                        color="primary"
                     >
                         <Translate id="submitForm" />
                     </Button>

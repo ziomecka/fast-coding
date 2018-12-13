@@ -24,11 +24,7 @@ const {
 import { PasswordTypes as _PasswordTypes } from '../../_common/';
 const { pass } = _PasswordTypes;
 
-const {
-    APP_PASSWORD_SET_PASSWORD_CURRENT,
-    APP_PASSWORD_SET_PASSWORD_CONFIRM,
-    APP_PASSWORD_SET_PASSWORD_NEW
-} = PasswordTypes;
+const { APP_PASSWORD_SET_PASSWORD, APP_PASSWORD_VALIDATE } = PasswordTypes;
 
 export const INITIAL_STATE: LoginFormState = {
     [pass]: { ...PASSWORD_INITIAL_STATE },
@@ -42,9 +38,8 @@ export interface LoginFormState extends LoginState {
 const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         /** Watch out! */
-        case APP_PASSWORD_SET_PASSWORD_CURRENT:
-        case APP_PASSWORD_SET_PASSWORD_NEW:
-        case APP_PASSWORD_SET_PASSWORD_CONFIRM: {
+        case APP_PASSWORD_VALIDATE:
+        case APP_PASSWORD_SET_PASSWORD: {
             const { password, passwordValid } = state[pass];
 
             return {
