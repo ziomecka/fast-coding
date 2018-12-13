@@ -7,16 +7,23 @@ import { AppState } from '../_reducers/';
 import { AppContainers } from '../_common';
 import { ApplicationContainers } from '../../_common';
 
+import { LocalizeState } from 'react-localize-redux';
+
 const { app } = ApplicationContainers;
 
 const mapStateToProps = (state: ApplicationState): AppState => ({
-    ...state[app]
+    ...state[app],
+    localize: state.localize
 });
 
 const LoginContainer = connect(mapStateToProps)(Login);
 
 export default LoginContainer;
 
-export interface LoginPropsI extends StandardTextFieldProps {
+interface MapStateTopPropsI extends AppState {
+    localize: LocalizeState
+}
+
+export interface LoginPropsI extends StandardTextFieldProps, MapStateTopPropsI {
     container: AppContainers;
 };
