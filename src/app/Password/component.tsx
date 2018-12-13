@@ -8,9 +8,14 @@ import { PasswordProps } from './container';
 import { helperTexts } from '../../shared/rules';
 
 const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
-  const { setPassword, container, passwordType } = props;
-
-  const { password, passwordValid } = Object(props[container])[passwordType] || Object(props[container]);
+  const {
+      setPassword,
+      container,
+      passwordType,
+      [container]: {
+          [passwordType]: { password, passwordValid }
+      },
+    } = props;
 
   return (
     <TextField

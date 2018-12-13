@@ -9,6 +9,8 @@ import { AppState } from '../_reducers/';
 import { setPassword } from './_duck/actions';
 import { AppContainers, ApplicationContainers, PasswordTypes } from '../../_common';
 
+import { StandardTextFieldProps } from '@material-ui/core/TextField';
+
 const { app } = ApplicationContainers;
 
 const mapStateToProps = (state: ApplicationState): AppState => ({
@@ -31,7 +33,7 @@ export interface PasswordDispatch {
     ) => void;
 };
 
-export interface PasswordProps extends PasswordDispatch, AppState {
+export interface PasswordProps extends PasswordDispatch, AppState, StandardTextFieldProps {
     container: AppContainers;
     passwordType: PasswordTypes;
 };
