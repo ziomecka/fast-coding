@@ -57,6 +57,7 @@ module.exports = merge(base, {
     namedModules: true,
     usedExports: true,
     runtimeChunk: "single",
+    sideEffects: false,
     splitChunks: {
         cacheGroups: {
             commons: {

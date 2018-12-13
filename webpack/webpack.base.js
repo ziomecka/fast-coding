@@ -156,6 +156,18 @@ module.exports = {
           to: 'Mongo',
           toType: 'dir',
           flatten: true
+        },
+        {
+          from: 'src/server/PasswordManager/*',
+          to: 'PasswordManager',
+          toType: 'dir',
+          flatten: true
+        },
+        {
+          from: 'src/server/Redis/*',
+          to: 'Redis',
+          toType: 'dir',
+          flatten: true
         }
     ]),
     new Dotenv({
@@ -166,6 +178,7 @@ module.exports = {
       filename: 'index.html',
     //   template: path.resolve(__dirname, `${APP_DIR}/index.hbs`),
       template: `${APP_DIR}/index.hbs`,
+      chunksSortMode: "dependency"
     //   stats: { children: false }
     }),
     new MiniCssExtractPlugin({
