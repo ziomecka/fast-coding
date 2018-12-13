@@ -7,7 +7,8 @@ export enum AppContainers {
     welcome = 'WELCOME',
     content = 'CONTENT',
     csr = 'CSR',
-    user = 'USER'
+    user = 'USER',
+    formHelperText = 'FORM_HELPER_TEXT'
 };
 
 export enum MenuContainers {

@@ -10,6 +10,7 @@ import { LoginTypes } from '../Login/_duck/types';
 import { PasswordTypes } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
 import { UserTypes } from '../User/_duck/types';
+import { FormHelperTextTypes } from '../FormHelperText/_duck/types';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
@@ -62,6 +63,12 @@ import {
 import { AppContainers } from '../_common/';
 import { AppActions, actions } from '../_actions/';
 
+import {
+    INITIAL_STATE as FORM_HELPER_TEXT_INITIAL_STATE,
+    formHelperTextReducer,
+    FormHelperTextState
+} from '../FormHelperText/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -70,7 +77,8 @@ const {
     appMenu,
     welcome,
     content,
-    user
+    user,
+    formHelperText,
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -81,7 +89,8 @@ export const INITIAL_STATE = {
     [appMenu]: MENU_INITIAL_STATE,
     [welcome]: WELCOME_INITIAL_STATE,
     [content]: CONTENT_INITIAL_STATE,
-    [user]: USER_INITIAL_STATE
+    [user]: USER_INITIAL_STATE,
+    [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE
 };
 
 const { APP_DIALOG_CLOSE, APP_DIALOG_OPEN } = DialogTypes;
@@ -107,6 +116,9 @@ const {
  } = NotificationTypes;
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
 const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
+
+
+const { APP_FORM_HELPER_TEXT_SET } = FormHelperTextTypes;
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -140,6 +152,14 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
                 default: {
                     return { ...state };
                 }
+            }
+        }
+
+
+        case APP_FORM_HELPER_TEXT_SET: {
+            return {
+                ...state,
+                [formHelperText]: formHelperTextReducer(state[formHelperText], action)
             }
         }
 
@@ -204,4 +224,5 @@ export interface AppState {
     [welcome]: WelcomeState;
     [content]: ContentState;
     [user]: UserState;
+    [formHelperText]: FormHelperTextState;
 };
