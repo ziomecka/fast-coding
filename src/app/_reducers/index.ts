@@ -92,7 +92,6 @@ const {
     APP_PASSWORD_SET_PASSWORD_NEW
 } = PasswordTypes;
 
-const { APP_LOGIN_SET_LOGIN } = LoginTypes;
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
 const {
     APP_CONTENT_CHANGE_LOCATION,
@@ -121,8 +120,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
 
         case APP_PASSWORD_SET_PASSWORD_CONFIRM:
         case APP_PASSWORD_SET_PASSWORD_CURRENT:
-        case APP_PASSWORD_SET_PASSWORD_NEW:
-        case APP_LOGIN_SET_LOGIN: {
+        case APP_PASSWORD_SET_PASSWORD_NEW: {
             switch ((action as SetPasswordAction).container) {
                 case loginForm: {
                     return {

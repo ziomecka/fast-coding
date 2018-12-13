@@ -1,15 +1,10 @@
 import { Reducer } from 'redux';
 
-import { LoginTypes } from './types';
 import { applyRules } from '../_duck/operations';
 
 import { invalidError } from '../../_common/';
 
 const { notEmpty, noSpaces } = invalidError;
-
-const {
-    APP_LOGIN_SET_LOGIN
-} = LoginTypes;
 
 export const INITIAL_STATE: LoginState = {
     login: '',
@@ -18,16 +13,10 @@ export const INITIAL_STATE: LoginState = {
 
 const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case APP_LOGIN_SET_LOGIN: {
+        default: {
             return {
                 login: action.login,
                 loginValid: applyRules(action.login, [notEmpty, noSpaces])
-            };
-        }
-
-        default: {
-            return {
-                ...state
             };
         }
     }
