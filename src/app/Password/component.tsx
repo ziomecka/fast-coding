@@ -9,7 +9,7 @@ import { helperTexts, RulesErrorEnum } from '../../shared/rules';
 
 import getTranslation from '../../shared/get.translation';
 
-const { noSpaces, notLong, noDigit, noSpecials } = RulesErrorEnum;
+const { NO_SPACES, NO_SPECIALS, NOT_LONG, NO_DIGIT } = RulesErrorEnum;
 
 const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
   const {
@@ -22,7 +22,7 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
       tabIndex,
       localize,
       validatePassword,
-      rules = [ notLong, noSpaces, noDigit, noSpecials ],
+      rules = [ NOT_LONG, NO_SPACES, NO_DIGIT, NO_SPECIALS ],
       value2
     } = props;
 

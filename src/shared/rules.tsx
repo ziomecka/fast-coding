@@ -24,26 +24,24 @@ import { LocalizeState } from 'react-localize-redux';
 import getTranslation from './get.translation';
 
 export const helperTexts = (rule, value: string, localize: LocalizeState): string => (
-    getTranslation(localize, `${rule}_${value.toUpperCase()}`)
+    rule? getTranslation(localize, `${rule}_${value.toUpperCase()}`) : ''
 );
 
-export const applyRules = (options: ApplyRulesType): string | undefined => {
+export const applyRules = (options: ApplyRulesType): string => {
 
     for (const rule in options) {
         const { value, min = 8, max = 15, value2, opposite } = options[rule][1];
 
         const ruleName = options[rule][0];
 
-        const ruleEnum = RulesErrorEnum[ruleName];
-
-        const result = !rules[ruleEnum]({ value, min, max, value2 });
+        const result = !rules[ruleName]({ value, min, max, value2 });
 
         if ( ( result && !opposite ) || ( !result && opposite ) ) {
-            return ruleEnum;
+            return RulesErrorEnum[ruleName];
         }
     }
 
-    return undefined;
+    return null;
 };
 
 /** Interfaces */

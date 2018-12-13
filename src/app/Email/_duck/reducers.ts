@@ -7,7 +7,7 @@ export const INITIAL_STATE: EmailState = {
 };
 
 import { RulesErrorEnum } from '../../../shared/_types/';
-const { notEmail } = RulesErrorEnum;
+const { NOT_EMAIL } = RulesErrorEnum;
 
 const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -16,7 +16,7 @@ const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
 
             return {
                 email,
-                emailValid: applyRules( [ [ notEmail,  { value: email } ] ] )
+                emailValid: applyRules( [ [ NOT_EMAIL,  { value: email } ] ] )
             };
         }
     }
@@ -26,5 +26,5 @@ export { reducer as emailReducer };
 
 export interface EmailState {
     email: string;
-    emailValid: string | undefined
+    emailValid: string;
 };

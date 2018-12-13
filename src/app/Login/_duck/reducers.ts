@@ -3,11 +3,11 @@ import { Reducer } from 'redux';
 import { applyRules } from '../_duck/operations';
 
 import { RulesErrorEnum } from '../../../shared/_types/';
-const { noSpaces, noSpecials, notLong, noDigit } = RulesErrorEnum;
+const { NO_SPACES, NO_SPECIALS, NOT_LONG, NO_DIGIT } = RulesErrorEnum;
 
 export const INITIAL_STATE: LoginState = {
     login: '',
-    loginValid: undefined,
+    loginValid: null
 };
 
 const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
@@ -18,10 +18,10 @@ const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
             return {
                 login,
                 loginValid: applyRules([
-                    [ noSpaces, { value: login } ],
-                    [ noSpecials, { value: login, opposite: true } ],
-                    [ noDigit, { value: login, opposite: true } ],
-                    [ notLong, { value: login } ]
+                    [ NO_SPACES, { value: login } ],
+                    [ NO_SPECIALS, { value: login, opposite: true } ],
+                    [ NO_DIGIT, { value: login, opposite: true } ],
+                    [ NOT_LONG, { value: login } ]
                 ])
             };
         }
@@ -32,5 +32,5 @@ export { reducer as loginReducer };
 
 export interface LoginState {
     login: string;
-    loginValid: string | undefined;
+    loginValid: string;
 };

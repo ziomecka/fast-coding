@@ -22,7 +22,7 @@ import { PasswordTypes } from '../_common/';
 const { newPass, confirmPass } = PasswordTypes;
 
 import { RulesErrorEnum } from '../../shared/_types/';
-const { noMatch } = RulesErrorEnum;
+const { NO_MATCH } = RulesErrorEnum;
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainers;
@@ -75,7 +75,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
                     <FormControl tabIndex={1}>
                         <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                         <Password {...{ container, passwordType: newPass }} tabIndex={2} />
-                        <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ noMatch ]} value2={ newPassword } />
+                        <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
                         <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
                         <Button
                             onClick={this.sendNewUserForm}
