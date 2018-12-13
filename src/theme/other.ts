@@ -16,6 +16,8 @@ import {
     flexRowJustifyFlexEndAlignCenter
 } from './flexes';
 
+const { palette: { error : { main : errorColor } } } = require('./palette').default;
+
 export default {
     props: {
         MuiAppBar: {
@@ -130,6 +132,16 @@ export default {
         MuiTableCell: {
             body: {
                 fontSize: '1.5em'
+            }
+        },
+        MuiFormControl: {
+            root: {
+                margin: '1rem 0'
+            }
+        },
+        MuiFormHelperText: {
+            root: {
+                color: errorColor
             }
         }
     }
