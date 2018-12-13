@@ -81,8 +81,60 @@
     "loginPlaceholder": [ "Login", "Login" ],
     "emailLabel": [ "Email", "Email" ],
     "emailPlaceholder": [ "Email", "Email" ],
-    "noSpaces_PASSWORD": [ "Spaces not allowed in password.", "W haśle nie mogą być użyte spacje." ],
-    "noSpaces_LOGIN": [ "Spaces not allowed in login.", "W loginie nie mogą być użyte spacje." ],
-    "notEmpty_PASSWORD": [ "Password cannot be empty.", "Hasło nie może być puste." ],
-    "notEmpty_LOGIN": [ "Login cannot be empty.", "Login nie może być pusty." ]
+    "noSpaces_PASSWORD": [
+        "Invalid password: spaces not allowed",
+        "Niepoprawne hasło: nie może zawierać spacji"
+    ],
+    "noSpaces_LOGIN": [
+        "Invalid login: spaces not allowed",
+        "Niepoprawny login: nie może zawierać spacji"
+    ],
+    "notEmpty_PASSWORD": [
+        "Password cannot be empty.",
+        "Hasło nie może być puste."
+    ],
+    "notEmpty_LOGIN": [
+        "Login cannot be empty.",
+        "Login nie może być pusty."
+    ],
+    "notLong_PASSWORD": [
+        "Invalid password: from 8 to 15 signs expected",
+        "Niepoprawne hasło: wpisz od 8 do 15 znaków"
+    ],
+    "notLong_LOGIN": [
+        "Invalid login: from 8 to 15 signs expected",
+        "Niepoprawny login: wpisz od 8 do 15 znaków"
+    ],
+    "noDigit_PASSWORD": [
+        "Invalid password: at least one digit expected",
+        "Niepoprawne hasło: użyj co najmniej jednej cyfry"
+    ],
+    "noDigit_LOGIN": [
+        "Invalid login: digits not allowed",
+        "Niepoprawny login: nie może zawierać cyfry"
+    ],
+    "noSpecials_PASSWORD": [
+        "Invalid password: at least one special sign expected",
+        "Niepoprawne hasło: użyj co najmniej jednego znaku specjalnego"
+    ],
+    "noSpecials_LOGIN": [
+        "Invalid login: special signs not allowed",
+        "Niepoprawny login: nie może zawierać znaków specjalnych"
+    ],
+    "noMatch_PASSWORD": [
+        "Invalid password: passwords do not match",
+        "Niepoprawne hasło: hasła nie są identyczne"
+    ],
+    "notEmail_EMAIL": [
+        "Invalid email",
+        "Niepoprawny email"
+    ],
+    "formInvalid": [
+        "Invalid form: please correct",
+        "Niepoprawnie wypełniony formularz: proszę popraw"
+    ],
+    "formBeingSent": [
+        "Form is being sent",
+        "Trwa wysyłanie formularza"
+    ]
 }
