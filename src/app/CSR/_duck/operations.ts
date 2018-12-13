@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
-import getData from '../../api';
+import { get as getData } from '../../api';
+import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
@@ -34,9 +35,9 @@ export const onLoadData =
         }
 
         try {
-            let data = await getData(url);
-            dispatch(updateData({ [stateName]: data }, applicationContainer, container));
-            localStorageSetItem(lsItem, data);
+            let data = await getData({ path: url }) as GetDataType;
+            dispatch(updateData({ [stateName]: data[stateName] }, applicationContainer, container));
+            localStorageSetItem(lsItem, data[stateName]);
         }
         catch (err) {
             dispatch(reportError(

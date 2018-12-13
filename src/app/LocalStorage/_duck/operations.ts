@@ -1,7 +1,5 @@
 import { LessonData } from '../../../components/Lesson/_duck/reducers';
-
-
-export type LocalStorageDataTypes = LessonData[];
+import { LocalStorageDataTypes } from './types';
 
 import { LocalStorageItemTypes } from '../../_common/';
 
