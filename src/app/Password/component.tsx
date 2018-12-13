@@ -20,19 +20,19 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
 
   return (
     <TextField
-    inputProps={{ tabIndex }}
-      label="Password"
-      required
-      type="password"
-      value={password}
-      error={passwordValid !== undefined}
-      onChange={setPassword.bind(this, passwordType, container)}
-      helperText={passwordValid !== undefined
-        ? helperTexts[passwordValid]
-          ? helperTexts[passwordValid]('password')
-          : null
-        : null
-      }
+        inputProps={{ tabIndex }}
+        label="Password"
+        required
+        type="password"
+        value={password}
+        error={passwordValid !== undefined}
+        onChange={setPassword.bind(this, passwordType, container)}
+        helperText={passwordValid !== undefined
+            ? helperTexts[passwordValid]
+            ? helperTexts[passwordValid]('password')
+            : null
+            : null
+        }
     />
   );
 };
