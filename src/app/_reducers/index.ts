@@ -195,6 +195,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_FORM_HELPER_TEXT_SET: {
             return {
                 ...state,
+                // @ts-ignore
                 [formHelperText]: formHelperTextReducer(state[formHelperText], action)
             }
         }
@@ -202,6 +203,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_WELCOME_CHANGE_LOCATION: {
             return {
                 ...state,
+                // @ts-ignore
                 [welcome]: welcomeReducer(state[welcome], action)
             };
         }
@@ -229,6 +231,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_SUBMENU_SET_ANCHOREL: {
             return {
                 ...state,
+                // @ts-ignore
                 [appMenu]: menuReducer(state[appMenu], action)
             };
         }

@@ -21,4 +21,4 @@ export const actions = {
     setNavAnchorEl
 };
 
-export type SubMenuActions = Action | SetNavAnchorElAction;
+export type SubMenuActions = SetNavAnchorElAction;

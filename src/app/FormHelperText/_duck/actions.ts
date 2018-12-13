@@ -18,4 +18,4 @@ export interface SetFormHelperTextAction extends Action {
     formHelperText: string;
 };
 
-export type FormHelperTextActions = Action | SetFormHelperTextAction;
+export type FormHelperTextActions = SetFormHelperTextAction;

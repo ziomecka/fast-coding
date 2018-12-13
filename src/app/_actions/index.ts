@@ -5,13 +5,19 @@ import { actions as newUserFormActions, NewUserFormActions } from '../NewUserFor
 import { actions as notificationActions, NotificationActions } from '../Notification/_duck/actions';
 import { actions as passwordActions, PasswordActions } from '../Password/_duck/actions';
 import { actions as formHelperTextActions, FormHelperTextActions } from '../FormHelperText/_duck/actions';
+import { actions as welcomeActions, WelcomeActions } from '../Welcome/_duck/actions';
+import { actions as submenuActions, SubMenuActions } from '../SubMenu/_duck/actions';
+import { actions as appmenuActions, AppMenuActions } from '../AppMenu/_duck/actions';
 
 export const actions = {
     ...dialogActions,
     ...newUserFormActions,
     ...notificationActions,
     ...passwordActions,
-    ...formHelperTextActions
+    ...formHelperTextActions,
+    ...welcomeActions,
+    ...submenuActions,
+    ...appmenuActions
 };
 
 export type AppActions = Action |
@@ -19,4 +25,7 @@ export type AppActions = Action |
     NewUserFormActions |
     NotificationActions |
     PasswordActions |
-    FormHelperTextActions;
+    FormHelperTextActions |
+    WelcomeActions |
+    SubMenuActions |
+    AppMenuActions;

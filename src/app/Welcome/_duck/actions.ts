@@ -12,9 +12,13 @@ export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation:
     appLocation
 });
 
+export const actions = {
+    changeLocation
+};
+
 export interface ChangeLocationAction extends Action {
     readonly type: string;
     appLocation: AppLocation;
 };
 
-export type WelcomeActions = Action | ChangeLocationAction;
+export type WelcomeActions = ChangeLocationAction;
