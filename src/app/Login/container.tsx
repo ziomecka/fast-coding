@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-
+import { StandardTextFieldProps } from '@material-ui/core/TextField';
 import { default as Login } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
@@ -31,6 +31,6 @@ export interface LoginDispatch {
     ) => void;
 };
 
-export interface LoginProps extends LoginDispatch, AppState {
+export interface LoginPropsI extends StandardTextFieldProps {
     container: AppContainers;
 };

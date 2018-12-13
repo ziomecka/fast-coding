@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import { LoginProps } from './container';
+import { LoginPropsI } from './container';
 
 import { helperTexts } from '../../shared/rules';
 
 /** Materials */
 import TextField from '@material-ui/core/TextField';
 
-const LoginComponent: React.StatelessComponent<LoginProps> = props => {
   const { container, setLogin } = props;
   const { login, loginValid } = Object(props[container]);
+const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
 
   return (
       <TextField
