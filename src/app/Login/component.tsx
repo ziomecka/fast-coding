@@ -28,8 +28,8 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
         {...{ onChange, autoFocus }}
         value={ login }
         inputProps={{ tabIndex }}
-        error={loginValid !== undefined}
-        helperText={loginValid !== undefined
+        error={ !!loginValid }
+        helperText={ !!loginValid
           ? helperTexts(loginValid, 'login', localize)
           : null
         }
