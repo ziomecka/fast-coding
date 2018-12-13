@@ -7,6 +7,8 @@ import { StandardTextFieldProps } from '@material-ui/core/TextField';
 import { LocalizeState } from 'react-localize-redux';
 import { ApplicationState } from '../../_reducers';
 
+import { EmailState } from './_duck/reducers';
+
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     localize: state.localize
 });
@@ -19,4 +21,4 @@ export interface MapStateToPropsI {
     localize: LocalizeState
 };
 
-export interface EmailPropsI extends StandardTextFieldProps, MapStateToPropsI {};
+export interface EmailPropsI extends StandardTextFieldProps, MapStateToPropsI, EmailState {};
