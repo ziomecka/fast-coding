@@ -51,5 +51,7 @@
     "passwordLabel": [ "Password", "Hasło" ],
     "passwordPlaceholder": [ "Password", "Hasło" ],
     "loginLabel": [ "Login", "Login" ],
-    "loginPlaceholder": [ "Login", "Login" ]
+    "loginPlaceholder": [ "Login", "Login" ],
+    "emailLabel": [ "Email", "Email" ],
+    "emailPlaceholder": [ "Email", "Email" ]
 }
