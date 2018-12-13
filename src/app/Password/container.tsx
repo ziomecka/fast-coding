@@ -11,10 +11,13 @@ import { AppContainers, ApplicationContainers, PasswordTypes } from '../../_comm
 
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
 
+import { LocalizeState } from 'react-localize-redux';
+
 const { app } = ApplicationContainers;
 
-const mapStateToProps = (state: ApplicationState): AppState => ({
-    ...state[app]
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+    ...state[app],
+    localize: state.localize
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): PasswordDispatch => ({
@@ -25,6 +28,10 @@ const PasswordContainer = connect(mapStateToProps, mapDispatchToProps)(Password)
 
 export default PasswordContainer;
 
+interface MapStateToPropsI extends AppState {
+    localize: LocalizeState
+};
+
 export interface PasswordDispatch {
     setPassword: (
         password: string,
@@ -33,7 +40,7 @@ export interface PasswordDispatch {
     ) => void;
 };
 
-export interface PasswordProps extends PasswordDispatch, AppState, StandardTextFieldProps {
+export interface PasswordProps extends PasswordDispatch, MapStateToPropsI, StandardTextFieldProps {
     container: AppContainers;
     passwordType: PasswordTypes;
 };
