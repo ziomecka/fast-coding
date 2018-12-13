@@ -17,23 +17,22 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
       [container]: {
           [passwordType]: { password, passwordValid }
       },
-      tabIndex
+      tabIndex,
+      localize
     } = props;
 
     return (
     <TextField
         inputProps={{ tabIndex }}
-        label={getTranslation(props.localize, `${passwordType}_Label`)}
-        placeholder={getTranslation(props.localize, `${passwordType}_Placeholder`)}
+        label={getTranslation(localize, `${passwordType}_Label`)}
+        placeholder={getTranslation(localize, `${passwordType}_Placeholder`)}
         required
         type="password"
         value={password}
         error={passwordValid !== undefined}
         onChange={setPassword.bind(this, passwordType, container)}
         helperText={passwordValid !== undefined
-            ? helperTexts[passwordValid]
-            ? helperTexts[passwordValid]('password')
-            : null
+            ? helperTexts(passwordValid, 'password', localize)
             : null
         }
     />

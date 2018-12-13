@@ -80,5 +80,9 @@
     "loginLabel": [ "Login", "Login" ],
     "loginPlaceholder": [ "Login", "Login" ],
     "emailLabel": [ "Email", "Email" ],
-    "emailPlaceholder": [ "Email", "Email" ]
+    "emailPlaceholder": [ "Email", "Email" ],
+    "noSpaces_PASSWORD": [ "Spaces not allowed in password.", "W haśle nie mogą być użyte spacje." ],
+    "noSpaces_LOGIN": [ "Spaces not allowed in login.", "W loginie nie mogą być użyte spacje." ],
+    "notEmpty_PASSWORD": [ "Password cannot be empty.", "Hasło nie może być puste." ],
+    "notEmpty_LOGIN": [ "Login cannot be empty.", "Login nie może być pusty." ]
 }

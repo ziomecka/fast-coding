@@ -7,17 +7,14 @@ const rules = {
     [NOT_EMPTY]: value => value && value.length
 };
 
-export const helperTexts = {
-    [NO_SPACES]:
-     (value: string) => (
-        `Spaces not allowed in ${value.toLowerCase()}.`
-    ),
-    [NOT_EMPTY]: (value: string) => (
-        `${value[0].toUpperCase()}${value.slice(1)} cannot be empty.`
-    )
-};
+import { LocalizeState } from 'react-localize-redux';
+import getTranslation from './get.translation';
 
-export const applyRules = (value: string, _rules: invalidError[] = []): string | undefined => {
+export const helperTexts = (rule, value: string, localize: LocalizeState): string => (
+    getTranslation(localize, `${rule}_${value.toUpperCase()}`)
+);
+
+export const applyRules = (value: string, _rules: invalidError[] = [], localize: LocalizeState): string | undefined => {
     for (const rule in _rules) {
         const ruleName = _rules[rule];
         const ruleEnum = invalidError[ruleName];
