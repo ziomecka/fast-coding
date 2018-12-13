@@ -6,6 +6,8 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.Server(app);
+const cookieParser = require('cookie-parser');
+
 const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
@@ -49,6 +51,8 @@ app.use(express.static(ROOT, {
 
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
+app.use( cookieParser() );
+
 /** Get lessons */
 app.get( '/lessons/get', serverLessonsGet );
 
