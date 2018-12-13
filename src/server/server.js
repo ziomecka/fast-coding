@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.Server(app);
+const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 
 const { PORT: _PORT } = constants;
@@ -57,6 +58,8 @@ app.get('/lessons/get', async (req, res, next) => {
     }
 });
 
+/** Set newuser */
+app.post( '/newuser/set', serverNewUserSet );
 
 /** Log user */
 app.post( '/login/log', serverLoginLog );

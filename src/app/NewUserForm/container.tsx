@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as NewUserForm } from './component';
 import { ApplicationState } from '../../store';
 
 import { NewUserFormState } from './_duck/reducers';
-import { NewUserFormOperations } from './_duck/';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
+import { onSendNewUserForm } from './_duck/operations';
+
+import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 
 const { app } = ApplicationContainers;
 const { newUserForm } = AppContainers;
@@ -18,7 +19,10 @@ const mapStateToProps = (state: ApplicationState): NewUserFormState => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): NewUserFormDispatch => ({
-    onSendNewUserForm: () => {}
+    sendNewUserForm: (login, password, email) => dispatch(onSendNewUserForm(login, password, email)),
+    setEmail: (email) => dispatch(setEmail(email)),
+    setLogin: (login) => dispatch(setLogin(login)),
+    reset: () => dispatch(reset())
 });
 
 const NewUserFormContainer = connect(mapStateToProps, mapDispatchToProps)(NewUserForm);
@@ -26,8 +30,10 @@ const NewUserFormContainer = connect(mapStateToProps, mapDispatchToProps)(NewUse
 export default NewUserFormContainer;
 
 export interface NewUserFormDispatch {
-    onSendNewUserForm: () => void;
+    sendNewUserForm: (login: string, password: string, email: string) => Action;
+    setEmail: (email: string) => SetEmailAction;
+    setLogin: (login: string) => SetLoginAction;
+    reset: () => Action;
 };
 
-export interface NewUserFormProps extends NewUserFormDispatch, NewUserFormState {
-};
+export interface NewUserFormProps extends NewUserFormDispatch, NewUserFormState {};

@@ -118,6 +118,11 @@ const {
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
 const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
 
+const {
+    APP_NEWUSERFORM_SET_EMAIL,
+    APP_NEWUSERFORM_SET_LOGIN,
+    APP_NEWUSERFORM_RESET,
+ } = NewUserFormTypes;
 
 const { APP_FORM_HELPER_TEXT_SET } = FormHelperTextTypes;
 
@@ -170,6 +175,14 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
             }
         }
 
+        case APP_NEWUSERFORM_RESET:
+        case APP_NEWUSERFORM_SET_EMAIL:
+        case APP_NEWUSERFORM_SET_LOGIN: {
+            return {
+                ...state,
+                [newUserForm]: newUserFormReducer(state[newUserForm], action)
+            }
+        }
 
         case APP_FORM_HELPER_TEXT_SET: {
             return {
