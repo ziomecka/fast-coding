@@ -11,6 +11,7 @@ import { PasswordTypes } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
 import { UserTypes } from '../User/_duck/types';
 import { FormHelperTextTypes } from '../FormHelperText/_duck/types';
+import { LoginFormTypes } from '../LoginForm/_duck/types';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
@@ -120,6 +121,11 @@ const { APP_USER_AUTHORIZE_USER, APP_USER_UNAUTHORIZE } = UserTypes;
 
 const { APP_FORM_HELPER_TEXT_SET } = FormHelperTextTypes;
 
+const {
+    APP_LOGINFORM_SET_LOGIN,
+    APP_LOGINFORM_RESET
+} = LoginFormTypes;
+
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_DIALOG_CLOSE:
@@ -127,6 +133,15 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
             return {
                 ...state,
                 [dialog]: dialogReducer(state[dialog], action),
+            };
+        }
+
+        case APP_LOGINFORM_RESET:
+        case APP_LOGINFORM_SET_LOGIN: {
+            return {
+                ...state,
+                // @ts-ignore
+                [loginForm]: loginFormReducer(state[loginForm], action)
             };
         }
 

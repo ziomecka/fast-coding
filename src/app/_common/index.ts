@@ -54,7 +54,9 @@ export enum AppRoutes {
     login = '/login',
     newuser = '/newuser',
     demo = '/lessons/lesson-demo',
-    lessonsGet = '/lessons/get'
+    lessonsGet = '/lessons/get',
+    newUserSet = '/newuser/set',
+    loginLog = '/login/log'
 };
 
 export enum SubMenuRulesEnum {

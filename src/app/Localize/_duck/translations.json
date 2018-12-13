@@ -48,6 +48,27 @@
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
     "subMenuUserLogin": [ "login", "logowanie"],
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
+    "submitForm": [ "send", "wyślij" ],
+    "ERROR": [
+        "Something went wrong. Please try again.",
+        "Coś poszło nie tak. Spróbuj ponownie."
+    ],
+    "LOGIN_EXISTS": [
+        "Login already exists. Please use other login.",
+        "Login już istnieje. Użyj innego loginu."
+    ],
+    "EMAIL_EXISTS": [
+        "Email already exists. Please use other email.",
+        "Email już istnieje. Użyj innego maila."
+    ],
+    "LOGIN_DOES_NOT_EXIST": [
+        "Login does not exist. Please try again.",
+        "Login nie istnieje. Spróbuj ponownie."
+    ],
+    "INCORRECT_PASSWORD": [
+        "Password is not correct. Please try again.",
+        "Niepoprawne hasło. Spróbuj ponownie."
+    ],
     "passwordLabel": [ "Password", "Hasło" ],
     "passwordPlaceholder": [ "Password", "Hasło" ],
     "loginLabel": [ "Login", "Login" ],

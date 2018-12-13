@@ -2,7 +2,6 @@ import { Reducer } from 'redux';
 
 import { LoginFormTypes } from './types';
 import { PasswordTypes } from '../../Password/_duck/types';
-import { LoginTypes } from '../../Login/_duck/types';
 import { LoginFormActions }  from './actions';
 
 import {
@@ -17,7 +16,13 @@ import {
     INITIAL_STATE as LOGIN_INITIAL_STATE
 } from '../../Login/_duck/reducers';
 
-const {} = LoginFormTypes;
+const {
+    APP_LOGINFORM_SET_LOGIN,
+    APP_LOGINFORM_RESET
+} = LoginFormTypes;
+
+import { PasswordTypes as _PasswordTypes } from '../../_common/';
+const { newPass } = _PasswordTypes;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CURRENT,
@@ -25,16 +30,13 @@ const {
     APP_PASSWORD_SET_PASSWORD_NEW
 } = PasswordTypes;
 
-const {
-    APP_LOGIN_SET_LOGIN
-} = LoginTypes;
-
 export const INITIAL_STATE: LoginFormState = {
-    ...PASSWORD_INITIAL_STATE,
+    [newPass]: { ...PASSWORD_INITIAL_STATE },
     ...LOGIN_INITIAL_STATE
 };
 
-export interface LoginFormState extends PasswordState, LoginState {
+export interface LoginFormState extends LoginState {
+    [newPass]: PasswordState
 };
 
 const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
@@ -42,18 +44,26 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STAT
         /** Watch out! */
         case APP_PASSWORD_SET_PASSWORD_CURRENT:
         case APP_PASSWORD_SET_PASSWORD_NEW:
-        case APP_PASSWORD_SET_PASSWORD_CONFIRM:
-        {
+        case APP_PASSWORD_SET_PASSWORD_CONFIRM: {
+            const { password, passwordValid } = state[newPass];
+
             return {
                 ...state,
-                ...passwordReducer(state, action)
+                [newPass]: passwordReducer({ password, passwordValid }, action)
             };
         }
 
-        case APP_LOGIN_SET_LOGIN: {
+        case APP_LOGINFORM_SET_LOGIN: {
             return {
                 ...state,
                 ...loginReducer(state, action)
+            };
+        }
+
+        case APP_LOGINFORM_RESET: {
+            return {
+                [newPass]: { ...PASSWORD_INITIAL_STATE },
+                ...LOGIN_INITIAL_STATE
             };
         }
 

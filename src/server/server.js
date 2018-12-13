@@ -1,10 +1,14 @@
 require('mime');
+require('./Redis/');
 
 const path = require('path');
 const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.Server(app);
+const serverLoginLog = require('./server.login.log');
+
+const { PORT: _PORT } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 const PORT = !PROD_ENV ? require('./constants').PORT : process.env.PORT;
@@ -41,6 +45,8 @@ app.use(express.static(ROOT, {
         }
 }}));
 
+app.use( express.json() );
+app.use( express.urlencoded({ extended: false }) );
 app.get('/lessons/get', async (req, res, next) => {
     try {
         let data = await require('./get.courses')();
@@ -51,13 +57,9 @@ app.get('/lessons/get', async (req, res, next) => {
     }
 });
 
-// app.get('/vendor.chunkhash.bundle.js', (req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', 'cache-control');
-//     res.setHeader("Cache-Control", "public, max-age=31536000");
-//     next();
-// });
 
+/** Log user */
+app.post( '/login/log', serverLoginLog );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });

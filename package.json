@@ -115,6 +115,8 @@
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "ioredis": "^4.2.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.14",
@@ -125,6 +127,7 @@
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
+    "redis": "^2.8.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },

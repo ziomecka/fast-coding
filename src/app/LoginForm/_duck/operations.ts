@@ -1,19 +1,27 @@
 import { Dispatch } from 'redux';
-import { ApplicationState } from '../../../store';
-import ApiManager from '../../../shared/apimanager';
+
+import { post as postData } from '../../api';
 
 import { invalidError } from '../../_common';
 
-import { openDialog } from '../../Dialog/_duck/actions';
-import { ThunkGetStateType } from '../../../_common/';
+import { AppRoutes } from '../../../_common/';
+import { LoginFormResponseEnum } from './types';
 
-const onLoginForm = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType) => {
-    const response: {status: boolean} = await ApiManager.post();
-    if (response.status) {
-        dispatch(openDialog());
+const { SUCCESS } = LoginFormResponseEnum;
+
+const { loginLog } = AppRoutes;
+
+import { setFormHelperText } from '../../FormHelperText/_duck/actions';
+
+export const onLog = (login, password): any => async (dispatch: Dispatch) => {
+    const response = await postData({path: loginLog, body: { login, password }});
+    // @ts-ignore
+    const { result } = JSON.parse(response || null);
+
+    if (result === SUCCESS) {
+        return dispatch(setFormHelperText(null));
     } else {
-        dispatch(openDialog());
-
+        return dispatch(setFormHelperText(LoginFormResponseEnum[result]));
     }
 };
 
@@ -31,8 +39,7 @@ const applyRules = (value: string = '', _rules: string[] = []): string | undefin
     return undefined;
 };
 
-
 export default {
-    onLoginForm,
+    onLog,
     applyRules
 };
