@@ -8,6 +8,7 @@ const http = require('http');
 const server = http.Server(app);
 const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
+const serverLessonsGet = require('./server.lessons.get');
 
 const { PORT: _PORT } = constants;
 
@@ -48,15 +49,8 @@ app.use(express.static(ROOT, {
 
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
-app.get('/lessons/get', async (req, res, next) => {
-    try {
-        let data = await require('./get.courses')();
-        res.json({ result: 1, lessons: data });
-        data = null; // GC
-    } catch (err) {
-        res.json({ error: err.message || err.toString() });
-    }
-});
+/** Get lessons */
+app.get( '/lessons/get', serverLessonsGet );
 
 /** Set newuser */
 app.post( '/newuser/set', serverNewUserSet );
