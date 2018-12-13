@@ -5,9 +5,11 @@ import TextField from '@material-ui/core/TextField';
 
 import { PasswordProps } from './container';
 
-import { helperTexts } from '../../shared/rules';
+import { helperTexts, invalidError } from '../../shared/rules';
 
 import getTranslation from '../../shared/get.translation';
+
+const { noSpaces, notLong, noDigit, noSpecials } = invalidError;
 
 const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
   const {
@@ -18,8 +20,20 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
           [passwordType]: { password, passwordValid }
       },
       tabIndex,
-      localize
+      localize,
+      validatePassword,
+      rules = [ notLong, noSpaces, noDigit, noSpecials ],
+      value2
     } = props;
+
+    const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        let answer = await setPassword(passwordType, container, e);
+
+        if ( answer && rules && rules.length ) {
+            validatePassword(answer.password, passwordType, container, rules, value2);
+            answer = null; // GC
+        }
+    };
 
     return (
     <TextField
@@ -29,9 +43,9 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
         required
         type="password"
         value={password}
-        error={passwordValid !== undefined}
-        onChange={setPassword.bind(this, passwordType, container)}
-        helperText={passwordValid !== undefined
+        error={!!passwordValid}
+        onChange={onChange}
+        helperText={!!passwordValid
             ? helperTexts(passwordValid, 'password', localize)
             : null
         }
