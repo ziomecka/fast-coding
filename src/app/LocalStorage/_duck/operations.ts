@@ -1,6 +1,4 @@
-import { LessonData } from '../../../components/Lesson/_duck/reducers';
 import { LocalStorageDataTypes } from './types';
-
 import { LocalStorageItemTypes } from '../../_common/';
 
 export const localStorageGetItem = (name: LocalStorageItemTypes): any => (

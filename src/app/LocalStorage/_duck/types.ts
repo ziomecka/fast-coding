@@ -1,3 +1,3 @@
-import { CourseDataType } from '../../../components/Lessons/_duck/reducers'
+import { LessonsDataI } from '../../../components/LessonsLoader/_duck/types'
 
-export type LocalStorageDataTypes = CourseDataType;
+export type LocalStorageDataTypes = LessonsDataI;
