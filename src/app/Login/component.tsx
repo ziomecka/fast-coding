@@ -12,6 +12,8 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
 
     const {
         onChange,
+        tabIndex,
+        autoFocus = true,
         [container]: { login, loginValid }
     } = props;
 
@@ -19,8 +21,9 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
       <TextField
         label="Login"
         required
-        {...{ onChange }}
+        {...{ onChange, autoFocus }}
         value={ login }
+        inputProps={{ tabIndex }}
         error={loginValid !== undefined}
         helperText={loginValid !== undefined
           ? helperTexts[loginValid]
@@ -28,7 +31,6 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
             : null
           : null
         }
-        autoFocus
       />
   );
 };
