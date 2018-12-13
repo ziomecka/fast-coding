@@ -15,10 +15,12 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
       [container]: {
           [passwordType]: { password, passwordValid }
       },
+      tabIndex
     } = props;
 
   return (
     <TextField
+    inputProps={{ tabIndex }}
       label="Password"
       required
       type="password"
