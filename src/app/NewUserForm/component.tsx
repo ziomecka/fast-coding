@@ -21,6 +21,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { PasswordTypes } from '../_common/';
 const { newPass, confirmPass } = PasswordTypes;
 
+import { invalidError } from '../../shared/_types/';
+const { noMatch } = invalidError;
+
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainers;
     constructor(props) {
@@ -46,26 +49,40 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
     }
 
     sendNewUserForm () {
-        const { email, login, [newPass]: { password } } = this.props;
-        this.props.sendNewUserForm(login, password, email);
+        const {
+            email,
+            emailValid,
+            login,
+            loginValid,
+            [newPass]: { password: newPassword, passwordValid: newPasswordValid },
+            [confirmPass]: { password: confirmPassword, passwordValid: confirmPasswordValid }
+        } = this.props;
+
+        if ( !login || !newPassword || !confirmPassword || !email ||
+             !!loginValid || !!newPasswordValid || !! confirmPasswordValid || !!emailValid ) {
+                this.props.formInvalid();
+        } else {
+            this.props.sendNewUserForm(login, newPassword, email);
+        }
     }
 
     render () {
-        const { container, props: { email, login } } = this;
+        const { container, props: { email, emailValid, login, [newPass]: { password: newPassword } } } = this;
 
         return (
             <Paper>
                 <form onSubmit={ (e) => e.preventDefault() }>
-                    <FormControl tabIndex={1} >
+                    <FormControl tabIndex={1}>
                         <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                         <Password {...{ container, passwordType: newPass }} tabIndex={2} />
-                        <Password {...{ container, passwordType: confirmPass }} tabIndex={3} />
-                        <Email onChange={ this.emailOnChange } value={ email } tabIndex={4} />
+                        <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ noMatch ]} value2={ newPassword } />
+                        <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
                         <Button
                             onClick={this.sendNewUserForm}
                             type="submit"
-                            variant="contained"
                             tabIndex={5}
+                            variant="contained"
+                            color="primary"
                         >
                             <Translate id='submitForm' />
                         </Button>

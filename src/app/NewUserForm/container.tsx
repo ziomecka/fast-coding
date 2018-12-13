@@ -8,6 +8,7 @@ import { NewUserFormState } from './_duck/reducers';
 
 import { ApplicationContainers, AppContainers } from '../../_common/';
 import { onSendNewUserForm } from './_duck/operations';
+import { onFormInvalid } from '../Form/_duck/operations';
 
 import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 
@@ -22,7 +23,8 @@ const mapDispatchToProps = (dispatch: Dispatch): NewUserFormDispatch => ({
     sendNewUserForm: (login, password, email) => dispatch(onSendNewUserForm(login, password, email)),
     setEmail: (email) => dispatch(setEmail(email)),
     setLogin: (login) => dispatch(setLogin(login)),
-    reset: () => dispatch(reset())
+    reset: () => dispatch(reset()),
+    formInvalid: () => dispatch(onFormInvalid())
 });
 
 const NewUserFormContainer = connect(mapStateToProps, mapDispatchToProps)(NewUserForm);
@@ -34,6 +36,7 @@ export interface NewUserFormDispatch {
     setEmail: (email: string) => SetEmailAction;
     setLogin: (login: string) => SetLoginAction;
     reset: () => Action;
+    formInvalid: () => Action;
 };
 
 export interface NewUserFormProps extends NewUserFormDispatch, NewUserFormState {};

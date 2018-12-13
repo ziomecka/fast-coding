@@ -13,6 +13,9 @@ const sendNewUserFormSuccess = (): any => async ( dispatch: Dispatch ): Promise<
 
 export const onSendNewUserForm = (login: string, password: string, email: string ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
+        /** removes formInvalid message */
+        dispatch(setFormHelperText('formBeingSent'));
+
         const response = await postData({ path: newUserSet, body: { login, password, email }});
         // @ts-ignore
         const { result } = JSON.parse(response || null);

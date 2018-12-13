@@ -24,7 +24,9 @@ const { confirmPass, newPass } = _PasswordTypes;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CONFIRM,
-    APP_PASSWORD_SET_PASSWORD_NEW
+    APP_PASSWORD_SET_PASSWORD_NEW,
+    APP_PASSWORD_VALIDATE_NEW,
+    APP_PASSWORD_VALIDATE_CONFIRM
 } = PasswordTypes;
 
 const {
@@ -42,6 +44,7 @@ export const INITIAL_STATE: NewUserFormState = {
 
 const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
             const { password, passwordValid } = state[newPass];
             return {
@@ -50,6 +53,7 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             };
         }
 
+        case APP_PASSWORD_VALIDATE_CONFIRM:
         case APP_PASSWORD_SET_PASSWORD_CONFIRM: {
             const { password, passwordValid } = state[confirmPass];
             return {
