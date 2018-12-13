@@ -2,8 +2,8 @@ import { Reducer } from 'redux';
 
 import { applyRules } from '../_duck/operations';
 
-import { invalidError } from '../../../shared/_types/';
-const { noSpaces, noSpecials, notLong, noDigit } = invalidError;
+import { RulesErrorEnum } from '../../../shared/_types/';
+const { noSpaces, noSpecials, notLong, noDigit } = RulesErrorEnum;
 
 export const INITIAL_STATE: LoginState = {
     login: '',

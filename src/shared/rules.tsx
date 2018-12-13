@@ -1,7 +1,7 @@
-import { invalidError } from './_types/';
-export { invalidError };
+import { RulesErrorEnum } from './_types/';
+export { RulesErrorEnum };
 
-const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH } = invalidError;
+const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH } = RulesErrorEnum;
 
 export const rulesRegexp: RulesRegexpI = {
     [NO_SPACES]: () => /.*[\s].*/,
@@ -34,7 +34,7 @@ export const applyRules = (options: ApplyRulesType): string | undefined => {
 
         const ruleName = options[rule][0];
 
-        const ruleEnum = invalidError[ruleName];
+        const ruleEnum = RulesErrorEnum[ruleName];
 
         const result = !rules[ruleEnum]({ value, min, max, value2 });
 
@@ -47,7 +47,7 @@ export const applyRules = (options: ApplyRulesType): string | undefined => {
 };
 
 /** Interfaces */
-export type ApplyRulesType = Array<[ invalidError, RulesDataI ]>;
+export type ApplyRulesType = Array<[ RulesErrorEnum, RulesDataI ]>;
 
 interface RulesRegexpI {
     [key: string]: (min?: number, max?: number) => RegExp

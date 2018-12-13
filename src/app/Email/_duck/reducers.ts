@@ -6,8 +6,8 @@ export const INITIAL_STATE: EmailState = {
     emailValid: null
 };
 
-import { invalidError } from '../../../shared/_types/';
-const { notEmail } = invalidError;
+import { RulesErrorEnum } from '../../../shared/_types/';
+const { notEmail } = RulesErrorEnum;
 
 const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
     switch (action.type) {

@@ -4,7 +4,7 @@ import { PasswordTypes } from './types';
 import { PasswordTypes as _PasswordTypes } from '../../_common/';
 import { AppContainers } from '../../_common';
 
-import { invalidError } from '../../../shared/_types/';
+import { RulesErrorEnum } from '../../../shared/_types/';
 
 const { confirmPass, currentPass, newPass, pass } = _PasswordTypes;
 
@@ -43,25 +43,25 @@ const _setPassword: ActionCreator<SetPasswordAction> = (password: string, contai
     container
 });
 
-export const validatePasswordCurrent: ActionCreator<ValidatePasswordAction> = (passwordValid: invalidError, container: AppContainers) => ({
+export const validatePasswordCurrent: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum, container: AppContainers) => ({
     type: APP_PASSWORD_VALIDATE_CURRENT,
     passwordValid,
     container
 });
 
-export const validatePasswordNew: ActionCreator<ValidatePasswordAction> = (passwordValid: invalidError, container: AppContainers) => ({
+export const validatePasswordNew: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum, container: AppContainers) => ({
     type: APP_PASSWORD_VALIDATE_NEW,
     passwordValid,
     container
 });
 
-export const validatePasswordConfirm: ActionCreator<ValidatePasswordAction> = (passwordValid: invalidError, container: AppContainers) => ({
+export const validatePasswordConfirm: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum, container: AppContainers) => ({
     type: APP_PASSWORD_VALIDATE_CONFIRM,
     passwordValid,
     container
 });
 
-export const _validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: invalidError, container: AppContainers) => ({
+export const _validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum, container: AppContainers) => ({
     type: APP_PASSWORD_VALIDATE,
     passwordValid,
     container
@@ -78,7 +78,7 @@ export const setPassword: ActionCreator<SetPasswordAction> = (password, password
     actionsMap[passwordType][0](password, container)
 );
 
-export const validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: invalidError,  passwordType: string, container: AppContainers) => (
+export const validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum,  passwordType: string, container: AppContainers) => (
     actionsMap[passwordType][1](passwordValid, container) || (() => {})
 );
 
@@ -94,7 +94,7 @@ export interface SetPasswordAction extends Action {
 };
 
 export interface ValidatePasswordAction extends Action {
-    passwordValid: invalidError;
+    passwordValid: RulesErrorEnum;
     container: AppContainers;
 };
 

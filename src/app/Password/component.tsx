@@ -5,11 +5,11 @@ import TextField from '@material-ui/core/TextField';
 
 import { PasswordProps } from './container';
 
-import { helperTexts, invalidError } from '../../shared/rules';
+import { helperTexts, RulesErrorEnum } from '../../shared/rules';
 
 import getTranslation from '../../shared/get.translation';
 
-const { noSpaces, notLong, noDigit, noSpecials } = invalidError;
+const { noSpaces, notLong, noDigit, noSpecials } = RulesErrorEnum;
 
 const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
   const {

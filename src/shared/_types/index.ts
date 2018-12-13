@@ -1,4 +1,4 @@
-export enum invalidError {
+export enum RulesErrorEnum {
     noSpaces = 'NO_SPACES',
     NO_SPACES = 'noSpaces',
     NOT_LONG = 'notLong',

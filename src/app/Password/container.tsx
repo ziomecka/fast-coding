@@ -7,7 +7,7 @@ import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
-import { AppContainers, ApplicationContainers, PasswordTypes, invalidError } from '../../_common';
+import { AppContainers, ApplicationContainers, PasswordTypes, RulesErrorEnum } from '../../_common';
 
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
 
@@ -41,12 +41,12 @@ export interface PasswordDispatch {
         container: AppContainers,
         event: React.ChangeEvent<HTMLInputElement>
     ) => SetPasswordAction;
-    validatePassword: (password: string, passwordType: PasswordTypes, container: AppContainers, rules: invalidError[], value2?: string) => Action
+    validatePassword: (password: string, passwordType: PasswordTypes, container: AppContainers, rules: RulesErrorEnum[], value2?: string) => Action
 };
 
 export interface PasswordProps extends PasswordDispatch, MapStateToPropsI, StandardTextFieldProps {
     container: AppContainers;
     passwordType: PasswordTypes;
-    rules?: invalidError[];
+    rules?: RulesErrorEnum[];
     value2?: string;
 };

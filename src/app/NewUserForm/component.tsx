@@ -21,8 +21,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { PasswordTypes } from '../_common/';
 const { newPass, confirmPass } = PasswordTypes;
 
-import { invalidError } from '../../shared/_types/';
-const { noMatch } = invalidError;
+import { RulesErrorEnum } from '../../shared/_types/';
+const { noMatch } = RulesErrorEnum;
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainers;
