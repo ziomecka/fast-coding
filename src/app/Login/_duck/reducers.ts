@@ -2,9 +2,8 @@ import { Reducer } from 'redux';
 
 import { applyRules } from '../_duck/operations';
 
-import { invalidError } from '../../_common/';
-
-const { notEmpty, noSpaces } = invalidError;
+import { invalidError } from '../../../shared/_types/';
+const { noSpaces, noSpecials, notLong, noDigit } = invalidError;
 
 export const INITIAL_STATE: LoginState = {
     login: '',
@@ -14,9 +13,16 @@ export const INITIAL_STATE: LoginState = {
 const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         default: {
+            const { login } = action;
+
             return {
-                login: action.login,
-                loginValid: applyRules(action.login, [notEmpty, noSpaces])
+                login,
+                loginValid: applyRules([
+                    [ noSpaces, { value: login } ],
+                    [ noSpecials, { value: login, opposite: true } ],
+                    [ noDigit, { value: login, opposite: true } ],
+                    [ notLong, { value: login } ]
+                ])
             };
         }
     }
