@@ -8,6 +8,8 @@ const http = require('http');
 const server = http.Server(app);
 const cookieParser = require('cookie-parser');
 
+const constants = require('./constants');
+
 const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
@@ -15,7 +17,7 @@ const serverLessonsGet = require('./server.lessons.get');
 const { PORT: _PORT } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
-const PORT = !PROD_ENV ? require('./constants').PORT : process.env.PORT;
+const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 const ROOT = !PROD_ENV ? path.join(__dirname, '/') : __dirname;
 const HTML_PATH = !PROD_ENV
     ? path.resolve(__dirname, '/')
