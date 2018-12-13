@@ -11,7 +11,7 @@ import { LocalizeState } from 'react-localize-redux';
 
 const { app } = ApplicationContainers;
 
-const mapStateToProps = (state: ApplicationState): AppState => ({
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app],
     localize: state.localize
 });
@@ -20,10 +20,10 @@ const LoginContainer = connect(mapStateToProps)(Login);
 
 export default LoginContainer;
 
-interface MapStateTopPropsI extends AppState {
+interface MapStateToPropsI extends AppState {
     localize: LocalizeState
 }
 
-export interface LoginPropsI extends StandardTextFieldProps, MapStateTopPropsI {
+export interface LoginPropsI extends StandardTextFieldProps, MapStateToPropsI {
     container: AppContainers;
 };

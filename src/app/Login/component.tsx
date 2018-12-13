@@ -4,6 +4,8 @@ import { LoginPropsI } from './container';
 
 import { helperTexts } from '../../shared/rules';
 
+import getTranslation from '../../shared/get.translation';
+
 /** Materials */
 import TextField from '@material-ui/core/TextField';
 
@@ -19,7 +21,8 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
 
   return (
       <TextField
-        label="Login"
+        label={getTranslation(props.localize, 'loginLabel')}
+        placeholder={getTranslation(props.localize, 'loginPlaceholder')}
         required
         {...{ onChange, autoFocus }}
         value={ login }

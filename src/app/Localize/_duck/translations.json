@@ -49,5 +49,7 @@
     "subMenuUserLogin": [ "login", "logowanie"],
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
     "passwordLabel": [ "Password", "Hasło" ],
-    "passwordPlaceholder": [ "Password", "Hasło" ]
+    "passwordPlaceholder": [ "Password", "Hasło" ],
+    "loginLabel": [ "Login", "Login" ],
+    "loginPlaceholder": [ "Login", "Login" ]
 }
