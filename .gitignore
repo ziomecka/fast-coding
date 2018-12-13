@@ -11,5 +11,4 @@ todo.md
 test
 __mocks__
 LICENSE*
-webpack/webpack-bundle-stats.json
-webpack/webpack-deploy-stats.json
+webpack/webpack*stats.json
