@@ -60,6 +60,12 @@ import {
     FormHelperTextState
 } from '../FormHelperText/_duck/reducers';
 
+import {
+    INITIAL_STATE as CHANGEPASSWORDFORM_INITIAL_STATE,
+    changePasswordFormReducer,
+    ChangePasswordFormState
+} from '../ChangePasswordForm/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -70,6 +76,7 @@ const {
     content,
     user,
     formHelperText,
+    changePasswordForm
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -81,7 +88,8 @@ export const INITIAL_STATE = {
     [welcome]: WELCOME_INITIAL_STATE,
     [content]: CONTENT_INITIAL_STATE,
     [user]: USER_INITIAL_STATE,
-    [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE
+    [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE,
+    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE
 };
 
 const {
@@ -104,7 +112,8 @@ const combinedReducers = combineReducers({
     [content]: contentReducer,
     [notification]: notificationReducer,
     [appMenu]: menuReducer,
-    [user]: userReducer
+    [user]: userReducer,
+    [changePasswordForm]: changePasswordFormReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -129,6 +138,13 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
                     return {
                         ...state,
                         [newUserForm]: newUserFormReducer(state[newUserForm], action),
+                    };
+                }
+
+                case changePasswordForm: {
+                    return {
+                        ...state,
+                        [changePasswordForm]: changePasswordFormReducer(state[changePasswordForm], action)
                     };
                 }
 
@@ -158,4 +174,5 @@ export interface AppState {
     [content]: ContentState;
     [user]: UserState;
     [formHelperText]: FormHelperTextState;
+    [changePasswordForm]: ChangePasswordFormState;
 };
