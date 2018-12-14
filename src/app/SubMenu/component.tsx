@@ -172,11 +172,15 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     get manyItems ()  {
-        return ( this.props.menuItems && this.props.container && !this.props.menuItem )
+        return ( this.props.menuItems && this.props.container && !this.props.menuItem );
     };
 
     get oneItem  () {
         return (this.props.menuItem && !this.props.container && !this.props.menuItems);
+    }
+
+    get atLeastOneItem () {
+        return this.props.menuItems.some( item => this.areSubMenuRulesMet(item.rules, item.appRoute, item.lang || '') );
     }
 
     renderList () {
@@ -185,7 +189,8 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
             title
         } = this.props;
 
-        return (
+        /** Render list only if at least one item meets the rules */
+        return ( this.atLeastOneItem &&
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
                     {
