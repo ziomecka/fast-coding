@@ -128,5 +128,9 @@
     "formBeingSent": [
         "Form is being sent",
         "Trwa wysyłanie formularza"
+    ],
+    "notificationAuthorized": [
+        "Nice to see you",
+        "Miło Cię widzieć"
     ]
 }
