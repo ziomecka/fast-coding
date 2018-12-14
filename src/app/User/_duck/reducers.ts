@@ -1,3 +1,4 @@
+
 import { Reducer } from 'redux';
 
 import { UserTypes } from './types';
@@ -19,6 +20,7 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
         case APP_USER_AUTHORIZE_USER: {
             return {
                 ...state,
+                login: action.login,
                 authorized: true
             };
         }
@@ -26,6 +28,7 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
         case APP_USER_UNAUTHORIZE: {
             return {
                 ...state,
+                login: null,
                 authorized: false
             }
         }

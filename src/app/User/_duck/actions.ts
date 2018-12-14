@@ -6,8 +6,9 @@ const {
     APP_USER_UNAUTHORIZE
 } = UserTypes;
 
-export const authorizeUser: ActionCreator<Action> = () => ({
-    type: APP_USER_AUTHORIZE_USER
+export const authorizeUser: ActionCreator<UserAuthorizationAction> = (login: string) => ({
+    type: APP_USER_AUTHORIZE_USER,
+    login
 });
 
 export const unauthorizeUser: ActionCreator<Action> = () => ({
@@ -19,4 +20,8 @@ export const actions = {
     unauthorizeUser
 };
 
-export type UserActions = Action;
+export interface UserAuthorizationAction extends Action {
+    login: string;
+};
+
+export type UserActions = UserAuthorizationAction;
