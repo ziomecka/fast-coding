@@ -8,7 +8,8 @@ export enum AppContainers {
     content = 'CONTENT',
     csr = 'CSR',
     user = 'USER',
-    formHelperText = 'FORM_HELPER_TEXT'
+    formHelperText = 'FORM_HELPER_TEXT',
+    changePasswordForm = 'CHANGE_PASSWORD_FORM'
 };
 
 export enum MenuContainers {
@@ -50,7 +51,8 @@ export enum AppRoutes {
     demo = '/lessons/lesson-demo',
     lessonsGet = '/lessons/get',
     newUserSet = '/newuser/set',
-    loginLog = '/login/log'
+    loginLog = '/login/log',
+    changePassword = '/changePassword'
 };
 
 export enum SubMenuRulesEnum {
