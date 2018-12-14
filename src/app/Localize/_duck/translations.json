@@ -53,6 +53,7 @@
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
     "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
+    "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "submitForm": [ "send", "wyślij" ],
     "ERROR": [
         "Something went wrong. Please try again.",
@@ -153,5 +154,9 @@
     "notificationPasswordChangeSuccess": [
         "Password changed",
         "Hasło zostało zmienione"
+    ],
+    "notificationSignOutSuccess": [
+        "You have been signed out",
+        "Zostałeś wylogowany"
     ]
 }
