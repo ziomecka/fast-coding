@@ -32,12 +32,13 @@ import { withLocalize } from 'react-localize-redux';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson } = NavRulesEnum;
-    const { notActiveLanguage } = SubMenuRulesEnum;
+    const { notActiveLanguage, onlyAuthorized } = SubMenuRulesEnum;
     const {
         languages,
         setActiveLanguage,
         activeLanguage,
-        classes: { navClass, navLessonClass }
+        classes: { navClass, navLessonClass },
+        logOut
     } = props;
 
     const subMenus: __SubMenuProps[] = [
@@ -70,7 +71,13 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         },
         /** User menu */
         {
-            menuItems: submenus.userMenuItems,
+            menuItems: submenus.userMenuItems
+                /** Sign out added */
+                .concat([ {
+                    title: 'subMenuUserLogOut',
+                    rules: [ onlyAuthorized ],
+                    onClick: logOut
+                } ]),
             icon: <Face />,
             container: userMenu,
             title: 'submenuOpenUserMenu',
