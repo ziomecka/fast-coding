@@ -7,6 +7,7 @@ import LessonsView from './lessons/';
 import LessonView from './lesson/';
 import LoginView from './login/';
 import NewUserView from './newuser/';
+import ChangePasswordView from './changePassword/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../theme/';
@@ -17,7 +18,7 @@ import { LocalizeProvider } from 'react-localize-redux';
 import store from '../store';
 
 const Root: React.StatelessComponent<{}> = () => {
-    const { lessons, login, newuser } = AppRoutes;
+    const { lessons, login, newuser, changePassword } = AppRoutes;
 
     return (
         <MuiThemeProvider {...{ theme }}>
@@ -30,6 +31,7 @@ const Root: React.StatelessComponent<{}> = () => {
                                 <Route path={`${lessons}/:id`} component={LessonView} />
                                 <Route path={`${login}`} component={LoginView} />
                                 <Route path={`${newuser}`} component={NewUserView} />
+                                <Route path={`${ changePassword }`} component={ ChangePasswordView } />
                             </Switch>
                     </HomeView>
                     </Route>
