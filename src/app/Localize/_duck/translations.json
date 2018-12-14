@@ -48,10 +48,15 @@
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
     "subMenuUserLogin": [ "login", "logowanie"],
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
+    "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
     "submitForm": [ "send", "wyślij" ],
     "ERROR": [
         "Something went wrong. Please try again.",
         "Coś poszło nie tak. Spróbuj ponownie."
+    ],
+    "CURRENT_PASSWORD_ERROR": [
+        "Current password is incorrect. Please try again.",
+        "Obecne hasło jest nieprawidłowe. Spróbuj ponownie."
     ],
     "LOGIN_EXISTS": [
         "Login already exists. Please use other login.",
@@ -132,5 +137,9 @@
     "notificationAuthorized": [
         "Nice to see you",
         "Miło Cię widzieć"
+    ],
+    "notificationPasswordChangeSuccess": [
+        "Password changed",
+        "Hasło zostało zmienione"
     ]
 }
