@@ -28,7 +28,7 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
         case APP_USER_UNAUTHORIZE: {
             return {
                 ...state,
-                login: action.login,
+                login: null,
                 authorized: false
             }
         }
