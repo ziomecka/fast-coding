@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 
 import { post as postData } from '../../api';
 
-import { AppRoutes, ThunkGetStateType } from '../../../_common/';
+import { AppRoutes } from '../../../_common/';
 import { LoginFormResponseEnum } from './types';
 
 const { SUCCESS } = LoginFormResponseEnum;
@@ -14,9 +14,8 @@ import { authorizeUser } from  '../../User/_duck/actions';
 import history from '../../../shared/history';
 
 import { onOpenNotification } from '../../Notification/_duck/operations';
-import getTranslation from '../../../shared/get.translation';
 
-export const onLog = (login, password): any => async (dispatch: Dispatch, getState: ThunkGetStateType  ): Promise<Action> => {
+export const onLog = (login, password): any => async (dispatch: Dispatch ): Promise<Action> => {
     /** removes formInvalid message */
     dispatch(setFormHelperText('formBeingSent'));
 
@@ -25,7 +24,7 @@ export const onLog = (login, password): any => async (dispatch: Dispatch, getSta
     if (result === SUCCESS) {
         dispatch(authorizeUser(login));
         history.push(lessons);
-        return dispatch(onOpenNotification(getTranslation(getState().localize, 'notificationAuthorized')));
+        return dispatch(onOpenNotification('notificationAuthorized'));
     }
 
     // TODO make error 0. Spojnie wszedzie
