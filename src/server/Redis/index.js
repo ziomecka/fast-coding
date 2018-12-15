@@ -9,11 +9,20 @@ class Redis {
 
         try {
             this.client = redis.createClient(port, hostname);
-            this.client.on('connect', () => console.log('Redis connected'));
-            this.client.auth(auth.split(":")[1]);
         } catch (err) {
-            throw new Error(`Redis not authorized. ${err.message || err.toString()}`);
+            // TODO obsluzyc po stornie klienta
+            console.warn(`Redis not available. ${err.message || err.toString()}`);
         }
+
+        this.client.on('connect', () => console.log('Redis connected'));
+
+        /** Will fire if authorization fails */
+        this.client.on('error', err => {
+           // TODO obsluzyc po stornie klienta
+           console.warn(`Redis error: ${ err.message || err.toString() }`);
+       });
+
+       this.client.auth(auth.split(":")[1]);
     }
 
     async keyExists(options) {
