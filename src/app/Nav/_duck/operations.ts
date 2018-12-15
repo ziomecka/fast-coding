@@ -17,7 +17,7 @@ export const onLogOut = (): any => (
         if (response) {
             response = null;
             history.push(lessons);
-            return dispatch(onOpenNotification('notificationSignOutSuccess'));
+            return dispatch(onOpenNotification({ text: 'notificationSignOutSuccess' }));
         }
 });
 
