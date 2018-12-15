@@ -20,9 +20,7 @@ export const onLog = (login, password): any => async (dispatch: Dispatch, getSta
     /** removes formInvalid message */
     dispatch(setFormHelperText('formBeingSent'));
 
-    const response = await postData({path: loginLog, body: { login, password }});
-    // @ts-ignore
-    const { result } = JSON.parse(response || null);
+    const { result } = await postData({path: loginLog, body: { login, password }});
 
     if (result === SUCCESS) {
         dispatch(authorizeUser(login));
