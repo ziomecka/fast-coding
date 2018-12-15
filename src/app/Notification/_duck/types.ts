@@ -6,5 +6,5 @@ export enum NotificationTypes {
 };
 
 export enum NotificationVariantEnum {
-    smile = 'SMILE'
+    success = 'SUCCESS'
 };
