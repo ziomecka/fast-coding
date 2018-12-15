@@ -24,11 +24,11 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
         variant
     } = props;
 
-    const _icons = {
+    const _icons: { [ key: string ]: React.ComponentType<any> } = {
         [success]: Mood
     };
 
-    const _classes = {
+    const _classes: { [ key: string ]: { message: string, content: string, icon: string } } = {
         [success]: {
             message: 'notificationMessageSuccess',
             content: 'notificationContentSuccess',
