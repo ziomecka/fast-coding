@@ -20,7 +20,7 @@ export const onLog = (login, password): any => async (dispatch: Dispatch, getSta
     /** removes formInvalid message */
     dispatch(setFormHelperText('formBeingSent'));
 
-    const { result } = await postData({path: loginLog, body: { login, password }});
+    const { result } = await postData({ path: loginLog, body: { login, password }});
 
     if (result === SUCCESS) {
         dispatch(authorizeUser(login));
@@ -29,7 +29,7 @@ export const onLog = (login, password): any => async (dispatch: Dispatch, getSta
     }
 
     // TODO make error 0. Spojnie wszedzie
-    return dispatch(setFormHelperText(LoginFormResponseEnum[result] || LoginFormResponseEnum[3]));
+    return dispatch(setFormHelperText(LoginFormResponseEnum[result] || LoginFormResponseEnum[0]));
 
 };
 
