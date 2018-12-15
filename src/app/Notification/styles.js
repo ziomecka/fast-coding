@@ -1,23 +1,33 @@
 // import green from '@material-ui/core/colors/green';
 import { COLOR_SUCCESS } from '../../constants';
 
-const styles = theme => ({
-    notificationIcon: {
-        fontSize: 30,
-        // opacity: 0.9,
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit
-    },
-    notificationMessageSmile: {
-        color: theme.palette.text.primary,
-        backgroundColor: COLOR_SUCCESS,
-    },
-    notificationContentSmile: {
-        backgroundColor: COLOR_SUCCESS,
-    },
-    notificationIconSmile: {
-        color: theme.palette.text.primary
-    }
-});
+const styles = theme => {
+    const {
+        spacing: { unit },
+        palette: {
+            text: { primary: textPrimary },
+            grey: { 100: successBackground }
+        }
+    } = theme;
+
+    return {
+        notificationIcon: {
+            fontSize: 30,
+            // opacity: 0.9,
+            marginLeft: unit,
+            marginRight: unit
+        },
+        notificationMessageSuccess: {
+            color: textPrimary,
+            backgroundColor: COLOR_SUCCESS,
+        },
+        notificationContentSuccess: {
+            backgroundColor: COLOR_SUCCESS,
+        },
+        notificationIconSuccess: {
+            color: textPrimary
+        }
+    };
+};
 
 export default styles;
