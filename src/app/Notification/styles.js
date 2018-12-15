@@ -4,7 +4,8 @@ const styles = theme => {
     const {
         spacing: { unit },
         palette: {
-            primary: { dark: successBackground, contrastText: successText }
+            primary: { dark: successBackground, contrastText: successText },
+            secondary: { dark: errorBackground, contrastText: errorText }
         }
     } = theme;
 
@@ -25,6 +26,18 @@ const styles = theme => {
         },
         notificationIconSuccess: {
             color: successText
+        },
+        notificationMessageError: {
+            fontSize: NOTIFICATION_FONTSIZE,
+            color: errorText,
+            backgroundColor: errorBackground
+        },
+        notificationContentError: {
+            padding: PAPER_PADDING,
+            backgroundColor: errorBackground
+        },
+        notificationIconError: {
+            color: errorText
         }
     };
 };

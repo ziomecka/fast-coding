@@ -23,7 +23,8 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     } = props;
 
     const _icons: { [ key: string ]: React.ComponentType<any> } = {
-        [success]: null
+        [success]: null,
+        [error]: null
     };
 
     const _classes: { [ key: string ]: { message: string, content: string, icon: string } } = {
@@ -31,6 +32,11 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
             message: 'notificationMessageSuccess',
             content: 'notificationContentSuccess',
             icon: 'notificationIconSuccess'
+        },
+        [error]: {
+            message: 'notificationMessageError',
+            content: 'notificationContentError',
+            icon: 'notificationIconError'
         }
     };
 
