@@ -4,7 +4,6 @@ import { SendFormI } from './types';
 import { post as postData } from '../../api/';
 import { ThunkGetStateType, AppContainers, ApplicationContainers } from '../../../_common/';
 import { onOpenNotification } from '../../Notification/_duck/operations';
-import getTranslation from '../../../shared/get.translation';
 
 import history from '../../../shared/history';
 
@@ -33,7 +32,7 @@ export const onSendForm = (options: SendFormI): any => (
 
         if (result === success) {
             if (redirectUrl) history.push(redirectUrl);
-            return dispatch(onOpenNotification(getTranslation(getState().localize, successNotification)));
+            return dispatch(onOpenNotification(successNotification));
         }
 
         /** Display error
