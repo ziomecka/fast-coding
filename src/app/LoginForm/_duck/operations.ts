@@ -28,7 +28,8 @@ export const onLog = (login, password): any => async (dispatch: Dispatch, getSta
         return dispatch(onOpenNotification(getTranslation(getState().localize, 'notificationAuthorized')));
     }
 
-    return dispatch(setFormHelperText(LoginFormResponseEnum[result]));
+    // TODO make error 0. Spojnie wszedzie
+    return dispatch(setFormHelperText(LoginFormResponseEnum[result] || LoginFormResponseEnum[3]));
 
 };
 
