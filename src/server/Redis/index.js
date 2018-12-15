@@ -5,7 +5,6 @@ const url = require('url');
 class Redis {
     constructor(REDIS_URI) {
         const { port, hostname, auth } = url.parse(REDIS_URI);
-        // console.log(`port: ${port} hostname: ${hostname} auth: ${auth}`)
 
         try {
             this.client = redis.createClient(port, hostname);
