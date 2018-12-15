@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AppNotificationProps } from './container';
 
 import { NotificationVariantEnum } from './_duck/types';
-const { smile } = NotificationVariantEnum;
+const { success } = NotificationVariantEnum;
 
 /** Materials */
 import SnackBar from '@material-ui/core/Snackbar';
@@ -25,14 +25,14 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     } = props;
 
     const _icons = {
-        [smile]: Mood
+        [success]: Mood
     };
 
     const _classes = {
-        [smile]: {
-            message: 'notificationMessageSmile',
-            content: 'notificationContentSmile',
-            icon: 'notificationIconSmile'
+        [success]: {
+            message: 'notificationMessageSuccess',
+            content: 'notificationContentSuccess',
+            icon: 'notificationIconSuccess'
         }
     };
 

@@ -5,7 +5,7 @@ import { NotificationActions, OpenNotificationAction } from './actions';
 
 import { NOTIFICATION_DURATION } from '../../../constants';
 
-const { smile } = NotificationVariantEnum;
+const { success } = NotificationVariantEnum;
 
 const {
     APP_NOTIFICATION_OPEN,
@@ -19,7 +19,7 @@ export const INITIAL_STATE: NotificationState = {
     anchorEl: null,
     text: '',
     autoHideDuration: NOTIFICATION_DURATION,
-    variant: smile
+    variant: success
 };
 
 const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIAL_STATE, action) => {
