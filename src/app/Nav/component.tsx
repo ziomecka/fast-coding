@@ -79,7 +79,8 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                     rules: [ onlyAuthorized ],
                     onClick: logOut
                 } ]),
-            icon: <Face />,
+            //@ts-ignore
+            icon: <span className={ navLogin } login={ login }> <Face /> </span>,
             container: userMenu,
             title: 'submenuOpenUserMenu',
         }
