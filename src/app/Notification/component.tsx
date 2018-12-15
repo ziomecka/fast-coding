@@ -25,7 +25,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     } = props;
 
     const _icons: { [ key: string ]: React.ComponentType<any> } = {
-        [success]: Mood
+        [success]: null
     };
 
     const _classes: { [ key: string ]: { message: string, content: string, icon: string } } = {
