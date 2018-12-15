@@ -10,7 +10,11 @@ const { success } = NotificationVariantEnum;
 const {
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_CLOSE,
+<<<<<<< HEAD
     APP_NOTIFICATION_SET
+=======
+    APP_NOTIFICATION_RESET
+>>>>>>> 63837d4... Notification operations onOpenNotification do not setTimeNotification. Not needed done in action
 } = NotificationTypes;
 
 export const INITIAL_STATE: NotificationState = {
@@ -38,6 +42,7 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             };
         }
 
+<<<<<<< HEAD
         case APP_NOTIFICATION_CLOSE: {
             /** Do not reset here - will be visible before notification hides */
             return {
@@ -46,6 +51,8 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             };
         }
 
+=======
+>>>>>>> 63837d4... Notification operations onOpenNotification do not setTimeNotification. Not needed done in action
         default: {
             return { ...state };
         }
