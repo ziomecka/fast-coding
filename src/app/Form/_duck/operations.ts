@@ -29,8 +29,7 @@ export const onSendForm = (options: SendFormI): any => (
 
         const response = await postData({ ...options.request });
 
-        // @ts-ignore
-        const { result } = JSON.parse(response || null);
+        const { result } = response || null;
 
         if (result === success) {
             if (redirectUrl) history.push(redirectUrl);
