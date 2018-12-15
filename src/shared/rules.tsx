@@ -1,7 +1,7 @@
 import { RulesErrorEnum } from './_types/';
 export { RulesErrorEnum };
 
-const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH } = RulesErrorEnum;
+const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH, MATCH } = RulesErrorEnum;
 
 export const rulesRegexp: RulesRegexpI = {
     [NO_SPACES]: () => /.*[\s].*/,
@@ -11,13 +11,16 @@ export const rulesRegexp: RulesRegexpI = {
     [NO_SPECIALS]: () => /.*[^a-zA-Z0-9]+.*/
 };
 
+// TODO NO_MATCH ad MATCH
+// mogłoby być jedno gdbym mogła w props rules komponentu Password przekazywać inforamcję czy rule ma być spełnione czy nie
 const rules: RulesI = {
     [NO_SPACES]: options => !( rulesRegexp[NO_SPACES]().test(options.value) ),
     [NOT_LONG]: options => ( rulesRegexp[NOT_LONG](options.min, options.max).test(options.value) ),
     [NOT_EMAIL]: options => ( rulesRegexp[NOT_EMAIL]().test(options.value) ),
     [NO_DIGIT]: options => ( rulesRegexp[NO_DIGIT]().test(options.value) ),
     [NO_SPECIALS]: options => ( rulesRegexp[NO_SPECIALS]().test(options.value) ),
-    [NO_MATCH]: options => options.value === options.value2
+    [NO_MATCH]: options => options.value === options.value2,
+    [MATCH]: options => options.value !== options.value2
 };
 
 import { LocalizeState } from 'react-localize-redux';
