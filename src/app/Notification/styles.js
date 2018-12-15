@@ -1,30 +1,30 @@
-import { COLOR_SUCCESS } from '../../constants';
+import { PAPER_PADDING, NOTIFICATION_FONTSIZE } from '../../constants';
 
 const styles = theme => {
     const {
         spacing: { unit },
         palette: {
-            text: { primary: textPrimary },
-            grey: { 100: successBackground }
+            primary: { dark: successBackground, contrastText: successText }
         }
     } = theme;
 
     return {
         notificationIcon: {
-            fontSize: 30,
-            // opacity: 0.9,
+            fontSize: NOTIFICATION_FONTSIZE,
             marginLeft: unit,
             marginRight: unit
         },
         notificationMessageSuccess: {
-            color: textPrimary,
-            backgroundColor: COLOR_SUCCESS,
+            fontSize: NOTIFICATION_FONTSIZE,
+            color: successText,
+            backgroundColor: successBackground,
         },
         notificationContentSuccess: {
-            backgroundColor: COLOR_SUCCESS,
+            padding: PAPER_PADDING,
+            backgroundColor: successBackground,
         },
         notificationIconSuccess: {
-            color: textPrimary
+            color: successText
         }
     };
 };
