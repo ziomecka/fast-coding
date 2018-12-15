@@ -7,7 +7,6 @@ const {
     APP_NOTIFICATION_RESET
 } = NotificationTypes;
 
-
 export const openNotification: ActionCreator<OpenNotificationAction & Action> = (options: OpenNotificationAction) => ({
     type: APP_NOTIFICATION_OPEN,
     ...options
@@ -28,7 +27,6 @@ export const actions = {
 };
 
 export interface OpenNotificationAction {
-    timeout?: number;
     text: string;
 };
 

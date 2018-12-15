@@ -26,8 +26,8 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
         case APP_NOTIFICATION_OPEN: {
             return {
                 ...state,
-                text: (action as OpenNotificationAction).text,
-                open: true
+                open: true,
+                ...action
             };
         }
 
