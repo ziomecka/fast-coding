@@ -8,10 +8,9 @@ const {
 } = NotificationTypes;
 
 
-export const openNotification: ActionCreator<OpenNotificationAction> = (text: string, timeout?: number) => ({
+export const openNotification: ActionCreator<OpenNotificationAction & Action> = (options: OpenNotificationAction) => ({
     type: APP_NOTIFICATION_OPEN,
-    timeout,
-    text
+    ...options
 });
 
 export const closeNotification: ActionCreator<Action> = () => ({
@@ -28,8 +27,7 @@ export const actions = {
     resetNotification
 };
 
-export interface OpenNotificationAction extends Action {
-    readonly type: string;
+export interface OpenNotificationAction {
     timeout?: number;
     text: string;
 };

@@ -24,7 +24,7 @@ export const onSendNewUserForm = (login: string, password: string, email: string
         if (result === SUCCESS) {
             dispatch(authorizeUser(login));
             history.push(lessons);
-            return dispatch(onOpenNotification('notificationAuthorized'));
+            return dispatch(onOpenNotification({ text: 'notificationAuthorized' }));
         }
 
         return dispatch(setFormHelperText(NewUserFormResponseEnum[result] || NewUserFormResponseEnum[0]));

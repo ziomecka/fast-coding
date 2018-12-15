@@ -5,18 +5,21 @@ import { NOTIFICATION_DURATION } from '../../../constants';
 import getTranslation from '../../../shared/get.translation';
 import { ThunkGetStateType } from '../../../_common';
 
-let timeout;
+let _timeout;
 
-export const onOpenNotification = (text: string, time: number = NOTIFICATION_DURATION): any => (
+export const onOpenNotification = (options: OpenNotificationAction): any => (
     async (dispatch: Dispatch, getState: ThunkGetStateType ): Promise<any> => {
+        const { text, timeout = NOTIFICATION_DURATION } = options;
 
-            dispatch(openNotification(getTranslation(getState().localize, text)));
+            dispatch(openNotification({
+                text: getTranslation(getState().localize, text),
+                timeout
+            }));
 
-            timeout = setTimeout(() => {
+            _timeout = setTimeout(() => {
                 dispatch(closeNotification());
-                clearTimeout(timeout);
-                answer = null; // GC?
-            }, time)
+                clearTimeout(_timeout);
+            }, timeout)
     }
 );
 

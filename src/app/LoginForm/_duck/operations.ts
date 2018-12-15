@@ -24,7 +24,7 @@ export const onLog = (login, password): any => async (dispatch: Dispatch ): Prom
     if (result === SUCCESS) {
         dispatch(authorizeUser(login));
         history.push(lessons);
-        return dispatch(onOpenNotification('notificationAuthorized'));
+        return dispatch(onOpenNotification({ text: 'notificationAuthorized' }));
     }
 
     // TODO make error 0. Spojnie wszedzie
