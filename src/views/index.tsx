@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import history from '../shared/history';
 
-import HomeView from './home/';
-import LessonsView from './lessons/';
-import LessonView from './lesson/';
-import LoginView from './login/';
-import NewUserView from './newuser/';
-import ChangePasswordView from './changePassword/';
+import HomeView from './Home/';
+import LessonsView from './Lessons/';
+import LessonView from './Lesson/';
+import LoginView from './Login/';
+import NewUserView from './Newuser/';
+import ChangePasswordView from './ChangePassword/';
 import RouteAuth from './RouteAuth/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';

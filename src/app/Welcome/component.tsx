@@ -10,7 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { AppRoutes } from '../../_common/';
-import { buttonsIds } from '../../views/home/_duck/operations';
+import { buttonsIds } from '../../views/Home/_duck/operations';
 
 /** SubMenu */
 import  SubMenu from '../SubMenu/';
