@@ -4,8 +4,7 @@ import { NotificationTypes } from './types';
 const {
     APP_NOTIFICATION_CLOSE,
     APP_NOTIFICATION_OPEN,
-    APP_NOTIFICATION_RESET,
-    APP_NOTIFICATION_SET_TIME
+    APP_NOTIFICATION_RESET
 } = NotificationTypes;
 
 
@@ -23,16 +22,10 @@ export const resetNotification: ActionCreator<Action> = () => ({
     type: APP_NOTIFICATION_RESET
 });
 
-export const setTimeNotification: ActionCreator<SetTimeNotificationAction> = (autoHideDuration: number) => ({
-    type: APP_NOTIFICATION_SET_TIME,
-    autoHideDuration
-});
-
 export const actions = {
     openNotification,
     closeNotification,
-    resetNotification,
-    setTimeNotification
+    resetNotification
 };
 
 export interface OpenNotificationAction extends Action {
@@ -41,11 +34,4 @@ export interface OpenNotificationAction extends Action {
     text: string;
 };
 
-export interface SetTimeNotificationAction extends Action {
-    readonly type: string;
-    autoHideDuration: number;
-};
-
-export type NotificationActions = Action |
-    OpenNotificationAction |
-    SetTimeNotificationAction;
+export type NotificationActions = Action & OpenNotificationAction;

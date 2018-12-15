@@ -10,8 +10,7 @@ const { success } = NotificationVariantEnum;
 const {
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_CLOSE,
-    APP_NOTIFICATION_RESET,
-    APP_NOTIFICATION_SET_TIME
+    APP_NOTIFICATION_RESET
 } = NotificationTypes;
 
 export const INITIAL_STATE: NotificationState = {
@@ -43,14 +42,6 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             return {
                 ...state,
                 text: '',
-            };
-        }
-
-        case APP_NOTIFICATION_SET_TIME: {
-            return {
-                ...state,
-                // @ts-ignore
-                autoHideDuration: action.autoHideDuration
             };
         }
 
