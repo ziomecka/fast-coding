@@ -37,8 +37,9 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         languages,
         setActiveLanguage,
         activeLanguage,
-        classes: { navClass, navLessonClass },
-        logOut
+        classes: { navClass, navLessonClass, navLogin },
+        logOut,
+        login
     } = props;
 
     const subMenus: __SubMenuProps[] = [
@@ -78,7 +79,8 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                     rules: [ onlyAuthorized ],
                     onClick: logOut
                 } ]),
-            icon: <Face />,
+            //@ts-ignore
+            icon: <span className={ navLogin } login={ login }> <Face /> </span>,
             container: userMenu,
             title: 'submenuOpenUserMenu',
         }

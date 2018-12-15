@@ -8,8 +8,14 @@ import { ApplicationState } from '../../_reducers';
 
 import { onLogOut } from './_duck/operations';
 
+import { AppContainers, ApplicationContainers } from '../../_common/';
+
+const { app } = ApplicationContainers;
+const { user } = AppContainers;
+
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
-    localize: { ...state.localize }
+    localize: { ...state.localize },
+    login: state[app][user].login
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): NavDispatchI => ({
@@ -23,7 +29,8 @@ import { LocalizeContextProps } from 'react-localize-redux';
 export interface NavProps extends MapStateToPropsI, WithStyles, LocalizeContextProps, RouteComponentProps<{}>, NavDispatchI {};
 
 interface MapStateToPropsI {
-    localize: LocalizeState,
+    localize: LocalizeState;
+    login: string;
 };
 
 interface NavDispatchI {
