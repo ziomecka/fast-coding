@@ -1,12 +1,11 @@
 import { Reducer } from 'redux';
 
-import { NotificationTypes } from './types';
+import { NotificationTypes, NotificationVariantEnum } from './types';
 import { NotificationActions, OpenNotificationAction } from './actions';
 
 import { NOTIFICATION_DURATION } from '../../../constants';
-import { NotificationVariantTypes } from '../../../_common';
 
-const { smile } = NotificationVariantTypes;
+const { smile } = NotificationVariantEnum;
 
 const {
     APP_NOTIFICATION_OPEN,
@@ -68,5 +67,5 @@ export interface NotificationState {
     anchorEl: HTMLElement;
     text: string;
     autoHideDuration: number;
-    variant: NotificationVariantTypes;
+    variant: NotificationVariantEnum;
 };
