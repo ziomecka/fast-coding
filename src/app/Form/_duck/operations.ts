@@ -22,7 +22,7 @@ export const onSendForm = (options: SendFormI): any => (
         /** Add login to each request */
         // @ts-ignore
         const { request: { body: { login } }, success: { value: success, redirectUrl, successNotification, errorNotifications } } = options;
-        Object.assign(options.request, { login: login || getState()[app][user].login });
+        Object.assign(options.request.body, { login: login || getState()[app][user].login });
 
         /** removes formInvalid message */
         dispatch(setFormHelperText('formBeingSent'));
@@ -36,7 +36,9 @@ export const onSendForm = (options: SendFormI): any => (
             return dispatch(onOpenNotification(getTranslation(getState().localize, successNotification)));
         }
 
-        /** Display error */
-        return dispatch(setFormHelperText(errorNotifications[result]));
+        /** Display error
+         *  Either passed or standard error
+        */
+        return dispatch(setFormHelperText(errorNotifications[result] || 'ERROR' ));
     }
 );
