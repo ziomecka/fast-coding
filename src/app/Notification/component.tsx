@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { AppNotificationProps } from './container';
 
-import { NotificationVariantTypes } from '../../_common';
-const { smile } = NotificationVariantTypes;
+import { NotificationVariantEnum } from './_duck/types';
+const { smile } = NotificationVariantEnum;
 
 /** Materials */
 import SnackBar from '@material-ui/core/Snackbar';
