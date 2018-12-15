@@ -37,7 +37,7 @@ export interface GetRequestI {
 };
 
 export interface GetResponseI {
-    result: string;
+    result: number;
 };
 
 export interface PostRequestI {
@@ -46,7 +46,7 @@ export interface PostRequestI {
 };
 
 export interface PostResponseI {
-    result: string;
+    result: number;
 };
 
 type SendRequestRequestType = GetRequestI | PostRequestI;
