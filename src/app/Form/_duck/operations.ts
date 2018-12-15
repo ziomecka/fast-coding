@@ -32,7 +32,7 @@ export const onSendForm = (options: SendFormI): any => (
 
         if (result === success) {
             if (redirectUrl) history.push(redirectUrl);
-            return dispatch(onOpenNotification(successNotification));
+            return dispatch(onOpenNotification({ text: successNotification }));
         }
 
         /** Display error
