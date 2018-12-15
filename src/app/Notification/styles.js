@@ -1,4 +1,3 @@
-// import green from '@material-ui/core/colors/green';
 import { COLOR_SUCCESS } from '../../constants';
 
 const styles = theme => {
