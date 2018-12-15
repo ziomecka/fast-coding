@@ -3,20 +3,19 @@ import * as React from 'react';
 import { AppNotificationProps } from './container';
 
 import { NotificationVariantEnum } from './_duck/types';
-const { success } = NotificationVariantEnum;
+const { success, error } = NotificationVariantEnum;
 
 /** Materials */
 import SnackBar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Slide from '@material-ui/core/Slide';
-import Mood from '@material-ui/icons/Mood';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 const NotificationComponent: React.StatelessComponent<AppNotificationProps> = props => {
     let {
-        open = false,
+        open,
         text,
         classes,
         autoHideDuration,
