@@ -2,6 +2,14 @@ require('dotenv').config();
 const redis = require('redis');
 const url = require('url');
 
+const {
+    SUCCESS,
+    ERROR,
+    LOGIN_ALREADY_EXISTS,
+    EMAIL_ALREADY_EXISTS,
+    LOGIN_DOES_NOT_EXIST
+} = require('../constants').REDIS_RESPONSES;
+
 class Redis {
     constructor(REDIS_URI) {
         const { port, hostname, auth } = url.parse(REDIS_URI);
@@ -60,7 +68,7 @@ class Redis {
 
         if ( keyExists ) {
             console.log('Login already exists.');
-            return 2;
+            return LOGIN_ALREADY_EXISTS;
         };
 
         try {
@@ -68,22 +76,22 @@ class Redis {
 
             if (emailExists === 0) {
                 console.log('Email already exists.');
-                return 3;
+                return EMAIL_ALREADY_EXISTS;
             }
 
             const passwordStored = await this.storeHash({ key, data: options.data }) //, callback: async (result) => {
 
             if ( passwordStored === 'OK' ) {
                 console.log('New user set');
-                return 1;
+                return SUCCESS;
             }
 
             console.log('Store password failed.');
-            return 0;
+            return ERROR;
 
         } catch (err) {
             console.log('Store password failed.');
-            return 0;
+            return ERROR;
         }
     }
 
@@ -95,13 +103,13 @@ class Redis {
 
             if (!keyExists) {
                 console.log('Login does not exist.');
-                return null;
+                return LOGIN_DOES_NOT_EXIST;
             };
 
             return await this.getHash(options);
         } catch (err) {
             console.log('Store password failed.');
-            return 0;
+            return ERROR;
         }
     }
 

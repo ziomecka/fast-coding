@@ -1,6 +1,8 @@
 const _crypto = require('crypto');
 const redis = require('../Redis/index');
 
+const { ERROR, LOGIN_DOES_NOT_EXIST, SUCCESS, INCORRECT_PASSWORD } = require('../constants').PASSWORD_MANAGER_RESPONSES;
+
 class PasswordManager {
     constructor(options = {}) {
         this.saltSize = options.saltSize || 50;
@@ -51,7 +53,7 @@ class PasswordManager {
             });
         } catch (err) {
             console.warn(`Set password error: ${err.message || err.toString()}`);
-            return 0 ;
+            return ERROR;
         }
     }
 
@@ -67,11 +69,11 @@ class PasswordManager {
             response = await this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'] });
         } catch (err) {
             console.warn(`Verify password error: ${err.message || err.toString()}`);
-            return 3;
+            return ERROR;
         }
 
-        if (!response) {
-            return 2;
+        if (response === LOGIN_DOES_NOT_EXIST) {
+            return response;
         }
 
         const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
@@ -80,7 +82,7 @@ class PasswordManager {
         const passwordValid = storedPasswordHash === passwordHash;
 
         response = null; // GC
-        return Number(passwordValid);
+        return passwordValid? SUCCESS : INCORRECT_PASSWORD;
     }
 };
 
