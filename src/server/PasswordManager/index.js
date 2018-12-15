@@ -1,5 +1,14 @@
+// TODO po stronie serwera walidacja hasła zrobiona na stronie: liczba znaków etc
 const _crypto = require('crypto');
 const redis = require('../Redis/index');
+
+const {
+    ERROR,
+    LOGIN_DOES_NOT_EXIST,
+    SUCCESS,
+    INCORRECT_PASSWORD,
+    INCORRECT_CURRENT_PASSWORD
+} = require('../constants').PASSWORD_MANAGER_RESPONSES;
 
 class PasswordManager {
     constructor(options = {}) {
@@ -34,59 +43,66 @@ class PasswordManager {
         return { ...this._sha512(password, salt) };
     }
 
-    async setPassword(options) {
-        let { login, password, email, callback } = options;
+    async setNewUser(options) {
+        let { login, password, email } = options;
 
-        if ( !login || ! password ) {
-            throw new Error('Login and password must be a non-empty string');
-        }
-
-        if ( typeof callback !== 'function' ) {
-            throw new Error('Callback is not a fuction');
+        if ( !login || ! password  || !email ) {
+            throw new Error('Login, password and email must be a non-empty string');
         }
 
         const { passwordHash, salt } = this._encrypt(password, this._getSalt());
 
-        this.redis.storePassword({ key: login, data: { passwordHash, salt, email }, callback: result => {
-            try {
-                if ( result === 1 ) {
-                    callback({ result, passwordHash });
-                    callback = null; // GC
-                    return true;
-                }
-                callback({ result });
-                callback = null; // GC
-                return false;
+        try {
+            return await this.redis.setNewUser({
+                key: login,
+                data: { passwordHash, salt, email }
+            });
+        } catch (err) {
+            console.warn(`Set new user error: ${err.message || err.toString()}`);
+            return ERROR;
+        }
+    }
 
-            } catch (err) {
-                options.callback({ result: 0 });
-                console.error(`Set password error: ${err.message || err.toString()}`);
-            }
-        } });
+    async changePassword(options) {
+        let { login, currentPassword, newPassword } = options;
 
+        const response = await this.verifyPassword({ login, password: currentPassword });
+
+        if ( response === SUCCESS ) {
+            const { passwordHash, salt } = this._encrypt(newPassword, this._getSalt());
+
+            return await this.redis.storePassword({
+                key: login,
+                data: { passwordHash, salt }
+            });
+        }
+
+        return INCORRECT_CURRENT_PASSWORD;
     }
 
     async verifyPassword(options) {
         const { login, password } = options;
 
-        this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'], callback: response => {
-            try {
-                if (!response) {
-                    options.callback({ result: 2 });
-                    return false;
-                }
-                const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
-                const { passwordHash } = this._encrypt(password, storedSalt);
+        let response;
 
-                const passwordValid = storedPasswordHash === passwordHash;
+        try {
+            response = await this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'] });
+        } catch (err) {
+            console.warn(`Verify password error: ${err.message || err.toString()}`);
+            return ERROR;
+        }
 
-                options.callback({ result: Number(passwordValid) });
-                return passwordValid;
-            } catch (err) {
-                options.callback({ result: 3 });
-                console.error(`Verify password error: ${err.message || err.toString()}`);
-            }
-        }});
+        if (response === LOGIN_DOES_NOT_EXIST) {
+            return response;
+        }
+
+        const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
+        const { passwordHash } = this._encrypt( password, storedSalt );
+
+        const passwordValid = storedPasswordHash === passwordHash;
+
+        response = null; // GC
+        return passwordValid? SUCCESS : INCORRECT_PASSWORD;
     }
 };
 

@@ -49,10 +49,15 @@
     "subMenuUserLogin": [ "login", "logowanie"],
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
     "subMenuUserLogOut": [ "sign out", "wyloguj się"],
+    "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
     "submitForm": [ "send", "wyślij" ],
     "ERROR": [
         "Something went wrong. Please try again.",
         "Coś poszło nie tak. Spróbuj ponownie."
+    ],
+    "CURRENT_PASSWORD_ERROR": [
+        "Current password is incorrect. Please try again.",
+        "Obecne hasło jest nieprawidłowe. Spróbuj ponownie."
     ],
     "LOGIN_EXISTS": [
         "Login already exists. Please use other login.",
@@ -114,6 +119,10 @@
         "Invalid login: special signs not allowed",
         "Niepoprawny login: nie może zawierać znaków specjalnych"
     ],
+    "MATCH_PASSWORD": [
+        "Invalid password: current and new passwords should not match",
+        "Niepoprawne hasło: obecne i nowe hasło są identyczne"
+    ],
     "NO_MATCH_PASSWORD": [
         "Invalid password: passwords do not match",
         "Niepoprawne hasło: hasła nie są identyczne"
@@ -137,5 +146,9 @@
     "notificationSignOutSuccess": [
         "You have been signed out",
         "Zostałeś wylogowany"
+    ],
+    "notificationPasswordChangeSuccess": [
+        "Password changed",
+        "Hasło zostało zmienione"
     ]
 }

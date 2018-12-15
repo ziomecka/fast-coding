@@ -11,8 +11,9 @@ export const authorizeUser: ActionCreator<UserAuthorizationAction> = (login: str
     login
 });
 
-export const unauthorizeUser: ActionCreator<Action> = () => ({
-    type: APP_USER_UNAUTHORIZE
+export const unauthorizeUser: ActionCreator<UserAuthorizationAction> = (login: string) => ({
+    type: APP_USER_UNAUTHORIZE,
+    login
 });
 
 export const actions = {

@@ -1,100 +1,109 @@
+require('dotenv').config();
 const redis = require('redis');
 const url = require('url');
+
+const {
+    SUCCESS,
+    ERROR,
+    LOGIN_ALREADY_EXISTS,
+    EMAIL_ALREADY_EXISTS,
+    LOGIN_DOES_NOT_EXIST
+} = require('../constants').REDIS_RESPONSES;
 
 class Redis {
     constructor(REDIS_URI) {
         const { port, hostname, auth } = url.parse(REDIS_URI);
-        // console.log(`port: ${port} hostname: ${hostname} auth: ${auth}`)
 
         try {
             this.client = redis.createClient(port, hostname);
-            this.client.on('connect', () => console.log('Redis connected'));
-            this.client.auth(auth.split(":")[1]);
         } catch (err) {
-            throw new Error(`Redis not authorized. ${err.message || err.toString()}`);
+            // TODO obsluzyc po stornie klienta
+            console.warn(`Redis not available. ${err.message || err.toString()}`);
         }
+
+        this.client.on('connect', () => console.log('Redis connected'));
+
+        /** Will fire if authorization fails */
+        this.client.on('error', err => {
+           // TODO obsluzyc po stornie klienta
+           console.warn(`Redis error: ${ err.message || err.toString() }`);
+       });
+
+       this.client.auth(auth.split(":")[1]);
     }
 
     async keyExists(options) {
-        const { key } = options;
-
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis exists. Callback is not a function');
-        }
-
-        try {
-            this.client.exists( key, async (err, response) => {
-                if (err) throw err;
-                options.callback(response);
+        return new Promise( ( res, rej ) => {
+            this.client.exists( options.key, async (err, response) => {
+                if (err) rej(err);
+                res(response);
             } );
-        } catch (err) {
-            throw new Error(`Key exists failed ${err.message || err.toString()}`);
-        }
-    }
-
-    storeHash(options) {
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis store hash. Callback is not a function');
-        }
-
-        let { key, data } = options;
-
-        this.client.hmset(key, data, (err, response) => {
-            data = null; // GC
-            if (err) throw err;
-            options.callback(response);
         });
     }
 
-    storeSet(options) {
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis store set. Callback is not a function');
-        }
+    async storeHash(options) {
+        return new Promise( ( res, rej ) => {
+            this.client.hmset(options.key, options.data, (err, response) => {
+                if (err) throw rej(err);
+                res(response);
+            });
+        });
+    }
 
+    async storeSet(options) {
         let { key, value } = options;
 
-        this.client.sadd(key, value, (err, response) => {
-            if (err) throw err;
-            options.callback(response);
+        return new Promise(( res, rej ) => {
+            this.client.sadd(key, value, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
         });
+    }
+
+    async setNewUser(options) {
+        let { key } = options;
+
+        const keyExists = await this.keyExists({ key })
+
+        if ( keyExists ) {
+            console.log('Login already exists.');
+            return LOGIN_ALREADY_EXISTS;
+        };
+
+        try {
+            const emailExists = await this.storeSet({ key: 'login', value: options.data.email });
+
+            if (emailExists === 0) {
+                console.log('Email already exists.');
+                return EMAIL_ALREADY_EXISTS;
+            }
+
+            return await this.storePassword({ key, data: options.data }) //, callback: async (result) => {
+
+        } catch (err) {
+            console.log('Setting new user failed.');
+            return ERROR;
+        }
     }
 
     async storePassword(options) {
         let { key } = options;
 
         try {
-            this.keyExists({ key, callback: async (exists) => {
-                if (exists) {
-                    console.log('Login already exists.');
-                    options.callback(2);
-                    return false;
-                };
+            const passwordStored = await this.storeHash({ key, data: options.data });
 
-                this.storeSet({key: 'login', value: options.data.email, callback: response => {
-                    if (response === 0) {
-                        console.log('Email already exists.');
-                        options.callback(3);
-                        return true;
-                    }
+            if ( passwordStored === 'OK' ) {
+                console.log('New user set');
+                return SUCCESS;
+            }
 
-                    this.storeHash({ key, data: options.data, callback: async (result) => {
-                        if (result === 'OK') {
-                            console.log('New user set');
-                            options.callback(1);
-                            return true;
-                        }
+            console.log('Store password failed.');
+            return ERROR;
 
-                        console.log('Store password failed.');
-                        options.callback(0);
-                        return false;
-                    }});
-
-                } });
-            }});
         } catch (err) {
-            options.callback(0);
-            console.error(`Store password failed. ${err.message || err.toString()}`);
-            return false;
+            console.log('Store password failed.');
+            return ERROR;
         }
     }
 
@@ -102,43 +111,34 @@ class Redis {
         let { key } = options;
 
         try {
-            this.keyExists({ key, callback: async (exists) => {
-                if (!exists) {
-                    console.log('Login does not exist.');
-                    options.callback(null);
-                    return false;
-                };
+            const keyExists = await this.keyExists({ key });
 
-                this.getHash(options);
-                return true;
+            if (!keyExists) {
+                console.log('Login does not exist.');
+                return LOGIN_DOES_NOT_EXIST;
+            };
 
-            }});
+            return await this.getHash(options);
         } catch (err) {
-            throw new Error(`Store password failed. ${err.message || err.toString()}`);
+            console.log('Store password failed.');
+            return ERROR;
         }
     }
 
     async getHash(options) {
-        let { key, data } = options;
+        return new Promise ( ( res, rej ) => {
+            this.client.hmget(options.key, ...options.data, (err, result) => {
+                if (err) rej(err);
 
-        try {
-            this.client.hmget(key, ...data, (err, result) => {
-                if (err) throw err;
-
-                options.callback({
-                    [data[0]]: result[0],
-                    [data[1]]: result[1],
-                });
-
-                data = null; // GC
-                return true;
+                res( result.reduce(( acc, cv, ind ) => {
+                    acc[options.data[ind]] = cv;
+                    return acc;
+                }, {}));
             });
-        } catch (err) {
-            throw err;
-        }
+        });
     }
 };
 
-const _redis = new Redis('redis://h:p3ddd6d1129711b6bbbbba3c37eafe241275a92cd3c0c77891b3678d7c93dca57@ec2-100-24-153-19.compute-1.amazonaws.com:44009');
+const _redis = new Redis(process.env.REDIS_URI);
 
 module.exports = _redis;

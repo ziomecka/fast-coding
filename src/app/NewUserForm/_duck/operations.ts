@@ -20,9 +20,7 @@ export const onSendNewUserForm = (login: string, password: string, email: string
         /** removes formInvalid message */
         dispatch(setFormHelperText('formBeingSent'));
 
-        const response = await postData({ path: newUserSet, body: { login, password, email }});
-        // @ts-ignore
-        const { result } = JSON.parse(response || null);
+        const { result } = await postData({ path: newUserSet, body: { login, password, email }});
 
         if (result === SUCCESS) {
             dispatch(authorizeUser(login));
@@ -30,7 +28,7 @@ export const onSendNewUserForm = (login: string, password: string, email: string
             return dispatch(onOpenNotification(getTranslation(getState().localize, 'notificationAuthorized')));
         }
 
-        return dispatch(setFormHelperText(NewUserFormResponseEnum[result]));
+        return dispatch(setFormHelperText(NewUserFormResponseEnum[result] || NewUserFormResponseEnum[0]));
     }
 );
 

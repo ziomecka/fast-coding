@@ -4,8 +4,8 @@ export enum LoginFormTypes {
 }
 
 export enum LoginFormResponseEnum {
-    'INCORRECT_PASSWORD' = 0,
+    'INCORRECT_PASSWORD' = 5,
     'SUCCESS' = 1,
-    'LOGIN_DOES_NOT_EXIST' = 2,
-    'ERROR' = 3
+    'LOGIN_DOES_NOT_EXIST' = 4,
+    'ERROR' = 0
 };
