@@ -4,5 +4,6 @@ export enum RulesErrorEnum {
     NOT_EMAIL = 2,
     NO_DIGIT = 3,
     NO_SPECIALS = 4,
-    NO_MATCH = 5
+    NO_MATCH = 5,
+    MATCH = 6
 };

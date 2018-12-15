@@ -20,7 +20,17 @@ import { PasswordTypes } from '../_common/';
 const { currentPass, newPass, confirmPass } = PasswordTypes;
 
 import { RulesErrorEnum } from '../../shared/_types/';
-const { NO_MATCH } = RulesErrorEnum;
+
+// TODO NO_MATCH ad MATCH
+// mogłoby być jedno gdbym mogła w props rules komponentu Password przekazywać inforamcję czy rule ma być spełnione czy nie
+const {
+    NO_MATCH,
+    MATCH,
+    NOT_LONG,
+    NO_SPACES,
+    NO_DIGIT,
+    NO_SPECIALS
+} = RulesErrorEnum;
 
 class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProps> {
     container: AppContainers;
@@ -63,14 +73,21 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
     }
 
     render () {
-        const { container, props: { [newPass]: { password: newPassword } } } = this;
+        const {
+            container,
+            props: {
+                [newPass]: { password: newPassword },
+                [currentPass]: { password: currentPassword }
+            }
+        } = this;
 
         return (
             <Paper>
                 <form onSubmit={ (e) => e.preventDefault() }>
                     <FormControl tabIndex={1}>
                         <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
-                        <Password {...{ container, passwordType: newPass }} tabIndex={3} />
+                        {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
+                        <Password {...{ container, passwordType: newPass }} tabIndex={3} rules={[ NOT_LONG, NO_SPACES, NO_DIGIT, NO_SPECIALS, MATCH ]} value2={ currentPassword } />
                         <Password {...{ container, passwordType: confirmPass }} tabIndex={4} rules={[ NO_MATCH ]} value2={ newPassword } />
                         <Button
                             onClick={this.sendForm}

@@ -118,6 +118,10 @@
         "Invalid login: special signs not allowed",
         "Niepoprawny login: nie może zawierać znaków specjalnych"
     ],
+    "MATCH_PASSWORD": [
+        "Invalid password: current and new passwords should not match",
+        "Niepoprawne hasło: obecne i nowe hasło są identyczne"
+    ],
     "NO_MATCH_PASSWORD": [
         "Invalid password: passwords do not match",
         "Niepoprawne hasło: hasła nie są identyczne"
