@@ -61,7 +61,7 @@ class Redis {
         });
     }
 
-    async storePassword(options) {
+    async setNewUser(options) {
         let { key } = options;
 
         const keyExists = await this.keyExists({ key })
@@ -79,7 +79,19 @@ class Redis {
                 return EMAIL_ALREADY_EXISTS;
             }
 
-            const passwordStored = await this.storeHash({ key, data: options.data }) //, callback: async (result) => {
+            return await this.storePassword({ key, data: options.data }) //, callback: async (result) => {
+
+        } catch (err) {
+            console.log('Setting new user failed.');
+            return ERROR;
+        }
+    }
+
+    async storePassword(options) {
+        let { key } = options;
+
+        try {
+            const passwordStored = await this.storeHash({ key, data: options.data });
 
             if ( passwordStored === 'OK' ) {
                 console.log('New user set');
