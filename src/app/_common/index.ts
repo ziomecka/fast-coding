@@ -52,7 +52,7 @@ export enum AppRoutes {
     lessonsGet = '/lessons/get',
     newUserSet = '/newuser/set',
     loginLog = '/login/log',
-    changePassword = '/changePassword'
+    changePassword = '/changepassword'
 };
 
 export enum SubMenuRulesEnum {
