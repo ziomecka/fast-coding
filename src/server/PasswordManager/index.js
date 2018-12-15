@@ -35,58 +35,52 @@ class PasswordManager {
     }
 
     async setPassword(options) {
-        let { login, password, email, callback } = options;
+        let { login, password, email } = options;
 
         if ( !login || ! password ) {
             throw new Error('Login and password must be a non-empty string');
         }
 
-        if ( typeof callback !== 'function' ) {
-            throw new Error('Callback is not a fuction');
-        }
-
         const { passwordHash, salt } = this._encrypt(password, this._getSalt());
 
-        this.redis.storePassword({ key: login, data: { passwordHash, salt, email }, callback: result => {
-            try {
-                if ( result === 1 ) {
-                    callback({ result, passwordHash });
-                    callback = null; // GC
-                    return true;
-                }
-                callback({ result });
-                callback = null; // GC
-                return false;
+        try {
+            return await this.redis.storePassword({
+                key: login,
+                /** Store email if passed */
+                data: Object.assign({ passwordHash, salt }, email? { email } : {} )
+            });
+        } catch (err) {
+            console.warn(`Set password error: ${err.message || err.toString()}`);
+            return 0 ;
+        }
+    }
 
-            } catch (err) {
-                options.callback({ result: 0 });
-                console.error(`Set password error: ${err.message || err.toString()}`);
-            }
-        } });
 
     }
 
     async verifyPassword(options) {
         const { login, password } = options;
 
-        this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'], callback: response => {
-            try {
-                if (!response) {
-                    options.callback({ result: 2 });
-                    return false;
-                }
-                const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
-                const { passwordHash } = this._encrypt(password, storedSalt);
+        let response;
 
-                const passwordValid = storedPasswordHash === passwordHash;
+        try {
+            response = await this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'] });
+        } catch (err) {
+            console.warn(`Verify password error: ${err.message || err.toString()}`);
+            return 3;
+        }
 
-                options.callback({ result: Number(passwordValid) });
-                return passwordValid;
-            } catch (err) {
-                options.callback({ result: 3 });
-                console.error(`Verify password error: ${err.message || err.toString()}`);
-            }
-        }});
+        if (!response) {
+            return 2;
+        }
+
+        const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
+        const { passwordHash } = this._encrypt( password, storedSalt );
+
+        const passwordValid = storedPasswordHash === passwordHash;
+
+        response = null; // GC
+        return Number(passwordValid);
     }
 };
 
