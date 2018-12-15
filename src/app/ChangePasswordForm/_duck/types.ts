@@ -7,7 +7,7 @@ export enum ChangePasswordFormTypes {
 export enum ChangePasswordFormResponseEnum {
     'ERROR' = 0,
     'SUCCESS' = 1,
-    'CURRENT_PASSWORD_ERROR' = 2,
+    'CURRENT_PASSWORD_ERROR' = 6
 };
 
 export type ChangePasswordFormErrorType = ChangePasswordFormResponseEnum.ERROR |

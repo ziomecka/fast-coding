@@ -1,7 +1,14 @@
+// TODO po stronie serwera walidacja hasła zrobiona na stronie: liczba znaków etc
 const _crypto = require('crypto');
 const redis = require('../Redis/index');
 
-const { ERROR, LOGIN_DOES_NOT_EXIST, SUCCESS, INCORRECT_PASSWORD } = require('../constants').PASSWORD_MANAGER_RESPONSES;
+const {
+    ERROR,
+    LOGIN_DOES_NOT_EXIST,
+    SUCCESS,
+    INCORRECT_PASSWORD,
+    INCORRECT_CURRENT_PASSWORD
+} = require('../constants').PASSWORD_MANAGER_RESPONSES;
 
 class PasswordManager {
     constructor(options = {}) {
@@ -56,7 +63,21 @@ class PasswordManager {
         }
     }
 
+    async changePassword(options) {
+        let { login, currentPassword, newPassword } = options;
 
+        const response = await this.verifyPassword({ login, password: currentPassword });
+
+        if ( response === SUCCESS ) {
+            const { passwordHash, salt } = this._encrypt(newPassword, this._getSalt());
+
+            return await this.redis.storePassword({
+                key: login,
+                data: { passwordHash, salt }
+            });
+        }
+
+        return INCORRECT_CURRENT_PASSWORD;
     }
 
     async verifyPassword(options) {

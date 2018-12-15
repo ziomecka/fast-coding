@@ -13,6 +13,7 @@ const constants = require('./constants');
 const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
+const serverChangePassword = require('./server.change.password');
 
 const { PORT: _PORT } = constants;
 
@@ -63,6 +64,9 @@ app.post( '/newuser/set', serverNewUserSet );
 
 /** Log user */
 app.post( '/login/log', serverLoginLog );
+
+/** Change password */
+app.post( '/changepassword', serverChangePassword );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });
