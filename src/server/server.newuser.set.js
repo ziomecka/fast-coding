@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        res.json({ result: await passwordManager.setPassword({ login, password, email }) });
+        res.json({ result: await passwordManager.setNewUser({ login, password, email }) });
     } catch (err) {
         res.json({ error: err.message || err.toString() });
     }

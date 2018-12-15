@@ -36,23 +36,22 @@ class PasswordManager {
         return { ...this._sha512(password, salt) };
     }
 
-    async setPassword(options) {
+    async setNewUser(options) {
         let { login, password, email } = options;
 
-        if ( !login || ! password ) {
-            throw new Error('Login and password must be a non-empty string');
+        if ( !login || ! password  || !email ) {
+            throw new Error('Login, password and email must be a non-empty string');
         }
 
         const { passwordHash, salt } = this._encrypt(password, this._getSalt());
 
         try {
-            return await this.redis.storePassword({
+            return await this.redis.setNewUser({
                 key: login,
-                /** Store email if passed */
-                data: Object.assign({ passwordHash, salt }, email? { email } : {} )
+                data: { passwordHash, salt, email }
             });
         } catch (err) {
-            console.warn(`Set password error: ${err.message || err.toString()}`);
+            console.warn(`Set new user error: ${err.message || err.toString()}`);
             return ERROR;
         }
     }
