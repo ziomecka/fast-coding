@@ -28,7 +28,7 @@ export const onSendNewUserForm = (login: string, password: string, email: string
             return dispatch(onOpenNotification(getTranslation(getState().localize, 'notificationAuthorized')));
         }
 
-        return dispatch(setFormHelperText(NewUserFormResponseEnum[result]));
+        return dispatch(setFormHelperText(NewUserFormResponseEnum[result] || NewUserFormResponseEnum[0]));
     }
 );
 
