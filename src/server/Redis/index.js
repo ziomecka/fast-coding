@@ -1,3 +1,4 @@
+require('dotenv').config();
 const redis = require('redis');
 const url = require('url');
 
@@ -139,6 +140,6 @@ class Redis {
     }
 };
 
-const _redis = new Redis('redis://h:p3ddd6d1129711b6bbbbba3c37eafe241275a92cd3c0c77891b3678d7c93dca57@ec2-100-24-153-19.compute-1.amazonaws.com:44009');
+const _redis = new Redis(process.env.REDIS_URI);
 
 module.exports = _redis;
