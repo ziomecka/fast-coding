@@ -5,5 +5,6 @@ export enum NotificationTypes {
 };
 
 export enum NotificationVariantEnum {
-    success = 'SUCCESS'
+    success = 'SUCCESS',
+    error = 'ERROR'
 };
