@@ -18,6 +18,14 @@ const style = theme => {
         },
         navLessonClass: {
             top: `-${NAV_HEIGHT}px`
+        },
+        navLogin: {
+            position: 'absolute',
+            '&:after': {
+                display: 'block',
+                content: "attr(login)",
+                fontSize: '1rem'
+            }
         }
     }
 };
