@@ -8,6 +8,7 @@ import LessonView from './lesson/';
 import LoginView from './login/';
 import NewUserView from './newuser/';
 import ChangePasswordView from './changePassword/';
+import RouteAuth from './RouteAuth/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../theme/';
@@ -31,7 +32,7 @@ const Root: React.StatelessComponent<{}> = () => {
                                 <Route path={`${lessons}/:id`} component={LessonView} />
                                 <Route path={`${login}`} component={LoginView} />
                                 <Route path={`${newuser}`} component={NewUserView} />
-                                <Route path={`${ changePassword }`} component={ ChangePasswordView } />
+                                <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } />
                             </Switch>
                     </HomeView>
                     </Route>
