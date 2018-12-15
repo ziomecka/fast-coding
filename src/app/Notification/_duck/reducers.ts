@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { NotificationTypes, NotificationVariantEnum } from './types';
-import { NotificationActions, OpenNotificationAction } from './actions';
+import { NotificationActions } from './actions';
 
 import { NOTIFICATION_DURATION } from '../../../constants';
 
@@ -10,7 +10,7 @@ const { success } = NotificationVariantEnum;
 const {
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_CLOSE,
-    APP_NOTIFICATION_RESET
+    APP_NOTIFICATION_SET
 } = NotificationTypes;
 
 export const INITIAL_STATE: NotificationState = {
@@ -23,25 +23,26 @@ export const INITIAL_STATE: NotificationState = {
 
 const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case APP_NOTIFICATION_OPEN: {
+        case APP_NOTIFICATION_SET: {
+            /** INITIAL_STATE works like reset */
             return {
-                ...state,
-                open: true,
+                ...INITIAL_STATE,
                 ...action
             };
         }
 
-        case APP_NOTIFICATION_CLOSE: {
+        case APP_NOTIFICATION_OPEN: {
             return {
                 ...state,
-                open: false
+                open: true,
             };
         }
 
-        case APP_NOTIFICATION_RESET: {
+        case APP_NOTIFICATION_CLOSE: {
+            /** Do not reset here - will be visible before notification hides */
             return {
                 ...state,
-                text: '',
+                open: false
             };
         }
 

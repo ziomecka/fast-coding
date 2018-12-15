@@ -1,25 +1,38 @@
 import { Dispatch } from 'redux';
 
-import { openNotification, closeNotification, OpenNotificationAction } from './actions';
+import { setNotification, openNotification, closeNotification, SetNotificationAction } from './actions';
 import { NOTIFICATION_DURATION } from '../../../constants';
 import getTranslation from '../../../shared/get.translation';
 import { ThunkGetStateType } from '../../../_common';
 
 let _timeout;
 
-export const onOpenNotification = (options: OpenNotificationAction, autoHideduration: number = NOTIFICATION_DURATION): any => (
+export const onOpenNotification = (options: SetNotificationAction, autoHideduration: number = NOTIFICATION_DURATION): any => (
     async (dispatch: Dispatch, getState: ThunkGetStateType ): Promise<any> => {
         const { text, ...other } = options;
 
-            dispatch(openNotification({
+            /**
+             * Firstly define notification props
+             * If some props are not give they will be reset because
+             * reducer destructures INITIAL_STATE
+             * */
+            let answer = await dispatch(setNotification({
                 text: getTranslation(getState().localize, text),
                 ...other
             }));
 
-            _timeout = setTimeout(() => {
-                dispatch(closeNotification());
-                clearTimeout(_timeout);
-            }, autoHideduration)
+            /** Secondly open notification */
+            if (answer) {
+                dispatch(openNotification());
+
+                _timeout = setTimeout(() => {
+                    /** Thirdly close notification */
+                    dispatch(closeNotification());
+                    clearTimeout(_timeout);
+                }, autoHideduration);
+
+                answer = null // GC
+            }
     }
 );
 

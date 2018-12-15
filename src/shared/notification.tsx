@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { closeNotification, OpenNotificationAction } from '../app/Notification/_duck/actions';
+import { closeNotification, SetNotificationAction } from '../app/Notification/_duck/actions';
 import { onOpenNotification } from '../app/Notification/_duck/operations';
 
 export const mapDispatchToProps = (dispatch: Dispatch): NotificationDispatch => ({
@@ -8,6 +8,6 @@ export const mapDispatchToProps = (dispatch: Dispatch): NotificationDispatch => 
 });
 
 export interface NotificationDispatch {
-    openNotification: (options: OpenNotificationAction) => void;
+    openNotification: (options: SetNotificationAction) => void;
     closeNotification: () => void;
 };
