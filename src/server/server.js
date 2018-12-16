@@ -15,7 +15,7 @@ const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
 const serverChangePassword = require('./server.change.password');
 
-const { PORT: _PORT } = constants;
+const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD } } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
@@ -57,16 +57,16 @@ app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 
 /** Get lessons */
-app.get( '/lessons/get', serverLessonsGet );
+app.get( LESSONS_GET, serverLessonsGet );
 
 /** Set newuser */
-app.post( '/newuser/set', serverNewUserSet );
+app.post( NEW_USER_SET, serverNewUserSet );
 
 /** Log user */
-app.post( '/login/log', serverLoginLog );
+app.post( LOGIN_LOG, serverLoginLog );
 
 /** Change password */
-app.post( '/changepassword', serverChangePassword );
+app.post( CHANGE_PASSWORD, serverChangePassword );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });

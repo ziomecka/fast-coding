@@ -24,8 +24,16 @@ const PASSWORD_MANAGER_RESPONSES = {
     ...REDIS_PASSWORD_RESPONSES
 };
 
+const ROUTES = {
+    LESSONS_GET: '/lessons/get',
+    NEW_USER_SET: '/newuser/set',
+    LOGIN_LOG: '/login/log',
+    CHANGE_PASSWORD: '/changepassword'
+};
+
 module.exports = {
     PORT,
     REDIS_RESPONSES,
-    PASSWORD_MANAGER_RESPONSES
+    PASSWORD_MANAGER_RESPONSES,
+    ROUTES
 };
