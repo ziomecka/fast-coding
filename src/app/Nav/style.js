@@ -4,11 +4,18 @@ import {
 } from '../../constants';
 
 const style = theme => {
+    const loginFontSize = '1.2rem';
+    const loginLetterSpacing = '.005em';
+
     const {
         transitions: {
             duration: { complex },
             easing: { easeOut }
         },
+        palette: {
+            secondary: { contrastText: loginColor }
+        },
+        typography: { fontWeightMedium: loginFontWeight }
     } = theme;
 
     return {
@@ -20,11 +27,17 @@ const style = theme => {
             top: `-${NAV_HEIGHT}px`
         },
         navLogin: {
-            position: 'absolute',
             '&:after': {
                 display: 'block',
                 content: "attr(login)",
-                fontSize: '1rem'
+                position: 'absolute',
+                left: '50%',
+                top: '100%',
+                transform: 'translate(-50%, -50%)',
+                fontSize: loginFontSize,
+                fontWeight: loginFontWeight,
+                letterSpacing: loginLetterSpacing,
+                color: loginColor
             }
         }
     }

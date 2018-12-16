@@ -9,6 +9,11 @@ import { getActiveLanguage } from 'react-localize-redux';
 
 import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operations';
 
+/** Keyboard listener imports */
+import { manageButtonFocus as buttonFocus } from '../../../shared/button.focus';
+import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
+import {  AppContainers } from '../../_common/';
+
 const { comparator, lesson, stats } = LocalStorageItemTypes;
 
 const { isHome, isOther } = AppLocation;
@@ -47,4 +52,27 @@ export const onOpenDemoLesson = (): any => (dispatch: Dispatch, getState: ThunkG
     clearLocalStorage();
 
     return dispatch(openDemoLesson(language));
+};
+
+/** Keyboard listener */
+const { welcome: container } = AppContainers;
+export const buttonsIds = [ 'homeSeeLessons', 'homeStartTyping' ];
+
+const manageButtonFocus = buttonFocus(buttonsIds, 1);
+
+const manageFocus = (e: KeyboardEvent): void => manageButtonFocus(e);
+
+let listenerId;
+
+export const onAddKeyDownListener = (): any => (dispatch: Dispatch): number => {
+    listenerId = dispatch(manageKeydownListeners.onAddListener({
+        container,
+        listener: [ 'keydown', manageFocus ]
+    }));
+
+    return listenerId;
+};
+
+export const onRemoveKeyDownListener = (): any => (dispatch: Dispatch): boolean => {
+    return dispatch(manageKeydownListeners.onRemoveListener({ container, listenerId }));
 };

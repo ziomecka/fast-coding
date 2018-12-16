@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ import { WelcomeState } from './_duck/reducers';
 import { ApplicationContainers, AppContainers } from '../../_common/';
 
 import { WithStyles } from '@material-ui/core/styles';
-import { onOpenDemoLesson } from './_duck/operations';
+import { onOpenDemoLesson, onAddKeyDownListener, onRemoveKeyDownListener } from './_duck/operations';
 
 const { app } = ApplicationContainers;
 const { welcome } = AppContainers;
@@ -24,7 +24,9 @@ const mapStateToProps = (state: ApplicationState): WelcomeState => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): WelcomeDispatch => ({
     changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation)),
-    openDemoLesson: () => dispatch(onOpenDemoLesson())
+    openDemoLesson: () => dispatch(onOpenDemoLesson()),
+    addEventListener: () => dispatch(onAddKeyDownListener()),
+    removeEventListener: () => dispatch(onRemoveKeyDownListener())
 });
 
 // @ts-ignore
@@ -35,6 +37,8 @@ export default WelcomeContainer;
 export interface WelcomeDispatch {
     changeLocation: (appLocation: AppLocation) => void;
     openDemoLesson: () => void;
+    addEventListener: () => Action;
+    removeEventListener: () => Action;
 };
 
 export interface WelcomeProps extends WelcomeDispatch,
