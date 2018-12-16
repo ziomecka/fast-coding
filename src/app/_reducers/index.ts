@@ -66,6 +66,12 @@ import {
     ChangePasswordFormState
 } from '../ChangePasswordForm/_duck/reducers';
 
+import {
+    INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE,
+    keyboardListenerReducer,
+    KeyboardListenerState
+} from '../KeyboardListener/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -76,7 +82,8 @@ const {
     content,
     user,
     formHelperText,
-    changePasswordForm
+    changePasswordForm,
+    keyboardListener
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -89,7 +96,8 @@ export const INITIAL_STATE = {
     [content]: CONTENT_INITIAL_STATE,
     [user]: USER_INITIAL_STATE,
     [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE,
-    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE
+    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE,
+    [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE
 };
 
 const {
@@ -113,7 +121,8 @@ const combinedReducers = combineReducers({
     [notification]: notificationReducer,
     [appMenu]: menuReducer,
     [user]: userReducer,
-    [changePasswordForm]: changePasswordFormReducer
+    [changePasswordForm]: changePasswordFormReducer,
+    [keyboardListener]: keyboardListenerReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -175,4 +184,5 @@ export interface AppState {
     [user]: UserState;
     [formHelperText]: FormHelperTextState;
     [changePasswordForm]: ChangePasswordFormState;
+    [keyboardListener]: KeyboardListenerState;
 };

@@ -9,7 +9,8 @@ export enum AppContainers {
     csr = 'CSR',
     user = 'USER',
     formHelperText = 'FORM_HELPER_TEXT',
-    changePasswordForm = 'CHANGE_PASSWORD_FORM'
+    changePasswordForm = 'CHANGE_PASSWORD_FORM',
+    keyboardListener = 'KEYBOARD_LISTENER'
 };
 
 export enum MenuContainers {
