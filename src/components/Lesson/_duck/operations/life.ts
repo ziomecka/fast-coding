@@ -28,11 +28,13 @@ const { onResetComparator,
         onTurnOffComparator
     } = comparatorOperations;
 
-    import { resetStats } from '../../Stats/_duck/actions';
+import { resetStats } from '../../Stats/_duck/actions';
 import { onPauseTimer, onUnpauseTimer } from '../../Stats/_duck/operations';
 import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
 
-import keydownListeners from '../../../../shared/keydown.listener';
+/** Keyboard listener imports */
+import * as manageKeydownListeners  from '../../../../app/KeyboardListener/_duck/operations';
+const { lesson: container } = ComponentsContainers;
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;
@@ -54,7 +56,7 @@ export const onEndLesson = (): any => (dispatch: Dispatch) => {
     }
 };
 
-let manageKeyDownListeners = keydownListeners();
+// let manageKeyDownListeners = keydownListeners();
 
 const escapeReturnListener = (e: KeyboardEvent, dispatch: Dispatch) => {
     if (e.keyCode === 27) {
@@ -67,12 +69,18 @@ const escapeReturnListener = (e: KeyboardEvent, dispatch: Dispatch) => {
     }
 }
 
-const addEscapeReturnListener = (dispatch: Dispatch) => {
-    manageKeyDownListeners.addKeyDownListener((e: KeyboardEvent) => escapeReturnListener(e, dispatch));
+let listenerId;
+
+const addEscapeReturnListener = (dispatch: Dispatch): number => {
+    listenerId = dispatch(manageKeydownListeners.onAddListener({
+        container,
+        listener: [ 'keydown', (e: KeyboardEvent) => escapeReturnListener(e, dispatch) ]
+    }));
+    return listenerId;
 };
 
-const removeAllKeyDownListeners = () => {
-    manageKeyDownListeners.removeAllKeyDownListeners();
+const removeAllKeyDownListeners = (dispatch: Dispatch): boolean => {
+    return dispatch(manageKeydownListeners.onRemoveListener({ container, listenerId }));
 };
 
 const _endLesson = (dispatch, getState) => {
@@ -110,7 +118,7 @@ export const onReset = (): any => (dispatch: Dispatch) => {
     dispatch(resetLesson());
     dispatch(resetDraggableLessonButtons());
     clearTimeout(timeout);
-    removeAllKeyDownListeners();
+    removeAllKeyDownListeners(dispatch);
 
     dispatch(onRemoveState(LocalStorageItemTypes.lesson));
     dispatch(onRemoveState(LocalStorageItemTypes.comparator));
@@ -122,7 +130,7 @@ export const onRestartLesson = (): any => (dispatch: Dispatch): void => {
     dispatch(resetStats());
     dispatch(restartLesson());
     clearTimeout(timeout);
-    removeAllKeyDownListeners();
+    removeAllKeyDownListeners(dispatch);
     dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson));
     dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
 };
