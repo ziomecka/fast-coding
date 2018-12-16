@@ -65,6 +65,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
         if (appLocation !== prevAppLocation) {
             this.props.changeLocation(appLocation);
+            if ( this.isHome ) {
+                this.props.addEventListener();
+            } else {
+                this.props.removeEventListener();
+            }
         }
     }
 

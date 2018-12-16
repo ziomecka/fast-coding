@@ -9,6 +9,7 @@ import Content from '../../app/Content/';
 import TextGenerator from '../../components/TextGenerator/container';
 import LessonsLoader from '../../components/LessonsLoader/container';
 import User from '../../app/User/container';
+import KeyboardListener from '../../app/KeyboardListener/container';
 
 import { AppContainers, AppRoutes } from '../../_common/';
 
@@ -20,21 +21,6 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
         super(props);
 
         this.homeUrl = AppRoutes.home;
-
-        this.props.addKeyDownListener();
-    }
-
-    componentDidUpdate(prevProps: HomeViewProps) {
-        const { pathname } = this.props.location;
-        const prevPathname = prevProps.location.pathname;
-
-        if (pathname !== prevPathname) {
-            if (pathname === this.homeUrl) {
-                this.props.addKeyDownListener();
-            } else {
-                this.props.removeKeyDownListener();
-            }
-        }
     }
 
     render() {
@@ -50,6 +36,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
             <User />
 
+            <KeyboardListener />
             <LessonsLoader />
 
             <Nav />
