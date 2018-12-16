@@ -168,6 +168,12 @@ module.exports = {
           to: 'Redis',
           toType: 'dir',
           flatten: true
+        },
+        {
+          from: 'src/server/Email/*',
+          to: 'Email',
+          toType: 'dir',
+          flatten: true
         }
     ]),
     new Dotenv({
