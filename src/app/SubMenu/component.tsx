@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { SubMenuProps } from './container';
-import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, MenuContainers, LanguagesEnum } from '../../_common/';
+import { SubMenuProps, SubMenuItemType } from './container';
+import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '../../_common/';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -23,22 +23,37 @@ const { pl, en } = LanguagesEnum;
 import getTranslation from '../../shared/get.translation';
 import { getActiveLanguage } from 'react-localize-redux';
 
-/** Iternal state needed because otherwise React does not see change of state */
+/**
+ * @param { boolean } render                  - is menu rendered?
+ *                                              Changes only if props authorized or location.pathname do change
+ *                                              Increases menu responsiveness
+ * @param { JSX.Element[] | SubMenuItemType } - containes list of menuItems to be dispalayed.
+ *                                              Is updated with delay because menu is transitioning (hiding) and
+ *                                                during transtion menu should not be updating
+ * */
 interface InternalState {
     render: boolean;
+    listItems: JSX.Element[] | SubMenuItemType
 };
 
+// TODO muszę kombinować bo za dużo umieściłam w jednym komponencie
+// Podzielić cały komponent na dwa: menu z listą i menu przycisk
 class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     private _renderMethod: () => JSX.Element;
+    private _listTimeout: number;
     constructor (props) {
         super(props);
+
         this.handleClick = this.handleClick.bind(this);
         this.handleClickAway = this.handleClickAway.bind(this);
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            render: this.areNavRulesMet
+            render: this.areNavRulesMet,
+            listItems: this.listItems
         }
+
+        this._listTimeout = 1000;
 
         /**
          * Check if either menuItems or menuItem provided in props.
@@ -60,18 +75,32 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     get anchorEl () {
-        let achorEl = this.props[this.props.container].anchorEl;
         return this.props[this.props.container].anchorEl;
     }
 
     componentDidUpdate(prevProps: SubMenuProps) {
-        const { pathname } = this.props.location;
-        const prevPathname = prevProps.location.pathname;
+        const { props: { location: { pathname }, authorized } } = this;
+        const { location: { pathname: prevPathname }, authorized: prevAuthorized } = prevProps;
 
-        if (pathname !== prevPathname) {
-            this.setState({
-                render: this.areNavRulesMet
-            });
+        /**
+         *  Updates menu only if pathname or authorization changed, therefore
+         *  menu ressponsiveness is increased.
+         *
+         *  Moreove: listItems are updated with delay, therefore
+         *  menu items do not change when menu is transitioning
+         */
+        if (( pathname !== prevPathname || authorized !== prevAuthorized )) {
+            // @ts-ignore
+            this.setState(() => (
+                { render: this.areNavRulesMet && this.atLeastOneItem }
+                ), () => {
+                    let timeout = setTimeout( () => {
+                        this.setState({ listItems: this.listItems });
+                        clearTimeout( timeout ); // GC
+                        timeout = null; // GC
+                    }, this._listTimeout );
+                }
+            );
         }
     }
 
@@ -179,18 +208,50 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         return (this.props.menuItem && !this.props.container && !this.props.menuItems);
     }
 
+    /**
+     * @description Check if list contains at lest one item. Items are rendered only if their conditions are met
+     *              It may happen that none item meets conditions. List should not be rendered.
+     *              If menu is only a button ( has this.props.menuItem ) then rendered always
+     *              // TODO wynika z przekombinowania opisanego powyżej
+     */
     get atLeastOneItem () {
-        return this.props.menuItems.some( item => this.areSubMenuRulesMet(item.rules, item.appRoute, item.lang || '') );
+        return (
+            this.props.menuItem ||
+            (
+                this.props.menuItems &&
+                this.props.menuItems.some( item => this.areSubMenuRulesMet(item.rules, item.appRoute, item.lang || '' ))
+            )
+        );
+    }
+
+    get listItems () {
+        const {
+            classes: { menuItemClass },
+        } = this.props;
+
+        return (
+            this.props.menuItem || this.props.menuItems.map((menuItem, ind) => {
+                const { rules, appRoute, title, onClick, lang = '' } = menuItem;
+
+                if ( this.areSubMenuRulesMet(rules, appRoute, lang )) {
+                    return (
+                        ( appRoute && this.getLink( appRoute, title, menuItemClass ) ) ||
+                        ( onClick && this.getButton( onClick, title, menuItemClass ) )
+                    );
+                }
+                return null;
+            })
+        );
     }
 
     renderList () {
         const {
-            classes: { menuItemClass, menuClass },
+            classes: { menuClass },
             title
         } = this.props;
 
         /** Render list only if at least one item meets the rules */
-        return ( this.atLeastOneItem &&
+        return (
             <ClickAwayListener onClickAway={this.handleClickAway}>
                 <>
                     {
@@ -208,17 +269,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                         open={Boolean(this.anchorEl)}
                         classes={{ paper : menuClass }}
                     >
-                        {this.props.menuItems.map((menuItem, ind) => {
-                            const { rules, appRoute, title, onClick, lang = '' } = menuItem;
-                            if (this.areSubMenuRulesMet(rules, appRoute, lang)) {
-                                return (
-                                    (appRoute && this.getLink(appRoute, title, menuItemClass)) ||
-                                    (onClick && this.getButton(onClick, title, menuItemClass))
-                                );
-                            }
-
-                            return null;
-                        })}
+                        { this.state.listItems }
                     </Menu>}
                 </>
             </ClickAwayListener>
