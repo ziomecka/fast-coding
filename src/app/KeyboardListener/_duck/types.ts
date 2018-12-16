@@ -1,4 +1,4 @@
-import { AppContainers, ComponentsContainers, ViewsContainers } from '../../../_common/';
+import { AppContainers, ComponentsContainers, ViewsContainers, MenuContainers } from '../../../_common/';
 
 export enum KeyboardListenerTypes {
     APP_KEYBOARD_LISTENER_ADD = '@@app_keyboardListener/ADD',
@@ -10,7 +10,10 @@ export type KeyboardListenerContainersType =
     ComponentsContainers.lesson |
     ViewsContainers.homeView |
     AppContainers.dialog |
-    AppContainers.welcome;
+    AppContainers.welcome |
+    MenuContainers.languagesMenu |
+    MenuContainers.mainMenu |
+    MenuContainers.userMenu;
 
 export type ListenerType = [ string, EventListener ];
 
