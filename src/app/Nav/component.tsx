@@ -80,9 +80,13 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                     onClick: logOut
                 } ]),
             //@ts-ignore
-            icon: <span className={ navLogin } login={ login }> <Face /> </span>,
+            icon: <span> <Face /> </span>,
             container: userMenu,
             title: 'submenuOpenUserMenu',
+            iconButton: {
+                className: navLogin,
+                login: login
+            }
         }
     ] as __SubMenuProps[];
 
