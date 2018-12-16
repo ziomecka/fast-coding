@@ -48,6 +48,7 @@
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
     "subMenuUserLogin": [ "login", "logowanie"],
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
+    "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
     "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "submitForm": [ "send", "wyślij" ],
@@ -142,6 +143,10 @@
     "notificationAuthorized": [
         "Nice to see you",
         "Miło Cię widzieć"
+    ],
+    "notificationSignOutSuccess": [
+        "You have been signed out",
+        "Zostałeś wylogowany"
     ],
     "notificationPasswordChangeSuccess": [
         "Password changed",
