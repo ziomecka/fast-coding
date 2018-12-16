@@ -155,15 +155,15 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
     getIconButton (onClick) {
         const {
-            iconButton,
+            iconButton: { className: iconButtonClassName, ...other } = { className: '' },
             classes: { menuIconClass },
             icon // TODO GC?
         } = this.props;
 
         return (
             <IconButton
-                className={ menuIconClass }
-                { ...iconButton }
+                className={ `${ menuIconClass } ${ iconButtonClassName }` }
+                { ...other }
                 { ...{ onClick } }
             >
                 { icon }
