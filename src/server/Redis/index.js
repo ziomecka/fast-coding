@@ -192,6 +192,20 @@ class Redis {
         }
     }
 
+    /**
+     *
+     * @param {string} key
+     * @param {string} value
+     */
+    async sismember (key, value) {
+        return new Promise( (res, rej) => {
+            this.client.sismember(key, value, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
     async getPassword(options) {
         let { key: _key, ...other } = options;
         const key = this.generateUserKey(_key);
