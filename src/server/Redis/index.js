@@ -67,6 +67,36 @@ class Redis {
         });
     }
 
+    /**
+     *
+     * @param {objecy} options
+     * @property {key} options.key
+     * @property {string} options.value
+     * @property {number} options.expires - time to expire in seconds
+     */
+    async storeString(options) {
+        const { key, value, expires } = options;
+        return new Promise (( res, rej) => {
+            this.client.set(key, value, (err, response) => {
+                if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
+                res(response);
+            })
+        });
+    }
+
+    /**
+     *
+     * @param {string} key
+     */
+    async getString(key) {
+        return new Promise ((res, rej) => {
+            this.client.get(key, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
 
     /**
      *
