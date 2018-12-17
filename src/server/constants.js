@@ -19,6 +19,10 @@ const REDIS_RESPONSES = {
     ...REDIS_PASSWORD_RESPONSES
 };
 
+const EMAIL_RESPONSES = {
+    ...BASIC_RESPONSES
+};
+
 const PASSWORD_MANAGER_RESPONSES = {
     ...BASIC_RESPONSES,
     ...REDIS_PASSWORD_RESPONSES
@@ -31,9 +35,22 @@ const ROUTES = {
     CHANGE_PASSWORD: '/changepassword'
 };
 
+const EMAILS = {
+    ADDRESS_FROM: 'hello',
+    DOMAIN: 'letsbitebytes.com',
+    NAME: 'Kasia Ziomek-Zdanowicz',
+    EMAIL_RESPONSES,
+    PAGE: {
+        pl: 'Fast coding',
+        en: 'Fast coding'
+    },
+};
+
 module.exports = {
     PORT,
     REDIS_RESPONSES,
     PASSWORD_MANAGER_RESPONSES,
-    ROUTES
+    ROUTES,
+    EMAILS,
+    EMAIL_RESPONSES
 };

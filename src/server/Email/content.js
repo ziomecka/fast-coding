@@ -1,22 +1,28 @@
 require('dotenv').config();
-const htmls = require('./htmls');
+const html = require('./emails/index');
 
 const createContent = (options) => {
     const {
-        address = 'kasia',
-        subject = 'nowy temat',
-        paragraphs = [
-            'Pierwszy akapit',
-            'Drugi akapit'
-        ],
-        emailVariant = 'standard',
-        domain = process.env.SPARKPOST_SANDBOX_DOMAIN
+        addressFrom,
+        domainFrom,
+        language,
+        emailVariant,
+        signatureVariant,
+        link
     } = Object(options);
 
+    if ( !addressFrom || !domainFrom || !language || !emailVariant || !signatureVariant ) {
+        console.warn('Create content: missing arguments');
+    }
+
     return {
-        from: `${ address }@${ domain }`,
-        subject,
-        html: htmls[emailVariant](paragraphs)
+        from: `${ addressFrom }@${ domainFrom }`,
+        ...html({
+            emailVariant,
+            signatureVariant,
+            language,
+            link
+        })
     };
 };
 
