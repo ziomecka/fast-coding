@@ -78,6 +78,12 @@ import {
     RemindPasswordState
 } from '../RemindPasswordForm/_duck/reducers';
 
+import {
+    INITIAL_STATE as NEW_PASSWORD_INITIAL_STATE,
+    newPasswordFormReducer,
+    NewPasswordFormState
+} from '../NewPasswordForm/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -90,7 +96,8 @@ const {
     formHelperText,
     changePasswordForm,
     keyboardListener,
-    remindPasswordForm
+    remindPasswordForm,
+    newPasswordForm
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -105,7 +112,8 @@ export const INITIAL_STATE = {
     [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE,
     [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE,
     [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE,
-    [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE
+    [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE,
+    [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE
 };
 
 const {
@@ -131,7 +139,8 @@ const combinedReducers = combineReducers({
     [user]: userReducer,
     [changePasswordForm]: changePasswordFormReducer,
     [keyboardListener]: keyboardListenerReducer,
-    [remindPasswordForm]: remindPasswordReducer
+    [remindPasswordForm]: remindPasswordReducer,
+    [newPasswordForm]: newPasswordFormReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -166,6 +175,13 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
                     };
                 }
 
+                case newPasswordForm: {
+                    return {
+                        ...state,
+                        [newPasswordForm]: newPasswordFormReducer(state[newPasswordForm], action)
+                    };
+                }
+
                 default: {
                     return { ...state };
                 }
@@ -195,4 +211,5 @@ export interface AppState {
     [changePasswordForm]: ChangePasswordFormState;
     [keyboardListener]: KeyboardListenerState;
     [remindPasswordForm]: RemindPasswordState;
+    [newPasswordForm]: NewPasswordFormState;
 };

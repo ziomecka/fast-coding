@@ -12,6 +12,7 @@ export enum AppContainers {
     changePasswordForm = 'CHANGE_PASSWORD_FORM',
     keyboardListener = 'KEYBOARD_LISTENER',
     remindPasswordForm = 'REMIND_PASSWORD',
+    newPasswordForm = 'NEW_PASSWORD'
 };
 
 export enum MenuContainers {
@@ -51,7 +52,8 @@ export enum AppRoutes {
     newUserSet = '/newuser/set',
     loginLog = '/login/log',
     changePassword = '/changepassword',
-    remindPassword = '/remindpassword'
+    remindPassword = '/remindpassword',
+    newPassword = '/newpassword'
 };
 
 export enum SubMenuRulesEnum {
