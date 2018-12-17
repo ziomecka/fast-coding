@@ -9,7 +9,10 @@ export enum AppContainers {
     csr = 'CSR',
     user = 'USER',
     formHelperText = 'FORM_HELPER_TEXT',
-    changePasswordForm = 'CHANGE_PASSWORD_FORM'
+    changePasswordForm = 'CHANGE_PASSWORD_FORM',
+    keyboardListener = 'KEYBOARD_LISTENER',
+    remindPasswordForm = 'REMIND_PASSWORD',
+    newPasswordForm = 'NEW_PASSWORD'
 };
 
 export enum MenuContainers {
@@ -48,7 +51,9 @@ export enum AppRoutes {
     lessonsGet = '/lessons/get',
     newUserSet = '/newuser/set',
     loginLog = '/login/log',
-    changePassword = '/changepassword'
+    changePassword = '/changepassword',
+    remindPassword = '/remindpassword',
+    newPassword = '/newpassword'
 };
 
 export enum SubMenuRulesEnum {

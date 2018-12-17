@@ -66,6 +66,24 @@ import {
     ChangePasswordFormState
 } from '../ChangePasswordForm/_duck/reducers';
 
+import {
+    INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE,
+    keyboardListenerReducer,
+    KeyboardListenerState
+} from '../KeyboardListener/_duck/reducers';
+
+import {
+    INITIAL_STATE as REMIND_PASSWORD_INITIAL_STATE,
+    remindPasswordReducer,
+    RemindPasswordState
+} from '../RemindPasswordForm/_duck/reducers';
+
+import {
+    INITIAL_STATE as NEW_PASSWORD_INITIAL_STATE,
+    newPasswordFormReducer,
+    NewPasswordFormState
+} from '../NewPasswordForm/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -76,7 +94,10 @@ const {
     content,
     user,
     formHelperText,
-    changePasswordForm
+    changePasswordForm,
+    keyboardListener,
+    remindPasswordForm,
+    newPasswordForm
 } = AppContainers;
 
 export const INITIAL_STATE = {
@@ -89,7 +110,10 @@ export const INITIAL_STATE = {
     [content]: CONTENT_INITIAL_STATE,
     [user]: USER_INITIAL_STATE,
     [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE,
-    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE
+    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE,
+    [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE,
+    [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE,
+    [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE
 };
 
 const {
@@ -113,7 +137,10 @@ const combinedReducers = combineReducers({
     [notification]: notificationReducer,
     [appMenu]: menuReducer,
     [user]: userReducer,
-    [changePasswordForm]: changePasswordFormReducer
+    [changePasswordForm]: changePasswordFormReducer,
+    [keyboardListener]: keyboardListenerReducer,
+    [remindPasswordForm]: remindPasswordReducer,
+    [newPasswordForm]: newPasswordFormReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -148,6 +175,13 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
                     };
                 }
 
+                case newPasswordForm: {
+                    return {
+                        ...state,
+                        [newPasswordForm]: newPasswordFormReducer(state[newPasswordForm], action)
+                    };
+                }
+
                 default: {
                     return { ...state };
                 }
@@ -175,4 +209,7 @@ export interface AppState {
     [user]: UserState;
     [formHelperText]: FormHelperTextState;
     [changePasswordForm]: ChangePasswordFormState;
+    [keyboardListener]: KeyboardListenerState;
+    [remindPasswordForm]: RemindPasswordState;
+    [newPasswordForm]: NewPasswordFormState;
 };

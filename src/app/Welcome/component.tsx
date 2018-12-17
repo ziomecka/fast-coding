@@ -10,7 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { AppRoutes } from '../../_common/';
-import { buttonsIds } from '../../views/Home/_duck/operations';
+import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
 import  SubMenu from '../SubMenu/';
@@ -65,6 +65,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
         if (appLocation !== prevAppLocation) {
             this.props.changeLocation(appLocation);
+            if ( this.isHome ) {
+                this.props.addEventListener();
+            } else {
+                this.props.removeEventListener();
+            }
         }
     }
 

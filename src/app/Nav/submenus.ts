@@ -1,7 +1,7 @@
 import { AppRoutes, SubMenuRulesEnum } from '../../_common/';
 import { SubMenuItemType } from '../SubMenu/container';
 
-const { home, lessons, login, newuser, changePassword } = AppRoutes;
+const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutes;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation } = SubMenuRulesEnum;
 
 export const lessonsMenuItem: SubMenuItemType = {
@@ -39,5 +39,10 @@ export const userMenuItems: SubMenuItemType[] = [
         title: 'subMenuUserChangePassword',
         appRoute: changePassword,
         rules: [ onlyAuthorized, notCurrentLocation ]
+    },
+    {
+        title: 'subMenuRemindPassword',
+        appRoute: remindPassword,
+        rules: [ onlyUnauthorized, notCurrentLocation ]
     }
 ];

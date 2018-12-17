@@ -9,11 +9,11 @@ import { AppRoutes } from '../../_common/';
 const { home } = AppRoutes;
 
 const RouteAuthComponent: React.StatelessComponent<AuthRouteProps> = props => {
-    const { authorized, ...other } = props;
+    const { condition, redirect, ...other } = props;
 
-    /** If user is unauthorized - redirect them to home */
-    if ( !authorized ) {
-        history.push(home);
+    /** If condition is not met - redirect to redirect or home */
+    if ( !condition ) {
+        history.push(redirect || home);
     }
 
     return <Route { ...other }/>;

@@ -63,7 +63,6 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             [confirmPass]: { password: confirmPassword, passwordValid: confirmPasswordValid }
         } = this.props;
 
-        console.log("here")
         if ( !currentPassword || !newPassword || !confirmPassword ||
              !!currentPasswordValid || !!newPasswordValid || !! confirmPasswordValid ) {
                 this.props.formInvalid();

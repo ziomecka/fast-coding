@@ -1,9 +1,12 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainers, PasswordTypes } from '../_common';
+import { AppContainers, PasswordTypes, AppRoutes } from '../_common';
 
 const { loginForm } = AppContainers;
+const { remindPassword } = AppRoutes;
+
+import history from '../../shared/history';
 
 import Password from '../Password/';
 import Login from '../Login/';
@@ -14,6 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
 const { pass } = PasswordTypes;
@@ -25,6 +29,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
         this.container = loginForm;
         this.loginOnChange = this.loginOnChange.bind(this);
         this.submit = this.submit.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
 
     componentWillUnmount() {
@@ -43,6 +48,10 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
         } else {
             this.props.log(login, password);
         }
+    }
+
+    redirect () {
+        history.push(remindPassword);
     }
 
     render() {
@@ -68,6 +77,17 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                         <Message />
                     </FormHelperText>
 
+                    <Typography variant="body1">
+                        <Button
+                            onClick={ this.redirect }
+                            type="submit"
+                            tabIndex={3}
+                            variant="text"
+                            color="primary"
+                        >
+                            <Translate id="loginDoNotRememberButton" />
+                        </Button>
+                    </Typography>
                 </FormControl>
               </form>
           </Paper>

@@ -12,6 +12,9 @@
     "demoLessonTitle": [ "Demo lesson", "Lekcja pokazowa"],
     "loginTitle": [ "Login", "Logowanie"],
     "newuserTitle": [ "New user", "Nowy użytkownik" ],
+    "newPasswordTitle": [ "New password", "Nowe hasło" ],
+    "remindPasswordTitle": [ "Remind password", "Przypomnij hasło" ],
+    "changePasswordTitle": [ "Change password", "Zmień hasło" ],
     "lessonsLesson": [ "Lesson", "Lekcja" ],
     "lessonInvite": [ "You can start typing", "Możesz zacząć pisać" ],
     "lessonTime": [ "Typing time: ", "Czas pisania: " ],
@@ -50,6 +53,7 @@
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
     "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
+    "subMenuRemindPassword": [ "remind password", "przypomnij hasło"],
     "submitForm": [ "send", "wyślij" ],
     "ERROR": [
         "Something went wrong. Please try again.",
@@ -150,5 +154,21 @@
     "notificationPasswordChangeSuccess": [
         "Password changed",
         "Hasło zostało zmienione"
+    ],
+    "notificationPasswordRemindSuccess": [
+        "Email has been sent. Follow instructions in email.",
+        "Email został wysłany. Postępuj zgodnie z zawartymi w nim instrukcjami."
+    ],
+    "notificationRemindPasswordEmailDoesNotExist": [
+        "Email does not exist in our database. Please try again.",
+        "Email nie istnieje w naszej bazie. Proszę, spróbuj ponownie."
+    ],
+    "remindPasswordRememberButton": [
+        "Login",
+        "Zaloguj"
+    ],
+    "loginDoNotRememberButton": [
+        "Remind password",
+        "Przypomnij hasło"
     ]
 }
