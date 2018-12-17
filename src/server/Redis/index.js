@@ -6,6 +6,7 @@ const {
     REDIS_KEYS: {
         EMAILS_KEY,
         LOGINS_KEY,
+        REMIND_PASSWORD_KEY,
         USERS_KEY
     },
     REDIS_RESPONSES: {
@@ -13,7 +14,10 @@ const {
         ERROR,
         LOGIN_ALREADY_EXISTS,
         EMAIL_ALREADY_EXISTS,
+        LOGIN_DOES_NOT_EXIST,
+        EMAIL_DOES_NOT_EXIST
     },
+    REMIND_PASSWORD : { LINK_ACTIVE_MINUTES }
 } = require('../constants');
 
 class Redis {
@@ -51,6 +55,8 @@ class Redis {
         return this.generateKey(this.usersKey, value);
     }
 
+    generateRemindPasswordKey (value) {
+        return this.generateKey(this.remindPasswordKey, value);
     }
 
     /**
@@ -204,6 +210,68 @@ class Redis {
                 res(response);
             });
         });
+    }
+
+    /**
+     *
+     * @param {string} email
+     */
+    async emailExists(email) {
+        const response = await this.sismember(this.emailsKey, email);
+
+        if (response === 0) {
+            return EMAIL_DOES_NOT_EXIST;
+        } else {
+            return SUCCESS;
+        }
+    };
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.link
+     * @property {expires} options.expires - time in seconds, default value 300
+     * @property {string} options.email
+     */
+    async storeRemindPasswordLink(options) {
+        const {
+            link, expires = LINK_ACTIVE_MINUTES * 60, email
+        } = options;
+
+        try {
+            const linkStored = await this.storeString({
+                key: this.generateRemindPasswordKey(email),
+                value: link,
+                expires
+            });
+
+            if ( linkStored ) {
+                console.log('Link stored');
+                return SUCCESS;
+            }
+
+            console.log('Store link failed.');
+            return ERROR;
+
+        } catch (err) {
+            console.log('Store link failed.');
+            return ERROR;
+        }
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.email
+     */
+    async getRemindPasswordLink(options) {
+        const { email } = options;
+        try {
+            return await this.getString(this.generateRemindPasswordKey(email));
+        } catch (err) {
+            console.log(`Get password link failure for: ${email}`);
+            return ERROR;
+        }
     }
 
     async getPassword(options) {
