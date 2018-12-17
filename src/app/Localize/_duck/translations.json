@@ -165,5 +165,9 @@
     "remindPasswordRememberButton": [
         "Login",
         "Zaloguj"
+    ],
+    "loginDoNotRememberButton": [
+        "Remind password",
+        "Przypomnij hasło"
     ]
 }
