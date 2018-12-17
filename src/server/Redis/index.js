@@ -63,20 +63,24 @@ class Redis {
     }
 
     async storeHash(options) {
+        const { key, expires } = options;
+
         return new Promise( ( res, rej ) => {
-            this.client.hmset(options.key, options.data, (err, response) => {
-                if (err) throw rej(err);
+            this.client.hmset(key, options.data, (err, response) => {
+                if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
                 res(response);
             });
         });
     }
 
     async storeSet(options) {
-        let { key, value } = options;
+        const { key, value, expires } = options;
 
         return new Promise(( res, rej ) => {
             this.client.sadd(key, value, (err, response) => {
                 if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
                 res(response);
             });
         });
