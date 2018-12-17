@@ -3,12 +3,14 @@ const _crypto = require('crypto');
 const redis = require('../Redis/index');
 
 const {
-    ERROR,
-    LOGIN_DOES_NOT_EXIST,
-    SUCCESS,
-    INCORRECT_PASSWORD,
-    INCORRECT_CURRENT_PASSWORD
-} = require('../constants').PASSWORD_MANAGER_RESPONSES;
+    PASSWORD_MANAGER_RESPONSES: {
+        ERROR,
+        LOGIN_DOES_NOT_EXIST,
+        SUCCESS,
+        INCORRECT_PASSWORD,
+        INCORRECT_CURRENT_PASSWORD
+    },
+} = require('../constants');
 
 class PasswordManager {
     constructor(options = {}) {
