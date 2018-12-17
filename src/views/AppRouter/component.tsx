@@ -18,8 +18,11 @@ import { AppRoutes } from '../../_common/';
 import { LocalizeProvider } from 'react-localize-redux';
 import store from '../../store';
 
-const Root: React.StatelessComponent<{}> = () => {
+import { AppRouterPropsI } from './container';
+
+const Root: React.StatelessComponent<AppRouterPropsI> = props => {
     const { lessons, login, newuser, changePassword } = AppRoutes;
+    const { authorized } = props;
 
     return (
         <MuiThemeProvider {...{ theme }}>
@@ -32,7 +35,7 @@ const Root: React.StatelessComponent<{}> = () => {
                                 <Route path={`${lessons}/:id`} component={LessonView} />
                                 <Route path={`${login}`} component={LoginView} />
                                 <Route path={`${newuser}`} component={NewUserView} />
-                                <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } />
+                                <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } />
                             </Switch>
                     </HomeView>
                     </Route>
