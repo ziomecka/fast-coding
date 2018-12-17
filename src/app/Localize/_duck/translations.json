@@ -53,6 +53,7 @@
     "subMenuUserNewUser": [ "new user", "nowy użytkownik"],
     "subMenuUserLogOut": [ "sign out", "wyloguj się"],
     "subMenuUserChangePassword": [ "change password", "zmiana hasła"],
+    "subMenuRemindPassword": [ "remind password", "przypomnij hasło"],
     "submitForm": [ "send", "wyślij" ],
     "ERROR": [
         "Something went wrong. Please try again.",
