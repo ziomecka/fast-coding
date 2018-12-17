@@ -15,7 +15,7 @@ import { AppRoutes } from '../../_common';
 import { Translate, getActiveLanguage } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-const { demo, home, lessons, login, newuser, remindPassword, changePassword } = AppRoutes;
+const { demo, home, lessons, login, newuser, remindPassword, changePassword, newPassword } = AppRoutes;
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
@@ -33,7 +33,8 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         [login]: 'loginTitle',
         [newuser]: 'newuserTitle',
         [remindPassword]: 'remindPasswordTitle',
-        [changePassword]: 'changePasswordTitle'
+        [changePassword]: 'changePasswordTitle',
+        [newPassword]: 'newPasswordTitle'
     };
   }
 

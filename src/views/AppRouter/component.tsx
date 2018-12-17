@@ -8,6 +8,7 @@ import LessonView from '../Lesson/';
 import LoginView from '../Login/';
 import NewUserView from '../Newuser/';
 import ChangePasswordView from '../ChangePassword/';
+import NewPasswordView from '../NewPassword/';
 import RemindPasswordView from '../RemindPassword/';
 
 import RouteAuth from '../RouteAuth/';
@@ -21,10 +22,21 @@ import { LocalizeProvider } from 'react-localize-redux';
 import store from '../../store';
 
 import { AppRouterPropsI } from './container';
+import { KEY_PARAM, KEY_PARAM_MIN_LENGTH } from './constants';
 
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
-    const { lessons, login, newuser, changePassword, remindPassword } = AppRoutes;
+    const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutes;
     const { authorized } = props;
+
+    const expectedKeyLength = KEY_PARAM.length + KEY_PARAM_MIN_LENGTH;
+    const { location: { href: pathname }} = window;
+
+    // TODO może być lepsza walidacja, wręcz do kluczy otrzymanych z serwera
+    // TODO to nie jest najlepsze miejsce do takiego sprawdzenia
+    const isKey = (
+        pathname.indexOf(KEY_PARAM) !== -1 &&
+        pathname.slice(pathname.indexOf(KEY_PARAM)).length >= expectedKeyLength
+    );
 
     return (
         <MuiThemeProvider {...{ theme }}>
@@ -39,6 +51,7 @@ const Root: React.StatelessComponent<AppRouterPropsI> = props => {
                                 <Route path={`${newuser}`} component={NewUserView} />
                                 <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } />
                                 <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } />
+                                <RouteAuth path={`${ newPassword }/:key`} component={ NewPasswordView } condition={ isKey } />
                             </Switch>
                     </HomeView>
                     </Route>
