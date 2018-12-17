@@ -153,5 +153,17 @@
     "notificationPasswordChangeSuccess": [
         "Password changed",
         "Hasło zostało zmienione"
+    ],
+    "notificationPasswordRemindSuccess": [
+        "Email has been sent. Follow instructions in email.",
+        "Email został wysłany. Postępuj zgodnie z zawartymi w nim instrukcjami."
+    ],
+    "notificationRemindPasswordEmailDoesNotExist": [
+        "Email does not exist in our database. Please try again.",
+        "Email nie istnieje w naszej bazie. Proszę, spróbuj ponownie."
+    ],
+    "remindPasswordRememberButton": [
+        "Login",
+        "Zaloguj"
     ]
 }
