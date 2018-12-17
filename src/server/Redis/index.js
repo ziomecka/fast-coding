@@ -3,12 +3,18 @@ const redis = require('redis');
 const url = require('url');
 
 const {
-    SUCCESS,
-    ERROR,
-    LOGIN_ALREADY_EXISTS,
-    EMAIL_ALREADY_EXISTS,
-    LOGIN_DOES_NOT_EXIST
-} = require('../constants').REDIS_RESPONSES;
+    REDIS_KEYS: {
+        EMAILS_KEY,
+        LOGINS_KEY,
+        USERS_KEY
+    },
+    REDIS_RESPONSES: {
+        SUCCESS,
+        ERROR,
+        LOGIN_ALREADY_EXISTS,
+        EMAIL_ALREADY_EXISTS,
+    },
+} = require('../constants');
 
 class Redis {
     constructor(REDIS_URI) {
@@ -30,6 +36,21 @@ class Redis {
        });
 
        this.client.auth(auth.split(":")[1]);
+
+       this.usersKey = USERS_KEY;
+       this.loginsKey = LOGINS_KEY;
+       this.emailsKey = EMAILS_KEY;
+       this.remindPasswordKey = REMIND_PASSWORD_KEY;
+    }
+
+    generateKey (key, value) {
+        return `${ key }_${ value }`;
+    }
+
+    generateUserKey (value) {
+        return this.generateKey(this.usersKey, value);
+    }
+
     }
 
     async keyExists(options) {
@@ -64,17 +85,19 @@ class Redis {
     async setNewUser(options) {
         let { key } = options;
 
-        const keyExists = await this.keyExists({ key })
+        /** Store login in sets */
+        const loginExists = await this.storeSet({ key: this.loginsKey, value: key });
 
-        if ( keyExists ) {
+        if ( loginExists === 0 ) {
             console.log('Login already exists.');
             return LOGIN_ALREADY_EXISTS;
         };
 
         try {
-            const emailExists = await this.storeSet({ key: 'login', value: options.data.email });
+            /** Store email in sets */
+            const emailExists = await this.storeSet({ key: this.emailsKey, value: options.data.email });
 
-            if (emailExists === 0) {
+            if ( emailExists === 0 ) {
                 console.log('Email already exists.');
                 return EMAIL_ALREADY_EXISTS;
             }
@@ -91,7 +114,7 @@ class Redis {
         let { key } = options;
 
         try {
-            const passwordStored = await this.storeHash({ key, data: options.data });
+            const passwordStored = await this.storeHash({ key: this.generateUserKey(key), data: options.data });
 
             if ( passwordStored === 'OK' ) {
                 console.log('New user set');
@@ -108,7 +131,8 @@ class Redis {
     }
 
     async getPassword(options) {
-        let { key } = options;
+        let { key: _key, ...other } = options;
+        const key = this.generateUserKey(_key);
 
         try {
             const keyExists = await this.keyExists({ key });
@@ -118,7 +142,7 @@ class Redis {
                 return LOGIN_DOES_NOT_EXIST;
             };
 
-            return await this.getHash(options);
+            return await this.getHash({ key, ...other });
         } catch (err) {
             console.log('Store password failed.');
             return ERROR;

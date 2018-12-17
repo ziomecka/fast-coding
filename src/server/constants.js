@@ -46,9 +46,16 @@ const EMAILS = {
     },
 };
 
+const REDIS_KEYS = {
+    USERS_KEY: 'user_data',
+    EMAILS_KEY: 'users_emails',
+    LOGINS_KEY: 'users_logins',
+}
+
 module.exports = {
     PORT,
     REDIS_RESPONSES,
+    REDIS_KEYS,
     PASSWORD_MANAGER_RESPONSES,
     ROUTES,
     EMAILS,
