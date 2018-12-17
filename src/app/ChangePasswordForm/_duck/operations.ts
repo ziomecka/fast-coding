@@ -16,7 +16,7 @@ export const onSendForm = (options: SendFormChangePasswordI ): any => (
         return await dispatch( _onSendForm( {
             request: {
                 path: changePassword,
-                body: options,
+                body: options
             },
             success: {
                 value: SUCCESS,
