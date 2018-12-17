@@ -53,6 +53,11 @@ class Redis {
 
     }
 
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     */
     async keyExists(options) {
         return new Promise( ( res, rej ) => {
             this.client.exists( options.key, async (err, response) => {
@@ -62,6 +67,14 @@ class Redis {
         });
     }
 
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {object} options.data
+     * @property {number} options.expires - in seconds
+     */
     async storeHash(options) {
         const { key, expires } = options;
 
@@ -74,6 +87,13 @@ class Redis {
         });
     }
 
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {string} options.value
+     * @property {number} options.expires
+     */
     async storeSet(options) {
         const { key, value, expires } = options;
 
@@ -86,6 +106,14 @@ class Redis {
         });
     }
 
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {object} options.data
+     * @property {string} options.data.salt
+     * @property {string} options.data.hashPassword
+     */
     async setNewUser(options) {
         let { key } = options;
 
