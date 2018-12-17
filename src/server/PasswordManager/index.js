@@ -15,14 +15,19 @@ const {
     EMAIL_RESPONSES: {
         ERROR: EMAIL_ERROR
     },
+    ROUTES: { CHANGE_PASSWORD },
     DOMAIN
 } = require('../constants');
 
 class PasswordManager {
     constructor(options = {}) {
         this.saltSize = options.saltSize || 50;
-
+        this._changePasswordURI = `${ DOMAIN }${ CHANGE_PASSWORD }?key=`;
         this._redis = redis;
+    }
+
+    changePasswordURI(uuid) {
+        return `${ this._changePasswordURI }${ uuid }`;
     }
 
     get redis() {
