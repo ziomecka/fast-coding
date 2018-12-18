@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { NewUserFormTypes } from './types';
+import { NewUserFormActionsEnum } from './types';
 import { PasswordActionsEnum } from '../../Password/_duck/types';
 import { LoginTypes } from '../../Login/_duck/types';
 
@@ -33,7 +33,7 @@ const {
     APP_NEWUSERFORM_SET_LOGIN,
     APP_NEWUSERFORM_SET_EMAIL,
     APP_NEWUSERFORM_RESET
-} = NewUserFormTypes;
+} = NewUserFormActionsEnum;
 
 export const INITIAL_STATE: NewUserFormState = {
     ...LoginInitialState,
