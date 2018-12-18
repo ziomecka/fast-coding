@@ -18,7 +18,6 @@ const { NO_MATCH } = RulesErrorEnum;
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { Translate } from 'react-localize-redux';
 import { KEY_PARAM } from '../../views/AppRouter/constants';
@@ -74,9 +73,7 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
                             <Translate id="submitForm" />
                         </Button>
 
-                        <FormHelperText>
-                            <Message />
-                        </FormHelperText>
+                        <Message />
 
                     </FormControl>
                 </form>

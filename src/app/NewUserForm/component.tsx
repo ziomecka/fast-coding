@@ -16,7 +16,6 @@ import { Translate } from 'react-localize-redux';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { PasswordsEnum } from '@appTypes';
 const { newPass, confirmPass } = PasswordsEnum;
@@ -87,9 +86,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
                             <Translate id='submitForm' />
                         </Button>
 
-                        <FormHelperText>
-                            <Message />
-                        </FormHelperText>
+                        <Message />
 
                     </FormControl>
                 </form>

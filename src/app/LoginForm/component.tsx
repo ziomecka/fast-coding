@@ -16,7 +16,6 @@ import Message from '../FormHelperText/';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
@@ -76,9 +75,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                         <Translate id="submitForm" />
                     </Button>
 
-                    <FormHelperText>
-                        <Message />
-                    </FormHelperText>
+                    <Message />
 
                     <Typography variant="body1">
                         <Button

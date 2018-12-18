@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { Translate } from 'react-localize-redux';
 
@@ -77,9 +76,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
                             <Translate id="submitForm" />
                         </Button>
 
-                        <FormHelperText>
-                            <Message />
-                        </FormHelperText>
+                        <Message />
 
                         <Typography variant="body1">
                             <Button
