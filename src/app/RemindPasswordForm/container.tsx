@@ -1,5 +1,6 @@
 import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as RemindPasswordForm } from './component';
 import { ApplicationState } from '../../store';
@@ -30,7 +31,8 @@ const mapDispatchToProps = (dispatch: Dispatch): RemindPasswordDispatch => ({
     formInvalid: () => dispatch(onFormInvalid())
 });
 
-const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(RemindPasswordForm);
+// @ts-ignore
+const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(RemindPasswordForm));
 
 export default LabelContainer;
 
@@ -44,4 +46,5 @@ export interface RemindPasswordDispatch {
 export interface RemindPasswordPropsI extends
     RemindPasswordDispatch,
     RemindPasswordState,
-    WithStyles {};
+    WithStyles,
+    RouteComponentProps {};

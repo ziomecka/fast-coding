@@ -1,5 +1,6 @@
 import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as LoginForm } from './component';
 import { ApplicationState } from '../../store';
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch: Dispatch): LoginFormDispatch => ({
     formInvalid: () => dispatch(onFormInvalid())
 });
 
-const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+// @ts-ignore
+const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
 
 export default LabelContainer;
 
@@ -42,4 +44,5 @@ export interface LoginFormDispatch {
 export interface LoginFormPropsI extends
     LoginFormDispatch,
     LoginFormState,
-    WithStyles {};
+    WithStyles,
+    RouteComponentProps<{}> {};

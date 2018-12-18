@@ -29,9 +29,10 @@ const mapDispatchToProps = (dispatch: Dispatch): NewPasswordFormDispatch => ({
     formInvalid: () => dispatch(onFormInvalid())
 });
 
-const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPasswordForm));
+// @ts-ignore
+const NewPasswordFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPasswordForm));
 
-export default LabelContainer;
+export default NewPasswordFormContainer;
 
 export interface NewPasswordFormDispatch {
     sendForm: (options: SendFormNewPasswordFormI) => Action;
