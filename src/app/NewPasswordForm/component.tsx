@@ -2,11 +2,13 @@ import * as React from 'react';
 
 import { NewPasswordFormPropsI } from './container';
 import * as types from '@appTypes';
+import { PasswordsEnum } from '@appTypes';
 
 const {
     AppContainersEnum: { newPasswordForm: container },
-    PasswordsEnum: { newPass, confirmPass }
 } = types;
+
+const { newPass, confirmPass } = PasswordsEnum;
 
 import Password from '../Password/';
 import Message from '../FormHelperText/';
