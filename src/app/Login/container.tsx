@@ -4,12 +4,12 @@ import { default as Login } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
-import { AppContainers } from '../_common';
-import { ApplicationContainers } from '../../_common';
+import { AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { LocalizeState } from 'react-localize-redux';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app],
@@ -25,5 +25,5 @@ interface MapStateToPropsI extends AppState {
 }
 
 export interface LoginPropsI extends StandardTextFieldProps, MapStateToPropsI {
-    container: AppContainers;
+    container: AppContainersEnum;
 };

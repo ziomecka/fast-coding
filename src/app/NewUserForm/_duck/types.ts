@@ -1,4 +1,4 @@
-export enum NewUserFormTypes {
+export enum NewUserFormActionsEnum {
     APP_NEWUSERFORM_SET_LOGIN = '@@app_newuserForm/SET_LOGIN',
     APP_NEWUSERFORM_SET_EMAIL = '@@app_newuserForm/SET_EMAIL',
     APP_NEWUSERFORM_RESET = '@@app_newuserForm/RESET'

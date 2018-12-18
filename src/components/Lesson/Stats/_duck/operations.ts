@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
 import { startTimer, stopTimer, pauseStats, unpauseStats } from './actions';
 import { onKeepState } from '../../_duck/operations/restore.state';
-import { LocalStorageItemTypes, ComparatorContainers, ComponentsContainers } from '../../../../_common';
+import { LocalStorageItemEnum } from '@appTypes';
+import { ComparatorContainersEnum, ComponentsContainersEnum } from '@componentsTypes';
 
-const { stats } = LocalStorageItemTypes;
-const { comparator } = ComponentsContainers;
-const { stats: statsContainer } = ComparatorContainers;
+const { stats } = LocalStorageItemEnum;
+const { comparator } = ComponentsContainersEnum;
+const { stats: statsContainer } = ComparatorContainersEnum;
 
 export const onStartTimer = (): any => (dispatch: Dispatch) => {
     dispatch(startTimer());

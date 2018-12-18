@@ -2,8 +2,8 @@ import { Reducer } from 'redux';
 
 import { ComparatorActions, RestoreStateAction } from './actions';
 
-import { ComparatorTypes } from './types';
-import { StatsTypes } from '../../Stats/_duck/types';
+import { ComparatorActionsEnum } from './types';
+import { StatsActionsEnum } from '../../Stats/_duck/types';
 
 import {
     statsReducer,
@@ -11,8 +11,8 @@ import {
     INITIAL_STATE as STATS_INITIAL_STATE
 } from '../../Stats/_duck/reducers'
 
-import { ComparatorContainers } from '../_common/index';
-const { stats } = ComparatorContainers;
+import { ComparatorContainersEnum } from '@componentsTypes';
+const { stats } = ComparatorContainersEnum;
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
@@ -21,7 +21,7 @@ const {
     COMPONENTS_COMPARATOR_CORRECT_ERROR,
     COMPONENTS_COMPARATOR_RESET,
     COMPONENTS_COMPARATOR_RESTORE_STATE
-} = ComparatorTypes;
+} = ComparatorActionsEnum;
 
 const {
     COMPONENTS_STATS_TIMER_START,
@@ -29,7 +29,7 @@ const {
     COMPONENTS_STATS_RESET,
     COMPONENTS_STATS_PAUSE,
     COMPONENTS_STATS_UNPAUSE
-} = StatsTypes;
+} = StatsActionsEnum;
 
 /**
  * @param errors - Errors that are still not corrected

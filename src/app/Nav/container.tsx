@@ -8,10 +8,11 @@ import { ApplicationState } from '../../_reducers';
 
 import { onLogOut } from './_duck/operations';
 
-import { AppContainers, ApplicationContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
-const { user } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { user } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     localize: { ...state.localize },

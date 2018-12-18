@@ -6,7 +6,8 @@ import { ApplicationState } from '../../store';
 
 import { NewPasswordFormState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { reset  } from './_duck/actions';
 import { SendFormNewPasswordFormI } from './_duck/types';
 
@@ -15,8 +16,8 @@ import { onFormInvalid } from '../Form/_duck/operations';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-const { app } = ApplicationContainers;
-const { newPasswordForm } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { newPasswordForm } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): NewPasswordFormState => ({
     ...state[app][newPasswordForm]

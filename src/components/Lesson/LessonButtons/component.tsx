@@ -3,7 +3,7 @@ import * as React from 'react';
 import { LessonButtonsProps } from './container';
 
 import { INITIAL_STATE } from './_duck/reducers';
-import { AppRoutes } from '../../../_common/';
+import { AppRoutesEnum } from '@appTypes';
 
 import ButtonWithHint from '../../../app/ButtonWithHint/';
 
@@ -39,7 +39,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         unpauseLesson
     } = props;
 
-    const { lessons } = AppRoutes;
+    const { lessons } = AppRoutesEnum;
 
     const {
         lessonButtonsButton,

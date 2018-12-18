@@ -5,12 +5,13 @@ import { ApplicationState } from '../../store';
 
 import { NotificationState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
-const { app } = ApplicationContainers;
-const { notification } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { notification } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): NotificationState => ({
     ...state[app][notification]

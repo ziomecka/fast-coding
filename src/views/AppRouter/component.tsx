@@ -16,7 +16,7 @@ import RouteAuth from '../RouteAuth/';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../../theme/';
 
-import { AppRoutes } from '../../_common/';
+import { AppRoutesEnum } from '@appTypes';
 
 import { LocalizeProvider } from 'react-localize-redux';
 import store from '../../store';
@@ -25,7 +25,7 @@ import { AppRouterPropsI } from './container';
 import { KEY_PARAM, KEY_PARAM_MIN_LENGTH } from './constants';
 
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
-    const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutes;
+    const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutesEnum;
     const { authorized } = props;
 
     const expectedKeyLength = KEY_PARAM.length + KEY_PARAM_MIN_LENGTH;

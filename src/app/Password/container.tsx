@@ -7,7 +7,10 @@ import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
-import { AppContainers, ApplicationContainers, PasswordTypes, RulesErrorEnum } from '../../_common';
+
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { RulesErrorEnum } from '@sharedTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
 
@@ -15,7 +18,7 @@ import { LocalizeState } from 'react-localize-redux';
 
 import { onValidatePassword } from './_duck/operations';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app],
@@ -38,15 +41,15 @@ interface MapStateToPropsI extends AppState {
 export interface PasswordDispatch {
     setPassword: (
         password: string,
-        container: AppContainers,
+        container: AppContainersEnum,
         event: React.ChangeEvent<HTMLInputElement>
     ) => SetPasswordAction;
-    validatePassword: (password: string, passwordType: PasswordTypes, container: AppContainers, rules: RulesErrorEnum[], value2?: string) => Action
+    validatePassword: (password: string, passwordType: PasswordsEnum, container: AppContainersEnum, rules: RulesErrorEnum[], value2?: string) => Action
 };
 
 export interface PasswordProps extends PasswordDispatch, MapStateToPropsI, StandardTextFieldProps {
-    container: AppContainers;
-    passwordType: PasswordTypes;
+    container: AppContainersEnum;
+    passwordType: PasswordsEnum;
     rules?: RulesErrorEnum[];
     value2?: string;
 };

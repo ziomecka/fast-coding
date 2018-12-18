@@ -129,11 +129,16 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.sass'],
     alias: {
-      '@app': path.resolve( __dirname, './src/app/' ),
-      '@components': path.resolve( __dirname, './src/components/' ),
-      '@views': path.resolve( __dirname, './src/views/' ),
-      '@shared': path.resolve( __dirname, './src/shared/' ),
-      '@root': path.resolve( __dirname, './src/' )
+      '@app': ( path.resolve ( __dirname, '../src/app/' ) ),
+      '@components': ( path.resolve ( __dirname, '../src/components/' ) ),
+      '@views': ( path.resolve ( __dirname, '../src/views/' ) ),
+      '@shared': ( path.resolve ( __dirname, '../src/shared/' ) ),
+      '@root': ( path.resolve ( __dirname, '../src/' ) ),
+      '@applicationTypes': ( path.resolve ( __dirname, '../src/_types/' ) ),
+      '@appTypes': ( path.resolve ( __dirname, '../src/app/_types/' ) ),
+      '@componentsTypes': ( path.resolve ( __dirname, '../src/components/_types/' ) ),
+      '@viewsTypes': ( path.resolve ( __dirname, '../src/views/_types/' ) ),
+      '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  ))
     },
   },
   plugins: [

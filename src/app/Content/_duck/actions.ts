@@ -1,16 +1,16 @@
 import { Action, ActionCreator } from 'redux';
-import { ContentTypes } from './types';
-import { AppLocation } from '../../_common/';
+import { ContentActionsEnum } from './types';
+import { AppLocationEnum } from '@appTypes';
 
 const {
     APP_CONTENT_CHANGE_LOCATION,
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER,
     APP_CONTENT_TITLE_CHANGE
- } = ContentTypes;
+ } = ContentActionsEnum;
 
 
-export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocation) => ({
+export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocationEnum) => ({
     type: APP_CONTENT_CHANGE_LOCATION,
     appLocation
 });
@@ -32,7 +32,7 @@ export const changeTitle: ActionCreator<ChangeTitleAction> = (title: string) => 
 
 export interface ChangeLocationAction extends Action {
     readonly type: string;
-    appLocation: AppLocation;
+    appLocation: AppLocationEnum;
 };
 
 export interface RegisterOnDropAction extends Action {

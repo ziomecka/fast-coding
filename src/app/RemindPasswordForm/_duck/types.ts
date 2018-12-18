@@ -1,4 +1,4 @@
-export enum RemindPasswordTypes {
+export enum RemindPasswordActionsEnum {
     APP_REMIND_PASSWORD_SET_EMAIL = '@@app_remindPassword/SET_EMAIL',
     APP_REMIND_PASSWORD_RESET = '@@app_remindPassword/RESET'
 }

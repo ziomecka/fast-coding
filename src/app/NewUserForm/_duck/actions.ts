@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { NewUserFormTypes } from './types';
+import { NewUserFormActionsEnum } from './types';
 
 import { SetPasswordAction } from '../../Password/_duck/actions';
 
@@ -7,7 +7,7 @@ const {
     APP_NEWUSERFORM_SET_LOGIN,
     APP_NEWUSERFORM_SET_EMAIL,
     APP_NEWUSERFORM_RESET
-} = NewUserFormTypes;
+} = NewUserFormActionsEnum;
 
 export const setLogin: ActionCreator<SetLoginAction> = (login: string) => ({
     type: APP_NEWUSERFORM_SET_LOGIN,

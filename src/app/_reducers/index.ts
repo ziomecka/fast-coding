@@ -1,6 +1,6 @@
 import { Reducer, combineReducers } from 'redux';
 
-import { PasswordTypes } from '../Password/_duck/types';
+import { PasswordActionsEnum } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
 
 import {
@@ -51,7 +51,7 @@ import {
     UserState
 } from '../User/_duck/reducers';
 
-import { AppContainers } from '../_common/';
+import { AppContainersEnum } from '@appTypes';
 import { AppActions } from '../_actions/';
 
 import {
@@ -98,7 +98,7 @@ const {
     keyboardListener,
     remindPasswordForm,
     newPasswordForm
-} = AppContainers;
+} = AppContainersEnum;
 
 export const INITIAL_STATE = {
     [loginForm]: LOGINFORM_INITIAL_STATE,
@@ -125,7 +125,7 @@ const {
     APP_PASSWORD_VALIDATE_CONFIRM,
     APP_PASSWORD_VALIDATE_CURRENT,
     APP_PASSWORD_VALIDATE
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 const combinedReducers = combineReducers({
     [dialog]: dialogReducer,

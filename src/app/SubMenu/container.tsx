@@ -10,15 +10,21 @@ import { onSetNavAnchorEl } from './_duck/operations';
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
-import { MenuContainers, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '../_common/';
 
-import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/';
+import { ApplicationContainersEnum, LanguagesEnum } from '@applicationTypes';
+import {
+    AppContainersEnum,
+    AppRoutesEnum,
+    MenuContainersEnum,
+    SubMenuRulesEnum,
+    NavRulesEnum,
+} from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
-const { app } = ApplicationContainers;
-const { appMenu, user } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
 
@@ -39,12 +45,12 @@ const SubMenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)
 export default SubMenuContainer;
 
 export interface SubMenuDispatch {
-    setNavAnchorEl: (container: MenuContainers, element?: HTMLElement | null) => void
+    setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
 };
 
 export type SubMenuItemType = {
     title: string;
-    appRoute?: AppRoutes;
+    appRoute?: AppRoutesEnum;
     rules: SubMenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;
@@ -54,7 +60,7 @@ export interface __SubMenuProps {
     menuItems?: SubMenuItemType[];
     menuItem?: SubMenuItemType;
     icon: JSX.Element;
-    container?: MenuContainers;
+    container?: MenuContainersEnum;
     rules?: NavRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;

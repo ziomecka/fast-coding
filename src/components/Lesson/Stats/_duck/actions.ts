@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { StatsTypes } from './types';
+import { StatsActionsEnum } from './types';
 import { StatsState } from './reducers';
 
 const {
@@ -9,7 +9,7 @@ const {
     COMPONENTS_STATS_PAUSE,
     COMPONENTS_STATS_UNPAUSE,
     COMPONENTS_STATS_RESTORE_STATE
-} = StatsTypes;
+} = StatsActionsEnum;
 
 export const startTimer: ActionCreator<Action> = () => ({
     type: COMPONENTS_STATS_TIMER_START

@@ -1,6 +1,6 @@
 import { Action, Reducer } from 'redux';
 
-import { DialogTypes } from './types';
+import { DialogActionsEnum } from './types';
 import { DialogActions, OpenDialogAction } from './actions';
 import { DialogProps } from '@material-ui/core/Dialog';
 import { ButtonProps } from '@material-ui/core/Button';
@@ -8,7 +8,7 @@ import { ButtonProps } from '@material-ui/core/Button';
 const {
     APP_DIALOG_OPEN,
     APP_DIALOG_CLOSE
-} = DialogTypes;
+} = DialogActionsEnum;
 
 export const INITIAL_STATE: DialogState = {
     titleId: '',

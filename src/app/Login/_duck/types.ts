@@ -1,1 +1,1 @@
-export enum LoginTypes {};
+export enum LoginActionsEnum {};

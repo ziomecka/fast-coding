@@ -5,7 +5,7 @@
 
 
 import { Dispatch } from 'redux';
-import { ThunkGetStateType } from '../../../../../_common';
+import { ThunkGetStateType } from '@applicationTypes';
 
 import { resetComparator } from '../actions';
 

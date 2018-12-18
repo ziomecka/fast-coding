@@ -1,23 +1,23 @@
-import { AppLocation } from '../../_common/';
-import { AppRoutes } from '../../../_common/';
+import { AppLocationEnum } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
-const locations: [(pathname: string)=> boolean, AppLocation][] = [
+const locations: [(pathname: string)=> boolean, AppLocationEnum][] = [
     [
-        (pathname: string) => pathname === AppRoutes.home,
-        AppLocation.isHome
+        (pathname: string) => pathname === AppRoutesEnum.home,
+        AppLocationEnum.isHome
     ],
     [
         (pathname: string) => /\/lessons\/lesson-/.test(pathname),
-        AppLocation.isLesson
+        AppLocationEnum.isLesson
     ]
 ];
 
-export const checkLocation = (pathname: string): AppLocation => {
+export const checkLocation = (pathname: string): AppLocationEnum => {
     for (const location in locations) {
         if (locations[location][0](pathname)) {
             return locations[location][1];
         }
     }
 
-    return AppLocation.isOther;
+    return AppLocationEnum.isOther;
 };

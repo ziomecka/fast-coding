@@ -6,7 +6,8 @@ import { ApplicationState } from '../../store';
 
 import { ChangePasswordFormState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
@@ -14,8 +15,8 @@ import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_du
 
 import { SendFormChangePasswordI } from './_duck/types';
 
-const { app } = ApplicationContainers;
-const { changePasswordForm } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { changePasswordForm } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): ChangePasswordFormState => ({
     ...state[app][changePasswordForm]

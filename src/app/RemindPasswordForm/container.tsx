@@ -6,15 +6,16 @@ import { ApplicationState } from '../../store';
 
 import { RemindPasswordState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { reset, setEmail, SetEmailAction, SetEmail } from './_duck/actions';
 import { SendFormRemindPasswordI } from './_duck/types';
 
 import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
-const { app } = ApplicationContainers;
-const { remindPasswordForm } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { remindPasswordForm } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): RemindPasswordState => ({
     ...state[app][remindPasswordForm]

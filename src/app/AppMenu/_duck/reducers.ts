@@ -1,18 +1,18 @@
 import { Reducer } from 'redux';
 
-import { SubMenuTypes } from '../../SubMenu/_duck/types';
-const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
+import { SubMenuActionsEnum } from '../../SubMenu/_duck/types';
+const { APP_SUBMENU_SET_ANCHOREL } = SubMenuActionsEnum;
 
 import {
     SubMenuState,
     INITIAL_STATE as SUMBENU_INITIAL_STATE
 } from '../../SubMenu/_duck/reducers';
 
-import { MenuContainers } from '../../_common/';
+import { MenuContainersEnum } from '@appTypes';
 
 import { AppMenuActions } from './actions';
 
-const { mainMenu, userMenu, languagesMenu} = MenuContainers;
+const { mainMenu, userMenu, languagesMenu} = MenuContainersEnum;
 
 export const INITIAL_STATE: MenuState = {
     [mainMenu]: { ...SUMBENU_INITIAL_STATE },
@@ -41,5 +41,5 @@ export { reducer as menuReducer };
 
 export interface MenuState {
     // @ts-ignore
-    [subMenuName: MenuContainers]: SubMenuState
+    [subMenuName: MenuContainersEnum]: SubMenuState
 };

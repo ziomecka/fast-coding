@@ -10,19 +10,19 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 import Typography from '@material-ui/core/Typography';
 
-import { AppRoutes } from '../../_common';
+import { AppRoutesEnum } from '@appTypes';
 
 import { Translate, getActiveLanguage } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-const { demo, home, lessons, login, newuser, remindPassword, changePassword, newPassword } = AppRoutes;
+const { demo, home, lessons, login, newuser, remindPassword, changePassword, newPassword } = AppRoutesEnum;
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
     constructor(props: ContentProps) {
     super(props);
     this.onDrop = this.onDrop.bind(this);
-    this.home = AppRoutes.home;
+    this.home = AppRoutesEnum.home;
   }
 
   get titles() {

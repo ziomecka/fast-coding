@@ -4,13 +4,11 @@ import { default as LessonsView } from './component';
 import { ApplicationState } from '../../store';
 import { WithStyles } from '@material-ui/core';
 
-import {
-    ApplicationContainers,
-    ComponentsContainers
-} from '../../_common';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
-const { components } = ApplicationContainers;
-const { lessonsLoader } = ComponentsContainers;
+const { components } = ApplicationContainersEnum;
+const { lessonsLoader } = ComponentsContainersEnum;
 
 import { LessonsLoaderState } from '../../components/LessonsLoader/_duck/reducers';
 

@@ -5,8 +5,9 @@ import { AuthRouteProps } from './container';
 import { Route } from 'react-router-dom'
 
 import history from '../../shared/history';
-import { AppRoutes } from '../../_common/';
-const { home } = AppRoutes;
+import { AppRoutesEnum } from '@appTypes';
+
+const { home } = AppRoutesEnum;
 
 const RouteAuthComponent: React.StatelessComponent<AuthRouteProps> = props => {
     const { condition, redirect, ...other } = props;

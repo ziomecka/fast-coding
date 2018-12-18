@@ -1,16 +1,12 @@
 import { Dispatch } from 'redux';
 
-import {
-    ApplicationContainers,
-    ComponentsContainers,
-    AppRoutes,
-    ThunkGetStateType,
-    LocalStorageItemTypes
-} from '../../../../../_common/';
+import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';;
+import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';;
 
-const { components } = ApplicationContainers;
-const { comparator, lesson } = ComponentsContainers;
-const { lessons } = AppRoutes;
+const { components } = ApplicationContainersEnum;
+const { comparator, lesson } = ComponentsContainersEnum;
+const { lessons } = AppRoutesEnum;
 
 import {
     registerNewKey,
@@ -100,14 +96,14 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 
@@ -152,7 +148,7 @@ export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: T
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 

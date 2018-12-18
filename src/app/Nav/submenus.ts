@@ -1,7 +1,7 @@
-import { AppRoutes, SubMenuRulesEnum } from '../../_common/';
+import { AppRoutesEnum, SubMenuRulesEnum } from '@appTypes';
 import { SubMenuItemType } from '../SubMenu/container';
 
-const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutes;
+const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutesEnum;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation } = SubMenuRulesEnum;
 
 export const lessonsMenuItem: SubMenuItemType = {

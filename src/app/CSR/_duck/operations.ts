@@ -4,16 +4,19 @@ import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
-import { ApplicationContainers, ComponentsContainers, AppContainers} from '../../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+
 import {
     localStorageGetItem,
     localStorageSetItem
 } from '../../../app/LocalStorage/_duck/operations';
 
-import { LocalStorageItemTypes } from '../../_common/index';
+import { LocalStorageItemEnum } from '@appTypes';
 
 export const onLoadData =
-(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainers | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (
+(url: string, applicationContainer: ApplicationContainersEnum, container: ComponentsContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string): any => (
     async (dispatch: Dispatch): Promise<any> => {
 
         /** Loading => true */

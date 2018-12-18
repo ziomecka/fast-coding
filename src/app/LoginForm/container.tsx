@@ -8,11 +8,12 @@ import { LoginFormState } from './_duck/reducers';
 import { onLog } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { setLogin, SetLoginAction, reset } from './_duck/actions';
 
-const { app } = ApplicationContainers;
-const { loginForm } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { loginForm } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): LoginFormState => ({
     ...state[app][loginForm]

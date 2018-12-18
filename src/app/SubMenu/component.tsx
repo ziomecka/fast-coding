@@ -3,7 +3,8 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { SubMenuProps, SubMenuItemType } from './container';
-import { AppRoutes, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '../../_common/';
+import { LanguagesEnum } from '@applicationTypes';
+import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -15,7 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const { demo, lesson, lessons, home, login, newuser } = AppRoutes;
+const { demo, lesson, lessons, home, login, newuser } = AppRoutesEnum;
 const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
 const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
 const { pl, en } = LanguagesEnum;
@@ -122,17 +123,17 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     };
 
     // @ts-ignore
-    get subMenuRules (): {[key: SubMenuRulesEnum]: (path?: AppRoutes, lang?: LanguagesEnum) => boolean } {
+    get subMenuRules (): {[key: SubMenuRulesEnum]: (path?: AppRoutesEnum, lang?: LanguagesEnum) => boolean } {
         return {
             [onlyAuthorized]: () => this.props.authorized,
             [onlyUnauthorized]: () => !this.props.authorized,
-            [notCurrentLocation]: (path: AppRoutes) => path !== this.currentPathname,
-            [notActiveLanguage]: (path: AppRoutes, lang: LanguagesEnum) => lang!== getActiveLanguage(this.props.localize).code
+            [notCurrentLocation]: (path: AppRoutesEnum) => path !== this.currentPathname,
+            [notActiveLanguage]: (path: AppRoutesEnum, lang: LanguagesEnum) => lang!== getActiveLanguage(this.props.localize).code
         }
     };
 
     /** If function for rule is not implemented an error will be thrown */
-    areSubMenuRulesMet (rules: SubMenuRulesEnum[], pathname: AppRoutes, lang?: LanguagesEnum | ''): boolean {
+    areSubMenuRulesMet (rules: SubMenuRulesEnum[], pathname: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
         return (!rules || rules.every(rule => this.subMenuRules[rule](pathname, lang)));
     };
 
@@ -151,7 +152,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         return (!this.props.rules || this.props.rules.every(rule => this.navRules[rule]()));
     };
 
-    getLink (appRoute: AppRoutes, title: string, className: string) {
+    getLink (appRoute: AppRoutesEnum, title: string, className: string) {
         let ind = 0;
 
         return (

@@ -1,13 +1,13 @@
 import { Action, ActionCreator } from 'redux';
-import { WelcomeTypes } from './types';
-import { AppLocation } from '../../_common/';
+import { WelcomeActionsEnum } from './types';
+import { AppLocationEnum } from '@appTypes';
 
 const {
     APP_WELCOME_CHANGE_LOCATION
- } = WelcomeTypes;
+ } = WelcomeActionsEnum;
 
 
-export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocation) => ({
+export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocationEnum) => ({
     type: APP_WELCOME_CHANGE_LOCATION,
     appLocation
 });
@@ -18,7 +18,7 @@ export const actions = {
 
 export interface ChangeLocationAction extends Action {
     readonly type: string;
-    appLocation: AppLocation;
+    appLocation: AppLocationEnum;
 };
 
 export type WelcomeActions = ChangeLocationAction;

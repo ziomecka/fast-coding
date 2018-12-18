@@ -1,10 +1,11 @@
 
 import { Dispatch } from 'redux';
 
-import { ApplicationContainers, AppContainers, ThunkGetStateType } from '../../../_common';
+import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
-const { user } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { user } = AppContainersEnum;
 import { onLoadLessons } from '../../../components/LessonsLoader/_duck/operations';
 
 export const onAuthorize = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType ) => {

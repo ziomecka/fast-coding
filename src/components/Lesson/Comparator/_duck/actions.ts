@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { ComparatorTypes } from './types';
+import { ComparatorActionsEnum } from './types';
 import { ComparatorState } from './reducers';
 
 const {
@@ -9,7 +9,7 @@ const {
     COMPONENTS_COMPARATOR_CORRECT_ERROR,
     COMPONENTS_COMPARATOR_RESET,
     COMPONENTS_COMPARATOR_RESTORE_STATE
-} = ComparatorTypes;
+} = ComparatorActionsEnum;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = (currentSignIndex: number) => ({
     type: COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,

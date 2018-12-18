@@ -1,11 +1,11 @@
 import { Action, ActionCreator } from 'redux';
-import { LessonsTypes } from './types';
+import { LessonsActionsEnum } from './types';
 
 import { CourseDataType } from './reducers';
 
 const {
     COMPONENTS_LESSONS_UPDATE
-} = LessonsTypes;
+} = LessonsActionsEnum;
 
 export const updateLesson: ActionCreator<UpdateLessonsAction> = (courseData: CourseDataType) => ({
     type: COMPONENTS_LESSONS_UPDATE,

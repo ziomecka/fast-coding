@@ -9,14 +9,16 @@ import { ApplicationState } from '../../../store';
 import { LessonState } from '../_duck/reducers';
 import { LessonButtonsState } from './_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers, AppContainers } from '../../../_common/';
+import { AppContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { unpauseLessonOnJustType } from '../Comparator/_duck/operations/life';
 import { onRestartLesson, onPauseLesson, onUnpauseLesson, onReset } from '../_duck/operations/life';
 
-const { components, app } = ApplicationContainers;
-const { lesson, lessonButtons } = ComponentsContainers;
-const { dialog } = AppContainers;
+const { components, app } = ApplicationContainersEnum;
+const { lesson, lessonButtons } = ComponentsContainersEnum;
+const { dialog } = AppContainersEnum;
 
 import { WithStyles } from '@material-ui/core/styles';
 

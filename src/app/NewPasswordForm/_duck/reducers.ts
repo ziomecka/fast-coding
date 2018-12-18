@@ -1,27 +1,27 @@
 import { Reducer } from 'redux';
 
-import { NewPasswordFormTypes } from './types';
+import { NewPasswordFormActionsEnum } from './types';
 import { NewPasswordFormActions }  from './actions';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
 } from '../../Password/_duck/reducers';
 
-import { PasswordTypes } from '../../Password/_duck/types';
+import { PasswordActionsEnum } from '../../Password/_duck/types';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-const { confirmPass, newPass } = _PasswordTypes;
+import { PasswordsEnum} from '@appTypes';
+const { confirmPass, newPass } = PasswordsEnum;
 
 const {
     APP_REMIND_PASSWORD_RESET
-} = NewPasswordFormTypes;
+} = NewPasswordFormActionsEnum;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CONFIRM,
     APP_PASSWORD_SET_PASSWORD_NEW,
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 export const INITIAL_STATE: NewPasswordFormState = {
     [newPass]: Object.assign({}, PasswordInitialState),

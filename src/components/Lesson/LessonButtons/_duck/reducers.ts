@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 
 import { LessonButtonsActions, MoveLessonButtonsAction } from './actions';
-import { LessonButtonsTypes } from './types';
+import { LessonButtonsActionsEnum } from './types';
 
 const {
     COMPONENTS_LESSON_BUTTONS_MOVE,
     COMPONENTS_LESSON_DRAGABLE_TURNON,
     COMPONENTS_LESSON_DRAGABLE_TURNOFF,
     COMPONENTS_LESSON_DRAGABLE_RESET
-} = LessonButtonsTypes;
+} = LessonButtonsActionsEnum;
 
 export const INITIAL_STATE: LessonButtonsState = {
     top: 'auto',

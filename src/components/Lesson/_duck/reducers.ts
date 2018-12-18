@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonTypes } from './types';
+import { LessonActionsEnum } from './types';
 import {
     LessonActions,
     OpenLessonAction,
@@ -11,7 +11,8 @@ import {
 
 import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../../../constants';
 
-import { TextTranslationsI, LanguagesEnum } from '../../../_common';
+import { TextTranslationsI } from '@componentsTypes';
+import { LanguagesEnum } from '@applicationTypes';
 
 const { en, pl } = LanguagesEnum;
 
@@ -29,7 +30,7 @@ const {
     COMPONENTS_LESSON_OPEN_DEMO,
     COMPONENTS_LESSON_RESTART,
     COMPONENTS_LESSON_RESTORE_STATE
-} = LessonTypes;
+} = LessonActionsEnum;
 
 export const INITIAL_STATE: LessonState = {
     _id: 0,

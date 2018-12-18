@@ -10,25 +10,25 @@ import { actions as componentsActions, ComponentsActions } from '../components/_
 
 /** LOCATION CHANGE */
 import { locationChangeReducer } from '../app/LocationChange/_duck/reducers';
-import { LocationChangeTypes } from '../app/LocationChange/_duck/types';
+import { LocationChangeActionsEnum } from '@appTypes';
 import { LocationChangeActions } from '../app/LocationChange/_duck/actions';
 
 /** CSR */
 import { csrReducer } from '../app/CSR/_duck/reducers';
-import { CSRTypes } from '../app/CSR/_duck/types';
+import { CSRActionsEnum } from '@appTypes';
 import { CSRActions } from '../app/CSR/_duck/actions';
 
 import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app/_reducers/';
 
 // import { actions as appActions, AppActions } from '../app/_actions';
 
-import { ApplicationContainers } from '../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { localizeReducer, LocalizeState } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '../app/Localize/_duck/reducers';
-const { views, components, app } = ApplicationContainers;
+const { views, components, app } = ApplicationContainersEnum;
 
 const INITIAL_STATE = {
     // [views]: { ...VIEWS_INITIAL_STATE },
@@ -37,12 +37,12 @@ const INITIAL_STATE = {
     localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
-const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeTypes;
+const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeActionsEnum;
 const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,
     APP_CSR_UPDATE_DATA
-} = CSRTypes;
+} = CSRActionsEnum;
 
 const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): ApplicationState => {
     /** get ^@@.*_$ from type */
@@ -106,7 +106,7 @@ export { reducers as applicationReducer };
 
 export interface ApplicationState {
     // @ts-ignore
-    [key: ApplicationContainers ]: ComponentsState | AppState;
+    [key: ApplicationContainersEnum ]: ComponentsState | AppState;
     localize: LocalizeState;
 };
 

@@ -9,11 +9,14 @@ import { LessonState } from './_duck/reducers';
 import { restoreState } from './_duck/actions';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, ComponentsContainers, ComparatorContainers, LocalStorageItemTypes } from '../../_common/';
 
-const { components } = ApplicationContainers;
-const { lesson, comparator } = ComponentsContainers;
-const { stats } = ComparatorContainers;
+import { LocalStorageItemEnum } from '@appTypes';
+import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+
+const { components } = ApplicationContainersEnum;
+const { lesson, comparator } = ComponentsContainersEnum;
+const { stats } = ComparatorContainersEnum;
 
 import { onReset } from './_duck/operations/life';
 import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
@@ -44,8 +47,8 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     registerOnDrop: (fun) => dispatch(registerOnDrop(fun)),
     deregisterOnDrop: (fun) => dispatch(deregisterOnDrop(fun)),
     onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y)),
-    restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.lesson, restoreState)),
-    keepState: () => dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson)),
+    restoreState: () => dispatch(onRestoreState(LocalStorageItemEnum.lesson, restoreState)),
+    keepState: () => dispatch(onKeepState(LocalStorageItemEnum.lesson, lesson)),
     startLeaving: () => dispatch(onStartLeaving())
 });
 

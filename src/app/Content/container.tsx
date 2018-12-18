@@ -8,14 +8,16 @@ import { ApplicationState } from '../../store';
 import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, AppContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
-const { app, components } = ApplicationContainers;
-const { content } = AppContainers;
-const { lesson } = ComponentsContainers;
+const { app, components } = ApplicationContainersEnum;
+const { content } = AppContainersEnum;
+const { lesson } = ComponentsContainersEnum;
 
 import { changeLocation, changeTitle } from './_duck/actions';
-import { AppLocation } from '../_common/';
+import { AppLocationEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
@@ -35,7 +37,7 @@ const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): ContentDispatch => ({
     ...notificationMapDiaptchToProps(dispatch),
-    changeLocation: (appLocation: AppLocation) => dispatch(changeLocation(appLocation)),
+    changeLocation: (appLocation: AppLocationEnum) => dispatch(changeLocation(appLocation)),
     changeTitle: (title) => dispatch(changeTitle(title))
 });
 
@@ -45,7 +47,7 @@ const ContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)
 export default ContentContainer;
 
 export interface ContentDispatch extends NotificationDispatch {
-    changeLocation: (appLocation: AppLocation) => void;
+    changeLocation: (appLocation: AppLocationEnum) => void;
     changeTitle: (title: string) => void;
 };
 

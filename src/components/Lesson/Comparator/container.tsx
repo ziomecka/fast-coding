@@ -7,10 +7,12 @@ import { ApplicationState } from '../../../store';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } from '../../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 
-const { components } = ApplicationContainers;
-const { comparator, lesson } = ComponentsContainers;
+const { components } = ApplicationContainersEnum;
+const { comparator, lesson } = ComponentsContainersEnum;
 
 import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
 import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
@@ -37,8 +39,8 @@ const mapDispatchToProps = (dispatch: Dispatch): ComparatorDispatch => ({
     endingLesson: () => dispatch(onEndingLesson()),
     addEventListener: () => dispatch(onAddEventListener(handleKeyboardDown)),
     removeEventListener: () => dispatch(onRemoveEventListener()),
-    keepState: () => dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator)),
-    restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.comparator, restoreState))
+    keepState: () => dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator)),
+    restoreState: () => dispatch(onRestoreState(LocalStorageItemEnum.comparator, restoreState))
 });
 
 const ComparatorContainer = connect(mapStateToProps, mapDispatchToProps)(Comparator);

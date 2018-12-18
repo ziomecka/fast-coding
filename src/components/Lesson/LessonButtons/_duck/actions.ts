@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { LessonButtonsTypes } from './types';
+import { LessonButtonsActionsEnum } from './types';
 
 const {
     COMPONENTS_LESSON_BUTTONS_MOVE,
@@ -7,7 +7,7 @@ const {
     COMPONENTS_LESSON_DRAGABLE_TURNOFF,
     COMPONENTS_LESSON_DRAGABLE_RESET
 
-} = LessonButtonsTypes;
+} = LessonButtonsActionsEnum;
 
 export const moveLessonButtons: ActionCreator<MoveLessonButtonsAction> = (top, left) => ({
     type: COMPONENTS_LESSON_BUTTONS_MOVE,

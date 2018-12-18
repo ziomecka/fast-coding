@@ -1,16 +1,16 @@
 import { LocalStorageDataTypes } from './types';
-import { LocalStorageItemTypes } from '../../_common/';
+import { LocalStorageItemEnum } from '@appTypes';
 
-export const localStorageGetItem = (name: LocalStorageItemTypes): any => (
+export const localStorageGetItem = (name: LocalStorageItemEnum): any => (
     JSON.parse( localStorage.getItem(name) || null )
 );
 
-export const localStorageSetItem = (name: LocalStorageItemTypes, data: LocalStorageDataTypes): boolean => {
+export const localStorageSetItem = (name: LocalStorageItemEnum, data: LocalStorageDataTypes): boolean => {
     localStorage.setItem(name, JSON.stringify(data));
     return true;
 };
 
-export const localStorageRemoveItem = (name: LocalStorageItemTypes): boolean => {
+export const localStorageRemoveItem = (name: LocalStorageItemEnum): boolean => {
     localStorage.removeItem(name);
     return true;
 };

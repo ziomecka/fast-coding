@@ -9,15 +9,17 @@ import { default as Lessons } from './component';
 import { LessonData } from '../Lesson/_duck/reducers';
 
 import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
-import { ApplicationContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';;
+import { ComponentsContainersEnum } from '@componentsTypes';
+
 import ApplicationState from '../../_reducers/';
 
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
 
 import { LocalizeState} from 'react-localize-redux';
 
-const { components } = ApplicationContainers;
-const { lessonsLoader } = ComponentsContainers;
+const { components } = ApplicationContainersEnum;
+const { lessonsLoader } = ComponentsContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
     ...state[components][lessonsLoader],

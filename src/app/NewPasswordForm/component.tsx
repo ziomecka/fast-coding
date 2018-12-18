@@ -1,17 +1,17 @@
 import * as React from 'react';
 
 import { NewPasswordFormPropsI } from './container';
-import * as common from '../_common';
+import * as types from '@appTypes';
 
 const {
-    AppContainers: { newPasswordForm: container },
-    PasswordTypes: { newPass, confirmPass }
-} = common;
+    AppContainersEnum: { newPasswordForm: container },
+    PasswordsEnum: { newPass, confirmPass }
+} = types;
 
 import Password from '../Password/';
 import Message from '../FormHelperText/';
 
-import { RulesErrorEnum } from '../../shared/_types/';
+import { RulesErrorEnum } from '@sharedTypes';
 const { NO_MATCH } = RulesErrorEnum;
 
 /* Materials */

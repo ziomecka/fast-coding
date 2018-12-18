@@ -1,7 +1,5 @@
 import { Reducer } from 'redux';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-
 import { FormHelperTextActions } from './actions';
 
 export const INITIAL_STATE: FormHelperTextState = {

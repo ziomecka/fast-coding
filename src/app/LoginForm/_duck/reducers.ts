@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
-import { LoginFormTypes } from './types';
-import { PasswordTypes } from '../../Password/_duck/types';
+import { LoginFormActionsEnum } from './types';
+import { PasswordActionsEnum } from '../../Password/_duck/types';
 import { LoginFormActions }  from './actions';
 
 import {
@@ -19,12 +19,12 @@ import {
 const {
     APP_LOGINFORM_SET_LOGIN,
     APP_LOGINFORM_RESET
-} = LoginFormTypes;
+} = LoginFormActionsEnum;
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-const { pass } = _PasswordTypes;
+import { PasswordsEnum } from '@appTypes';
+const { pass } = PasswordsEnum;
 
-const { APP_PASSWORD_SET_PASSWORD, APP_PASSWORD_VALIDATE } = PasswordTypes;
+const { APP_PASSWORD_SET_PASSWORD, APP_PASSWORD_VALIDATE } = PasswordActionsEnum;
 
 export const INITIAL_STATE: LoginFormState = {
     [pass]: { ...PASSWORD_INITIAL_STATE },

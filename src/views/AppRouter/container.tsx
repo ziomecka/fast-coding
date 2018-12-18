@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { default as AppRouter } from './component';
 import { ApplicationState } from '../../store';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
-const { user } = AppContainers;
+const { app } = ApplicationContainersEnum;
+const { user } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): AppRouterMapStateToProps => ({
     authorized: state[app][user].authorized
