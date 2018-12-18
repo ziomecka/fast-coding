@@ -18,14 +18,6 @@ const {
     DOMAIN
 } = require('../constants');
 
-const {
-    ERROR,
-    LOGIN_DOES_NOT_EXIST,
-    SUCCESS,
-    INCORRECT_PASSWORD,
-    INCORRECT_CURRENT_PASSWORD
-} = require('../constants').PASSWORD_MANAGER_RESPONSES;
-
 class PasswordManager {
     constructor(options = {}) {
         this.saltSize = options.saltSize || 50;

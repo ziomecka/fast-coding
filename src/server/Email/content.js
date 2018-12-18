@@ -1,5 +1,5 @@
 require('dotenv').config();
-const html = require('./emails/index');
+const html = require('./emails/');
 
 const createContent = (options) => {
     const {
