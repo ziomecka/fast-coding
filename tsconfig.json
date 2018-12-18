@@ -25,7 +25,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
-      "root/*": ["*"]
+      "@app/*": [ "app/*" ],
+      "@components/*": [ "components/*" ],
+      "@views/*": [ "views/*" ],
+      "@shared/*": [ "shared/*" ]
     },
     "resolveJsonModule": true
   }

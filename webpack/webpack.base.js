@@ -129,13 +129,11 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.sass'],
     alias: {
-      images: path.resolve('./src/images'),
-      styles: path.resolve('./src/styles'),
-      fonts: path.resolve('./src/fonts'),
-      components: path.resolve('./src/components'),
-      views: path.resolve('./src/views'),
-      utils: path.resolve('./src/utils'),
-      root: path.resolve('./src'),
+      '@app': path.resolve( __dirname, './src/app/' ),
+      '@components': path.resolve( __dirname, './src/components/' ),
+      '@views': path.resolve( __dirname, './src/views/' ),
+      '@shared': path.resolve( __dirname, './src/shared/' ),
+      '@root': path.resolve( __dirname, './src/' )
     },
   },
   plugins: [
