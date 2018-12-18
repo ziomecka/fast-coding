@@ -10,10 +10,10 @@ import {
     localStorageSetItem
 } from '../../../app/LocalStorage/_duck/operations';
 
-import { LocalStorageItemTypes } from '@appTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 
 export const onLoadData =
-(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainersEnum | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (
+(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainersEnum | AppContainers, lsItem: LocalStorageItemEnum, stateName: string): any => (
     async (dispatch: Dispatch): Promise<any> => {
 
         /** Loading => true */

@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 
 import { WelcomeClasses } from './reducers';
 import { ThunkGetStateType } from '@applicationTypes';
-import { AppLocation, LocalStorageItemTypes } from '@appTypes';
+import { AppLocation, LocalStorageItemEnum } from '@appTypes';
 
 import { openDemoLesson } from '../../../components/Lesson/_duck/actions';
 
@@ -15,7 +15,7 @@ import { manageButtonFocus as buttonFocus } from '../../../shared/button.focus';
 import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
 import {  AppContainers } from '@appTypes';
 
-const { comparator, lesson, stats } = LocalStorageItemTypes;
+const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const { isHome, isOther } = AppLocation;
 

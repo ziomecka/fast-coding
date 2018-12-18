@@ -5,7 +5,7 @@ import {
     ComponentsContainersEnum,
     AppRoutesEnum,
     ThunkGetStateType,
-    LocalStorageItemTypes
+    LocalStorageItemEnum
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
@@ -100,14 +100,14 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 
@@ -152,7 +152,7 @@ export const handleKeyDown = async (key: string, dispatch: Dispatch, getState: T
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if (answer) {
-        await dispatch(onKeepState(LocalStorageItemTypes.comparator, comparator));
+        await dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
         answer = null; // GC
     }
 

@@ -6,12 +6,12 @@ import { updateLesson } from '../../Lesson/_duck/actions';
 import { LessonData } from '../../Lesson/_duck/reducers';
 import { openLesson } from '../../Lesson/_duck/actions';
 
-import { ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
+import { ThunkGetStateType, LocalStorageItemEnum } from '@applicationTypes';
 
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operations';
 
-const { comparator, lesson, stats } = LocalStorageItemTypes;
+const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {
     localStorageRemoveItem(comparator);

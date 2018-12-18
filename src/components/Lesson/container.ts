@@ -13,7 +13,7 @@ import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispat
 import {
     ApplicationContainers,
     ComponentsContainersEnum,
-    LocalStorageItemTypes,
+    LocalStorageItemEnum,
     ComparatorContainersEnum
 } from '@applicationTypes';
 
@@ -50,8 +50,8 @@ const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
     registerOnDrop: (fun) => dispatch(registerOnDrop(fun)),
     deregisterOnDrop: (fun) => dispatch(deregisterOnDrop(fun)),
     onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y)),
-    restoreState: () => dispatch(onRestoreState(LocalStorageItemTypes.lesson, restoreState)),
-    keepState: () => dispatch(onKeepState(LocalStorageItemTypes.lesson, lesson)),
+    restoreState: () => dispatch(onRestoreState(LocalStorageItemEnum.lesson, restoreState)),
+    keepState: () => dispatch(onKeepState(LocalStorageItemEnum.lesson, lesson)),
     startLeaving: () => dispatch(onStartLeaving())
 });
 

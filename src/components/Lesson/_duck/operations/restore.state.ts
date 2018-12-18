@@ -2,7 +2,7 @@ import { Dispatch} from 'redux';
 import {
     ApplicationContainers,
     ComponentsContainersEnum,
-    LocalStorageItemTypes,
+    LocalStorageItemEnum,
     ThunkGetStateType
 } from '@applicationTypes';
 
@@ -18,19 +18,19 @@ import { RestoreStateAction as ComparatorRestoreStateAction } from '../../Compar
 
 import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '../../../../app/LocalStorage/_duck/operations';
 
-export const onKeepState = (localStorageItem: LocalStorageItemTypes, container: ComponentsContainersEnum): any => (
+export const onKeepState = (localStorageItem: LocalStorageItemEnum, container: ComponentsContainersEnum): any => (
     (dispatch: Dispatch, getState: ThunkGetStateType): boolean => (
         localStorageSetItem(localStorageItem, getState()[components][container])
     )
 );
 
-export const onRemoveState = (localStorageItem: LocalStorageItemTypes): any => (
+export const onRemoveState = (localStorageItem: LocalStorageItemEnum): any => (
     (dispatch: Dispatch, getState: ThunkGetStateType): boolean => (
         localStorageRemoveItem(localStorageItem)
 ));
 
 export const onRestoreState = (
-    localStorageItem: LocalStorageItemTypes,
+    localStorageItem: LocalStorageItemEnum,
     action: (data) => LessonRestoreStateAction | StatsRestoreStateAction | ComparatorRestoreStateAction,
     clearState: boolean = false
     ): any => (

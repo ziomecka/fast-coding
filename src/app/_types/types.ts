@@ -34,7 +34,7 @@ export enum PasswordsEnum {
     confirmPass = 'CONFIRM_PASS'
 };
 
-export enum LocalStorageItemTypes {
+export enum LocalStorageItemEnum {
     lessons = 'LESSONS',
     comparator = 'COMPARATOR',
     lesson = 'LESSON',

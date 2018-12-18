@@ -5,7 +5,7 @@ import { URLParamsI } from '../../../shared/url';
 
 const { buildUrl } = urlFuncs;
 
-import { AppRoutesEnum, ApplicationContainers, ComponentsContainersEnum, LocalStorageItemTypes } from '@applicationTypes';
+import { AppRoutesEnum, ApplicationContainers, ComponentsContainersEnum, LocalStorageItemEnum } from '@applicationTypes';
 
 const { components  } = ApplicationContainers;
 const { lessonsLoader } = ComponentsContainersEnum;
@@ -21,7 +21,7 @@ const defaultParamNames = {
 export const onLoadLessons = (params: URLParamsI = defaultParamNames, url: string = _url, ): any => (dispatch: Dispatch) => {
     const applicationContainer = components;
     const container = lessonsLoader;
-    const lsItem = LocalStorageItemTypes.lessons;
+    const lsItem = LocalStorageItemEnum.lessons;
 
     dispatch(onLoadData(buildUrl(params, url), applicationContainer, container, lsItem, 'lessons'));
 };
