@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonTypes } from './types';
+import { LessonActionsEnum } from './types';
 import {
     LessonActions,
     OpenLessonAction,
@@ -29,7 +29,7 @@ const {
     COMPONENTS_LESSON_OPEN_DEMO,
     COMPONENTS_LESSON_RESTART,
     COMPONENTS_LESSON_RESTORE_STATE
-} = LessonTypes;
+} = LessonActionsEnum;
 
 export const INITIAL_STATE: LessonState = {
     _id: 0,
