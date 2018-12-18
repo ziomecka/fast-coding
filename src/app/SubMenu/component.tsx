@@ -3,7 +3,8 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { SubMenuProps, SubMenuItemType } from './container';
-import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '@appTypes';
+import { LanguagesEnum } from '@applicationTypes';
+import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';

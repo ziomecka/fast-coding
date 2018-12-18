@@ -1,6 +1,3 @@
-
-import { LanguagesEnum } from '@appTypes';
-
 export enum ComponentsContainersEnum {
     comparator = 'COMPARATOR',
     lesson = 'LESSON',
@@ -9,13 +6,3 @@ export enum ComponentsContainersEnum {
     lessons = 'LESSONS',
     lessonButtons = 'LESSON_BUTTONS'
 };
-
-export enum LessonsCategoriesEnum {
-    JS = 'js',
-    basics = 'basics'
-};
-
-export interface TextTranslationsI {
-    // @ts-ignore
-    [language: LanguagesEnum]: string
-}

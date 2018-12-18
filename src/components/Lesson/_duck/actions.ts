@@ -2,7 +2,7 @@ import { Action, ActionCreator } from 'redux';
 import { LessonActionsEnum } from './types';
 
 import { LessonData} from './reducers';
-import { LanguagesEnum } from '@appTypes';
+import { LanguagesEnum } from '@applicationTypes';
 
 import { LessonState } from './reducers';
 

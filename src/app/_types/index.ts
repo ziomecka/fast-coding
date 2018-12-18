@@ -14,7 +14,7 @@ export * from '../LocalStorage/_duck/types';
 export * from '../LocationChange/_duck/types';
 export * from '../Login/_duck/types';
 export * from '../LoginForm/_duck/types';
-// export * from '../Nav/_duck/types';
+export * from '../Nav/_duck/types';
 export * from '../NewPasswordForm/_duck/types';
 export * from '../NewUserForm/_duck/types';
 export * from '../Notification/_duck/types';

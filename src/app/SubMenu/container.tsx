@@ -11,14 +11,13 @@ import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
+import { ApplicationContainersEnum, LanguagesEnum } from '@applicationTypes';
 import {
     AppContainersEnum,
     AppRoutesEnum,
     MenuContainersEnum,
     SubMenuRulesEnum,
     NavRulesEnum,
-    LanguagesEnum
 } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';

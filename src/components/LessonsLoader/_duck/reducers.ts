@@ -1,5 +1,5 @@
 import { LessonData } from '../../Lesson/_duck/reducers';
-import { TextTranslationsI } from '@applicationTypes';
+import { TextTranslationsI } from './types';
 
 export const INITIAL_STATE: LessonsLoaderState = {
     loading: true,

@@ -1,6 +1,6 @@
 import { GetResponseI } from '../../../app/api/';
 import { CourseDataType } from '../../Lessons/_duck/reducers';
-import { TextTranslationsI } from '@applicationTypes';
+import { LanguagesEnum } from '@applicationTypes';
 import { LessonData } from '../../Lesson/_duck/reducers';
 
 export interface GetLessonsResponseI extends GetResponseI {
@@ -13,4 +13,14 @@ export interface LessonsDataI {
     description: TextTranslationsI;
     type:"free"
     lessons: LessonData[]
+};
+
+export interface TextTranslationsI {
+    // @ts-ignore
+    [language: LanguagesEnum]: string
+}
+
+export enum LessonsCategoriesEnum {
+    JS = 'js',
+    basics = 'basics'
 };
