@@ -5,9 +5,9 @@ import { ApplicationState } from '../../store';
 
 import { DialogState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { dialog } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): DialogState => ({

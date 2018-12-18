@@ -6,9 +6,9 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as LocationChange } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
-import { ApplicationContainers, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 import { changeLocation } from './_duck/actions';
 

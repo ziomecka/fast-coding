@@ -22,13 +22,13 @@ import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app
 
 // import { actions as appActions, AppActions } from '../app/_actions';
 
-import { ApplicationContainers } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { localizeReducer, LocalizeState } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '../app/Localize/_duck/reducers';
-const { views, components, app } = ApplicationContainers;
+const { views, components, app } = ApplicationContainersEnum;
 
 const INITIAL_STATE = {
     // [views]: { ...VIEWS_INITIAL_STATE },
@@ -106,7 +106,7 @@ export { reducers as applicationReducer };
 
 export interface ApplicationState {
     // @ts-ignore
-    [key: ApplicationContainers ]: ComponentsState | AppState;
+    [key: ApplicationContainersEnum ]: ComponentsState | AppState;
     localize: LocalizeState;
 };
 

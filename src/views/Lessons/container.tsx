@@ -5,11 +5,11 @@ import { ApplicationState } from '../../store';
 import { WithStyles } from '@material-ui/core';
 
 import {
-    ApplicationContainers,
+    ApplicationContainersEnum,
     ComponentsContainersEnum
 } from '@applicationTypes';
 
-const { components } = ApplicationContainers;
+const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
 import { LessonsLoaderState } from '../../components/LessonsLoader/_duck/reducers';

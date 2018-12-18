@@ -1,7 +1,7 @@
 
 import { ApplicationState } from '../_reducers/';
 
-export enum ApplicationContainers {
+export enum ApplicationContainersEnum {
     views = 'VIEWS',
     components = 'COMPONENTS',
     app = 'APP'

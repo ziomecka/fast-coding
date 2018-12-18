@@ -1,10 +1,10 @@
 
 import { Dispatch } from 'redux';
 
-import { ApplicationContainers, ThunkGetStateType } from '@applicationTypes';
+import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 import { onLoadLessons } from '../../../components/LessonsLoader/_duck/operations';
 

@@ -11,7 +11,7 @@ import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
 
-import { ApplicationContainers } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 import {
     AppContainersEnum,
     AppRoutesEnum,
@@ -24,7 +24,7 @@ import {
 import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';

@@ -7,9 +7,9 @@ import { ApplicationState } from '../../store';
 
 import { FormHelperTextState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { formHelperText } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): FormHelperTextState => ({

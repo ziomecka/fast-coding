@@ -5,11 +5,11 @@ import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
 import { AppContainersEnum } from '@appTypes';
-import { ApplicationContainers } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { LocalizeState } from 'react-localize-redux';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app],

@@ -5,13 +5,13 @@ import { ApplicationState } from '../../../store';
 
 import { StatsState } from './_duck/reducers';
 
-import { ComponentsContainersEnum, ApplicationContainers, ComparatorContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum, ApplicationContainersEnum, ComparatorContainersEnum } from '@applicationTypes';
 import { WithStyles } from '@material-ui/core/styles';
 import { WithTableProps } from '../../../app/Table/';
 
 import { LocalizeState } from 'react-localize-redux';
 
-const { components } = ApplicationContainers;
+const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;
 

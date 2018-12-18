@@ -8,9 +8,9 @@ import { ApplicationState } from '../../store';
 import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, AppContainersEnum, ComponentsContainersEnum } from '@applicationTypes';
+import { ApplicationContainersEnum, AppContainersEnum, ComponentsContainersEnum } from '@applicationTypes';
 
-const { app, components } = ApplicationContainers;
+const { app, components } = ApplicationContainersEnum;
 const { content } = AppContainersEnum;
 const { lesson } = ComponentsContainersEnum;
 

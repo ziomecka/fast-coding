@@ -8,9 +8,9 @@ import { ApplicationState } from '../../_reducers';
 
 import { onLogOut } from './_duck/operations';
 
-import { AppContainersEnum, ApplicationContainers } from '@appTypes';
+import { AppContainersEnum, ApplicationContainersEnum } from '@appTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({

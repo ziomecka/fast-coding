@@ -5,9 +5,9 @@ import { URLParamsI } from '../../../shared/url';
 
 const { buildUrl } = urlFuncs;
 
-import { AppRoutesEnum, ApplicationContainers, ComponentsContainersEnum, LocalStorageItemEnum } from '@applicationTypes';
+import { AppRoutesEnum, ApplicationContainersEnum, ComponentsContainersEnum, LocalStorageItemEnum } from '@applicationTypes';
 
-const { components  } = ApplicationContainers;
+const { components  } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
 const _url = AppRoutesEnum.lessonsGet;

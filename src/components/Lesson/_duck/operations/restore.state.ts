@@ -1,12 +1,12 @@
 import { Dispatch} from 'redux';
 import {
-    ApplicationContainers,
+    ApplicationContainersEnum,
     ComponentsContainersEnum,
     LocalStorageItemEnum,
     ThunkGetStateType
 } from '@applicationTypes';
 
-const { components } = ApplicationContainers;
+const { components } = ApplicationContainersEnum;
 
 import { LessonState } from '../reducers';
 import { StatsState } from '../../Stats/_duck/reducers';

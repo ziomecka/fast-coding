@@ -8,7 +8,7 @@ import { AppState } from '../_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
 
-import { ApplicationContainers, RulesErrorEnum } from '@applicationTypes';
+import { ApplicationContainersEnum, RulesErrorEnum } from '@applicationTypes';
 import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
@@ -17,7 +17,7 @@ import { LocalizeState } from 'react-localize-redux';
 
 import { onValidatePassword } from './_duck/operations';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app],

@@ -9,13 +9,13 @@ import { changeLocation } from './_duck/actions';
 
 import { WelcomeState } from './_duck/reducers';
 
-import { ApplicationContainers } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum, AppLocationEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 import { onOpenDemoLesson, onAddKeyDownListener, onRemoveKeyDownListener } from './_duck/operations';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 const { welcome } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): WelcomeState => ({

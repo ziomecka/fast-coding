@@ -4,9 +4,9 @@ import { LocationChangeActionsEnum } from './types';
 import { LocationChangeActions } from './actions';
 
 import { ApplicationState } from '../../../store';
-import { ApplicationContainers } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
-const { app } = ApplicationContainers;
+const { app } = ApplicationContainersEnum;
 
 import { checkLocation } from './operations';
 
