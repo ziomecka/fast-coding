@@ -2,12 +2,12 @@ import { Dispatch, Action } from 'redux';
 
 import { post as postData } from '../../api';
 
-import { AppRoutes } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 import { LoginFormResponseEnum } from './types';
 
 const { SUCCESS } = LoginFormResponseEnum;
 
-const { loginLog, lessons } = AppRoutes;
+const { loginLog, lessons } = AppRoutesEnum;
 
 import { setFormHelperText } from '../../FormHelperText/_duck/actions';
 import { authorizeUser } from  '../../User/_duck/actions';

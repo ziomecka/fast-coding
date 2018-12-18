@@ -41,7 +41,7 @@ export enum LocalStorageItemTypes {
     stats = 'STATS'
 };
 
-export enum AppRoutes {
+export enum AppRoutesEnum {
     home = '/',
     lessons = '/lessons',
     lesson = '/lessons/lesson-',

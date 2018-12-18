@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainers, ComponentsContainersEnum, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
+import { ApplicationContainers, ComponentsContainersEnum, AppRoutesEnum, ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainersEnum;
-const { lessons } = AppRoutes;
+const { lessons } = AppRoutesEnum;
 
 import history from '../../../../shared/history';
 

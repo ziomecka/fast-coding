@@ -1,7 +1,7 @@
 import { Dispatch, Action } from 'redux';
 
 import { post as postData } from '../../api/';
-import { AppRoutes } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
 import { NewUserFormResponseEnum } from './types';
 
@@ -12,7 +12,7 @@ import history from '../../../shared/history';
 import { onOpenNotification } from '../../Notification/_duck/operations';
 
 const { SUCCESS } = NewUserFormResponseEnum;
-const { newUserSet, lessons } = AppRoutes;
+const { newUserSet, lessons } = AppRoutesEnum;
 
 export const onSendNewUserForm = (login: string, password: string, email: string ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {

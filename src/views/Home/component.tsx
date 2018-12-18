@@ -11,7 +11,7 @@ import LessonsLoader from '../../components/LessonsLoader/container';
 import User from '../../app/User/container';
 import KeyboardListener from '../../app/KeyboardListener/container';
 
-import { AppContainers, AppRoutes } from '@appTypes';;
+import { AppContainers, AppRoutesEnum } from '@appTypes';;
 
 const { content, welcome } = AppContainers;
 
@@ -20,7 +20,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
     constructor(props: HomeViewProps) {
         super(props);
 
-        this.homeUrl = AppRoutes.home;
+        this.homeUrl = AppRoutesEnum.home;
     }
 
     render() {

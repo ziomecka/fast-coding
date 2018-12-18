@@ -1,9 +1,9 @@
 import { AppLocation } from '@appTypes';
-import { AppRoutes } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
 const locations: [(pathname: string)=> boolean, AppLocation][] = [
     [
-        (pathname: string) => pathname === AppRoutes.home,
+        (pathname: string) => pathname === AppRoutesEnum.home,
         AppLocation.isHome
     ],
     [

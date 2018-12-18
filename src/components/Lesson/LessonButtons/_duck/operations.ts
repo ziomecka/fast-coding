@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import { AppRoutes } from '@applicationTypes';
+import { AppRoutesEnum } from '@applicationTypes';
 import { ApplicationState } from '../../../../_reducers';
 
-const { lessons } = AppRoutes;
+const { lessons } = AppRoutesEnum;
 
 import { openDialog, closeDialog } from '../../../../app/Dialog/_duck/actions';
 import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations/life';

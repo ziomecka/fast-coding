@@ -14,7 +14,7 @@ import { MenuState } from '../AppMenu/_duck/reducers';
 import { ApplicationContainers } from '@applicationTypes';
 import {
     AppContainers,
-    AppRoutes,
+    AppRoutesEnum,
     MenuContainersEnum,
     SubMenuRulesEnum,
     NavRulesEnum,
@@ -51,7 +51,7 @@ export interface SubMenuDispatch {
 
 export type SubMenuItemType = {
     title: string;
-    appRoute?: AppRoutes;
+    appRoute?: AppRoutesEnum;
     rules: SubMenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;

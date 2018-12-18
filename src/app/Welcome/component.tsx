@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { AppRoutes } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
@@ -27,17 +27,17 @@ require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
     classFalling: string;
-    demoUrl: AppRoutes;
-    lessonsUrl: AppRoutes;
-    home: AppRoutes;
+    demoUrl: AppRoutesEnum;
+    lessonsUrl: AppRoutesEnum;
+    home: AppRoutesEnum;
     subMenu: __SubMenuProps;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
 
-        this.demoUrl = AppRoutes.demo;
-        this.home = AppRoutes.home;
-        this.lessonsUrl = AppRoutes.lessons;
+        this.demoUrl = AppRoutesEnum.demo;
+        this.home = AppRoutesEnum.home;
+        this.lessonsUrl = AppRoutesEnum.lessons;
 
         this.goToDemo = this.goToDemo.bind(this);
         this.goToLessons = this.goToLessons.bind(this);

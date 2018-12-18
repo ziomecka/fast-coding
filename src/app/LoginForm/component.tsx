@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainers, PasswordsEnum, AppRoutes } from '@appTypes';
+import { AppContainers, PasswordsEnum, AppRoutesEnum } from '@appTypes';
 
 const { loginForm } = AppContainers;
-const { remindPassword } = AppRoutes;
+const { remindPassword } = AppRoutesEnum;
 
 import history from '../../shared/history';
 

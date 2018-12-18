@@ -3,14 +3,14 @@ import { Dispatch } from 'redux';
 import {
     ApplicationContainers,
     ComponentsContainersEnum,
-    AppRoutes,
+    AppRoutesEnum,
     ThunkGetStateType,
     LocalStorageItemTypes
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainersEnum;
-const { lessons } = AppRoutes;
+const { lessons } = AppRoutesEnum;
 
 import {
     registerNewKey,

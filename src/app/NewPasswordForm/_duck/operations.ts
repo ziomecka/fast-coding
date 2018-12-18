@@ -1,13 +1,13 @@
 import { Dispatch, Action } from 'redux';
 
-import { AppRoutes } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
 import { NewPasswordFormResponseEnum } from './types';
 
 import { SendFormNewPasswordFormI } from './types';
 
 const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
-const { newPassword, login } = AppRoutes;
+const { newPassword, login } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '../../Form/_duck/operations';
 

@@ -4,7 +4,7 @@ import { RemindPasswordPropsI } from './container';
 import * as types from '@appTypes';
 
 const {
-    AppRoutes: { login }
+    AppRoutesEnum: { login }
 } = types;
 
 import Email from '../Email';
