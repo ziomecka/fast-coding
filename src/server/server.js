@@ -73,7 +73,7 @@ app.post( CHANGE_PASSWORD, serverChangePassword );
 app.post( REMIND_PASSWORD, serverRemindPassword );
 
 /** Change password */
-app.post( '/changepassword', serverChangePassword );
+app.post( CHANGE_PASSWORD, serverChangePassword );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });
