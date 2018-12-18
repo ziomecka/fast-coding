@@ -21,6 +21,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { Translate } from 'react-localize-redux';
 
+import styles from './styles';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     constructor(props) {
         super(props);
@@ -85,6 +88,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
                                 tabIndex={3}
                                 variant="text"
                                 color="primary"
+                                className={ this.props.classes.button }
                             >
                                 <Translate id="remindPasswordRememberButton" />
                             </Button>
@@ -96,4 +100,4 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     }
 };
 
-export default RemindPasswordComponent;
+export default withStyles(styles)(RemindPasswordComponent);

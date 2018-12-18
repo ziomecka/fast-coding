@@ -14,6 +14,8 @@ import { SendFormRemindPasswordI } from './_duck/types';
 import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
+import { WithStyles } from '@material-ui/core/styles';
+
 const { app } = ApplicationContainersEnum;
 const { remindPasswordForm } = AppContainersEnum;
 
@@ -39,4 +41,7 @@ export interface RemindPasswordDispatch {
     formInvalid: () => Action;
 };
 
-export interface RemindPasswordPropsI extends RemindPasswordDispatch, RemindPasswordState {};
+export interface RemindPasswordPropsI extends
+    RemindPasswordDispatch,
+    RemindPasswordState,
+    WithStyles {};
