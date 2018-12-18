@@ -129,16 +129,16 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.sass'],
     alias: {
-      '@app': ( path.resolve ( __dirname, '../src/app/' ) ),
-      '@components': ( path.resolve ( __dirname, '../src/components/' ) ),
-      '@views': ( path.resolve ( __dirname, '../src/views/' ) ),
-      '@shared': ( path.resolve ( __dirname, '../src/shared/' ) ),
-      '@root': ( path.resolve ( __dirname, '../src/' ) ),
-      '@applicationTypes': ( path.resolve ( __dirname, '../src/_types/' ) ),
-      '@appTypes': ( path.resolve ( __dirname, '../src/app/_types/' ) ),
-      '@componentsTypes': ( path.resolve ( __dirname, '../src/components/_types/' ) ),
-      '@viewsTypes': ( path.resolve ( __dirname, '../src/views/_types/' ) ),
-      '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  ))
+      '@app': ( path.resolve ( './src/app/' ) ),
+      '@components': ( path.resolve ( './src/components/' ) ),
+      '@views': ( path.resolve ( './src/views/' ) ),
+      '@shared': ( path.resolve ( './src/shared/' ) ),
+      '@root': ( path.resolve ( './src/' ) ),
+      '@applicationTypes': ( path.resolve ( './src/_types/' ) ),
+      '@appTypes': ( path.resolve ( './src/app/_types/' ) ),
+      '@componentsTypes': ( path.resolve ( './src/components/_types/' ) ),
+      '@viewsTypes': ( path.resolve ( './src/views/_types/' ) ),
+      '@sharedTypes': ( path.resolve ( './src/shared/_types/'  ))
     },
   },
   plugins: [
