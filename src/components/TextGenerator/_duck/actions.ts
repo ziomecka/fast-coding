@@ -1,10 +1,10 @@
 import { Action, ActionCreator } from 'redux';
-import { TextGeneratorTypes } from './types';
+import { TextGeneratorActionsEnum } from './types';
 
 const {
     COMPONENTS_TEXT_GENERATOR_TURNON,
     COMPONENTS_TEXT_GENERATOR_TURNOFF
-} = TextGeneratorTypes;
+} = TextGeneratorActionsEnum;
 
 export const turnOnTextGenerator: ActionCreator<TurnOnOffTextGeneratorAction> = () => ({
     type: COMPONENTS_TEXT_GENERATOR_TURNON

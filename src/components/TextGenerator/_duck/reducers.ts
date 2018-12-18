@@ -1,12 +1,12 @@
 import { Reducer } from 'redux';
 
-import { TextGeneratorTypes } from './types';
+import { TextGeneratorActionsEnum } from './types';
 import { TextGeneratorActions } from './actions';
 
 const {
     COMPONENTS_TEXT_GENERATOR_TURNON,
     COMPONENTS_TEXT_GENERATOR_TURNOFF
-} = TextGeneratorTypes;
+} = TextGeneratorActionsEnum;
 
 export const INITIAL_STATE: TextGeneratorState = {
     turnedOn: false
