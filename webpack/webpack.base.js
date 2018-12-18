@@ -62,7 +62,6 @@ module.exports = {
   entry: [`${APP_DIR}/index.tsx`],
   output: {
     path: DIR,
-    // path: DEPLOY_DIR,
     publicPath: '/',
     filename: 'index.js',
   },
@@ -93,14 +92,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'style-loader',
-          // 'style-loader?sourceMap&insertAt=top',
           {
             loader: 'css-loader',
             options: {
-              // localIdentName: '[folder]__[local]--[hash:base64:5]',
-              // modules: true,
-              // importLoaders: 1,
-              sourceMap: true,
+              sourceMap: false
             },
           },
           {
@@ -146,34 +141,8 @@ module.exports = {
   plugins: [
     new WebpackCopyPlugin([
         {
-          from: 'src/server/*',
-          to: '',
-          toType: 'file',
-          flatten: true
-        },
-        {
-          from: 'src/server/Mongo/*',
-          to: 'Mongo',
-          toType: 'dir',
-          flatten: true
-        },
-        {
-          from: 'src/server/PasswordManager/*',
-          to: 'PasswordManager',
-          toType: 'dir',
-          flatten: true
-        },
-        {
-          from: 'src/server/Redis/*',
-          to: 'Redis',
-          toType: 'dir',
-          flatten: true
-        },
-        {
-          from: 'src/server/Email/*',
-          to: 'Email',
-          toType: 'dir',
-          flatten: true
+          from: 'src/server',
+          to: './'
         }
     ]),
     new Dotenv({
@@ -182,10 +151,8 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
-    //   template: path.resolve(__dirname, `${APP_DIR}/index.hbs`),
       template: `${APP_DIR}/index.hbs`,
       chunksSortMode: "dependency"
-    //   stats: { children: false }
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
