@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
-import { SubMenuTypes } from '../../SubMenu/_duck/types';
-const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
+import { SubMenuActionsEnum } from '../../SubMenu/_duck/types';
+const { APP_SUBMENU_SET_ANCHOREL } = SubMenuActionsEnum;
 
 import {
     SubMenuState,

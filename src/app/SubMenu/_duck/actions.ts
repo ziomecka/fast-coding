@@ -1,6 +1,6 @@
 import { Action, ActionCreator } from 'redux';
-import { SubMenuTypes } from './types';
-const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
+import { SubMenuActionsEnum } from './types';
+const { APP_SUBMENU_SET_ANCHOREL } = SubMenuActionsEnum;
 
 import { MenuContainers } from '@appTypes';
 
