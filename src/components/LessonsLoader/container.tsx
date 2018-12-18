@@ -6,7 +6,8 @@ import { LessonsLoaderState } from './_duck/reducers';
 
 import { onLoadLessons } from './_duck/operations';
 
-import { ApplicationContainersEnum, ComponentsContainersEnum } from '@applicationTypes';;
+import { ApplicationContainersEnum } from '@applicationTypes';;
+import { ComponentsContainersEnum } from '@componentsTypes';
 
 import { ApplicationState } from '../../_reducers/';
 

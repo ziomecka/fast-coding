@@ -2,7 +2,10 @@ import { Dispatch, Action } from 'redux';
 import { setFormHelperText } from '../../FormHelperText/_duck/actions';
 import { SendFormI } from './types';
 import { post as postData } from '../../api/';
-import { ThunkGetStateType, AppContainersEnum, ApplicationContainersEnum } from '@applicationTypes';
+
+import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
+
 import { onOpenNotification } from '../../Notification/_duck/operations';
 
 import history from '../../../shared/history';

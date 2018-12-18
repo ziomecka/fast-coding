@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { ComponentsActions } from '../_actions/';
-import { ComponentsContainersEnum, ComparatorContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
 
 const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;

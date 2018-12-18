@@ -1,7 +1,9 @@
 import { Action, ActionCreator } from 'redux';
 import { CSRActionsEnum } from './types';
 
-import { ApplicationContainersEnum, ComponentsContainersEnum, AppContainersEnum} from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
 const {
     APP_CSR_CHANGE_LOADING_STATE,

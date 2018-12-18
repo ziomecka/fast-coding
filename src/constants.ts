@@ -1,4 +1,4 @@
-import { LanguagesEnum } from '@applicationTypes';
+import { LanguagesEnum } from '@appTypes';
 const { pl, en } = LanguagesEnum;
 
 export const ROOT_NODE = document.getElementById('root');

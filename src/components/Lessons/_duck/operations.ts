@@ -6,7 +6,8 @@ import { updateLesson } from '../../Lesson/_duck/actions';
 import { LessonData } from '../../Lesson/_duck/reducers';
 import { openLesson } from '../../Lesson/_duck/actions';
 
-import { ThunkGetStateType, LocalStorageItemEnum } from '@applicationTypes';
+import { ThunkGetStateType } from '@applicationTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operations';

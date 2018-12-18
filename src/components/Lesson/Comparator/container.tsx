@@ -7,7 +7,9 @@ import { ApplicationState } from '../../../store';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ComponentsContainersEnum, ApplicationContainersEnum, LocalStorageItemEnum } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 
 const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;

@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { AppRoutesEnum } from '@applicationTypes';
+import { AppRoutesEnum } from '@appTypes';
 import { ApplicationState } from '../../../../_reducers';
 
 const { lessons } = AppRoutesEnum;

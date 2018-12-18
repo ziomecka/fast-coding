@@ -8,7 +8,8 @@ import { AppState } from '../_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
 
-import { ApplicationContainersEnum, RulesErrorEnum } from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { RulesErrorEnum } from '@sharedTypes';
 import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 import { StandardTextFieldProps } from '@material-ui/core/TextField';

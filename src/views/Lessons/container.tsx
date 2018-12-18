@@ -4,10 +4,8 @@ import { default as LessonsView } from './component';
 import { ApplicationState } from '../../store';
 import { WithStyles } from '@material-ui/core';
 
-import {
-    ApplicationContainersEnum,
-    ComponentsContainersEnum
-} from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;

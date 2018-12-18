@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
-import { ThunkGetStateType, AppContainersEnum, ApplicationContainersEnum } from '@applicationTypes';
+import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 const { keyboardListener } = AppContainersEnum;

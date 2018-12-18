@@ -3,7 +3,10 @@ import { Reducer } from 'redux';
 import { KeyboardListenerListenersType } from './types';
 
 import { KeyboardListenerActions } from './actions';
-import { AppContainersEnum, ComponentsContainersEnum, ViewsContainersEnum, MenuContainersEnum } from '@applicationTypes';
+
+import { AppContainersEnum, MenuContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { ViewsContainersEnum } from '@viewsTypes';
 
 const { dialog, welcome } = AppContainersEnum;
 const { lesson } = ComponentsContainersEnum;

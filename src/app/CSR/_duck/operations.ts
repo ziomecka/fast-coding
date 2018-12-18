@@ -4,7 +4,10 @@ import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
-import { ApplicationContainersEnum, ComponentsContainersEnum, AppContainersEnum} from '@applicationTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
+
 import {
     localStorageGetItem,
     localStorageSetItem

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { startTimer, stopTimer, pauseStats, unpauseStats } from './actions';
 import { onKeepState } from '../../_duck/operations/restore.state';
-import { LocalStorageItemEnum } from '@applicationTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 import { ComparatorContainersEnum, ComponentsContainersEnum } from '@componentsTypes';
 
 const { stats } = LocalStorageItemEnum;

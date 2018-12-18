@@ -8,4 +8,4 @@ export enum ApplicationContainersEnum {
 };
 
 export type ThunkGetStateType =  () => ApplicationState ;
-export { ApplicationState as ApplicationState };
+// export { ApplicationState as ApplicationState };

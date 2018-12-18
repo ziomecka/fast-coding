@@ -1,10 +1,11 @@
 import { Dispatch} from 'redux';
 import {
     ApplicationContainersEnum,
-    ComponentsContainersEnum,
-    LocalStorageItemEnum,
     ThunkGetStateType
 } from '@applicationTypes';
+
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { LocalStorageItemEnum } from '@appTypes';
 
 const { components } = ApplicationContainersEnum;
 

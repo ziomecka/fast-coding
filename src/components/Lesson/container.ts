@@ -10,12 +10,9 @@ import { restoreState } from './_duck/actions';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
 
-import {
-    ApplicationContainersEnum,
-    ComponentsContainersEnum,
-    LocalStorageItemEnum,
-    ComparatorContainersEnum
-} from '@applicationTypes';
+import { LocalStorageItemEnum } from '@appTypes';
+import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
 
 const { components } = ApplicationContainersEnum;
 const { lesson, comparator } = ComponentsContainersEnum;
