@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainers, PasswordTypes, AppRoutes } from '../_common';
+import { AppContainers, PasswordsEnum, AppRoutes } from '@appTypes';
 
 const { loginForm } = AppContainers;
 const { remindPassword } = AppRoutes;
@@ -20,7 +20,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
-const { pass } = PasswordTypes;
+const { pass } = PasswordsEnum;
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainers;

@@ -16,11 +16,11 @@ import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState
 } from '../../Email/_duck/reducers';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
+import { PasswordsEnum } from '@appTypes';
 
 import { NewUserFormActions } from './actions';
 
-const { confirmPass, newPass } = _PasswordTypes;
+const { confirmPass, newPass } = PasswordsEnum;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CONFIRM,

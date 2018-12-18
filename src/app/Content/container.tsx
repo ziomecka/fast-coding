@@ -8,14 +8,14 @@ import { ApplicationState } from '../../store';
 import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, AppContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers, ComponentsContainers } from '@applicationTypes';
 
 const { app, components } = ApplicationContainers;
 const { content } = AppContainers;
 const { lesson } = ComponentsContainers;
 
 import { changeLocation, changeTitle } from './_duck/actions';
-import { AppLocation } from '../_common/';
+import { AppLocation } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 

@@ -9,8 +9,8 @@ import {
 
 import { PasswordTypes } from '../../Password/_duck/types';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-const { confirmPass, newPass } = _PasswordTypes;
+import { PasswordsEnum} from '@appTypes';
+const { confirmPass, newPass } = PasswordsEnum;
 
 const {
     APP_REMIND_PASSWORD_RESET

@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { classTitleHome, classTitleFalling } from './operations';
 import { WelcomeActions } from './actions';
 
-import { AppLocation } from '../../_common/';
+import { AppLocation } from '@appTypes';
 import { WelcomeTypes } from './types';
 
 import { getClasses } from './operations';

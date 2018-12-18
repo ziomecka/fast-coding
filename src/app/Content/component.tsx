@@ -10,7 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 import Typography from '@material-ui/core/Typography';
 
-import { AppRoutes } from '../../_common';
+import { AppRoutes } from '@appTypes';
 
 import { Translate, getActiveLanguage } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';

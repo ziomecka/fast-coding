@@ -1,5 +1,5 @@
 import { LocalStorageDataTypes } from './types';
-import { LocalStorageItemTypes } from '../../_common/';
+import { LocalStorageItemTypes } from '@appTypes';
 
 export const localStorageGetItem = (name: LocalStorageItemTypes): any => (
     JSON.parse( localStorage.getItem(name) || null )

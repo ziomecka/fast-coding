@@ -11,7 +11,7 @@ import {
     INITIAL_STATE as STATS_INITIAL_STATE
 } from '../../Stats/_duck/reducers'
 
-import { ComparatorContainers } from '../_common/index';
+import { ComparatorContainers } from '@componentsTypes';
 const { stats } = ComparatorContainers;
 
 const {

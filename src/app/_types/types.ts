@@ -27,7 +27,7 @@ export enum AppLocation {
     isOther = 'IS_OTHER'
 };
 
-export enum PasswordTypes {
+export enum PasswordsEnum {
     pass = 'PASS',
     newPass = 'NEW_PASS',
     currentPass = 'CURRENT_PASS',

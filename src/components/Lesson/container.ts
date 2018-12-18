@@ -9,7 +9,13 @@ import { LessonState } from './_duck/reducers';
 import { restoreState } from './_duck/actions';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, ComponentsContainers, ComparatorContainers, LocalStorageItemTypes } from '../../_common/';
+
+import {
+    ApplicationContainers,
+    ComponentsContainers,
+    LocalStorageItemTypes,
+    ComparatorContainers
+} from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { lesson, comparator } = ComponentsContainers;

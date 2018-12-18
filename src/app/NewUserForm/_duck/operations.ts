@@ -1,7 +1,7 @@
 import { Dispatch, Action } from 'redux';
 
 import { post as postData } from '../../api/';
-import { AppRoutes } from '../../../_common/';
+import { AppRoutes } from '@appTypes';
 
 import { NewUserFormResponseEnum } from './types';
 

@@ -21,8 +21,8 @@ const {
     APP_LOGINFORM_RESET
 } = LoginFormTypes;
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-const { pass } = _PasswordTypes;
+import { PasswordsEnum } from '@appTypes';
+const { pass } = PasswordsEnum;
 
 const { APP_PASSWORD_SET_PASSWORD, APP_PASSWORD_VALIDATE } = PasswordTypes;
 

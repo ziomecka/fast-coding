@@ -4,7 +4,7 @@ import { LocationChangeTypes } from './types';
 import { LocationChangeActions } from './actions';
 
 import { ApplicationState } from '../../../store';
-import { ApplicationContainers } from '../../../_common/';
+import { ApplicationContainers } from '@applicationTypes';
 
 const { app } = ApplicationContainers;
 

@@ -9,7 +9,7 @@ import { default as Lessons } from './component';
 import { LessonData } from '../Lesson/_duck/reducers';
 
 import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
-import { ApplicationContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainers, ComponentsContainers } from '@applicationTypes';;
 import ApplicationState from '../../_reducers/';
 
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';

@@ -7,7 +7,7 @@ import Login from '../Login/';
 import Email from '../Email/';
 import Message from '../FormHelperText/';
 
-import { AppContainers } from '../_common/';
+import { AppContainers } from '@appTypes';
 const { newUserForm } = AppContainers;
 
 import { Translate } from 'react-localize-redux';
@@ -18,8 +18,8 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import { PasswordTypes } from '../_common/';
-const { newPass, confirmPass } = PasswordTypes;
+import { PasswordsEnum } from '@appTypes';
+const { newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '../../shared/_types/';
 const { NO_MATCH } = RulesErrorEnum;

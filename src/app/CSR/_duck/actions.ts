@@ -1,7 +1,7 @@
 import { Action, ActionCreator } from 'redux';
 import { CSRTypes } from './types';
 
-import { ApplicationContainers, ComponentsContainers, AppContainers} from '../../../_common/';
+import { ApplicationContainers, ComponentsContainers, AppContainers} from '@applicationTypes';
 
 const {
     APP_CSR_CHANGE_LOADING_STATE,

@@ -4,7 +4,7 @@ import {
     ComponentsContainers,
     LocalStorageItemTypes,
     ThunkGetStateType
-} from '../../../../_common/';
+} from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 

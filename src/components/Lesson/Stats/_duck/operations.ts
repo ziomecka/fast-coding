@@ -1,7 +1,8 @@
 import { Dispatch } from 'redux';
 import { startTimer, stopTimer, pauseStats, unpauseStats } from './actions';
 import { onKeepState } from '../../_duck/operations/restore.state';
-import { LocalStorageItemTypes, ComparatorContainers, ComponentsContainers } from '../../../../_common';
+import { LocalStorageItemTypes } from '@applicationTypes';
+import { ComparatorContainers, ComponentsContainers } from '@componentsTypes';
 
 const { stats } = LocalStorageItemTypes;
 const { comparator } = ComponentsContainers;

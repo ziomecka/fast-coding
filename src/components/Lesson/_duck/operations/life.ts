@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '../../../../_common';
+import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;

@@ -8,7 +8,7 @@ import {
     INITIAL_STATE as SUMBENU_INITIAL_STATE
 } from '../../SubMenu/_duck/reducers';
 
-import { MenuContainers } from '../../_common/';
+import { MenuContainers } from '@appTypes';
 
 import { AppMenuActions } from './actions';
 

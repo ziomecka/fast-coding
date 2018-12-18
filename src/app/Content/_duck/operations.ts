@@ -1,5 +1,5 @@
 import { ContentClasses } from './reducers';
-import { AppLocation } from '../../_common/';
+import { AppLocation } from '@appTypes';
 
 export const contentClassHome = 'content-box content-box-home';
 export const contentClassOther = 'content-box content-box-other';

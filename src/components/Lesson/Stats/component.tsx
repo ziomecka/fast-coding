@@ -14,7 +14,7 @@ import { Translate } from 'react-localize-redux';
 import withTable from '../../../app/Table';
 
 import { getTime } from '../../../shared/convert.time';
-import { StatsTimeUnitsEnum } from '../../_common/';
+import { StatsTimeUnitsEnum } from './_duck/types';
 import { STATS_AVERAGE_WORD_LENGTH } from '../../../constants';
 
 import getTranslation from '../../../shared/get.translation';

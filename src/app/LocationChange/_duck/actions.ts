@@ -1,6 +1,6 @@
 import { Action, ActionCreator } from 'redux';
 import { LocationChangeTypes } from './types';
-import { AppLocation } from '../../_common/';
+import { AppLocation } from '@appTypes';
 
 const {
    APP_LOCATION_CHANGE_CHANGE_LOCATION

@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { AppLocation } from '../../_common/';
+import { AppLocation } from '@appTypes';
 import { ContentTypes } from './types';
 import { getClasses, contentClassHome } from './operations';
 

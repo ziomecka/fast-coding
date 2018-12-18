@@ -1,6 +1,6 @@
 import { Action, ActionCreator } from 'redux';
 import { WelcomeTypes } from './types';
-import { AppLocation } from '../../_common/';
+import { AppLocation } from '@appTypes';
 
 const {
     APP_WELCOME_CHANGE_LOCATION

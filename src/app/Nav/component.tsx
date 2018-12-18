@@ -21,7 +21,7 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
-import { MenuContainers, NavRulesEnum, SubMenuRulesEnum } from '../../_common/';
+import { MenuContainers, NavRulesEnum, SubMenuRulesEnum } from '@appTypes';
 const { userMenu, languagesMenu } = MenuContainers;
 
 const appBarColor = 'primary';

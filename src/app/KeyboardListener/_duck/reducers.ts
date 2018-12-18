@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { KeyboardListenerListenersType } from './types';
 
 import { KeyboardListenerActions } from './actions';
-import { AppContainers, ComponentsContainers, ViewsContainers, MenuContainers } from '../../../_common/';
+import { AppContainers, ComponentsContainers, ViewsContainers, MenuContainers } from '@applicationTypes';
 
 const { dialog, welcome } = AppContainers;
 const { lesson } = ComponentsContainers;

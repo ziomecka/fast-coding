@@ -1,5 +1,5 @@
-import { AppLocation } from '../../_common/';
-import { AppRoutes } from '../../../_common/';
+import { AppLocation } from '@appTypes';
+import { AppRoutes } from '@appTypes';
 
 const locations: [(pathname: string)=> boolean, AppLocation][] = [
     [

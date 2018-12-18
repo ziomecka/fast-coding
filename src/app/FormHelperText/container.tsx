@@ -7,7 +7,7 @@ import { ApplicationState } from '../../store';
 
 import { FormHelperTextState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers } from '@appTypes';
 
 const { app } = ApplicationContainers;
 const { formHelperText } = AppContainers;

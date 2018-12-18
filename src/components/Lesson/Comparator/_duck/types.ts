@@ -8,3 +8,7 @@ export enum ComparatorTypes {
     COMPONENTS_COMPARATOR_RESET = '@@components_comparator/RESET',
     COMPONENTS_COMPARATOR_RESTORE_STATE = '@@components_comparator/RESTORE_STATE'
 };
+
+export enum ComparatorContainers {
+    stats = 'STATS'
+};

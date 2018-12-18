@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { default as AppRouter } from './component';
 import { ApplicationState } from '../../store';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers } from '@applicationTypes';
+import { AppContainers } from '@appTypes';
 
 const { app } = ApplicationContainers;
 const { user } = AppContainers;

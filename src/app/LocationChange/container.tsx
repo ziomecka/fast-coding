@@ -6,7 +6,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as LocationChange } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers } from '@appTypes';
 
 const { app } = ApplicationContainers;
 

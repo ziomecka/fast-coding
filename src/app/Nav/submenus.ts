@@ -1,4 +1,4 @@
-import { AppRoutes, SubMenuRulesEnum } from '../../_common/';
+import { AppRoutes, SubMenuRulesEnum } from '@appTypes';
 import { SubMenuItemType } from '../SubMenu/container';
 
 const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutes;

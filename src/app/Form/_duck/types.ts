@@ -1,6 +1,6 @@
 import { SendFormChangePasswordI } from '../../ChangePasswordForm/_duck/types';
 import { SendFormRemindPasswordI } from '../../RemindPasswordForm/_duck/types';
-import { AppRoutes } from '../../../_common/index';
+import { AppRoutes } from '@appTypes';
 
 export interface SendFormI {
     request: {

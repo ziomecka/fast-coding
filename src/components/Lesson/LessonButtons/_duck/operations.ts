@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { AppRoutes } from '../../../../_common/';
+import { AppRoutes } from '@applicationTypes';
 import { ApplicationState } from '../../../../_reducers';
 
 const { lessons } = AppRoutes;

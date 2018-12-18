@@ -6,7 +6,7 @@ import {
     AppRoutes,
     ThunkGetStateType,
     LocalStorageItemTypes
-} from '../../../../../_common/';
+} from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;

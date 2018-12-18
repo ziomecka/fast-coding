@@ -11,7 +11,7 @@ import {
 
 import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../../../constants';
 
-import { TextTranslationsI, LanguagesEnum } from '../../../_common';
+import { TextTranslationsI, LanguagesEnum } from '@applicationTypes';
 
 const { en, pl } = LanguagesEnum;
 

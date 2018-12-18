@@ -7,7 +7,7 @@ import { ApplicationState } from '../../../store';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } from '../../../_common/';
+import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { comparator, lesson } = ComponentsContainers;

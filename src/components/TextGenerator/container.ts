@@ -7,7 +7,7 @@ import { ApplicationState } from '../../store';
 import { TextGeneratorState } from './_duck/reducers';
 import { LessonState } from '../Lesson/_duck/reducers';
 
-import { ApplicationContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainers, ComponentsContainers } from '@applicationTypes';;
 
 import { onSendText } from './_duck/operations';
 

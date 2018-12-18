@@ -51,7 +51,7 @@ import {
     UserState
 } from '../User/_duck/reducers';
 
-import { AppContainers } from '../_common/';
+import { AppContainers } from '@appTypes';
 import { AppActions } from '../_actions/';
 
 import {

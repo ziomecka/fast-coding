@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { RemindPasswordPropsI } from './container';
-import * as common from '../_common';
+import * as types from '@appTypes';
 
 const {
     AppRoutes: { login }
-} = common;
+} = types;
 
 import Email from '../Email';
 import Message from '../FormHelperText/';

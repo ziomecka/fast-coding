@@ -4,8 +4,8 @@ import { default as Login } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
-import { AppContainers } from '../_common';
-import { ApplicationContainers } from '../../_common';
+import { AppContainers } from '@appTypes';
+import { ApplicationContainers } from '@applicationTypes';
 
 import { LocalizeState } from 'react-localize-redux';
 

@@ -10,9 +10,16 @@ import { onSetNavAnchorEl } from './_duck/operations';
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
 import { MenuState } from '../AppMenu/_duck/reducers';
-import { MenuContainers, SubMenuRulesEnum, NavRulesEnum, LanguagesEnum } from '../_common/';
 
-import { ApplicationContainers, AppContainers, AppRoutes } from '../../_common/';
+import { ApplicationContainers } from '@applicationTypes';
+import {
+    AppContainers,
+    AppRoutes,
+    MenuContainers,
+    SubMenuRulesEnum,
+    NavRulesEnum,
+    LanguagesEnum
+} from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 

@@ -4,13 +4,13 @@ import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
-import { ApplicationContainers, ComponentsContainers, AppContainers} from '../../../_common/';
+import { ApplicationContainers, ComponentsContainers, AppContainers} from '@applicationTypes';
 import {
     localStorageGetItem,
     localStorageSetItem
 } from '../../../app/LocalStorage/_duck/operations';
 
-import { LocalStorageItemTypes } from '../../_common/index';
+import { LocalStorageItemTypes } from '@appTypes';
 
 export const onLoadData =
 (url: string, applicationContainer: ApplicationContainers, container: ComponentsContainers | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (

@@ -1,5 +1,5 @@
 import { Dispatch, Action } from 'redux';
-import { AppContainers } from '../../../_common/';
+import { AppContainers } from '@appTypes';
 import { validatePassword } from './actions';
 
 import { applyRules, RulesDataI, RulesErrorEnum } from '../../../shared/rules';

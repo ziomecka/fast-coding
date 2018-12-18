@@ -8,7 +8,7 @@ import { ApplicationState } from '../../_reducers';
 
 import { onLogOut } from './_duck/operations';
 
-import { AppContainers, ApplicationContainers } from '../../_common/';
+import { AppContainers, ApplicationContainers } from '@appTypes';
 
 const { app } = ApplicationContainers;
 const { user } = AppContainers;

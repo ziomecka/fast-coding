@@ -1,6 +1,6 @@
 import { Dispatch, Action } from 'redux';
 
-import { AppRoutes } from '../../../_common/';
+import { AppRoutes } from '@appTypes';
 
 import { NewPasswordFormResponseEnum } from './types';
 
@@ -16,6 +16,7 @@ export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
         return await dispatch( _onSendForm( {
             request: {
                 path: newPassword,
+                // @ts-ignore
                 body: options,
             },
             success: {

@@ -16,7 +16,7 @@ import RouteAuth from '../RouteAuth/';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../../theme/';
 
-import { AppRoutes } from '../../_common/';
+import { AppRoutes } from '@appTypes';;
 
 import { LocalizeProvider } from 'react-localize-redux';
 import store from '../../store';

@@ -11,7 +11,7 @@ import LessonsLoader from '../../components/LessonsLoader/container';
 import User from '../../app/User/container';
 import KeyboardListener from '../../app/KeyboardListener/container';
 
-import { AppContainers, AppRoutes } from '../../_common/';
+import { AppContainers, AppRoutes } from '@appTypes';;
 
 const { content, welcome } = AppContainers;
 

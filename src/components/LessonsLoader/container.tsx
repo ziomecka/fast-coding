@@ -6,7 +6,7 @@ import { LessonsLoaderState } from './_duck/reducers';
 
 import { onLoadLessons } from './_duck/operations';
 
-import { ApplicationContainers, ComponentsContainers } from '../../_common/';
+import { ApplicationContainers, ComponentsContainers } from '@applicationTypes';;
 
 import { ApplicationState } from '../../_reducers/';
 

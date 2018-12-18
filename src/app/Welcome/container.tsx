@@ -6,11 +6,11 @@ import { default as Welcome } from './component';
 import { ApplicationState } from '../../store';
 
 import { changeLocation } from './_duck/actions';
-import { AppLocation } from '../_common/';
 
 import { WelcomeState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers } from '@applicationTypes';
+import { AppContainers, AppLocation } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 import { onOpenDemoLesson, onAddKeyDownListener, onRemoveKeyDownListener } from './_duck/operations';

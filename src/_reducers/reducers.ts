@@ -10,19 +10,19 @@ import { actions as componentsActions, ComponentsActions } from '../components/_
 
 /** LOCATION CHANGE */
 import { locationChangeReducer } from '../app/LocationChange/_duck/reducers';
-import { LocationChangeTypes } from '../app/LocationChange/_duck/types';
+import { LocationChangeTypes } from '@appTypes';
 import { LocationChangeActions } from '../app/LocationChange/_duck/actions';
 
 /** CSR */
 import { csrReducer } from '../app/CSR/_duck/reducers';
-import { CSRTypes } from '../app/CSR/_duck/types';
+import { CSRTypes } from '@appTypes';
 import { CSRActions } from '../app/CSR/_duck/actions';
 
 import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app/_reducers/';
 
 // import { actions as appActions, AppActions } from '../app/_actions';
 
-import { ApplicationContainers } from '../_common/';
+import { ApplicationContainers } from '@applicationTypes';
 
 import { localizeReducer, LocalizeState } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';

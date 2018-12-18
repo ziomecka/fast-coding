@@ -7,7 +7,7 @@ import { WithStyles } from '@material-ui/core';
 import {
     ApplicationContainers,
     ComponentsContainers
-} from '../../_common';
+} from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { lessonsLoader } = ComponentsContainers;

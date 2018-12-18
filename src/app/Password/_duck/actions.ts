@@ -1,12 +1,14 @@
 import { Action, ActionCreator } from 'redux';
 import { PasswordTypes } from './types';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
-import { AppContainers } from '../../_common';
+import {
+    AppContainers,
+    PasswordsEnum
+} from '@appTypes';
 
-import { RulesErrorEnum } from '../../../shared/_types/';
+import { RulesErrorEnum } from '@sharedTypes';
 
-const { confirmPass, currentPass, newPass, pass } = _PasswordTypes;
+const { confirmPass, currentPass, newPass, pass } = PasswordsEnum;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CURRENT,

@@ -2,7 +2,7 @@ import { Action, ActionCreator } from 'redux';
 import { SubMenuTypes } from './types';
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuTypes;
 
-import { MenuContainers } from '../../_common/';
+import { MenuContainers } from '@appTypes';
 
 export const setNavAnchorEl: ActionCreator<SetNavAnchorElAction> =
     (menuContainer: MenuContainers, anchorEl: HTMLElement | null) => ({

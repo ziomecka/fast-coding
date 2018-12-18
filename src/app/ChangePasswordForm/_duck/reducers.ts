@@ -7,11 +7,11 @@ import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
 } from '../../Password/_duck/reducers';
 
-import { PasswordTypes as _PasswordTypes } from '../../_common/';
+import { PasswordsEnum } from '@appTypes';
 
 import { ChangePasswordFormActions } from './actions';
 
-const { confirmPass, newPass, currentPass } = _PasswordTypes;
+const { confirmPass, newPass, currentPass } = PasswordsEnum;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CURRENT,

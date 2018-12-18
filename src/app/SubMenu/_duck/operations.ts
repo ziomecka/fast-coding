@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { setNavAnchorEl } from './actions';
-import { MenuContainers } from '../../../_common/';
+import { MenuContainers } from '@appTypes';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';

@@ -1,6 +1,6 @@
 import { Dispatch, Action } from 'redux';
 
-import { AppRoutes } from '../../../_common/';
+import { AppRoutes } from '@appTypes';
 
 import { ChangePasswordFormResponseEnum } from './types';
 

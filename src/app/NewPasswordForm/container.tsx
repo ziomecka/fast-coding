@@ -6,7 +6,7 @@ import { ApplicationState } from '../../store';
 
 import { NewPasswordFormState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers } from '@appTypes';
 import { reset  } from './_duck/actions';
 import { SendFormNewPasswordFormI } from './_duck/types';
 

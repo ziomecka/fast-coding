@@ -1,7 +1,8 @@
 
 import { Dispatch } from 'redux';
 
-import { ApplicationContainers, AppContainers, ThunkGetStateType } from '../../../_common';
+import { ApplicationContainers, ThunkGetStateType } from '@applicationTypes';
+import { AppContainers } from '@appTypes';
 
 const { app } = ApplicationContainers;
 const { user } = AppContainers;

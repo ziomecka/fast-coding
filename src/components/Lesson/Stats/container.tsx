@@ -5,7 +5,7 @@ import { ApplicationState } from '../../../store';
 
 import { StatsState } from './_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers, ComparatorContainers } from '../../../_common/';
+import { ComponentsContainers, ApplicationContainers, ComparatorContainers } from '@applicationTypes';
 import { WithStyles } from '@material-ui/core/styles';
 import { WithTableProps } from '../../../app/Table/';
 

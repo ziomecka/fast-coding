@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { default as OriginalTextArea } from './component';
 import { ApplicationState } from '../../../../store';
 
-import { ComponentsContainers, ApplicationContainers } from '../../../../_common/';
+import { ComponentsContainers, ApplicationContainers } from '@applicationTypes';
 
 import { ComparatorState } from '../_duck/reducers';
 import { LessonState } from '../../_duck/reducers';

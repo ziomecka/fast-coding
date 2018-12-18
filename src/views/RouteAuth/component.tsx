@@ -5,7 +5,7 @@ import { AuthRouteProps } from './container';
 import { Route } from 'react-router-dom'
 
 import history from '../../shared/history';
-import { AppRoutes } from '../../_common/';
+import { AppRoutes } from '@appTypes';;
 const { home } = AppRoutes;
 
 const RouteAuthComponent: React.StatelessComponent<AuthRouteProps> = props => {

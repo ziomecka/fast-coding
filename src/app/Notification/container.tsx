@@ -5,7 +5,7 @@ import { ApplicationState } from '../../store';
 
 import { NotificationState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '../../_common/';
+import { ApplicationContainers, AppContainers } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 

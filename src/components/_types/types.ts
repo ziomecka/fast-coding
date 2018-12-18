@@ -1,5 +1,5 @@
-export * from '../Lesson/Comparator/_common';
-import { LanguagesEnum } from '../../_common/';
+
+import { LanguagesEnum } from '@appTypes';
 
 export enum ComponentsContainers {
     comparator = 'COMPARATOR',

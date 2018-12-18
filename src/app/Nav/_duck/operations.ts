@@ -3,7 +3,7 @@ import { Dispatch, Action } from 'redux';
 import { unauthorizeUser } from '../../User/_duck/actions';
 import { onOpenNotification } from '../../Notification/_duck/operations';
 
-import { AppRoutes } from '../../../_common/';
+import { AppRoutes } from '@appTypes';
 import history from '../../../shared/history';
 
 const { lessons } = AppRoutes;
