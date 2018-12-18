@@ -1,8 +1,8 @@
 import * as React from 'react';
-import RemindPassword from '../../app/RemindPasswordForm/';
+import RemindPasswordForm from '../../app/RemindPasswordForm/';
 
 const RemindPasswordView: React.StatelessComponent<{}> = () => {
-    return <RemindPassword />;
+    return <RemindPasswordForm />;
 };
 
 export default RemindPasswordView;
