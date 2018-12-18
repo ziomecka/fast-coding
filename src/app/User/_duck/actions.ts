@@ -1,10 +1,10 @@
 import { Action, ActionCreator } from 'redux';
-import { UserTypes } from './types';
+import { UserActionsEnum } from './types';
 
 const {
     APP_USER_AUTHORIZE_USER,
     APP_USER_UNAUTHORIZE
-} = UserTypes;
+} = UserActionsEnum;
 
 export const authorizeUser: ActionCreator<UserAuthorizationAction> = (login: string) => ({
     type: APP_USER_AUTHORIZE_USER,

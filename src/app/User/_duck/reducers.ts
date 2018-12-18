@@ -1,14 +1,14 @@
 
 import { Reducer } from 'redux';
 
-import { UserTypes } from './types';
+import { UserActionsEnum } from './types';
 // import { SubscriptionsEnum } from '../../../shared/subscriptions';
 import { UserActions } from './actions';
 
 const {
     APP_USER_AUTHORIZE_USER,
     APP_USER_UNAUTHORIZE
-} = UserTypes;
+} = UserActionsEnum;
 
 export const INITIAL_STATE: UserState = {
     login: '',
