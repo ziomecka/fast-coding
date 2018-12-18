@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { ContentTypes } from './types';
+import { ContentActionsEnum } from './types';
 import { AppLocation } from '@appTypes';
 
 const {
@@ -7,7 +7,7 @@ const {
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER,
     APP_CONTENT_TITLE_CHANGE
- } = ContentTypes;
+ } = ContentActionsEnum;
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocation) => ({

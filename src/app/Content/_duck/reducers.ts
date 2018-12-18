@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { AppLocation } from '@appTypes';
-import { ContentTypes } from './types';
+import { ContentActionsEnum } from './types';
 import { getClasses, contentClassHome } from './operations';
 
 const {
@@ -8,7 +8,7 @@ const {
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER,
     APP_CONTENT_TITLE_CHANGE
-} = ContentTypes;
+} = ContentActionsEnum;
 
 export const INITIAL_STATE: ContentState = {
     contentClass: contentClassHome,
