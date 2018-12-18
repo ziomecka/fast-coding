@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { ChangePasswordFormTypes } from './types';
+import { ChangePasswordFormActionsEnum } from './types';
 import { PasswordActionsEnum } from '../../Password/_duck/types';
 
 import {
@@ -24,7 +24,7 @@ const {
 
 const {
     APP_CHANGEPASSWORDFORM_RESET
-} = ChangePasswordFormTypes;
+} = ChangePasswordFormActionsEnum;
 
 export const INITIAL_STATE: ChangePasswordFormState = {
     [currentPass]: Object.assign({}, PasswordInitialState),
