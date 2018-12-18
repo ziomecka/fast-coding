@@ -1,4 +1,4 @@
-import { AppContainers, ComponentsContainersEnum, ViewsContainersEnum, MenuContainersEnum } from '@applicationTypes';
+import { AppContainersEnum, ComponentsContainersEnum, ViewsContainersEnum, MenuContainersEnum } from '@applicationTypes';
 // TODO out not needed?
 export enum KeyboardListenerActionsEnum {
     APP_KEYBOARD_LISTENER_ADD = '@@app_keyboardListener/ADD',
@@ -9,8 +9,8 @@ export enum KeyboardListenerActionsEnum {
 export type KeyboardListenerContainersType =
     ComponentsContainersEnum.lesson |
     ViewsContainersEnum.homeView |
-    AppContainers.dialog |
-    AppContainers.welcome |
+    AppContainersEnum.dialog |
+    AppContainersEnum.welcome |
     MenuContainersEnum.languagesMenu |
     MenuContainersEnum.mainMenu |
     MenuContainersEnum.userMenu;

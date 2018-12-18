@@ -5,8 +5,8 @@ import { ChangePasswordFormProps } from './container';
 import Password from '../Password/';
 import Message from '../FormHelperText/';
 
-import { AppContainers } from '@appTypes';
-const { changePasswordForm } = AppContainers;
+import { AppContainersEnum } from '@appTypes';
+const { changePasswordForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
 
@@ -33,7 +33,7 @@ const {
 } = RulesErrorEnum;
 
 class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProps> {
-    container: AppContainers;
+    container: AppContainersEnum;
     constructor(props) {
         super(props);
 

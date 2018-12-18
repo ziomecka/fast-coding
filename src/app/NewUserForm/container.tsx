@@ -6,14 +6,14 @@ import { ApplicationState } from '../../store';
 
 import { NewUserFormState } from './_duck/reducers';
 
-import { ApplicationContainers, AppContainers } from '@appTypes';
+import { ApplicationContainers, AppContainersEnum } from '@appTypes';
 import { onSendNewUserForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
 import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 
 const { app } = ApplicationContainers;
-const { newUserForm } = AppContainers;
+const { newUserForm } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): NewUserFormState => ({
     ...state[app][newUserForm]

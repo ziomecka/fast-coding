@@ -11,9 +11,9 @@ import LessonsLoader from '../../components/LessonsLoader/container';
 import User from '../../app/User/container';
 import KeyboardListener from '../../app/KeyboardListener/container';
 
-import { AppContainers, AppRoutesEnum } from '@appTypes';;
+import { AppContainersEnum, AppRoutesEnum } from '@appTypes';;
 
-const { content, welcome } = AppContainers;
+const { content, welcome } = AppContainersEnum;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
     homeUrl: string;

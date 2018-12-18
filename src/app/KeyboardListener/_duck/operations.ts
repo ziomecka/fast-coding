@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import { ThunkGetStateType, AppContainers, ApplicationContainers } from '@applicationTypes';
+import { ThunkGetStateType, AppContainersEnum, ApplicationContainers } from '@applicationTypes';
 
 const { app } = ApplicationContainers;
-const { keyboardListener } = AppContainers;
+const { keyboardListener } = AppContainersEnum;
 
 import {
     AddListener, RemoveListener, RemoveAllListeners

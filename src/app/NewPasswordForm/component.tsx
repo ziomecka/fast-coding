@@ -4,7 +4,7 @@ import { NewPasswordFormPropsI } from './container';
 import * as types from '@appTypes';
 
 const {
-    AppContainers: { newPasswordForm: container },
+    AppContainersEnum: { newPasswordForm: container },
     PasswordsEnum: { newPass, confirmPass }
 } = types;
 

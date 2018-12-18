@@ -13,7 +13,7 @@ import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operatio
 /** Keyboard listener imports */
 import { manageButtonFocus as buttonFocus } from '../../../shared/button.focus';
 import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
-import {  AppContainers } from '@appTypes';
+import {  AppContainersEnum } from '@appTypes';
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
@@ -56,7 +56,7 @@ export const onOpenDemoLesson = (): any => (dispatch: Dispatch, getState: ThunkG
 };
 
 /** Keyboard listener */
-const { welcome: container } = AppContainers;
+const { welcome: container } = AppContainersEnum;
 export const buttonsIds = [ 'homeSeeLessons', 'homeStartTyping' ];
 
 const manageButtonFocus = buttonFocus(buttonsIds, 1);

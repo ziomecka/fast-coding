@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainers, PasswordsEnum, AppRoutesEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum, AppRoutesEnum } from '@appTypes';
 
-const { loginForm } = AppContainers;
+const { loginForm } = AppContainersEnum;
 const { remindPassword } = AppRoutesEnum;
 
 import history from '../../shared/history';
@@ -23,7 +23,7 @@ import { Translate } from 'react-localize-redux';
 const { pass } = PasswordsEnum;
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
-    container: AppContainers;
+    container: AppContainersEnum;
     constructor (props) {
         super(props);
         this.container = loginForm;

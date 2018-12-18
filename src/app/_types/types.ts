@@ -1,4 +1,4 @@
-export enum AppContainers {
+export enum AppContainersEnum {
     loginForm = 'LOGIN_FORM',
     dialog = 'DIALOG',
     notification = 'NOTIFICATION',

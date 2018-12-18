@@ -51,7 +51,7 @@ import {
     UserState
 } from '../User/_duck/reducers';
 
-import { AppContainers } from '@appTypes';
+import { AppContainersEnum } from '@appTypes';
 import { AppActions } from '../_actions/';
 
 import {
@@ -98,7 +98,7 @@ const {
     keyboardListener,
     remindPasswordForm,
     newPasswordForm
-} = AppContainers;
+} = AppContainersEnum;
 
 export const INITIAL_STATE = {
     [loginForm]: LOGINFORM_INITIAL_STATE,

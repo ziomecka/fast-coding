@@ -4,7 +4,7 @@ import { default as Login } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
 
-import { AppContainers } from '@appTypes';
+import { AppContainersEnum } from '@appTypes';
 import { ApplicationContainers } from '@applicationTypes';
 
 import { LocalizeState } from 'react-localize-redux';
@@ -25,5 +25,5 @@ interface MapStateToPropsI extends AppState {
 }
 
 export interface LoginPropsI extends StandardTextFieldProps, MapStateToPropsI {
-    container: AppContainers;
+    container: AppContainersEnum;
 };

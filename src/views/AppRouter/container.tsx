@@ -4,10 +4,10 @@ import { default as AppRouter } from './component';
 import { ApplicationState } from '../../store';
 
 import { ApplicationContainers } from '@applicationTypes';
-import { AppContainers } from '@appTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainers;
-const { user } = AppContainers;
+const { user } = AppContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): AppRouterMapStateToProps => ({
     authorized: state[app][user].authorized

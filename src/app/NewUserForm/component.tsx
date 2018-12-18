@@ -7,8 +7,8 @@ import Login from '../Login/';
 import Email from '../Email/';
 import Message from '../FormHelperText/';
 
-import { AppContainers } from '@appTypes';
-const { newUserForm } = AppContainers;
+import { AppContainersEnum } from '@appTypes';
+const { newUserForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
 
@@ -25,7 +25,7 @@ import { RulesErrorEnum } from '../../shared/_types/';
 const { NO_MATCH } = RulesErrorEnum;
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
-    container: AppContainers;
+    container: AppContainersEnum;
     constructor(props) {
         super(props);
 

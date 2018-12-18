@@ -13,7 +13,7 @@ import { MenuState } from '../AppMenu/_duck/reducers';
 
 import { ApplicationContainers } from '@applicationTypes';
 import {
-    AppContainers,
+    AppContainersEnum,
     AppRoutesEnum,
     MenuContainersEnum,
     SubMenuRulesEnum,
@@ -25,7 +25,7 @@ import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
 const { app } = ApplicationContainers;
-const { appMenu, user } = AppContainers;
+const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
 
