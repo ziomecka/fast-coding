@@ -45,9 +45,9 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
     const subMenus: __SubMenuProps[] = [
         /** Languages menu */
         {
-            menuItems: Object.keys(languages)
+            menuItems: languages
                 .reduce((acc, cv) => {
-                    const { code } = languages[cv];
+                    const { code } = cv;
 
                     acc.push({
                         title: code,
