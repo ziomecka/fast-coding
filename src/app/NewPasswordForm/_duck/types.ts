@@ -1,4 +1,4 @@
-export enum NewPasswordFormTypes {
+export enum NewPasswordFormActionsEnum {
     APP_REMIND_PASSWORD_SET_EMAIL = '@@app_newPasswordForm/SET_EMAIL',
     APP_REMIND_PASSWORD_RESET = '@@app_newPasswordForm/RESET'
 }

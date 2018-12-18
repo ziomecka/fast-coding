@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { NewPasswordFormTypes } from './types';
+import { NewPasswordFormActionsEnum } from './types';
 import { NewPasswordFormActions }  from './actions';
 
 import {
@@ -14,7 +14,7 @@ const { confirmPass, newPass } = PasswordsEnum;
 
 const {
     APP_REMIND_PASSWORD_RESET
-} = NewPasswordFormTypes;
+} = NewPasswordFormActionsEnum;
 
 const {
     APP_PASSWORD_SET_PASSWORD_CONFIRM,

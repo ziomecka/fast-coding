@@ -1,10 +1,10 @@
 import { Action, ActionCreator } from 'redux';
-import { NewPasswordFormTypes } from './types';
+import { NewPasswordFormActionsEnum } from './types';
 
 const {
     APP_REMIND_PASSWORD_SET_EMAIL,
     APP_REMIND_PASSWORD_RESET
-} = NewPasswordFormTypes;
+} = NewPasswordFormActionsEnum;
 
 
 export const setEmail: ActionCreator<SetEmailAction> = (options: SetEmail) => ({
