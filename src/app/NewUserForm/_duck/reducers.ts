@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { NewUserFormActionsEnum } from './types';
 import { PasswordActionsEnum } from '../../Password/_duck/types';
-import { LoginTypes } from '../../Login/_duck/types';
+import { LoginActionsEnum } from '../../Login/_duck/types';
 
 import {
     loginReducer, LoginState, INITIAL_STATE as LoginInitialState
