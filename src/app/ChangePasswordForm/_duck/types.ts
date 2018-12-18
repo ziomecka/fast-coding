@@ -1,7 +1,7 @@
 export enum ChangePasswordFormActionsEnum {
-    APP_CHANGEPASSWORDFORM_SET_LOGIN = '@@app_newuserForm/SET_LOGIN',
-    APP_CHANGEPASSWORDFORM_SET_EMAIL = '@@app_newuserForm/SET_EMAIL',
-    APP_CHANGEPASSWORDFORM_RESET = '@@app_newuserForm/RESET'
+    APP_CHANGEPASSWORDFORM_SET_LOGIN = '@@app_changePasswordForm/SET_LOGIN',
+    APP_CHANGEPASSWORDFORM_SET_EMAIL = '@@app_changePasswordForm/SET_EMAIL',
+    APP_CHANGEPASSWORDFORM_RESET = '@@app_changePasswordForm/RESET'
 }
 
 export enum ChangePasswordFormResponseEnum {
