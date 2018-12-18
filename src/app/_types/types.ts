@@ -21,7 +21,7 @@ export enum MenuContainersEnum {
     languagesMenu = 'LANGUAGES_MENU'
 };
 
-export enum AppLocation {
+export enum AppLocationEnum {
     isHome = 'IS_HOME',
     isLesson = 'IS_LESSON',
     isOther = 'IS_OTHER'

@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { classTitleHome, classTitleFalling } from './operations';
 import { WelcomeActions } from './actions';
 
-import { AppLocation } from '@appTypes';
+import { AppLocationEnum } from '@appTypes';
 import { WelcomeActionsEnum } from './types';
 
 import { getClasses } from './operations';
@@ -11,7 +11,7 @@ import { getClasses } from './operations';
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeActionsEnum;
 
 export const INITIAL_STATE: WelcomeState = {
-    appLocation: AppLocation.isHome,
+    appLocation: AppLocationEnum.isHome,
     classTitle: classTitleHome,
     classAnimated: classTitleFalling,
 };
@@ -43,5 +43,5 @@ export interface WelcomeClasses {
 };
 
 export interface WelcomeState extends WelcomeClasses {
-    appLocation: AppLocation;
+    appLocation: AppLocationEnum;
 };

@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { AppLocation } from '@appTypes';
+import { AppLocationEnum } from '@appTypes';
 import { ContentActionsEnum } from './types';
 import { getClasses, contentClassHome } from './operations';
 
@@ -12,7 +12,7 @@ const {
 
 export const INITIAL_STATE: ContentState = {
     contentClass: contentClassHome,
-    appLocation: AppLocation.isHome,
+    appLocation: AppLocationEnum.isHome,
     onDrop: [],
     title: ''
 };
@@ -64,7 +64,7 @@ export interface ContentClasses {
 };
 
 export interface ContentState extends ContentClasses {
-    appLocation: AppLocation;
+    appLocation: AppLocationEnum;
     onDrop: Array<(e: React.DragEvent<HTMLElement>)=> void>;
     title: string;
 };

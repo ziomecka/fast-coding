@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 
 import { WelcomeClasses } from './reducers';
 import { ThunkGetStateType } from '@applicationTypes';
-import { AppLocation, LocalStorageItemEnum } from '@appTypes';
+import { AppLocationEnum, LocalStorageItemEnum } from '@appTypes';
 
 import { openDemoLesson } from '../../../components/Lesson/_duck/actions';
 
@@ -17,7 +17,7 @@ import {  AppContainers } from '@appTypes';
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
-const { isHome, isOther } = AppLocation;
+const { isHome, isOther } = AppLocationEnum;
 
 export const classTitleHome = 'welcome welcome-home';
 export const classTitleOther = 'welcome welcome-other';
@@ -25,7 +25,7 @@ export const classTitleFalling = 'title-falling';
 
 const states: {
     // @ts-ignore
-    [key: AppLocation]: WelcomeClasses
+    [key: AppLocationEnum]: WelcomeClasses
 } = {
     [isHome]: {
         classAnimated: classTitleFalling,
@@ -43,7 +43,7 @@ const clearLocalStorage = () => {
     localStorageRemoveItem(stats);
 };
 
-export const getClasses = (location: AppLocation): WelcomeClasses => {
+export const getClasses = (location: AppLocationEnum): WelcomeClasses => {
     return states[location] || states[isOther];
 };
 
