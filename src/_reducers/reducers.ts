@@ -15,7 +15,7 @@ import { LocationChangeActions } from '../app/LocationChange/_duck/actions';
 
 /** CSR */
 import { csrReducer } from '../app/CSR/_duck/reducers';
-import { CSRTypes } from '@appTypes';
+import { CSRActionsEnum } from '@appTypes';
 import { CSRActions } from '../app/CSR/_duck/actions';
 
 import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app/_reducers/';
@@ -42,7 +42,7 @@ const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,
     APP_CSR_UPDATE_DATA
-} = CSRTypes;
+} = CSRActionsEnum;
 
 const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): ApplicationState => {
     /** get ^@@.*_$ from type */

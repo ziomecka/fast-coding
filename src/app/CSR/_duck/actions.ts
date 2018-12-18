@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { CSRTypes } from './types';
+import { CSRActionsEnum } from './types';
 
 import { ApplicationContainers, ComponentsContainersEnum, AppContainers} from '@applicationTypes';
 
@@ -7,7 +7,7 @@ const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,
     APP_CSR_UPDATE_DATA
-} = CSRTypes;
+} = CSRActionsEnum;
 
 export const changeLoadingState: ActionCreator<ChangeLoadingStateAction> = (loading: boolean, applicationContainer: ApplicationContainers, container: AppContainers | ComponentsContainersEnum) => ({
     type: APP_CSR_CHANGE_LOADING_STATE,

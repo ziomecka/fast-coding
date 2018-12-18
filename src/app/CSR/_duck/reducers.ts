@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { CSRTypes } from './types';
+import { CSRActionsEnum } from './types';
 import { CSRActions, ReportErrorAction, ChangeLoadingStateAction, UpdateDataAction } from './actions';
 import { ApplicationState } from '../../../store';
 
@@ -8,7 +8,7 @@ const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,
     APP_CSR_UPDATE_DATA
-} = CSRTypes;
+} = CSRActionsEnum;
 
 import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '../../../_reducers/';
 
