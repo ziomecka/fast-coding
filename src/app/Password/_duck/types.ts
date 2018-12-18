@@ -1,4 +1,4 @@
-export enum PasswordTypes {
+export enum PasswordActionsEnum {
     APP_PASSWORD_SET_PASSWORD_CURRENT = '@@app_password/SET_PASSWORD_CURRENT',
     APP_PASSWORD_SET_PASSWORD_NEW = '@@app_password/SET_PASSWORD_NEW',
     APP_PASSWORD_SET_PASSWORD_CONFIRM = '@@app_password/SET_PASSWORD_CONFIRM',

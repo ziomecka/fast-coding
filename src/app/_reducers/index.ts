@@ -1,6 +1,6 @@
 import { Reducer, combineReducers } from 'redux';
 
-import { PasswordTypes } from '../Password/_duck/types';
+import { PasswordActionsEnum } from '../Password/_duck/types';
 import { SetPasswordAction } from '../Password/_duck/actions';
 
 import {
@@ -125,7 +125,7 @@ const {
     APP_PASSWORD_VALIDATE_CONFIRM,
     APP_PASSWORD_VALIDATE_CURRENT,
     APP_PASSWORD_VALIDATE
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 const combinedReducers = combineReducers({
     [dialog]: dialogReducer,

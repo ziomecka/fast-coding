@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { PasswordTypes } from './types';
+import { PasswordActionsEnum } from './types';
 
 const {
     APP_PASSWORD_SET_PASSWORD_CURRENT,
@@ -11,7 +11,7 @@ const {
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM,
     APP_PASSWORD_VALIDATE
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 export const INITIAL_STATE: PasswordState = {
     password: '',

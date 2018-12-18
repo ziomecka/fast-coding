@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { PasswordTypes } from './types';
+import { PasswordActionsEnum } from './types';
 
 import {
     AppContainers,
@@ -19,7 +19,7 @@ const {
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM,
     APP_PASSWORD_VALIDATE
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 const setPasswordCurrent: ActionCreator<SetPasswordAction> = (password: string, container: AppContainers) => ({
     type: APP_PASSWORD_SET_PASSWORD_CURRENT,

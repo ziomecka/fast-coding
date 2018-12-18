@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { NewUserFormTypes } from './types';
-import { PasswordTypes } from '../../Password/_duck/types';
+import { PasswordActionsEnum } from '../../Password/_duck/types';
 import { LoginTypes } from '../../Login/_duck/types';
 
 import {
@@ -27,7 +27,7 @@ const {
     APP_PASSWORD_SET_PASSWORD_NEW,
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 const {
     APP_NEWUSERFORM_SET_LOGIN,

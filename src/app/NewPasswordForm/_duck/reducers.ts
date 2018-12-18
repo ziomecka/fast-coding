@@ -7,7 +7,7 @@ import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
 } from '../../Password/_duck/reducers';
 
-import { PasswordTypes } from '../../Password/_duck/types';
+import { PasswordActionsEnum } from '../../Password/_duck/types';
 
 import { PasswordsEnum} from '@appTypes';
 const { confirmPass, newPass } = PasswordsEnum;
@@ -21,7 +21,7 @@ const {
     APP_PASSWORD_SET_PASSWORD_NEW,
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 export const INITIAL_STATE: NewPasswordFormState = {
     [newPass]: Object.assign({}, PasswordInitialState),

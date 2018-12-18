@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { ChangePasswordFormTypes } from './types';
-import { PasswordTypes } from '../../Password/_duck/types';
+import { PasswordActionsEnum } from '../../Password/_duck/types';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
@@ -20,7 +20,7 @@ const {
     APP_PASSWORD_VALIDATE_CURRENT,
     APP_PASSWORD_VALIDATE_NEW,
     APP_PASSWORD_VALIDATE_CONFIRM
-} = PasswordTypes;
+} = PasswordActionsEnum;
 
 const {
     APP_CHANGEPASSWORDFORM_RESET
