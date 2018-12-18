@@ -1,12 +1,12 @@
 import { Reducer } from 'redux';
 
 import { LessonsActions } from './actions';
-import { LessonsTypes } from './types';
+import { LessonsActionsEnum } from './types';
 
 const {
     COMPONENTS_LESSONS_UPDATE,
     COMPONENTS_LESSONS_INITIAL_STATE_SET
- } = LessonsTypes;
+ } = LessonsActionsEnum;
 
 export const INITIAL_STATE: ILessonsState = {};
 
