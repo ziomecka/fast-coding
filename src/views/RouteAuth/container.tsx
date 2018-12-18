@@ -4,7 +4,7 @@ import { RouteProps } from 'react-router-dom';
 
 export default RouteAuth;
 
-export interface AuthRouteProps extends RouteProps {
+export interface AuthRouteProps extends RouteComponentProps {
     condition: boolean;
     redirect?: AppRoutesEnum;
 };
