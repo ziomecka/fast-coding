@@ -76,12 +76,18 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
     }
 
     get anchorEl () {
-        return this.props[this.props.container].anchorEl;
+        return (
+            this.props.container
+                ? this.props[this.props.container]
+                    ? this.props[this.props.container].anchorEl
+                    : null
+                : null
+        );
     }
 
     componentDidUpdate(prevProps: SubMenuProps) {
-        const { props: { location: { pathname }, authorized } } = this;
-        const { location: { pathname: prevPathname }, authorized: prevAuthorized } = prevProps;
+        const { props: { location: { pathname }, authorized, menuItems } } = this;
+        const { location: { pathname: prevPathname }, authorized: prevAuthorized, menuItems: prevMenuItems } = prevProps;
 
         /**
          *  Updates menu only if pathname or authorization changed, therefore
@@ -102,6 +108,16 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
                     }, this._listTimeout );
                 }
             );
+        }
+
+        /** if menuItems && the nnumber of menu items has changed then set new listItems */
+        if ( menuItems && (
+                Object.keys(prevMenuItems).length === 0 &&
+                Object.keys(menuItems).length > 0)
+            ) {
+            this.setState({
+                listItems: this.listItems
+            });
         }
     }
 
