@@ -6,8 +6,6 @@ import { AppContainersEnum, PasswordsEnum, AppRoutesEnum } from '@appTypes';
 const { loginForm } = AppContainersEnum;
 const { remindPassword } = AppRoutesEnum;
 
-import history from '../../shared/history';
-
 import Password from '../Password/';
 import Login from '../Login/';
 import Message from '../FormHelperText/';
@@ -53,7 +51,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     redirect () {
-        history.push(remindPassword);
+        this.props.history.push(remindPassword);
     }
 
     render() {

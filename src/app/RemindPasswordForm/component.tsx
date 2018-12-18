@@ -10,8 +10,6 @@ const {
 import Email from '../Email';
 import Message from '../FormHelperText/';
 
-import history from '../../shared/history';
-
 /* Materials */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -50,7 +48,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     };
 
     redirect () {
-        history.push(login);
+        this.props.history.push(login);
     }
 
     render () {
