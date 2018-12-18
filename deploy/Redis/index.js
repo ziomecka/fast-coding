@@ -1,144 +1,312 @@
+require('dotenv').config();
 const redis = require('redis');
 const url = require('url');
+
+const {
+    REDIS_KEYS: {
+        EMAILS_KEY,
+        LOGINS_KEY,
+        REMIND_PASSWORD_KEY,
+        USERS_KEY
+    },
+    REDIS_RESPONSES: {
+        SUCCESS,
+        ERROR,
+        LOGIN_ALREADY_EXISTS,
+        EMAIL_ALREADY_EXISTS,
+        LOGIN_DOES_NOT_EXIST,
+        EMAIL_DOES_NOT_EXIST
+    },
+    REMIND_PASSWORD : { LINK_ACTIVE_MINUTES }
+} = require('../constants');
 
 class Redis {
     constructor(REDIS_URI) {
         const { port, hostname, auth } = url.parse(REDIS_URI);
-        // console.log(`port: ${port} hostname: ${hostname} auth: ${auth}`)
 
         try {
             this.client = redis.createClient(port, hostname);
-            this.client.on('connect', () => console.log('Redis connected'));
-            this.client.auth(auth.split(":")[1]);
         } catch (err) {
-            throw new Error(`Redis not authorized. ${err.message || err.toString()}`);
+            // TODO obsluzyc po stornie klienta
+            console.warn(`Redis not available. ${err.message || err.toString()}`);
         }
+
+        this.client.on('connect', () => console.log('Redis connected'));
+
+        /** Will fire if authorization fails */
+        this.client.on('error', err => {
+           // TODO obsluzyc po stornie klienta
+           console.warn(`Redis error: ${ err.message || err.toString() }`);
+       });
+
+       this.client.auth(auth.split(":")[1]);
+
+       this.usersKey = USERS_KEY;
+       this.loginsKey = LOGINS_KEY;
+       this.emailsKey = EMAILS_KEY;
+       this.remindPasswordKey = REMIND_PASSWORD_KEY;
     }
 
-    async keyExists(options) {
-        const { key } = options;
+    generateKey (key, value) {
+        return `${ key }_${ value }`;
+    }
 
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis exists. Callback is not a function');
-        }
+    generateUserKey (value) {
+        return this.generateKey(this.usersKey, value);
+    }
+
+    generateRemindPasswordKey (value) {
+        return this.generateKey(this.remindPasswordKey, value);
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     */
+    async keyExists(options) {
+        return new Promise( ( res, rej ) => {
+            this.client.exists( options.key, async (err, response) => {
+                if (err) rej(err);
+                res(response);
+            } );
+        });
+    }
+
+    /**
+     *
+     * @param {objecy} options
+     * @property {key} options.key
+     * @property {string} options.value
+     * @property {number} options.expires - time to expire in seconds
+     */
+    async storeString(options) {
+        const { key, value, expires } = options;
+        return new Promise (( res, rej) => {
+            this.client.set(key, value, (err, response) => {
+                if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
+                res(response);
+            })
+        });
+    }
+
+    /**
+     *
+     * @param {string} key
+     */
+    async getString(key) {
+        return new Promise ((res, rej) => {
+            this.client.get(key, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {object} options.data
+     * @property {number} options.expires - in seconds
+     */
+    async storeHash(options) {
+        const { key, expires } = options;
+
+        return new Promise( ( res, rej ) => {
+            this.client.hmset(key, options.data, (err, response) => {
+                if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {string} options.value
+     * @property {number} options.expires
+     */
+    async storeSet(options) {
+        const { key, value, expires } = options;
+
+        return new Promise(( res, rej ) => {
+            this.client.sadd(key, value, (err, response) => {
+                if (err) rej(err);
+                if (expires) this.client.expire(key, expires);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.key
+     * @property {object} options.data
+     * @property {string} options.data.salt
+     * @property {string} options.data.hashPassword
+     */
+    async setNewUser(options) {
+        let { key } = options;
+
+        /** Store login in sets */
+        const loginExists = await this.storeSet({ key: this.loginsKey, value: key });
+
+        if ( loginExists === 0 ) {
+            console.log('Login already exists.');
+            return LOGIN_ALREADY_EXISTS;
+        };
 
         try {
-            this.client.exists( key, async (err, response) => {
-                if (err) throw err;
-                options.callback(response);
-            } );
+            /** Store email in sets */
+            const emailExists = await this.storeSet({ key: this.emailsKey, value: options.data.email });
+
+            if ( emailExists === 0 ) {
+                console.log('Email already exists.');
+                return EMAIL_ALREADY_EXISTS;
+            }
+
+            return await this.storePassword({ key, data: options.data }) //, callback: async (result) => {
+
         } catch (err) {
-            throw new Error(`Key exists failed ${err.message || err.toString()}`);
+            console.log('Setting new user failed.');
+            return ERROR;
         }
-    }
-
-    storeHash(options) {
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis store hash. Callback is not a function');
-        }
-
-        let { key, data } = options;
-
-        this.client.hmset(key, data, (err, response) => {
-            data = null; // GC
-            if (err) throw err;
-            options.callback(response);
-        });
-    }
-
-    storeSet(options) {
-        if ( typeof options.callback !== 'function' ) {
-            throw new Error('Redis store set. Callback is not a function');
-        }
-
-        let { key, value } = options;
-
-        this.client.sadd(key, value, (err, response) => {
-            if (err) throw err;
-            options.callback(response);
-        });
     }
 
     async storePassword(options) {
         let { key } = options;
 
         try {
-            this.keyExists({ key, callback: async (exists) => {
-                if (exists) {
-                    console.log('Login already exists.');
-                    options.callback(2);
-                    return false;
-                };
+            const passwordStored = await this.storeHash({ key: this.generateUserKey(key), data: options.data });
 
-                this.storeSet({key: 'login', value: options.data.email, callback: response => {
-                    if (response === 0) {
-                        console.log('Email already exists.');
-                        options.callback(3);
-                        return true;
-                    }
+            if ( passwordStored === 'OK' ) {
+                console.log('New user set');
+                return SUCCESS;
+            }
 
-                    this.storeHash({ key, data: options.data, callback: async (result) => {
-                        if (result === 'OK') {
-                            console.log('New user set');
-                            options.callback(1);
-                            return true;
-                        }
+            console.log('Store password failed.');
+            return ERROR;
 
-                        console.log('Store password failed.');
-                        options.callback(0);
-                        return false;
-                    }});
-
-                } });
-            }});
         } catch (err) {
-            options.callback(0);
-            console.error(`Store password failed. ${err.message || err.toString()}`);
-            return false;
+            console.log('Store password failed.');
+            return ERROR;
+        }
+    }
+
+    /**
+     *
+     * @param {string} key
+     * @param {string} value
+     */
+    async sismember (key, value) {
+        return new Promise( (res, rej) => {
+            this.client.sismember(key, value, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
+     * @param {string} email
+     */
+    async emailExists(email) {
+        const response = await this.sismember(this.emailsKey, email);
+
+        if (response === 0) {
+            return EMAIL_DOES_NOT_EXIST;
+        } else {
+            return SUCCESS;
+        }
+    };
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.link
+     * @property {expires} options.expires - time in seconds, default value 300
+     * @property {string} options.email
+     */
+    async storeRemindPasswordLink(options) {
+        const {
+            link, expires = LINK_ACTIVE_MINUTES * 60, email
+        } = options;
+
+        try {
+            const linkStored = await this.storeString({
+                key: this.generateRemindPasswordKey(email),
+                value: link,
+                expires
+            });
+
+            if ( linkStored ) {
+                console.log('Link stored');
+                return SUCCESS;
+            }
+
+            console.log('Store link failed.');
+            return ERROR;
+
+        } catch (err) {
+            console.log('Store link failed.');
+            return ERROR;
+        }
+    }
+
+    /**
+     *
+     * @param {object} options
+     * @property {string} options.email
+     */
+    async getRemindPasswordLink(options) {
+        const { email } = options;
+        try {
+            return await this.getString(this.generateRemindPasswordKey(email));
+        } catch (err) {
+            console.log(`Get password link failure for: ${email}`);
+            return ERROR;
         }
     }
 
     async getPassword(options) {
-        let { key } = options;
+        let { key: _key, ...other } = options;
+        const key = this.generateUserKey(_key);
 
         try {
-            this.keyExists({ key, callback: async (exists) => {
-                if (!exists) {
-                    console.log('Login does not exist.');
-                    options.callback(null);
-                    return false;
-                };
+            const keyExists = await this.keyExists({ key });
 
-                this.getHash(options);
-                return true;
+            if (!keyExists) {
+                console.log('Login does not exist.');
+                return LOGIN_DOES_NOT_EXIST;
+            };
 
-            }});
+            return await this.getHash({ key, ...other });
         } catch (err) {
-            throw new Error(`Store password failed. ${err.message || err.toString()}`);
+            console.log('Store password failed.');
+            return ERROR;
         }
     }
 
     async getHash(options) {
-        let { key, data } = options;
+        return new Promise ( ( res, rej ) => {
+            this.client.hmget(options.key, ...options.data, (err, result) => {
+                if (err) rej(err);
 
-        try {
-            this.client.hmget(key, ...data, (err, result) => {
-                if (err) throw err;
-
-                options.callback({
-                    [data[0]]: result[0],
-                    [data[1]]: result[1],
-                });
-
-                data = null; // GC
-                return true;
+                res( result.reduce(( acc, cv, ind ) => {
+                    acc[options.data[ind]] = cv;
+                    return acc;
+                }, {}));
             });
-        } catch (err) {
-            throw err;
-        }
+        });
     }
 };
 
-const _redis = new Redis('redis://h:p3ddd6d1129711b6bbbbba3c37eafe241275a92cd3c0c77891b3678d7c93dca57@ec2-100-24-153-19.compute-1.amazonaws.com:44009');
+const _redis = new Redis(process.env.REDIS_URI);
 
 module.exports = _redis;
