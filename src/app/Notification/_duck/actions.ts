@@ -1,11 +1,11 @@
 import { Action, ActionCreator } from 'redux';
-import { NotificationTypes, NotificationVariantEnum } from './types';
+import { NotificationActionsEnum, NotificationVariantEnum } from './types';
 
 const {
     APP_NOTIFICATION_CLOSE,
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_SET
-} = NotificationTypes;
+} = NotificationActionsEnum;
 
 export const openNotification: ActionCreator<Action> = () => ({
     type: APP_NOTIFICATION_OPEN

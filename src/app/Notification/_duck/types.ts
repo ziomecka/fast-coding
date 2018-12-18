@@ -1,4 +1,4 @@
-export enum NotificationTypes {
+export enum NotificationActionsEnum {
     APP_NOTIFICATION_OPEN = '@@app_notification/OPEN',
     APP_NOTIFICATION_CLOSE = '@@app_notification/CLOSE',
     APP_NOTIFICATION_SET = '@@app_notification/SET'

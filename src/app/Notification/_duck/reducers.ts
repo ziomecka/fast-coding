@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { NotificationTypes, NotificationVariantEnum } from './types';
+import { NotificationActionsEnum, NotificationVariantEnum } from './types';
 import { NotificationActions } from './actions';
 
 import { NOTIFICATION_DURATION } from '../../../constants';
@@ -11,7 +11,7 @@ const {
     APP_NOTIFICATION_OPEN,
     APP_NOTIFICATION_CLOSE,
     APP_NOTIFICATION_SET
-} = NotificationTypes;
+} = NotificationActionsEnum;
 
 export const INITIAL_STATE: NotificationState = {
     open: false,
