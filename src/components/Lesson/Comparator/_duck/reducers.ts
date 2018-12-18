@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { ComparatorActions, RestoreStateAction } from './actions';
 
-import { ComparatorTypes } from './types';
+import { ComparatorActionsEnum } from './types';
 import { StatsActionsEnum } from '../../Stats/_duck/types';
 
 import {
@@ -21,7 +21,7 @@ const {
     COMPONENTS_COMPARATOR_CORRECT_ERROR,
     COMPONENTS_COMPARATOR_RESET,
     COMPONENTS_COMPARATOR_RESTORE_STATE
-} = ComparatorTypes;
+} = ComparatorActionsEnum;
 
 const {
     COMPONENTS_STATS_TIMER_START,
