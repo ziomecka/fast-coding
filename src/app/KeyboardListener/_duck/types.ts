@@ -1,4 +1,4 @@
-import { AppContainers, ComponentsContainers, ViewsContainers, MenuContainers } from '@applicationTypes';
+import { AppContainers, ComponentsContainers, ViewsContainersEnum, MenuContainers } from '@applicationTypes';
 
 export enum KeyboardListenerTypes {
     APP_KEYBOARD_LISTENER_ADD = '@@app_keyboardListener/ADD',
@@ -8,7 +8,7 @@ export enum KeyboardListenerTypes {
 
 export type KeyboardListenerContainersType =
     ComponentsContainers.lesson |
-    ViewsContainers.homeView |
+    ViewsContainersEnum.homeView |
     AppContainers.dialog |
     AppContainers.welcome |
     MenuContainers.languagesMenu |

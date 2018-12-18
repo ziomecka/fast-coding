@@ -3,11 +3,11 @@ import { Reducer } from 'redux';
 import { KeyboardListenerListenersType } from './types';
 
 import { KeyboardListenerActions } from './actions';
-import { AppContainers, ComponentsContainers, ViewsContainers, MenuContainers } from '@applicationTypes';
+import { AppContainers, ComponentsContainers, ViewsContainersEnum, MenuContainers } from '@applicationTypes';
 
 const { dialog, welcome } = AppContainers;
 const { lesson } = ComponentsContainers;
-const { homeView } = ViewsContainers;
+const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainers;
 
 export const INITIAL_STATE: KeyboardListenerState = {

@@ -1,4 +1,4 @@
-export enum ViewsContainers {
+export enum ViewsContainersEnum {
     homeView = 'HOME_VIEW',
     lessonsView = 'LESSONS_VIEW'
 };
