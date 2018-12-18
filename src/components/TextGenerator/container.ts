@@ -7,12 +7,12 @@ import { ApplicationState } from '../../store';
 import { TextGeneratorState } from './_duck/reducers';
 import { LessonState } from '../Lesson/_duck/reducers';
 
-import { ApplicationContainers, ComponentsContainers } from '@applicationTypes';;
+import { ApplicationContainers, ComponentsContainersEnum } from '@applicationTypes';;
 
 import { onSendText } from './_duck/operations';
 
 const { components } = ApplicationContainers;
-const { lesson, textGenerator } = ComponentsContainers;
+const { lesson, textGenerator } = ComponentsContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): TextGeneratorState & LessonState => ({
     ...state[components][textGenerator],

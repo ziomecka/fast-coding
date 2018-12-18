@@ -4,7 +4,7 @@ import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
-import { ApplicationContainers, ComponentsContainers, AppContainers} from '@applicationTypes';
+import { ApplicationContainers, ComponentsContainersEnum, AppContainers} from '@applicationTypes';
 import {
     localStorageGetItem,
     localStorageSetItem
@@ -13,7 +13,7 @@ import {
 import { LocalStorageItemTypes } from '@appTypes';
 
 export const onLoadData =
-(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainers | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (
+(url: string, applicationContainer: ApplicationContainers, container: ComponentsContainersEnum | AppContainers, lsItem: LocalStorageItemTypes, stateName: string): any => (
     async (dispatch: Dispatch): Promise<any> => {
 
         /** Loading => true */

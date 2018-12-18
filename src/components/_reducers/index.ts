@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
 import { ComponentsActions } from '../_actions/';
-import { ComponentsContainers, ComparatorContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum, ComparatorContainersEnum } from '@applicationTypes';
 
-const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainers;
+const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;
 
 import {

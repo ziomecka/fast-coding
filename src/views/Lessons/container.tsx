@@ -6,11 +6,11 @@ import { WithStyles } from '@material-ui/core';
 
 import {
     ApplicationContainers,
-    ComponentsContainers
+    ComponentsContainersEnum
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
-const { lessonsLoader } = ComponentsContainers;
+const { lessonsLoader } = ComponentsContainersEnum;
 
 import { LessonsLoaderState } from '../../components/LessonsLoader/_duck/reducers';
 

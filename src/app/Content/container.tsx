@@ -8,11 +8,11 @@ import { ApplicationState } from '../../store';
 import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
-import { ApplicationContainers, AppContainers, ComponentsContainers } from '@applicationTypes';
+import { ApplicationContainers, AppContainers, ComponentsContainersEnum } from '@applicationTypes';
 
 const { app, components } = ApplicationContainers;
 const { content } = AppContainers;
-const { lesson } = ComponentsContainers;
+const { lesson } = ComponentsContainersEnum;
 
 import { changeLocation, changeTitle } from './_duck/actions';
 import { AppLocation } from '@appTypes';

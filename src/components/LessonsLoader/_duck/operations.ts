@@ -5,10 +5,10 @@ import { URLParamsI } from '../../../shared/url';
 
 const { buildUrl } = urlFuncs;
 
-import { AppRoutes, ApplicationContainers, ComponentsContainers, LocalStorageItemTypes } from '@applicationTypes';
+import { AppRoutes, ApplicationContainers, ComponentsContainersEnum, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components  } = ApplicationContainers;
-const { lessonsLoader } = ComponentsContainers;
+const { lessonsLoader } = ComponentsContainersEnum;
 
 const _url = AppRoutes.lessonsGet;
 const defaultParamName = 'login';

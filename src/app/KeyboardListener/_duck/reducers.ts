@@ -3,10 +3,10 @@ import { Reducer } from 'redux';
 import { KeyboardListenerListenersType } from './types';
 
 import { KeyboardListenerActions } from './actions';
-import { AppContainers, ComponentsContainers, ViewsContainersEnum, MenuContainers } from '@applicationTypes';
+import { AppContainers, ComponentsContainersEnum, ViewsContainersEnum, MenuContainers } from '@applicationTypes';
 
 const { dialog, welcome } = AppContainers;
-const { lesson } = ComponentsContainers;
+const { lesson } = ComponentsContainersEnum;
 const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainers;
 

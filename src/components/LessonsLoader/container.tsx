@@ -6,12 +6,12 @@ import { LessonsLoaderState } from './_duck/reducers';
 
 import { onLoadLessons } from './_duck/operations';
 
-import { ApplicationContainers, ComponentsContainers } from '@applicationTypes';;
+import { ApplicationContainers, ComponentsContainersEnum } from '@applicationTypes';;
 
 import { ApplicationState } from '../../_reducers/';
 
 const { components } = ApplicationContainers;
-const { lessonsLoader } = ComponentsContainers;
+const { lessonsLoader } = ComponentsContainersEnum;
 
 const mapStateToProps = (state: ApplicationState) => ({
     ...state[components][lessonsLoader]

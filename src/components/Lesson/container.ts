@@ -12,13 +12,13 @@ import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispat
 
 import {
     ApplicationContainers,
-    ComponentsContainers,
+    ComponentsContainersEnum,
     LocalStorageItemTypes,
     ComparatorContainersEnum
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
-const { lesson, comparator } = ComponentsContainers;
+const { lesson, comparator } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;
 
 import { onReset } from './_duck/operations/life';

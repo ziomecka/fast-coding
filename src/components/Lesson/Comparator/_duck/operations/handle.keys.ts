@@ -2,14 +2,14 @@ import { Dispatch } from 'redux';
 
 import {
     ApplicationContainers,
-    ComponentsContainers,
+    ComponentsContainersEnum,
     AppRoutes,
     ThunkGetStateType,
     LocalStorageItemTypes
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
-const { comparator, lesson } = ComponentsContainers;
+const { comparator, lesson } = ComponentsContainersEnum;
 const { lessons } = AppRoutes;
 
 import {

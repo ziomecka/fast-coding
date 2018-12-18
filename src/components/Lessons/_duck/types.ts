@@ -1,4 +1,4 @@
-// Use ComponentsContainers enum in '@@components_
+// Use ComponentsContainersEnum enum in '@@components_
 // Important for components reducer
 export enum LessonsActionsEnum {
     COMPONENTS_LESSONS_UPDATE = '@@components_lessons/LAST_LESSON_UPDATE',

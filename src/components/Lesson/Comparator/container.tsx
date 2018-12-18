@@ -7,10 +7,10 @@ import { ApplicationState } from '../../../store';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ComponentsContainers, ApplicationContainers, LocalStorageItemTypes } from '@applicationTypes';
+import { ComponentsContainersEnum, ApplicationContainers, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
-const { comparator, lesson } = ComponentsContainers;
+const { comparator, lesson } = ComponentsContainersEnum;
 
 import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
 import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';

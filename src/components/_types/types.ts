@@ -1,7 +1,7 @@
 
 import { LanguagesEnum } from '@appTypes';
 
-export enum ComponentsContainers {
+export enum ComponentsContainersEnum {
     comparator = 'COMPARATOR',
     lesson = 'LESSON',
     textGenerator = 'TEXT_GENERATOR',

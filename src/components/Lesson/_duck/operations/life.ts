@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainers, ComponentsContainers, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
+import { ApplicationContainers, ComponentsContainersEnum, AppRoutes, ThunkGetStateType, LocalStorageItemTypes } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
-const { comparator, lesson } = ComponentsContainers;
+const { comparator, lesson } = ComponentsContainersEnum;
 const { lessons } = AppRoutes;
 
 import history from '../../../../shared/history';
@@ -34,7 +34,7 @@ import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners  from '../../../../app/KeyboardListener/_duck/operations';
-const { lesson: container } = ComponentsContainers;
+const { lesson: container } = ComponentsContainersEnum;
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;
