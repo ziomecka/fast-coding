@@ -1,9 +1,9 @@
 import { Reducer } from 'redux';
 import { ComponentsActions } from '../_actions/';
-import { ComponentsContainers, ComparatorContainers } from '@applicationTypes';
+import { ComponentsContainers, ComparatorContainersEnum } from '@applicationTypes';
 
 const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainers;
-const { stats } = ComparatorContainers;
+const { stats } = ComparatorContainersEnum;
 
 import {
     ComparatorState,

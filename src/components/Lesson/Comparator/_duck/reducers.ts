@@ -11,8 +11,8 @@ import {
     INITIAL_STATE as STATS_INITIAL_STATE
 } from '../../Stats/_duck/reducers'
 
-import { ComparatorContainers } from '@componentsTypes';
-const { stats } = ComparatorContainers;
+import { ComparatorContainersEnum } from '@componentsTypes';
+const { stats } = ComparatorContainersEnum;
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,

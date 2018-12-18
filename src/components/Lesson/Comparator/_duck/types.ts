@@ -9,6 +9,6 @@ export enum ComparatorTypes {
     COMPONENTS_COMPARATOR_RESTORE_STATE = '@@components_comparator/RESTORE_STATE'
 };
 
-export enum ComparatorContainers {
+export enum ComparatorContainersEnum {
     stats = 'STATS'
 };

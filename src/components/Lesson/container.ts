@@ -14,12 +14,12 @@ import {
     ApplicationContainers,
     ComponentsContainers,
     LocalStorageItemTypes,
-    ComparatorContainers
+    ComparatorContainersEnum
 } from '@applicationTypes';
 
 const { components } = ApplicationContainers;
 const { lesson, comparator } = ComponentsContainers;
-const { stats } = ComparatorContainers;
+const { stats } = ComparatorContainersEnum;
 
 import { onReset } from './_duck/operations/life';
 import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
