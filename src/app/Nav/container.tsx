@@ -8,7 +8,8 @@ import { ApplicationState } from '../../_reducers';
 
 import { onLogOut } from './_duck/operations';
 
-import { AppContainersEnum, ApplicationContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;

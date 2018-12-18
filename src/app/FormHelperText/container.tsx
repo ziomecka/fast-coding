@@ -7,7 +7,8 @@ import { ApplicationState } from '../../store';
 
 import { FormHelperTextState } from './_duck/reducers';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 const { formHelperText } = AppContainersEnum;

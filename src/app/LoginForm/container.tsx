@@ -8,7 +8,8 @@ import { LoginFormState } from './_duck/reducers';
 import { onLog } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { setLogin, SetLoginAction, reset } from './_duck/actions';
 
 const { app } = ApplicationContainersEnum;

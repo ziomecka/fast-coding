@@ -6,7 +6,8 @@ import { ApplicationState } from '../../store';
 
 import { RemindPasswordState } from './_duck/reducers';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { reset, setEmail, SetEmailAction, SetEmail } from './_duck/actions';
 import { SendFormRemindPasswordI } from './_duck/types';
 

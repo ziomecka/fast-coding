@@ -5,7 +5,8 @@ import { ApplicationState } from '../../store';
 
 import { DialogState } from './_duck/reducers';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 const { dialog } = AppContainersEnum;

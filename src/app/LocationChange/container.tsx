@@ -6,7 +6,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as LocationChange } from './component';
 import { ApplicationState } from '../../store';
 import { AppState } from '../_reducers/';
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 

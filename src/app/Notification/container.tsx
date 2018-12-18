@@ -5,7 +5,8 @@ import { ApplicationState } from '../../store';
 
 import { NotificationState } from './_duck/reducers';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 

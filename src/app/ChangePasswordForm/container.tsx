@@ -6,7 +6,8 @@ import { ApplicationState } from '../../store';
 
 import { ChangePasswordFormState } from './_duck/reducers';
 
-import { ApplicationContainersEnum, AppContainersEnum } from '@appTypes';
+import { ApplicationContainersEnum } from '@applicationTypes';
+import { AppContainersEnum } from '@appTypes';
 import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
