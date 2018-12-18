@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { StatsActions } from './actions';
-import { StatsTypes } from './types';
+import { StatsActionsEnum } from './types';
 
 const {
     COMPONENTS_STATS_TIMER_START,
@@ -9,7 +9,7 @@ const {
     COMPONENTS_STATS_RESET,
     COMPONENTS_STATS_PAUSE,
     COMPONENTS_STATS_UNPAUSE
-} = StatsTypes;
+} = StatsActionsEnum;
 
 export const INITIAL_STATE: StatsState = {
     running: false,

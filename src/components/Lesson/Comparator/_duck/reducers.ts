@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { ComparatorActions, RestoreStateAction } from './actions';
 
 import { ComparatorTypes } from './types';
-import { StatsTypes } from '../../Stats/_duck/types';
+import { StatsActionsEnum } from '../../Stats/_duck/types';
 
 import {
     statsReducer,
@@ -29,7 +29,7 @@ const {
     COMPONENTS_STATS_RESET,
     COMPONENTS_STATS_PAUSE,
     COMPONENTS_STATS_UNPAUSE
-} = StatsTypes;
+} = StatsActionsEnum;
 
 /**
  * @param errors - Errors that are still not corrected
