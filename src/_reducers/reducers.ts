@@ -10,7 +10,7 @@ import { actions as componentsActions, ComponentsActions } from '../components/_
 
 /** LOCATION CHANGE */
 import { locationChangeReducer } from '../app/LocationChange/_duck/reducers';
-import { LocationChangeTypes } from '@appTypes';
+import { LocationChangeActionsEnum } from '@appTypes';
 import { LocationChangeActions } from '../app/LocationChange/_duck/actions';
 
 /** CSR */
@@ -37,7 +37,7 @@ const INITIAL_STATE = {
     localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
-const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeTypes;
+const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeActionsEnum;
 const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,

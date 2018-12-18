@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LocationChangeTypes } from './types';
+import { LocationChangeActionsEnum } from './types';
 import { LocationChangeActions } from './actions';
 
 import { ApplicationState } from '../../../store';
@@ -12,7 +12,7 @@ import { checkLocation } from './operations';
 
 const {
    APP_LOCATION_CHANGE_CHANGE_LOCATION
-} = LocationChangeTypes;
+} = LocationChangeActionsEnum;
 
 const reducer: Reducer<ApplicationState, LocationChangeActions > = (state, action) => {
     switch (action.type) {
