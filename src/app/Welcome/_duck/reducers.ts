@@ -4,11 +4,11 @@ import { classTitleHome, classTitleFalling } from './operations';
 import { WelcomeActions } from './actions';
 
 import { AppLocation } from '@appTypes';
-import { WelcomeTypes } from './types';
+import { WelcomeActionsEnum } from './types';
 
 import { getClasses } from './operations';
 
-const { APP_WELCOME_CHANGE_LOCATION } = WelcomeTypes;
+const { APP_WELCOME_CHANGE_LOCATION } = WelcomeActionsEnum;
 
 export const INITIAL_STATE: WelcomeState = {
     appLocation: AppLocation.isHome,

@@ -1,10 +1,10 @@
 import { Action, ActionCreator } from 'redux';
-import { WelcomeTypes } from './types';
+import { WelcomeActionsEnum } from './types';
 import { AppLocation } from '@appTypes';
 
 const {
     APP_WELCOME_CHANGE_LOCATION
- } = WelcomeTypes;
+ } = WelcomeActionsEnum;
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocation) => ({
