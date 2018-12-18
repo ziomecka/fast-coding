@@ -134,6 +134,11 @@ module.exports = {
       '@views': ( path.resolve ( './src/views/' ) ),
       '@shared': ( path.resolve ( './src/shared/' ) ),
       '@root': ( path.resolve ( './src/' ) ),
+      '@applicationTypes': ( path.resolve ( './src/_types/' ) ),
+      '@appTypes': ( path.resolve ( './src/app/_types/' ) ),
+      '@componentsTypes': ( path.resolve ( './src/components/_types/' ) ),
+      '@viewsTypes': ( path.resolve ( './src/views/_types/' ) ),
+      '@sharedTypes': ( path.resolve ( './src/shared/_types/'  ))
     },
   },
   plugins: [
