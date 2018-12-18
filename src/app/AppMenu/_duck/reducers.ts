@@ -8,11 +8,11 @@ import {
     INITIAL_STATE as SUMBENU_INITIAL_STATE
 } from '../../SubMenu/_duck/reducers';
 
-import { MenuContainers } from '@appTypes';
+import { MenuContainersEnum } from '@appTypes';
 
 import { AppMenuActions } from './actions';
 
-const { mainMenu, userMenu, languagesMenu} = MenuContainers;
+const { mainMenu, userMenu, languagesMenu} = MenuContainersEnum;
 
 export const INITIAL_STATE: MenuState = {
     [mainMenu]: { ...SUMBENU_INITIAL_STATE },
@@ -41,5 +41,5 @@ export { reducer as menuReducer };
 
 export interface MenuState {
     // @ts-ignore
-    [subMenuName: MenuContainers]: SubMenuState
+    [subMenuName: MenuContainersEnum]: SubMenuState
 };

@@ -15,7 +15,7 @@ import { ApplicationContainers } from '@applicationTypes';
 import {
     AppContainers,
     AppRoutes,
-    MenuContainers,
+    MenuContainersEnum,
     SubMenuRulesEnum,
     NavRulesEnum,
     LanguagesEnum
@@ -46,7 +46,7 @@ const SubMenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)
 export default SubMenuContainer;
 
 export interface SubMenuDispatch {
-    setNavAnchorEl: (container: MenuContainers, element?: HTMLElement | null) => void
+    setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
 };
 
 export type SubMenuItemType = {
@@ -61,7 +61,7 @@ export interface __SubMenuProps {
     menuItems?: SubMenuItemType[];
     menuItem?: SubMenuItemType;
     icon: JSX.Element;
-    container?: MenuContainers;
+    container?: MenuContainersEnum;
     rules?: NavRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;

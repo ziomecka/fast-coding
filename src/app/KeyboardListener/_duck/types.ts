@@ -1,4 +1,4 @@
-import { AppContainers, ComponentsContainersEnum, ViewsContainersEnum, MenuContainers } from '@applicationTypes';
+import { AppContainers, ComponentsContainersEnum, ViewsContainersEnum, MenuContainersEnum } from '@applicationTypes';
 
 export enum KeyboardListenerTypes {
     APP_KEYBOARD_LISTENER_ADD = '@@app_keyboardListener/ADD',
@@ -11,9 +11,9 @@ export type KeyboardListenerContainersType =
     ViewsContainersEnum.homeView |
     AppContainers.dialog |
     AppContainers.welcome |
-    MenuContainers.languagesMenu |
-    MenuContainers.mainMenu |
-    MenuContainers.userMenu;
+    MenuContainersEnum.languagesMenu |
+    MenuContainersEnum.mainMenu |
+    MenuContainersEnum.userMenu;
 
 export type ListenerType = [ string, EventListener ];
 

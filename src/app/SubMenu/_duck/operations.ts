@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { setNavAnchorEl } from './actions';
-import { MenuContainers } from '@appTypes';
+import { MenuContainersEnum } from '@appTypes';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
@@ -8,7 +8,7 @@ import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/op
 let listenerId;
 
 /** If escape pressed close the submenu */
-const keyDownCallback = (dispatch: Dispatch, container: MenuContainers, e: React.KeyboardEvent) => {
+const keyDownCallback = (dispatch: Dispatch, container: MenuContainersEnum, e: React.KeyboardEvent) => {
     if ( e.keyCode === 27 ) {
         dispatch(setNavAnchorEl(container));
     }
@@ -16,7 +16,7 @@ const keyDownCallback = (dispatch: Dispatch, container: MenuContainers, e: React
 
 let callback;
 
-export const onSetNavAnchorEl = (container: MenuContainers, element?: HTMLElement): any => (dispatch: Dispatch) => {
+export const onSetNavAnchorEl = (container: MenuContainersEnum, element?: HTMLElement): any => (dispatch: Dispatch) => {
     if (element) {
         callback = keyDownCallback.bind(null, dispatch, container);
         listenerId = dispatch(manageKeydownListeners.onAddListener({

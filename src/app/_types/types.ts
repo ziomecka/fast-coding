@@ -15,7 +15,7 @@ export enum AppContainers {
     newPasswordForm = 'NEW_PASSWORD'
 };
 
-export enum MenuContainers {
+export enum MenuContainersEnum {
     userMenu = 'USER_MENU',
     mainMenu = 'MAIN_MENU',
     languagesMenu = 'LANGUAGES_MENU'
