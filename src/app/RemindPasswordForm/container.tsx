@@ -1,7 +1,7 @@
 import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
-import { default as RemindPassword } from './component';
+import { default as RemindPasswordForm } from './component';
 import { ApplicationState } from '../../store';
 
 import { RemindPasswordState } from './_duck/reducers';
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch): RemindPasswordDispatch => ({
     formInvalid: () => dispatch(onFormInvalid())
 });
 
-const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(RemindPassword);
+const LabelContainer = connect(mapStateToProps, mapDispatchToProps)(RemindPasswordForm);
 
 export default LabelContainer;
 
