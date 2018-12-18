@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { RemindPasswordTypes } from './types';
+import { RemindPasswordActionsEnum } from './types';
 import { RemindPasswordActions }  from './actions';
 
 import {
@@ -10,7 +10,7 @@ import {
 const {
     APP_REMIND_PASSWORD_SET_EMAIL,
     APP_REMIND_PASSWORD_RESET
-} = RemindPasswordTypes;
+} = RemindPasswordActionsEnum;
 
 export const INITIAL_STATE: RemindPasswordState = {
     ...EmailInitialState,
