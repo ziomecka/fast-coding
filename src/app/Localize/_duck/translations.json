@@ -164,11 +164,11 @@
         "Email nie istnieje w naszej bazie. Proszę, spróbuj ponownie."
     ],
     "remindPasswordRememberButton": [
-        "Login",
-        "Zaloguj"
+        "Go to login page",
+        "Przejdź do logowania"
     ],
     "loginDoNotRememberButton": [
-        "Remind password",
-        "Przypomnij hasło"
+        "I do not remember password",
+        "Nie pamiętam hasła"
     ]
 }

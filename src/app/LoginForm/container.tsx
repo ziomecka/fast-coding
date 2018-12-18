@@ -12,6 +12,8 @@ import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 import { setLogin, SetLoginAction, reset } from './_duck/actions';
 
+import { WithStyles } from '@material-ui/core/styles';
+
 const { app } = ApplicationContainersEnum;
 const { loginForm } = AppContainersEnum;
 
@@ -37,4 +39,7 @@ export interface LoginFormDispatch {
     formInvalid: () => Action;
 };
 
-export interface LoginFormPropsI extends LoginFormDispatch, LoginFormState {};
+export interface LoginFormPropsI extends
+    LoginFormDispatch,
+    LoginFormState,
+    WithStyles {};

@@ -22,6 +22,9 @@ import Typography from '@material-ui/core/Typography';
 import { Translate } from 'react-localize-redux';
 const { pass } = PasswordsEnum;
 
+import styles from './styles';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainersEnum;
     constructor (props) {
@@ -84,6 +87,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                             tabIndex={3}
                             variant="text"
                             color="primary"
+                            className= { this.props.classes.button }
                         >
                             <Translate id="loginDoNotRememberButton" />
                         </Button>
@@ -95,4 +99,4 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 };
 
-export default LoginFormComponent;
+export default withStyles(styles)(LoginFormComponent);
