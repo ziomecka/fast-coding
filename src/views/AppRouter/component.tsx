@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
-import history from '../../shared/history';
+import history from '@shared/history';
 
 import HomeView from '../Home/';
 import LessonsView from '../Lessons/';

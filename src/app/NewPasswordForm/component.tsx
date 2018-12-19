@@ -22,7 +22,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
 import { Translate } from 'react-localize-redux';
-import { KEY_PARAM } from '../../views/AppRouter/constants';
+import { KEY_PARAM } from '@views/AppRouter/constants';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from '@appForm/styles';

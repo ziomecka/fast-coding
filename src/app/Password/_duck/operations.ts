@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { AppContainersEnum } from '@appTypes';
 import { validatePassword } from './actions';
 
-import { applyRules, RulesDataI, RulesErrorEnum } from '../../../shared/rules';
+import { applyRules, RulesDataI, RulesErrorEnum } from '@shared/rules';
 
 export const onValidatePassword = (password: string, passwordType, container: AppContainersEnum, rules: RulesErrorEnum[], value2: string = ''): any => (
     (dispatch: Dispatch): Action => {

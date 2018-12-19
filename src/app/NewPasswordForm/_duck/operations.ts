@@ -9,7 +9,7 @@ import { SendFormNewPasswordFormI } from './types';
 const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
 const { newPassword, login } = AppRoutesEnum;
 
-import { onSendForm as _onSendForm } from '../../Form/_duck/operations';
+import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
 export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
     async ( dispatch: Dispatch): Promise<Action> => {

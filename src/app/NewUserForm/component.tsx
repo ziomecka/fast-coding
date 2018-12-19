@@ -20,7 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { PasswordsEnum } from '@appTypes';
 const { newPass, confirmPass } = PasswordsEnum;
 
-import { RulesErrorEnum } from '../../shared/_types/';
+import { RulesErrorEnum } from '@shared/_types/';
 const { NO_MATCH } = RulesErrorEnum;
 
 import styles from '@appForm/styles';

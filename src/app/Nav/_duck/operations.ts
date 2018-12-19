@@ -4,7 +4,7 @@ import { unauthorizeUser } from '../../User/_duck/actions';
 import { onOpenNotification } from '../../Notification/_duck/operations';
 
 import { AppRoutesEnum } from '@appTypes';
-import history from '../../../shared/history';
+import history from '@shared/history';
 
 const { lessons } = AppRoutesEnum;
 

@@ -7,7 +7,7 @@ import { RemindPasswordResponseEnum, SendFormRemindPasswordI } from './types';
 const { SUCCESS, EMAIL_DOES_NOT_EXIST } = RemindPasswordResponseEnum;
 const { remindPassword } = AppRoutesEnum;
 
-import { onSendForm as _onSendForm } from '../../Form/_duck/operations';
+import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
 export const onSendForm = (options: SendFormRemindPasswordI ): any => (
     async ( dispatch: Dispatch): Promise<Action> => {

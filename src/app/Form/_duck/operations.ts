@@ -8,7 +8,7 @@ import { AppContainersEnum } from '@appTypes';
 
 import { onOpenNotification } from '../../Notification/_duck/operations';
 
-import history from '../../../shared/history';
+import history from '@shared/history';
 
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;

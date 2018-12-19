@@ -5,8 +5,8 @@ import { Reducer } from 'redux';
 // import { actions as viewsActions, ViewsActions } from '../views/_actions';
 
 /** COMPONENTS */
-import { INITIAL_STATE as COMPONENTS_INITIAL_STATE, ComponentsState, componentsReducer } from '../components/_reducers/';
-import { actions as componentsActions, ComponentsActions } from '../components/_actions';
+import { INITIAL_STATE as COMPONENTS_INITIAL_STATE, ComponentsState, componentsReducer } from '@components/_reducers/';
+import { actions as componentsActions, ComponentsActions } from '@components/_actions';
 
 /** LOCATION CHANGE */
 import { locationChangeReducer } from '../app/LocationChange/_duck/reducers';

@@ -21,7 +21,7 @@ const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
 const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
 const { pl, en } = LanguagesEnum;
 
-import getTranslation from '../../shared/get.translation';
+import getTranslation from '@shared/get.translation';
 import { getActiveLanguage } from 'react-localize-redux';
 
 /**

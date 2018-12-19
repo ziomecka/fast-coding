@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { default as HomeViewComponent } from './component';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
+import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 
 const mapStateToProps = () => ({});
 

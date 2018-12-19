@@ -8,7 +8,7 @@ import { ApplicationState } from '../../store';
 import { LessonState } from './_duck/reducers';
 import { restoreState } from './_duck/actions';
 
-import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
+import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 
 import { LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';

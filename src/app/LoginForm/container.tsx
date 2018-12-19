@@ -7,7 +7,7 @@ import { ApplicationState } from '../../store';
 
 import { LoginFormState } from './_duck/reducers';
 import { onLog } from './_duck/operations';
-import { onFormInvalid } from '../Form/_duck/operations';
+import { onFormInvalid } from '@appForm/_duck/operations';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';

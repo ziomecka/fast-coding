@@ -1,4 +1,4 @@
-import { GetLessonsResponseI } from '../../../components/LessonsLoader/_duck/types';
+import { GetLessonsResponseI } from '@components/LessonsLoader/_duck/types';
 
 export enum CSRActionsEnum {
     APP_CSR_CHANGE_LOADING_STATE = '@@app_csr/CHANGE_LOADING_STATE',

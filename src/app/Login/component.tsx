@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { LoginPropsI } from './container';
 
-import { helperTexts } from '../../shared/rules';
+import { helperTexts } from '@shared/rules';
 
-import getTranslation from '../../shared/get.translation';
+import getTranslation from '@shared/get.translation';
 
 /** Materials */
 import TextField from '@material-ui/core/TextField';

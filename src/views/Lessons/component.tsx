@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LessonsViewProps } from './container';
-import Lessons from '../../components/Lessons';
+import Lessons from '@components/Lessons';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';

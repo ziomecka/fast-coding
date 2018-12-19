@@ -12,7 +12,7 @@ import { reset  } from './_duck/actions';
 import { SendFormNewPasswordFormI } from './_duck/types';
 
 import { onSendForm } from './_duck/operations';
-import { onFormInvalid } from '../Form/_duck/operations';
+import { onFormInvalid } from '@appForm/_duck/operations';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { WithStyles } from '@material-ui/core/styles/withStyles';

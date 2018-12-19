@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LessonViewProps } from './container';
-import Lesson from '../../components/Lesson/';
+import Lesson from '@components/Lesson/';
 
 const LessonView: React.StatelessComponent<LessonViewProps> = props => {
     return (

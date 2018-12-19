@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { EmailPropsI } from './container';
 
-import getTranslation from '../../shared/get.translation';
-import { helperTexts } from '../../shared/rules';
+import getTranslation from '@shared/get.translation';
+import { helperTexts } from '@shared/rules';
 
 /** Materials */
 import TextField from '@material-ui/core/TextField';
