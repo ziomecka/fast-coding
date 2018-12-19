@@ -138,7 +138,8 @@ module.exports = {
       '@appTypes': ( path.resolve ( __dirname, '../src/app/_types/' ) ),
       '@componentsTypes': ( path.resolve ( __dirname, '../src/components/_types/' ) ),
       '@viewsTypes': ( path.resolve ( __dirname, '../src/views/_types/' ) ),
-      '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  ))
+      '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  )),
+      '@appForm': ( path.resolve ( __dirname, '../src/app/Form/' ))
     },
   },
   plugins: [

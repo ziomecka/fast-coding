@@ -33,7 +33,8 @@
       "@appTypes": [ "src/app/_types/index" ],
       "@componentsTypes": [ "src/components/_types/index" ],
       "@viewsTypes": [ "src/views/_types/index" ],
-      "@sharedTypes": [ "src/shared/_types/index" ]
+      "@sharedTypes": [ "src/shared/_types/index" ],
+      "@appForm/*": [ "src/app/Form/*" ]
     },
     "resolveJsonModule": true
   }
