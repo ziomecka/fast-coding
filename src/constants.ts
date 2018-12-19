@@ -1,3 +1,5 @@
+export { default as SERVER_CONSTANTS } from './server/constants.client.js';
+
 import { LanguagesEnum } from '@applicationTypes';
 const { pl, en } = LanguagesEnum;
 

@@ -1,3 +1,4 @@
+const { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_KEY_LENGTH } = require('./constants.client');
 const PORT = 3000;
 const DOMAIN = 'https://fast-coding.herokuapp.com';
 
@@ -13,7 +14,9 @@ const REDIS_PASSWORD_RESPONSES = {
     LOGIN_DOES_NOT_EXIST: 4,
     INCORRECT_PASSWORD: 5,
     INCORRECT_CURRENT_PASSWORD: 6,
-    EMAIL_DOES_NOT_EXIST: 7
+    EMAIL_DOES_NOT_EXIST: 7,
+    QUERY_IS_VALID: 8,
+    QUERY_IS_INVALID: 9
 };
 
 const REDIS_RESPONSES = {
@@ -25,9 +28,14 @@ const EMAIL_RESPONSES = {
     ...BASIC_RESPONSES
 };
 
+// TODO
+// to się niewygodnie koduje, do zmiany, bo trzeba uważać czy ciągła numeracj
+// zmienić liczby na string?
 const PASSWORD_MANAGER_RESPONSES = {
     ...BASIC_RESPONSES,
-    ...REDIS_PASSWORD_RESPONSES
+    ...REDIS_PASSWORD_RESPONSES,
+    LINK_IS_INVALID: 10,
+    LOGIN_IS_MISSING: 11
 };
 
 const ROUTES = {
@@ -35,6 +43,7 @@ const ROUTES = {
     NEW_USER_SET: '/newuser/set',
     LOGIN_LOG: '/login/log',
     CHANGE_PASSWORD: '/changepassword',
+    NEW_PASSWORD: '/newpassword',
     REMIND_PASSWORD: '/remindpassword'
 };
 
@@ -50,7 +59,10 @@ const EMAILS = {
 };
 
 const REMIND_PASSWORD = {
-    LINK_ACTIVE_MINUTES: 15
+    LINK_ACTIVE_MINUTES: 15,
+    QUERY_PARAM_KEY,
+    QUERY_PARAM_EMAIL,
+    QUERY_PARAM_KEY_LENGTH
 };
 
 const REDIS_KEYS = {
