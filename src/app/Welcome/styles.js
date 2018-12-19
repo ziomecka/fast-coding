@@ -7,6 +7,8 @@ import {
 } from '../../constants';
 
 const styles = theme => {
+    const TOOLBAR_MAX_WIDTH = '270px'; // arbitrary value
+
     const {
         palette: {
             primary: { main: mainPrimary },
@@ -57,12 +59,12 @@ const styles = theme => {
             display: 'inline-block',
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
-            padding: `0 ${ PAPER_PADDING_MAX }`,
+            padding: `0 0 0 ${ PAPER_PADDING_MAX }`,
+            maxWidth: `calc(100% - ${ PAPER_PADDING_MAX } - ${ PAPER_PADDING_MAX } - ${ TOOLBAR_MAX_WIDTH })`
         },
         welcomeHeadingOther: {
-            position: 'relative',
             fontSize: theme.typography.display2.fontSize,
-            color: contrastTextSecondary
+            color: contrastTextSecondary,
         },
         welcomeButtons: {
             paddingLeft: PAPER_PADDING_MAX
