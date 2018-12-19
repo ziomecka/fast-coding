@@ -1,0 +1,1 @@
+export const FC_FORM_WIDTH = '400px';
