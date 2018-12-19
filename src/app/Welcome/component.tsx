@@ -42,6 +42,9 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         this.goToDemo = this.goToDemo.bind(this);
         this.goToLessons = this.goToLessons.bind(this);
 
+        /** Link to Welcome page
+         *  Hidden, under title, rendered on not Welcome page
+         */
         this.subMenu = {
             menuItem: {
                 title: 'Home',
@@ -61,7 +64,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
     componentDidUpdate(prevProps: WelcomeProps) {
         const { appLocation } = this.props;
-        const prevAppLocation = prevProps.appLocation;
+        const { appLocation: prevAppLocation } = prevProps;
 
         if (appLocation !== prevAppLocation) {
             this.props.changeLocation(appLocation);
@@ -95,9 +98,13 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     }
 
     heading = () => {
-        const { animated, heading, classes } = this.props;
-        const { classFalling } = this;
-        const { fallingLetters } = classes;
+        const {
+            classFalling,
+            props: {
+                animated, heading,
+                classes: { fallingLetters }
+            }
+        } = this;
 
         if (animated) {
             const lastSpace = heading.lastIndexOf(' ');
@@ -106,13 +113,13 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
             return (
                 <>
-                    {remainingHeading} {
+                    { remainingHeading } {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
-                                className={`${fallingLetters} ${this.isHome ? classFalling : ''}`}
-                                key={`${ind}-${letter}`}
+                                className={ `${ fallingLetters } ${ this.isHome ? classFalling : '' }` }
+                                key={ `${ind}-${letter}` }
                             >
-                                {letter}
+                                { letter }
                             </span>
                         ))
                     }
@@ -120,32 +127,24 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             );
         }
 
-        return <>{heading}</>;
+        return <>{ heading }</>;
     };
 
     render()  {
         const {
-            heading,
-            isHome,
-            isLesson,
+            heading, isHome, isLesson,
             props: {
                 classes: {
-                    welcomePaper,
-                    welcomeHome,
-                    welcomeOther,
-                    welcomeButtons,
-                    welcomeButton,
-                    welcomeButtonMain,
-                    welcomeHeading,
-                    welcomeHeadingOther,
-                    welcomeLesson
+                    welcomePaper, welcomeHome, welcomeOther, welcomeButtons,
+                    welcomeButton, welcomeButtonMain, welcomeHeading,
+                    welcomeHeadingOther, welcomeLesson
                 }
             }
         } = this;
 
         return (
             <Paper className={
-                `${welcomePaper} ${
+                `${ welcomePaper } ${
                     isHome
                     ? welcomeHome
                     : isLesson
@@ -153,29 +152,30 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                         : welcomeOther
                     }`
             }>
-                <Typography variant="h1" className={`${welcomeHeading} ${!isHome && welcomeHeadingOther}`}>
-                    {heading()}
+                <Typography variant="h1" className={`${ welcomeHeading } ${ !isHome && welcomeHeadingOther }`}>
+                    { heading() }
                 </Typography>
 
-                { /* Renders the link to home
-                  /* Only on specific paths
-                  */}
-                <SubMenu {...this.subMenu} />
+                {/**
+                 /* Link to Welcome page
+                 /* Hidden, under title, rendered on not Welcome page
+                 */}
+                <SubMenu { ...this.subMenu } />
 
                 {/* Render buttons only when Home */}
                 {isHome && (
                     <div className={ welcomeButtons }>
                         <Button
-                            onClick={this.goToLessons}
-                            className={welcomeButton}
-                            id={buttonsIds[0]}
+                            onClick={ this.goToLessons }
+                            className={ welcomeButton }
+                            id={ buttonsIds[0] }
                         >
                             <Translate id="welcomeGoToCourses"/>
                         </Button>
                         <Button
-                            className={`${welcomeButton} ${welcomeButtonMain}`}
-                            onClick={this.goToDemo}
-                            id={buttonsIds[1]}
+                            className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                            onClick={ this.goToDemo }
+                            id={ buttonsIds[1] }
                         >
                             <Translate id="welcomeGoToDemo"/>
                         </Button>
