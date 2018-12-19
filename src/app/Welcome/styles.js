@@ -20,13 +20,13 @@ const styles = theme => {
         spacing: { unit: spacingUnit }
     } = theme;
 
-    const transHeightFontSizeColor = `${theme.transitions.create(
+    const transHeightFontSizeColor = `${ theme.transitions.create(
         ['height', 'font-size' ], { duration: complex, easing: easeOut },
-    )}, ${theme.transitions.create(
+    ) }, ${ theme.transitions.create(
         [ 'color' ], { duration: shorter, easing: easeOut }
-    )}, ${theme.transitions.create(
+    ) }, ${ theme.transitions.create(
         ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
-    )}`;
+    ) }`;
 
     return {
         welcomePaper: {
@@ -39,24 +39,25 @@ const styles = theme => {
             backgroundColor: mainPrimary,
             borderRadius: 0,
             width: '100%',
-            transition: `${transHeightFontSizeColor}`
+            transition: `${ transHeightFontSizeColor }`
         },
         welcomeHome: {
             height: '100%',
             fontSize: theme.typography.pxToRem(30)
         },
         welcomeOther: {
-            height: `${NAV_HEIGHT}px`,
+            height: `${ NAV_HEIGHT }px`,
             fontSize: theme.typography.pxToRem(16),
             color: textPrimary
         },
         welcomeLesson: {
-            top: `-${NAV_HEIGHT}px`
+            top: `-${ NAV_HEIGHT }px`
         },
         welcomeHeading: {
+            display: 'inline-block',
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
-            padding: `0 ${PAPER_PADDING_MAX}`
+            padding: `0 ${ PAPER_PADDING_MAX }`,
         },
         welcomeHeadingOther: {
             position: 'relative',
@@ -67,7 +68,7 @@ const styles = theme => {
             paddingLeft: PAPER_PADDING_MAX
         },
         welcomeButton: {
-            margin: `${spacingUnit * WELCOME_BUTTON_MARGIN_TOP} ${spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT} ${spacingUnit} 0`,
+            margin: `${ spacingUnit * WELCOME_BUTTON_MARGIN_TOP } ${ spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT } ${ spacingUnit } 0`,
         },
         fallingLetters: {
             position: 'relative',
@@ -75,6 +76,9 @@ const styles = theme => {
         welcomeButtonMain: {
             backgroundColor: mainSecondary
         },
+        /** Link to Welcome page
+         *  Hidden, under title, rendered on not Welcome page
+         */
         welcomeHomeSubMenu: {
             position: 'absolute',
             left: PAPER_PADDING_MAX,
