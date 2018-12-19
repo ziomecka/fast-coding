@@ -2,7 +2,7 @@
 import { Reducer } from 'redux';
 
 import { UserActionsEnum } from './types';
-// import { SubscriptionsEnum } from '../../../shared/subscriptions';
+// import { SubscriptionsEnum } from '@shared/subscriptions';
 import { UserActions } from './actions';
 
 const {

@@ -11,9 +11,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { Translate } from 'react-localize-redux';
-import getTranslation from '../../shared/get.translation';
+import getTranslation from '@shared/get.translation';
 
-import { getSeconds } from '../../shared/convert.time';
+import { getSeconds } from '@shared/convert.time';
 
 import { LESSON_TIME_INTERVAL } from '../../constants';
 

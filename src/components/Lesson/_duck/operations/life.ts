@@ -7,7 +7,7 @@ const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;
 const { lessons } = AppRoutesEnum;
 
-import history from '../../../../shared/history';
+import history from '@shared/history';
 
 import { onKeepState, onRemoveState } from './restore.state';
 

@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 
 import { PasswordProps } from './container';
 
-import { helperTexts, RulesErrorEnum } from '../../shared/rules';
+import { helperTexts, RulesErrorEnum } from '@shared/rules';
 
-import getTranslation from '../../shared/get.translation';
+import getTranslation from '@shared/get.translation';
 
 const { NO_SPACES, NO_SPECIALS, NOT_LONG, NO_DIGIT } = RulesErrorEnum;
 

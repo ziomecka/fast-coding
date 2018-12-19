@@ -17,7 +17,7 @@ import {
 
 import { onNotEndingLesson } from '../../../_duck/operations/life';
 
-import history from '../../../../../shared/history';
+import history from '@shared/history';
 import { onStartLeaving } from '../../../LessonButtons/_duck/operations';
 
 import { onKeepState } from '../../../_duck/operations/restore.state';

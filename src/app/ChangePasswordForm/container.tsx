@@ -9,7 +9,7 @@ import { ChangePasswordFormState } from './_duck/reducers';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 import { onSendForm } from './_duck/operations';
-import { onFormInvalid } from '../Form/_duck/operations';
+import { onFormInvalid } from '@appForm/_duck/operations';
 
 import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 

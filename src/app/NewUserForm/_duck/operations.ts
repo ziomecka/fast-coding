@@ -7,7 +7,7 @@ import { NewUserFormResponseEnum } from './types';
 
 import { setFormHelperText } from '../../FormHelperText/_duck/actions';
 import { authorizeUser } from  '../../User/_duck/actions';
-import history from '../../../shared/history';
+import history from '@shared/history';
 
 import { onOpenNotification } from '../../Notification/_duck/operations';
 

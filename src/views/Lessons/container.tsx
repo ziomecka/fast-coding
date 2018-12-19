@@ -10,7 +10,7 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
-import { LessonsLoaderState } from '../../components/LessonsLoader/_duck/reducers';
+import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
 
 const mapStateToProps = (state: ApplicationState): LessonsLoaderState => ({
     ...state[components][lessonsLoader]

@@ -6,7 +6,7 @@ export * from '../CSR/_duck/types';
 export * from '../Dialog/_duck/types';
 // export * from '../DragOverable/_duck/types';
 // export * from '../Email/_duck/types';
-export * from '../Form/_duck/types';
+export * from '@appForm/_duck/types';
 export * from '../FormHelperText/_duck/types';
 export * from '../KeyboardListener/_duck/types';
 export * from '../LocalStorage/_duck/types';

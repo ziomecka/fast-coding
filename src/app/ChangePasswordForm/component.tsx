@@ -19,7 +19,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { PasswordsEnum } from '@appTypes';
 const { currentPass, newPass, confirmPass } = PasswordsEnum;
 
-import { RulesErrorEnum } from '../../shared/_types/';
+import { RulesErrorEnum } from '@shared/_types/';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from '@appForm/styles';

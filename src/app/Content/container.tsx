@@ -7,7 +7,7 @@ import { ApplicationState } from '../../store';
 
 import { ContentState } from './_duck/reducers';
 
-import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '../../shared/notification';
+import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
@@ -22,7 +22,7 @@ import { AppLocationEnum } from '@appTypes';
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
-import { LessonState } from '../../components/Lesson/_duck/reducers';
+import { LessonState } from '@components/Lesson/_duck/reducers';
 
 interface MapStateToPropsI extends ContentState {
     localize: LocalizeState,

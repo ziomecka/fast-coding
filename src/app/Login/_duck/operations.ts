@@ -1,1 +1,1 @@
-export { applyRules } from '../../../shared/rules';
+export { applyRules } from '@shared/rules';
