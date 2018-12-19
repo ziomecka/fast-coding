@@ -15,6 +15,7 @@ import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '../Form/_duck/operations';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { WithStyles } from '@material-ui/core/styles/withStyles';
 
 const { app } = ApplicationContainersEnum;
 const { newPasswordForm } = AppContainersEnum;
@@ -40,4 +41,8 @@ export interface NewPasswordFormDispatch {
     formInvalid: () => Action;
 };
 
-export interface NewPasswordFormPropsI extends NewPasswordFormDispatch, NewPasswordFormState, RouteComponentProps<{}> {};
+export interface NewPasswordFormPropsI extends
+    NewPasswordFormDispatch,
+    NewPasswordFormState,
+    RouteComponentProps<{}>,
+    WithStyles {};

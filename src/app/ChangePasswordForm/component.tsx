@@ -21,6 +21,11 @@ const { currentPass, newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '../../shared/_types/';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from '@appForm/styles';
+
+// import styles from '@appForm/styles';
+
 // TODO NO_MATCH ad MATCH
 // mogłoby być jedno gdbym mogła w props rules komponentu Password przekazywać inforamcję czy rule ma być spełnione czy nie
 const {
@@ -76,13 +81,14 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             container,
             props: {
                 [newPass]: { password: newPassword },
-                [currentPass]: { password: currentPassword }
+                [currentPass]: { password: currentPassword },
+                classes: { FCForm }
             }
         } = this;
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() }>
+                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
                         {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
@@ -109,4 +115,4 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
     }
 };
 
-export default ChangePasswordFormComponent;
+export default withStyles(styles)(ChangePasswordFormComponent);

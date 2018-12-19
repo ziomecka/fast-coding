@@ -18,7 +18,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 import { Translate } from 'react-localize-redux';
 
-import styles from './styles';
+import styles from '@appForm/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
@@ -52,11 +52,15 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     }
 
     render () {
-        const { email, emailValid } = this.props;
+        const {
+            email,
+            emailValid,
+            classes: { FCForm, FCFormButton }
+         } = this.props;
 
         return (
             <Paper>
-                <form onSubmit={ e => e.preventDefault() }>
+                <form onSubmit={ e => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Typography>
 
@@ -83,7 +87,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
                                 tabIndex={3}
                                 variant="text"
                                 color="primary"
-                                className={ this.props.classes.button }
+                                className={ FCFormButton }
                             >
                                 <Translate id="remindPasswordRememberButton" />
                             </Button>
