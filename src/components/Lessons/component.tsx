@@ -3,7 +3,7 @@ import * as React from 'react';
 import { LessonsProps } from './container';
 import { LessonData } from  '../Lesson/_duck/reducers';
 
-import { AppRoutesEnum } from '@appTypes';;
+import { AppRoutesEnum } from '@appTypes';
 import styles from './styles';
 
 /** Materials */

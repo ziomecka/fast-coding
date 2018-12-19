@@ -9,7 +9,7 @@ import { default as Lessons } from './component';
 import { LessonData } from '../Lesson/_duck/reducers';
 
 import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
-import { ApplicationContainersEnum } from '@applicationTypes';;
+import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
 import ApplicationState from '../../_reducers/';
