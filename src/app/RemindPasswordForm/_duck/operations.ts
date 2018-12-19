@@ -11,8 +11,6 @@ import { onSendForm as _onSendForm } from '../../Form/_duck/operations';
 
 export const onSendForm = (options: SendFormRemindPasswordI ): any => (
     async ( dispatch: Dispatch): Promise<Action> => {
-        console.log("options")
-        console.log(options)
         return await dispatch( _onSendForm( {
             request: {
                 path: remindPassword,
