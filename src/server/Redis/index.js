@@ -153,24 +153,28 @@ class Redis {
     async setNewUser(options) {
         let { key } = options;
 
-        /** Store login in sets */
-        const loginExists = await this.storeSet({ key: this.loginsKey, value: key });
+        /** Check if login exists */
+        const loginExists = await this.loginExists(key);
 
-        if ( loginExists === 0 ) {
+        if ( loginExists === LOGIN_ALREADY_EXISTS ) {
             console.log('Login already exists.');
-            return LOGIN_ALREADY_EXISTS;
+            return loginExists;
         };
 
         try {
-            /** Store email in sets */
-            const emailExists = await this.storeSet({ key: this.emailsKey, value: options.data.email });
+            /** Check if email exists */
+            const emailExists = await this.emailExists(options.data.email);
 
-            if ( emailExists === 0 ) {
+            if ( emailExists === EMAIL_ALREADY_EXISTS ) {
                 console.log('Email already exists.');
-                return EMAIL_ALREADY_EXISTS;
+                return emailExists;
             }
 
-            return await this.storePassword({ key, data: options.data }) //, callback: async (result) => {
+            /** Store login and email */
+            this.storeSet({ key: this.loginsKey, value: key });
+            this.storeSet({ key: this.emailsKey, value: options.data.email });
+
+            return await this.storePassword({ key, data: options.data })
 
         } catch (err) {
             console.log('Setting new user failed.');
@@ -202,6 +206,7 @@ class Redis {
      *
      * @param {string} key
      * @param {string} value
+     * @returns {Promise<0 || 1>}
      */
     async sismember (key, value) {
         return new Promise( (res, rej) => {
@@ -215,6 +220,7 @@ class Redis {
     /**
      *
      * @param {string} email
+     * @returns {Promise< EMAIL_DOES_NOT_EXIST || EMAIL_ALREADY_EXISTS >}
      */
     async emailExists(email) {
         const response = await this.sismember(this.emailsKey, email);
@@ -222,7 +228,22 @@ class Redis {
         if (response === 0) {
             return EMAIL_DOES_NOT_EXIST;
         } else {
-            return SUCCESS;
+            return EMAIL_ALREADY_EXISTS;
+        }
+    };
+
+    /**
+     *
+     * @param {string} email
+     * @returns {Promise< EMAIL_DOES_NOT_EXIST || EMAIL_ALREADY_EXISTS >}
+     */
+    async loginExists(login) {
+        const response = await this.sismember(this.loginsKey, login);
+
+        if (response === 0) {
+            return LOGIN_DOES_NOT_EXIST;
+        } else {
+            return LOGIN_ALREADY_EXISTS;
         }
     };
 
@@ -279,11 +300,11 @@ class Redis {
         const key = this.generateUserKey(_key);
 
         try {
-            const keyExists = await this.keyExists({ key });
+            const loginExists = await this.loginExists(key);
 
-            if (!keyExists) {
+            if (loginExists === LOGIN_DOES_NOT_EXIST) {
                 console.log('Login does not exist.');
-                return LOGIN_DOES_NOT_EXIST;
+                return loginExists;
             };
 
             return await this.getHash({ key, ...other });
