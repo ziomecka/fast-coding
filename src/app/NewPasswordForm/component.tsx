@@ -24,6 +24,9 @@ import FormControl from '@material-ui/core/FormControl';
 import { Translate } from 'react-localize-redux';
 import { KEY_PARAM } from '../../views/AppRouter/constants';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from '@appForm/styles';
+
 class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
     constructor (props) {
         super(props);
@@ -55,12 +58,13 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
 
     render () {
         const {
-            [newPass]: { password: newPassword }
+            [newPass]: { password: newPassword },
+            classes: { FCForm }
          } = this.props;
 
         return (
             <Paper>
-                <form onSubmit={ e => e.preventDefault() }>
+                <form onSubmit={ e => e.preventDefault() } className={ FCForm }>
                     <FormControl>
                         <Password {...{ container, passwordType: newPass }} />
                         <Password {...{ container, passwordType: confirmPass }} rules={[ NO_MATCH ]} value2={ newPassword } />
@@ -84,4 +88,4 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
     }
 }
 
-export default NewPasswordFormComponent;
+export default withStyles(styles)(NewPasswordFormComponent);

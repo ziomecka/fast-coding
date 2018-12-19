@@ -14,6 +14,7 @@ import { onFormInvalid } from '../Form/_duck/operations';
 import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 
 import { SendFormChangePasswordI } from './_duck/types';
+import { WithStyles } from '@material-ui/core/styles/withStyles';
 
 const { app } = ApplicationContainersEnum;
 const { changePasswordForm } = AppContainersEnum;
@@ -42,4 +43,7 @@ export interface ChangePasswordFormDispatch {
     formInvalid: () => Action;
 };
 
-export interface ChangePasswordFormProps extends ChangePasswordFormDispatch, ChangePasswordFormState {};
+export interface ChangePasswordFormProps extends
+    ChangePasswordFormDispatch,
+    ChangePasswordFormState,
+    WithStyles {};

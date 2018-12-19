@@ -23,6 +23,9 @@ const { newPass, confirmPass } = PasswordsEnum;
 import { RulesErrorEnum } from '../../shared/_types/';
 const { NO_MATCH } = RulesErrorEnum;
 
+import styles from '@appForm/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainersEnum;
     constructor(props) {
@@ -66,11 +69,18 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
     }
 
     render () {
-        const { container, props: { email, emailValid, login, [newPass]: { password: newPassword } } } = this;
+        const {
+            container,
+            props: {
+                email, emailValid, login,
+                [newPass]: { password: newPassword },
+                classes: { FCForm, FCFormButton }
+            }
+        } = this;
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() }>
+                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                         <Password {...{ container, passwordType: newPass }} tabIndex={2} />
@@ -82,6 +92,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
                             tabIndex={5}
                             variant="contained"
                             color="primary"
+                            className={ FCFormButton }
                         >
                             <Translate id='submitForm' />
                         </Button>
@@ -95,4 +106,4 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
     }
 };
 
-export default NewUserFormComponent;
+export default withStyles(styles)(NewUserFormComponent);

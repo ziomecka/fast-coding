@@ -16,6 +16,8 @@ import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_du
 const { app } = ApplicationContainersEnum;
 const { newUserForm } = AppContainersEnum;
 
+import { WithStyles } from '@material-ui/core/styles';
+
 const mapStateToProps = (state: ApplicationState): NewUserFormState => ({
     ...state[app][newUserForm]
 });
@@ -40,4 +42,7 @@ export interface NewUserFormDispatch {
     formInvalid: () => Action;
 };
 
-export interface NewUserFormProps extends NewUserFormDispatch, NewUserFormState {};
+export interface NewUserFormProps extends
+    NewUserFormDispatch,
+    NewUserFormState,
+    WithStyles {};
