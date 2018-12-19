@@ -50,7 +50,7 @@ const EMAILS = {
 };
 
 const REMIND_PASSWORD = {
-    LINK_ACTIVE_MINUTES: 5
+    LINK_ACTIVE_MINUTES: 15
 };
 
 const REDIS_KEYS = {
