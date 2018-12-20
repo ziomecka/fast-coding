@@ -106,6 +106,19 @@ class Redis {
 
     /**
      *
+     * @param {string} key
+     */
+    async removeString(key) {
+        return new Promise ((res, rej) => {
+            this.client.del(key, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
      * @param {object} options
      * @property {string} options.key
      * @property {object} options.data
