@@ -312,17 +312,20 @@ class Redis {
 
     /**
      *
-     * @param {object} options
-     * @property {string} options.email
+     * @param {string} email
+     * @returns {string} login
      */
-    async getRemindPasswordLink(options) {
-        const { email } = options;
-        try {
-            return await this.getString(this.generateRemindPasswordKey(email));
-        } catch (err) {
-            console.log(`Get password link failure for: ${email}`);
-            return ERROR;
-        }
+    async getLoginFromEmail(email) {
+        return await this.getString(email);
+    }
+
+    /**
+     *
+     * @param {string} email
+     * @returns {string} link
+     */
+    async getRemindPasswordLink(email) {
+        return await this.getString(this.generateRemindPasswordKey(email));
     }
 
     async getPassword(options) {
