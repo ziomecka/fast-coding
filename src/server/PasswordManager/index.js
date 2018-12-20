@@ -87,12 +87,15 @@ class PasswordManager {
         }
     }
 
-    async changePassword(options) {
-        let { login, currentPassword, newPassword } = options;
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.login
+     * @param {string} options.newPassword
+     */
+    async setPassword(options) {
+        let { login, newPassword } = options;
 
-        const response = await this.verifyPassword({ login, password: currentPassword });
-
-        if ( response === SUCCESS ) {
             const { passwordHash, salt } = this._encrypt(newPassword, this._getSalt());
 
             return await this.redis.storePassword({
