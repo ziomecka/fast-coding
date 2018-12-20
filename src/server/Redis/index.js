@@ -313,7 +313,8 @@ class Redis {
      * @returns {Promise< EMAIL_DOES_NOT_EXIST || EMAIL_ALREADY_EXISTS >}
      */
     async loginExists(login) {
-        const response = await this.sismember(this.loginsKey, login);
+        try {
+            const response = await this.keys(login);
 
             if (response) {
                 return LOGIN_ALREADY_EXISTS;
