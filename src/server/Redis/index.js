@@ -156,6 +156,23 @@ class Redis {
     }
 
     /**
+     * @param {Object} options
+     * @property {string} key
+     * @property {string} value
+     * @returns {string} value
+     */
+    async removeSet(options) {
+        const { key, value } = options;
+
+        return new Promise(( res, rej ) => {
+            this.client.spop(key, value, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
      *
      * @param {object} options
      * @property {string} options.key
