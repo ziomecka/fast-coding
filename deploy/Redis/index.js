@@ -28,7 +28,7 @@ class Redis {
             this.client = redis.createClient(port, hostname);
         } catch (err) {
             // TODO obsluzyc po stornie klienta
-            console.warn(`Redis not available. ${err.message || err.toString()}`);
+            console.warn(`Redis not available. ${ err.message || err.toString() }`);
         }
 
         this.client.on('connect', () => console.log('Redis connected'));
@@ -106,6 +106,19 @@ class Redis {
 
     /**
      *
+     * @param {string} key
+     */
+    async removeString(key) {
+        return new Promise ((res, rej) => {
+            this.client.del(key, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
+     *
      * @param {object} options
      * @property {string} options.key
      * @property {object} options.data
@@ -143,41 +156,99 @@ class Redis {
     }
 
     /**
+     * @param {Object} options
+     * @property {string} key
+     * @property {string} value
+     * @returns {string} value
+     */
+    async removeSet(options) {
+        const { key, value } = options;
+
+        return new Promise(( res, rej ) => {
+            this.client.spop(key, value, (err, response) => {
+                if (err) rej(err);
+                res(response);
+            });
+        });
+    }
+
+    /**
      *
      * @param {object} options
-     * @property {string} options.key
+     * @property {string} options.key - login
      * @property {object} options.data
      * @property {string} options.data.salt
      * @property {string} options.data.hashPassword
      */
     async setNewUser(options) {
-        let { key } = options;
+        let { key, data: { email } } = options;
 
-        /** Store login in sets */
-        const loginExists = await this.storeSet({ key: this.loginsKey, value: key });
+        /** Check if login exists */
+        const loginExists = await this.loginExists(key);
 
-        if ( loginExists === 0 ) {
-            console.log('Login already exists.');
-            return LOGIN_ALREADY_EXISTS;
+        if ( loginExists === LOGIN_ALREADY_EXISTS ) {
+            console.log(`Login: ${ key } already exists.`);
+            return loginExists;
         };
 
         try {
-            /** Store email in sets */
-            const emailExists = await this.storeSet({ key: this.emailsKey, value: options.data.email });
+            /** Check if email exists */
+            const emailExists = await this.emailExists(email);
 
-            if ( emailExists === 0 ) {
-                console.log('Email already exists.');
-                return EMAIL_ALREADY_EXISTS;
+            if ( emailExists === EMAIL_ALREADY_EXISTS ) {
+                console.log(`Set new user ${ key }: email already exists: ${ email }.`);
+                return emailExists;
+            }
+            console.log(`Set new user ${ key }: brand new email: ${ email }.`)
+
+            /** Store login */
+            this.storeSet({ key: this.loginsKey, value: key });
+            console.log(`Set new user ${ key }: login stored in ${ this.loginsKey }.`)
+
+            /** Store email */
+            this.storeSet({ key: this.emailsKey, value: email });
+            console.log(`Set new user ${ key }: email: ${ email } stored in ${ this.emailsKey }.`)
+
+            /** Store string: email - login
+             * Needed for setting new password in 'remindPassword' process:
+             * User sends only email, login is found in redis thanks to this string: email - login
+             */
+            this.storeString({ key: email, value: key });
+            console.log(`Set new user ${ key }: pair email: ${ email } and login: ${ key } stored.`)
+
+            let response = await this.storePassword({ key, data: options.data });
+
+            if (response === SUCCESS) {
+                return response;
             }
 
-            return await this.storePassword({ key, data: options.data }) //, callback: async (result) => {
+            console.log(`New user: ${key} NOT set.`)
+
+            /** Clear data if user not set */
+
+            this.removeSet({ key: this.loginsKey, value: key });
+            console.log(`Clear Set new user ${ key }: login removed from ${ this.loginsKey }.`)
+
+            this.removeSet({ key: this.emailsKey, value: email });
+            console.log(`Clear Set new user ${ key }: email removed from: ${ this.emailsKey }.`)
+
+            this.removeString(email);
+            console.log(`Clear Set new user ${ key }: pair email: ${ email } and login: ${ login } removed.`)
+
+            return response;
 
         } catch (err) {
-            console.log('Setting new user failed.');
+            console.log(`Setting new user failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @property {key}
+     * @returns {SUCCESS|ERROR}
+     */
     async storePassword(options) {
         let { key } = options;
 
@@ -185,15 +256,15 @@ class Redis {
             const passwordStored = await this.storeHash({ key: this.generateUserKey(key), data: options.data });
 
             if ( passwordStored === 'OK' ) {
-                console.log('New user set');
+                console.log(`New user: ${ key } set`);
                 return SUCCESS;
             }
 
-            console.log('Store password failed.');
+            console.log(`Store password for ${ key } failed.`);
             return ERROR;
 
         } catch (err) {
-            console.log('Store password failed.');
+            console.log(`Store password failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
@@ -202,6 +273,7 @@ class Redis {
      *
      * @param {string} key
      * @param {string} value
+     * @returns {Promise<0 || 1>}
      */
     async sismember (key, value) {
         return new Promise( (res, rej) => {
@@ -215,6 +287,7 @@ class Redis {
     /**
      *
      * @param {string} email
+     * @returns {Promise< EMAIL_DOES_NOT_EXIST || EMAIL_ALREADY_EXISTS >}
      */
     async emailExists(email) {
         const response = await this.sismember(this.emailsKey, email);
@@ -222,7 +295,36 @@ class Redis {
         if (response === 0) {
             return EMAIL_DOES_NOT_EXIST;
         } else {
-            return SUCCESS;
+            return EMAIL_ALREADY_EXISTS;
+        }
+    };
+
+    async getKeys (pattern) {
+        return new Promise(( res, rej ) => {
+            this.keys(pattern, (err, response) => {
+                if (err) rej (err);
+                res(response);
+            });
+        });
+    }
+    /**
+     *
+     * @param {string} email
+     * @returns {Promise< EMAIL_DOES_NOT_EXIST || EMAIL_ALREADY_EXISTS >}
+     */
+    async loginExists(login) {
+        try {
+            const response = await this.keys(login);
+
+            if (response) {
+                return LOGIN_ALREADY_EXISTS;
+            } else {
+                return LOGIN_DOES_NOT_EXIST;
+            }
+
+        } catch (err) {
+            console.log(`Login exists ERROR: ${ err.message || err.toString() }`);
+            return ERROR;
         }
     };
 
@@ -246,53 +348,67 @@ class Redis {
             });
 
             if ( linkStored ) {
-                console.log('Link stored');
+                console.log(`Link stored: ${ link }`);
                 return SUCCESS;
             }
 
-            console.log('Store link failed.');
+            console.log(`Store link: ${ link } FAILED.`);
             return ERROR;
 
         } catch (err) {
-            console.log('Store link failed.');
+            console.log(`Store link failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
 
     /**
      *
-     * @param {object} options
-     * @property {string} options.email
+     * @param {string} email
+     * @returns {string} login
      */
-    async getRemindPasswordLink(options) {
-        const { email } = options;
-        try {
-            return await this.getString(this.generateRemindPasswordKey(email));
-        } catch (err) {
-            console.log(`Get password link failure for: ${email}`);
-            return ERROR;
-        }
+    async getLoginFromEmail(email) {
+        return await this.getString(email);
     }
 
+    /**
+     *
+     * @param {string} email
+     * @returns {string} link
+     */
+    async getRemindPasswordLink(email) {
+        return await this.getString(this.generateRemindPasswordKey(email));
+    }
+
+    /**
+     * @param {Object} options
+     * @property {string} options.key
+     * @property {Array<string>} options.data - array of hash properties
+     */
     async getPassword(options) {
         let { key: _key, ...other } = options;
         const key = this.generateUserKey(_key);
 
         try {
-            const keyExists = await this.keyExists({ key });
+            const loginExists = await this.loginExists(key);
 
-            if (!keyExists) {
-                console.log('Login does not exist.');
-                return LOGIN_DOES_NOT_EXIST;
+            if (loginExists === LOGIN_DOES_NOT_EXIST) {
+                console.log(`Get password. Login: ${key} DOES NOT exist.`);
+                return loginExists;
             };
 
             return await this.getHash({ key, ...other });
         } catch (err) {
-            console.log('Store password failed.');
+            console.log(`Store password failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @property {string} options.key
+     * @property {Array<string>} options.data - array of hash's properties
+     */
     async getHash(options) {
         return new Promise ( ( res, rej ) => {
             this.client.hmget(options.key, ...options.data, (err, result) => {

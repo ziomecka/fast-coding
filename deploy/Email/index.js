@@ -59,11 +59,11 @@ const sendEmail = async (options) => {
         });
 
         if (response) {
-            console.log(`Email sent: ${response}.`);
+            console.log(`Email sent: ${ JSON.stringify(response) }.`);
             response = null; // GC
             return SUCCESS;
         } else {
-            console.warn(`Mail NOT SENT. Sparky response: ${ response }`);
+            console.warn(`Mail NOT SENT. Sparky response: ${ JSON.stringify(response) }`);
         }
     } catch ( err ) {
         console.warn(`SparkPost error: ${ err.message || err.toString() }`);
