@@ -8,21 +8,27 @@ const {
     PASSWORD_MANAGER_RESPONSES: {
         ERROR,
         LOGIN_DOES_NOT_EXIST,
+        EMAIL_ALREADY_EXISTS,
         SUCCESS,
         INCORRECT_PASSWORD,
-        INCORRECT_CURRENT_PASSWORD
+        INCORRECT_CURRENT_PASSWORD,
+        QUERY_IS_INVALID,
+        LINK_IS_INVALID,
+        LOGIN_IS_MISSING
     },
     EMAIL_RESPONSES: {
         ERROR: EMAIL_ERROR
     },
-    ROUTES: { CHANGE_PASSWORD },
-    DOMAIN
+    ROUTES: { NEW_PASSWORD },
+    DOMAIN,
+    REMIND_PASSWORD: { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_LENGTH }
 } = require('../constants');
 
 class PasswordManager {
     constructor(options = {}) {
         this.saltSize = options.saltSize || 50;
         this._redis = redis;
+        this.queryParamLength = QUERY_PARAM_LENGTH;
     }
 
     // TODO - zakodować coś bardziej uniwerslnego
@@ -102,6 +108,22 @@ class PasswordManager {
                 key: login,
                 data: { passwordHash, salt }
             });
+    }
+
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.login
+     * @param {string} options.currentPassword
+     * @param {string} options.newPassword
+     */
+    async changePassword(options) {
+        let { login, currentPassword, newPassword } = options;
+
+        const response = await this.verifyPassword({ login, password: currentPassword });
+
+        if ( response === SUCCESS ) {
+            return await this.setPassword({ login, newPassword });
         }
 
         return INCORRECT_CURRENT_PASSWORD;
@@ -155,12 +177,11 @@ class PasswordManager {
         }
 
         /** Store link in redis */
-        if (response === SUCCESS) {
-            console.log(`Remind password valid request. Email: ${email}`);
-            const _uuid = uuid();
-            const link = this.changePasswordURI(_uuid);
+        if ( response === EMAIL_ALREADY_EXISTS ) {
+            console.log(`Remind password valid request. Email: ${ email }`);
 
-            const linkStored = await this.redis.storeRemindPasswordLink({ link: _uuid, email });
+            const link = this.newPasswordURI({ email });
+            const linkStored = await this.redis.storeRemindPasswordLink({ link, email });
 
             /** Send email */
             if (linkStored === SUCCESS) {
@@ -187,18 +208,44 @@ class PasswordManager {
         }
     }
 
-    async validateRemindPasswordLink(options) {
-        const { email, link } = options;
-
-        const linkStored = await this.redis.getRemindPasswordLink({ email });
-
-        if (linkStored === link) {
-            // if in redis change password
-            // send success
-        } else {
-            console.warn(`Remind password INVALID link: ${ link } for: ${ email }`);
-            // return error
+    /**
+     *
+     * @param {Object} options
+     * @property {string} options.email
+     * @property {string} options.key
+     * @property {string} options.newPassword
+     *
+     */
+    async setNewPassword(options) {
+        const { email, key, newPassword } = options;
+        if (!email || !key) {
+            return QUERY_IS_INVALID;
         }
+
+        let storedLink = await this.redis.getRemindPasswordLink(email);
+        let login = await this.redis.getLoginFromEmail(email);
+
+        if (storedLink === ERROR || login === ERROR) {
+            return {
+                result: ERROR
+            };
+        }
+
+        const link = this.newPasswordURI({ email, uuid: key });
+
+        if (!storedLink || storedLink !== link) {
+            return {
+                result: LINK_IS_INVALID
+            };
+        }
+
+        if (!login) {
+            return {
+                result: LOGIN_IS_MISSING // TODO - obsłużyć po stronie klienta
+            };
+        }
+
+        return await this.setPassword({ login, newPassword });
     }
 };
 
