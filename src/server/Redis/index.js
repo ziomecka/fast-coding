@@ -203,9 +203,39 @@ class Redis {
 
             /** Store login */
             this.storeSet({ key: this.loginsKey, value: key });
-            this.storeSet({ key: this.emailsKey, value: options.data.email });
+            console.log(`Set new user ${ key }: login stored in ${ this.loginsKey }.`)
 
-            return await this.storePassword({ key, data: options.data })
+            /** Store email */
+            this.storeSet({ key: this.emailsKey, value: email });
+            console.log(`Set new user ${ key }: email: ${ email } stored in ${ this.emailsKey }.`)
+
+            /** Store string: email - login
+             * Needed for setting new password in 'remindPassword' process:
+             * User sends only email, login is found in redis thanks to this string: email - login
+             */
+            this.storeString({ key: email, value: key });
+            console.log(`Set new user ${ key }: pair email: ${ email } and login: ${ key } stored.`)
+
+            let response = await this.storePassword({ key, data: options.data });
+
+            if (response === SUCCESS) {
+                return response;
+            }
+
+            console.log(`New user: ${key} NOT set.`)
+
+            /** Clear data if user not set */
+
+            this.removeSet({ key: this.loginsKey, value: key });
+            console.log(`Clear Set new user ${ key }: login removed from ${ this.loginsKey }.`)
+
+            this.removeSet({ key: this.emailsKey, value: email });
+            console.log(`Clear Set new user ${ key }: email removed from: ${ this.emailsKey }.`)
+
+            this.removeString(email);
+            console.log(`Clear Set new user ${ key }: pair email: ${ email } and login: ${ login } removed.`)
+
+            return response;
 
         } catch (err) {
             console.log(`Setting new user failed: ${ err.message || err.toString() }`);
