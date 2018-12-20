@@ -175,7 +175,7 @@ class Redis {
     /**
      *
      * @param {object} options
-     * @property {string} options.key
+     * @property {string} options.key - login
      * @property {object} options.data
      * @property {string} options.data.salt
      * @property {string} options.data.hashPassword
@@ -201,7 +201,7 @@ class Redis {
             }
             console.log(`Set new user ${ key }: brand new email: ${ email }.`)
 
-            /** Store login and email */
+            /** Store login */
             this.storeSet({ key: this.loginsKey, value: key });
             this.storeSet({ key: this.emailsKey, value: options.data.email });
 
@@ -213,6 +213,12 @@ class Redis {
         }
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @property {key}
+     * @returns {SUCCESS|ERROR}
+     */
     async storePassword(options) {
         let { key } = options;
 
@@ -334,6 +340,11 @@ class Redis {
         return await this.getString(this.generateRemindPasswordKey(email));
     }
 
+    /**
+     * @param {Object} options
+     * @property {string} options.key
+     * @property {Array<string>} options.data - array of hash properties
+     */
     async getPassword(options) {
         let { key: _key, ...other } = options;
         const key = this.generateUserKey(_key);
@@ -342,17 +353,23 @@ class Redis {
             const loginExists = await this.loginExists(key);
 
             if (loginExists === LOGIN_DOES_NOT_EXIST) {
-                console.log('Login does not exist.');
+                console.log(`Get password. Login: ${key} DOES NOT exist.`);
                 return loginExists;
             };
 
             return await this.getHash({ key, ...other });
         } catch (err) {
-            console.log('Store password failed.');
+            console.log(`Store password failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @property {string} options.key
+     * @property {Array<string>} options.data - array of hash's properties
+     */
     async getHash(options) {
         return new Promise ( ( res, rej ) => {
             this.client.hmget(options.key, ...options.data, (err, result) => {
