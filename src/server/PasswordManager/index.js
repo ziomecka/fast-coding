@@ -1,7 +1,7 @@
 // TODO po stronie serwera walidacja hasła zrobiona na stronie: liczba znaków etc
 const _crypto = require('crypto');
 const redis = require('../Redis/index');
-const uuid = require('uuid/v1');
+const getUUID = require('uuid/v1');
 const sendEmail = require('../Email/index');
 
 const {
@@ -22,12 +22,23 @@ const {
 class PasswordManager {
     constructor(options = {}) {
         this.saltSize = options.saltSize || 50;
-        this._changePasswordURI = `${ DOMAIN }${ CHANGE_PASSWORD }?key=`;
         this._redis = redis;
     }
 
-    changePasswordURI(uuid) {
-        return `${ this._changePasswordURI }${ uuid }`;
+    // TODO - zakodować coś bardziej uniwerslnego
+    /**
+     *
+     * @param {Object} options
+     * @property {string} options.email
+     * @property {string} options.uuid - optional
+     */
+    newPasswordURI(options) {
+        const {
+            uuid = getUUID(this.queryParamLength),
+            email
+        } = options
+
+        return `${ DOMAIN }${ NEW_PASSWORD }?${ QUERY_PARAM_KEY }=${ uuid }&${ QUERY_PARAM_EMAIL }=${ email }`;
     }
 
     get redis() {
