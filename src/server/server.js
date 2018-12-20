@@ -15,8 +15,9 @@ const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
 const serverChangePassword = require('./server.change.password');
 const serverRemindPassword = require('./server.remind.password');
+const serverNewPassword = require('./server.new.password');
 
-const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD } } = constants;
+const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD, NEW_PASSWORD } } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
@@ -72,8 +73,8 @@ app.post( CHANGE_PASSWORD, serverChangePassword );
 /** Remind password */
 app.post( REMIND_PASSWORD, serverRemindPassword );
 
-/** Change password */
-app.post( CHANGE_PASSWORD, serverChangePassword );
+/** New password */
+app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
 
 app.get('*', (req, res) => {
     return res.sendFile(HTML_PATH, { root: ROOT });
