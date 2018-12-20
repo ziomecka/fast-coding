@@ -16,4 +16,5 @@ export enum NewPasswordFormResponseEnum {
 export interface SendFormNewPasswordFormI {
     newPassword: string;
     key: string;
+    email: string;
 };
