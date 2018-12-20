@@ -13,7 +13,7 @@ import history from '@shared/history';
 const { home } = AppRoutesEnum;
 
 const RouteAuthComponent: React.StatelessComponent<AuthRouteProps> = props => {
-    const { condition, redirect, location, history, ...other } = props;
+    const { condition, redirect, location, ...other } = props;
 
     /** If condition is not met - redirect to redirect or home */
     if ( !condition ) {
