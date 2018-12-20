@@ -181,7 +181,7 @@ class Redis {
      * @property {string} options.data.hashPassword
      */
     async setNewUser(options) {
-        let { key } = options;
+        let { key, data: { email } } = options;
 
         /** Check if login exists */
         const loginExists = await this.loginExists(key);
@@ -193,7 +193,7 @@ class Redis {
 
         try {
             /** Check if email exists */
-            const emailExists = await this.emailExists(options.data.email);
+            const emailExists = await this.emailExists(email);
 
             if ( emailExists === EMAIL_ALREADY_EXISTS ) {
                 console.log(`Set new user ${ key }: email already exists: ${ email }.`);
