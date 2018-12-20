@@ -28,7 +28,7 @@ class Redis {
             this.client = redis.createClient(port, hostname);
         } catch (err) {
             // TODO obsluzyc po stornie klienta
-            console.warn(`Redis not available. ${err.message || err.toString()}`);
+            console.warn(`Redis not available. ${ err.message || err.toString() }`);
         }
 
         this.client.on('connect', () => console.log('Redis connected'));
@@ -187,7 +187,7 @@ class Redis {
         const loginExists = await this.loginExists(key);
 
         if ( loginExists === LOGIN_ALREADY_EXISTS ) {
-            console.log('Login already exists.');
+            console.log(`Login: ${ key } already exists.`);
             return loginExists;
         };
 
@@ -196,9 +196,10 @@ class Redis {
             const emailExists = await this.emailExists(options.data.email);
 
             if ( emailExists === EMAIL_ALREADY_EXISTS ) {
-                console.log('Email already exists.');
+                console.log(`Set new user ${ key }: email already exists: ${ email }.`);
                 return emailExists;
             }
+            console.log(`Set new user ${ key }: brand new email: ${ email }.`)
 
             /** Store login and email */
             this.storeSet({ key: this.loginsKey, value: key });
@@ -207,7 +208,7 @@ class Redis {
             return await this.storePassword({ key, data: options.data })
 
         } catch (err) {
-            console.log('Setting new user failed.');
+            console.log(`Setting new user failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
@@ -219,15 +220,15 @@ class Redis {
             const passwordStored = await this.storeHash({ key: this.generateUserKey(key), data: options.data });
 
             if ( passwordStored === 'OK' ) {
-                console.log('New user set');
+                console.log(`New user: ${ key } set`);
                 return SUCCESS;
             }
 
-            console.log('Store password failed.');
+            console.log(`Store password for ${ key } failed.`);
             return ERROR;
 
         } catch (err) {
-            console.log('Store password failed.');
+            console.log(`Store password failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
@@ -270,10 +271,15 @@ class Redis {
     async loginExists(login) {
         const response = await this.sismember(this.loginsKey, login);
 
-        if (response === 0) {
-            return LOGIN_DOES_NOT_EXIST;
-        } else {
-            return LOGIN_ALREADY_EXISTS;
+            if (response) {
+                return LOGIN_ALREADY_EXISTS;
+            } else {
+                return LOGIN_DOES_NOT_EXIST;
+            }
+
+        } catch (err) {
+            console.log(`Login exists ERROR: ${ err.message || err.toString() }`);
+            return ERROR;
         }
     };
 
@@ -297,15 +303,15 @@ class Redis {
             });
 
             if ( linkStored ) {
-                console.log('Link stored');
+                console.log(`Link stored: ${ link }`);
                 return SUCCESS;
             }
 
-            console.log('Store link failed.');
+            console.log(`Store link: ${ link } FAILED.`);
             return ERROR;
 
         } catch (err) {
-            console.log('Store link failed.');
+            console.log(`Store link failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
     }
