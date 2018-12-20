@@ -1,4 +1,6 @@
-// TODO po stronie serwera walidacja hasła zrobiona na stronie: liczba znaków etc
+// TODO po stronie serwera:
+// walidacja hasła zrobiona na stronie: liczba znaków etc
+
 const _crypto = require('crypto');
 const redis = require('../Redis/index');
 const getUUID = require('uuid/v1');
@@ -63,10 +65,7 @@ class PasswordManager {
         let hash = _crypto.createHmac('sha512', salt);
         const passwordHash = hash.update(password).digest('hex');
 
-        return {
-            salt,
-            passwordHash
-        };
+        return { salt, passwordHash };
     }
 
     _encrypt(password, salt) {
