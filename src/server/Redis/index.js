@@ -269,6 +269,14 @@ class Redis {
         }
     };
 
+    async getKeys (pattern) {
+        return new Promise(( res, rej ) => {
+            this.keys(pattern, (err, response) => {
+                if (err) rej (err);
+                res(response);
+            });
+        });
+    }
     /**
      *
      * @param {string} email
