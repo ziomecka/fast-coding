@@ -27,5 +27,6 @@ export enum AppRoutesEnum {
     loginLog = '/login/log',
     changePassword = '/changepassword',
     remindPassword = '/remindpassword',
-    newPassword = '/newpassword'
+    newPassword = '/newpassword',
+    newPasswordSet = '/newpassword/set'
 };

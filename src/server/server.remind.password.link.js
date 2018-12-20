@@ -8,8 +8,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // TODO pass link
-        res.json({ result: await passwordManager.validatePasswordRemindLink({ email }) });
+        res.json({ result: await passwordManager.setNewPassword({ email }) });
     } catch (err) {
         res.json({ error: err.message || err.toString() });
     }
