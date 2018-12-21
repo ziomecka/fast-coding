@@ -3,12 +3,10 @@ require('dotenv').config();
 const cors = require('cors');
 const CORS = require('./constants').CORS;
 
-const { localhost, production, exposedHeaders } = CORS;
+const { localhost, exposedHeaders } = CORS;
 
-module.exports = (prod) => {
-    const whitelist = !prod
-        ? [ localhost ]
-        : [ production ];
+module.exports = () => {
+    const whitelist = [ localhost ];
 
     const corsOptions = {
         exposedHeaders,
