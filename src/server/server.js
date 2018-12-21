@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 
 const constants = require('./constants');
 
+const serverCors = require('./server.cors');
 const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
@@ -43,14 +44,20 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
+if (!PROD_ENV) {
+    app.use( serverCors() );
+}
+
 app.use(express.static(ROOT, {
-    setHeaders: (res, path) => {
-        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
-            res.set('Access-Control-Allow-Origin', '*');
+    setHeaders: (req, res, path) => {
+        if (res) {
             res.set('Access-Control-Allow-Headers', 'cache-control');
-            res.set("Cache-Control", "public, max-age=31536000");
-        } else {
-            res.set("Cache-Control", "public, max-age=0");
+
+            if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+                res.set("Cache-Control", "public, max-age=31536000");
+            } else {
+                res.set("Cache-Control", "public, max-age=0");
+            }
         }
 }}));
 
