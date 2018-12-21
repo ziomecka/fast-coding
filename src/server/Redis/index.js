@@ -301,7 +301,7 @@ class Redis {
 
     async getKeys (pattern) {
         return new Promise(( res, rej ) => {
-            this.keys(pattern, (err, response) => {
+            this.client.keys(pattern, (err, response) => {
                 if (err) rej (err);
                 res(response);
             });
