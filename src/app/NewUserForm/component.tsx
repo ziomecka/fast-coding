@@ -64,7 +64,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
              !!loginValid || !!newPasswordValid || !! confirmPasswordValid || !!emailValid ) {
                 this.props.formInvalid();
         } else {
-            this.props.sendNewUserForm(login, newPassword, email);
+            this.props.sendNewUserForm({ login, password: newPassword, email });
         }
     }
 

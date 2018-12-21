@@ -1,33 +1,37 @@
 import { Dispatch, Action } from 'redux';
 
-import { post as postData } from '../../api/';
 import { AppRoutesEnum } from '@appTypes';
 
-import { NewUserFormResponseEnum } from './types';
+import { NewUserFormResponseEnum, SendNewUserFormI } from './types';
 
-import { setFormHelperText } from '../../FormHelperText/_duck/actions';
-import { authorizeUser } from  '../../User/_duck/actions';
-import history from '@shared/history';
-
-import { onOpenNotification } from '../../Notification/_duck/operations';
+const { LOGIN_EXISTS, EMAIL_EXISTS } = NewUserFormResponseEnum;
 
 const { SUCCESS } = NewUserFormResponseEnum;
-const { newUserSet, lessons } = AppRoutesEnum;
+const { newUserSet, login } = AppRoutesEnum;
 
-export const onSendNewUserForm = (login: string, password: string, email: string ): any => (
+import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
+
+// TODO Redirect to login or log in
+
+export const onSendNewUserForm = (options: SendNewUserFormI ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
-        /** removes formInvalid message */
-        dispatch(setFormHelperText('formBeingSent'));
+        const { login: userLogin, password, email } = options;
 
-        const { result } = await postData({ path: newUserSet, body: { login, password, email }});
-
-        if (result === SUCCESS) {
-            dispatch(authorizeUser(login));
-            history.push(lessons);
-            return dispatch(onOpenNotification({ text: 'notificationAuthorized' }));
-        }
-
-        return dispatch(setFormHelperText(NewUserFormResponseEnum[result] || NewUserFormResponseEnum[0]));
+        return await dispatch( _onSendForm( {
+            request: {
+                path: newUserSet,
+                body: { login: userLogin, password, email },
+            },
+            success: {
+                value: SUCCESS,
+                errorNotifications: {
+                    [ LOGIN_EXISTS ]: 'LOGIN_EXISTS',
+                    [ EMAIL_EXISTS ]: 'EMAIL_EXISTS'
+                },
+                successNotification: 'notificationNewUserSet',
+                redirectUrl: login
+            }
+        } ));
     }
 );
 

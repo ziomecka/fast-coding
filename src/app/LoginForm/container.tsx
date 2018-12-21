@@ -12,6 +12,7 @@ import { onFormInvalid } from '@appForm/_duck/operations';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 import { setLogin, SetLoginAction, reset } from './_duck/actions';
+import { SendLoginFormI } from './_duck/types';
 
 import { WithStyles } from '@material-ui/core/styles';
 
@@ -24,7 +25,7 @@ const mapStateToProps = (state: ApplicationState): LoginFormState => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): LoginFormDispatch => ({
     setLogin: (login) => dispatch(setLogin(login)),
-    log: (login, password) => dispatch(onLog(login, password)),
+    log: (options) => dispatch(onLog(options)),
     reset: () => dispatch(reset()),
     formInvalid: () => dispatch(onFormInvalid())
 });
@@ -36,7 +37,7 @@ export default LabelContainer;
 
 export interface LoginFormDispatch {
     setLogin: (login: string) => SetLoginAction;
-    log: (login: string, password: string) => Action;
+    log: (options: SendLoginFormI) => Action;
     reset: () => Action;
     formInvalid: () => Action;
 };

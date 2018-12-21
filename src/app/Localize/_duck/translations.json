@@ -170,5 +170,9 @@
     "loginDoNotRememberButton": [
         "I do not remember password",
         "Nie pamiętam hasła"
+    ],
+    "notificationNewUserSet": [
+        "New user has been set. Please log in.",
+        "Nowy użytkownik został założony. Proszę zaloguj się."
     ]
 }

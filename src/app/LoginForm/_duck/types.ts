@@ -9,3 +9,12 @@ export enum LoginFormResponseEnum {
     'LOGIN_DOES_NOT_EXIST' = 4,
     'ERROR' = 0
 };
+
+/** Interface
+ *  @property {string} password
+ *  @property {string} login
+*/
+export interface SendLoginFormI {
+    password: string;
+    login: string;
+};

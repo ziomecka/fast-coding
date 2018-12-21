@@ -1,36 +1,43 @@
 import { Dispatch, Action } from 'redux';
 
-import { post as postData } from '../../api';
+import{ authorizeUser } from '../../User/_duck/actions';
 
 import { AppRoutesEnum } from '@appTypes';
-import { LoginFormResponseEnum } from './types';
+import { LoginFormResponseEnum, SendLoginFormI } from './types';
 
-const { SUCCESS } = LoginFormResponseEnum;
+const { SUCCESS, INCORRECT_PASSWORD, LOGIN_DOES_NOT_EXIST } = LoginFormResponseEnum;
 
 const { loginLog, lessons } = AppRoutesEnum;
 
-import { setFormHelperText } from '../../FormHelperText/_duck/actions';
-import { authorizeUser } from  '../../User/_duck/actions';
-import history from '@shared/history';
+import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
-import { onOpenNotification } from '../../Notification/_duck/operations';
+export const onLog = (options: SendLoginFormI): any => (
+    async (dispatch: Dispatch ): Promise<Action> => {
+        const { login, password } = options;
 
-export const onLog = (login, password): any => async (dispatch: Dispatch ): Promise<Action> => {
-    /** removes formInvalid message */
-    dispatch(setFormHelperText('formBeingSent'));
+        let response = await dispatch( _onSendForm( {
+            request: {
+                path: loginLog,
+                body: { login, password },
+            },
+            success: {
+                value: SUCCESS,
+                errorNotifications: {
+                    [ INCORRECT_PASSWORD ]: 'INCORRECT_PASSWORD',
+                    [ LOGIN_DOES_NOT_EXIST ]: 'LOGIN_DOES_NOT_EXIST'
+                },
+                successNotification: 'notificationAuthorized',
+                redirectUrl: lessons
+            }
+        } ));
 
-    const { result } = await postData({ path: loginLog, body: { login, password }});
-
-    if (result === SUCCESS) {
-        dispatch(authorizeUser(login));
-        history.push(lessons);
-        return dispatch(onOpenNotification({ text: 'notificationAuthorized' }));
+        /** Authorize user */
+        if ( response.result === SUCCESS ) {
+            response = null; // GC
+            return dispatch(authorizeUser(login));
+        }
     }
-
-    // TODO make error 0. Spojnie wszedzie
-    return dispatch(setFormHelperText(LoginFormResponseEnum[result] || LoginFormResponseEnum[0]));
-
-};
+);
 
 export default {
     onLog

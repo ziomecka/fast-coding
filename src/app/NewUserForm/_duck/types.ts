@@ -11,6 +11,17 @@ export enum NewUserFormResponseEnum {
     'EMAIL_EXISTS' = 3
 };
 
+/** Interface
+ *  @property {string} email
+ *  @property {string} password
+ *  @property {string} login
+*/
+export interface SendNewUserFormI {
+    email: string;
+    password: string;
+    login: string;
+};
+
 export type NewUserFormErrorType = NewUserFormResponseEnum.ERROR |
     NewUserFormResponseEnum.LOGIN_EXISTS |
     NewUserFormResponseEnum.EMAIL_EXISTS;
