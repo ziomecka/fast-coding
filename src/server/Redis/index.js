@@ -186,6 +186,11 @@ class Redis {
         /** Check if login exists */
         const loginExists = await this.loginExists(key);
 
+        if ( loginExists === ERROR ) {
+            console.log(`Store password failed: ${ err.message || err.toString() }`);
+            return ERROR;
+        }
+
         if ( loginExists === LOGIN_ALREADY_EXISTS ) {
             console.log(`Login: ${ key } already exists.`);
             return loginExists;
@@ -314,9 +319,9 @@ class Redis {
      */
     async loginExists(login) {
         try {
-            const response = await this.keys(login);
+            const response = await this.getKeys(this.generateUserKey(login));
 
-            if (response) {
+            if (response.length) {
                 return LOGIN_ALREADY_EXISTS;
             } else {
                 return LOGIN_DOES_NOT_EXIST;
@@ -388,19 +393,19 @@ class Redis {
         let { key: _key, ...other } = options;
         const key = this.generateUserKey(_key);
 
-        try {
-            const loginExists = await this.loginExists(key);
+        const loginExists = await this.loginExists(_key);
 
-            if (loginExists === LOGIN_DOES_NOT_EXIST) {
-                console.log(`Get password. Login: ${key} DOES NOT exist.`);
-                return loginExists;
-            };
-
-            return await this.getHash({ key, ...other });
-        } catch (err) {
+        if ( loginExists === ERROR ) {
             console.log(`Store password failed: ${ err.message || err.toString() }`);
             return ERROR;
         }
+
+        if (loginExists === LOGIN_DOES_NOT_EXIST) {
+            console.log(`Get password. Login: ${key} DOES NOT exist.`);
+            return loginExists;
+        };
+
+        return await this.getHash({ key, ...other });
     }
 
     /**
