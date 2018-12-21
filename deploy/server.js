@@ -44,9 +44,13 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
+<<<<<<< HEAD
 if (!PROD_ENV) {
     app.use( serverCors() );
 }
+=======
+app.use( serverCors );
+>>>>>>> develop
 
 app.use(express.static(ROOT, {
     setHeaders: (req, res, path) => {
