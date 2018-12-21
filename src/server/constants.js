@@ -70,7 +70,13 @@ const REDIS_KEYS = {
     EMAILS_KEY: 'users_emails',
     LOGINS_KEY: 'users_logins',
     REMIND_PASSWORD_KEY: 'maintain_remindPassword'
-}
+};
+
+const CORS = {
+    localhost: `http://www.localhost:${ PORT }`,
+    production: 'https://fast-coding.herokuapp.com',
+    exposedHeaders: [ 'Content-Type' ]
+};
 
 module.exports = {
     DOMAIN,
@@ -81,5 +87,6 @@ module.exports = {
     PASSWORD_MANAGER_RESPONSES,
     ROUTES,
     EMAILS,
-    EMAIL_RESPONSES
+    EMAIL_RESPONSES,
+    CORS
 };
