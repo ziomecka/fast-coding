@@ -22,5 +22,5 @@ module.exports = (prod) => {
         }
     };
 
-    cors(corsOptions);
+    return cors(corsOptions);
 };
