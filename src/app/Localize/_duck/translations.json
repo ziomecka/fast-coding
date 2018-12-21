@@ -174,5 +174,9 @@
     "notificationNewUserSet": [
         "New user has been set. Please log in.",
         "Nowy użytkownik został założony. Proszę zaloguj się."
+    ],
+    "notificationNewPasswordSuccess": [
+        "Password has been changed. Please log in.",
+        "Hasło zostało zmienione. Proszę zaloguj się."
     ]
 }
