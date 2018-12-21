@@ -1,7 +1,7 @@
 import { Dispatch, Action } from 'redux';
 import { setFormHelperText } from '../../FormHelperText/_duck/actions';
 import { SendFormI } from './types';
-import { post as postData } from '../../api/';
+import { post as postData, PostResponseI } from '../../api/';
 
 import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
@@ -20,7 +20,7 @@ export const onFormInvalid = (): any => (
 );
 
 export const onSendForm = (options: SendFormI): any => (
-    async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
+    async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<PostResponseI | Action> => {
         /** Add login to each request */
         // @ts-ignore
         const { request: { body: { login } }, success: { value: success, redirectUrl, successNotification, errorNotifications } } = options;
@@ -35,7 +35,8 @@ export const onSendForm = (options: SendFormI): any => (
 
         if (result === success) {
             if (redirectUrl) history.push(redirectUrl);
-            return dispatch(onOpenNotification({ text: successNotification }));
+            dispatch(onOpenNotification({ text: successNotification }));
+            return response;
         }
 
         /** Display error
