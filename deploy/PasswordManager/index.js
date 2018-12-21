@@ -85,15 +85,10 @@ class PasswordManager {
 
         const { passwordHash, salt } = this._encrypt(password, this._getSalt());
 
-        try {
-            return await this.redis.setNewUser({
-                key: login,
-                data: { passwordHash, salt, email }
-            });
-        } catch (err) {
-            console.warn(`Set new user error: ${err.message || err.toString()}`);
-            return ERROR;
-        }
+        return await this.redis.setNewUser({
+            key: login,
+            data: { passwordHash, salt, email }
+        });
     }
 
     /**
