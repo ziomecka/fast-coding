@@ -44,22 +44,20 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-<<<<<<< HEAD
 if (!PROD_ENV) {
     app.use( serverCors() );
 }
-=======
-app.use( serverCors );
->>>>>>> develop
 
 app.use(express.static(ROOT, {
     setHeaders: (req, res, path) => {
-        res.set('Access-Control-Allow-Headers', 'cache-control');
+        if (res) {
+            res.set('Access-Control-Allow-Headers', 'cache-control');
 
-        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
-            res.set("Cache-Control", "public, max-age=31536000");
-        } else {
-            res.set("Cache-Control", "public, max-age=0");
+            if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+                res.set("Cache-Control", "public, max-age=31536000");
+            } else {
+                res.set("Cache-Control", "public, max-age=0");
+            }
         }
 }}));
 
