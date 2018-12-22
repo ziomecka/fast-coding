@@ -1,10 +1,9 @@
 import { Reducer } from 'redux';
 
-import { NotificationActionsEnum, NotificationVariantEnum } from './types';
+import { NotificationActionsEnum, NotificationVariantEnum, NotificationDurationEnum } from './types';
 import { NotificationActions } from './actions';
 
-import { NOTIFICATION_DURATION } from '@constants';
-
+const { standard } = NotificationDurationEnum;
 const { success } = NotificationVariantEnum;
 
 const {
@@ -17,7 +16,7 @@ export const INITIAL_STATE: NotificationState = {
     open: false,
     anchorEl: null,
     text: '',
-    autoHideDuration: NOTIFICATION_DURATION,
+    autoHideDuration: standard,
     variant: success
 };
 

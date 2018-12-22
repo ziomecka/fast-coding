@@ -12,7 +12,6 @@ export const HOME_HEADING_ANIMATED = true;
 export const HOME_NOTIFICATION = "Nice to see you";
 export const HOME_WELCOME_TIMEOUT = 1000;
 
-export const NOTIFICATION_DURATION = 2500;
 export const NOTIFICATION_FONTSIZE = '1.25rem';
 
 export const NAV_HEIGHT = 120;

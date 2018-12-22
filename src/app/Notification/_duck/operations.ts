@@ -1,13 +1,16 @@
 import { Dispatch } from 'redux';
 
 import { setNotification, openNotification, closeNotification, SetNotificationAction } from './actions';
-import { NOTIFICATION_DURATION } from '@constants';
 import getTranslation from '@shared/get.translation';
 import { ThunkGetStateType } from '@applicationTypes';
 
+import { NotificationDurationEnum } from './types';
+
 let _timeout;
 
-export const onOpenNotification = (options: SetNotificationAction, autoHideduration: number = NOTIFICATION_DURATION): any => (
+const { standard } = NotificationDurationEnum;
+
+export const onOpenNotification = (options: SetNotificationAction, autoHideduration: NotificationDurationEnum = standard): any => (
     async (dispatch: Dispatch, getState: ThunkGetStateType ): Promise<any> => {
         const { text, ...other } = options;
 

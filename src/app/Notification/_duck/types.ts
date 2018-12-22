@@ -8,3 +8,9 @@ export enum NotificationVariantEnum {
     success = 'SUCCESS',
     error = 'ERROR'
 };
+
+export enum NotificationDurationEnum {
+    short = 3000,
+    standard = 5000,
+    long = 8000
+};
