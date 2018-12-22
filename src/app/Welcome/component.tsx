@@ -13,10 +13,10 @@ import { AppRoutesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
-import MenuButton, { __MenuButtonProps } from '../MenuButton/'
+import MenuButton, { MenuButtonOptionsI  } from '../MenuButton/'
 import { MenuRulesEnum } from '@appTypes';
 
-const { notAnyLesson, notHome, notCurrentLocation } = MenuRulesEnum;
+const { notAnyLesson, notHome } = MenuRulesEnum;
 
 /** Translations */
 import { Translate } from 'react-localize-redux';
@@ -28,7 +28,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     demoUrl: AppRoutesEnum;
     lessonsUrl: AppRoutesEnum;
     home: AppRoutesEnum;
-    button: __MenuButtonProps;
+    button: MenuButtonOptionsI;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
@@ -44,18 +44,15 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
          *  Hidden, under title, rendered on not Welcome page
          */
         this.button = {
-            menuItem: {
-                title: 'submenuGoToHome',
-                appRoute: this.home,
-                // @ts-ignore
-                rules: [ notCurrentLocation, notAnyLesson, notHome ],
-                icon: <div></div>,
-                iconButton: {
-                    disableRipple: true,
-                    disableTouchRipple: true,
-                    classes: { root: this.props.classes.welcomeHomeSubMenu }
-                }
+            appRoute: this.home,
+            rules: [ notAnyLesson, notHome ],
+            icon: <div></div>,
+            iconButton: {
+                disableRipple: true,
+                disableTouchRipple: true,
+                classes: { root: this.props.classes.welcomeHomeSubMenu }
             },
+            title: 'submenuGoToHome',
         };
     }
 

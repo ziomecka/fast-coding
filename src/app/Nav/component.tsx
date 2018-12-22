@@ -60,18 +60,16 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                             } });
                         return acc;
                     }, []) }
-                icon={ <> {activeLanguage? activeLanguage.code : ''} </> }
+                icon={ <> { activeLanguage? activeLanguage.code : '' } </> }
                 container={ languagesMenu }
-                rules={ [] }
                 title={ 'submenuChangeLanguage' }
         />
         },
         /** Lessons menu */
         {
             component: <MenuButton
-                menuItem={ submenus.lessonsMenuItem }
+                { ...submenus.lessonsMenuItem }
                 icon ={ <Dashboard /> }
-                rules ={ [ notAnyLesson ] }
                 title={ 'submenuGoToCourses' }
             />
         },

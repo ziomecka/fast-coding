@@ -7,16 +7,10 @@ import {
 
 import { LanguagesEnum } from '@applicationTypes';
 
-export type MenuButtonItemType = {
-    title: string;
+export interface MenuButtonOptionsI {
     appRoute?: AppRoutesEnum;
-    rules: MenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;
-};
-
-export interface __MenuButtonProps {
-    menuItem: MenuButtonItemType;
     icon: JSX.Element;
     rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;

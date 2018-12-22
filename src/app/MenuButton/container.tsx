@@ -10,7 +10,7 @@ import { MenuState } from '../AppMenu/_duck/reducers';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 
-import { __MenuButtonProps } from './_duck/types';
+import { MenuButtonOptionsI } from './_duck/types';
 
 import { AppContainersEnum } from '@appTypes';
 
@@ -38,7 +38,7 @@ interface MapStateToPropsI extends MenuState {
     localize: LocalizeState;
 };
 
-export interface MenuButtonProps extends __MenuButtonProps,
+export interface MenuButtonProps extends MenuButtonOptionsI,
     MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles,

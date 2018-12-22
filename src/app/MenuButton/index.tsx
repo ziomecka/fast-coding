@@ -1,3 +1,3 @@
 export { default } from './container';
 
-export { __MenuButtonProps } from './_duck/types';
+export { MenuButtonOptionsI } from './_duck/types';

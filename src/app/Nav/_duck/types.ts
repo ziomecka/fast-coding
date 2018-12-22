@@ -1,4 +1,4 @@
-import { MenuButtonItemType } from '../../MenuButton/container'
+import { MenuButtonOptionsI } from '../../MenuButton/'
 import { MenuListItemType } from '../../MenuList/container'
 
 export enum MenuContainersEnum {
@@ -7,7 +7,7 @@ export enum MenuContainersEnum {
     languagesMenu = 'LANGUAGES_MENU'
 };
 
-export type NavMenuType = MenuButtonItemType | MenuListItemType;
+export type NavMenuType = MenuButtonOptionsI | MenuListItemType;
 
 export interface NavMenuProps {
     component: JSX.Element
