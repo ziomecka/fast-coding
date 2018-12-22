@@ -19,15 +19,16 @@ import {
 import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
+import { WithMenuRules }  from '../MenuRulesHoc/';
+
 const { app } = ApplicationContainersEnum;
-const { appMenu, user } = AppContainersEnum;
+const { appMenu } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][appMenu],
-    authorized: state[app][user].authorized,
     localize: state.localize
 });
 
@@ -53,11 +54,11 @@ export interface __MenuButtonProps {
 };
 
 interface MapStateToPropsI extends MenuState {
-    authorized: boolean;
     localize: LocalizeState;
 };
 
 export interface MenuButtonProps extends __MenuButtonProps,
     MapStateToPropsI,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles,
+    WithMenuRules {};

@@ -1,8 +1,6 @@
 import * as React from 'react';
 
 import { MenuButtonProps } from './container';
-import { LanguagesEnum } from '@applicationTypes';
-import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
 
 /* Materials */
 import IconButton from '@material-ui/core/IconButton';
@@ -11,68 +9,34 @@ import Tooltip from '@material-ui/core/Tooltip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
-
 import getTranslation from '@shared/get.translation';
-import { getActiveLanguage } from 'react-localize-redux';
 
-/**
- * @param { boolean } render                  - is menu rendered?
- *                                              Changes only if props authorized or location.pathname do change
- *                                              Increases menu responsiveness
- * */
-interface InternalState {
-    render: boolean;
-};
+import { withMenuRules } from '../MenuRulesHoc/'
 
-class MenuButtonComponent extends React.Component<MenuButtonProps, InternalState> {
+class MenuButtonComponent extends React.Component<MenuButtonProps> {
     constructor (props) {
         super(props);
 
         this.handleClose = this.handleClose.bind(this);
-
-        this.state = {
-            render: this.areMenuButtonRulesMet()
-        }
     }
 
-    get currentPathname () {
-        return this.props.location.pathname;
-    }
-
-    componentDidUpdate(prevProps: MenuButtonProps) {
-        const { props: { location: { pathname }, authorized } } = this;
-        const { location: { pathname: prevPathname }, authorized: prevAuthorized } = prevProps;
-
-        /**
-         *  Updates menu only if pathname or authorization changed, therefore
-         *  menu ressponsiveness is increased.
-         */
-        if (( pathname !== prevPathname || authorized !== prevAuthorized )) {
-            this.setState({ render: this.areMenuButtonRulesMet() });
-        }
+    componentDidUpdate() {
     }
 
     handleClose (loc: string) {
         this.props.history.push(loc);
     };
 
-    // @ts-ignore
-    get menuButtonRules (): {[key: SubMenuRulesEnum]: (path?: AppRoutesEnum, lang?: LanguagesEnum) => boolean } {
-        return {
-            [onlyAuthorized]: () => this.props.authorized,
-            [onlyUnauthorized]: () => !this.props.authorized,
-            [notCurrentLocation]: (path: AppRoutesEnum) => path !== this.currentPathname,
-            [notActiveLanguage]: (path: AppRoutesEnum, lang: LanguagesEnum) => lang!== getActiveLanguage(this.props.localize).code
-        }
-    };
-
     areMenuButtonRulesMet (): boolean {
         const {
-            menuItem: { rules, appRoute },
-            title
+            menuItem: { rules : componentRules, appRoute },
+            menuRules
         } = this.props;
-        return (!rules || rules.every(rule => this.menuButtonRules[rule](appRoute)));
+
+        return (
+            !componentRules ||
+            componentRules.every(rule => menuRules({ path: appRoute })[rule]())
+        );
     };
 
     getIconButton (onClick) {
@@ -98,21 +62,19 @@ class MenuButtonComponent extends React.Component<MenuButtonProps, InternalState
             props: {
                 menuItem: { appRoute },
                 title
-            },
-            state: { render }
+            }
         } = this;
 
         /** Render if rules are met */
-        return ( render &&
-            (title && (
+        return ( this.areMenuButtonRulesMet() &&
+            ((title && (
                 <Tooltip title={getTranslation(this.props.localize, title)}>
                     { this.getIconButton(() => this.handleClose(appRoute)) }
                 </Tooltip>
             )) ||
-            this.getIconButton(() => this.handleClose(appRoute))
+            this.getIconButton(() => this.handleClose(appRoute)))
         );
     }
-
 
     render () {
         return (
@@ -123,4 +85,4 @@ class MenuButtonComponent extends React.Component<MenuButtonProps, InternalState
     }
 }
 
-export default withStyles(styles)(MenuButtonComponent);
+export default withMenuRules(withStyles(styles)(MenuButtonComponent));
