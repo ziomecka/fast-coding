@@ -14,7 +14,7 @@ import { ApplicationState } from '../../_reducers/';
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
-const mapStateToProps = (state: ApplicationState) => ({
+const mapStateToProps = (state: ApplicationState): LessonsLoaderState => ({
     ...state[components][lessonsLoader]
 });
 
