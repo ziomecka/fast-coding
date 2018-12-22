@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { AppMenuProps } from './container';
-import SubMenu from '../SubMenu/';
 
 /** Materials */
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,9 +12,7 @@ const AppMenuComponent: React.StatelessComponent<AppMenuProps> = (props) => {
 
     return (
         <Toolbar className={toolbar}>
-            {subMenus.map((subAppMenu, ind) => (
-                <SubMenu {...subAppMenu} key={`${subAppMenu}-${ind}`} />
-            ))}
+            { subMenus.map((subAppMenu, ind) => <React.Fragment key={ ind } > { subAppMenu.component } </React.Fragment> ) }
         </Toolbar>
     );
 };

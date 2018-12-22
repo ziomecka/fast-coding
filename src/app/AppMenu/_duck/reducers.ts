@@ -1,7 +1,10 @@
 import { Reducer } from 'redux';
 
 import { SubMenuActionsEnum } from '../../SubMenu/_duck/types';
+import { MenuListActionsEnum } from '../../MenuList/_duck/types';
+
 const { APP_SUBMENU_SET_ANCHOREL } = SubMenuActionsEnum;
+const { APP_MENU_LIST_SET_ANCHOREL } = MenuListActionsEnum;
 
 import {
     SubMenuState,
@@ -22,6 +25,7 @@ export const INITIAL_STATE: MenuState = {
 
 const reducer: Reducer<MenuState, AppMenuActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case APP_MENU_LIST_SET_ANCHOREL:
         case APP_SUBMENU_SET_ANCHOREL: {
             return {
                 ...state,

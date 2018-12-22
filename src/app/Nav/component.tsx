@@ -6,7 +6,6 @@ import AppMenu from '../../app/AppMenu';
 import Welcome from '../../app/Welcome/';
 import {
     HOME_HEADING_ANIMATED,
-    HOME_NOTIFICATION,
     HOME_WELCOME_TIMEOUT
 } from '../../constants';
 import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
@@ -14,7 +13,6 @@ import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize
 /** Materials */
 import AppBar from '@material-ui/core/AppBar';
 import Face from '@material-ui/icons/Face';
-import Language from '@material-ui/icons/Language';
 import Dashboard from '@material-ui/icons/Dashboard';
 
 /* Materials */
@@ -27,8 +25,13 @@ const { userMenu, languagesMenu } = MenuContainersEnum;
 const appBarColor = 'primary';
 
 import * as submenus from './submenus';
-import { __SubMenuProps } from '../SubMenu/container';
+import { NavMenuProps } from './_duck/types';
 import { withLocalize } from 'react-localize-redux';
+
+import { MenuProvider } from '../MenuRulesHoc/index';
+
+import MenuButton from '../MenuButton';
+import MenuList from '../MenuList';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson } = NavRulesEnum;
@@ -42,53 +45,58 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         login
     } = props;
 
-    const subMenus: __SubMenuProps[] = [
+    const subMenus: NavMenuProps[] = [
         /** Languages menu */
         {
-            menuItems: languages
-                .reduce((acc, cv) => {
-                    const { code } = cv;
-
-                    acc.push({
-                        title: code,
-                        rules: [ notActiveLanguage ],
-                        lang: code,
-                        onClick: () => {
-                            setActiveLanguage(code)
-                        } });
-                    return acc;
-                }, []),
-            icon: <>{activeLanguage? activeLanguage.code : ''}</>,
-            container: languagesMenu,
-            rules: [],
-            title: 'submenuChangeLanguage',
+            component: <MenuList
+                menuItems={ languages
+                    .reduce((acc, cv) => {
+                        const { code } = cv;
+                        acc.push({
+                            title: code,
+                            rules: [ notActiveLanguage ],
+                            lang: code,
+                            onClick: () => {
+                                setActiveLanguage(code)
+                            } });
+                        return acc;
+                    }, []) }
+                icon={ <> {activeLanguage? activeLanguage.code : ''} </> }
+                container={ languagesMenu }
+                rules={ [] }
+                title={ 'submenuChangeLanguage' }
+        />
         },
         /** Lessons menu */
         {
-            menuItem: submenus.lessonsMenuItem,
-            icon: <Dashboard />,
-            rules: [ notAnyLesson ],
-            title: 'submenuGoToCourses',
+            component: <MenuButton
+                menuItem={ submenus.lessonsMenuItem }
+                icon ={ <Dashboard /> }
+                rules ={ [ notAnyLesson ] }
+                title={ 'submenuGoToCourses' }
+            />
         },
         /** User menu */
         {
-            menuItems: submenus.userMenuItems
+            component: <MenuList
+                menuItems={ submenus.userMenuItems
                 /** Sign out added */
                 .concat([ {
                     title: 'subMenuUserLogOut',
                     rules: [ onlyAuthorized ],
                     onClick: logOut
-                } ]),
-            //@ts-ignore
-            icon: <span> <Face /> </span>,
-            container: userMenu,
-            title: 'submenuOpenUserMenu',
-            iconButton: {
-                className: navLogin,
-                login: login
-            }
+                } ]) }
+                //@ts-ignore
+                icon={ <span> <Face /> </span> }
+                container={ userMenu }
+                title={ 'submenuOpenUserMenu' }
+                iconButton={{
+                    className: navLogin,
+                    login: login
+                }}
+            />
         }
-    ] as __SubMenuProps[];
+    ] as NavMenuProps[];
 
     const isLesson = () => RegExp(/.*lessons\/lesson-.*/).test(props.location.pathname);
 
@@ -106,7 +114,12 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                 animated={HOME_HEADING_ANIMATED}
                 timeout={HOME_WELCOME_TIMEOUT}
             />
-            <AppMenu {...{ subMenus }} />
+
+            <MenuProvider>
+                {/*
+                // @ts-ignore */}
+                <AppMenu {...{ subMenus }} />
+            </MenuProvider>
         </AppBar>
     );
 };
