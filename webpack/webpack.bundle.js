@@ -20,7 +20,7 @@ module.exports = merge(base, {
     rules: [
       {
         test: /\.(ts|tsx)?$/,
-        use: ['ts-loader?transpileOnly'],
+        use: ['ts-loader'],
         exclude: /node_modules/,
       },
     ],
