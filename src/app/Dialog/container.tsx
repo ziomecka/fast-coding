@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { default as Dialog } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { DialogState } from './_duck/reducers';
 

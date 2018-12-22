@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { default as Notification } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { NotificationState } from './_duck/reducers';
 

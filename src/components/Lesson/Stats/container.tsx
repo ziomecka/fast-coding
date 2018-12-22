@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { default as Stats } from './component';
-import { ApplicationState } from '../../../store';
+import { ApplicationState } from '@store';
 
 import { StatsState } from './_duck/reducers';
 

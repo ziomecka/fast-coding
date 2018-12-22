@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as NewPasswordForm } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { NewPasswordFormState } from './_duck/reducers';
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { default as LessonsView } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 import { WithStyles } from '@material-ui/core';
 
 import { ApplicationContainersEnum } from '@applicationTypes';

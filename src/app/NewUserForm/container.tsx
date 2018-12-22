@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as NewUserForm } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { NewUserFormState } from './_duck/reducers';
 

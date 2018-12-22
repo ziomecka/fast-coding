@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as TextGenerator } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { TextGeneratorState } from './_duck/reducers';
 import { LessonState } from '../Lesson/_duck/reducers';

@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { LocationChangeActionsEnum } from './types';
 import { LocationChangeActions } from './actions';
 
-import { ApplicationState } from '../../../store';
+import { ApplicationState } from '@store';
 import { ApplicationContainersEnum } from '@applicationTypes';
 
 const { app } = ApplicationContainersEnum;

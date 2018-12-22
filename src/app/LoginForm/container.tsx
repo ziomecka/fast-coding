@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as LoginForm } from './component';
-import { ApplicationState } from '../../store';
+import { ApplicationState } from '@store';
 
 import { LoginFormState } from './_duck/reducers';
 import { onLog } from './_duck/operations';
