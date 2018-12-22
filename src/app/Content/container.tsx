@@ -16,7 +16,7 @@ const { app, components } = ApplicationContainersEnum;
 const { content } = AppContainersEnum;
 const { lesson } = ComponentsContainersEnum;
 
-import { changeLocation, changeTitle } from './_duck/actions';
+import { changeLocation, changeTitle, ChangeLocationAction, ChangeTitleAction } from './_duck/actions';
 import { AppLocationEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
@@ -47,8 +47,8 @@ const ContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)
 export default ContentContainer;
 
 export interface ContentDispatch extends NotificationDispatch {
-    changeLocation: (appLocation: AppLocationEnum) => void;
-    changeTitle: (title: string) => void;
+    changeLocation: (appLocation: AppLocationEnum) => ChangeLocationAction;
+    changeTitle: (title: string) => ChangeTitleAction;
 };
 
 export interface ContentProps extends ContentDispatch,

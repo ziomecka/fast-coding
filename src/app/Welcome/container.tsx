@@ -35,8 +35,8 @@ const WelcomeContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)
 export default WelcomeContainer;
 
 export interface WelcomeDispatch {
-    changeLocation: (appLocation: AppLocationEnum) => void;
-    openDemoLesson: () => void;
+    changeLocation: (appLocation: AppLocationEnum) => Action;
+    openDemoLesson: () => Action;
     addEventListener: () => Action;
     removeEventListener: () => Action;
 };

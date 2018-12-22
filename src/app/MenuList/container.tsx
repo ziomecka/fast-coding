@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 import { default as MenuListComponent } from './component';
 
-import { ApplicationState } from '@store';
-import { Dispatch } from 'redux';
+import { ApplicationState } from '../../store';
+import { Dispatch, Action } from 'redux';
 
 import { onSetNavAnchorEl } from './_duck/operations';
 

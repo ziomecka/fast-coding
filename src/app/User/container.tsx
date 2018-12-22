@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as User } from './component';
@@ -17,8 +17,8 @@ const UserContainer = connect(mapStateToProps, mapDispatchToProps)(User);
 export default UserContainer;
 
 export interface UserDispatch {
-    authorize: () => void;
-    unauthorize: () => void;
+    authorize: () => Action;
+    unauthorize: () => Action;
 }
 
 export interface UserProps extends UserDispatch {};
