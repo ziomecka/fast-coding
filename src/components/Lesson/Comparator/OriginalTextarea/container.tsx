@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { default as OriginalTextArea } from './component';
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';

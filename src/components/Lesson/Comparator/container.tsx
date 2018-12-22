@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as Comparator } from './component';
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';

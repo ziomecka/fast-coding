@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { CSRActionsEnum } from './types';
 import { CSRActions, ReportErrorAction, ChangeLoadingStateAction, UpdateDataAction } from './actions';
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 
 const {
     APP_CSR_CHANGE_LOADING_STATE,

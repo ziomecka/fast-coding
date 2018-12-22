@@ -30,4 +30,4 @@ export default createStore(
     )
 );
 
-export { ApplicationState } from './_reducers/reducers';
+export { ApplicationState } from './_reducers/';

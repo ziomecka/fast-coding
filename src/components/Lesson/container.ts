@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as Lesson } from './component';
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 
 import { LessonState } from './_duck/reducers';
 import { restoreState } from './_duck/actions';

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as LocationChange } from './component';
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 import { AppState } from '../_reducers/';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';

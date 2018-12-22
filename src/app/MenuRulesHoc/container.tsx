@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { default as MenuProviderComponenet } from './component';
 
-import { ApplicationState } from '@store';
+import { ApplicationState } from '@appStore';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
