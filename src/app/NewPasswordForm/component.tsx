@@ -86,7 +86,6 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
         }
     };
 
-
     render () {
         const {
             queryIsValid,
@@ -120,9 +119,11 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
                     </form>
                 </Paper>
             );
-        } else {
-            return 'SOME ERROR COMPONENT'; // TODO error component
         }
+
+        this.props.displayAppError({ text: 'newpasswordRouteError' });
+
+        return null;
     }
 }
 

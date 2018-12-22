@@ -17,6 +17,9 @@ import { onFormInvalid } from '@appForm/_duck/operations';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { WithStyles } from '@material-ui/core/styles/withStyles';
 
+import { onAppError } from '@app/AppError/_duck/operations';
+import { AppErrorI } from '@app/AppError/_duck/types';
+
 const { app } = ApplicationContainersEnum;
 const { newPasswordForm } = AppContainersEnum;
 
@@ -27,7 +30,8 @@ const mapStateToProps = (state: ApplicationState): NewPasswordFormState => ({
 const mapDispatchToProps = (dispatch: Dispatch): NewPasswordFormDispatch => ({
     sendForm: (options) => dispatch(onSendForm(options)),
     reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid())
+    formInvalid: () => dispatch(onFormInvalid()),
+    displayAppError: (options) => dispatch(onAppError( options ))
 });
 
 // @ts-ignore
@@ -39,6 +43,7 @@ export interface NewPasswordFormDispatch {
     sendForm: (options: SendFormNewPasswordFormI) => Action;
     reset: () => Action;
     formInvalid: () => Action;
+    displayAppError: (options?: AppErrorI) => Action;
 };
 
 export interface NewPasswordFormPropsI extends

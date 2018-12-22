@@ -182,5 +182,9 @@
     "oopsSomethingWentWrong": [
         "Oops! Something went wrong.",
         "Ups! Coś poszło nie tak."
+    ],
+    "newpasswordRouteError": [
+        "Incorrect link. If you want to set new password use remind password link in user menu.",
+        "Nieprawidłowy link. Jeśli chcesz zmienić hasło przejdź do strony użyj linku przypomnij hasło w menu użytkownika."
     ]
 }
