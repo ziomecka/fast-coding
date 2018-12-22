@@ -17,6 +17,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import getTranslation from '@shared/get.translation';
+import { getActiveLanguage } from 'react-localize-redux'
 
 import { withMenuRules } from '../MenuRulesHoc/';
 
@@ -64,14 +65,17 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         const { props: { location: { pathname }, authorized, menuItems } } = this;
         const { location: { pathname: prevPathname }, authorized: prevAuthorized, menuItems: prevMenuItems } = prevProps;
 
+        const activeLang =  getActiveLanguage(this.props.localize);
+        const prevActiveLang = getActiveLanguage(prevProps.localize);
+
         /**
-         *  Updates menu only if pathname or authorization changed, therefore
+         *  Updates menu only if pathname, authorization or langugage changed, therefore
          *  menu ressponsiveness is increased.
          *
          *  Moreove: listItems are updated with delay, therefore
          *  menu items do not change when menu is transitioning
          */
-        if (( pathname !== prevPathname || authorized !== prevAuthorized )) {
+        if (( pathname !== prevPathname || authorized !== prevAuthorized || activeLang !== prevActiveLang )) {
             // @ts-ignore
             this.setState(() => (
                 { render: this.areRulesMet() && this.atLeastOneItem }
