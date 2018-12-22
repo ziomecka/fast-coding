@@ -16,8 +16,7 @@ import {
     AppContainersEnum,
     AppRoutesEnum,
     MenuContainersEnum,
-    SubMenuRulesEnum,
-    NavRulesEnum,
+    MenuRulesEnum
 } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
@@ -52,7 +51,7 @@ export interface MenuListDispatch {
 export type MenuListItemType = {
     title: string;
     appRoute?: AppRoutesEnum;
-    rules: SubMenuRulesEnum[];
+    rules: MenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;
 };
@@ -61,7 +60,7 @@ export interface __MenuListProps {
     menuItems: MenuListItemType[];
     icon: JSX.Element;
     container: MenuContainersEnum;
-    rules?: NavRulesEnum[];
+    rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
 };

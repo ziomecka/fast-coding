@@ -19,7 +19,7 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './style';
 
-import { MenuContainersEnum, NavRulesEnum, SubMenuRulesEnum } from '@appTypes';
+import { MenuContainersEnum, MenuRulesEnum } from '@appTypes';
 const { userMenu, languagesMenu } = MenuContainersEnum;
 
 const appBarColor = 'primary';
@@ -34,8 +34,7 @@ import MenuButton from '../MenuButton';
 import MenuList from '../MenuList';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
-    const { notAnyLesson } = NavRulesEnum;
-    const { notActiveLanguage, onlyAuthorized } = SubMenuRulesEnum;
+    const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;
     const {
         languages,
         setActiveLanguage,

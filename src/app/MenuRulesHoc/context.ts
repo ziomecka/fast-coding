@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { LanguagesEnum } from '@applicationTypes';
-import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 
-const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
-const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
+const {
+    notAnyLesson, notDemoLesson, notHome, notLesson,
+    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage
+} = MenuRulesEnum;
 
 export interface MenuRulesHocOptionsI {
     path?: AppRoutesEnum; // path to which Component redirects

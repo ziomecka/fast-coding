@@ -5,10 +5,13 @@ import { MenuProviderProps } from './container';
 
 const { Provider } = MenuRulesHocContext;
 
-import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 
-const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
-const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
+const {
+    notAnyLesson, notDemoLesson, notHome, notLesson,
+    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage
+} = MenuRulesEnum;
+
 const { demo, lesson, home } = AppRoutesEnum;
 
 import { getActiveLanguage } from 'react-localize-redux';

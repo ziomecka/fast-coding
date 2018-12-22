@@ -2,8 +2,7 @@ import { IconButtonProps } from '@material-ui/core/IconButton';
 
 import {
     AppRoutesEnum,
-    SubMenuRulesEnum,
-    NavRulesEnum,
+    MenuRulesEnum,
 } from '@appTypes';
 
 import { LanguagesEnum } from '@applicationTypes';
@@ -11,7 +10,7 @@ import { LanguagesEnum } from '@applicationTypes';
 export type MenuButtonItemType = {
     title: string;
     appRoute?: AppRoutesEnum;
-    rules: SubMenuRulesEnum[];
+    rules: MenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;
 };
@@ -19,7 +18,7 @@ export type MenuButtonItemType = {
 export interface __MenuButtonProps {
     menuItem: MenuButtonItemType;
     icon: JSX.Element;
-    rules?: NavRulesEnum[];
+    rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
 };

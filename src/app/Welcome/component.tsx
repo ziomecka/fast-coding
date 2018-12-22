@@ -14,10 +14,9 @@ import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
 import MenuButton, { __MenuButtonProps } from '../MenuButton/'
-import { NavRulesEnum, SubMenuRulesEnum } from '@appTypes';
+import { MenuRulesEnum } from '@appTypes';
 
-const { notAnyLesson, notHome } = NavRulesEnum;
-const { notCurrentLocation } = SubMenuRulesEnum;
+const { notAnyLesson, notHome, notCurrentLocation } = MenuRulesEnum;
 
 /** Translations */
 import { Translate } from 'react-localize-redux';

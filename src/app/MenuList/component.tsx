@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { MenuListProps, MenuListItemType } from './container';
 import { LanguagesEnum } from '@applicationTypes';
-import { AppRoutesEnum, SubMenuRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -43,7 +43,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            render: this.areNavRulesMet,
+            render: this.areRulesMet(),
             listItems: this.listItems
         }
 
@@ -74,7 +74,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         if (( pathname !== prevPathname || authorized !== prevAuthorized )) {
             // @ts-ignore
             this.setState(() => (
-                { render: this.areNavRulesMet && this.atLeastOneItem }
+                { render: this.areRulesMet() && this.atLeastOneItem }
                 ), () => {
                     let timeout = setTimeout( () => {
                         this.setState({ listItems: this.listItems });
@@ -113,15 +113,9 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         }
     };
 
-    /** If function for rule is not implemented an error will be thrown */
-    areMenuListRulesMet (rules: SubMenuRulesEnum[], pathname: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
+    areRulesMet (rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
         // @ts-ignore
         return (!rules || rules.every(rule => this.props.menuRules({ path: pathname, lang })[rule]()));
-    };
-
-    /** If function for rule is not implemented an error will be thrown */
-    get areNavRulesMet (): boolean {
-        return (!this.props.rules || this.props.rules.every(rule => this.props.menuRules()[rule]()));
     };
 
     getLink (appRoute: AppRoutesEnum, title: string, className: string) {
@@ -181,7 +175,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
      */
     get atLeastOneItem () {
         return (
-            this.props.menuItems.some( item => this.areMenuListRulesMet(item.rules, item.appRoute, item.lang || '' ))
+            this.props.menuItems.some( item => this.areRulesMet(item.rules, item.appRoute, item.lang || '' ))
         );
     }
 
@@ -194,7 +188,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
             this.props.menuItems.map((menuItem) => {
                 const { rules, appRoute, title, onClick, lang = '' } = menuItem;
 
-                if ( this.areMenuListRulesMet(rules, appRoute, lang )) {
+                if ( this.areRulesMet(rules, appRoute, lang )) {
                     return (
                         ( appRoute && this.getLink( appRoute, title, menuItemClass ) ) ||
                         ( onClick && this.getButton( onClick, title, menuItemClass ) )
