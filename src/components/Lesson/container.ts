@@ -21,7 +21,7 @@ const { stats } = ComparatorContainersEnum;
 import { onReset } from './_duck/operations/life';
 import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
 import { moveLessonButtons } from './LessonButtons/_duck/actions';
-import { registerOnDrop, deregisterOnDrop } from '../../app/Content/_duck/actions';
+import { registerOnDrop, deregisterOnDrop } from '@app/Content/_duck/actions';
 
 import { WithStyles } from '@material-ui/core/styles';
 

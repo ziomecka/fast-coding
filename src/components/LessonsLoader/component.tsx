@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { LessonsLoaderProps } from './container';
 
-import CSR from '../../app/CSR';
+import CSR from '@app/CSR';
 
 class LessonsLoaderComponent extends React.Component<LessonsLoaderProps> {
     constructor(props) {

@@ -11,7 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { Translate } from 'react-localize-redux';
-import withTable from '../../../app/Table';
+import withTable from '@app/Table';
 
 import { getTime } from '@shared/convert.time';
 import { StatsTimeUnitsEnum } from './_duck/types';

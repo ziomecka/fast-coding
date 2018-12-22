@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Nav from '../../app/Nav';
+import Nav from '@app/Nav';
 
 import { HomeViewProps } from './container';
 
-import LocationChange from '../../app/LocationChange';
+import LocationChange from '@app/LocationChange';
 
-import Content from '../../app/Content/';
+import Content from '@app/Content/';
 import TextGenerator from '@components/TextGenerator/container';
 import LessonsLoader from '@components/LessonsLoader/container';
-import User from '../../app/User/container';
-import KeyboardListener from '../../app/KeyboardListener/container';
+import User from '@app/User/container';
+import KeyboardListener from '@app/KeyboardListener/container';
 
 import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
 

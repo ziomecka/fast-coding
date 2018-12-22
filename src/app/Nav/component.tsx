@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { NavProps } from './container';
 
-import AppMenu from '../../app/AppMenu';
-import Welcome from '../../app/Welcome/';
+import AppMenu from '@app/AppMenu';
+import Welcome from '@app/Welcome/';
 import {
     HOME_HEADING_ANIMATED,
     HOME_WELCOME_TIMEOUT

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { ContentProps } from './container';
-import { default as Dialog } from '../../app/Dialog/';
-import { default as Notification } from '../../app/Notification/';
+import { default as Dialog } from '@app/Dialog/';
+import { default as Notification } from '@app/Notification/';
 import DragOverable from '../DragOverable';
 
 /** Materials */

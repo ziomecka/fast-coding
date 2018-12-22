@@ -9,25 +9,25 @@ import { INITIAL_STATE as COMPONENTS_INITIAL_STATE, ComponentsState, componentsR
 import { actions as componentsActions, ComponentsActions } from '@components/_actions';
 
 /** LOCATION CHANGE */
-import { locationChangeReducer } from '../app/LocationChange/_duck/reducers';
+import { locationChangeReducer } from '@app/LocationChange/_duck/reducers';
 import { LocationChangeActionsEnum } from '@appTypes';
-import { LocationChangeActions } from '../app/LocationChange/_duck/actions';
+import { LocationChangeActions } from '@app/LocationChange/_duck/actions';
 
 /** CSR */
-import { csrReducer } from '../app/CSR/_duck/reducers';
+import { csrReducer } from '@app/CSR/_duck/reducers';
 import { CSRActionsEnum } from '@appTypes';
-import { CSRActions } from '../app/CSR/_duck/actions';
+import { CSRActions } from '@app/CSR/_duck/actions';
 
-import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '../app/_reducers/';
+import { INITIAL_STATE as APP_INITIAL_STATE, appReducer, AppState } from '@app/_reducers/';
 
-// import { actions as appActions, AppActions } from '../app/_actions';
+// import { actions as appActions, AppActions } from '@app/_actions';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { localizeReducer, LocalizeState } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '../app/Localize/_duck/reducers';
+import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '@app/Localize/_duck/reducers';
 const { views, components, app } = ApplicationContainersEnum;
 
 const INITIAL_STATE = {

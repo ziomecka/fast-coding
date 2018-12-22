@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { onLoadData } from '../../../app/CSR/_duck/operations';
+import { onLoadData } from '@app/CSR/_duck/operations';
 import * as urlFuncs from '@shared/url';
 import { URLParamsI } from '@shared/url';
 

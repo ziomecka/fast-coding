@@ -5,7 +5,7 @@ import { LessonButtonsProps } from './container';
 import { INITIAL_STATE } from './_duck/reducers';
 import { AppRoutesEnum } from '@appTypes';
 
-import ButtonWithHint from '../../../app/ButtonWithHint/';
+import ButtonWithHint from '@app/ButtonWithHint/';
 
 /** Materials */
 import Button, { ButtonProps } from '@material-ui/core/Button';

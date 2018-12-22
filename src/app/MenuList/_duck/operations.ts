@@ -3,7 +3,7 @@ import { setNavAnchorEl } from './actions';
 import { MenuContainersEnum } from '@appTypes';
 
 /** Keyboard listener imports */
-import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
+import * as manageKeydownListeners  from '@app/KeyboardListener/_duck/operations';
 
 let listenerId;
 

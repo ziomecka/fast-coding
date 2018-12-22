@@ -8,11 +8,11 @@ import { openDemoLesson } from '@components/Lesson/_duck/actions';
 
 import { getActiveLanguage } from 'react-localize-redux';
 
-import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operations';
+import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 /** Keyboard listener imports */
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
-import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/operations';
+import * as manageKeydownListeners  from '@app/KeyboardListener/_duck/operations';
 import {  AppContainersEnum } from '@appTypes';
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;

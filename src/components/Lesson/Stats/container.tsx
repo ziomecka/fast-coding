@@ -9,7 +9,7 @@ import { ComponentsContainersEnum, ComparatorContainersEnum} from '@componentsTy
 import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
-import { WithTableProps } from '../../../app/Table/';
+import { WithTableProps } from '@app/Table/';
 
 import { LocalizeState } from 'react-localize-redux';
 

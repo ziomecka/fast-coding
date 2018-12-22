@@ -4,7 +4,7 @@ import { ApplicationState } from '../../../../_reducers';
 
 const { lessons } = AppRoutesEnum;
 
-import { openDialog, closeDialog } from '../../../../app/Dialog/_duck/actions';
+import { openDialog, closeDialog } from '@app/Dialog/_duck/actions';
 import { onReset, onPauseLesson, onUnpauseLesson, } from '../../_duck/operations/life';
 
 import history from '@shared/history';

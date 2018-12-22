@@ -35,7 +35,7 @@ import { onPauseTimer, onUnpauseTimer } from '../../Stats/_duck/operations';
 import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
 
 /** Keyboard listener imports */
-import * as manageKeydownListeners  from '../../../../app/KeyboardListener/_duck/operations';
+import * as manageKeydownListeners  from '@app/KeyboardListener/_duck/operations';
 const { lesson: container } = ComponentsContainersEnum;
 
 /** Time to correct the last sign */

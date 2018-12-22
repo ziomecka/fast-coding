@@ -11,7 +11,7 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import {
     localStorageGetItem,
     localStorageSetItem
-} from '../../../app/LocalStorage/_duck/operations';
+} from '@app/LocalStorage/_duck/operations';
 
 import { LocalStorageItemEnum } from '@appTypes';
 

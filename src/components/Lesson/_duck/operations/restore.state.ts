@@ -17,7 +17,7 @@ import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
 import { RestoreStateAction as StatsRestoreStateAction } from '../../Stats/_duck/actions';
 import { RestoreStateAction as ComparatorRestoreStateAction } from '../../Comparator/_duck/actions';
 
-import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '../../../../app/LocalStorage/_duck/operations';
+import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 export const onKeepState = (localStorageItem: LocalStorageItemEnum, container: ComponentsContainersEnum): any => (
     (dispatch: Dispatch, getState: ThunkGetStateType): boolean => (

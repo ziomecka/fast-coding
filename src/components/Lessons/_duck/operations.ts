@@ -10,7 +10,7 @@ import { ThunkGetStateType } from '@applicationTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
 import { getActiveLanguage } from 'react-localize-redux';
-import { localStorageRemoveItem } from '../../../app/LocalStorage/_duck/operations';
+import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
