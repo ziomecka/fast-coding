@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
 
 /** VIEWS */
-// import { INITIAL_STATE as VIEWS_INITIAL_STATE, ViewsState, viewsReducer } from '../views/_reducers/';
-// import { actions as viewsActions, ViewsActions } from '../views/_actions';
+// import { INITIAL_STATE as VIEWS_INITIAL_STATE, ViewsState, viewsReducer } from '@views/_reducers/';
+// import { actions as viewsActions, ViewsActions } from '@views/_actions';
 
 /** COMPONENTS */
 import { INITIAL_STATE as COMPONENTS_INITIAL_STATE, ComponentsState, componentsReducer } from '@components/_reducers/';
