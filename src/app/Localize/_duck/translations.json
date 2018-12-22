@@ -178,5 +178,9 @@
     "notificationNewPasswordSuccess": [
         "Password has been changed. Please log in.",
         "Hasło zostało zmienione. Proszę zaloguj się."
+    ],
+    "oopsSomethingWentWrong": [
+        "Oops! Something went wrong.",
+        "Ups! Coś poszło nie tak."
     ]
 }

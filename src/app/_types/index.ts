@@ -26,4 +26,5 @@ export * from '../MenuButton/_duck/types';
 // export * from '../Table/_duck/types';
 export * from '../User/_duck/types';
 export * from '../Welcome/_duck/types';
+export * from '../AppError/_duck/types';
 
