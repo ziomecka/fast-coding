@@ -13,8 +13,7 @@ import { AppRoutesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
-import  SubMenu from '../SubMenu/';
-import  { __SubMenuProps } from '../SubMenu/container';
+import MenuButton, { __MenuButtonProps } from '../MenuButton/'
 import { NavRulesEnum, SubMenuRulesEnum } from '@appTypes';
 
 const { notAnyLesson, notHome } = NavRulesEnum;
@@ -30,7 +29,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     demoUrl: AppRoutesEnum;
     lessonsUrl: AppRoutesEnum;
     home: AppRoutesEnum;
-    subMenu: __SubMenuProps;
+    button: __MenuButtonProps;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
@@ -45,20 +44,19 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         /** Link to Welcome page
          *  Hidden, under title, rendered on not Welcome page
          */
-        this.subMenu = {
+        this.button = {
             menuItem: {
-                title: 'Home',
+                title: 'submenuGoToHome',
                 appRoute: this.home,
-                rules: [ notCurrentLocation ]
+                // @ts-ignore
+                rules: [ notCurrentLocation, notAnyLesson, notHome ],
+                icon: <div></div>,
+                iconButton: {
+                    disableRipple: true,
+                    disableTouchRipple: true,
+                    classes: { root: this.props.classes.welcomeHomeSubMenu }
+                }
             },
-            icon: <div></div>,
-            rules: [ notAnyLesson, notHome ],
-            iconButton: {
-                disableRipple: true,
-                disableTouchRipple: true,
-                classes: { root: this.props.classes.welcomeHomeSubMenu }
-            },
-            title: 'submenuGoToHome'
         };
     }
 
@@ -160,7 +158,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                  /* Link to Welcome page
                  /* Hidden, under title, rendered on not Welcome page
                  */}
-                <SubMenu { ...this.subMenu } />
+                <MenuButton { ...this.button } />
 
                 {/* Render buttons only when Home */}
                 {isHome && (
