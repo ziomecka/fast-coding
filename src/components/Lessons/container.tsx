@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -40,8 +40,8 @@ interface MapStateToProps extends LessonsLoaderState {
 }
 
 export interface LessonsDispatch {
-    handleOpenLesson: (lessonData: LessonData) => void;
-    handleOpenRandomLesson: (lessonData: LessonData) => void;
+    handleOpenLesson: (lessonData: LessonData) => Action;
+    handleOpenRandomLesson: (lessonData: LessonData) => Action;
 };
 
 export interface LessonsProps extends

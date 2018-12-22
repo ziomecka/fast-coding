@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as TextGenerator } from './component';
@@ -29,7 +29,7 @@ const TextGeneratorContainer = connect(mapStateToProps, mapDispatchToProps)(Text
 export default TextGeneratorContainer;
 
 export interface TextGeneratorDispatch {
-    sendText: (text: string) => void;
+    sendText: (text: string) => Action;
 };
 
 export interface TextGeneratorProps extends TextGeneratorDispatch, TextGeneratorState, LessonState {};

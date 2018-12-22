@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as LessonsLoader } from './component';
@@ -27,7 +27,7 @@ const LessonsLoaderContainer = connect(mapStateToProps, mapDispatchToProps)(Less
 export default LessonsLoaderContainer;
 
 export interface LessonsLoaderDispatch {
-    loadData: () => void;
+    loadData: () => Action;
 };
 
 export interface LessonsLoaderProps extends LessonsLoaderDispatch, LessonsLoaderState {};

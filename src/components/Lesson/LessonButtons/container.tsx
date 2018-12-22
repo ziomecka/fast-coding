@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -60,14 +60,14 @@ interface MapStateToPropsI extends LessonState, LessonButtonsState {
 };
 
 export interface LessonButtonsDispatch {
-    restartLesson: () => void;
-    resetLesson: () => void;
-    turnOnDraggable: () => void;
-    turnOffDraggable: () => void;
-    resetLessonButtons: () => void;
-    startLeaving: () => void;
-    pauseLesson: () => void;
-    unpauseLesson: () => void;
+    restartLesson: () => Action;
+    resetLesson: () => Action;
+    turnOnDraggable: () => Action;
+    turnOffDraggable: () => Action;
+    resetLessonButtons: () => Action;
+    startLeaving: () => Action;
+    pauseLesson: () => Action;
+    unpauseLesson: () => Action;
 };
 
 export interface LessonButtonsProps extends

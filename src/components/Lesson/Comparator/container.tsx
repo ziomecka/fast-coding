@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as Comparator } from './component';
@@ -48,13 +48,13 @@ const ComparatorContainer = connect(mapStateToProps, mapDispatchToProps)(Compara
 export default ComparatorContainer;
 
 export interface ComparatorDispatch {
-    turnOnComparator: () => void;
-    startLesson: () => void;
-    endingLesson: () => void;
-    addEventListener: () => void;
-    removeEventListener: () => void;
-    keepState: () => void;
-    restoreState: () => void;
+    turnOnComparator: () => Action;
+    startLesson: () => Action;
+    endingLesson: () => Action;
+    addEventListener: () => Action;
+    removeEventListener: () => Action;
+    keepState: () => Action;
+    restoreState: () => Action;
 };
 
 export interface ComparatorProps extends

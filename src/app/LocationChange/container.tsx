@@ -11,7 +11,7 @@ import { AppContainersEnum } from '@appTypes';
 
 const { app } = ApplicationContainersEnum;
 
-import { changeLocation } from './_duck/actions';
+import { changeLocation, ChangeLocationAction } from './_duck/actions';
 
 const mapStateToProps = (state: ApplicationState): AppState => ({
     ...state[app]
@@ -27,7 +27,7 @@ const LocationChangeContainer = withRouter(connect(mapStateToProps, mapDispatchT
 export default LocationChangeContainer;
 
 export interface LocationChangeDispatch {
-    handleChangeLocation: (pathname: string, container: AppContainersEnum) => void;
+    handleChangeLocation: (pathname: string, container: AppContainersEnum) => ChangeLocationAction;
 };
 
 export interface LocationChangeProps extends LocationChangeDispatch, AppState, RouteComponentProps<{}> {

@@ -1,5 +1,5 @@
-import { Dispatch } from 'redux';
-import { openDialog, closeDialog } from '../app/Dialog/_duck/actions';
+import { Dispatch, Action } from 'redux';
+import { openDialog, closeDialog, OpenDialogAction } from '../app/Dialog/_duck/actions';
 import { DialogOptions } from '../app/Dialog/_duck/reducers';
 
 export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({
@@ -8,6 +8,6 @@ export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({
 });
 
 export interface DialogDispatch {
-    openDialog: (options: DialogOptions ) => void;
-    closeDialog: () => void;
+    openDialog: (options: DialogOptions ) => OpenDialogAction;
+    closeDialog: () => Action;
 };
