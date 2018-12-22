@@ -1,7 +1,7 @@
-import { actions as subMenuActions, SubMenuActions } from '../../SubMenu/_duck/actions';
+import { actions as menuListActions, MenuListActions } from '../../MenuList/_duck/actions';
 
 export const actions = {
-    ...subMenuActions
+    ...menuListActions
 };
 
-export type AppMenuActions = SubMenuActions;
+export type AppMenuActions = MenuListActions;

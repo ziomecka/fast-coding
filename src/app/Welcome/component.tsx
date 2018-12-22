@@ -13,12 +13,10 @@ import { AppRoutesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
-import  SubMenu from '../SubMenu/';
-import  { __SubMenuProps } from '../SubMenu/container';
-import { NavRulesEnum, SubMenuRulesEnum } from '@appTypes';
+import MenuButton, { MenuButtonOptionsI  } from '../MenuButton/'
+import { MenuRulesEnum } from '@appTypes';
 
-const { notAnyLesson, notHome } = NavRulesEnum;
-const { notCurrentLocation } = SubMenuRulesEnum;
+const { notAnyLesson, notHome } = MenuRulesEnum;
 
 /** Translations */
 import { Translate } from 'react-localize-redux';
@@ -30,7 +28,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     demoUrl: AppRoutesEnum;
     lessonsUrl: AppRoutesEnum;
     home: AppRoutesEnum;
-    subMenu: __SubMenuProps;
+    button: MenuButtonOptionsI;
     constructor(props) {
         super(props);
         this.classFalling = 'title-falling';
@@ -45,20 +43,16 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         /** Link to Welcome page
          *  Hidden, under title, rendered on not Welcome page
          */
-        this.subMenu = {
-            menuItem: {
-                title: 'Home',
-                appRoute: this.home,
-                rules: [ notCurrentLocation ]
-            },
-            icon: <div></div>,
+        this.button = {
+            appRoute: this.home,
             rules: [ notAnyLesson, notHome ],
+            icon: <div></div>,
             iconButton: {
                 disableRipple: true,
                 disableTouchRipple: true,
                 classes: { root: this.props.classes.welcomeHomeSubMenu }
             },
-            title: 'submenuGoToHome'
+            title: 'submenuGoToHome',
         };
     }
 
@@ -160,7 +154,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                  /* Link to Welcome page
                  /* Hidden, under title, rendered on not Welcome page
                  */}
-                <SubMenu { ...this.subMenu } />
+                <MenuButton { ...this.button } />
 
                 {/* Render buttons only when Home */}
                 {isHome && (

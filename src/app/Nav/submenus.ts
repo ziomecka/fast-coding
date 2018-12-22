@@ -1,22 +1,22 @@
-import { AppRoutesEnum, SubMenuRulesEnum } from '@appTypes';
-import { SubMenuItemType } from '../SubMenu/container';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
+import { NavMenuType } from './_duck/types';
 
 const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutesEnum;
-const { onlyAuthorized, onlyUnauthorized, notCurrentLocation } = SubMenuRulesEnum;
+const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson } = MenuRulesEnum;
 
-export const lessonsMenuItem: SubMenuItemType = {
+export const lessonsMenuItem: NavMenuType = {
     title: 'courses',
     appRoute: lessons,
-    rules: [ notCurrentLocation ]
+    rules: [ notCurrentLocation, notAnyLesson ]
 };
 
-export const homeMenuItem: SubMenuItemType = {
+export const homeMenuItem: NavMenuType = {
     title: 'home',
     appRoute: home,
     rules: [ notCurrentLocation ]
 };
 
-export const mainMenuItems: SubMenuItemType[] = [
+export const mainMenuItems: NavMenuType[] = [
     {
         title: 'courses',
         appRoute: lessons,
@@ -24,7 +24,7 @@ export const mainMenuItems: SubMenuItemType[] = [
     }
 ];
 
-export const userMenuItems: SubMenuItemType[] = [
+export const userMenuItems: NavMenuType[] = [
     {
         title: 'subMenuUserLogin',
         appRoute: login,

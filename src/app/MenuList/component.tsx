@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { SubMenuProps, SubMenuItemType } from './container';
+import { MenuListProps, MenuListItemType } from './container';
 import { LanguagesEnum } from '@applicationTypes';
-import { AppRoutesEnum, SubMenuRulesEnum, NavRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 
 /* Materials */
 import Menu from '@material-ui/core/Menu';
@@ -16,31 +16,25 @@ import Tooltip from '@material-ui/core/Tooltip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const { demo, lesson, lessons, home, login, newuser } = AppRoutesEnum;
-const { notAnyLesson, notDemoLesson, notHome, notLesson } = NavRulesEnum;
-const { notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage } = SubMenuRulesEnum;
-const { pl, en } = LanguagesEnum;
-
 import getTranslation from '@shared/get.translation';
-import { getActiveLanguage } from 'react-localize-redux';
+import { getActiveLanguage } from 'react-localize-redux'
+
+import { withMenuRules } from '../MenuRulesHoc/';
 
 /**
  * @param { boolean } render                  - is menu rendered?
  *                                              Changes only if props authorized or location.pathname do change
  *                                              Increases menu responsiveness
- * @param { JSX.Element[] | SubMenuItemType } - containes list of menuItems to be dispalayed.
+ * @param { JSX.Element[] | MenuListItemType } - containes list of menuItems to be dispalayed.
  *                                              Is updated with delay because menu is transitioning (hiding) and
  *                                                during transtion menu should not be updating
  * */
 interface InternalState {
     render: boolean;
-    listItems: JSX.Element[] | SubMenuItemType
+    listItems: JSX.Element[] | MenuListItemType
 };
 
-// TODO muszę kombinować bo za dużo umieściłam w jednym komponencie
-// Podzielić cały komponent na dwa: menu z listą i menu przycisk
-class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
-    private _renderMethod: () => JSX.Element;
+class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     private _listTimeout: number;
     constructor (props) {
         super(props);
@@ -50,56 +44,41 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            render: this.areNavRulesMet,
+            render: this.areRulesMet(),
             listItems: this.listItems
         }
 
         this._listTimeout = 1000;
-
-        /**
-         * Check if either menuItems or menuItem provided in props.
-         * If both or neither menuItems nor menuIteme provided in props then throw an error.
-         */
-        if (this.manyItems) {
-            this._renderMethod = this.renderList
-        }
-        else if (this.oneItem) {
-            this._renderMethod = this.renderOneItem;
-        }
-        else {
-            throw new Error('SubMenu received incorrect props.');
-        }
-    }
-
-    get currentPathname () {
-        return this.props.location.pathname;
     }
 
     get anchorEl () {
+        const { container } = this.props;
+
         return (
-            this.props.container
-                ? this.props[this.props.container]
-                    ? this.props[this.props.container].anchorEl
-                    : null
+            this.props[ container ]
+                ? this.props[ container ].anchorEl
                 : null
         );
     }
 
-    componentDidUpdate(prevProps: SubMenuProps) {
+    componentDidUpdate(prevProps: MenuListProps) {
         const { props: { location: { pathname }, authorized, menuItems } } = this;
         const { location: { pathname: prevPathname }, authorized: prevAuthorized, menuItems: prevMenuItems } = prevProps;
 
+        const activeLang =  getActiveLanguage(this.props.localize);
+        const prevActiveLang = getActiveLanguage(prevProps.localize);
+
         /**
-         *  Updates menu only if pathname or authorization changed, therefore
+         *  Updates menu only if pathname, authorization or langugage changed, therefore
          *  menu ressponsiveness is increased.
          *
          *  Moreove: listItems are updated with delay, therefore
          *  menu items do not change when menu is transitioning
          */
-        if (( pathname !== prevPathname || authorized !== prevAuthorized )) {
+        if (( pathname !== prevPathname || authorized !== prevAuthorized || activeLang !== prevActiveLang )) {
             // @ts-ignore
             this.setState(() => (
-                { render: this.areNavRulesMet && this.atLeastOneItem }
+                { render: this.areRulesMet() && this.atLeastOneItem }
                 ), () => {
                     let timeout = setTimeout( () => {
                         this.setState({ listItems: this.listItems });
@@ -138,34 +117,9 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         }
     };
 
-    // @ts-ignore
-    get subMenuRules (): {[key: SubMenuRulesEnum]: (path?: AppRoutesEnum, lang?: LanguagesEnum) => boolean } {
-        return {
-            [onlyAuthorized]: () => this.props.authorized,
-            [onlyUnauthorized]: () => !this.props.authorized,
-            [notCurrentLocation]: (path: AppRoutesEnum) => path !== this.currentPathname,
-            [notActiveLanguage]: (path: AppRoutesEnum, lang: LanguagesEnum) => lang!== getActiveLanguage(this.props.localize).code
-        }
-    };
-
-    /** If function for rule is not implemented an error will be thrown */
-    areSubMenuRulesMet (rules: SubMenuRulesEnum[], pathname: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
-        return (!rules || rules.every(rule => this.subMenuRules[rule](pathname, lang)));
-    };
-
-    // @ts-ignore
-    get navRules (): {[key: NavRulesEnum]: () => boolean} {
-        return {
-            [notLesson]: () => !RegExp(`.*${lesson}.*`, 'g').test(this.currentPathname),
-            [notDemoLesson]: () => this.currentPathname !== demo,
-            [notAnyLesson]: () => !RegExp(`.*${lesson}.*`,'g').test(this.currentPathname) && this.currentPathname !== demo,
-            [notHome]: () => this.currentPathname !== home
-        };
-    };
-
-    /** If function for rule is not implemented an error will be thrown */
-    get areNavRulesMet (): boolean {
-        return (!this.props.rules || this.props.rules.every(rule => this.navRules[rule]()));
+    areRulesMet (rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
+        // @ts-ignore
+        return (!rules || rules.every(rule => this.props.menuRules({ path: pathname, lang })[rule]()));
     };
 
     getLink (appRoute: AppRoutesEnum, title: string, className: string) {
@@ -173,13 +127,13 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
         return (
             <MenuItem
-                onClick={() => this.handleClose(appRoute)}
-                key={`link-${title}-${ind++}`}
-                divider={true}
+                onClick={ () => this.handleClose(appRoute) }
+                key={ `link-${ title }-${ ind++ }` }
+                divider={ true }
                 {...{ className }}
             >
-                <NavLink to={appRoute}>
-                    { getTranslation(this.props.localize, title, title) }
+                <NavLink to={ appRoute }>
+                    { getTranslation(this.props.localize, title) }
                 </NavLink>
             </MenuItem>
         );
@@ -190,8 +144,8 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         return (
             <MenuItem
                 {...{ onClick }}
-                key={`button-${title}-${ind++}`}
-                divider={true}
+                key={ `button-${ title }-${ ind++ }` }
+                divider={ true }
                 {...{ className }}
             >
                 { getTranslation(this.props.localize, title, title) }
@@ -217,14 +171,6 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         );
     }
 
-    get manyItems ()  {
-        return ( this.props.menuItems && this.props.container && !this.props.menuItem );
-    };
-
-    get oneItem  () {
-        return (this.props.menuItem && !this.props.container && !this.props.menuItems);
-    }
-
     /**
      * @description Check if list contains at lest one item. Items are rendered only if their conditions are met
      *              It may happen that none item meets conditions. List should not be rendered.
@@ -233,11 +179,7 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
      */
     get atLeastOneItem () {
         return (
-            this.props.menuItem ||
-            (
-                this.props.menuItems &&
-                this.props.menuItems.some( item => this.areSubMenuRulesMet(item.rules, item.appRoute, item.lang || '' ))
-            )
+            this.props.menuItems.some( item => this.areRulesMet(item.rules, item.appRoute, item.lang || '' ))
         );
     }
 
@@ -247,10 +189,10 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         } = this.props;
 
         return (
-            this.props.menuItem || this.props.menuItems.map((menuItem, ind) => {
+            this.props.menuItems.map((menuItem) => {
                 const { rules, appRoute, title, onClick, lang = '' } = menuItem;
 
-                if ( this.areSubMenuRulesMet(rules, appRoute, lang )) {
+                if ( this.areRulesMet(rules, appRoute, lang )) {
                     return (
                         ( appRoute && this.getLink( appRoute, title, menuItemClass ) ) ||
                         ( onClick && this.getButton( onClick, title, menuItemClass ) )
@@ -263,13 +205,16 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
     renderList () {
         const {
-            classes: { menuClass },
-            title
-        } = this.props;
+            props: {
+                classes: { menuClass },
+                title
+            },
+            anchorEl
+        } = this;
 
         /** Render list only if at least one item meets the rules */
         return (
-            <ClickAwayListener onClickAway={this.handleClickAway}>
+            <ClickAwayListener onClickAway={ this.handleClickAway }>
                 <>
                     {
                         (title && (
@@ -282,9 +227,9 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
 
                     {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
                     {<Menu
-                        anchorEl={this.anchorEl}
-                        open={Boolean(this.anchorEl)}
-                        classes={{ paper : menuClass }}
+                        anchorEl={ anchorEl }
+                        open={ Boolean(anchorEl) }
+                        classes={ { paper : menuClass } }
                     >
                         { this.state.listItems }
                     </Menu>}
@@ -293,42 +238,16 @@ class SubMenuComponent extends React.Component<SubMenuProps, InternalState> {
         );
     }
 
-    renderOneItem() {
-        const {
-            menuItem: { rules, appRoute },
-            title
-        } = this.props;
-
-        /** Render if not current pathname */
-        if (this.areSubMenuRulesMet(rules, appRoute)) {
-            return (
-                (title && (
-                    <Tooltip title={getTranslation(this.props.localize, title)}>
-                        { this.getIconButton(() => this.handleClose(appRoute)) }
-                    </Tooltip>
-                )) ||
-                this.getIconButton(() => this.handleClose(appRoute))
-            );
-        }
-
-        return null;
-    }
-
-    get renderMethod () {
-        return this._renderMethod;
-    }
-
     render () {
-        if (this.state.render) {
+        if ( this.state.render ) {
             return (
                 <>
-                    { this.renderMethod() }
+                    { this.renderList() }
                 </>
             );
         }
-
         return null;
     }
 }
 
-export default withStyles(styles)(SubMenuComponent);
+export default withMenuRules(withStyles(styles)(MenuListComponent));

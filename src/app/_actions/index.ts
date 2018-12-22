@@ -6,7 +6,7 @@ import { actions as notificationActions, NotificationActions } from '../Notifica
 import { actions as passwordActions, PasswordActions } from '../Password/_duck/actions';
 import { actions as formHelperTextActions, FormHelperTextActions } from '../FormHelperText/_duck/actions';
 import { actions as welcomeActions, WelcomeActions } from '../Welcome/_duck/actions';
-import { actions as submenuActions, SubMenuActions } from '../SubMenu/_duck/actions';
+import { actions as menuListActions, MenuListActions } from '../MenuList/_duck/actions';
 import { actions as appmenuActions, AppMenuActions } from '../AppMenu/_duck/actions';
 
 export const actions = {
@@ -16,7 +16,7 @@ export const actions = {
     ...passwordActions,
     ...formHelperTextActions,
     ...welcomeActions,
-    ...submenuActions,
+    ...menuListActions,
     ...appmenuActions
 };
 
@@ -27,5 +27,5 @@ export type AppActions = Action |
     PasswordActions |
     FormHelperTextActions |
     WelcomeActions |
-    SubMenuActions |
+    MenuListActions |
     AppMenuActions;

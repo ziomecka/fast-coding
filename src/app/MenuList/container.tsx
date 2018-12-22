@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { default as SubMenuComponent } from './component';
+import { default as MenuListComponent } from './component';
 
 import { ApplicationState } from '../../store';
 import { Dispatch } from 'redux';
@@ -16,8 +16,7 @@ import {
     AppContainersEnum,
     AppRoutesEnum,
     MenuContainersEnum,
-    SubMenuRulesEnum,
-    NavRulesEnum,
+    MenuRulesEnum
 } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
@@ -27,6 +26,7 @@ const { app } = ApplicationContainersEnum;
 const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
+import { WithMenuRules }  from '../MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
@@ -35,33 +35,32 @@ const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     localize: state.localize
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): SubMenuDispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch): MenuListDispatch => ({
     setNavAnchorEl: (container, element) => dispatch(onSetNavAnchorEl(container, element || null))
 });
 
 // @ts-ignore
-const SubMenuContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SubMenuComponent));
+const MenuListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuListComponent));
 
-export default SubMenuContainer;
+export default MenuListContainer;
 
-export interface SubMenuDispatch {
+export interface MenuListDispatch {
     setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
 };
 
-export type SubMenuItemType = {
+export type MenuListItemType = {
     title: string;
     appRoute?: AppRoutesEnum;
-    rules: SubMenuRulesEnum[];
+    rules: MenuRulesEnum[];
     onClick?: () => void;
     lang?: LanguagesEnum;
 };
 
-export interface __SubMenuProps {
-    menuItems?: SubMenuItemType[];
-    menuItem?: SubMenuItemType;
+export interface __MenuListProps {
+    menuItems: MenuListItemType[];
     icon: JSX.Element;
-    container?: MenuContainersEnum;
-    rules?: NavRulesEnum[];
+    container: MenuContainersEnum;
+    rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
 };
@@ -71,8 +70,9 @@ interface MapStateToPropsI extends MenuState {
     localize: LocalizeState;
 };
 
-export interface SubMenuProps extends __SubMenuProps,
-    SubMenuDispatch,
+export interface MenuListProps extends __MenuListProps,
+    MenuListDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles,
+    WithMenuRules {};

@@ -7,7 +7,7 @@ import * as manageKeydownListeners  from '../../../app/KeyboardListener/_duck/op
 
 let listenerId;
 
-/** If escape pressed close the submenu */
+/** If escape pressed close the menuList */
 const keyDownCallback = (dispatch: Dispatch, container: MenuContainersEnum, e: React.KeyboardEvent) => {
     if ( e.keyCode === 27 ) {
         dispatch(setNavAnchorEl(container));
