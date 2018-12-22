@@ -6,10 +6,10 @@ import { HomeViewProps } from './container';
 import LocationChange from '@app/LocationChange';
 
 import Content from '@app/Content/';
-import TextGenerator from '@components/TextGenerator/container';
-import LessonsLoader from '@components/LessonsLoader/container';
-import User from '@app/User/container';
-import KeyboardListener from '@app/KeyboardListener/container';
+import TextGenerator from '@components/TextGenerator/';
+import LessonsLoader from '@components/LessonsLoader/';
+import User from '@app/User/';
+import KeyboardListener from '@app/KeyboardListener/';
 
 import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
 
