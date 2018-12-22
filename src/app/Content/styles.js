@@ -1,4 +1,4 @@
-import { CONTENT_PADDING_TOP, PAPER_PADDING_MAX } from '../../constants';
+import { CONTENT_PADDING_TOP, PAPER_PADDING_MAX } from '@constants';
 
 const styles = theme => {
     const {

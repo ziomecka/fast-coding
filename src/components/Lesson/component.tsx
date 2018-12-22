@@ -15,7 +15,7 @@ import getTranslation from '@shared/get.translation';
 
 import { getSeconds } from '@shared/convert.time';
 
-import { LESSON_TIME_INTERVAL } from '../../constants';
+import { LESSON_TIME_INTERVAL } from '@constants';
 
 /** Running time is calculate internally and kept in internal state.
  *  Could be got from Stats but it affects negatively the performance.

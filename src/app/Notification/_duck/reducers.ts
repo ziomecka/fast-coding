@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { NotificationActionsEnum, NotificationVariantEnum } from './types';
 import { NotificationActions } from './actions';
 
-import { NOTIFICATION_DURATION } from '../../../constants';
+import { NOTIFICATION_DURATION } from '@constants';
 
 const { success } = NotificationVariantEnum;
 

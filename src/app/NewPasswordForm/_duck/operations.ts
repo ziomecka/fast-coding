@@ -10,7 +10,7 @@ const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
 const { newPasswordSet, login } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
-import { SERVER_CONSTANTS } from '../../../constants';
+import { SERVER_CONSTANTS } from '@constants';
 
 const {
     QUERY_PARAM_KEY,

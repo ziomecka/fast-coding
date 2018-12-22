@@ -8,7 +8,7 @@ import {
     HOME_HEADING_ANIMATED,
     HOME_NOTIFICATION,
     HOME_WELCOME_TIMEOUT
-} from '../../constants';
+} from '@constants';
 import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
 
 /** Materials */

@@ -5,7 +5,7 @@ import {
     PAPER_PADDING,
     PAPER_PADDING_MAX,
     ELEVATION
-} from '../constants';
+} from '@constants';
 
 import {
     flexColumn,

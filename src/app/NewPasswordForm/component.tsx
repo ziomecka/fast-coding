@@ -24,7 +24,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
 import { Translate } from 'react-localize-redux';
-import { SERVER_CONSTANTS } from '../../constants';
+import { SERVER_CONSTANTS } from '@constants';
 import { QueriesI } from '@app/api/';
 
 const {

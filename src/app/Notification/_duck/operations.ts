@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { setNotification, openNotification, closeNotification, SetNotificationAction } from './actions';
-import { NOTIFICATION_DURATION } from '../../../constants';
+import { NOTIFICATION_DURATION } from '@constants';
 import getTranslation from '@shared/get.translation';
 import { ThunkGetStateType } from '@applicationTypes';
 
