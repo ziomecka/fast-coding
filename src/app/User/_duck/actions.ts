@@ -1,14 +1,14 @@
 import { Action, ActionCreator } from 'redux';
-import { UserActionsEnum } from './types';
+import { UserActionsEnum, UserAuthorizeI} from './types';
 
 const {
     APP_USER_AUTHORIZE_USER,
     APP_USER_UNAUTHORIZE
 } = UserActionsEnum;
 
-export const authorizeUser: ActionCreator<UserAuthorizationAction> = (login: string) => ({
+export const authorizeUser: ActionCreator<UserAuthorizationAction> = (options: UserAuthorization) => ({
     type: APP_USER_AUTHORIZE_USER,
-    login
+    ...options
 });
 
 export const unauthorizeUser: ActionCreator<UserAuthorizationAction> = (login: string) => ({
@@ -21,8 +21,10 @@ export const actions = {
     unauthorizeUser
 };
 
-export interface UserAuthorizationAction extends Action {
+export interface UserAuthorization extends UserAuthorizeI {
     login: string;
-};
+}
+
+export type UserAuthorizationAction = UserAuthorization & Action;
 
 export type UserActions = UserAuthorizationAction;

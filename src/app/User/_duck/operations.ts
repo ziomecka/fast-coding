@@ -1,24 +1,23 @@
 
 import { Dispatch } from 'redux';
 
-import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
+import { UserAuthorizeI } from './types';
+import { authorizeUser, UserAuthorizationAction } from './actions';
 
-const { app } = ApplicationContainersEnum;
-const { user } = AppContainersEnum;
-import { onLoadLessons } from '@components/LessonsLoader/_duck/operations';
+export const onAuthorize = ( options?: UserAuthorizeI ): any => (
+    async (dispatch: Dispatch ): Promise<UserAuthorizationAction> => {
 
-export const onAuthorize = (): any => async (dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    let answer = await true;
-
-    if (answer) {
-        const { subscriptionPlan } = getState()[app][user];
-        dispatch(onLoadLessons( subscriptionPlan ));
+        /** Store login or email in place of login */
+        return dispatch( authorizeUser( Object.assign(
+            {},
+            { login: Object(options).login || Object(options).email }
+        )));
     }
-};
+);
 
 export const onUnauthorize = (): any => {
-
+    async (dispatch: Dispatch ): Promise<any> => {
+    }
 };
 
 export default  {

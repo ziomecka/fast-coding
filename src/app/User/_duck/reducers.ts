@@ -1,8 +1,7 @@
 
 import { Reducer } from 'redux';
 
-import { UserActionsEnum } from './types';
-// import { SubscriptionsEnum } from '@shared/subscriptions';
+import { UserActionsEnum, UserAuthorizeI } from './types';
 import { UserActions } from './actions';
 
 const {
@@ -11,8 +10,12 @@ const {
 } = UserActionsEnum;
 
 export const INITIAL_STATE: UserState = {
-    login: '',
-    authorized: false
+    login: null,
+    authorized: false,
+    displayName: null,
+    email: null,
+    photoURL: null,
+    refreshToken: null
 };
 
 const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action) => {
@@ -20,17 +23,15 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
         case APP_USER_AUTHORIZE_USER: {
             return {
                 ...state,
-                login: action.login,
+                ...action,
                 authorized: true
             };
         }
 
         case APP_USER_UNAUTHORIZE: {
             return {
-                ...state,
-                login: null,
-                authorized: false
-            }
+                ...INITIAL_STATE
+            };
         }
 
         default: {
@@ -43,7 +44,7 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
 
 export { reducer as userReducer };
 
-export interface UserState {
+export interface UserState extends UserAuthorizeI {
     login: string;
-    authorized: boolean;
+    authorized: boolean
 };

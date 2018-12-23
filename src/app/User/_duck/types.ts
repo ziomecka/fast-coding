@@ -10,3 +10,10 @@ export enum UserRolesEnum {
     teacher = 'TEACHER',
     pupil = 'PUPIL'
 };
+
+export interface UserAuthorizeI {
+    displayName?: string;
+    email?: string;
+    photoURL?: string;
+    refreshToken?: string;
+};
