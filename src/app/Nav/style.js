@@ -6,6 +6,8 @@ import {
 const style = theme => {
     const loginFontSize = '1.2rem';
     const loginLetterSpacing = '.005em';
+    const loginWidth = '160px';
+    const loginLineHeight = '.95em';
 
     const {
         transitions: {
@@ -15,7 +17,8 @@ const style = theme => {
         palette: {
             secondary: { contrastText: loginColor }
         },
-        typography: { fontWeightMedium: loginFontWeight }
+        typography: { fontWeightMedium: loginFontWeight },
+        spacing: { unit: spacingUnit }
     } = theme;
 
     return {
@@ -37,7 +40,11 @@ const style = theme => {
                 fontSize: loginFontSize,
                 fontWeight: loginFontWeight,
                 letterSpacing: loginLetterSpacing,
-                color: loginColor
+                color: loginColor,
+                whiteSpace: 'wrap',
+                marginTop: spacingUnit,
+                width: loginWidth,
+                lineHeight: loginLineHeight // decreased i case login takes upto three lines
             }
         }
     }
