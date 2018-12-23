@@ -141,7 +141,7 @@ module.exports = {
       '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  )),
       '@appForm': ( path.resolve ( __dirname, '../src/app/Form/' )),
       '@constants': ( path.resolve ( __dirname, '../src/constants' )),
-      '@store': ( path.resolve ( __dirname, '../src/store' ))
+      '@appStore': ( path.resolve ( __dirname, '../src/store' ))
     },
   },
   plugins: [
@@ -153,7 +153,7 @@ module.exports = {
     ]),
     new Dotenv({
       systemvars: true,
-      path: envFilePath,
+      path: envFilePath
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
