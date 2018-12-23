@@ -8,8 +8,10 @@ class UserComponent extends React.Component<UserProps> {
     }
 
     componentDidMount() {
-        this.props.authorize();
+        // TODO cookies
+        // this.props.authorize();
     }
+
 
     componentWillUnmount() {
         this.props.unauthorize();
