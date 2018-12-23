@@ -6,11 +6,13 @@ import { authorizeUser, UserAuthorizationAction } from './actions';
 
 export const onAuthorize = ( options?: UserAuthorizeI ): any => (
     async (dispatch: Dispatch ): Promise<UserAuthorizationAction> => {
+        const { login, email } = Object(options);
 
+        console.log('options.authorizationMethod')
+        console.log(options.authorizationMethod)
         /** Store login or email in place of login */
         return dispatch( authorizeUser( Object.assign(
-            {},
-            { login: Object(options).login || Object(options).email }
+            Object(options), { login: login || email }
         )));
     }
 );

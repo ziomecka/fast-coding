@@ -5,11 +5,14 @@ import { MenuProviderProps } from './container';
 
 const { Provider } = MenuRulesHocContext;
 
-import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum, UserAuthorizationMethodEnum } from '@appTypes';
+
+const { fastcoding } = UserAuthorizationMethodEnum;
 
 const {
     notAnyLesson, notDemoLesson, notHome, notLesson,
-    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage
+    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage,
+    fastCodingAuthorization
 } = MenuRulesEnum;
 
 const { demo, lesson, home } = AppRoutesEnum;
@@ -21,7 +24,8 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
         authorized,
         location: { pathname },
         localize,
-        children
+        children,
+        authorizationMethod
      } = props;
 
     const { code: activeLang } = getActiveLanguage(localize);
@@ -29,6 +33,7 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
     return (
         <Provider value={options => {
             const { path, lang } = options;
+
             return {
                 [onlyAuthorized]: () => authorized,
                 [onlyUnauthorized]: () => !authorized,
@@ -37,7 +42,8 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
                 [notLesson]: () => !RegExp(`.*${lesson}.*`, 'g').test(pathname),
                 [notDemoLesson]: () => pathname !== demo,
                 [notAnyLesson]: () => !RegExp(`.*${lesson}.*`,'g').test(pathname) && pathname !== demo,
-                [notHome]: () => pathname !== home
+                [notHome]: () => pathname !== home,
+                [fastCodingAuthorization]: () => authorizationMethod === fastcoding
             };
         }}>
             { children }

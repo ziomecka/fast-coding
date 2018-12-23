@@ -15,7 +15,8 @@ export const INITIAL_STATE: UserState = {
     displayName: null,
     email: null,
     photoURL: null,
-    refreshToken: null
+    refreshToken: null,
+    authorizationMethod: null
 };
 
 const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action) => {

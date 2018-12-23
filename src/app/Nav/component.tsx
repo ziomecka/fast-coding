@@ -41,7 +41,8 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         activeLanguage,
         classes: { navClass, navLessonClass, navLogin },
         logOut,
-        login
+        login,
+        displayName
     } = props;
 
     const subMenus: NavMenuProps[] = [
@@ -89,7 +90,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                 title={ 'submenuOpenUserMenu' }
                 iconButton={{
                     className: navLogin,
-                    login: login
+                    login: displayName || login // Displayed under Face icon
                 }}
             />
         }

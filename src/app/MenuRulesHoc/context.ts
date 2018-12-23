@@ -1,16 +1,18 @@
 import * as React from 'react';
 
 import { LanguagesEnum } from '@applicationTypes';
-import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum, UserAuthorizationMethodEnum } from '@appTypes';
 
 const {
     notAnyLesson, notDemoLesson, notHome, notLesson,
-    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage
+    notCurrentLocation, onlyAuthorized, onlyUnauthorized, notActiveLanguage,
+    fastCodingAuthorization
 } = MenuRulesEnum;
 
 export interface MenuRulesHocOptionsI {
     path?: AppRoutesEnum; // path to which Component redirects
     lang?: LanguagesEnum; // language to which component redirects
+    authorizationMethod?: UserAuthorizationMethodEnum;
 };
 
 export type MenuRulesHocType = (options?: MenuRulesHocOptionsI) => ({
@@ -22,6 +24,7 @@ export type MenuRulesHocType = (options?: MenuRulesHocOptionsI) => ({
     [notDemoLesson]: () => boolean;
     [notAnyLesson]: () => boolean;
     [notHome]: () => boolean;
+    [fastCodingAuthorization]: () => boolean
 });
 
 const defaultValue: MenuRulesHocType = (options) => ({
@@ -32,7 +35,8 @@ const defaultValue: MenuRulesHocType = (options) => ({
     [notLesson]: () => false,
     [notDemoLesson]: () => false,
     [notAnyLesson]: () => false,
-    [notHome]: () => false
+    [notHome]: () => false,
+    [fastCodingAuthorization]: () => false
 });
 
 const context = React.createContext(defaultValue);
