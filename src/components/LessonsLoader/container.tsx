@@ -6,16 +6,19 @@ import { LessonsLoaderState } from './_duck/reducers';
 
 import { onLoadLessons } from './_duck/operations';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
+import { ApplicationContainersEnum, } from '@applicationTypes';
+import { AppContainersEnum, } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
 import { ApplicationState } from '../../_reducers/';
 
-const { components } = ApplicationContainersEnum;
+const { app, components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
+const { user } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): LessonsLoaderState => ({
-    ...state[components][lessonsLoader]
+const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+    ...state[components][lessonsLoader],
+    authorized: state[app][user].authorized
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): LessonsLoaderDispatch => ({
@@ -26,8 +29,14 @@ const LessonsLoaderContainer = connect(mapStateToProps, mapDispatchToProps)(Less
 
 export default LessonsLoaderContainer;
 
+interface MapStateToPropsI extends LessonsLoaderState {
+    authorized: boolean;
+};
+
 export interface LessonsLoaderDispatch {
     loadData: () => Action;
 };
 
-export interface LessonsLoaderProps extends LessonsLoaderDispatch, LessonsLoaderState {};
+export interface LessonsLoaderProps extends
+    LessonsLoaderDispatch,
+    MapStateToPropsI {};
