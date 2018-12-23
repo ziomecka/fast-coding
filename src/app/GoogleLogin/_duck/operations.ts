@@ -18,6 +18,8 @@ import getTranslation from '@shared/get.translation';
 
 import { onAuthorize } from '@app/User/_duck/operations';
 
+import { UserAuthorizationMethodEnum } from '@appTypes'
+
 import history from '@shared/history';
 
 const { app } = ApplicationContainersEnum;
@@ -50,10 +52,16 @@ export const onAuthorizeFirebase = (): any => (
     });
 
 const signInSuccessWithAuthResult = async (authResult, redirectUrl, dispatch: Dispatch): Promise<boolean> => {
-    const { displayName, email, photoURL, refreshToken } = authResult.user;
+    const {
+        user: { displayName, email, photoURL, refreshToken },
+        additionalUserInfo: { providerId }
+    } = authResult;
 
     try {
-        let response = await dispatch(onAuthorize({ displayName, email, photoURL, refreshToken }));
+        let response = await dispatch(onAuthorize({
+            // @ts-ignore
+            displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
+        }));
         if (response) {
             history.push(signInSuccessUrl);
             response = null; // GC
@@ -61,7 +69,7 @@ const signInSuccessWithAuthResult = async (authResult, redirectUrl, dispatch: Di
     } catch (err) {
         // TOD if failure
     } finally {
-        return false; // do not redirect
+        return false; // false means 'do not redirect'
     }
 };
 

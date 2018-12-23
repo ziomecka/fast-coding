@@ -16,4 +16,12 @@ export interface UserAuthorizeI {
     email?: string;
     photoURL?: string;
     refreshToken?: string;
+    authorizationMethod: UserAuthorizationMethodEnum
+};
+
+/** Left side === providerId in firebase authResult */
+export enum UserAuthorizationMethodEnum {
+    'google.com'  = 'GOOGLE',
+    'facebook.com' = 'FACEBOOK',
+    'fastcoding' = 'FAST_CODING'
 };

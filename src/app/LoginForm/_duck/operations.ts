@@ -2,12 +2,14 @@ import { Dispatch, Action } from 'redux';
 
 import{ authorizeUser } from '../../User/_duck/actions';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
 import { LoginFormResponseEnum, SendLoginFormI } from './types';
 
 const { SUCCESS, INCORRECT_PASSWORD, LOGIN_DOES_NOT_EXIST } = LoginFormResponseEnum;
 
 const { loginLog, lessons } = AppRoutesEnum;
+
+const { fastcoding } = UserAuthorizationMethodEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
@@ -34,7 +36,10 @@ export const onLog = (options: SendLoginFormI): any => (
         /** Authorize user */
         if ( response.result === SUCCESS ) {
             response = null; // GC
-            return dispatch(authorizeUser(login));
+            return dispatch(authorizeUser({
+                login,
+                authorizationMethod: fastcoding
+            }));
         }
     }
 );
