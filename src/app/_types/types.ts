@@ -12,7 +12,8 @@ export enum AppContainersEnum {
     changePasswordForm = 'CHANGE_PASSWORD_FORM',
     keyboardListener = 'KEYBOARD_LISTENER',
     remindPasswordForm = 'REMIND_PASSWORD',
-    newPasswordForm = 'NEW_PASSWORD'
+    newPasswordForm = 'NEW_PASSWORD',
+    googleLogin = 'GOOGLE_LOGIN'
 };
 
 export enum AppRoutesEnum {
@@ -28,5 +29,6 @@ export enum AppRoutesEnum {
     changePassword = '/changepassword',
     remindPassword = '/remindpassword',
     newPassword = '/newpassword',
-    newPasswordSet = '/newpassword/set'
+    newPasswordSet = '/newpassword/set',
+    privacyPolicy = '/privacyPolicy'
 };
