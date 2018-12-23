@@ -13,6 +13,16 @@ class LessonsLoaderComponent extends React.Component<LessonsLoaderProps> {
         this.props.loadData();
     }
 
+    async componentDidUpdate(prevProps) {
+        const { authorized } = this.props;
+        const { authorized: prevAuthorized } = prevProps;
+
+        if (authorized !== prevAuthorized && authorized) {
+            // TODO Load data for authorized user
+            // this.props.loadData();
+        }
+    }
+
     render() {
         return <CSR/>;
     }
