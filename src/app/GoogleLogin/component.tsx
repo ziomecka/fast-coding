@@ -19,12 +19,9 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     async componentDidMount () {
         let response = await this.props.authorizeFirebase();
 
-        /** Start firebase ui only if response is true */
-        if ( response ) {
-            response = await this.props.startFirebaseUI();
-            if (response) {
-                this.props.setTranslations();
-            }
+        if (response || !response) {
+            response = null;
+            this.props.startFirebaseUI();
         }
     }
 

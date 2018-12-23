@@ -32,26 +32,21 @@ let ui;
 export const onAuthorizeFirebase = (): any => (
     async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
         if ( !getState()[app][googleLogin].firebaseAuthorized ) {
-            try {
-                let response = await firebase.initializeApp({
-                        projectId,
-                        apiKey: process.env.FIREBASE_API_KEY,
-                        authDomain,
-                        databaseURL
-                });
+            let response = await firebase.initializeApp({
+                    projectId,
+                    apiKey: process.env.FIREBASE_API_KEY,
+                    authDomain,
+                    databaseURL
+            });
 
-                if (response) {
-                    ui = new firebaseui.auth.AuthUI(firebase.auth());
-                    dispatch(authorizeFirebase());
-                    response = null; // GC
-                    return true;
-                } else if (!response) {
-                    return false;
-                }
-
-            } catch (err) {
-                return Promise.resolve(false);
+            if (response) {
+                ui = new firebaseui.auth.AuthUI(firebase.auth());
+                dispatch(authorizeFirebase());
+                response = null; // GC
+                return true;
             }
+
+            return false;
         }
 
     });
