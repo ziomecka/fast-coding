@@ -6,5 +6,6 @@ export enum MenuRulesEnum {
     'notHome' = 'NOT_HOME',
     'notLesson' = 'NOT_LESSON',
     'notDemoLesson' = 'NOT_DEMO_LESSON',
-    'notAnyLesson' = 'NOT_ANY_LESSON'
+    'notAnyLesson' = 'NOT_ANY_LESSON',
+    'fastCodingAuthorization' = 'FAST_CODING_AUTHORIZATION'
 };
