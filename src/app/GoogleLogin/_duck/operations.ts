@@ -12,7 +12,7 @@ import 'firebase/auth';
 import firebaseui from 'firebaseui';
 
 import { projectId, authDomain, databaseURL } from '../constants';
-import { authorizeFirebase } from './actions';
+import { authorizeFirebase, unauthorizeFirebase } from './actions';
 
 import getTranslation from '@shared/get.translation';
 
@@ -27,26 +27,31 @@ const { googleLogin } = AppContainersEnum;
 
 const { lessons: signInSuccessUrl, privacyPolicy: privacyPolicyUrl } = AppRoutesEnum;
 
-let ui;
+export let ui;
 
 export const onAuthorizeFirebase = (): any => (
     async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
         if ( !getState()[app][googleLogin].firebaseAuthorized ) {
-            let response = await firebase.initializeApp({
+            try {
+                let response = await firebase.initializeApp({
                     projectId,
                     apiKey: process.env.FIREBASE_API_KEY,
                     authDomain,
                     databaseURL
-            });
+                });
 
-            if (response) {
-                ui = new firebaseui.auth.AuthUI(firebase.auth());
-                dispatch(authorizeFirebase());
-                response = null; // GC
-                return true;
+                if (response) {
+                    ui = new firebaseui.auth.AuthUI(firebase.auth());
+                    dispatch(authorizeFirebase());
+                    response = null; // GC
+                    return true;
+                } else if (!response) {
+                    return false;
+                }
+
+            } catch (err) {
+                return Promise.resolve(false);
             }
-
-            return false;
         }
 
     });
@@ -80,29 +85,36 @@ const signInFailure = async (err, dispatch: Dispatch): Promise<boolean> => {
 export const onStartFirebaseUI = (): any => (
     async (dispatch: Dispatch): Promise<any> => {
 
-        ui.start('#firebaseui-auth-container', {
-            callbacks: {
-                signInSuccessWithAuthResult: async (authResult, redirectUrl) => signInSuccessWithAuthResult(authResult, redirectUrl, dispatch),
-                signInFailure: err => signInFailure(err, dispatch)
-            },
-            signInFlow: 'popup',
-            tosUrl: privacyPolicyUrl,
-            signInOptions: [
-                {
-                    provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                    scopes: [ 'https://www.googleapis.com/auth/plus.login' ],
-                    // Forces account selection even when one account is available.
-                    customParameters: { prompt: 'select_account' }
+        if (ui) {
+
+            ui.start('#firebaseui-auth-container', {
+                callbacks: {
+                    signInSuccessWithAuthResult: async (authResult, redirectUrl) => signInSuccessWithAuthResult(authResult, redirectUrl, dispatch),
+                    signInFailure: err => signInFailure(err, dispatch)
                 },
-                {
-                    provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                    scopes: [
-                        'public_profile',
-                        'email',
-                    ]
-                }
-            ]
-        });
+                signInFlow: 'popup',
+                tosUrl: privacyPolicyUrl,
+                signInOptions: [
+                    {
+                        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                        scopes: [ 'https://www.googleapis.com/auth/plus.login' ],
+                        // Forces account selection even when one account is available.
+                        customParameters: { prompt: 'select_account' }
+                    },
+                    {
+                        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                        scopes: [
+                            'public_profile',
+                            'email',
+                        ]
+                    }
+                ]
+            });
+
+            return Promise.resolve(true);
+        } else {
+            return dispatch( unauthorizeFirebase() );
+        }
     }
 );
 

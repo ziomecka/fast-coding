@@ -9,6 +9,8 @@ import styles from './styles';
 
 import { getActiveLanguage } from 'react-localize-redux';
 
+import { ui } from './_duck/operations';
+
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
     constructor(props) {
@@ -17,11 +19,33 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     }
 
     async componentDidMount () {
+        const { firebaseAuthorized } = this.props;
+
+        /** If already authorized in firebase then start firebase ui
+         *  Else authorize and depending on response satrtFirebaseUI
+         */
+        if ( firebaseAuthorized ) {
+            return this.startFirebaseUI();
+        }  else {
+            return this.authorizeFirebase();
+        }
+    }
+
+    async authorizeFirebase (): Promise<void> {
         let response = await this.props.authorizeFirebase();
 
-        if (response || !response) {
-            response = null;
-            this.props.startFirebaseUI();
+        if (response) {
+            response = null; // GC
+            return(this.startFirebaseUI());
+        }
+    }
+
+    async startFirebaseUI (): Promise<void> {
+        let response = await this.props.startFirebaseUI();
+
+        if (response) {
+            response = null; // GC
+            return (this.props.setTranslations());
         }
     }
 
@@ -29,8 +53,15 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         const activeLanguage = getActiveLanguage(this.props.localize);
         const prevActiveLanguage = getActiveLanguage(prevProps.localize);
 
+        const { firebaseAuthorized } = this.props;
+        const { firebaseAuthorized: prevFirebaseAuthorized } = prevProps;
+
         if ( activeLanguage !== prevActiveLanguage ){
             this.props.setTranslations();
+        }
+
+        if (firebaseAuthorized !== prevFirebaseAuthorized && !firebaseAuthorized) {
+            this.authorizeFirebase();
         }
     }
 
