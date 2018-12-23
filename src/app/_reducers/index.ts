@@ -84,6 +84,12 @@ import {
     NewPasswordFormState
 } from '../NewPasswordForm/_duck/reducers';
 
+import {
+    INITIAL_STATE as GOOGLE_LOGIN_INITIAL_STATE,
+    googleLoginReducer,
+    GoogleLoginState
+} from '../GoogleLogin/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -97,7 +103,8 @@ const {
     changePasswordForm,
     keyboardListener,
     remindPasswordForm,
-    newPasswordForm
+    newPasswordForm,
+    googleLogin
 } = AppContainersEnum;
 
 export const INITIAL_STATE = {
@@ -113,7 +120,8 @@ export const INITIAL_STATE = {
     [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE,
     [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE,
     [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE,
-    [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE
+    [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE,
+    [googleLogin]: GOOGLE_LOGIN_INITIAL_STATE
 };
 
 const {
@@ -140,7 +148,8 @@ const combinedReducers = combineReducers({
     [changePasswordForm]: changePasswordFormReducer,
     [keyboardListener]: keyboardListenerReducer,
     [remindPasswordForm]: remindPasswordReducer,
-    [newPasswordForm]: newPasswordFormReducer
+    [newPasswordForm]: newPasswordFormReducer,
+    [googleLogin]: googleLoginReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -212,4 +221,5 @@ export interface AppState {
     [keyboardListener]: KeyboardListenerState;
     [remindPasswordForm]: RemindPasswordState;
     [newPasswordForm]: NewPasswordFormState;
+    [googleLogin]: GoogleLoginState;
 };

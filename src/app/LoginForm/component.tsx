@@ -9,6 +9,7 @@ const { remindPassword } = AppRoutesEnum;
 import Password from '../Password/';
 import Login from '../Login/';
 import Message from '../FormHelperText/';
+import GoogleLogin from '../GoogleLogin/';
 
 /* Materials */
 import Paper from '@material-ui/core/Paper';
@@ -90,6 +91,9 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                             <Translate id="loginDoNotRememberButton" />
                         </Button>
                     </Typography>
+
+                    <GoogleLogin />
+
                 </FormControl>
               </form>
           </Paper>
