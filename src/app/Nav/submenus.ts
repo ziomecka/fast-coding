@@ -2,7 +2,7 @@ import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 import { NavMenuType } from './_duck/types';
 
 const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutesEnum;
-const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson } = MenuRulesEnum;
+const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson, fastCodingAuthorization } = MenuRulesEnum;
 
 export const lessonsMenuItem: NavMenuType = {
     title: 'courses',
@@ -38,7 +38,7 @@ export const userMenuItems: NavMenuType[] = [
     {
         title: 'subMenuUserChangePassword',
         appRoute: changePassword,
-        rules: [ onlyAuthorized, notCurrentLocation ]
+        rules: [ onlyAuthorized, notCurrentLocation, fastCodingAuthorization ]
     },
     {
         title: 'subMenuRemindPassword',
