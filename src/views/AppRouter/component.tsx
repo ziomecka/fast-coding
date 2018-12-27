@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import history from '@shared/history';
 
 import HomeView from '../Home/';
@@ -10,7 +10,6 @@ import NewUserView from '../Newuser/';
 import ChangePasswordView from '../ChangePassword/';
 import NewPasswordView from '../NewPassword/';
 import RemindPasswordView from '../RemindPassword/';
-import LessonNotLargeView from '../LessonNotDesktop/';
 
 import RouteAuth from '../RouteAuth/';
 
@@ -26,32 +25,30 @@ import { AppRouterPropsI } from './container';
 
 import Media from 'react-media';
 
-import { MEDIA_DESKTOP } from './constants';
+import { MEDIA_DESKTOP } from '@constantsStyles';
 
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
     const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutesEnum;
     const { authorized } = props;
 
-    const common = [
-        <Route exact path={`${lessons}`} component={LessonsView} key='lessons'/>,
-        <Route path={`${login}`} component={LoginView} key='login' />,
-        <Route path={`${newuser}`} component={NewUserView} key='newuser' />,
-        <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } key='changePassword' />,
-        <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } key='remindPassword' />,
-        <Route path={`${ newPassword }`} component={ NewPasswordView } key='newPassword' />
-    ];
-
     const desktop = (
         <Switch>
-            { common }
             <Route path={`${lessons}/:id`} component={ LessonView } />
+            <Route exact path={`${lessons}`} component={LessonsView} key='lessons'/>,
+            <Route path={`${login}`} component={LoginView} key='login' />,
+            <Route path={`${newuser}`} component={NewUserView} key='newuser' />,
+            <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } key='changePassword' />,
+            <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } key='remindPassword' />,
+            <Route path={`${ newPassword }`} component={ NewPasswordView } key='newPassword' />
         </Switch>
     );
 
     const smallerThanDesktop = (
         <Switch>
-            { common }
-            <Route path={`${lessons}/:id`} component={ LessonNotLargeView } />
+            <Route exact path="/" />
+            <Route path="/">
+                <Redirect to='/' />
+            </Route>
         </Switch>
     );
 
