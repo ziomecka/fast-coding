@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core/styles';
-import { NAV_HEIGHT, NAV_MAXWIDTH } from '@constantsStyles';
+import { NAV_MAXWIDTH, PAPER_PADDING_MAX_MD } from '@constantsStyles';
 import menuIconClass from '../AppMenu/menu.icon.class';
 
 const style = createStyles(theme => {
@@ -12,11 +12,7 @@ const style = createStyles(theme => {
 
     return {
         menuClass: {
-            position: 'absolute',
-            top: `calc(${NAV_HEIGHT}px - 1rem) !important`,
-            left: 'auto !important',
-            right: '6rem !important',
-            maxWidth: `${NAV_MAXWIDTH}px`,
+            maxWidth: `${ NAV_MAXWIDTH }px`,
             backgroundColor: menuBackgroundColor
         },
         ...menuIconClass(theme),
@@ -25,7 +21,7 @@ const style = createStyles(theme => {
             width: '100%',
             fontSize: fontSizeMenuItem,
             letterSpacing: '0.1em',
-            padding: '1.5rem',
+            padding: PAPER_PADDING_MAX_MD
         }
     };
 });
