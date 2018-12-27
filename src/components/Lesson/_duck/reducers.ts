@@ -9,7 +9,7 @@ import {
     RestoreStateAction
 } from './actions';
 
-import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '@constants';
+import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../constants';
 
 import { TextTranslationsI } from '@componentsTypes';
 import { LanguagesEnum } from '@applicationTypes';

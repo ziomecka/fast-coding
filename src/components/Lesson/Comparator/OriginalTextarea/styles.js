@@ -4,7 +4,7 @@ import {
     LESSON_MAX_WIDTH,
     LESSON_FONT_SIZE_REM,
     LESSON_PARAGRAPH_SIZE_REM
-} from '@constants';
+} from '@constantsStyles';
 
 const styles = theme => ({
     comparatorTextAreaPaper: {

@@ -1,4 +1,4 @@
-import { LESSON_MAX_WIDTH } from '@constants';
+import { LESSON_MAX_WIDTH } from '@constantsStyles';
 
 const styles = theme => {
     const {

@@ -1,6 +1,6 @@
 import theme from './theme';
 
-import { PAPER_PADDING_NOT_DESKTOP, PAPER_PADDING_MAX_NOT_DESKTOP } from '../constants';
+import { PAPER_PADDING_NOT_DESKTOP, PAPER_PADDING_MAX_NOT_DESKTOP } from './constants';
 
 theme.overrides.MuiTypography = {
     h1: {

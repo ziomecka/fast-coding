@@ -1,10 +1,13 @@
 import {
-    NAV_HEIGHT,
     WELCOME_BUTTON_MARGIN_RIGHT,
     WELCOME_BUTTON_MARGIN_TOP,
+} from './constants.styles';
+
+import {
+    NAV_HEIGHT,
     NAV_WELCOME_GO_UP,
     PAPER_PADDING_MAX
-} from '@constants';
+} from '@constantsStyles';
 
 const styles = theme => {
     const TOOLBAR_MAX_WIDTH = '270px'; // arbitrary value

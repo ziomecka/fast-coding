@@ -1,4 +1,4 @@
-import { LESSONS_HEIGHT } from '@constants';
+import { LESSONS_HEIGHT } from './constants.styles';
 
 const styles = theme => {
     const {

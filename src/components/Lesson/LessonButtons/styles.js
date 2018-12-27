@@ -1,4 +1,4 @@
-import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN, LESSON_MAX_WIDTH } from '@constants';
+import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN, LESSON_MAX_WIDTH } from '@constantsStyles';
 
 const styles = theme => {
     const {

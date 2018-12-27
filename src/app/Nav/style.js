@@ -1,7 +1,7 @@
 import {
     NAV_HEIGHT,
     NAV_WELCOME_GO_UP
-} from '@constants';
+} from './constants.styles';
 
 const style = theme => {
     const loginFontSize = '1.2rem';

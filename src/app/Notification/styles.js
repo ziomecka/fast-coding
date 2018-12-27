@@ -1,4 +1,6 @@
-import { PAPER_PADDING, NOTIFICATION_FONTSIZE } from '@constants';
+import { PAPER_PADDING } from '@constantsStyles';
+
+import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
 const styles = theme => {
     const {

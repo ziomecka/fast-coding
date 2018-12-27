@@ -1,4 +1,4 @@
-import { NAV_HEIGHT, NAV_MAXWIDTH } from '@constants';
+import { NAV_HEIGHT, NAV_MAXWIDTH } from '@constantsStyles';
 import menuIconClass from '../AppMenu/menu.icon.class';
 
 const style = theme => {
