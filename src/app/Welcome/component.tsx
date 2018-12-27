@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { WelcomeProps } from './container';
+import NotDesktop from '@app/NotDesktop';
 
 /** Materials core */
 import Paper from '@material-ui/core/Paper';
@@ -161,25 +162,31 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 <MenuButton { ...this.button } />
 
                 {/* Render buttons only when Home and desktop */}
-                <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>
-                    {isHome && (
-                        <div className={ welcomeButtons }>
-                            <Button
-                                onClick={ this.goToLessons }
-                                className={ welcomeButton }
-                                id={ buttonsIds[0] }
-                            >
-                                <Translate id="welcomeGoToCourses"/>
-                            </Button>
-                            <Button
-                                className={`${ welcomeButton } ${ welcomeButtonMain }`}
-                                onClick={ this.goToDemo }
-                                id={ buttonsIds[1] }
-                            >
-                                <Translate id="welcomeGoToDemo"/>
-                            </Button>
-                        </div>
-                    )}
+                <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>{ matches => (
+                    matches
+                        ? <>
+                            {isHome && (
+                                <div className={ welcomeButtons }>
+                                    <Button
+                                        onClick={ this.goToLessons }
+                                        className={ welcomeButton }
+                                        id={ buttonsIds[0] }
+                                    >
+                                        <Translate id="welcomeGoToCourses"/>
+                                    </Button>
+                                    <Button
+                                        className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                                        onClick={ this.goToDemo }
+                                        id={ buttonsIds[1] }
+                                    >
+                                        <Translate id="welcomeGoToDemo"/>
+                                    </Button>
+                                </div>
+                            )}
+                        </>
+                        :
+                        <NotDesktop />
+                )}
                 </Media>
             </Paper>
         );
