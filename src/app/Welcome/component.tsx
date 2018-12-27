@@ -107,7 +107,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
             return (
                 <>
-                    { remainingHeading } {
+                    <span>{ remainingHeading }</span> {
                         Array.from(lastWord).map((letter, ind) => (
                             <span
                                 className={ `${ fallingLetters } ${ this.isHome ? classFalling : '' }` }
