@@ -1,10 +1,10 @@
 import { NAV_HEIGHT, NAV_MAXWIDTH } from '@constants';
+import menuIconClass from '../AppMenu/menu.icon.class';
 
 const style = theme => {
     const {
         palette: { grey: { 200: menuBackgroundColor }},
         typography: {
-            h3: { fontSize: fontSizeMenuIcon },
             h6: { fontSize: fontSizeMenuItem }
         }
     } = theme;
@@ -18,9 +18,7 @@ const style = theme => {
             maxWidth: `${NAV_MAXWIDTH}px`,
             backgroundColor: menuBackgroundColor
         },
-        menuIconClass: {
-            fontSize: fontSizeMenuIcon
-        },
+        ...menuIconClass(theme),
         menuItemClass: {
             boxSizing: 'border-box',
             width: '100%',

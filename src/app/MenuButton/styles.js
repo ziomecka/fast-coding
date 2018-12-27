@@ -1,14 +1,8 @@
-const style = theme => {
-    const {
-        typography: {
-            h3: { fontSize: fontSizeMenuIcon },
-        }
-    } = theme;
+import menuIconClass from '../AppMenu/menu.icon.class';
 
+const style = theme => {
     return {
-        menuIconClass: {
-            fontSize: fontSizeMenuIcon
-        }
+        ...menuIconClass(theme)
     };
 };
 
