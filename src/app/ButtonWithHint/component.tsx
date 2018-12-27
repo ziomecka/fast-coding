@@ -14,9 +14,10 @@ const ButtonWithHintComponent: React.StatelessComponent<ButtonWithHintProps> = p
     const { aftertext, translationId, buttonProps, classes: { buttonClass: className } } = props;
 
     return (
+        // @ts-ignore
         <Button
             { ...{ ...buttonProps, ...{ className: `${buttonProps.className} ${className}` } } }
-            //@ts-ignore
+            // @ts-ignore
             aftertext={( aftertext ) ? `( ${aftertext} )` : ''}
         >
             <Translate id={translationId} />
