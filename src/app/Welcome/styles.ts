@@ -65,7 +65,6 @@ const styles = createStyles(theme => {
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
-            maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_MD } - ${ PAPER_PADDING_MAX_MD } - ${ TOOLBAR_MAX_WIDTH })`,
             [theme.breakpoints.up('md')]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
                 maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_LG } - ${ PAPER_PADDING_MAX_LG } - ${ TOOLBAR_MAX_WIDTH })`
