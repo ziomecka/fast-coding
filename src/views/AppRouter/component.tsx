@@ -10,6 +10,7 @@ import NewUserView from '../Newuser/';
 import ChangePasswordView from '../ChangePassword/';
 import NewPasswordView from '../NewPassword/';
 import RemindPasswordView from '../RemindPassword/';
+import LessonNotLargeView from '../LessonNotDesktop/';
 
 import RouteAuth from '../RouteAuth/';
 
@@ -23,26 +24,51 @@ import store from '../../store';
 
 import { AppRouterPropsI } from './container';
 
+import Media from 'react-media';
+
+import { MEDIA_DESKTOP } from './constants';
+
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
     const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutesEnum;
     const { authorized } = props;
+
+    const common = [
+        <Route exact path={`${lessons}`} component={LessonsView} key='lessons'/>,
+        <Route path={`${login}`} component={LoginView} key='login' />,
+        <Route path={`${newuser}`} component={NewUserView} key='newuser' />,
+        <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } key='changePassword' />,
+        <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } key='remindPassword' />,
+        <Route path={`${ newPassword }`} component={ NewPasswordView } key='newPassword' />
+    ];
+
+    const desktop = (
+        <Switch>
+            { common }
+            <Route path={`${lessons}/:id`} component={ LessonView } />
+        </Switch>
+    );
+
+    const smallerThanDesktop = (
+        <Switch>
+            { common }
+            <Route path={`${lessons}/:id`} component={ LessonNotLargeView } />
+        </Switch>
+    );
 
     return (
         <MuiThemeProvider {...{ theme }}>
             <LocalizeProvider {...{ store }} >
                 <Router {...{ history }}>
                     <Route path="/">
-                    <HomeView>
-                            <Switch>
-                                <Route exact path={`${lessons}`} component={LessonsView} />
-                                <Route path={`${lessons}/:id`} component={LessonView} />
-                                <Route path={`${login}`} component={LoginView} />
-                                <Route path={`${newuser}`} component={NewUserView} />
-                                <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } />
-                                <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } />
-                                <Route path={`${ newPassword }`} component={ NewPasswordView } />
-                            </Switch>
-                    </HomeView>
+                        <HomeView>
+                            <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>{ matches =>
+                                matches
+                                    ?
+                                        <>{ desktop }</>
+                                    :
+                                        <>{ smallerThanDesktop }</>
+                            }</Media>
+                        </HomeView>
                     </Route>
                 </Router>
             </LocalizeProvider>
