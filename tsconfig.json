@@ -36,6 +36,7 @@
       "@sharedTypes": [ "src/shared/_types/index" ],
       "@appForm/*": [ "src/app/Form/*" ],
       "@constants": [ "src/constants" ],
+      "@constantsStyles": [ "src/theme/constants" ],
       "@appStore": [ "src/store" ]
     },
     "resolveJsonModule": true
