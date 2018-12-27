@@ -21,3 +21,5 @@ export const COLOR_CORRECTED = '#fcefe7';
 export const COLOR_HINTS = '#90ab8e';
 
 export const BORDER_THIN = '.5px';
+
+export const MEDIA_DESKTOP = 1280;
