@@ -1,0 +1,1 @@
+export const FONT_SIZE_MD = '2rem';

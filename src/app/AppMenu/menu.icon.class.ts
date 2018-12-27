@@ -1,3 +1,5 @@
+import { FONT_SIZE_MD } from './constants.styles';
+
 const style = theme => {
     const {
         typography: {
@@ -7,8 +9,9 @@ const style = theme => {
 
     return {
         menuIconClass: {
+            position: 'relative',
             [theme.breakpoints.down('lg')]: {
-                fontSize: '2rem'
+                fontSize: FONT_SIZE_MD
             },
             [theme.breakpoints.up('lg')]: {
                 fontSize: fontSizeMenuIcon
