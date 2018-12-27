@@ -19,7 +19,7 @@ import Dashboard from '@material-ui/icons/Dashboard';
 
 /* Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
-import style from './style';
+import style from './styles';
 
 import { MenuContainersEnum, MenuRulesEnum } from '@appTypes';
 const { userMenu, languagesMenu } = MenuContainersEnum;
