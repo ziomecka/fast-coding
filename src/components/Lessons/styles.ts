@@ -1,6 +1,7 @@
+import { createStyles } from '@material-ui/core/styles';
 import { LESSONS_HEIGHT } from './constants.styles';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     const {
         typography: { fontWeightMedium },
         spacing: { unit: spacingUnit }
@@ -71,6 +72,6 @@ const styles = theme => {
             margin: '2rem 0'
         }
     };
-};
+});
 
 export default styles;

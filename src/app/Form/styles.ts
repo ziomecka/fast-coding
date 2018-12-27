@@ -1,6 +1,7 @@
+import { createStyles } from '@material-ui/core/styles';
 import { FC_FORM_WIDTH } from './constants';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     return {
         FCForm: {
             minWidth: FC_FORM_WIDTH,
@@ -12,6 +13,6 @@ const styles = theme => {
             width: '100%'
         }
     };
-};
+});
 
 export default styles;

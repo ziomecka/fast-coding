@@ -1,3 +1,4 @@
+import { createStyles } from '@material-ui/core/styles';
 import {
     COLOR_SUCCESS,
     COLOR_CORRECTED,
@@ -6,7 +7,7 @@ import {
     LESSON_PARAGRAPH_SIZE_REM
 } from '@constantsStyles';
 
-const styles = theme => ({
+const styles = createStyles(theme => ({
     comparatorTextAreaPaper: {
         maxWidth: `${LESSON_MAX_WIDTH}px`,
         overflow: 'hidden',
@@ -70,6 +71,6 @@ const styles = theme => ({
     comparatorTextAreaFontCorrected: {
         backgroundColor: COLOR_CORRECTED
     },
-});
+}));
 
 export default styles;

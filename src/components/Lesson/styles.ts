@@ -1,4 +1,6 @@
-const styles = theme => {
+import { createStyles } from '@material-ui/core/styles';
+
+const styles = createStyles(theme => {
     const {
         typography: { h6: { fontSize: inviteFontSize } },
         palette: { secondary: { main: hintColor } },
@@ -24,6 +26,6 @@ const styles = theme => {
             }
         }
     };
-};
+});
 
 export default styles;

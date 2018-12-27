@@ -1,7 +1,8 @@
+import { createStyles } from '@material-ui/core/styles';
 import { NAV_HEIGHT, NAV_MAXWIDTH } from '@constantsStyles';
 import menuIconClass from '../AppMenu/menu.icon.class';
 
-const style = theme => {
+const style = createStyles(theme => {
     const {
         palette: { grey: { 200: menuBackgroundColor }},
         typography: {
@@ -27,6 +28,6 @@ const style = theme => {
             padding: '1.5rem',
         }
     };
-};
+});
 
 export default style;

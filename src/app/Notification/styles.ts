@@ -1,8 +1,9 @@
+import { createStyles } from '@material-ui/core/styles';
 import { PAPER_PADDING } from '@constantsStyles';
 
 import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     const {
         spacing: { unit },
         palette: {
@@ -42,6 +43,6 @@ const styles = theme => {
             color: errorText
         }
     };
-};
+});
 
 export default styles;

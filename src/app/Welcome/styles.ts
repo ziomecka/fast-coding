@@ -1,3 +1,5 @@
+import { createStyles } from '@material-ui/core/styles';
+
 import {
     WELCOME_BUTTON_MARGIN_RIGHT,
     WELCOME_BUTTON_MARGIN_TOP,
@@ -10,7 +12,7 @@ import {
     PAPER_PADDING_MAX
 } from '@constantsStyles';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     const {
         palette: {
             primary: { main: mainPrimary },
@@ -95,6 +97,6 @@ const styles = theme => {
             }
         }
     };
-};
+});
 
 export default styles;

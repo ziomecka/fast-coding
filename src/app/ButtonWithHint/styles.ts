@@ -1,4 +1,6 @@
-const styles = theme => {
+import { createStyles } from '@material-ui/core/styles';
+
+const styles = createStyles(theme => {
     const {
         typography: {
             caption: { fontSize: captionFontSize }
@@ -18,6 +20,6 @@ const styles = theme => {
             }
         }
     }
-};
+});
 
 export default styles;

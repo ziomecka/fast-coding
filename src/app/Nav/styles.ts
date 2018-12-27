@@ -1,13 +1,15 @@
+import { createStyles } from '@material-ui/core/styles';
+
 import {
     NAV_HEIGHT,
     NAV_WELCOME_GO_UP,
     LOGIN_FONT_SIZE,
-    LOGIN_LINE_HEIGHT
+    LOGIN_LINE_HEIGHT,
     LOGIN_LETTER_SPACING,
     LOGIN_WIDTH
 } from './constants.styles';
 
-const style = theme => {
+const style = createStyles(theme => {
 
     const {
         transitions: {
@@ -48,6 +50,6 @@ const style = theme => {
             }
         }
     }
-};
+});
 
 export default style;

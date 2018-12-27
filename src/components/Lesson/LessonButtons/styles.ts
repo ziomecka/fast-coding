@@ -1,6 +1,7 @@
+import { createStyles } from '@material-ui/core/styles';
 import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN, LESSON_MAX_WIDTH } from '@constantsStyles';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     const {
         palette: {
             primary: { main: borderColor }
@@ -35,6 +36,6 @@ const styles = theme => {
             justifyContent: 'space-between'
         }
     }
-};
+});
 
 export default styles;

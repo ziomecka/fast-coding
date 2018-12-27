@@ -1,6 +1,8 @@
+import { createStyles } from '@material-ui/core/styles';
+
 import { NAV_HEIGHT, PAPER_PADDING_MAX } from '@constantsStyles';
 
-const styles = theme => {
+const styles = createStyles(theme => {
     const {
         palette: {
                 background: { default: defaultBackground }
@@ -36,6 +38,6 @@ const styles = theme => {
             margin: `1em 0`
         }
     };
-};
+});
 
 export default styles;
