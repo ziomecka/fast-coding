@@ -61,6 +61,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         };
     }
 
+    componentDidMount() {
+        /** Letters will not fall if language changed */
+        this.classFalling = '';
+    }
+
     componentDidUpdate(prevProps: WelcomeProps) {
         const { appLocation } = this.props;
         const { appLocation: prevAppLocation } = prevProps;
