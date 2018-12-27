@@ -198,5 +198,9 @@
     "signInWithFastCoding": [
         "Sign in with Fast coding",
         "Zaloguj się z Fast coding"
+    ],
+    "lessonNotDesktopScreen": [
+        "As fast-coding is an application for touch typing learning, I strongly encourage you to use it on a laptop or desktop computer.",
+        "Jako że fast coding jest aplikacją do nauki pisania bezwzrokowego, gorąco zachęcam do korzystania z niej na  laptopie lub komputerze stacjonarnym."
     ]
 }
