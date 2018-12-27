@@ -153,12 +153,16 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         );
     };
 
-    getIconButton (onClick) {
+    getIconButton () {
         const {
-            iconButton: { className: iconButtonClassName, ...other } = { className: '' },
-            classes: { menuIconClass },
-            icon // TODO GC?
-        } = this.props;
+            props : {
+                iconButton: { className: iconButtonClassName, ...other } = { className: '' },
+                classes: { menuIconClass },
+                icon // TODO GC?
+            },
+            handleClick: onClick,
+            anchorEl
+        } = this;
 
         return (
             <IconButton
@@ -219,13 +223,13 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                     {
                         (title && (
                             <Tooltip title={getTranslation(this.props.localize, title)}>
-                                { this.getIconButton(this.handleClick) }
+                                { this.getIconButton() }
                             </Tooltip>
                         )) ||
-                        this.getIconButton(this.handleClick)
+                        this.getIconButton()
                     }
 
-                    {/** Could be redered only when anchorEl. It decreases menu's responsiveness */}
+                    {/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}
                     {<Menu
                         anchorEl={ anchorEl }
                         open={ Boolean(anchorEl) }
