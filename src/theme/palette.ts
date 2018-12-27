@@ -124,8 +124,7 @@ const palette = {
         "fontSize": "0.75rem",
         "fontWeight": 400
       },
-      "fontSize": 20,
-      "htmlFontSize": 20,
+      "fontSize": 16,
       "fontWeightMedium": 600,
       "title": {
         "color": "rgba(0, 0, 0, 0.87)",
