@@ -21,3 +21,24 @@ export const BORDER_THIN = '.5px';
 
 /** BREAKPOINTS */
 export const MEDIA_DESKTOP = 1280;
+
+/** TYPOGRAPHY */
+/** Only for h1 and h2 as only those displayed in screens xs - md
+ *  See: NotDesktop component
+ *  lineHeight: 1.3 times FONT_SIZE
+*/
+export const FONT_SIZE = {
+    FONT_SIZE_h1_xs: '2rem',
+    FONT_SIZE_h1_sm: '3rem',
+    FONT_SIZE_h1_md: '4rem',
+    LINE_HEIGHT_h1_xs: '2.6rem',
+    LINE_HEIGHT_h1_sm: '3.9rem',
+    LINE_HEIGHT_h1_md: '5.2rem',
+
+    FONT_SIZE_h2_xs: '1.5rem',
+    FONT_SIZE_h2_sm: '2rem',
+    FONT_SIZE_h2_md: '3rem',
+    LINE_HEIGHT_h2_xs: '1.95rem',
+    LINE_HEIGHT_h2_sm: '2.6rem',
+    LINE_HEIGHT_h2_md: '3.9rem'
+};

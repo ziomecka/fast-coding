@@ -2,30 +2,26 @@ import theme from './theme';
 
 import {
     PAPER_PADDING_LG,
-    PAPER_PADDING_MAX_LG
+    PAPER_PADDING_MAX_LG,
+    FONT_SIZE
 } from './constants';
+
+const getFontSizes = heading => (
+    ['xs', 'sm', 'md'].reduce((acc, cv) => {
+        acc[theme.breakpoints.only(cv)] = {
+            fontSize: FONT_SIZE[`FONT_SIZE_${ heading }_${ cv }`],
+            lineHeight: FONT_SIZE[`LINE_HEIGHT_${ heading }_${ cv }`]
+        };
+        return acc;
+    }, {})
+);
 
 theme.overrides.MuiTypography = {
     h1: {
-        [theme.breakpoints.down('md')]: {
-            fontSize: '2rem'
-        }
+        ...getFontSizes('h1')
     },
     h2: {
-        [theme.breakpoints.down('md')]: {
-            fontSize: '1.75rem'
-        }
-    },
-    h3: {
-        [theme.breakpoints.down('md')]: {
-            fontSize: '1.5rem'
-        }
-    },
-    h4: {
-
-        [theme.breakpoints.down('md')]: {
-            fontSize: '1.25rem'
-        }
+        ...getFontSizes('h2')
     }
 };
 
