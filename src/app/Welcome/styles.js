@@ -1,6 +1,7 @@
 import {
     WELCOME_BUTTON_MARGIN_RIGHT,
     WELCOME_BUTTON_MARGIN_TOP,
+    TOOLBAR_MAX_WIDTH
 } from './constants.styles';
 
 import {
@@ -10,8 +11,6 @@ import {
 } from '@constantsStyles';
 
 const styles = theme => {
-    const TOOLBAR_MAX_WIDTH = '270px'; // arbitrary value
-
     const {
         palette: {
             primary: { main: mainPrimary },

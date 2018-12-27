@@ -1,13 +1,13 @@
 import {
     NAV_HEIGHT,
-    NAV_WELCOME_GO_UP
+    NAV_WELCOME_GO_UP,
+    LOGIN_FONT_SIZE,
+    LOGIN_LINE_HEIGHT
+    LOGIN_LETTER_SPACING,
+    LOGIN_WIDTH
 } from './constants.styles';
 
 const style = theme => {
-    const loginFontSize = '1.2rem';
-    const loginLetterSpacing = '.005em';
-    const loginWidth = '160px';
-    const loginLineHeight = '.95em';
 
     const {
         transitions: {
@@ -37,14 +37,14 @@ const style = theme => {
                 left: '50%',
                 top: '100%',
                 transform: 'translate(-50%, -50%)',
-                fontSize: loginFontSize,
+                fontSize: LOGIN_FONT_SIZE,
                 fontWeight: loginFontWeight,
-                letterSpacing: loginLetterSpacing,
+                letterSpacing: LOGIN_LETTER_SPACING,
                 color: loginColor,
                 whiteSpace: 'wrap',
                 marginTop: spacingUnit,
-                width: loginWidth,
-                lineHeight: loginLineHeight // decreased i case login takes upto three lines
+                width: LOGIN_WIDTH,
+                lineHeight: LOGIN_LINE_HEIGHT // decreased i case login takes upto three lines
             }
         }
     }
