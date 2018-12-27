@@ -2,8 +2,8 @@ import {
     NAV_HEIGHT,
     NAV_LEFT,
     NAV_TOP,
-    PAPER_PADDING,
-    PAPER_PADDING_MAX,
+    PAPER_PADDING_MD,
+    PAPER_PADDING_MAX_MD,
     ELEVATION
 } from '@constantsStyles';
 
@@ -60,7 +60,7 @@ export default {
         },
         MuiMenu: {
             paper: {
-                padding: PAPER_PADDING
+                padding: PAPER_PADDING_MD
             }
         },
         MuiExpansionPanelSummary: {
@@ -94,7 +94,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: `0 ${PAPER_PADDING_MAX}`,
+                padding: `0 ${ PAPER_PADDING_MAX_MD }`,
                 flexDirection: "row", // needed to override column
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
@@ -110,7 +110,7 @@ export default {
                 width: "100%"
             },
             paper: {
-                padding: PAPER_PADDING
+                padding: PAPER_PADDING_MD
             }
         },
         MuiDialogContent: {

@@ -8,10 +8,12 @@ export default {
 };
 
 /** PADDING */
-export const PAPER_PADDING = '3rem';
-export const PAPER_PADDING_MAX = '6rem';
-export const PAPER_PADDING_NOT_DESKTOP = '3rem';
-export const PAPER_PADDING_MAX_NOT_DESKTOP = '6rem';
+export const PAPER_PADDING_MD = '1rem';
+export const PAPER_PADDING_LG = '3rem';
+
+export const PAPER_PADDING_MAX_MD = '1.5rem';
+export const PAPER_PADDING_MAX_LG = '6rem';
+
 export const ELEVATION = 2;
 
 export const COLOR_SUCCESS = '#c5ebc3';

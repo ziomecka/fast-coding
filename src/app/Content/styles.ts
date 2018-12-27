@@ -1,6 +1,10 @@
 import { createStyles } from '@material-ui/core/styles';
 
-import { NAV_HEIGHT, PAPER_PADDING_MAX } from '@constantsStyles';
+import {
+    NAV_HEIGHT,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_LG
+} from '@constantsStyles';
 
 const styles = createStyles(theme => {
     const {
@@ -17,7 +21,10 @@ const styles = createStyles(theme => {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
-            padding: `${ NAV_HEIGHT } ${PAPER_PADDING_MAX}`,
+            padding: `${ NAV_HEIGHT } ${ PAPER_PADDING_MAX_MD }`,
+            [ theme.breakpoints.up('md') ]: {
+                padding: `${ NAV_HEIGHT } ${PAPER_PADDING_MAX_LG }`,
+            },
             overflow: 'hidden',
             backgroundColor: defaultBackground
         },

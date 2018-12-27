@@ -9,7 +9,8 @@ import {
 import {
     NAV_HEIGHT,
     NAV_WELCOME_GO_UP,
-    PAPER_PADDING_MAX
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_LG
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -63,15 +64,22 @@ const styles = createStyles(theme => {
             display: 'inline-block',
             color: textPrimary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
-            padding: `0 0 0 ${ PAPER_PADDING_MAX }`,
-            maxWidth: `calc(100% - ${ PAPER_PADDING_MAX } - ${ PAPER_PADDING_MAX } - ${ TOOLBAR_MAX_WIDTH })`
+            padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
+            maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_MD } - ${ PAPER_PADDING_MAX_MD } - ${ TOOLBAR_MAX_WIDTH })`,
+            [theme.breakpoints.up('md')]: {
+                padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
+                maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_LG } - ${ PAPER_PADDING_MAX_LG } - ${ TOOLBAR_MAX_WIDTH })`
+            }
         },
         welcomeHeadingOther: {
             fontSize: theme.typography.display2.fontSize,
             color: contrastTextSecondary,
         },
         welcomeButtons: {
-            paddingLeft: PAPER_PADDING_MAX
+            paddingLeft: PAPER_PADDING_MAX_MD,
+            [theme.breakpoints.up('md')]: {
+                paddingLeft: PAPER_PADDING_MAX_LG
+            }
         },
         welcomeButton: {
             margin: `${ spacingUnit * WELCOME_BUTTON_MARGIN_TOP } ${ spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT } ${ spacingUnit } 0`,
@@ -87,7 +95,10 @@ const styles = createStyles(theme => {
          */
         welcomeHomeSubMenu: {
             position: 'absolute',
-            left: PAPER_PADDING_MAX,
+            left: PAPER_PADDING_MAX_MD,
+            [ theme.breakpoints.up('md') ]: {
+                left: PAPER_PADDING_MAX_LG,
+            },
             display: 'inline-block',
             width: '50%', // arbitrary value
             height: '1.5em', // dzięki temu tooltip na tej samej wysokości co inne

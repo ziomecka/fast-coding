@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core/styles';
-import { PAPER_PADDING } from '@constantsStyles';
+import { PAPER_PADDING_MD, PAPER_PADDING_LG } from '@constantsStyles';
 
 import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
@@ -24,7 +24,10 @@ const styles = createStyles(theme => {
             backgroundColor: successBackground,
         },
         notificationContentSuccess: {
-            padding: PAPER_PADDING,
+            padding: PAPER_PADDING_MD,
+            [theme.breakpoints.up('md')] :{
+                padding: PAPER_PADDING_LG
+            },
             backgroundColor: successBackground,
         },
         notificationIconSuccess: {
@@ -36,7 +39,10 @@ const styles = createStyles(theme => {
             backgroundColor: errorBackground
         },
         notificationContentError: {
-            padding: PAPER_PADDING,
+            padding: PAPER_PADDING_MD,
+            [theme.breakpoints.up('md')] :{
+                padding: PAPER_PADDING_LG
+            },
             backgroundColor: errorBackground
         },
         notificationIconError: {

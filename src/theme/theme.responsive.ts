@@ -1,6 +1,9 @@
 import theme from './theme';
 
-import { PAPER_PADDING_NOT_DESKTOP, PAPER_PADDING_MAX_NOT_DESKTOP } from './constants';
+import {
+    PAPER_PADDING_LG,
+    PAPER_PADDING_MAX_LG
+} from './constants';
 
 theme.overrides.MuiTypography = {
     h1: {
@@ -27,29 +30,29 @@ theme.overrides.MuiTypography = {
 };
 
 /** MuiMenu */
-/** Make padding smaller for 'not desktop' */
+/** Make padding larger for lg and xlg */
 theme.overrides.MuiMenu.paper = {
     ...theme.overrides.MuiMenu.paper,
-    [theme.breakpoints.down('md')]: {
-        padding: PAPER_PADDING_NOT_DESKTOP
+    [theme.breakpoints.up('md')]: {
+        padding: PAPER_PADDING_LG
     }
 };
 
 /** MuiAppBar */
-/** Make padding smaller for 'not desktop' */
+/** Make padding larger for lg and xlg */
 theme.overrides.MuiAppBar.root = {
     ...theme.overrides.MuiAppBar.root,
-    [theme.breakpoints.down('md')]: {
-        padding: PAPER_PADDING_MAX_NOT_DESKTOP
+    [theme.breakpoints.up('md')]: {
+        padding: PAPER_PADDING_MAX_LG
     }
 };
 
 /** Dialog */
-/** Make padding smaller for 'not desktop' */
+/** Make padding larger for lg and xlg */
 theme.overrides.MuiDialog.paper = {
     ...theme.overrides.MuiDialog.paper,
-    [theme.breakpoints.down('md')]: {
-        padding: PAPER_PADDING_NOT_DESKTOP
+    [theme.breakpoints.up('md')]: {
+        padding: PAPER_PADDING_LG
     }
 };
 

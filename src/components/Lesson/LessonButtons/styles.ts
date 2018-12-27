@@ -1,5 +1,12 @@
 import { createStyles } from '@material-ui/core/styles';
-import { PAPER_PADDING, PAPER_PADDING_MAX, BORDER_THIN, LESSON_MAX_WIDTH } from '@constantsStyles';
+import {
+    PAPER_PADDING_MD,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_LG,
+    PAPER_PADDING_MAX_LG,
+    BORDER_THIN,
+    LESSON_MAX_WIDTH
+} from '@constantsStyles';
 
 const styles = createStyles(theme => {
     const {
@@ -19,8 +26,12 @@ const styles = createStyles(theme => {
             width: '100%',
             position: 'relative',
             justifyContent: 'space-around',
-            padding: PAPER_PADDING,
-            marginTop: PAPER_PADDING_MAX,
+            padding: PAPER_PADDING_MD,
+            marginTop: PAPER_PADDING_MAX_MD,
+            [theme.breakpoints.up('md')]: {
+                padding: PAPER_PADDING_LG,
+                marginTop: PAPER_PADDING_MAX_LG,
+            },
             border: `${BORDER_THIN} solid ${borderColor}`
         },
         lessonButtonsMenuDragged: {
