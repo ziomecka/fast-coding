@@ -33,16 +33,20 @@ const styles = createStyles(theme => {
         [ 'color' ], { duration: shorter, easing: easeOut }
     ) }, ${ theme.transitions.create(
         ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
-    ) }`;
+        ) }`;
 
     return {
         welcomePaper: {
             alignItems: 'flex-start',
-            justifyContent: 'center',
-            position: 'fixed',
+            justifyContent: 'flex-start',
+            padding: `${ PAPER_PADDING_MAX_LG } 0`,
+            [ theme.breakpoints.up('md') ]: {
+                position: 'fixed',
+                justifyContent: 'center',
+                padding: 0,
+            },
             top: 0,
             left: 0,
-            padding: '0',
             backgroundColor: mainPrimary,
             borderRadius: 0,
             width: '100%',
@@ -50,11 +54,13 @@ const styles = createStyles(theme => {
         },
         welcomeHome: {
             height: '100%',
-            fontSize: theme.typography.pxToRem(30)
+            fontSize: theme.typography.pxToRem(30) // for buttons TODO change
         },
         welcomeOther: {
-            height: `${ NAV_HEIGHT }px`,
-            fontSize: theme.typography.pxToRem(16),
+            [ theme.breakpoints.up('md')]: {
+                height: `${ NAV_HEIGHT }px`,
+            },
+            fontSize: theme.typography.pxToRem(16), // for buttons TODO change
             color: textPrimary
         },
         welcomeLesson: {
@@ -62,13 +68,14 @@ const styles = createStyles(theme => {
         },
         welcomeHeading: {
             display: 'inline-block',
-            color: textPrimary,
+            color: contrastTextSecondary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
             [theme.breakpoints.up('md')]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
-                maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_LG } - ${ PAPER_PADDING_MAX_LG } - ${ TOOLBAR_MAX_WIDTH })`
-            }
+                maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_LG } - ${ PAPER_PADDING_MAX_LG } - ${ TOOLBAR_MAX_WIDTH })`,
+                color: textPrimary,
+            },
         },
         welcomeHeadingOther: {
             fontSize: theme.typography.display2.fontSize,
