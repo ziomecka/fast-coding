@@ -1,4 +1,3 @@
-// import { Reducer } from 'redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -14,20 +13,28 @@ const actionSanitizer = (action) => (
 
 const stateSanitizer = (state) => state.data ? { ...state, data: '<<LONG_BLOB>>' } : state;
 
-const composeEnhancers = composeWithDevTools({
-    maxAge: 10,
-    serialize: {
-        undefined: true
-    },
-    actionSanitizer,
-    stateSanitizer
-});
+let store;
 
-export default createStore(
-    applicationReducer,
-    composeEnhancers(
+/** Enable redux devtools only for development */
+if ( process.env.NODE_ENV === 'development' ) {
+    store = createStore(
+        applicationReducer,
+        composeWithDevTools({
+            maxAge: 10,
+            serialize: {
+                undefined: true
+            },
+            actionSanitizer,
+            stateSanitizer
+        })( applyMiddleware(...middlewares) )
+    );
+} else {
+    store = createStore(
+        applicationReducer,
         applyMiddleware(...middlewares)
-    )
-);
+    );
+}
+
+export default store;
 
 export { ApplicationState } from './_reducers/';
