@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 
 /** DIRECTORIES */
@@ -11,13 +10,7 @@ const PROD_ENV = process && process.env.NODE_ENV
   ? process.env.NODE_ENV.trim() === 'production'
   : false;
 
-const ENV_FILE = process && process.env
-  ? process.env.ENV_FILE
-  : undefined;
-
-const envFilePath = ENV_FILE
-  ? `./.env.${ENV_FILE}`
-  : './.env';
+const envFilePath = '../.env';
 
 const DIR = PROD_ENV
   ? DEPLOY_DIR
@@ -33,9 +26,7 @@ const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackCopyPlugin = require('copy-webpack-plugin');
 
-require('dotenv').config({
-  path: envFilePath,
-});
+require('dotenv').config({ path: path.resolve( __dirname, envFilePath) });
 
 /** CSS */
 const postcssFlexbugs = require('postcss-flexbugs-fixes');
@@ -154,7 +145,7 @@ module.exports = {
     ]),
     new Dotenv({
       systemvars: true,
-      path: envFilePath
+      path: path.resolve( __dirname, envFilePath )
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
