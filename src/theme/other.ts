@@ -21,7 +21,7 @@ const { palette: { error : { main : errorColor } } } = require('./palette').defa
 export default {
     props: {
         MuiAppBar: {
-            height: NAV_HEIGHT,
+            padding: 0,
             elevation: 0
         },
         MuiPaper:{
@@ -95,14 +95,14 @@ export default {
             root: {
                 boxSizing: "border-box",
                 padding: `0 ${ PAPER_PADDING_MAX_MD }`,
-                flexDirection: "row", // needed to override column
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
                 ...flexRowJustifyFlexEndAlignCenter,
                 position: "fixed",
                 top: NAV_TOP,
                 left: NAV_LEFT,
-                height: `${NAV_HEIGHT}px`,
-                maxHeight: `${NAV_HEIGHT}px`,
-                width: "100%"
+                height: '100%',
+                width: "100%",
             }
         },
         MuiDialog: {

@@ -3,7 +3,8 @@ import theme from './theme';
 import {
     PAPER_PADDING_LG,
     PAPER_PADDING_MAX_LG,
-    FONT_SIZE
+    FONT_SIZE,
+    NAV_HEIGHT
 } from './constants';
 
 const getFontSizes = heading => (
@@ -35,11 +36,13 @@ theme.overrides.MuiMenu.paper = {
 };
 
 /** MuiAppBar */
-/** Make padding larger for lg and xlg */
 theme.overrides.MuiAppBar.root = {
     ...theme.overrides.MuiAppBar.root,
-    [theme.breakpoints.up('md')]: {
-        padding: PAPER_PADDING_MAX_LG
+    [ theme.breakpoints.up('md') ]: {
+        padding: `0 ${ PAPER_PADDING_MAX_LG }`,
+        height: `${ NAV_HEIGHT }px`,
+        maxHeight: `${ NAV_HEIGHT }px`,
+        flexDirection: 'row',
     }
 };
 
