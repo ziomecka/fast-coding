@@ -26,7 +26,12 @@ const styles = createStyles(theme => {
         },
         lessonCard: {
             margin: spacingUnit,
-            flex: '0 0 20%',
+			flex: '0 0 100%',
+			flexDirection: 'column',
+			[ theme.breakpoints.up('md') ]: {
+				flexDirection: 'row',
+				flex: '0 0 20%'
+			},
             padding: 0,
             height: LESSONS_HEIGHT,
             maxWidth: LESSONS_HEIGHT
