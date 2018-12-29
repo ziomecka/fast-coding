@@ -5,7 +5,7 @@ import { AppMenuProps } from './container';
 /** Materials */
 import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
-import style from './style';
+import style from './styles';
 
 const AppMenuComponent: React.StatelessComponent<AppMenuProps> = (props) => {
     const { subMenus, classes: { toolbar } } = props;
