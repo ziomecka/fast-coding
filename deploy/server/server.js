@@ -51,10 +51,11 @@ if (!PROD_ENV) {
     app.use( serverCors() );
 }
 
-app.get('*.js', (req, res) => {
+app.get('*.js', (req, res, next) => {
     req.url = req.url + '.gz';
     res.set('Content-Encoding', 'gzip');
     res.set('Content-Type', 'text/javascript');
+    next();
 });
 
 app.use(express.static(ROOT, {
