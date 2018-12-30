@@ -12,7 +12,7 @@ import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
-import ApplicationState from '../../_reducers/';
+import { ApplicationState } from '../../_reducers/';
 
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
 
