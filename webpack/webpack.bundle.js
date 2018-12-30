@@ -4,33 +4,19 @@ const webpack = require('webpack');
 
 const base = require('./webpack.base.js');
 
+/** DIRECTORIES */
+const DIR = path.resolve(__dirname, '..', 'bundle');
+
 module.exports = merge(base, {
   devtool: 'inline-source-map',
-  entry: [
-    'webpack/hot/dev-server'
-  ],
   output: {
+    path: DIR,
     publicPath: '/',
-  },
-  devServer: {
-    hot: true,
-    historyApiFallback: true // redirect 404s to index.html. For webpac-dev-server
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)?$/,
-        use: ['ts-loader'],
-        exclude: /node_modules/,
-      },
-    ],
+    filename: '[name].[hash:8].js'
   },
   plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin()
-  ],
-  optimization: {
-    namedModules: true,
-  },
+  ]
 });
