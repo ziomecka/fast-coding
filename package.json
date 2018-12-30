@@ -2,7 +2,6 @@
   "name": "fast-coding",
   "description": "Touch typing application",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Katarzyna Ziomek-Zdanowicz",
   "keywords": [
     "react",
@@ -12,14 +11,17 @@
     "heroku"
   ],
   "scripts": {
-    "bundle": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle' --profile --json > webpack/webpack-bundle-stats.json",
-    "deploy": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy' --profile --json > webpack/webpack-deploy-stats.json",
+    "bundle": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle'",
+    "bundleStats": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle' --profile --json > webpack/webpack-bundle-stats.json",
+    "bundleWatch": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle'",
+    "deploy": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy'",
+    "deployStats": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy' --profile --json > webpack/webpack-deploy-stats.json",
     "aBundle": "webpack-bundle-analyzer ./webpack/webpack-bundle-stats.json",
     "aDeploy": "webpack-bundle-analyzer ./webpack/webpack-deploy-stats.json",
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
-    "inspectNode": "node --inspect  ./bundle/server.js",
-    "start": "node deploy/server.js"
+    "inspectNode": "node --inspect  ./bundle/server/server.js",
+    "start": "node --optimize_for_size deploy/server/server.js $PORT"
   },
   "repository": {
     "type": "git",
@@ -111,16 +113,16 @@
     "webpack-dev-middleware": "^3.4.0",
     "webpack-dev-server": "^3.1.10",
     "webpack-hot-middleware": "^2.24.3",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "firebase": "^5.7.1",
+    "@types/firebase": "^3.2.1"
   },
   "dependencies": {
     "@firebase/auth": "^0.9.1",
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
-    "@types/firebase": "^3.2.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
-    "firebase": "^5.7.1",
     "firebaseui": "^3.5.1",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.14",

@@ -1,1 +1,0 @@
-web: node --optimize_for_size deploy/server.js $PORT

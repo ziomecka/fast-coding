@@ -1,9 +1,8 @@
+const webpack = require('webpack');
 const path = require('path');
 
 /** DIRECTORIES */
 const APP_DIR = path.resolve(__dirname, '..', 'src');
-const BUILD_DIR = path.resolve(__dirname, '..', 'bundle');
-const DEPLOY_DIR = path.resolve(__dirname, '..', 'deploy');
 
 /** ENV */
 const PROD_ENV = process && process.env.NODE_ENV
@@ -11,10 +10,6 @@ const PROD_ENV = process && process.env.NODE_ENV
   : false;
 
 const envFilePath = '../.env';
-
-const DIR = PROD_ENV
-  ? DEPLOY_DIR
-  : BUILD_DIR;
 
 const MODE = PROD_ENV
   ? 'production'
@@ -28,14 +23,6 @@ const WebpackCopyPlugin = require('copy-webpack-plugin');
 
 require('dotenv').config({ path: path.resolve( __dirname, envFilePath) });
 
-/** CSS */
-const postcssFlexbugs = require('postcss-flexbugs-fixes');
-const postcssLost = require('lost');
-const postcssImport = require('postcss-import');
-const postcssNext = require('postcss-cssnext');
-const cssDeclarationSorter = require('css-declaration-sorter');
-const cssMqpacker = require('css-mqpacker');
-
 // CLEAN
 let pathToClean = process.argv
     .filter(item => RegExp(/.*PATH_TO_CLEAN.*/).test(item))[0] || '';
@@ -48,99 +35,26 @@ const cleanOptions = {
     verbose: true
 };
 
+const entry = require('./entry');
+const stats = require('./stats');
+const rules = require('./rules');
+const alias = require('./alias');
+
 module.exports = {
   mode: MODE,
-  entry: [`${APP_DIR}/index.tsx`],
-  output: {
-    path: DIR,
-    publicPath: '/',
-    filename: 'index.js',
-  },
-  module: {
-    rules: [
-        {
-            test: /\.svg$/,
-            use: [
-                "babel-loader",
-                {
-                    loader: "react-svg-loader",
-                    options: {
-                        jsx: true,
-                        svgo: {
-                            plugins: [{ removeTitle: false }],
-                            floatPrecision: 2
-                        }
-                    }
-                }
-            ]
-        },
-      {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader',
-      },
-      {
-        test: /\.sass$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: false
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                postcssFlexbugs(),
-                postcssLost(),
-                postcssImport(),
-                postcssNext({
-                  browsers: ['last 2 version', 'Safari 7', 'ie 10'],
-                }),
-                cssDeclarationSorter({
-                  order: 'concentric-css',
-                }),
-                cssMqpacker(),
-              ],
-              sourceMap: false,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: false
-            }
-          },
-        ],
-      },
-    ],
-  },
+  entry,
+  stats,
+  module: { rules },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.sass'],
-    alias: {
-      '@app': ( path.resolve ( __dirname, '../src/app/' ) ),
-      '@components': ( path.resolve ( __dirname, '../src/components/' ) ),
-      '@views': ( path.resolve ( __dirname, '../src/views/' ) ),
-      '@shared': ( path.resolve ( __dirname, '../src/shared/' ) ),
-      '@root': ( path.resolve ( __dirname, '../src/' ) ),
-      '@applicationTypes': ( path.resolve ( __dirname, '../src/_types/' ) ),
-      '@appTypes': ( path.resolve ( __dirname, '../src/app/_types/' ) ),
-      '@componentsTypes': ( path.resolve ( __dirname, '../src/components/_types/' ) ),
-      '@viewsTypes': ( path.resolve ( __dirname, '../src/views/_types/' ) ),
-      '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  )),
-      '@appForm': ( path.resolve ( __dirname, '../src/app/Form/' )),
-      '@constants': ( path.resolve ( __dirname, '../src/constants' )),
-      '@constantsStyles': ( path.resolve ( __dirname, '../src/theme/constants' )),
-      '@appStore': ( path.resolve ( __dirname, '../src/store' ))
-    },
+    alias
   },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
     new WebpackCopyPlugin([
         {
           from: 'src/server',
-          to: './'
+          to: './server/'
         }
     ]),
     new Dotenv({
@@ -158,5 +72,22 @@ module.exports = {
     }),
     new CLEAN_WEBPACK_PLUGIN( pathsToClean , cleanOptions),
   ],
-  optimization: {},
+  optimization: {
+    minimize: true,
+    runtimeChunk: "single",
+    splitChunks: {
+        chunks: "all",
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name(module) {
+                    const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                    return `npm.${ packageName.replace('@', '') }`;
+                }
+            }
+        }
+    }
+  },
 };
