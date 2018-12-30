@@ -12,13 +12,13 @@ const {
 
 import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '../../../_reducers/';
 
-export const INITIAL_STATE: ApplicationState = {
+export const INITIAL_STATE: ICSRState = {
     ...APPLICATION_INITIAL_STATE,
-    loading: false,
-    error: '',
+    // loading: false,
+    // error: '',
 };
 
-const reducer: Reducer<ApplicationState, CSRActions> = (state = INITIAL_STATE, action) => {
+const reducer: Reducer<ICSRState, CSRActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_CSR_CHANGE_LOADING_STATE: {
             const { applicationContainer, container, loading } = action as ChangeLoadingStateAction;
@@ -66,6 +66,11 @@ const reducer: Reducer<ApplicationState, CSRActions> = (state = INITIAL_STATE, a
             return { ...state };
         }
     }
+}
+
+export interface ICSRState extends ApplicationState {
+    // loading: boolean;
+    // error: string;
 }
 
 export { reducer as csrReducer };
