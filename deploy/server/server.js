@@ -93,6 +93,4 @@ app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
 
 app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: ROOT }));
 
-
-
-server.listen(PORT, console.log(`Listening on ${PORT}`));
+server.listen(PORT, console.log(`Listening on ${ PORT }`));
