@@ -10,7 +10,8 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = merge(base, {
   output: {
-    path: DIR
+    path: DIR,
+    publicPath: '/'
   },
   plugins: [
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
