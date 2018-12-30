@@ -62,7 +62,7 @@ app.use(express.static(ROOT, {
     setHeaders: (res, path) => {
         res.set('Access-Control-Allow-Headers', 'cache-control');
 
-        if (RegExp(/^npm\..*/).test(path)) {
+        if (RegExp(/.*npm\..*/).test(path)) {
             res.set("Cache-Control", "public, max-age=31536000");
         } else {
             res.set("Cache-Control", "public, max-age=0");
