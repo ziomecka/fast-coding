@@ -20,7 +20,7 @@
     "aDeploy": "webpack-bundle-analyzer ./webpack/webpack-deploy-stats.json",
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
-    "inspectNode": "node --inspect  ./bundle/server.js",
+    "inspectNode": "node --inspect  ./bundle/server/server.js",
     "start": "node --optimize_for_size deploy/server/server.js $PORT"
   },
   "repository": {

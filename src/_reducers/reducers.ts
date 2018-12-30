@@ -30,7 +30,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '@app/Localize/_duck/reducers';
 const { views, components, app } = ApplicationContainersEnum;
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     // [views]: { ...VIEWS_INITIAL_STATE },
     [components]: { ...COMPONENTS_INITIAL_STATE },
     [app]: { ...APP_INITIAL_STATE },

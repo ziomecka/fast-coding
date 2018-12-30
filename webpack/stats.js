@@ -6,5 +6,6 @@ module.exports = {
     errors: true,
     performance: true,
     warnings: true,
+    entrypoints: false,
     excludeAssets: (assetName) => (/(.*server\/.*)|(^npm\..*)/).test(assetName)
 };

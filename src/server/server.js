@@ -21,11 +21,14 @@ const serverNewPassword = require('./server.new.password');
 const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD, NEW_PASSWORD } } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
+
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
-const ROOT = !PROD_ENV ? path.join(__dirname, '/') : __dirname;
+
+const ROOT = path.resolve(__dirname, '../');
+
 const HTML_PATH = !PROD_ENV
-    ? path.resolve(__dirname, '/')
-    : path.resolve(__dirname, '../../../index.html');
+    ? path.resolve(ROOT, '/')
+    : path.resolve(ROOT, '../../../index.html');
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
@@ -52,7 +55,7 @@ app.use(express.static(ROOT, {
     setHeaders: (res, path) => {
         res.set('Access-Control-Allow-Headers', 'cache-control');
 
-        if (RegExp(/.*vendor.chunkhash.*/).test(path)) {
+        if (RegExp(/^npm\..*/).test(path)) {
             res.set("Cache-Control", "public, max-age=31536000");
         } else {
             res.set("Cache-Control", "public, max-age=0");
@@ -81,8 +84,6 @@ app.post( REMIND_PASSWORD, serverRemindPassword );
 /** New password */
 app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
 
-app.get('*', (req, res) => {
-    return res.sendFile(HTML_PATH, { root: ROOT });
-});
+app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: ROOT }));
 
 server.listen(PORT, console.log(`Listening on ${PORT}`));
