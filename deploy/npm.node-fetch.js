@@ -1,5 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["npm.node-fetch"],{oY9k:
-/*!********************************************!*\
-  !*** ./node_modules/node-fetch/browser.js ***!
-  \********************************************/
-/*! no static exports found */function(module,exports,__webpack_require__){"use strict";eval("\n\n// ref: https://github.com/tc39/proposal-global\nvar getGlobal = function () {\n\t// the only reliable means to get the global object is\n\t// `Function('return this')()`\n\t// However, this causes CSP violations in Chrome apps.\n\tif (typeof self !== 'undefined') { return self; }\n\tif (typeof window !== 'undefined') { return window; }\n\tif (typeof global !== 'undefined') { return global; }\n\tthrow new Error('unable to locate global object');\n}\n\nvar global = getGlobal();\n\nmodule.exports = exports = global.fetch;\n\n// Needed for TypeScript and Webpack.\nexports.default = global.fetch.bind(global);\n\nexports.Headers = global.Headers;\nexports.Request = global.Request;\nexports.Response = global.Response;\n\n//# sourceURL=webpack:///./node_modules/node-fetch/browser.js?")}}]);
