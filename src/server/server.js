@@ -51,11 +51,18 @@ if (!PROD_ENV) {
     app.use( serverCors() );
 }
 
+app.get('*.js', (req, res, next) => {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'text/javascript');
+    next();
+});
+
 app.use(express.static(ROOT, {
     setHeaders: (res, path) => {
         res.set('Access-Control-Allow-Headers', 'cache-control');
 
-        if (RegExp(/^npm\..*/).test(path)) {
+        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
             res.set("Cache-Control", "public, max-age=31536000");
         } else {
             res.set("Cache-Control", "public, max-age=0");
@@ -86,4 +93,4 @@ app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
 
 app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: ROOT }));
 
-server.listen(PORT, console.log(`Listening on ${PORT}`));
+server.listen(PORT, console.log(`Listening on ${ PORT }`));
