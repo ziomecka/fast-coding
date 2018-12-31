@@ -102,20 +102,20 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
 
     return (
         <AppBar color={appBarColor} className={`${navClass} ${isLesson() ? navLessonClass : ''}`}>
-            <Welcome
-                heading={
-                    getTranslations(props.localize).welcomeHeading[
-                        getLanguages(props.localize)
-                        .findIndex(lang => (
-                            lang.code === getActiveLanguage(props.localize).code)
-                        )
-                    ]
-                }
-                animated={HOME_HEADING_ANIMATED}
-                timeout={HOME_WELCOME_TIMEOUT}
-            />
-
             <MenuProvider>
+                <Welcome
+                    heading={
+                        getTranslations(props.localize).welcomeHeading[
+                            getLanguages(props.localize)
+                            .findIndex(lang => (
+                                lang.code === getActiveLanguage(props.localize).code)
+                            )
+                        ]
+                    }
+                    animated={HOME_HEADING_ANIMATED}
+                    timeout={HOME_WELCOME_TIMEOUT}
+                />
+
                 <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>
                 {/*
                 // @ts-ignore */}
