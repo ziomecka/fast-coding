@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core/styles';
-import { LESSONS_HEIGHT } from './constants.styles';
+import { COURSE_HEIGHT } from './constants.styles';
 
 const styles = createStyles(theme => {
     const {
@@ -33,8 +33,8 @@ const styles = createStyles(theme => {
 				flex: '0 0 20%'
 			},
             padding: 0,
-            height: LESSONS_HEIGHT,
-            maxWidth: LESSONS_HEIGHT
+            height: COURSE_HEIGHT,
+            maxWidth: COURSE_HEIGHT
         },
         expansionButton: {
             maxWidth: '4rem',
@@ -52,13 +52,13 @@ const styles = createStyles(theme => {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
-            height: LESSONS_HEIGHT,
+            height: COURSE_HEIGHT,
             width: '100%'
         },
         lessonCardButtonLabel: {
             display: 'flex-box',
             flexWrap: 'wrap',
-            height: LESSONS_HEIGHT,
+            height: COURSE_HEIGHT,
             width: '100%',
             padding: '2em',
             fontSize: '1em',
