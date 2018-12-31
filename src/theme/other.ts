@@ -44,11 +44,7 @@ export default {
     },
     overrides: {
         MuiButton: {
-            /** Lesson card buttons */
             text: {
-                '&:hover': {
-                    backgroundColor: 'transparent'
-                },
                 textTransform: 'none'
             }
         },
