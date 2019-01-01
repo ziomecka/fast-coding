@@ -1,5 +1,5 @@
 import { GetResponseI } from '@app/api/';
-import { CourseDataType } from '../../Lessons/_duck/reducers';
+import { CourseDataType } from '../../Course/_duck/reducers';
 import { LanguagesEnum } from '@applicationTypes';
 import { LessonData } from '../../Lesson/_duck/reducers';
 
