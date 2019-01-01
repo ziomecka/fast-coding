@@ -12,6 +12,7 @@ import { LocalStorageItemEnum } from '@appTypes';
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
+import { activateLesson } from '../../Lessons/_duck/actions'
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {
@@ -43,5 +44,7 @@ export const onOpenLesson = (lessonData: LessonData): any => (dispatch: Dispatch
         lessonData.text ||
         '';
 
+    /** Set activeLessonId in lessons state */
+    dispatch(activateLesson(lessonData._id));
     return dispatch(openLesson(lessonData));
 };
