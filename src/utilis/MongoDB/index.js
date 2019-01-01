@@ -28,7 +28,7 @@ function insertCourses() {
 module.exports = {
     createCoursesCollection,
     insertCourses,
-    generateCourses
+    generateCourses // into the directory MongoDB/courses
 };
 
 require('make-runnable');
