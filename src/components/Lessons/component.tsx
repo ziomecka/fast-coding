@@ -4,15 +4,18 @@ import { LessonsProps } from './container';
 import Course from '../Course/';
 
 /** Materials core */
-import Paper from '@material-ui/core/Paper';
-
-require('./style.sass');
+import Grid from '@material-ui/core/Grid';
 
 const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     return (
-        <Paper id="lessons">
-            { props.lessons.map((lesson) => < Course { ...lesson } /> )}
-        </Paper>
+        <Grid
+            container
+            direction="row"
+            wrap="wrap"
+        >
+            { props.lessons.map((lesson) => < Course { ...lesson } tabIndex={ -1 }/> )}
+
+        </Grid>
     );
 };
 
