@@ -202,5 +202,9 @@
     "notDesktopInfo": [
         "This page is for touch typing learning. I strongly encourage you to use it on a laptop or desktop computer.",
         "Strona na której jesteś służy do nauki pisania bezwzrokowego. Zachęcam do korzystania z niej na laptopie lub komputerze stacjonarnym."
+    ],
+    "stepperGoTo": [
+        "Go to",
+        "Idź do"
     ]
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { CourseProps } from './container';
 import { LessonData } from  '../Lesson/_duck/reducers';
+import Stepper from '../Stepper/';
 
 import { AppRoutesEnum } from '@appTypes';
 import styles from './styles';
@@ -19,10 +20,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Stepper from '@material-ui/core/MobileStepper';
-import NextIcon from '@material-ui/icons/KeyboardArrowDown';
-import PreviousIcon from '@material-ui/icons/KeyboardArrowUp';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -32,7 +29,6 @@ import { getActiveLanguage, Translate } from 'react-localize-redux';
 require('./style.sass');
 
 interface ICourseState {
-    activeStep: number;
 }
 
 class CourseComponent extends React.Component<CourseProps, ICourseState> {
@@ -43,12 +39,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.elevation = 3;
         this.lessonsRoute = AppRoutesEnum.lessons;
 
-        this.state = {
-            activeStep: 0
-        };
 
-        this.handlePrevious = this.handlePrevious.bind(this);
-        this.handleNext = this.handleNext.bind(this);
         this.handleOnClick = this.handleOnClick.bind(this);
     }
 
@@ -72,16 +63,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         return this.props.lessons.length;
     }
 
-    handleNext () {
-        this.setState({
-            activeStep: Math.min(this.state.activeStep + 1, this.numberOfLessons)
-        });
     }
 
-    handlePrevious () {
-        this.setState({
-            activeStep: Math.max(this.state.activeStep - 1, 0)
-        });
     }
 
     get course () {
@@ -131,34 +114,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <ExpansionPanelDetails classes={{root: expansionPanelDetails}}>
                     { this.lessons }
-                    { this.stepper }
 
                 </ExpansionPanelDetails>
+                    { isExpanded && <Stepper /> }
             </ExpansionPanel>
          );
-    };
-
-    get stepper () {
-        const { state: { activeStep } } = this;
-
-        return (
-            <Stepper
-                steps={ this.numberOfLessons }
-                position="static"
-                activeStep={ activeStep }
-                nextButton={
-                    <IconButton onClick={ this.handlePrevious }>
-                        <PreviousIcon/>
-                    </IconButton>
-                }
-                backButton={
-                    <IconButton onClick={ this.handleNext }>
-                        <NextIcon/>
-                    </IconButton>
-                }
-                // variant="progress"
-            />
-        );
     }
 
     get lessons () {
