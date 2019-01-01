@@ -8,20 +8,24 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 
 import { ApplicationState } from '../../_reducers/';
 
+import { ILessonsState } from './_duck/reducers';
+
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
 
 const { components } = ApplicationContainersEnum;
-const { lessonsLoader } = ComponentsContainersEnum;
+const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
 const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
-    ...state[components][lessonsLoader]
+    ...state[components][lessonsLoader],
+    ...state[components][lessons]
 });
 
+// @ts-ignore
 const LessonsContainer = withRouter(connect(mapStateToProps)(Lessons));
 
 export default LessonsContainer;
 
-interface MapStateToProps extends LessonsLoaderState {
+interface MapStateToProps extends LessonsLoaderState, ILessonsState {
 }
 
 export interface LessonsProps extends
