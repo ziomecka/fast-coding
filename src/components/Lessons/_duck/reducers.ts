@@ -4,40 +4,57 @@ import { LessonsActions } from './actions';
 import { LessonsActionsEnum } from './types';
 
 const {
-    COMPONENTS_LESSONS_UPDATE,
-    COMPONENTS_LESSONS_INITIAL_STATE_SET
+    COMPONENTS_LESSONS_OPEN_COURSE,
+    COMPONENTS_LESSONS_CLOSE_COURSE,
+    COMPONENTS_LESSONS_ACTIVATE_LESSON,
+    COMPONENTS_LESSONS_DEACTIVATE_LESSON
  } = LessonsActionsEnum;
 
-export const INITIAL_STATE: ILessonsState = {};
+export const INITIAL_STATE: ILessonsState = {
+    openedCourseId: null,
+    activeLessonId: null
+};
 
 const reducer: Reducer<ILessonsState, LessonsActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case COMPONENTS_LESSONS_INITIAL_STATE_SET: {
+        case COMPONENTS_LESSONS_OPEN_COURSE: {
+            return {
+                ...state,
+                ...action
+            };
         }
 
-        case COMPONENTS_LESSONS_UPDATE: {
+        case COMPONENTS_LESSONS_CLOSE_COURSE: {
+            return {
+                ...state,
+                openedCourseId: null,
+                activeLessonId: null
+            };
+        }
+
+        case COMPONENTS_LESSONS_ACTIVATE_LESSON: {
+            return {
+                ...state,
+                ...action
+            };
+        }
+
+        case COMPONENTS_LESSONS_DEACTIVATE_LESSON: {
+            return {
+                ...state,
+                activeLessonId: null
+            };
         }
 
         default: {
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as lessonsReducer };
 
-interface ILessonData {
-    allErrors: number[][];
-};
-
-interface ICourseLessonsData {
-    [lessonId: string]: ILessonData;
-};
-
-export type CourseDataType = ICourseLessonsData & {
-    lastLesson: number;
-}
-
 export interface ILessonsState {
-    [courseId: string]: CourseDataType
-};
+    openedCourseId: string;
+    activeLessonId: string;
+}

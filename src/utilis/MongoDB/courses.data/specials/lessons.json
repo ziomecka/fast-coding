@@ -1,0 +1,47 @@
+[
+    {
+        "signs": ["#", "*"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["@", "("],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["!", ")"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["%", "^"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["-", "_"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["=", "+"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["[", "{"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["]", "}"],
+        "otherSigns": [],
+        "level": "0"
+    },
+    {
+        "signs": ["<", ">"],
+        "otherSigns": [],
+        "level": "0"
+    }
+]

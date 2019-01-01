@@ -1,5 +1,5 @@
 import { GetResponseI } from '@app/api/';
-import { CourseDataType } from '../../Lessons/_duck/reducers';
+import { CourseDataType } from '../../Course/_duck/reducers';
 import { LanguagesEnum } from '@applicationTypes';
 import { LessonData } from '../../Lesson/_duck/reducers';
 
@@ -10,10 +10,12 @@ export interface GetLessonsResponseI extends GetResponseI {
 export interface LessonsDataI {
     title: TextTranslationsI;
     tag: TextTranslationsI;
+    type: string;
+    lessons: LessonData[];
     description: TextTranslationsI;
-    type:"free"
-    lessons: LessonData[]
-};
+    collection: string;
+    _id: string;
+}
 
 export interface TextTranslationsI {
     // @ts-ignore

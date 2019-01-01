@@ -33,7 +33,8 @@ const {
 } = LessonActionsEnum;
 
 export const INITIAL_STATE: LessonState = {
-    _id: 0,
+    _id: null,
+    no: null,
     title: {
         [en]: '',
         [pl]: '',
@@ -155,7 +156,8 @@ export { reducer as lessonReducer };
 
 // TODO improve. Has to be either text or translatedTexts
 export interface OriginalLessonData {
-    _id: number;
+    _id: string;
+    no: number;
     title: TextTranslationsI;
     text?: string;
     translatedTexts?: TextTranslationsI;

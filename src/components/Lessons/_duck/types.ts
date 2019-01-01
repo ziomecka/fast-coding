@@ -1,6 +1,6 @@
-// Use ComponentsContainersEnum enum in '@@components_
-// Important for components reducer
 export enum LessonsActionsEnum {
-    COMPONENTS_LESSONS_UPDATE = '@@components_lessons/LAST_LESSON_UPDATE',
-    COMPONENTS_LESSONS_INITIAL_STATE_SET = '@@components_lessons/INITIAL_STATE_SET'
+    COMPONENTS_LESSONS_OPEN_COURSE = '@@components_lessons/OPEN_COURSE',
+    COMPONENTS_LESSONS_CLOSE_COURSE = '@@components_lessons/CLOSE_COURSE',
+    COMPONENTS_LESSONS_ACTIVATE_LESSON = '@@components_lessons/ACTIVATE_LESSON',
+    COMPONENTS_LESSONS_DEACTIVATE_LESSON = '@@components_lessons/DEACTIVATE_LESSON'
 };

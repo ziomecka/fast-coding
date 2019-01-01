@@ -1,9 +1,6 @@
-import { Reducer } from 'redux';
-import { ComponentsActions } from '../_actions/';
-import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
-
+import { combineReducers } from 'redux';
+import { ComponentsContainersEnum } from '@componentsTypes';
 const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainersEnum;
-const { stats } = ComparatorContainersEnum;
 
 import {
     ComparatorState,
@@ -25,6 +22,7 @@ import {
 
 import {
     LessonsLoaderState,
+    lessonsLoaderReducer,
     INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
 } from '../LessonsLoader/_duck/reducers';
 
@@ -34,60 +32,35 @@ import {
     INITIAL_STATE as LESSONBUTTONS_INITIAL_STATE
 } from '../Lesson/LessonButtons/_duck/reducers';
 
+import {
+    ILessonsState,
+    lessonsReducer,
+    INITIAL_STATE as LESSONS_INITIAL_STATE
+} from '../Lessons/_duck/reducers';
+
 export const INITIAL_STATE = {
     [comparator]: { ...COMPARATOR_INITIAL_STATE },
     [lesson]: { ...LESSON_INITIAL_STATE },
+    [lessons]: { ...LESSONS_INITIAL_STATE },
     [textGenerator]: { ...TEXT_GENERATOR_INITIAL_STATE },
     [lessonsLoader]: { ...LESSONSLOADER_INITIAL_STATE },
     [lessonButtons]: { ...LESSONBUTTONS_INITIAL_STATE }
 };
 
-// @@components_comparator
-const regExp = (regexp: string): RegExp => RegExp(`@@components_${regexp}/`,'gi');
-const testRegExp = (actionType: string, str: string): boolean => regExp(str).test(actionType);
-
-const reducer: Reducer<ComponentsState, ComponentsActions> = (state = INITIAL_STATE, action) => {
-    const { type } = action;
-    switch (true) {
-        case testRegExp(type, lesson): {
-            return {
-                ...state,
-                [lesson]: lessonReducer(state[lesson], action)
-            };
-        }
-
-        case testRegExp(type, stats):
-        case testRegExp(type, comparator): {
-            return {
-                ...state,
-                [comparator]: comparatorReducer(state[comparator], action)
-            };
-        }
-
-        case testRegExp(type, textGenerator): {
-            return {
-                ...state,
-                [textGenerator]: textGeneratorReducer(state[textGenerator], action)
-            };
-        }
-
-        case testRegExp(type, lessonButtons): {
-            return {
-                ...state,
-                [lessonButtons]: lessonButtonsReducer(state[lessonButtons], action)
-            };
-        }
-
-        default: {
-            return { ...state };
-        }
-    }
-}
+const reducer = combineReducers({
+    [lesson]: lessonReducer,
+    [comparator]: comparatorReducer,
+    [textGenerator]: textGeneratorReducer,
+    [lessons]: lessonsReducer,
+    [lessonButtons]: lessonButtonsReducer,
+    [lessonsLoader]: lessonsLoaderReducer
+});
 
 export { reducer as componentsReducer };
 
 export interface ComponentsState {
     [comparator]: ComparatorState;
+    [lessons]: ILessonsState;
     [lesson]: LessonState;
     [textGenerator]: TextGeneratorState;
     [lessonsLoader]: LessonsLoaderState;

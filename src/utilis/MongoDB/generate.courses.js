@@ -24,9 +24,8 @@ const getText = (cv) => {
     const {
         signs,
         otherSigns,
+        length = Math.max(Math.min(100, signs.length * 20), 50)
     } = cv;
-
-    const length = Math.max(Math.min(100, signs.length * 20), 50);
 
     const probability = 3;
 
@@ -76,7 +75,8 @@ const getText = (cv) => {
 };
 
 const getCourse = (dir, file) => ({
-    ...JSON.parse(fs.readFileSync(path.resolve(_path, dir, file )))
+    ...JSON.parse(fs.readFileSync(path.resolve(_path, dir, file ))),
+    "_id": `course-${ uuid() }`
 });
 
 const getLessons = (dir, file) => {
@@ -90,7 +90,7 @@ const getLessons = (dir, file) => {
             "signs": cv.signs,
             "otherSigns": cv.otherSigns,
             "level": cv.level,
-            "_id": `lesson-${uuid()}`,
+            "_id": `lesson-${ uuid() }`,
             "category": cv.category || "standard",
             "no": i++,
             "text": getText(cv)

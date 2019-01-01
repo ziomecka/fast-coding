@@ -1,0 +1,1 @@
+export const STEPPER_WIDTH = '100px';

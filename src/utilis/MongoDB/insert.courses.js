@@ -4,37 +4,25 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Course = require('./schema/index')();
 
-const insertCourses = () => {
-    fs.readdir(path.resolve(__dirname, './courses/'), (err, files) => {
-        if (err) throw err;
+const insertCourses = async () => {
+    let files = fs.readdirSync(path.resolve(__dirname, './courses/'));
 
-        mongoose.connect(process.env.MONGODB_URI);
+    mongoose.connect(process.env.MONGODB_URI);
 
-        for ( file in files ) {
-            fs.readFile(
-                path.resolve(__dirname, './courses/', files[file]),
-                (err, data) => {
-                    if (err) throw err;
+    let data = [];
 
-                    let course = new Course(JSON.parse(data));
+    for ( const file in files ) {
+        data.push(JSON.parse(fs.readFileSync(path.resolve(__dirname, './courses/', files[file]))));
+    }
 
-                    try {
-                        course.validateSync();
-                    } catch (err) {
-                        throw err;
-                    }
+    try {
+        await Course.insertMany(data);
+    } catch (err) {
+        console.log(`Mongoose insert many error: ${ err }`);
+    }
 
-                    course.save(err => {
-                        if (err) throw err;
-                        course = null; // GC?
-                        return true;
-                    });
-
-                    return true;
-                }
-            );
-        }
-    });
+    data = null;
+    mongoose.disconnect();
 };
 
 module.exports = { insertCourses };

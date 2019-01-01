@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { default as Lessons } from './component';
+import { default as Stepper } from './component';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
 import { ApplicationState } from '../../_reducers/';
 
-import { ILessonsState } from './_duck/reducers';
-
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
+import { ILessonsState } from '../Lessons/_duck/reducers';
+import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
@@ -21,14 +21,15 @@ const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
 });
 
 // @ts-ignore
-const LessonsContainer = withRouter(connect(mapStateToProps)(Lessons));
+const StepperContainer = withRouter(connect(mapStateToProps)(Stepper));
 
-export default LessonsContainer;
+export default StepperContainer;
 
-interface MapStateToProps extends LessonsLoaderState, ILessonsState {
-}
+interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
 
-export interface LessonsProps extends
+export interface StepperProps extends
     LessonsLoaderState,
     RouteComponentProps<{}>,
-    MapStateToProps {};
+    MapStateToProps,
+    WithStyles,
+    WithTheme {};

@@ -1,0 +1,23 @@
+[
+    {
+        "signs": ["1", "0"],
+        "otherSigns": ["a", "q", ";", "p"],
+        "level": "0"
+    },
+    {
+        "signs": ["2", "9"],
+        "otherSigns": ["w", "s", "l", "o"],
+        "level": "0"
+    },
+    {
+        "signs": ["1", "0", "2", "9"],
+        "otherSigns": ["a", "q", ";", "p", "w", "s", "l", "o"],
+        "level": "0",
+        "type": "review"
+    },
+    {
+        "signs": ["3", "8"],
+        "otherSigns": ["d", "e", "k", "i"],
+        "level": "0"
+    }
+]
