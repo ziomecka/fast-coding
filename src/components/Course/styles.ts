@@ -1,44 +1,95 @@
 import { createStyles } from '@material-ui/core/styles';
 import { COURSE_HEIGHT } from './constants.styles';
+import { PAPER_PADDING_MAX_LG } from '@constantsStyles';
 
 const styles = createStyles(theme => {
     const {
-        typography: { fontWeightMedium },
-        spacing: { unit: spacingUnit }
+        typography: {
+            fontWeightMedium,
+            h4: { fontSize: headingFontSize },
+            h5: { fontSize: descriptionFontSize }
+        },
+        spacing: { unit: spacingUnit },
+        palette: { action: { hover }}
     } = theme;
+    const transition = {
+        duration: theme.transitions.duration.shortest,
+      };
 
     return {
-        expansionPanel: {
-            overflow: 'hidden'
+        panel: {
+            overflowX: 'hidden',
+            alignItems: 'flex-start',
+            // width: `calc(100% - 100px)`,
+            padding: `${ PAPER_PADDING_MAX_LG }`,
+            backgroundColor: '#f5f5f5',
+            margin: '20px'
         },
-        expansionPanelSummary: {
+        collapsedContainer: {
+            overflowY: 'hidden',
+            // width: '100%',
+            position: 'relative',
+            overflowX: 'hidden',
+            margin: '20px 0',
+            padding: 0
+        },
+        collapsedEntered: {
+            // width: '100%',
+            overflowX: 'hidden',
+            padding: '20px 0'
+        },
+        collapsedWrapper: {
+            // width: 'calc(100% - 5rem)',
+            overflowX: 'hidden',
+            margin: '20px 0',
+            padding: '20px 0',
+            position: 'relative'
+        },
+        summaryContent: {
             margin: '0',
-            marginBottom: '0 !important' // to ovveride material design.
+            flexGrow: 0
         },
-        expansionPanelSummaryHeading: {
-            paddingTop: '2rem'
+        summaryExpanded: {
+            width: 'auto'
         },
-        expansionPanelDetails: {
-            flexWrap: 'wrap',
-            paddingTop: 0,
-            justifyContent: 'center'
-
+        summaryRoot: {
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            flexDirection: 'row',
+            width: '100%',
+            paddingRight: 0
+        },
+        summaryHeading: {
+            paddingTop: '1em',
+            fontSize: headingFontSize,
+            fontWeight: fontWeightMedium
+        },
+        summaryDescription: {
+            paddingTop: '1em',
+            fontSize: descriptionFontSize
+        },
+        detailsLessons: {
+            overflowY: 'scroll',
+            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * 4 + 2 }px)`,
+            justifyContent: 'flex-start',
         },
         lessonCard: {
-            margin: spacingUnit,
-			flex: '0 0 100%',
-			flexDirection: 'column',
-			[ theme.breakpoints.up('md') ]: {
-				flexDirection: 'row',
-				flex: '0 0 20%'
-			},
-            padding: 0,
+            margin: `${ spacingUnit }px`,
             height: COURSE_HEIGHT,
-            maxWidth: COURSE_HEIGHT
+            '&:focus': {
+                outline: 'none',
+                backgroundColor: hover //TODO
+            }
         },
         expansionButton: {
-            maxWidth: '4rem',
-            maxHeight: '4rem'
+            width: '100px',
+            height: '100px',
+            fontWeight: fontWeightMedium,
+            flexGrow: 0,
+            transition: theme.transitions.create('transform', transition),
+            '&$expanded': {
+                transform: 'translateY(-50%) rotateZ(180deg)'
+            }
         },
         lessonCardContent: {
             padding: 0,
@@ -52,15 +103,14 @@ const styles = createStyles(theme => {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
-            height: COURSE_HEIGHT,
-            width: '100%'
+            width: '100%',
+            height: '100%'
         },
         lessonCardButtonLabel: {
             display: 'flex-box',
             flexWrap: 'wrap',
-            height: COURSE_HEIGHT,
+            height: '100%',
             width: '100%',
-            padding: '2em',
             fontSize: '1em',
             boxSizing: 'border-box',
         },
@@ -72,9 +122,6 @@ const styles = createStyles(theme => {
                 alignSelf: 'flex-start',
                 top: 0
             }
-        },
-        divider: {
-            margin: '2rem 0'
         }
     };
 });

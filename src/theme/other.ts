@@ -64,17 +64,25 @@ export default {
             }
         },
         MuiExpansionPanelSummary: {
-            root: { ...flexColumn },
+            root: {
+                ...flexColumn
+            },
             expanded: {
                 ...flexColumn,
                 width: '100%',
                 '&:hover': {
                     cursor: 'auto !important'
+                },
+            },
+            content: {
+                marginTop: 0,
+                '&$expanded': {
+                    marginTop: 0
                 }
             }
         },
         MuiExpansionPanelDetails: {
-            root: { flexWrap: 'wrap' }
+            root: { flexWrap: 'wrap', justifyContent: 'flex-start' }
         },
         MuiToolbar: {
             root: { ...flexRowJustifyFlexEnd }
