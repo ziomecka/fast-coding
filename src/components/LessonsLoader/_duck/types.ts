@@ -10,10 +10,12 @@ export interface GetLessonsResponseI extends GetResponseI {
 export interface LessonsDataI {
     title: TextTranslationsI;
     tag: TextTranslationsI;
+    type: string;
+    lessons: LessonData[];
     description: TextTranslationsI;
-    type:"free"
-    lessons: LessonData[]
-};
+    collection: string;
+    _id: string;
+}
 
 export interface TextTranslationsI {
     // @ts-ignore

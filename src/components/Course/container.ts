@@ -15,6 +15,7 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import { ApplicationState } from '../../_reducers/';
 
 import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
+import { LessonsDataI } from '@componentsTypes';
 
 import { LocalizeState} from 'react-localize-redux';
 
@@ -49,6 +50,7 @@ export interface CourseProps extends
     LessonsLoaderState,
     RouteComponentProps<{}>,
     WithStyles,
+ LessonsDataI,
     MapStateToProps {
         lessons,
         title: string;
