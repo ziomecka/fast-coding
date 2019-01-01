@@ -1,9 +1,6 @@
-import { Reducer } from 'redux';
-import { ComponentsActions } from '../_actions/';
-import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
-
+import { combineReducers } from 'redux';
+import { ComponentsContainersEnum } from '@componentsTypes';
 const { comparator, lesson, textGenerator, lessons, lessonsLoader, lessonButtons } = ComponentsContainersEnum;
-const { stats } = ComparatorContainersEnum;
 
 import {
     ComparatorState,
@@ -25,6 +22,7 @@ import {
 
 import {
     LessonsLoaderState,
+    lessonsLoaderReducer,
     INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
 } from '../LessonsLoader/_duck/reducers';
 
