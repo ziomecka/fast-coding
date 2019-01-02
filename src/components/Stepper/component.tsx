@@ -54,8 +54,7 @@ class StepperComponent extends React.Component<StepperProps> {
         } = this;
 
         document.getElementById(`details-${ openedCourseId }`).scroll({
-            /** Spacing between tiles is unit * 2 */
-            top: document.getElementById(`card-${ no }`).offsetTop - unit * 4 * SPACING_BEETWEEN_LESSONS,
+            top: document.getElementById(`card-${ no }`).offsetTop - unit * SPACING_BEETWEEN_LESSONS,
             behavior: 'smooth'
         });
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
