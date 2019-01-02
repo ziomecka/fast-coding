@@ -74,7 +74,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                         variant="contained"
                         color="primary"
                     >
-                        <Translate id="submitForm" />
+                        <Translate id="signInWithFastCoding" />
                     </Button>
 
                     <Message />
