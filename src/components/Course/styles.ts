@@ -7,7 +7,6 @@ import {
 } from './constants.styles';
 
 import {
-    PAPER_PADDING_MAX_LG,
     PAPER_PADDING_LG
 } from '@constantsStyles';
 
@@ -22,6 +21,7 @@ const styles = createStyles(theme => {
         palette: {
             secondary: { dark: reviewColor },
             action: { hover },
+            background: { paper: lessonCardBackground }
         }
     } = theme;
 
@@ -138,13 +138,13 @@ const styles = createStyles(theme => {
             padding: 0,
             width: COURSE_HEIGHT,
             height: COURSE_HEIGHT,
-            backgroundColor: '#ffffff',
+            backgroundColor: lessonCardBackground
         },
         lessonCardButtonLabel: {
             display: 'flex-box',
             flexWrap: 'wrap',
             height: '100%',
-            width: '100%',
+            width: `calc(100% - ${ PAPER_PADDING_LG })`,
             fontSize: '1em',
             boxSizing: 'border-box',
         },
