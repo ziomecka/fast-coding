@@ -9,6 +9,7 @@ import styles from './styles';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
+import withTheme from '@material-ui/core/styles/withTheme';
 
 /** Materials core */
 import Typography from '@material-ui/core/Typography'
@@ -296,4 +297,4 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 };
 
-export default withStyles(styles)(CourseComponent);
+export default withStyles(styles)(withTheme()(CourseComponent));

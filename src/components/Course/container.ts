@@ -2,7 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { WithStyles } from '@material-ui/core/styles';
+import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { default as Course } from './component';
 
@@ -56,6 +56,7 @@ export interface CourseProps extends
 CourseDispatch,
 RouteComponentProps<{}>,
 WithStyles,
+WithTheme,
 LessonsDataI,
 MapStateToProps {
 };
