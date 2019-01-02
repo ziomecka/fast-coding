@@ -29,7 +29,7 @@ class StepperComponent extends React.Component<StepperProps> {
         let { activeLesson } = this;
 
         if ( activeLesson ) {
-            this.scroll( activeLesson.no );
+            this.scroll( activeLesson.no, false );
             activeLesson = null // GC
         }
     }
@@ -48,14 +48,14 @@ class StepperComponent extends React.Component<StepperProps> {
         }
     }
 
-    scroll (no: number) {
+    scroll (no: number, smooth = false) {
         const {
             props: { openedCourseId, theme: { spacing: { unit }} },
         } = this;
 
         document.getElementById(`details-${ openedCourseId }`).scroll({
             top: document.getElementById(`card-${ no }`).offsetTop - unit * SPACING_BEETWEEN_LESSONS,
-            behavior: 'smooth'
+            behavior: smooth ? 'smooth' : 'auto'
         });
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
     }
