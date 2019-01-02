@@ -53,7 +53,10 @@ const styles = createStyles(theme => {
             flexGrow: 0
         },
         summaryExpanded: {
-            width: 'auto'
+            width: 'auto',
+            '&:hover': {
+                cursor: 'pointer !important' // Material design uses important for auto
+            }
         },
         summaryRoot: {
             alignItems: 'flex-start',
