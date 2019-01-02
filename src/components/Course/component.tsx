@@ -113,7 +113,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
             body = null; // GC
             clearTimeout(this.timeout); // GC
-        }, duration);
+        }, duration / 2);
     }
 
     get course () {
