@@ -26,11 +26,16 @@ class StepperComponent extends React.Component<StepperProps> {
     }
 
     componentDidMount() {
-        const { props: { activeLessonId }} = this;
+        let { activeLesson } = this;
 
-        if ( activeLessonId ) {
-            this.scroll( this.openedCourse.lessons.filter(lesson => lesson._id === activeLessonId)[0].no);
+        if ( activeLesson ) {
+            this.scroll( activeLesson.no );
+            activeLesson = null // GC
         }
+    }
+
+    get activeLesson() {
+        return this.openedCourse.lessons.filter(lesson => lesson._id === this.props.activeLessonId)[0];
     }
 
     get openedCourse () : { lessons: LessonData[] } {
