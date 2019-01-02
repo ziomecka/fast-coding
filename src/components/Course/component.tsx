@@ -28,6 +28,11 @@ import { getActiveLanguage, Translate } from 'react-localize-redux';
 import { TRANSITION_DURATION, COURSE_HEIGHT } from './constants.styles';
 import { NAV_HEIGHT } from '@constantsStyles';
 
+import { LessonsTypesEnum } from './_duck/types';
+const { review } = LessonsTypesEnum;
+
+import getTranslation from '@shared/get.translation';
+
 require('./style.sass');
 
 /**
@@ -237,30 +242,40 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         );
     }
 
+    get reviewInfo() {
+        return getTranslation(this.props.localize, 'lessonTypeReview');
+    }
+
     get lessons () {
         let {
             props: {
                 classes: {
                     lessonTile,
+                    lessonTileReview,
                     lessonCardButton,
                     lessonCardButtonLabel,
                     lessonCardLinkText
                 }
             },
             langCode,
-            elevation
+            reviewInfo
         } = this;
 
         return this.state.lessons.map(( lesson: LessonData ) => {
             // @ts-ignore
-            let { _id, title: { [ langCode ]: title }, no } = lesson;
+            let { _id, title: { [ langCode ]: title }, no, type } = lesson;
+
+            const isReview = type.indexOf(review) !== -1;
+            const info = isReview? reviewInfo : '';
 
             return (
                 <Grid
                     item
                     container
                     key={ _id }
-                    classes={{ item: lessonTile }}
+                    classes={{
+                        item: `${ lessonTile } ${ isReview ? lessonTileReview : '' }`
+                    }}
                     component={ GridListTile }
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
@@ -268,8 +283,14 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     <Button
                         onClick={ () => this.handleOnClick(lesson) }
                         classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
-                    >
-                        <Typography variant="h5">
+                        >
+                        {/*
+                            //@ts-ignore */}
+                        <Typography
+                            variant="h5"
+                            // @ts-ignore
+                            { ...{ info } }
+                        >
                             <span className={ lessonCardLinkText }>
                                 <Translate id="lessonsLesson" />
                                 &nbsp;

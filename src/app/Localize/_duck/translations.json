@@ -206,5 +206,9 @@
     "stepperGoTo": [
         "Go to",
         "Idź do"
+    ],
+    "lessonTypeReview": [
+        "Review",
+        "Powtórka"
     ]
 }

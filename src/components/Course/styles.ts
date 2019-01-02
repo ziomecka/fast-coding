@@ -19,7 +19,10 @@ const styles = createStyles(theme => {
             h5: { fontSize: descriptionFontSize }
         },
         spacing: { unit: spacingUnit },
-        palette: { action: { hover }}
+        palette: {
+            secondary: { dark: reviewColor },
+            action: { hover },
+        }
     } = theme;
 
     let duration = theme.transitions.duration[ TRANSITION_DURATION ];
@@ -101,6 +104,17 @@ const styles = createStyles(theme => {
             },
             '&:focus button': {
                 backgroundColor: hover
+            }
+        },
+        lessonTileReview: {
+            '& h5:after': {
+                display: 'inline-block',
+                width: '100%',
+                content: "attr(info)",
+                fontSize: '.7em',
+                marginTop: '.7em',
+                textTransform: 'lowercase',
+                color: reviewColor
             }
         },
         expansionButton: {
