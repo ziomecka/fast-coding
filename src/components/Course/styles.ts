@@ -2,7 +2,8 @@ import { createStyles } from '@material-ui/core/styles';
 import {
     COURSE_HEIGHT,
     COLUMNS,
-    SPACING
+    SPACING,
+    TRANSITION_DURATION
 } from './constants.styles';
 
 import {
@@ -22,7 +23,7 @@ const styles = createStyles(theme => {
     } = theme;
 
     const transition = {
-        duration: theme.transitions.duration.shortest,
+        duration: theme.transitions.duration[ TRANSITION_DURATION ],
     };
 
     return {
