@@ -49,6 +49,9 @@ const styles = theme => {
                 margin: '1rem 0',
                 maxHeight: '3rem',
             },
+            '& .firebaseui-idp-icon-wrapper': {
+                height: '2rem' // needed for Firefox, in Chrome 32px by user.agent
+            },
             '& .firebaseui-idp-icon': {
                 marginRight: '10px ',
                 height: '100%',
