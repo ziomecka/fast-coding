@@ -90,32 +90,39 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         return ( this.props.openedCourseId === this.id );
     }
 
+    /** Scroll needed e.g. when lessons entered from lesson */
+    componentWillMount() {
+        this.scroll();
+    }
+
     /**
      *  Scroll the body to the course
      */
-    scroll(id = this.props.openedCourseId) {
-        const {
-            props: {
-                theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}}
-            }
-        } = this;
+    scroll(id = this.props.openedCourseId, smooth = true) {
+        if (id) {
+            const {
+                props: {
+                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}}
+                }
+            } = this;
 
-        this.timeout = setTimeout(() => {
-            let body = document.querySelector('body');
+            this.timeout = setTimeout(() => {
+                let body = document.querySelector('body');
 
-            /** Course's top relative to the viewport */
-            const { top } = document.getElementById(id).getBoundingClientRect();
-            /** Body is scrolled by */
-            const { scrollTop } = body;
+                /** Course's top relative to the viewport */
+                const { top } = document.getElementById(id).getBoundingClientRect();
+                /** Body is scrolled by */
+                const { scrollTop } = body;
 
-            body.scroll({
-                top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top  - NAV_HEIGHT ), top + scrollTop ),
-                behavior: 'smooth'
-            })
+                body.scroll({
+                    top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top  - NAV_HEIGHT ), top + scrollTop ),
+                    behavior: smooth ? 'smooth' : 'auto'
+                })
 
-            body = null; // GC
-            clearTimeout(this.timeout); // GC
-        }, duration / 2);
+                body = null; // GC
+                clearTimeout(this.timeout); // GC
+            }, duration);
+        }
     }
 
     get course () {
