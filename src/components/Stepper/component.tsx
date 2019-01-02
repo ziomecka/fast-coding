@@ -71,9 +71,12 @@ class StepperComponent extends React.Component<StepperProps> {
                 }}
                 connector={null}
             >
-                <Typography variant="subtitle2" className={ `${ label } ${ goTo }` } >
-                    <Translate id="stepperGoTo" />
-                </Typography>
+                {/* Fragment needed to avoid error: React does not recognize the `alternative Label` prop on a DOM element */}
+                <>
+                    <Typography variant="subtitle2" className={ `${ label } ${ goTo }` } >
+                        <Translate id="stepperGoTo" />
+                    </Typography>
+                </>
 
                 { this.openedCourse.lessons.reduce(( acc, cv ) => {
                     const { no } = cv;
