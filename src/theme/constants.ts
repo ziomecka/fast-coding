@@ -1,6 +1,6 @@
 export * from '@app/Nav/constants.styles';
 export * from '@components/Lesson/constants.styles';
-
+export { SPACING_BEETWEEN_LESSONS } from '@components/Course/constants.styles';
 /** PADDING */
 export const PAPER_PADDING_MD = '1rem';
 export const PAPER_PADDING_LG = '3rem';
