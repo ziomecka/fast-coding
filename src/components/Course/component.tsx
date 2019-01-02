@@ -49,14 +49,11 @@ interface ICourseState {
  * Main assumption: lessons' property 'no' start always from 0
  */
 class CourseComponent extends React.Component<CourseProps, ICourseState> {
-    elevation: number;
-    cols: number;
     lessonsRoute: AppRoutesEnum;
     timeout: any
     constructor(props) {
         super(props);
-        this.elevation = 3;
-        this.cols = 3;
+
         this.lessonsRoute = AppRoutesEnum.lessons;
 
         /** If course is expanded then lessons otherwise empty array */
