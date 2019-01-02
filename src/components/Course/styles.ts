@@ -22,9 +22,7 @@ const styles = createStyles(theme => {
         palette: { action: { hover }}
     } = theme;
 
-    const transition = {
-        duration: theme.transitions.duration[ TRANSITION_DURATION ],
-    };
+    let duration = theme.transitions.duration[ TRANSITION_DURATION ];
 
     return {
         panel: {
@@ -107,10 +105,7 @@ const styles = createStyles(theme => {
             height: '100px',
             fontWeight: fontWeightMedium,
             flexGrow: 0,
-            transition: theme.transitions.create('transform', transition),
-            '&$expanded': {
-                transform: 'translateY(-50%) rotateZ(180deg)'
-            }
+            transition: theme.transitions.create('transform', { duration })
         },
         lessonCardContent: {
             padding: 0,
@@ -148,8 +143,7 @@ const styles = createStyles(theme => {
         gridListTileRoot: {
             padding: `${ spacingUnit * SPACING_BEETWEEN_LESSONS }px`,
             height: 'initial',
-            transition: theme.transitions.create('width', transition)
-
+            transition: theme.transitions.create('width', { duration })
         },
         gridListTileRootCollapsed: {
             width: `${ 100 / COLUMNS }%`,
