@@ -47,9 +47,7 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-if (!PROD_ENV) {
-    app.use( serverCors() );
-}
+app.use( serverCors() );
 
 app.get('*.js', (req, res, next) => {
     req.url = req.url + '.gz';
