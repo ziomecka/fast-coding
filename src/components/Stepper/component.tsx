@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
 
@@ -55,7 +56,7 @@ class StepperComponent extends React.Component<StepperProps> {
 
     render () {
         const {
-            props: { openedCourseId, classes: { stepper } },
+            props: { openedCourseId, classes: { stepper, iconContainer, goTo, label } },
             numberOfLessonsDisplayed
         } = this;
 
@@ -66,8 +67,12 @@ class StepperComponent extends React.Component<StepperProps> {
                 classes={{
                     root: stepper
                 }}
+                connector={null}
             >
-                <Translate id="stepperGoTo" />
+                <Typography variant="subtitle2" className={ `${ label } ${ goTo }` } >
+                    <Translate id="stepperGoTo" />
+                </Typography>
+
                 { this.openedCourse.lessons.reduce(( acc, cv ) => {
                     const { no } = cv;
                     /** Display only every X lesson
@@ -77,13 +82,14 @@ class StepperComponent extends React.Component<StepperProps> {
                         acc.push(
                             <Step key={ no }>
                                 <StepLabel
+                                    classes={{
+                                        iconContainer
+                                    }}
                                     icon={
                                         <IconButton onClick={ () => this.scroll(no) }>
-                                            <StepLabel>
-                                                <Translate id="lessonsLesson" />
-                                                &nbsp;
+                                            <Typography variant="body1" className={ label } >
                                                 { no + 1 }
-                                            </StepLabel>
+                                            </Typography>
                                         </IconButton>
                                     }
                                 >

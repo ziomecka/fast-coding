@@ -1,1 +1,1 @@
-export const STEPPER_WIDTH = '100px';
+export const MIN_HEIGHT = 200;
