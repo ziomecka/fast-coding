@@ -16,6 +16,7 @@ import withTheme from '@material-ui/core/styles/withTheme';
 import styles from './styles';
 
 import { LessonData } from '../Lesson/_duck/reducers';
+import { SPACING_BEETWEEN_LESSONS } from '@constantsStyles';
 
 class StepperComponent extends React.Component<StepperProps> {
     numberOfLessonsDisplayed: number
@@ -44,11 +45,12 @@ class StepperComponent extends React.Component<StepperProps> {
 
     scroll (no: number) {
         const {
-            props: { openedCourseId },
+            props: { openedCourseId, theme: { spacing: { unit }} },
         } = this;
 
         document.getElementById(`details-${ openedCourseId }`).scroll({
-            top: document.getElementById(`card-${ no }`).offsetTop,
+            /** Spacing between tiles is unit * 2 */
+            top: document.getElementById(`card-${ no }`).offsetTop - unit * 4 * SPACING_BEETWEEN_LESSONS,
             behavior: 'smooth'
         });
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
