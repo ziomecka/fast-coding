@@ -25,6 +25,9 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
+import { TRANSITION_DURATION } from './constants.styles';
+import { NAV_HEIGHT } from '@constantsStyles';
+
 require('./style.sass');
 
 /**
@@ -44,6 +47,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     elevation: number;
     cols: number;
     lessonsRoute: AppRoutesEnum;
+    timeout: any
     constructor(props) {
         super(props);
         this.elevation = 3;
@@ -88,18 +92,28 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
      *  Scroll the body to the course
      */
     scroll(id = this.props.openedCourseId) {
-        setTimeout(() => {
+        const {
+            props: {
+                theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}}
+            }
+        } = this;
+
+        this.timeout = setTimeout(() => {
             let body = document.querySelector('body');
+
             /** Course's top relative to the viewport */
             const { top } = document.getElementById(id).getBoundingClientRect();
-
             /** Body is scrolled by */
             const { scrollTop } = body;
 
-            const absoluteTop = Math.min( Math.max( top + scrollTop - 160, 0, top  - 160 ), top + scrollTop );
-            body.scrollTop = absoluteTop;
+            body.scroll({
+                top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top  - NAV_HEIGHT ), top + scrollTop ),
+                behavior: 'smooth'
+            })
+
             body = null; // GC
-        }, 150)
+            clearTimeout(this.timeout); // GC
+        }, duration);
     }
 
     get course () {
