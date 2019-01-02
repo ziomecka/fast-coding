@@ -2,7 +2,7 @@ import { createStyles } from '@material-ui/core/styles';
 import {
     COURSE_HEIGHT,
     COLUMNS,
-    SPACING,
+    SPACING_BEETWEEN_LESSONS,
     TRANSITION_DURATION
 } from './constants.styles';
 
@@ -76,7 +76,8 @@ const styles = createStyles(theme => {
         },
         detailsLessons: {
             overflowY: 'scroll',
-            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * SPACING + 2 }px)`,
+            /** 2 tiles, 4 spacings visible */
+            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2 }px)`,
         },
         lessonsContainer: {
             flexDirection: 'row',
@@ -92,7 +93,7 @@ const styles = createStyles(theme => {
             maxWidth: '20%',
             justifyContent: 'center',
             alignItems: 'center',
-            margin: `${ spacingUnit }px 0`,
+            margin: `${ spacingUnit  * SPACING_BEETWEEN_LESSONS }px 0`,
             padding: PAPER_PADDING_LG,
             '&:focus': {
                 outline: 'none',
@@ -145,7 +146,7 @@ const styles = createStyles(theme => {
             }
         },
         gridListTileRoot: {
-            padding: `${ spacingUnit * SPACING }px`,
+            padding: `${ spacingUnit * SPACING_BEETWEEN_LESSONS }px`,
             height: 'initial',
             transition: theme.transitions.create('width', transition)
 
