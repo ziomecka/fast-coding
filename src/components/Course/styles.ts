@@ -34,9 +34,8 @@ const styles = createStyles(theme => {
             maxWidth: '100%'
         },
         collapsedContainer: {
-            overflowY: 'hidden',
-            position: 'relative',
-            overflowX: 'hidden',
+            overflow: 'hidden',
+            position: 'relative', // for Stepper
             padding: 0,
             width: '100%'
         },
@@ -45,8 +44,7 @@ const styles = createStyles(theme => {
             padding: `${ PAPER_PADDING_LG }`
         },
         collapsedWrapper: {
-            overflowX: 'hidden',
-            position: 'relative',
+            overflow: 'hidden',
             width: 'inherit'
         },
         summaryContent: {
