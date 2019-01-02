@@ -46,8 +46,10 @@ class StepperComponent extends React.Component<StepperProps> {
             props: { openedCourseId },
         } = this;
 
-        document.getElementById(`details-${ openedCourseId }`).scrollTop =
-            document.getElementById(`card-${ no }`).offsetTop;
+        document.getElementById(`details-${ openedCourseId }`).scroll({
+            top: document.getElementById(`card-${ no }`).offsetTop,
+            behavior: 'smooth'
+        });
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
     }
 
