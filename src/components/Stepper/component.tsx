@@ -20,7 +20,7 @@ class StepperComponent extends React.Component<StepperProps> {
     numberOfLessonsDisplayed: number
     constructor (props) {
         super(props);
-        this.numberOfLessonsDisplayed = 6;
+        this.numberOfLessonsDisplayed = 10;
     }
 
     componentDidMount() {
@@ -43,12 +43,11 @@ class StepperComponent extends React.Component<StepperProps> {
 
     scroll (no: number) {
         const {
-            props: { openedCourseId, theme: { spacing: { unit } }},
-            numberOfLessonsDisplayed
+            props: { openedCourseId },
         } = this;
 
         document.getElementById(`details-${ openedCourseId }`).scrollTop =
-            document.getElementById(`card-${ no }`).offsetTop - unit * numberOfLessonsDisplayed;
+            document.getElementById(`card-${ no }`).offsetTop;
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
     }
 

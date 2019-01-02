@@ -11,13 +11,14 @@ import styles from './styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 /** Materials core */
-import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -40,10 +41,12 @@ interface ICourseState {
  */
 class CourseComponent extends React.Component<CourseProps, ICourseState> {
     elevation: number;
+    cols: number;
     lessonsRoute: AppRoutesEnum;
     constructor(props) {
         super(props);
         this.elevation = 3;
+        this.cols = 3;
         this.lessonsRoute = AppRoutesEnum.lessons;
 
         /** If course is expanded then lessons otherwise empty array */
@@ -80,22 +83,22 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         return ( this.props.openedCourseId === this.id );
     }
 
+    /**
+     *  Scroll the body to the course
+     */
     scroll(id = this.props.openedCourseId) {
-        /**
-         *  Scroll the body to the course
-         */
-        let body = document.querySelector('body');
+        setTimeout(() => {
+            let body = document.querySelector('body');
+            /** Course's top relative to the viewport */
+            const { top } = document.getElementById(id).getBoundingClientRect();
 
-        /** Course's top relative to the viewport */
-        const { top } = document.getElementById(id).getBoundingClientRect();
+            /** Body is scrolled by */
+            const { scrollTop } = body;
 
-        /** Body is scrolled by */
-        const { scrollTop } = body;
-
-        const absoluteTop = Math.min( Math.max( top + scrollTop - 96 - 160, 0, top - 96 - 160 ), top + scrollTop );
-
-        body.scrollTop = absoluteTop;
-        body = null; // GC
+            const absoluteTop = Math.min( Math.max( top + scrollTop - 160, 0, top  - 160 ), top + scrollTop );
+            body.scrollTop = absoluteTop;
+            body = null; // GC
+        }, 150)
     }
 
     get course () {
@@ -115,6 +118,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     summaryHeading,
                     summaryDescription,
                     summaryRoot,
+                    lessonsContainer
                 }
             },
             isExpanded
@@ -202,25 +206,29 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     spacing={ 40 }
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
-                    /** Id needed for scrolling within course window */
-                    id={ `details-${ id }` }
                 >
-                    { this.lessons }
+                    <GridList
+                        classes={{ root: lessonsContainer }}
+                        /** Id needed for scrolling within course window - stepper */
+                        id={ `details-${ id }` }
+                    >
+                        { this.lessons }
+                    </GridList>
 
                     { isExpanded && <Stepper /> }
                 </Grid>
             </ExpansionPanel>
-         );
+        );
     }
 
     get lessons () {
         let {
             props: {
                 classes: {
-                    lessonCard,
-                    lessonCardLinkText,
+                    lessonTile,
                     lessonCardButton,
-                    lessonCardButtonLabel
+                    lessonCardButtonLabel,
+                    lessonCardLinkText
                 }
             },
             langCode,
@@ -236,11 +244,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     item
                     container
                     key={ _id }
+                    classes={{ item: lessonTile }}
+                    component={ GridListTile }
                     id={ `card-${ no }` }
-                    className={ lessonCard }
-                    lg={ 3 }
-                    {...{ elevation }}
-                    component={ Card }
                     tabIndex={ -1 } // single lesson is focusable
                 >
                     <Button
@@ -264,8 +270,28 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 
     render () {
+        const {
+            isExpanded,
+            props: { classes: {
+                gridListTileTile,
+                gridListTileRoot,
+                gridListTileRootCollapsed,
+                gridListTileRootExpanded,
+            }}
+        } = this;
+
         return (
-            <> { this.course } </>
+            <GridListTile
+                classes={{
+                    root: `${ isExpanded
+                        ? gridListTileRoot + ' ' + gridListTileRootExpanded
+                        : gridListTileRoot + ' ' + gridListTileRootCollapsed
+                    }`,
+                    tile: gridListTileTile
+                }}
+            >
+                { this.course }
+            </GridListTile>
         );
     }
 };

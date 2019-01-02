@@ -1,6 +1,14 @@
 import { createStyles } from '@material-ui/core/styles';
-import { COURSE_HEIGHT } from './constants.styles';
-import { PAPER_PADDING_MAX_LG } from '@constantsStyles';
+import {
+    COURSE_HEIGHT,
+    COLUMNS,
+    SPACING
+} from './constants.styles';
+
+import {
+    PAPER_PADDING_MAX_LG,
+    PAPER_PADDING_LG
+} from '@constantsStyles';
 
 const styles = createStyles(theme => {
     const {
@@ -12,40 +20,36 @@ const styles = createStyles(theme => {
         spacing: { unit: spacingUnit },
         palette: { action: { hover }}
     } = theme;
+
     const transition = {
         duration: theme.transitions.duration.shortest,
-      };
+    };
 
     return {
         panel: {
             overflowX: 'hidden',
             alignItems: 'flex-start',
-            // width: `calc(100% - 100px)`,
-            padding: `${ PAPER_PADDING_MAX_LG }`,
             backgroundColor: '#f5f5f5',
-            margin: '20px'
+            maxWidth: '100%'
         },
         collapsedContainer: {
             overflowY: 'hidden',
-            // width: '100%',
             position: 'relative',
             overflowX: 'hidden',
-            margin: '20px 0',
-            padding: 0
+            padding: 0,
+            width: '100%'
         },
         collapsedEntered: {
-            // width: '100%',
             overflowX: 'hidden',
-            padding: '20px 0'
+            padding: `${ PAPER_PADDING_LG }`
         },
         collapsedWrapper: {
-            // width: 'calc(100% - 5rem)',
             overflowX: 'hidden',
-            margin: '20px 0',
-            padding: '20px 0',
-            position: 'relative'
+            position: 'relative',
+            width: 'inherit'
         },
         summaryContent: {
+            padding: `${ PAPER_PADDING_LG }`,
             margin: '0',
             flexGrow: 0
         },
@@ -70,15 +74,29 @@ const styles = createStyles(theme => {
         },
         detailsLessons: {
             overflowY: 'scroll',
-            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * 4 + 2 }px)`,
-            justifyContent: 'flex-start',
+            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * SPACING + 2 }px)`,
         },
-        lessonCard: {
-            margin: `${ spacingUnit }px`,
-            height: COURSE_HEIGHT,
+        lessonsContainer: {
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            width: '100%',
+            overflowY: 'scroll',
+            '&::-webkit-scrollbar': {
+                display: 'none'
+            }
+        },
+        lessonTile: {
+            flexBasis: '20%',
+            maxWidth: '20%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: `${ spacingUnit }px 0`,
+            padding: PAPER_PADDING_LG,
             '&:focus': {
                 outline: 'none',
-                backgroundColor: hover //TODO
+            },
+            '&:focus button': {
+                backgroundColor: hover
             }
         },
         expansionButton: {
@@ -103,8 +121,9 @@ const styles = createStyles(theme => {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
-            width: '100%',
-            height: '100%'
+            width: COURSE_HEIGHT,
+            height: COURSE_HEIGHT,
+            backgroundColor: '#ffffff',
         },
         lessonCardButtonLabel: {
             display: 'flex-box',
@@ -122,6 +141,24 @@ const styles = createStyles(theme => {
                 alignSelf: 'flex-start',
                 top: 0
             }
+        },
+        gridListTileRoot: {
+            padding: `${ spacingUnit * SPACING }px`,
+            height: 'initial',
+            transition: theme.transitions.create('width', transition)
+
+        },
+        gridListTileRootCollapsed: {
+            width: `${ 100 / COLUMNS }%`,
+            height: 'inherit',
+        },
+        gridListTileRootExpanded: {
+            width: `${ 100 / 1 }%`,
+            maxWidth: '100%'
+        },
+        gridListTileTile: {
+            height: 'initial',
+            width: 'initial',
         }
     };
 });
