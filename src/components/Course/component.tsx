@@ -25,7 +25,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
-import { TRANSITION_DURATION } from './constants.styles';
+import { TRANSITION_DURATION, COURSE_HEIGHT } from './constants.styles';
 import { NAV_HEIGHT } from '@constantsStyles';
 
 require('./style.sass');
@@ -226,6 +226,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                         classes={{ root: lessonsContainer }}
                         /** Id needed for scrolling within course window - stepper */
                         id={ `details-${ id }` }
+                        cellHeight={ COURSE_HEIGHT }
                     >
                         { this.lessons }
                     </GridList>

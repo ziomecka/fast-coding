@@ -39,7 +39,8 @@ const styles = createStyles(theme => {
         },
         collapsedEntered: {
             overflowX: 'hidden',
-            padding: `${ PAPER_PADDING_LG }`
+            margin: `${ PAPER_PADDING_LG } 0`,
+            padding: `0 ${ PAPER_PADDING_LG }`
         },
         collapsedWrapper: {
             overflow: 'hidden',
@@ -74,13 +75,15 @@ const styles = createStyles(theme => {
         },
         detailsLessons: {
             overflowY: 'scroll',
-            /** 2 tiles, 4 spacings visible */
-            maxHeight: `calc(${ COURSE_HEIGHT } + ${ COURSE_HEIGHT } + ${ spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2 }px)`,
+            paddingTop: 0,
+            paddingBottom: 0
         },
         lessonsContainer: {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             width: '100%',
+            /** 2 tiles, 4 spacings visible */
+            maxHeight: `calc(${ COURSE_HEIGHT * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
                 display: 'none'
@@ -92,7 +95,7 @@ const styles = createStyles(theme => {
             justifyContent: 'center',
             alignItems: 'center',
             margin: `${ spacingUnit  * SPACING_BEETWEEN_LESSONS }px 0`,
-            padding: PAPER_PADDING_LG,
+            padding: 0,
             '&:focus': {
                 outline: 'none',
             },
