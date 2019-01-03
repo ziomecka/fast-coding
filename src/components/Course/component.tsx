@@ -25,24 +25,27 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
-import { TRANSITION_DURATION, COURSE_HEIGHT } from './constants.styles';
-import { NAV_HEIGHT_LG } from '@constantsStyles';
+import { TRANSITION_DURATION, COURSE_HEIGHT_MD, COURSE_HEIGHT_LG, COLS_MD, COLS_LG, SPACING_BEETWEEN_LESSONS } from './constants.styles';
+import { NAV_HEIGHT_LG, NAV_HEIGHT_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';
 
 import { LessonsTypesEnum } from './_duck/types';
 const { review } = LessonsTypesEnum;
 
 import getTranslation from '@shared/get.translation';
 
+import Media from 'react-media';
+
 require('./style.sass');
 
 /**
- * Needed for renderig lessons.
+ * Needed for renderig lessons and media query.
  * If course is not expanded then
  * lessons will be an empty array.
  * Otherwise lessons === this.props.lessons
  */
 interface ICourseState {
     lessons: LessonData[];
+    mediaLarge: boolean;
 }
 
 /**
@@ -57,9 +60,13 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.lessonsRoute = AppRoutesEnum.lessons;
 
         /** If course is expanded then lessons otherwise empty array */
-        this.state = { lessons: this.isExpanded? this.props.lessons : [] };
+        this.state = {
+            lessons: this.isExpanded? this.props.lessons : [],
+            mediaLarge: window.matchMedia(`(min-width: ${ MEDIA_DESKTOP_LG } )`).matches
+        };
 
         this.handleOnClick = this.handleOnClick.bind(this);
+        this.onMediaQueryChange = this.onMediaQueryChange.bind(this);
     }
 
     handleOnClick(lesson: LessonData): void {
@@ -103,7 +110,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             const {
                 props: {
                     theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}}
-                }
+                },
+                state: { mediaLarge }
             } = this;
 
             this.timeout = setTimeout(() => {
@@ -113,16 +121,38 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 const { top } = document.getElementById(id).getBoundingClientRect();
                 /** Body is scrolled by */
                 const { scrollTop } = body;
+                const NAV_HEIGHT = mediaLarge ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
 
                 body.scroll({
-                    top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT_LG, 0, top  - NAV_HEIGHT_LG ), top + scrollTop ),
+                    top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top - NAV_HEIGHT ), top + scrollTop ),
                     behavior: smooth ? 'smooth' : 'auto'
-                })
+                });
 
                 body = null; // GC
                 clearTimeout(this.timeout); // GC
             }, duration);
         }
+    }
+
+    getLessonsGrid(cellHeight: number, cols: number) {
+        const spacing = SPACING_BEETWEEN_LESSONS * this.props.theme.spacing.unit;
+
+        return (
+            <GridList
+                classes={{ root: this.props.classes.lessonsContainer }}
+                /** Id needed for scrolling within course window - stepper */
+                id={ `details-${ this.id }` }
+                { ...{ cellHeight, cols, spacing } }
+            >
+                { this.lessons }
+            </GridList>
+        );
+    }
+
+    onMediaQueryChange(matches: boolean) {
+        this.setState({
+            mediaLarge: matches
+        });
     }
 
     get course () {
@@ -141,8 +171,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     detailsLessons,
                     summaryHeading,
                     summaryDescription,
-                    summaryRoot,
-                    lessonsContainer
+                    summaryRoot
                 }
             },
             isExpanded
@@ -231,14 +260,13 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
                 >
-                    <GridList
-                        classes={{ root: lessonsContainer }}
-                        /** Id needed for scrolling within course window - stepper */
-                        id={ `details-${ id }` }
-                        cellHeight={ COURSE_HEIGHT }
-                    >
-                        { this.lessons }
-                    </GridList>
+                    <Media query={`(min-width: ${ MEDIA_DESKTOP_LG }px)`} onChange={ this.onMediaQueryChange }>{
+                        matches => {
+                            return matches
+                                ? this.getLessonsGrid( COURSE_HEIGHT_LG, COLS_LG )
+                                : this.getLessonsGrid( COURSE_HEIGHT_MD, COLS_MD )
+                        }
+                    }</Media>
 
                     { isExpanded && <Stepper /> }
                 </Grid>
@@ -254,6 +282,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         let {
             props: {
                 classes: {
+                    lessonTileContainer,
                     lessonTile,
                     lessonTileReview,
                     lessonCardButton,
@@ -280,10 +309,10 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     classes={{
                         item: `${ lessonTile } ${ isReview ? lessonTileReview : '' }`
                     }}
-                    component={ GridListTile }
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
                 >
+                    <GridListTile  className={ lessonTileContainer }>
                     <Button
                         onClick={ () => this.handleOnClick(lesson) }
                         classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
@@ -305,6 +334,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                             </span>
                         </Typography>
                     </Button>
+                    </GridListTile>
                 </Grid>
             );
         })

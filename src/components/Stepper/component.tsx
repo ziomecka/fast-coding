@@ -16,13 +16,29 @@ import withTheme from '@material-ui/core/styles/withTheme';
 import styles from './styles';
 
 import { LessonData } from '../Lesson/_duck/reducers';
-import { SPACING_BEETWEEN_LESSONS } from '@constantsStyles';
 
-class StepperComponent extends React.Component<StepperProps> {
-    numberOfLessonsDisplayed: number
+import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD, COLS_LG, COLS_MD } from '@constantsStyles';
+
+import Media from 'react-media';
+
+/**
+ * Needed for media query.
+ */
+interface IStepperState {
+    mediaLarge: boolean;
+}
+
+class StepperComponent extends React.Component<StepperProps, IStepperState> {
+    numberOfRowsDisplayed: number
     constructor (props) {
         super(props);
-        this.numberOfLessonsDisplayed = 10;
+        this.numberOfRowsDisplayed = 2;
+
+        this.state = {
+            mediaLarge: window.matchMedia(`(min-width: ${ MEDIA_DESKTOP_LG }px`).matches
+        };
+
+        this.onMediaQueryChange = this.onMediaQueryChange.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +48,10 @@ class StepperComponent extends React.Component<StepperProps> {
             this.scroll( activeLesson.no, false );
             activeLesson = null // GC
         }
+
+        this.setState({
+            mediaLarge: window.matchMedia(`(min-width: ${ MEDIA_DESKTOP_LG }px`).matches
+        });
     }
 
     get activeLesson() {
@@ -54,10 +74,23 @@ class StepperComponent extends React.Component<StepperProps> {
         } = this;
 
         document.getElementById(`details-${ openedCourseId }`).scroll({
-            top: document.getElementById(`card-${ no }`).offsetTop - unit * SPACING_BEETWEEN_LESSONS,
+            top: document.getElementById(`card-${ no }`).offsetTop,
             behavior: smooth ? 'smooth' : 'auto'
         });
         document.getElementById(`card-${ no }`).focus({ preventScroll: true });
+    }
+
+    get numberOfLessonsDisplayed () {
+        if ( this.state.mediaLarge ) {
+            return COLS_LG * this.numberOfRowsDisplayed;
+        }
+        return COLS_MD * this.numberOfRowsDisplayed;
+    }
+
+    onMediaQueryChange(matches: boolean) {
+        this.setState({
+            mediaLarge: matches
+        });
     }
 
     render () {
@@ -68,6 +101,8 @@ class StepperComponent extends React.Component<StepperProps> {
 
         /** Render only if any course is opened */
         return (openedCourseId &&
+            <Media query={`(min-width: ${ MEDIA_DESKTOP_LG }px)`} onChange={ this.onMediaQueryChange }>{ () => (
+
             <Stepper
                 orientation="vertical"
                 classes={{
@@ -110,6 +145,7 @@ class StepperComponent extends React.Component<StepperProps> {
                     return acc;
                 }, [])}
             </Stepper>
+            )}</Media>
         );
     }
 }

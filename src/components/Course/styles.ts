@@ -87,21 +87,23 @@ const styles = createStyles(theme => {
             justifyContent: 'flex-start',
             width: '100%',
             /** 2 tiles, 4 spacings visible */
-            maxHeight: `calc(${ COURSE_HEIGHT_MD * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
+            maxHeight: COURSE_HEIGHT_MD * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2,
             [theme.breakpoints.up('lg')]: {
-                maxHeight: `calc(${ COURSE_HEIGHT_LG * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
+                maxHeight: COURSE_HEIGHT_LG * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2
             },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
                 display: 'none'
             }
         },
+        lessonTileContainer: {
+            height: '100%',
+            width: '100%'
+        },
         lessonTile: {
-            flexBasis: '20%',
-            maxWidth: '20%',
             justifyContent: 'center',
             alignItems: 'center',
-            margin: `${ spacingUnit  * SPACING_BEETWEEN_LESSONS }px 0`,
+            margin: 0,
             padding: 0,
             boxSizing: 'border-box',
             '&:focus': {
@@ -109,6 +111,10 @@ const styles = createStyles(theme => {
             },
             '&:focus button': {
                 backgroundColor: hover
+            },
+            height: COURSE_HEIGHT_MD,
+            [ theme.breakpoints.up('lg') ]:{
+                height: COURSE_HEIGHT_LG
             }
         },
         lessonTileReview: {
@@ -141,12 +147,8 @@ const styles = createStyles(theme => {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
-            width: COURSE_HEIGHT_MD,
-            height: COURSE_HEIGHT_MD,
-            [ theme.breakpoints.up('lg') ]:{
-                width: COURSE_HEIGHT_LG,
-                height: COURSE_HEIGHT_LG
-            },
+            width: '100%',
+            height: '100%',
             backgroundColor: lessonCardBackground
         },
         lessonCardButtonLabel: {
