@@ -3,10 +3,10 @@ export * from '@components/Lesson/constants.styles';
 export { SPACING_BEETWEEN_LESSONS } from '@components/Course/constants.styles';
 /** PADDING */
 export const PAPER_PADDING_MD = '1rem';
-export const PAPER_PADDING_LG = '3rem';
+export const PAPER_PADDING_LG = '2rem';
 
 export const PAPER_PADDING_MAX_MD = '1.5rem';
-export const PAPER_PADDING_MAX_LG = '6rem';
+export const PAPER_PADDING_MAX_LG = '3rem';
 
 /** ELEVATION */
 export const ELEVATION = 2;
