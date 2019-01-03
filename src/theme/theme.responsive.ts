@@ -42,13 +42,14 @@ theme.overrides.MuiMenu.paper = {
 /** MuiAppBar */
 theme.overrides.MuiAppBar.root = {
     ...theme.overrides.MuiAppBar.root,
-    maxHeight: `${ NAV_HEIGHT_MD }px`,
+    height: `${ NAV_HEIGHT_MD }px`,
     padding: `0 ${ PAPER_PADDING_MAX_MD }`,
+    [ theme.breakpoints.up('md') ]: {
+        flexDirection: 'row'
+    },
     [ theme.breakpoints.up('lg') ]: {
         padding: `0 ${ PAPER_PADDING_MAX_LG }`,
-        height: `${ NAV_HEIGHT_LG }px`,
-        maxHeight: `${ NAV_HEIGHT_LG }px`,
-        flexDirection: 'row',
+        height: `${ NAV_HEIGHT_LG }px`
     }
 };
 

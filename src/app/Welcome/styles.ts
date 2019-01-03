@@ -40,14 +40,10 @@ const styles = createStyles(theme => {
         welcomePaper: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            padding: `${ PAPER_PADDING_MAX_MD } 0`,
+            padding: 0,
             [ theme.breakpoints.up('md') ]: {
                 position: 'fixed',
-                justifyContent: 'center',
-                padding: 0,
-            },
-            [ theme.breakpoints.up('lg') ]: {
-                padding: `${ PAPER_PADDING_MAX_LG } 0`,
+                justifyContent: 'center'
             },
             top: 0,
             left: 0,
@@ -85,10 +81,13 @@ const styles = createStyles(theme => {
             color: contrastTextSecondary,
             transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
+            maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_MD } - ${ PAPER_PADDING_MAX_MD } - ${ TOOLBAR_MAX_WIDTH })`,
             [theme.breakpoints.up('md')]: {
+                color: textPrimary,
+            },
+            [theme.breakpoints.up('lg')]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
                 maxWidth: `calc(100% - ${ PAPER_PADDING_MAX_LG } - ${ PAPER_PADDING_MAX_LG } - ${ TOOLBAR_MAX_WIDTH })`,
-                color: textPrimary,
             },
         },
         welcomeHeadingOther: {
@@ -97,7 +96,7 @@ const styles = createStyles(theme => {
         },
         welcomeButtons: {
             paddingLeft: PAPER_PADDING_MAX_MD,
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('lg')]: {
                 paddingLeft: PAPER_PADDING_MAX_LG
             }
         },
@@ -116,7 +115,7 @@ const styles = createStyles(theme => {
         welcomeHomeSubMenu: {
             position: 'absolute',
             left: PAPER_PADDING_MAX_MD,
-            [ theme.breakpoints.up('md') ]: {
+            [ theme.breakpoints.up('lg') ]: {
                 left: PAPER_PADDING_MAX_LG,
             },
             display: 'inline-block',

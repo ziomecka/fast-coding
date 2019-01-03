@@ -32,10 +32,8 @@ const styles = createStyles(theme => {
                 overflow: 'hidden'
             },
             [ theme.breakpoints.up('lg') ]: {
-                padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
-            },
-            overflow: 'hidden',
-            backgroundColor: defaultBackground
+                padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`
+            }
         },
         contentBoxHome: {
             [ theme.breakpoints.up('md') ]: {
