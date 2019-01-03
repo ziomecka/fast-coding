@@ -1,6 +1,7 @@
 import { createStyles } from '@material-ui/core/styles';
 import {
-    COURSE_HEIGHT,
+    COURSE_HEIGHT_MD,
+    COURSE_HEIGHT_LG,
     COLUMNS,
     SPACING_BEETWEEN_LESSONS,
     TRANSITION_DURATION
@@ -86,7 +87,10 @@ const styles = createStyles(theme => {
             justifyContent: 'flex-start',
             width: '100%',
             /** 2 tiles, 4 spacings visible */
-            maxHeight: `calc(${ COURSE_HEIGHT * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
+            maxHeight: `calc(${ COURSE_HEIGHT_MD * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
+            [theme.breakpoints.up('lg')]: {
+                maxHeight: `calc(${ COURSE_HEIGHT_LG * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 6 + 2 }px)`,
+            },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
                 display: 'none'
@@ -99,6 +103,7 @@ const styles = createStyles(theme => {
             alignItems: 'center',
             margin: `${ spacingUnit  * SPACING_BEETWEEN_LESSONS }px 0`,
             padding: 0,
+            boxSizing: 'border-box',
             '&:focus': {
                 outline: 'none',
             },
@@ -136,8 +141,12 @@ const styles = createStyles(theme => {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
-            width: COURSE_HEIGHT,
-            height: COURSE_HEIGHT,
+            width: COURSE_HEIGHT_MD,
+            height: COURSE_HEIGHT_MD,
+            [ theme.breakpoints.up('lg') ]:{
+                width: COURSE_HEIGHT_LG,
+                height: COURSE_HEIGHT_LG
+            },
             backgroundColor: lessonCardBackground
         },
         lessonCardButtonLabel: {
