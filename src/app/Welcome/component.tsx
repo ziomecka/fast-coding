@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { WelcomeProps } from './container';
-import NotDesktop from '@app/NotDesktop';
 
 /** Materials core */
 import Paper from '@material-ui/core/Paper';
@@ -190,7 +189,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                             )}
                         </>
                         :
-                        <NotDesktop />
+                        null
                 )}
                 </Media>
             </Paper>

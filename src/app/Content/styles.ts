@@ -10,7 +10,8 @@ import {
 const styles = createStyles(theme => {
     const {
         palette: {
-                background: { default: defaultBackground }
+                background: { default: defaultBackground },
+                primary: { main: mainBackground }
         },
         typography: {
             h4: { fontSize: titleFontSize }
@@ -23,6 +24,13 @@ const styles = createStyles(theme => {
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
             padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
+            backgroundColor: mainBackground,
+            height: '100vh',
+            [ theme.breakpoints.up('md') ]: {
+                height: 'auto',
+                backgroundColor: defaultBackground,
+                overflow: 'hidden'
+            },
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
             },
@@ -30,14 +38,19 @@ const styles = createStyles(theme => {
             backgroundColor: defaultBackground
         },
         contentBoxHome: {
-            height: '0',
-            padding: '0',
-            overflow: 'hidden'
+            [ theme.breakpoints.up('md') ]: {
+                height: '0',
+                padding: '0',
+                overflow: 'hidden'
+            }
         },
         contentBoxOther: {
             minHeight: 'calc(100vh)'
         },
         contentTitle: {
+            [ theme.breakpoints.down('md') ]: {
+                display: 'none'
+            },
             position: 'relative',
             display: 'block',
             width: '100%',

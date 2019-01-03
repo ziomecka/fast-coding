@@ -57,7 +57,9 @@ const styles = createStyles(theme => {
             transition: `${ transHeightFontSizeColor }`
         },
         welcomeHome: {
-            height: '100%',
+            [ theme.breakpoints.up('md') ]: {
+                height: '100%',
+            },
             fontSize: theme.typography.pxToRem(30) // for buttons TODO change
         },
         welcomeOther: {

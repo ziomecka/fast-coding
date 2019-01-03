@@ -10,6 +10,7 @@ import NewUserView from '../Newuser/';
 import ChangePasswordView from '../ChangePassword/';
 import NewPasswordView from '../NewPassword/';
 import RemindPasswordView from '../RemindPassword/';
+import NotDesktopView from '../NotDesktop/';
 
 import RouteAuth from '../RouteAuth/';
 
@@ -45,7 +46,7 @@ const Root: React.StatelessComponent<AppRouterPropsI> = props => {
 
     const smallerThanDesktop = (
         <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" component={ NotDesktopView } />
             <Route path="/">
                 <Redirect to='/' />
             </Route>
