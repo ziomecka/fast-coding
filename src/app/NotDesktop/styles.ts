@@ -19,7 +19,7 @@ const styles = createStyles( theme => {
         FCPaper: {
             backgroundColor,
             padding: `${ PAPER_PADDING_MAX_MD }`,
-            [ theme.breakpoints.up('md') ]: {
+            [ theme.breakpoints.up('lg') ]: {
                 padding: `${ PAPER_PADDING_MAX_LG }`,
             },
             '& p': {

@@ -26,7 +26,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
 import { TRANSITION_DURATION, COURSE_HEIGHT } from './constants.styles';
-import { NAV_HEIGHT } from '@constantsStyles';
+import { NAV_HEIGHT_LG } from '@constantsStyles';
 
 import { LessonsTypesEnum } from './_duck/types';
 const { review } = LessonsTypesEnum;
@@ -115,7 +115,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 const { scrollTop } = body;
 
                 body.scroll({
-                    top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top  - NAV_HEIGHT ), top + scrollTop ),
+                    top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT_LG, 0, top  - NAV_HEIGHT_LG ), top + scrollTop ),
                     behavior: smooth ? 'smooth' : 'auto'
                 })
 

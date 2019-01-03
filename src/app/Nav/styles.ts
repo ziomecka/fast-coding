@@ -1,7 +1,8 @@
 import { createStyles } from '@material-ui/core/styles';
 
 import {
-    NAV_HEIGHT,
+    NAV_HEIGHT_MD,
+    NAV_HEIGHT_LG,
     NAV_WELCOME_GO_UP,
     LOGIN_FONT_SIZE,
     LOGIN_LINE_HEIGHT,
@@ -29,7 +30,10 @@ const style = createStyles(theme => {
                 ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut})}`
         },
         navLessonClass: {
-            top: `-${NAV_HEIGHT}px`
+            top: `-${ NAV_HEIGHT_MD }px`,
+            [theme.breakpoints.up('lg')]: {
+                top: `-${ NAV_HEIGHT_LG }px`,
+            }
         },
         navLogin: {
             '&:after': {

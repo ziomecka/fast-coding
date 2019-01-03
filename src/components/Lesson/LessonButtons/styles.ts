@@ -28,7 +28,7 @@ const styles = createStyles(theme => {
             justifyContent: 'space-around',
             padding: PAPER_PADDING_MD,
             marginTop: PAPER_PADDING_MAX_MD,
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('lg')]: {
                 padding: PAPER_PADDING_LG,
                 marginTop: PAPER_PADDING_MAX_LG,
             },

@@ -1,4 +1,4 @@
-import { PAPER_PADDING_MAX_MD } from '@constantsStyles';
+import { PAPER_PADDING_MAX_MD, PAPER_PADDING_MAX_LG } from '@constantsStyles';
 import { createStyles } from '@material-ui/core/styles';
 
 const style = createStyles(theme => ({

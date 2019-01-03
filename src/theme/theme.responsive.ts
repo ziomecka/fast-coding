@@ -1,10 +1,13 @@
 import theme from './theme';
 
 import {
+    PAPER_PADDING_MD,
     PAPER_PADDING_LG,
+    PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
     FONT_SIZE,
-    NAV_HEIGHT
+    NAV_HEIGHT_MD,
+    NAV_HEIGHT_LG
 } from './constants';
 
 const getFontSizes = heading => (
@@ -30,7 +33,8 @@ theme.overrides.MuiTypography = {
 /** Make padding larger for lg and xlg */
 theme.overrides.MuiMenu.paper = {
     ...theme.overrides.MuiMenu.paper,
-    [theme.breakpoints.up('md')]: {
+    padding: PAPER_PADDING_MD,
+    [theme.breakpoints.up('lg')]: {
         padding: PAPER_PADDING_LG
     }
 };
@@ -38,10 +42,12 @@ theme.overrides.MuiMenu.paper = {
 /** MuiAppBar */
 theme.overrides.MuiAppBar.root = {
     ...theme.overrides.MuiAppBar.root,
-    [ theme.breakpoints.up('md') ]: {
+    maxHeight: `${ NAV_HEIGHT_MD }px`,
+    padding: `0 ${ PAPER_PADDING_MAX_MD }`,
+    [ theme.breakpoints.up('lg') ]: {
         padding: `0 ${ PAPER_PADDING_MAX_LG }`,
-        height: `${ NAV_HEIGHT }px`,
-        maxHeight: `${ NAV_HEIGHT }px`,
+        height: `${ NAV_HEIGHT_LG }px`,
+        maxHeight: `${ NAV_HEIGHT_LG }px`,
         flexDirection: 'row',
     }
 };
@@ -50,7 +56,8 @@ theme.overrides.MuiAppBar.root = {
 /** Make padding larger for lg and xlg */
 theme.overrides.MuiDialog.paper = {
     ...theme.overrides.MuiDialog.paper,
-    [theme.breakpoints.up('md')]: {
+    padding: PAPER_PADDING_MD,
+    [theme.breakpoints.up('lg')]: {
         padding: PAPER_PADDING_LG
     }
 };

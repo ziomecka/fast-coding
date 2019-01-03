@@ -25,7 +25,7 @@ const styles = createStyles(theme => {
         },
         notificationContentSuccess: {
             padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('md')] :{
+            [theme.breakpoints.up('lg')] :{
                 padding: PAPER_PADDING_LG
             },
             backgroundColor: successBackground,
@@ -40,7 +40,7 @@ const styles = createStyles(theme => {
         },
         notificationContentError: {
             padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('md')] :{
+            [theme.breakpoints.up('lg')] :{
                 padding: PAPER_PADDING_LG
             },
             backgroundColor: errorBackground

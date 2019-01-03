@@ -1,5 +1,4 @@
 import {
-    NAV_HEIGHT,
     NAV_LEFT,
     NAV_TOP,
     PAPER_PADDING_MD,

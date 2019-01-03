@@ -1,4 +1,6 @@
-export const NAV_HEIGHT = 160;
+export const NAV_HEIGHT_LG = 100;
+export const NAV_HEIGHT_MD = 80;
+
 export const NAV_MAXWIDTH = 400;
 export const NAV_TOP = 0;
 export const NAV_LEFT = 0;

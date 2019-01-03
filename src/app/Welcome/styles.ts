@@ -7,7 +7,8 @@ import {
 } from './constants.styles';
 
 import {
-    NAV_HEIGHT,
+    NAV_HEIGHT_LG,
+    NAV_HEIGHT_MD,
     NAV_WELCOME_GO_UP,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG
@@ -39,11 +40,14 @@ const styles = createStyles(theme => {
         welcomePaper: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            padding: `${ PAPER_PADDING_MAX_LG } 0`,
+            padding: `${ PAPER_PADDING_MAX_MD } 0`,
             [ theme.breakpoints.up('md') ]: {
                 position: 'fixed',
                 justifyContent: 'center',
                 padding: 0,
+            },
+            [ theme.breakpoints.up('lg') ]: {
+                padding: `${ PAPER_PADDING_MAX_LG } 0`,
             },
             top: 0,
             left: 0,
@@ -57,14 +61,22 @@ const styles = createStyles(theme => {
             fontSize: theme.typography.pxToRem(30) // for buttons TODO change
         },
         welcomeOther: {
-            [ theme.breakpoints.up('md')]: {
-                height: `${ NAV_HEIGHT }px`,
+            height: `${ NAV_HEIGHT_MD }px`,
+            maxHeight: `${ NAV_HEIGHT_MD }px`,
+            [ theme.breakpoints.up('lg')]: {
+                height: `${ NAV_HEIGHT_LG }px`,
+                maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
             fontSize: theme.typography.pxToRem(16), // for buttons TODO change
             color: textPrimary
         },
         welcomeLesson: {
-            top: `-${ NAV_HEIGHT }px`
+            top: `-${ NAV_HEIGHT_MD }px`,
+            maxHeight: `${ NAV_HEIGHT_MD }px`,
+            [ theme.breakpoints.up('lg')]: {
+                top: `-${ NAV_HEIGHT_LG }px`,
+                maxHeight: `${ NAV_HEIGHT_LG }px`,
+            },
         },
         welcomeHeading: {
             display: 'inline-block',
