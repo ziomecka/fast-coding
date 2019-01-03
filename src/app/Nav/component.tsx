@@ -36,7 +36,7 @@ import MenuButton from '../MenuButton';
 import MenuList from '../MenuList';
 
 import Media from 'react-media';
-import { MEDIA_DESKTOP } from '@constantsStyles';
+import { MEDIA_DESKTOP_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;
@@ -116,13 +116,12 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                     timeout={HOME_WELCOME_TIMEOUT}
                 />
 
-                <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>
-                {/*
-                // @ts-ignore */}
-                    <AppMenu subMenus={[ language, lessons, user ]} />
-                </Media>
-                <Media query={`(max-width: ${ MEDIA_DESKTOP - 1 }px)`}>
-                    <AppMenu subMenus={[ language ]} />
+                <Media query={`(min-width: ${ MEDIA_DESKTOP_MD }px)`}>
+                    { matches => (
+                        matches
+                            ? <AppMenu subMenus={[ language, lessons, user ]} />
+                            : <AppMenu subMenus={[ language ]} />
+                    )}
                 </Media>
             </MenuProvider>
         </AppBar>

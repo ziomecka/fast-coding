@@ -3,4 +3,4 @@ export const WELCOME_BUTTON_MARGIN_RIGHT = 2;
 
 export const TOOLBAR_MAX_WIDTH = '270px'; // arbitrary value
 
-export { MEDIA_DESKTOP } from '@constantsStyles';
+export { MEDIA_DESKTOP_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';

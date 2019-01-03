@@ -1,12 +1,13 @@
 export * from '@app/Nav/constants.styles';
 export * from '@components/Lesson/constants.styles';
-export { SPACING_BEETWEEN_LESSONS } from '@components/Course/constants.styles';
+export { SPACING_BEETWEEN_LESSONS, COLS_LG, COLS_MD } from '@components/Course/constants.styles';
+
 /** PADDING */
 export const PAPER_PADDING_MD = '1rem';
 export const PAPER_PADDING_LG = '2rem';
 
-export const PAPER_PADDING_MAX_MD = '1.5rem';
-export const PAPER_PADDING_MAX_LG = '3rem';
+export const PAPER_PADDING_MAX_MD = '3rem';
+export const PAPER_PADDING_MAX_LG = '6rem';
 
 /** ELEVATION */
 export const ELEVATION = 2;
@@ -20,7 +21,8 @@ export const COLOR_HINTS = '#90ab8e';
 export const BORDER_THIN = '.5px';
 
 /** BREAKPOINTS */
-export const MEDIA_DESKTOP = 1280;
+export const MEDIA_DESKTOP_MD = 960;
+export const MEDIA_DESKTOP_LG = 1280;
 
 /** TYPOGRAPHY */
 /** Only for h1 and h2 as only those displayed in screens xs - md

@@ -24,7 +24,7 @@ import { Translate } from 'react-localize-redux';
 
 
 import Media from 'react-media';
-import { MEDIA_DESKTOP } from '@constantsStyles';
+import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD } from '@constantsStyles';
 
 require('./style.sass');
 
@@ -167,7 +167,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 <MenuButton { ...this.button } />
 
                 {/* Render buttons only when Home and desktop */}
-                <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>{ matches => (
+                <Media query={`(min-width: ${ MEDIA_DESKTOP_MD }px)`}>{ matches => (
                     matches
                         ? <>
                             {isHome && (

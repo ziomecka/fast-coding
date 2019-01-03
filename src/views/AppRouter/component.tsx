@@ -25,7 +25,7 @@ import { AppRouterPropsI } from './container';
 
 import Media from 'react-media';
 
-import { MEDIA_DESKTOP } from '@constantsStyles';
+import { MEDIA_DESKTOP_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';
 
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
     const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutesEnum;
@@ -58,7 +58,7 @@ const Root: React.StatelessComponent<AppRouterPropsI> = props => {
                 <Router {...{ history }}>
                     <Route path="/">
                         <HomeView>
-                            <Media query={`(min-width: ${ MEDIA_DESKTOP }px)`}>{ matches =>
+                            <Media query={`(min-width: ${ MEDIA_DESKTOP_MD }px)`}>{ matches =>
                                 matches
                                     ?
                                         <>{ desktop }</>
