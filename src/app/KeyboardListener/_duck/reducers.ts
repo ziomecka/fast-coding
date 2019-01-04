@@ -9,7 +9,7 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import { ViewsContainersEnum } from '@viewsTypes';
 
 const { dialog, welcome } = AppContainersEnum;
-const { lesson } = ComponentsContainersEnum;
+const { lesson, lessonStepper } = ComponentsContainersEnum;
 const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 
@@ -26,7 +26,9 @@ export const INITIAL_STATE: KeyboardListenerState = {
         // @ts-ignore
         [ mainMenu, new Map([]) ],
         // @ts-ignore
-        [ userMenu, new Map([]) ]
+        [ userMenu, new Map([]) ],
+        // @ts-ignore
+        [ lessonStepper, new Map([]) ]
     ])
 };
 

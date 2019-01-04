@@ -11,6 +11,7 @@ export enum KeyboardListenerActionsEnum {
 
 export type KeyboardListenerContainersType =
     ComponentsContainersEnum.lesson |
+    ComponentsContainersEnum.lessonStepper |
     ViewsContainersEnum.homeView |
     AppContainersEnum.dialog |
     AppContainersEnum.welcome |
