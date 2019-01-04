@@ -242,58 +242,58 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         return (openedCourseId &&
             <Media query={`(min-width: ${ MEDIA_DESKTOP_LG }px)`} onChange={ this.onMediaQueryChange }>{ () => (
                 <>
-            <Stepper
-                classes={{
-                    root: stepper
-                }}
-                connector={null}
-                /** To avoid closing expansion panel on click.
-                 *  Needed because stepper is rendered within expansion panel
-                  */
-                onClick={ e => e.stopPropagation() }
-            >
-                {/* Fragment needed to avoid error: React does not recognize the `alternative Label` prop on a DOM element */}
-                <>
-                    { this.iconPrevious }
-                </>
+                    <Stepper
+                        classes={{
+                            root: stepper
+                        }}
+                        connector={null}
+                        /** To avoid closing expansion panel on click.
+                         *  Needed because stepper is rendered within expansion panel
+                         */
+                        onClick={ e => e.stopPropagation() }
+                    >
+                        {/* Fragment needed to avoid error: React does not recognize the `alternative Label` prop on a DOM element */}
+                        <>
+                            { this.iconPrevious }
+                        </>
 
-                { this.openedCourse.lessons.reduce(( acc, cv ) => {
-                    const { no } = cv;
-                    /** Display only every X lesson
-                     *  where x === numberOfLessonsDisplayed
-                    */
-                    if ( no % numberOfLessonsDisplayed === 0 ) {
-                        const min = no + 1;
-                        const max = Math.min( no + this.colsNumber * this.step, this.numberOfLessons );
+                        { this.openedCourse.lessons.reduce(( acc, cv ) => {
+                            const { no } = cv;
+                            /** Display only every X lesson
+                             *  where x === numberOfLessonsDisplayed
+                            */
+                            if ( no % numberOfLessonsDisplayed === 0 ) {
+                                const min = no + 1;
+                                const max = Math.min( no + this.colsNumber * this.step, this.numberOfLessons );
 
-                        acc.push(
-                            <Step key={ no }>
-                                <StepLabel
-                                    classes={{
-                                        iconContainer
-                                    }}
-                                    icon={
-                                        <IconButton
-                                            onClick={ (e) => this.scroll(no, true) }
-                                            disabled={ ( selectedLesson + 1 >= min ) && ( selectedLesson + 1 <= max ) }
+                                acc.push(
+                                    <Step key={ no }>
+                                        <StepLabel
+                                            classes={{
+                                                iconContainer
+                                            }}
+                                            icon={
+                                                <IconButton
+                                                    onClick={ (e) => this.scroll(no, true) }
+                                                    disabled={ ( selectedLesson + 1 >= min ) && ( selectedLesson + 1 <= max ) }
+                                                >
+                                                    <Typography variant="body1" className={ label } >
+                                                        { min }{ (max !== min) ? `-${ max }` : null }
+                                                    </Typography>
+                                                </IconButton>
+                                            }
                                         >
-                                            <Typography variant="body1" className={ label } >
-                                                { min }{ (max !== min) ? `-${ max }` : null }
-                                            </Typography>
-                                        </IconButton>
-                                    }
-                                >
-                                </StepLabel>
-                            </Step>
-                        )
-                    }
+                                        </StepLabel>
+                                    </Step>
+                                )
+                            }
 
-                    return acc;
-                }, [])}
-                <>
-                    { this.iconNext }
-                </>
-            </Stepper>
+                            return acc;
+                        }, [])}
+                        <>
+                            { this.iconNext }
+                        </>
+                    </Stepper>
                 </>
             )}</Media>
         );
