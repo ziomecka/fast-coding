@@ -90,6 +90,12 @@ import {
     GoogleLoginState
 } from '../GoogleLogin/_duck/reducers';
 
+import {
+    INITIAL_STATE as TRANSLATIONS_LOADER_INITIAL_STATE,
+    translationsLoaderReducer,
+    TranslationsLoaderState
+} from '../TranslationsLoader/_duck/reducers';
+
 const {
     loginForm,
     dialog,
@@ -104,7 +110,8 @@ const {
     keyboardListener,
     remindPasswordForm,
     newPasswordForm,
-    googleLogin
+    googleLogin,
+    translationsLoader
 } = AppContainersEnum;
 
 export const INITIAL_STATE = {
@@ -121,7 +128,8 @@ export const INITIAL_STATE = {
     [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE,
     [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE,
     [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE,
-    [googleLogin]: GOOGLE_LOGIN_INITIAL_STATE
+    [googleLogin]: GOOGLE_LOGIN_INITIAL_STATE,
+    [translationsLoader]: TRANSLATIONS_LOADER_INITIAL_STATE
 };
 
 const {
@@ -149,7 +157,8 @@ const combinedReducers = combineReducers({
     [keyboardListener]: keyboardListenerReducer,
     [remindPasswordForm]: remindPasswordReducer,
     [newPasswordForm]: newPasswordFormReducer,
-    [googleLogin]: googleLoginReducer
+    [googleLogin]: googleLoginReducer,
+    [translationsLoader]: translationsLoaderReducer
 });
 
 const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
@@ -222,4 +231,5 @@ export interface AppState {
     [remindPasswordForm]: RemindPasswordState;
     [newPasswordForm]: NewPasswordFormState;
     [googleLogin]: GoogleLoginState;
+    [translationsLoader]: TranslationsLoaderState;
 };

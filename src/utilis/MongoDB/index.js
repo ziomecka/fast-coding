@@ -1,17 +1,6 @@
 require('dotenv').config();
 const generateCourses = require('./generate.courses');
-
-async function createCoursesCollection() {
-    let fun = require('./create.collection').createCollection;
-
-    try {
-        await fun();
-        console.log('DONE');
-        return true;
-    } catch (err) {
-        throw err;
-    }
-}
+const generateTranslations = require('./generate.translations');
 
 function insertCourses() {
     let fun = require('./insert.courses').insertCourses;
@@ -25,10 +14,23 @@ function insertCourses() {
     }
 }
 
+function insertTranslations() {
+    let fun = require('./insert.translations').insertTranslations;
+
+    try {
+        fun();
+        console.log('DONE');
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = {
-    createCoursesCollection,
     insertCourses,
-    generateCourses // into the directory MongoDB/courses
+    insertTranslations,
+    generateCourses, // into the directory MongoDB/courses
+    generateTranslations // into the directory MongoDB/translations
 };
 
 require('make-runnable');
