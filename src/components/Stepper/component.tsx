@@ -300,10 +300,4 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     }
 }
 
-<<<<<<< HEAD
 export default withStyles(styles)(withTheme()(StepperComponent));
-=======
-export default withStyles(styles)(withTheme()(StepperComponent));
-
-type StepperModifierType = -1 | 1 | 0;
->>>>>>> f9ec530... Stepper. Scrolling added when arrows used. scroll method accepts modifier. stepperModifierType added
