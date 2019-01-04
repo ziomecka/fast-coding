@@ -4,6 +4,7 @@ import { ContentProps } from './container';
 import { default as Dialog } from '@app/Dialog/';
 import { default as Notification } from '@app/Notification/';
 import DragOverable from '../DragOverable';
+import Footer from '../Footer/';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -130,6 +131,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             <Dialog />
 
             <Notification />
+            <Footer />
         </DragOverable>
     );
   }
