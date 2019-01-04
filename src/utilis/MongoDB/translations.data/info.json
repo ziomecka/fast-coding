@@ -1,0 +1,32 @@
+{
+    "_id": "privacyPolicy",
+    "pl": [
+        {
+            "content": "Privacy Policy",
+            "type": "h"
+        },
+        {
+            "content": "Last updated: 3rd January 2019",
+            "type": "h"
+        },
+        {
+            "content": "FastCoding (\"us\", \"we\", or \"our\") operates https://fast-coding.herokuapp.com/ (the \"Site\"). This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site.",
+            "type": "p"
+        }
+    ],
+    "en": [
+        {
+            "content": "Privacy Policy",
+            "type": "h"
+        },
+        {
+            "content": "Last updated: 3rd January 2019",
+            "type": "h"
+        },
+        {
+            "content": "FastCoding (\"us\", \"we\", or \"our\") operates https://fast-coding.herokuapp.com/ (the \"Site\"). This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site.",
+            "type": "p"
+        }
+
+    ]
+}

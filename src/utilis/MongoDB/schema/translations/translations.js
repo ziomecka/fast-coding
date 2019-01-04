@@ -9,8 +9,8 @@ const translationsSchema = new Schema({
         required: [ true, 'Id has to be a string'],
         unique: true
     },
-    "en": translationSchema,
-    "pl": translationSchema
+    "en": [ translationSchema ],
+    "pl": [ translationSchema ]
 }, {
     collection: "translations"
 });

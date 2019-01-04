@@ -3,9 +3,11 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 const Course = require('./schema/index')('course');
+const Translations = require('./schema/index')('translations');
 
 const map = new Map([
-    [ 'course', Course ]
+    [ 'course', Course ],
+    [ 'translations', Translations ]
 ]);
 
 const insert = async (targetPath, key) => {
