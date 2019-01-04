@@ -13,7 +13,8 @@ export enum AppContainersEnum {
     keyboardListener = 'KEYBOARD_LISTENER',
     remindPasswordForm = 'REMIND_PASSWORD',
     newPasswordForm = 'NEW_PASSWORD',
-    googleLogin = 'GOOGLE_LOGIN'
+    googleLogin = 'GOOGLE_LOGIN',
+    translationsLoader = 'TRANSLATIONS_LOADER'
 };
 
 export enum AppRoutesEnum {
@@ -30,5 +31,6 @@ export enum AppRoutesEnum {
     remindPassword = '/remindpassword',
     newPassword = '/newpassword',
     newPasswordSet = '/newpassword/set',
-    privacyPolicy = '/privacyPolicy'
+    privacyPolicy = '/privacyPolicy',
+    translationsGet = '/translations/get'
 };
