@@ -96,9 +96,13 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   render() {
-    const { classes, title, lessonNo } = this.props;
-    const { isHome, isLesson, lessonTitle, lessonTranslation } = this;
-    const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
+    const {
+        props: {
+            classes: { contentBox, contentBoxHome, contentBoxOther, contentTitle },
+            title, lessonNo
+        },
+        isHome, isLesson, lessonTitle, lessonTranslation
+     } = this;
 
     return (
         <DragOverable
