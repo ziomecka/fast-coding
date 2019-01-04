@@ -24,6 +24,7 @@ export const BORDER_THIN = '.5px';
 export const MEDIA_DESKTOP_MD = 960;
 export const MEDIA_DESKTOP_LG = 1280;
 
+export const LINE_HEIGHT = 1.3;
 /** TYPOGRAPHY */
 /** Only for h1 and h2 as only those displayed in screens xs - md
  *  See: NotDesktop component
