@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const translationSchema = require('./translation');
-
 const translationsSchema = new Schema({
-    "_id": {
+    "id": {
         type: String,
         required: [ true, 'Id has to be a string'],
         unique: true
     },
-    "en": [ translationSchema ],
-    "pl": [ translationSchema ]
+    "en": { any: Object },
+    "pl": { any: Object }
 }, {
-    collection: "translations"
+    collection: "translations",
+    strict: false
 });
 
 module.exports = translationsSchema;
