@@ -77,7 +77,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         try {
             this.getLessonHTML(number).classList.add(selectedLessonClass);
             if (number !== selectedLesson ){
-                this.getLessonHTML(this.state.selectedLesson).classList.remove(selectedLessonClass);
+                this.getLessonHTML(selectedLesson).classList.remove(selectedLessonClass);
             }
         }
         finally {
