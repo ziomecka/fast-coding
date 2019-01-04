@@ -58,7 +58,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         this.listener = this.listener.bind(this);
     }
 
-    focusLesson(no: number = this.state.selectedLesson, modifier: -1 | 1 | 0 = 0, preventScroll: boolean = false) {
+    focusLesson(no: number = this.state.selectedLesson, modifier: StepperModifierType = 0, preventScroll: boolean = false) {
         const {
             props: { classes: { selectedLesson: selectedLessonClass }},
             state: { selectedLesson }
@@ -102,13 +102,13 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
         // 37 - arrow left
         if ( e.keyCode === 37 ) {
-            this.focusLesson( undefined, -1 );
+            this.scroll(this.state.selectedLesson, true, -1)
             return true;
         }
 
         // 39 - arrow right
         if ( e.keyCode === 39 ) {
-            this.focusLesson( undefined, 1 );
+            this.scroll(this.state.selectedLesson, true, 1)
             return true;
         }
     }
@@ -151,10 +151,14 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         );
     }
 
-    scroll (no: number, smooth = false, e?: React.MouseEvent<HTMLElement>): void {
-        let lessonHTML = this.getLessonHTML(no);
+    scroll (no: number, smooth = false, modifier: StepperModifierType = 0): void {
+        let lessonHTML = this.getLessonHTML(no + modifier);
 
         if ( lessonHTML ) {
+            /** Scrolling could be avoided if there is no need i.e.
+             * top already equals lessonHTML. E.g. when left right arrows are used
+             * Not worth coding?
+             */
             document.getElementById(`details-${ this.props.openedCourseId }`).scroll({
                 top: lessonHTML.offsetTop,
                 behavior: smooth ? 'smooth' : 'auto'
@@ -162,7 +166,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
             lessonHTML = null; // GC
 
-            this.focusLesson(no, 0, true);
+            this.focusLesson(no, modifier, true);
         }
     }
 
@@ -255,7 +259,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
                                     }}
                                     icon={
                                         <IconButton
-                                            onClick={ (e) => this.scroll(no, true, e) }
+                                            onClick={ (e) => this.scroll(no, true) }
                                             disabled={ ( selectedLesson + 1 >= min ) && ( selectedLesson + 1 <= max ) }
                                         >
                                             <Typography variant="body1" className={ label } >
@@ -282,3 +286,5 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 }
 
 export default withStyles(styles)(withTheme()(StepperComponent));
+
+type StepperModifierType = -1 | 1 | 0;
