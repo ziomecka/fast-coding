@@ -12,15 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import IconPrevious from '@material-ui/icons/ChevronLeft';
 import IconNext from '@material-ui/icons/ChevronRight';
 
-import { Translate } from 'react-localize-redux';
-
 import withStyles from '@material-ui/core/styles/withStyles';
 import withTheme from '@material-ui/core/styles/withTheme';
 import styles from './styles';
 
 import { LessonData } from '../Lesson/_duck/reducers';
 
-import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD, COLS_LG, COLS_MD } from '@constantsStyles';
+import { MEDIA_DESKTOP_LG, COLS_LG, COLS_MD } from '@constantsStyles';
 
 import Media from 'react-media';
 
@@ -234,7 +232,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     render () {
         const {
-            props: { openedCourseId, classes: { stepper, iconContainer, goTo, label } },
+            props: { openedCourseId, classes: { stepper, iconContainer, label } },
             state: { selectedLesson },
             numberOfLessonsDisplayed
         } = this;
