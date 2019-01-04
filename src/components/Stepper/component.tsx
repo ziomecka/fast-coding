@@ -26,7 +26,8 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 const { lessonStepper } = ComponentsContainersEnum;
 
 /**
- * Needed for media query.
+ * mediaLarge: needed for media query.
+ * selectedLesson: needed for managing 'focus'
  */
 interface IStepperState {
     mediaLarge: boolean;
