@@ -1,7 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { DialogActionsEnum } from './types';
-
-import { DialogOptions } from './reducers';
+import { DialogActionsEnum, DialogOptions } from './types';
 
 const {
     APP_DIALOG_CLOSE,

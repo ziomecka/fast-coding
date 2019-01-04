@@ -1,9 +1,7 @@
 import { Action, Reducer } from 'redux';
 
-import { DialogActionsEnum } from './types';
+import { DialogActionsEnum, AppDialogOptions } from './types';
 import { DialogActions, OpenDialogAction } from './actions';
-import { DialogProps } from '@material-ui/core/Dialog';
-import { ButtonProps } from '@material-ui/core/Button';
 
 const {
     APP_DIALOG_OPEN,
@@ -55,28 +53,5 @@ const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_S
 }
 
 export { reducer as dialogReducer };
-
-interface DialogButtonsProps {
-    title: string,
-    buttonProps: ButtonProps;
-    translationId: string;
-    aftertext?: string;
-    key?: string
-}
-
-interface AppDialogOptions {
-    messageId: string;
-    titleId: string;
-    buttons: Array<DialogButtonsProps>;
-    dialogProps: DialogProps;
-};
-
-export interface DialogOptions extends AppDialogOptions {
-    onClose: () => void;
-    onEnter?: () => void;
-    onBackdropClick?: () => void;
-    onExited?: () => void;
-    onKeydown?: () => void;
-};
 
 export interface DialogState extends AppDialogOptions {};
