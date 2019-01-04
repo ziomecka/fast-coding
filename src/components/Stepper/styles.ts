@@ -2,12 +2,7 @@ import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles(theme => {
     const {
-        palette: {
-            primary: {
-                dark: color
-            },
-            action: { hover }
-        },
+        palette: { action: { hover } },
         typography: { subtitle1: { fontSize, lineHeight } }
     } = theme
 
@@ -33,7 +28,7 @@ const styles = createStyles(theme => {
         label: {
             fontSize,
             lineHeight,
-            color,
+            color: 'inherit',
             textAlign: 'center',
         },
         selectedLesson: {

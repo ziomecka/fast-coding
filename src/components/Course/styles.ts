@@ -4,7 +4,8 @@ import {
     COURSE_HEIGHT_LG,
     COLUMNS,
     SPACING_BEETWEEN_LESSONS,
-    TRANSITION_DURATION
+    TRANSITION_DURATION,
+    SVG_SIZE
 } from './constants.styles';
 
 import {
@@ -130,11 +131,18 @@ const styles = createStyles(theme => {
             }
         },
         expansionButton: {
-            width: '100px',
-            height: '100px',
-            fontWeight: fontWeightMedium,
             flexGrow: 0,
-            transition: theme.transitions.create('transform', { duration })
+            transition: theme.transitions.create('transform', { duration }),
+            "& svg": {
+                width: SVG_SIZE,
+                height: SVG_SIZE
+            },
+            // to be aligned with the right border of lessons in the last column
+            // So:
+            // PAPER_PADDING - the same as in collapsedEntered
+            // SVG_SIZE / 2 - because material design applies translateY(-50%) to the expansionButton ( I offset it )
+            right: `calc(${ PAPER_PADDING_LG } + ${ SVG_SIZE } / 2)`,
+            padding: 0
         },
         lessonCardContent: {
             padding: 0,

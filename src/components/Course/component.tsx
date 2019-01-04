@@ -102,6 +102,10 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.scroll();
     }
 
+    componentWillUnmount() {
+        document.querySelector('body').scroll({ top: 0 });
+    }
+
     /**
      *  Scroll the body to the course
      */

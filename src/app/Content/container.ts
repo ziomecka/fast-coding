@@ -25,14 +25,16 @@ import { LocalizeState } from 'react-localize-redux';
 import { LessonState } from '@components/Lesson/_duck/reducers';
 
 interface MapStateToPropsI extends ContentState {
-    localize: LocalizeState,
-    lessonTitle: string
+    localize: LocalizeState;
+    lessonTitle: string;
+    lessonNo: number;
 };
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][content],
     localize: { ...state.localize },
-    lessonTitle: state[components][lesson].title
+    lessonTitle: state[components][lesson].title,
+    lessonNo: state[components][lesson].no
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): ContentDispatch => ({

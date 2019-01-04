@@ -12,15 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import IconPrevious from '@material-ui/icons/ChevronLeft';
 import IconNext from '@material-ui/icons/ChevronRight';
 
-import { Translate } from 'react-localize-redux';
-
 import withStyles from '@material-ui/core/styles/withStyles';
 import withTheme from '@material-ui/core/styles/withTheme';
 import styles from './styles';
 
 import { LessonData } from '../Lesson/_duck/reducers';
 
-import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD, COLS_LG, COLS_MD } from '@constantsStyles';
+import { MEDIA_DESKTOP_LG, COLS_LG, COLS_MD } from '@constantsStyles';
 
 import Media from 'react-media';
 
@@ -28,7 +26,8 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 const { lessonStepper } = ComponentsContainersEnum;
 
 /**
- * Needed for media query.
+ * mediaLarge: needed for media query.
+ * selectedLesson: needed for managing 'focus'
  */
 interface IStepperState {
     mediaLarge: boolean;
@@ -58,7 +57,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         this.listener = this.listener.bind(this);
     }
 
-    focusLesson(no: number = this.state.selectedLesson, modifier: -1 | 1 | 0 = 0, preventScroll: boolean = false) {
+    focusLesson(no: number = this.state.selectedLesson, modifier: number = 0, preventScroll: boolean = false) {
         const {
             props: { classes: { selectedLesson: selectedLessonClass }},
             state: { selectedLesson }
@@ -77,7 +76,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         try {
             this.getLessonHTML(number).classList.add(selectedLessonClass);
             if (number !== selectedLesson ){
-                this.getLessonHTML(this.state.selectedLesson).classList.remove(selectedLessonClass);
+                this.getLessonHTML(selectedLesson).classList.remove(selectedLessonClass);
             }
         }
         finally {
@@ -102,14 +101,30 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
         // 37 - arrow left
         if ( e.keyCode === 37 ) {
-            this.focusLesson( undefined, -1 );
+            this.scroll(this.state.selectedLesson, true, -1)
             return true;
         }
 
         // 39 - arrow right
         if ( e.keyCode === 39 ) {
-            this.focusLesson( undefined, 1 );
+            this.scroll(this.state.selectedLesson, true, 1)
             return true;
+        }
+
+        // 38 - arrow up
+        if( e.keyCode === 38) {
+            e.preventDefault();
+            this.scroll(this.state.selectedLesson, true, this.colsNumber * -1)
+            return true;
+
+        }
+
+        // 40 - arrow down
+        if ( e.keyCode === 40) {
+            e.preventDefault();
+            this.scroll(this.state.selectedLesson, true, this.colsNumber)
+            return true;
+
         }
     }
 
@@ -151,10 +166,14 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         );
     }
 
-    scroll (no: number, smooth = false, e?: React.MouseEvent<HTMLElement>): void {
-        let lessonHTML = this.getLessonHTML(no);
+    scroll (no: number, smooth = false, modifier: number = 0): void {
+        let lessonHTML = this.getLessonHTML(no + modifier);
 
         if ( lessonHTML ) {
+            /** Scrolling could be avoided if there is no need i.e.
+             * top already equals lessonHTML. E.g. when left right arrows are used
+             * Not worth coding?
+             */
             document.getElementById(`details-${ this.props.openedCourseId }`).scroll({
                 top: lessonHTML.offsetTop,
                 behavior: smooth ? 'smooth' : 'auto'
@@ -162,7 +181,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
             lessonHTML = null; // GC
 
-            this.focusLesson(no, 0, true);
+            this.focusLesson(no, modifier, true);
         }
     }
 
@@ -214,7 +233,8 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     render () {
         const {
-            props: { openedCourseId, classes: { stepper, iconContainer, goTo, label } },
+            props: { openedCourseId, classes: { stepper, iconContainer, label } },
+            state: { selectedLesson },
             numberOfLessonsDisplayed
         } = this;
 
@@ -222,55 +242,58 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         return (openedCourseId &&
             <Media query={`(min-width: ${ MEDIA_DESKTOP_LG }px)`} onChange={ this.onMediaQueryChange }>{ () => (
                 <>
-            <Stepper
-                classes={{
-                    root: stepper
-                }}
-                connector={null}
-                /** To avoid closing expansion panel on click.
-                 *  Needed because stepper is rendered within expansion panel
-                  */
-                onClick={ e => e.stopPropagation() }
-            >
-                {/* Fragment needed to avoid error: React does not recognize the `alternative Label` prop on a DOM element */}
-                <>
-                    { this.iconPrevious }
-                </>
+                    <Stepper
+                        classes={{
+                            root: stepper
+                        }}
+                        connector={null}
+                        /** To avoid closing expansion panel on click.
+                         *  Needed because stepper is rendered within expansion panel
+                         */
+                        onClick={ e => e.stopPropagation() }
+                    >
+                        {/* Fragment needed to avoid error: React does not recognize the `alternative Label` prop on a DOM element */}
+                        <>
+                            { this.iconPrevious }
+                        </>
 
-                { this.openedCourse.lessons.reduce(( acc, cv ) => {
-                    const { no } = cv;
-                    /** Display only every X lesson
-                     *  where x === numberOfLessonsDisplayed
-                    */
-                    if ( no % numberOfLessonsDisplayed === 0 ) {
-                        const min = no + 1;
-                        const max = Math.min( no + this.colsNumber * this.step, this.numberOfLessons );
+                        { this.openedCourse.lessons.reduce(( acc, cv ) => {
+                            const { no } = cv;
+                            /** Display only every X lesson
+                             *  where x === numberOfLessonsDisplayed
+                            */
+                            if ( no % numberOfLessonsDisplayed === 0 ) {
+                                const min = no + 1;
+                                const max = Math.min( no + this.colsNumber * this.step, this.numberOfLessons );
 
-                        acc.push(
-                            <Step key={ no }>
-                                <StepLabel
-                                    classes={{
-                                        iconContainer
-                                    }}
-                                    icon={
-                                        <IconButton onClick={ (e) => this.scroll(no, true, e) }>
-                                            <Typography variant="body1" className={ label } >
-                                                { min }{ (max !== min) ? `-${ max }` : null }
-                                            </Typography>
-                                        </IconButton>
-                                    }
-                                >
-                                </StepLabel>
-                            </Step>
-                        )
-                    }
+                                acc.push(
+                                    <Step key={ no }>
+                                        <StepLabel
+                                            classes={{
+                                                iconContainer
+                                            }}
+                                            icon={
+                                                <IconButton
+                                                    onClick={ (e) => this.scroll(no, true) }
+                                                    disabled={ ( selectedLesson + 1 >= min ) && ( selectedLesson + 1 <= max ) }
+                                                >
+                                                    <Typography variant="body1" className={ label } >
+                                                        { min }{ (max !== min) ? `-${ max }` : null }
+                                                    </Typography>
+                                                </IconButton>
+                                            }
+                                        >
+                                        </StepLabel>
+                                    </Step>
+                                )
+                            }
 
-                    return acc;
-                }, [])}
-                <>
-                    { this.iconNext }
-                </>
-            </Stepper>
+                            return acc;
+                        }, [])}
+                        <>
+                            { this.iconNext }
+                        </>
+                    </Stepper>
                 </>
             )}</Media>
         );
