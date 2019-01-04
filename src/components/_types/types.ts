@@ -4,5 +4,6 @@ export enum ComponentsContainersEnum {
     textGenerator = 'TEXT_GENERATOR',
     lessonsLoader = 'LESSONS_LOADER',
     lessons = 'LESSONS',
-    lessonButtons = 'LESSON_BUTTONS'
+    lessonButtons = 'LESSON_BUTTONS',
+    lessonStepper = 'LESSON_STEPPER'
 };
