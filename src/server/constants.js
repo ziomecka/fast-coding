@@ -40,6 +40,7 @@ const PASSWORD_MANAGER_RESPONSES = {
 
 const ROUTES = {
     LESSONS_GET: '/lessons/get',
+    TRANSLATIONS_GET: '/translations/get',
     NEW_USER_SET: '/newuser/set',
     LOGIN_LOG: '/login/log',
     CHANGE_PASSWORD: '/changepassword',
