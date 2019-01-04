@@ -251,6 +251,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                             { description }
                         </Typography>
                     </div>
+                    { isExpanded && <Stepper /> }
                 </ExpansionPanelSummary>
 
                 <Grid
@@ -268,7 +269,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                         }
                     }</Media>
 
-                    { isExpanded && <Stepper /> }
                 </Grid>
             </ExpansionPanel>
         );

@@ -1,38 +1,34 @@
 import { createStyles } from '@material-ui/core/styles';
-import { MIN_HEIGHT } from './constants.styles';
 
 const styles = createStyles(theme => {
     const {
-        shadows: { [ 10 ]: boxShadow },
-        shape: { borderRadius },
         palette: {
             primary: {
-                dark: backgroundColor,
-                contrastText: color
+                dark: color
             },
+            action: { hover }
         },
-        spacing: { unit: padding },
         typography: { subtitle1: { fontSize, lineHeight } }
     } = theme
 
     return {
         stepper: {
             position: 'absolute',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            right: `${ padding * 2 }`,
-            backgroundColor,
-            boxShadow,
-            padding: `${ padding * 2} ${ padding }`,
-            width: padding * 8,
-            minHeight: MIN_HEIGHT,
+            left: '50%',
+            bottom: 0,
+            transform: 'translate(-50%, 50%)',
+            backgroundColor: 'transparent',
+            padding: 0,
             justifyContent: 'center',
-            color,
-            borderRadius
         },
         iconContainer: {
-            padding:`${ padding * 2 } 0 ${ padding * 2 }`,
-            color
+            padding: 0,
+        },
+        iconDense: {
+            '& svg': {
+                marginLeft: '-.4em',
+                marginRight: '-.4em'
+            }
         },
         label: {
             fontSize,
@@ -40,9 +36,10 @@ const styles = createStyles(theme => {
             color,
             textAlign: 'center',
         },
-        goTo: {
-            lineHeight: '.9em',
-            padding:`${ padding * 2 } 0 ${ padding * 2 }`,
+        selectedLesson: {
+            '& button': {
+                backgroundColor: hover
+            }
         }
     };
 });

@@ -37,7 +37,7 @@ const styles = createStyles(theme => {
         },
         collapsedContainer: {
             overflow: 'hidden',
-            position: 'relative', // for Stepper
+            position: 'relative', // for scrolling offsetParent
             padding: 0,
             width: '100%'
         },
@@ -66,7 +66,8 @@ const styles = createStyles(theme => {
             justifyContent: 'flex-start',
             flexDirection: 'row',
             width: '100%',
-            paddingRight: 0
+            paddingRight: 0,
+            position: 'relative' // for Stepper
         },
         summaryHeading: {
             paddingTop: '1em',
