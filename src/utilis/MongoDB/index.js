@@ -2,18 +2,6 @@ require('dotenv').config();
 const generateCourses = require('./generate.courses');
 const generateTranslations = require('./generate.translations');
 
-async function createCoursesCollection() {
-    let fun = require('./create.collection').createCollection;
-
-    try {
-        await fun();
-        console.log('DONE');
-        return true;
-    } catch (err) {
-        throw err;
-    }
-}
-
 function insertCourses() {
     let fun = require('./insert.courses').insertCourses;
 
@@ -39,7 +27,6 @@ function insertTranslations() {
 }
 
 module.exports = {
-    createCoursesCollection,
     insertCourses,
     insertTranslations,
     generateCourses, // into the directory MongoDB/courses
