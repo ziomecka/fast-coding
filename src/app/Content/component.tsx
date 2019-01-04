@@ -15,6 +15,8 @@ import { AppRoutesEnum } from '@appTypes';
 import { Translate, getActiveLanguage } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 
+import getTranslation from '@shared/get.translation';
+
 const { demo, home, lessons, login, newuser, remindPassword, changePassword, newPassword } = AppRoutesEnum;
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
@@ -87,11 +89,15 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
   get lessonTitle(): string {
       return this.props.lessonTitle[this.langCode];
+    }
+
+  get lessonTranslation(): string {
+      return getTranslation(this.props.localize, "lessonsLesson");
   }
 
   render() {
-    const { classes, title } = this.props;
-    const { isHome, isLesson, lessonTitle } = this;
+    const { classes, title, lessonNo } = this.props;
+    const { isHome, isLesson, lessonTitle, lessonTranslation } = this;
     const { contentBox, contentBoxHome, contentBoxOther, contentTitle } = classes;
 
     return (
@@ -102,7 +108,15 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         >
             <Typography variant="h2" className={contentTitle}>
                 <Translate id={title} options={ {
-                    onMissingTranslation: () => (isLesson && lessonTitle) || '',
+                    // TODO nie podoba mi się
+                    // bo jest zbyt 'proste'
+                    // bo trudno dodawać style
+                    onMissingTranslation: () => (
+                        isLesson && (
+                            `${ lessonTranslation } ${ lessonNo + 1 }
+                            ${ lessonTitle }`
+                        )
+                    ) || '',
                     renderToStaticMarkup
                 }} />
             </Typography>

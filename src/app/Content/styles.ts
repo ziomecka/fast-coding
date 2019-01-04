@@ -4,7 +4,8 @@ import {
     NAV_HEIGHT_MD,
     NAV_HEIGHT_LG,
     PAPER_PADDING_MAX_MD,
-    PAPER_PADDING_MAX_LG
+    PAPER_PADDING_MAX_LG,
+    LINE_HEIGHT
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -54,7 +55,9 @@ const styles = createStyles(theme => {
             width: '100%',
             left: 0,
             fontSize: titleFontSize,
-            margin: `1em 0`
+            margin: `1em 0`,
+            whiteSpace: 'pre-line',
+            lineHeight: `${ LINE_HEIGHT }em`
         }
     };
 });
