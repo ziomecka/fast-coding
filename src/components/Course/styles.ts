@@ -4,7 +4,8 @@ import {
     COURSE_HEIGHT_LG,
     COLUMNS,
     SPACING_BEETWEEN_LESSONS,
-    TRANSITION_DURATION
+    TRANSITION_DURATION,
+    SVG_SIZE
 } from './constants.styles';
 
 import {
@@ -130,11 +131,12 @@ const styles = createStyles(theme => {
             }
         },
         expansionButton: {
-            width: '100px',
-            height: '100px',
-            fontWeight: fontWeightMedium,
             flexGrow: 0,
-            transition: theme.transitions.create('transform', { duration })
+            transition: theme.transitions.create('transform', { duration }),
+            "& svg": {
+                width: SVG_SIZE,
+                height: SVG_SIZE
+            }
         },
         lessonCardContent: {
             padding: 0,
