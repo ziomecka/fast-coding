@@ -58,7 +58,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         this.listener = this.listener.bind(this);
     }
 
-    focusLesson(no: number = this.state.selectedLesson, modifier: StepperModifierType = 0, preventScroll: boolean = false) {
+    focusLesson(no: number = this.state.selectedLesson, modifier: number = 0, preventScroll: boolean = false) {
         const {
             props: { classes: { selectedLesson: selectedLessonClass }},
             state: { selectedLesson }
@@ -111,6 +111,22 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
             this.scroll(this.state.selectedLesson, true, 1)
             return true;
         }
+
+        // 38 - arrow up
+        if( e.keyCode === 38) {
+            e.preventDefault();
+            this.scroll(this.state.selectedLesson, true, this.colsNumber * -1)
+            return true;
+
+        }
+
+        // 40 - arrow down
+        if ( e.keyCode === 40) {
+            e.preventDefault();
+            this.scroll(this.state.selectedLesson, true, this.colsNumber)
+            return true;
+
+        }
     }
 
     async componentDidMount() {
@@ -151,7 +167,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         );
     }
 
-    scroll (no: number, smooth = false, modifier: StepperModifierType = 0): void {
+    scroll (no: number, smooth = false, modifier: number = 0): void {
         let lessonHTML = this.getLessonHTML(no + modifier);
 
         if ( lessonHTML ) {
@@ -286,5 +302,3 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 }
 
 export default withStyles(styles)(withTheme()(StepperComponent));
-
-type StepperModifierType = -1 | 1 | 0;
