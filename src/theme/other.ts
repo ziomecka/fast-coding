@@ -15,7 +15,10 @@ import {
     flexRowJustifyFlexEndAlignCenter
 } from './flexes';
 
-const { palette: { error : { main : errorColor } } } = require('./palette').default;
+const { palette: {
+    error : { main : errorColor },
+    text: { disabled }
+}} = require('./palette').default;
 
 export default {
     props: {
@@ -145,6 +148,13 @@ export default {
         MuiFormHelperText: {
             root: {
                 color: errorColor
+            }
+        },
+        MuiIconButton: {
+            root: {
+                '&$disabled': {
+                    color: disabled // used in Stepper
+                }
             }
         }
     }

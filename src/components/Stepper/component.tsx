@@ -215,6 +215,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     render () {
         const {
             props: { openedCourseId, classes: { stepper, iconContainer, goTo, label } },
+            state: { selectedLesson },
             numberOfLessonsDisplayed
         } = this;
 
@@ -253,7 +254,10 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
                                         iconContainer
                                     }}
                                     icon={
-                                        <IconButton onClick={ (e) => this.scroll(no, true, e) }>
+                                        <IconButton
+                                            onClick={ (e) => this.scroll(no, true, e) }
+                                            disabled={ ( selectedLesson + 1 >= min ) && ( selectedLesson + 1 <= max ) }
+                                        >
                                             <Typography variant="body1" className={ label } >
                                                 { min }{ (max !== min) ? `-${ max }` : null }
                                             </Typography>
