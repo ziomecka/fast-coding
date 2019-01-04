@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const mongoose = require('mongoose');
-const Course = require('./schema/index')();
+const Course = require('./schema/index')('course');
 
 const insertCourses = async () => {
     let files = fs.readdirSync(path.resolve(__dirname, './courses/'));

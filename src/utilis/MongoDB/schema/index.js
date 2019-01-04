@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
-const courseSchema = require('./course');
+const courseSchema = require('./course/');
 
-module.exports = () => mongoose.model('course', courseSchema);
+const map = new Map([
+    [ 'course', courseSchema ]
+]);
+
+module.exports = ( key ) => mongoose.model(key, map.get( key ));
