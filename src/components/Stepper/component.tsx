@@ -24,6 +24,9 @@ import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD, COLS_LG, COLS_MD } from '@constants
 
 import Media from 'react-media';
 
+import { ComponentsContainersEnum } from '@componentsTypes';
+const { lessonStepper } = ComponentsContainersEnum;
+
 /**
  * Needed for media query.
  */
@@ -35,10 +38,13 @@ interface IStepperState {
 class StepperComponent extends React.Component<StepperProps, IStepperState> {
     numberOfRowsDisplayed: number;
     step: number;
+    listenerId: any;
+    container: ComponentsContainersEnum.lessonStepper;
     constructor (props) {
         super(props);
         this.numberOfRowsDisplayed = 2;
         this.step = 2; // numbers of rows by which scrolled
+        this.container = lessonStepper;
 
         this.state = {
             mediaLarge: window.matchMedia(`(min-width: ${ MEDIA_DESKTOP_LG }px`).matches,
@@ -49,6 +55,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         this.onMediaQueryChange = this.onMediaQueryChange.bind(this);
         this.goToNext = this.goToNext.bind(this);
         this.goToPrevious = this.goToPrevious.bind(this);
+        this.listener = this.listener.bind(this);
     }
 
     focusLesson(no: number = this.state.selectedLesson, modifier: -1 | 1 | 0 = 0, preventScroll: boolean = false) {
@@ -82,17 +89,40 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         return document.getElementById( `card-${ no }` );
     }
 
-
+    /** Click the lesson or focus the next / previous */
+    listener(e: KeyboardEvent): boolean {
+        // 13 - return
+        if ( e.keyCode === 13 ) {
+            try {
+                this.getLessonHTML( this.state.selectedLesson ).querySelector('button').click();
+            } finally {
+                return true;
+            }
         }
 
+        // 37 - arrow left
+        if ( e.keyCode === 37 ) {
+            this.focusLesson( undefined, -1 );
+            return true;
+        }
+
+        // 39 - arrow right
+        if ( e.keyCode === 39 ) {
+            this.focusLesson( undefined, 1 );
+            return true;
+        }
     }
 
     async componentDidMount() {
         // TODO - karta mozę być jeszcze nie wyrendorowana więc nie zadziała
         this.scroll( this.state.selectedLesson, false );
 
+        this.listenerId = await this.props.addListener({ container: this.container, listener: [ 'keydown', this.listener ] });
     }
 
+    componentWillUnmount() {
+        this.props.removeListener({ container: this.container, listenerId: this.listenerId });
+    }
 
     /** TODO cards with lesson id */
     get activeLesson(): LessonData {

@@ -1,3 +1,4 @@
+import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -12,6 +13,9 @@ import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
 import { ILessonsState } from '../Lessons/_duck/reducers';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
+import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';
+import { AddListener, RemoveListener } from '@app/KeyboardListener/_duck/actions';
+
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
@@ -20,15 +24,25 @@ const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
     ...state[components][lessons]
 });
 
+const mapDispatchToProps = (dispatch: Dispatch): IStepperDispatch => ({
+    addListener: options => dispatch(onAddListener(options)),
+    removeListener: options => dispatch(onRemoveListener(options))
+})
+
 // @ts-ignore
-const StepperContainer = withRouter(connect(mapStateToProps)(Stepper));
+const StepperContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Stepper));
 
 export default StepperContainer;
 
 interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
 
+export interface IStepperDispatch {
+    addListener: (options: AddListener) => Action;
+    removeListener: (options: RemoveListener) => Action;
+}
 export interface StepperProps extends
     LessonsLoaderState,
+    IStepperDispatch,
     RouteComponentProps<{}>,
     MapStateToProps,
     WithStyles,
