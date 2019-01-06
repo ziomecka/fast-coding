@@ -12,6 +12,10 @@ import {
     PAPER_PADDING_LG
 } from '@constantsStyles';
 
+import { LESSONS_GRID } from '@components/Lessons';
+import { MediaEnum } from '@app/Media/'
+const { xs, lg, xl, sm, md } = MediaEnum;
+
 const styles = createStyles(theme => {
     const {
         typography: {
@@ -183,7 +187,21 @@ const styles = createStyles(theme => {
             transition: theme.transitions.create('width', { duration })
         },
         gridListTileRootCollapsed: {
-            width: `${ 100 / COLUMNS }%`,
+            [ theme.breakpoints.only('xs')]: {
+                width: `${ 100 / LESSONS_GRID.get(xs).cols }%`,
+            },
+            [ theme.breakpoints.only('sm')]: {
+                width: `${ 100 / LESSONS_GRID.get(sm).cols }%`,
+            },
+            [ theme.breakpoints.only('md')]: {
+                width: `${ 100 / LESSONS_GRID.get(md).cols }%`,
+            },
+            [ theme.breakpoints.only('lg')]: {
+                width: `${ 100 / LESSONS_GRID.get(lg).cols }%`,
+            },
+            [ theme.breakpoints.only('xl')]: {
+                width: `${ 100 / LESSONS_GRID.get(xl).cols }%`,
+            },
             height: 'inherit',
         },
         gridListTileRootExpanded: {
