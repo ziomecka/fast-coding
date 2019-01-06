@@ -17,6 +17,8 @@ import { onFormInvalid } from '@appForm/_duck/operations';
 
 import { WithStyles } from '@material-ui/core/styles';
 
+import { mapDispatchToProps as mapDialogDispatchToProps, DialogDispatch } from '@shared/dialog';
+
 const { app } = ApplicationContainersEnum;
 const { remindPasswordForm } = AppContainersEnum;
 
@@ -28,7 +30,8 @@ const mapDispatchToProps = (dispatch: Dispatch): RemindPasswordDispatch => ({
     sendForm: (options) => dispatch(onSendForm(options)),
     setEmail: (options) => dispatch(setEmail(options)),
     reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid())
+    formInvalid: () => dispatch(onFormInvalid()),
+    ...mapDialogDispatchToProps(dispatch)
 });
 
 // @ts-ignore
@@ -36,7 +39,7 @@ const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(R
 
 export default LabelContainer;
 
-export interface RemindPasswordDispatch {
+export interface RemindPasswordDispatch extends DialogDispatch {
     sendForm: (options: SendFormRemindPasswordI) => Action;
     setEmail: (options: SetEmail) => SetEmailAction;
     reset: () => Action;

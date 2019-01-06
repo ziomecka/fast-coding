@@ -2,6 +2,11 @@ export * from '@app/Nav/constants.styles';
 export * from '@components/Lesson/constants.styles';
 export { SPACING_BEETWEEN_LESSONS, COLS_LG, COLS_MD } from '@components/Course/constants.styles';
 
+export {
+    FOOTER_HEIGHT_LG,
+    FOOTER_HEIGHT_MD
+} from '@app/Footer/constants.styles';
+
 /** PADDING */
 export const PAPER_PADDING_MD = '1rem';
 export const PAPER_PADDING_LG = '2rem';

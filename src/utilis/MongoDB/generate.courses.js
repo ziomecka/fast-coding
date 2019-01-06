@@ -93,7 +93,8 @@ const getLessons = (dir, file) => {
             "_id": `lesson-${ uuid() }`,
             "category": cv.category || "standard",
             "no": i++,
-            "text": getText(cv)
+            "text": getText(cv),
+            "type": cv.type
         });
 
         return acc;

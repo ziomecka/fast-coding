@@ -40,11 +40,12 @@ const PASSWORD_MANAGER_RESPONSES = {
 
 const ROUTES = {
     LESSONS_GET: '/lessons/get',
-    NEW_USER_SET: '/newuser/set',
+    TRANSLATIONS_GET: '/translations/get',
+    NEW_USER_SET: '/newuser/post',
     LOGIN_LOG: '/login/log',
-    CHANGE_PASSWORD: '/changepassword',
-    NEW_PASSWORD: '/newpassword',
-    REMIND_PASSWORD: '/remindpassword'
+    CHANGE_PASSWORD: '/changepassword/post',
+    NEW_PASSWORD: '/newpassword/post',
+    REMIND_PASSWORD: '/remindpassword/post'
 };
 
 const EMAILS = {

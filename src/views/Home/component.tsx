@@ -10,6 +10,7 @@ import TextGenerator from '@components/TextGenerator/';
 import LessonsLoader from '@components/LessonsLoader/';
 import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
+import TranslationsLoader from '@app/TranslationsLoader/';
 
 import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
 
@@ -46,6 +47,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
                 <TextGenerator />
                 {this.props.children}
             </Content>
+            <TranslationsLoader />
             </>
         );
     }

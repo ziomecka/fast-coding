@@ -7,7 +7,7 @@ import { NewUserFormResponseEnum, SendNewUserFormI } from './types';
 const { LOGIN_EXISTS, EMAIL_EXISTS } = NewUserFormResponseEnum;
 
 const { SUCCESS } = NewUserFormResponseEnum;
-const { newUserSet, login } = AppRoutesEnum;
+const { newUserSet } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
@@ -29,7 +29,7 @@ export const onSendNewUserForm = (options: SendNewUserFormI ): any => (
                     [ EMAIL_EXISTS ]: 'EMAIL_EXISTS'
                 },
                 successNotification: 'notificationNewUserSet',
-                redirectUrl: login
+                // redirectUrl: login
             }
         } ));
     }

@@ -1,15 +1,17 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainersEnum, PasswordsEnum, AppRoutesEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 const { loginForm } = AppContainersEnum;
-const { remindPassword } = AppRoutesEnum;
 
 import Password from '../Password/';
 import Login from '../Login/';
 import Message from '../FormHelperText/';
 import GoogleLogin from '../GoogleLogin/';
+import RemindPasswordForm from '@app/RemindPasswordForm';
+import { DialogsEnum } from '@app/Dialog';
+const { simple } = DialogsEnum;
 
 /* Materials */
 import Paper from '@material-ui/core/Paper';
@@ -52,7 +54,10 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     redirect () {
-        this.props.history.push(remindPassword);
+        this.props.openDialog({
+            Component: RemindPasswordForm,
+            variant: simple
+        });
     }
 
     render() {

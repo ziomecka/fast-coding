@@ -5,7 +5,11 @@ import {
     NAV_HEIGHT_LG,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
-    LINE_HEIGHT
+    PAPER_PADDING_MD,
+    PAPER_PADDING_LG,
+    LINE_HEIGHT,
+    FOOTER_HEIGHT_LG,
+    FOOTER_HEIGHT_MD
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -25,6 +29,7 @@ const styles = createStyles(theme => {
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
             padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
+            paddingBottom: FOOTER_HEIGHT_MD,
             backgroundColor: mainBackground,
             height: '100vh',
             [ theme.breakpoints.up('md') ]: {
@@ -33,7 +38,8 @@ const styles = createStyles(theme => {
                 overflow: 'hidden'
             },
             [ theme.breakpoints.up('lg') ]: {
-                padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`
+                padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
+                paddingBottom: FOOTER_HEIGHT_LG
             }
         },
         contentBoxHome: {

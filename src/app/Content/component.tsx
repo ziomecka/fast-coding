@@ -4,6 +4,7 @@ import { ContentProps } from './container';
 import { default as Dialog } from '@app/Dialog/';
 import { default as Notification } from '@app/Notification/';
 import DragOverable from '../DragOverable';
+import Footer from '../Footer/';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -17,7 +18,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import getTranslation from '@shared/get.translation';
 
-const { demo, home, lessons, login, newuser, remindPassword, changePassword, newPassword } = AppRoutesEnum;
+const { demo, home, lessons } = AppRoutesEnum;
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
@@ -31,12 +32,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     return {
         [home]: '',
         [demo]: 'demoLessonTitle',
-        [lessons]: 'coursesTitle',
-        [login]: 'loginTitle',
-        [newuser]: 'newuserTitle',
-        [remindPassword]: 'remindPasswordTitle',
-        [changePassword]: 'changePasswordTitle',
-        [newPassword]: 'newPasswordTitle'
+        [lessons]: 'coursesTitle'
     };
   }
 
@@ -130,6 +126,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             <Dialog />
 
             <Notification />
+            <Footer />
         </DragOverable>
     );
   }

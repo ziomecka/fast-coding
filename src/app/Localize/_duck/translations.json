@@ -210,5 +210,25 @@
     "lessonTypeReview": [
         "Review",
         "Powtórka"
+    ],
+    "footerCoded": [
+        "Coded by ",
+        "Zakodowane przez "
+    ],
+    "footerAuthor": [
+        "Katarzyna Ziomek-Zdanowicz",
+        "Katarzynę Ziomek-Zdanowicz"
+    ],
+    "privacyPolicy": [
+        "Privacy policy",
+        "Polityka prywatności"
+    ],
+    "buttonYes": [
+        "Continue",
+        "Kontynuuj"
+    ],
+    "buttonCancel": [
+        "Cancel",
+        "Zrezygnuj"
     ]
 }
