@@ -1,13 +1,17 @@
 import { Dispatch, Action } from 'redux';
-import { openDialog, closeDialog, OpenDialogAction } from '@app/Dialog/_duck/actions';
-import { DialogOptions } from '@app/Dialog/_duck/types';
+
+import {
+    closeDialog,
+    openDialog,
+    OpenDialogOptions
+} from '@app/Dialog/'
 
 export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({
-    openDialog: (options) => dispatch(openDialog(options)),
-    closeDialog: () => dispatch(closeDialog())
+    openDialog: options => dispatch( openDialog( options ) ),
+    closeDialog: () => dispatch( closeDialog() )
 });
 
 export interface DialogDispatch {
-    openDialog: (options: DialogOptions ) => OpenDialogAction;
+    openDialog: ( options: OpenDialogOptions ) => Action;
     closeDialog: () => Action;
 };
