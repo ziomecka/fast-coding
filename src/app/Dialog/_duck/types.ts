@@ -65,6 +65,8 @@ interface YesCancelButtons extends YesButton {
 
 export type DialogVariant = DialogContentVariants['variant'];
 
+export type SimpleDialogOptions = ( DialogComponentOptions | DialogHTMLOptions )
+
 export type YesDialogOptions = ( DialogComponentOptions | DialogHTMLOptions ) & {
     buttons?: YesButton;
 }
@@ -73,7 +75,9 @@ export type YesCancelDialogOptions = ( DialogComponentOptions | DialogHTMLOption
     buttons?: YesCancelButtons;
 }
 
+
 export enum DialogsEnum {
+    simple = 'SIMPLE',
     yes = 'YES',
     yesCancel = 'YES_CANCEL'
 }
@@ -82,4 +86,6 @@ export type OpenDialogOptions = (
     YesDialogOptions & { variant: DialogsEnum.yes }
 ) | (
     YesCancelDialogOptions & { variant: DialogsEnum.yesCancel }
+) | (
+    SimpleDialogOptions & { variant: DialogsEnum.simple }
 )

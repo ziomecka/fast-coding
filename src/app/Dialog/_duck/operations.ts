@@ -2,7 +2,17 @@ import { Dispatch, Action } from 'redux';
 import { closeDialog, openDialog } from './actions';
 import { YesDialogOptions, YesCancelDialogOptions, DialogsEnum, OpenDialogOptions } from './types';
 
-const { yes, yesCancel } = DialogsEnum;
+const { simple, yes, yesCancel } = DialogsEnum;
+
+const onOpenSimpleDialog = (options: YesDialogOptions): any => (
+    ( dispatch: Dispatch ) => {
+        dispatch(openDialog(Object.assign(options, {
+            dialogProps: {
+                ...options.dialogProps,
+                onBackdropClick: () => dispatch(closeDialog())
+            }
+    })));
+});
 
 const onOpenYesDialog = (options: YesDialogOptions): any => (
     ( dispatch: Dispatch ) => {
@@ -83,6 +93,7 @@ const onOpenYesCancelDialog = (options: YesCancelDialogOptions): any => (
 });
 
 const map = new Map([
+    [ simple, onOpenSimpleDialog ],
     [ yes, onOpenYesDialog ],
     [ yesCancel, onOpenYesCancelDialog ]
 ]);
