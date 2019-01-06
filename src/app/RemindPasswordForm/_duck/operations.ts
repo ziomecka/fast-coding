@@ -5,7 +5,7 @@ import { AppRoutesEnum } from '@appTypes';
 import { RemindPasswordResponseEnum, SendFormRemindPasswordI } from './types';
 
 const { SUCCESS, EMAIL_DOES_NOT_EXIST } = RemindPasswordResponseEnum;
-const { remindPasswordGet : remindPassword } = AppRoutesEnum;
+const { remindPassword } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
