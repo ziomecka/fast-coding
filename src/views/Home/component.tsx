@@ -14,6 +14,8 @@ import TranslationsLoader from '@app/TranslationsLoader/';
 
 import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
 
+import { MediaProvider } from '@app/Media/';
+
 const { content, welcome } = AppContainersEnum;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
@@ -40,13 +42,16 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
             <KeyboardListener />
             <LessonsLoader />
 
-            <Nav />
+            <MediaProvider>
+                <Nav />
 
-            <Content>
-                {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}
-                <TextGenerator />
-                {this.props.children}
-            </Content>
+                <Content>
+                    {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}
+                    <TextGenerator />
+                    { this.props.children }
+                </Content>
+
+            </MediaProvider>
             <TranslationsLoader />
             </>
         );
