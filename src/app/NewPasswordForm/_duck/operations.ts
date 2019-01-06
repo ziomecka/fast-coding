@@ -7,7 +7,7 @@ import { NewPasswordFormResponseEnum } from './types';
 import { SendFormNewPasswordFormI } from './types';
 
 const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
-const { newPasswordSet, login } = AppRoutesEnum;
+const { newPasswordSet } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 import { SERVER_CONSTANTS } from '@constants';
@@ -36,7 +36,7 @@ export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
                     [INVALID_REMIND_PASSWORD_LINK]: 'notificationNewPasswordFormInvalidLink'
                 },
                 successNotification: 'notificationNewPasswordSuccess',
-                redirectUrl: login
+                // redirectUrl: login TODO HERE
             }
         } ));
     }

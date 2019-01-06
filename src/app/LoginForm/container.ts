@@ -16,6 +16,8 @@ import { SendLoginFormI } from './_duck/types';
 
 import { WithStyles } from '@material-ui/core/styles';
 
+import { DialogDispatch, mapDispatchToProps as mapDialogDispatchToProps } from '@shared/dialog';
+
 const { app } = ApplicationContainersEnum;
 const { loginForm } = AppContainersEnum;
 
@@ -27,7 +29,8 @@ const mapDispatchToProps = (dispatch: Dispatch): LoginFormDispatch => ({
     setLogin: (login) => dispatch(setLogin(login)),
     log: (options) => dispatch(onLog(options)),
     reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid())
+    formInvalid: () => dispatch(onFormInvalid()),
+    ...mapDialogDispatchToProps(dispatch)
 });
 
 // @ts-ignore
@@ -35,7 +38,7 @@ const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(L
 
 export default LabelContainer;
 
-export interface LoginFormDispatch {
+export interface LoginFormDispatch extends DialogDispatch {
     setLogin: (login: string) => SetLoginAction;
     log: (options: SendLoginFormI) => Action;
     reset: () => Action;
