@@ -1,8 +1,19 @@
 import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 import { NavMenuType } from './_duck/types';
 
-const { home, lessons, login, newuser, changePassword, remindPassword } = AppRoutesEnum;
+import { DialogsEnum } from '@app/Dialog/';
+const { simple } = DialogsEnum;
+
+import LoginForm from '@app/LoginForm';
+import NewUserForm from '@app/NewUserForm';
+import RemindPasswordForm from '@app/RemindPasswordForm';
+import ChangePasswordForm from '@app/ChangePasswordForm';
+
+const { home, lessons } = AppRoutesEnum;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson, fastCodingAuthorization } = MenuRulesEnum;
+
+import { openDialog } from '@app/Dialog';
+import store from '../../store';
 
 export const lessonsMenuItem: NavMenuType = {
     title: 'courses',
@@ -27,22 +38,34 @@ export const mainMenuItems: NavMenuType[] = [
 export const userMenuItems: NavMenuType[] = [
     {
         title: 'subMenuUserLogin',
-        appRoute: login,
+        onClick: () => store.dispatch(openDialog({
+            variant: simple,
+            Component: LoginForm
+        })),
         rules: [ onlyUnauthorized, notCurrentLocation ]
     },
     {
         title: 'subMenuUserNewUser',
-        appRoute: newuser,
+        onClick: () => store.dispatch(openDialog({
+            variant: simple,
+            Component: NewUserForm
+        })),
         rules: [ onlyUnauthorized, notCurrentLocation ]
     },
     {
         title: 'subMenuUserChangePassword',
-        appRoute: changePassword,
+        onClick: () => store.dispatch(openDialog({
+            variant: simple,
+            Component: ChangePasswordForm
+        })),
         rules: [ onlyAuthorized, notCurrentLocation, fastCodingAuthorization ]
     },
     {
         title: 'subMenuRemindPassword',
-        appRoute: remindPassword,
+        onClick: () => store.dispatch(openDialog({
+            variant: simple,
+            Component: RemindPasswordForm
+        })),
         rules: [ onlyUnauthorized, notCurrentLocation ]
     }
 ];

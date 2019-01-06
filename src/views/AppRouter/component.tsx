@@ -5,14 +5,7 @@ import history from '@shared/history';
 import HomeView from '../Home/';
 import LessonsView from '../Lessons/';
 import LessonView from '../Lesson/';
-import LoginView from '../Login/';
-import NewUserView from '../Newuser/';
-import ChangePasswordView from '../ChangePassword/';
-import NewPasswordView from '../NewPassword/';
-import RemindPasswordView from '../RemindPassword/';
 import NotDesktopView from '../NotDesktop/';
-
-import RouteAuth from '../RouteAuth/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../../theme/';
@@ -26,21 +19,19 @@ import { AppRouterPropsI } from './container';
 
 import Media from 'react-media';
 
-import { MEDIA_DESKTOP_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';
+import { MEDIA_DESKTOP_MD } from '@constantsStyles';
 
 const Root: React.StatelessComponent<AppRouterPropsI> = props => {
-    const { lessons, login, newuser, changePassword, newPassword, remindPassword } = AppRoutesEnum;
+    const { lessons } = AppRoutesEnum;
     const { authorized } = props;
 
     const desktop = (
         <Switch>
             <Route path={`${lessons}/:id`} component={ LessonView } />
             <Route exact path={`${lessons}`} component={LessonsView} key='lessons'/>,
-            <Route path={`${login}`} component={LoginView} key='login' />,
-            <Route path={`${newuser}`} component={NewUserView} key='newuser' />,
-            <RouteAuth path={`${ changePassword }`} component={ ChangePasswordView } condition={ authorized } key='changePassword' />,
-            <RouteAuth path={`${ remindPassword }`} component={ RemindPasswordView } condition={ !authorized } key='remindPassword' />,
-            <Route path={`${ newPassword }`} component={ NewPasswordView } key='newPassword' />
+            <Route>
+                <Redirect to='/' />
+            </Route>
         </Switch>
     );
 

@@ -1,11 +1,9 @@
 import * as React from 'react';
 
 import { RemindPasswordPropsI } from './container';
-import * as types from '@appTypes';
-
-const {
-    AppRoutesEnum: { login }
-} = types;
+import LoginForm from '@app/LoginForm';
+import { DialogsEnum } from '@app/Dialog';
+const { simple } = DialogsEnum;
 
 import Email from '../Email';
 import Message from '../FormHelperText/';
@@ -48,7 +46,10 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     };
 
     redirect () {
-        this.props.history.push(login);
+        this.props.openDialog({
+            Component: LoginForm,
+            variant: simple
+        });
     }
 
     render () {
