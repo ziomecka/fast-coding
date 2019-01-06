@@ -1,7 +1,12 @@
-import { Action, Reducer } from 'redux';
+import { Reducer } from 'redux';
+import { DialogProps } from '@material-ui/core/Dialog';
 
-import { DialogActionsEnum, AppDialogOptions } from './types';
-import { DialogActions, OpenDialogAction } from './actions';
+import {
+    DialogActionsEnum,
+    DialogButtonsProps
+} from './types';
+
+import { DialogActions } from './actions';
 
 const {
     APP_DIALOG_OPEN,
@@ -10,22 +15,22 @@ const {
 
 export const INITIAL_STATE: DialogState = {
     titleId: '',
-    messageId: '',
-    buttons: [],
-    dialogProps: {
-        open: false
-    }
+    buttons: {},
+    dialogProps: { open: false },
+    Component: null,
+    html: null
 };
 
-const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_STATE, action) => {
+const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case APP_DIALOG_OPEN:
-            const { dialogProps, ...other } = (action as OpenDialogAction).options;
+
+            const { dialogProps, buttons, ...other } = action.options;
 
             return {
                 ...state,
-                // @ts-ignore
                 ...other,
+                buttons: { ...buttons },
                 dialogProps: {
                     ...dialogProps,
                     open : true
@@ -34,17 +39,9 @@ const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_S
 
         case APP_DIALOG_CLOSE:
             return {
-                titleId: '',
-                messageId: '',
-                buttons: [],
-                dialogProps: {
-                    open: false,
-                    onClose: null,
-                    onEnter: null,
-                    onBackdropClick: null,
-                    onExited: null,
-                    onKeyDown: null
-                }
+                ...INITIAL_STATE,
+                buttons: {},
+                dialogProps: { open: false }
             };
 
         default:
@@ -54,4 +51,10 @@ const reducer: Reducer<DialogState, DialogActions | Action> = (state = INITIAL_S
 
 export { reducer as dialogReducer };
 
-export interface DialogState extends AppDialogOptions {};
+export interface DialogState {
+    titleId: string;
+    buttons: { [key: string]: DialogButtonsProps };
+    dialogProps?: DialogProps;
+    Component: React.ComponentClass | React.FunctionComponent;
+    html: JSX.Element
+};

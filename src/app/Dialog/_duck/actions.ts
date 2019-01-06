@@ -1,12 +1,17 @@
 import { Action, ActionCreator } from 'redux';
-import { DialogActionsEnum, DialogOptions } from './types';
+
+import {
+    DialogActionsEnum,
+    YesDialogOptions,
+    YesCancelDialogOptions
+} from './types';
 
 const {
     APP_DIALOG_CLOSE,
     APP_DIALOG_OPEN
 } = DialogActionsEnum;
 
-export const openDialog: ActionCreator<OpenDialogAction> = (options: DialogOptions) => ({
+export const openDialog: ActionCreator<OpenDialogAction> = (options: YesDialogOptions | YesCancelDialogOptions) => ({
     type: APP_DIALOG_OPEN,
     options
 });
@@ -21,8 +26,7 @@ export const actions = {
 };
 
 export interface OpenDialogAction extends Action {
-    readonly type: string;
-    options: DialogOptions;
+    options: YesDialogOptions | YesCancelDialogOptions;
 };
 
-export type DialogActions = Action | OpenDialogAction;
+export type DialogActions = OpenDialogAction;

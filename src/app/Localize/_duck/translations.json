@@ -222,5 +222,13 @@
     "privacyPolicy": [
         "Privacy policy",
         "Polityka prywatności"
+    ],
+    "buttonYes": [
+        "Continue",
+        "Kontynuuj"
+    ],
+    "buttonCancel": [
+        "Cancel",
+        "Zrezygnuj"
     ]
 }
