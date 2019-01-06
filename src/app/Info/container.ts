@@ -31,4 +31,5 @@ export interface InfoProps extends
 IMapStateToProps {
     render: RenderType;
     displayError?: boolean;
+    useLocalize?: boolean;
 };

@@ -6,10 +6,14 @@ import Typography from '@material-ui/core/Typography';
 
 import { InfoProps } from './container';
 
-import { getActiveLanguage } from 'react-localize-redux';
+import { getActiveLanguage, Translate } from 'react-localize-redux';
 
+/** Component used to display texts received from server that are stoed in
+ *  'translations' state.
+ *  However, it may be used to display translations stored in localize
+ */
 const InfoComponent: React.StatelessComponent< InfoProps > = props => {
-    const { localize, render, displayError = false } = props;
+    const { localize, render, displayError = false, useLocalize = false } = props;
     const errMessage = displayError ? 'Missing translation' : '';
 
     return (
@@ -27,10 +31,13 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
 
                 return (
                     <Component { ...componentProps } key={ id }>
-                        {
+                        { !useLocalize &&
                             props[ code ]
                                 ? props[ code ][ id ]
                                 : errMessage
+                        }
+                        { useLocalize &&
+                            <Translate {...{ id }} />
                         }
                     </Component>
                 );
