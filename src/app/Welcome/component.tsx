@@ -21,10 +21,6 @@ const { notAnyLesson, notHome } = MenuRulesEnum;
 /** Translations */
 import { Translate } from 'react-localize-redux';
 
-
-import Media from 'react-media';
-import { MEDIA_DESKTOP_LG, MEDIA_DESKTOP_MD } from '@constantsStyles';
-
 require('./style.sass');
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
@@ -111,8 +107,8 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
         if (animated) {
             const lastSpace = heading.lastIndexOf(' ');
-            const lastWord = heading.slice(lastSpace);
-            const remainingHeading = heading.slice(0, lastSpace);
+            const lastWord = heading.slice(lastSpace + 1);
+            const remainingHeading = heading.slice(0, lastSpace + 1);
 
             return (
                 <>
@@ -140,7 +136,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 classes: {
                     welcomePaper, welcomeHome, welcomeOther, welcomeButtons,
                     welcomeButton, welcomeButtonMain, welcomeHeading,
-                    welcomeHeadingOther, welcomeLesson
+                    welcomeHeadingHome, welcomeHeadingOther, welcomeLesson
                 }
             }
         } = this;
@@ -166,32 +162,24 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 <MenuButton { ...this.button } />
 
                 {/* Render buttons only when Home and desktop */}
-                <Media query={`(min-width: ${ MEDIA_DESKTOP_MD }px)`}>{ matches => (
-                    matches
-                        ? <>
-                            {isHome && (
-                                <div className={ welcomeButtons }>
-                                    <Button
-                                        onClick={ this.goToLessons }
-                                        className={ welcomeButton }
-                                        id={ buttonsIds[0] }
-                                    >
-                                        <Translate id="welcomeGoToCourses"/>
-                                    </Button>
-                                    <Button
-                                        className={`${ welcomeButton } ${ welcomeButtonMain }`}
-                                        onClick={ this.goToDemo }
-                                        id={ buttonsIds[1] }
-                                    >
-                                        <Translate id="welcomeGoToDemo"/>
-                                    </Button>
-                                </div>
-                            )}
-                        </>
-                        :
-                        null
-                )}
-                </Media>
+                    {isHome && (
+                        <div className={ welcomeButtons }>
+                            <Button
+                                onClick={ this.goToLessons }
+                                className={ welcomeButton }
+                                id={ buttonsIds[0] }
+                            >
+                                <Translate id="welcomeGoToCourses"/>
+                            </Button>
+                            <Button
+                                className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                                onClick={ this.goToDemo }
+                                id={ buttonsIds[1] }
+                            >
+                                <Translate id="welcomeGoToDemo"/>
+                            </Button>
+                        </div>
+                    )}
             </Paper>
         );
     }
