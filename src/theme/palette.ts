@@ -1,7 +1,36 @@
+import {
+    LINE_HEIGHT,
+    LINE_HEIGHT_H,
+    FONT_WEIGHT_LIGHT,
+    FONT_WEIGHT,
+    FONT_WEIGHT_BOLD,
+    FONT_SIZE,
+    MEDIA_DESKTOP_XS,
+    MEDIA_DESKTOP_SM,
+    MEDIA_DESKTOP_MD,
+    MEDIA_DESKTOP_LG,
+    MEDIA_DESKTOP_XL
+} from './constants';
+
+const {
+    FONT_SIZE_h1,
+    FONT_SIZE_h2,
+    FONT_SIZE_h3,
+    FONT_SIZE_h4,
+    FONT_SIZE_h5,
+    FONT_SIZE_h6
+} = FONT_SIZE;
+
 const palette = {
     "breakpoints": {
       "keys": ["xs", "sm", "md", "lg", "xl"],
-      "values": { "xs": 0, "lg": 1280, "sm": 600, "xl": 1920, "md": 960 }
+      "values": {
+          "xs": MEDIA_DESKTOP_XS,
+          "lg": MEDIA_DESKTOP_LG,
+          "sm": MEDIA_DESKTOP_SM,
+          "xl": MEDIA_DESKTOP_XL,
+          "md": MEDIA_DESKTOP_MD
+        }
     },
     "mixins": {
       "toolbar": {
@@ -56,24 +85,58 @@ const palette = {
         "leavingScreen": 195,
         "shortest": 150,
         "complex": 375
-      }
+    }
+},
+"typography": {
+    "useNextVariants": true,
+    "fontSize": 18,
+    "lineHeight": LINE_HEIGHT,
+    "fontWeightMedium": FONT_WEIGHT_BOLD,
+      "h1": {
+        "fontSize": FONT_SIZE_h1,
+        "lineHeight": LINE_HEIGHT_H,
+        "letterSpacing": "-.02em"
+      },
+      "h2": {
+        "fontSize": FONT_SIZE_h2,
+        "lineHeight": LINE_HEIGHT_H,
+        "letterSpacing": "-.02em",
+      },
+      "h3": {
+        "fontSize": FONT_SIZE_h3,
+        "lineHeight": LINE_HEIGHT_H,
+        "letterSpacing": "-.02em",
+      },
+      "h4": {
+        "fontSize": FONT_SIZE_h4,
+        "lineHeight": LINE_HEIGHT,
+        "fontWeight": FONT_WEIGHT,
+        "letterSpacing": "-.02em",
     },
-    "typography": {
-      "useNextVariants": true,
+    "h5": {
+        "fontSize": FONT_SIZE_h5,
+        "lineHeight": LINE_HEIGHT,
+        "letterSpacing": "-.02em"
+    },
+    "h6": {
+        "fontSize": FONT_SIZE_h6,
+        "lineHeight": LINE_HEIGHT,
+        "fontWeight": FONT_WEIGHT
+      },
       "headline": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.35417em",
-        "fontSize": "1.5rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "1.5em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
       "display2": {
         "marginLeft": "-.02em",
         "color": "rgba(0, 0, 0, 0.54)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.13333em",
-        "fontSize": "2.8125rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "2.8125em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
       "fontWeightLight": 300,
       "display3": {
@@ -81,71 +144,71 @@ const palette = {
         "color": "rgba(0, 0, 0, 0.54)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
         "letterSpacing": "-.02em",
-        "lineHeight": "1.30357em",
-        "fontSize": "3.5rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "3.5em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
       "display4": {
         "marginLeft": "-.04em",
         "color": "rgba(0, 0, 0, 0.54)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
         "letterSpacing": "-.04em",
-        "lineHeight": "1.14286em",
-        "fontSize": "7rem",
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "7em",
         "fontWeight": 300
       },
-      "fontWeightRegular": 400,
+      "fontWeightRegular": FONT_WEIGHT_LIGHT,
       "display1": {
         "color": "rgba(0, 0, 0, 0.54)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.20588em",
-        "fontSize": "2.125rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "2.125em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
       "button": {
-        "textTransform": "uppercase",
+        "textTransform": "none",
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "fontSize": "0.875em",
-        "fontWeight": 500
+        "fontSize": "1.1em",
+        "lineHeight": "1.3em",
+        "letterSpacing": "-.1px",
+        "fontWeight": FONT_WEIGHT
       },
       "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
       "body2": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.71429em",
-        "fontSize": "0.875rem",
-        "fontWeight": 500
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "0.875em",
+        "fontWeight": FONT_WEIGHT
       },
       "caption": {
         "color": "rgba(0, 0, 0, 0.54)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.375em",
-        "fontSize": "0.75rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "0.75em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
-      "fontSize": 16,
-      "fontWeightMedium": 600,
       "title": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.16667em",
-        "fontSize": "1.3125rem",
-        "fontWeight": 500
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "1.3125em",
+        "fontWeight": FONT_WEIGHT
       },
       "subheading": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.5em",
-        "fontSize": "1rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "1em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       },
       "body1": {
         "color": "rgba(0, 0, 0, 0.87)",
         "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-        "lineHeight": "1.46429em",
-        "fontSize": "0.875rem",
-        "fontWeight": 400
+        "lineHeight": LINE_HEIGHT,
+        "fontSize": "0.875em",
+        "fontWeight": FONT_WEIGHT_LIGHT
       }
     },
     "zIndex": {

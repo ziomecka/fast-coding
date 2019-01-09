@@ -1,12 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles(theme => {
-    const {
-        typography: {
-            caption: { fontSize: captionFontSize }
-        }
-    } = theme;
-
     return {
         buttonClass: {
             margin: '1em',
@@ -15,8 +9,8 @@ const styles = createStyles(theme => {
                 display: 'block',
                 content: "attr(aftertext)",
                 width: '100%',
-                fontSize: captionFontSize,
-                textTransform: 'lowercase'
+                textTransform: 'lowercase',
+                fontSize: '.9em'
             }
         }
     }

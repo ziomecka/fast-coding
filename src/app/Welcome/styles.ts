@@ -25,7 +25,10 @@ const styles = createStyles(theme => {
             duration: { complex, shorter },
             easing: { easeOut }
         },
-        spacing: { unit: spacingUnit }
+        spacing: { unit: spacingUnit },
+        typography: {
+            h2: { fontSize: WELCOME_HEADING_OTHER }
+        }
     } = theme;
 
     const transHeightFontSizeColor = `${ theme.transitions.create(
@@ -56,7 +59,6 @@ const styles = createStyles(theme => {
             [ theme.breakpoints.up('md') ]: {
                 height: '100%',
             },
-            fontSize: theme.typography.pxToRem(30) // for buttons TODO change
         },
         welcomeOther: {
             height: `${ NAV_HEIGHT_MD }px`,
@@ -65,7 +67,6 @@ const styles = createStyles(theme => {
                 height: `${ NAV_HEIGHT_LG }px`,
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
-            fontSize: theme.typography.pxToRem(16), // for buttons TODO change
             color: textPrimary
         },
         welcomeLesson: {
@@ -91,10 +92,14 @@ const styles = createStyles(theme => {
             },
         },
         welcomeHeadingOther: {
-            fontSize: theme.typography.display2.fontSize,
+            fontSize: WELCOME_HEADING_OTHER_XS,
+            [theme.breakpoints.up('sm')]: {
+                fontSize: WELCOME_HEADING_OTHER,
+            },
             color: contrastTextSecondary,
         },
         welcomeButtons: {
+            fontSize: '1.5em',
             paddingLeft: PAPER_PADDING_MAX_MD,
             [theme.breakpoints.up('lg')]: {
                 paddingLeft: PAPER_PADDING_MAX_LG

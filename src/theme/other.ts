@@ -3,8 +3,20 @@ import {
     NAV_TOP,
     PAPER_PADDING_MD,
     PAPER_PADDING_MAX_MD,
-    ELEVATION
+    ELEVATION,
+    FONT_SIZE,
+    LINE_HEIGHT,
+    LINE_HEIGHT_H
 } from '@constantsStyles';
+
+const {
+    FONT_SIZE_h1,
+    FONT_SIZE_h2,
+    FONT_SIZE_h3,
+    FONT_SIZE_h4,
+    FONT_SIZE_h5,
+    FONT_SIZE_h6
+} = FONT_SIZE;
 
 import {
     flexColumn,
@@ -45,14 +57,35 @@ export default {
         },
     },
     overrides: {
-        MuiButton: {
-            text: {
-                textTransform: 'none'
+        MuiTypography: {
+            h1: {
+                fontSize: FONT_SIZE_h1,
+                lineHeight: LINE_HEIGHT_H
+            },
+            h2: {
+                fontSize: FONT_SIZE_h2,
+                lineHeight: LINE_HEIGHT_H
+            },
+            h3: {
+                fontSize: FONT_SIZE_h3,
+                lineHeight: LINE_HEIGHT_H
+            },
+            h4: {
+                fontSize: FONT_SIZE_h4,
+                lineHeight: LINE_HEIGHT
+            },
+            h5: {
+                fontSize: FONT_SIZE_h5,
+                lineHeight: LINE_HEIGHT
+            },
+            h6: {
+                fontSize: FONT_SIZE_h6,
+                lineHeight: LINE_HEIGHT
             }
         },
         MuiTooltip: {
             tooltip: {
-                fontSize: '1rem',
+                fontSize: '1em',
                 padding: '.5rem'
             }
         },

@@ -7,70 +7,75 @@ import {
     LESSON_PARAGRAPH_SIZE_REM
 } from '@constantsStyles';
 
-const styles = createStyles(theme => ({
-    comparatorTextAreaPaper: {
-        maxWidth: `${LESSON_MAX_WIDTH}px`,
-        overflow: 'hidden',
-        paddingTop: '2em'
-    },
-    comparatorTextAreaPaperShort: {
-        overflow: 'hidden',
-        padding: `${LESSON_FONT_SIZE_REM}rem 0`,
-        maxHeight: '15rem',
-        alignItems: 'center',
-        margin: 0
-    },
-    comparatorTextAreaParagraph: {
-        height: `${LESSON_PARAGRAPH_SIZE_REM}rem`,
-        overflow: 'visible',
-        margin: 0,
-        padding: 0,
-        textAlign: 'center'
-    },
-    comparatorTextAreaParagraphInvite: {
-        '& > span:nth-child(1)': {
-            position: 'relative',
+import { FONT_SIZE } from './constants.styles';
+
+const styles = createStyles(theme => {
+    return {
+        comparatorTextAreaPaper: {
+            maxWidth: `${LESSON_MAX_WIDTH}px`,
+            overflow: 'hidden',
+            paddingTop: '2em'
         },
-        '& > span:nth-child(1):before': {
-            content: "' '",
-            display: 'inline-block',
-            width: '100%',
-            position: 'absolute',
-            bottom: '-2px',
-            left: '0px',
-            height: '1px',
-            animation: `invite .4s infinite alternate`
-        }
-    },
-    '@global': {
-        '@keyframes invite': {
-            '0%': {
-                borderBottom: `1px solid ${theme.palette.primary.main}`
+        comparatorTextAreaPaperShort: {
+            overflow: 'hidden',
+            padding: `${LESSON_FONT_SIZE_REM}rem 0`,
+            maxHeight: '15rem',
+            alignItems: 'center',
+            margin: 0
+        },
+        comparatorTextAreaParagraph: {
+            height: `${LESSON_PARAGRAPH_SIZE_REM}rem`,
+            overflow: 'visible',
+            margin: 0,
+            padding: 0,
+            textAlign: 'center'
+        },
+        comparatorTextAreaParagraphInvite: {
+            '& > span:nth-child(1)': {
+                position: 'relative',
             },
-            '100%': {
-                borderBottom: `3px solid ${theme.palette.secondary.main}`
+            '& > span:nth-child(1):before': {
+                content: "' '",
+                display: 'inline-block',
+                width: '100%',
+                position: 'absolute',
+                bottom: '-2px',
+                left: '0px',
+                height: '1px',
+                animation: `invite .4s infinite alternate`
             }
-        }
-    },
-    comparatorTextAreaFont: {
-        boxSizing: 'border-box',
-        display: 'inline-block',
-        margin: '.1em',
-        minWidth: '1em',
-        fontSize:  theme.typography.display3.fontSize,
-        whiteSpace: 'pre',
-        textAlign: 'center',
-        border: `1px solid ${theme.palette.primary.main}`
-    },
-    comparatorTextAreaFontCorrect: {
-        backgroundColor: COLOR_SUCCESS
-    },
-    comparatorTextAreaFontError: {
-        backgroundColor: theme.palette.secondary.veryLight
-    },
-    comparatorTextAreaFontCorrected: {
-        backgroundColor: COLOR_CORRECTED
-    },
-}));
+        },
+        '@global': {
+            '@keyframes invite': {
+                '0%': {
+                    borderBottom: `1px solid ${theme.palette.primary.main}`
+                },
+                '100%': {
+                    borderBottom: `3px solid ${theme.palette.secondary.main}`
+                }
+            }
+        },
+        comparatorTextAreaFont: {
+            boxSizing: 'border-box',
+            display: 'inline-block',
+            margin: '.1em',
+            minWidth: '1em',
+            fontSize: FONT_SIZE,
+            padding: '.15em',
+            whiteSpace: 'pre',
+            textAlign: 'center',
+            border: `1px solid ${theme.palette.primary.main}`
+        },
+        comparatorTextAreaFontCorrect: {
+            backgroundColor: COLOR_SUCCESS
+        },
+        comparatorTextAreaFontError: {
+            backgroundColor: theme.palette.secondary.veryLight
+        },
+        comparatorTextAreaFontCorrected: {
+            backgroundColor: COLOR_CORRECTED
+        },
+    };
+});
 
 export default styles;

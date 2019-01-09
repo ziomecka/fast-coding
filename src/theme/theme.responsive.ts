@@ -10,25 +10,6 @@ import {
     NAV_HEIGHT_LG
 } from './constants';
 
-const getFontSizes = heading => (
-    ['xs', 'sm', 'md'].reduce((acc, cv) => {
-        acc[theme.breakpoints.only(cv)] = {
-            fontSize: FONT_SIZE[`FONT_SIZE_${ heading }_${ cv }`],
-            lineHeight: FONT_SIZE[`LINE_HEIGHT_${ heading }_${ cv }`]
-        };
-        return acc;
-    }, {})
-);
-
-theme.overrides.MuiTypography = {
-    h1: {
-        ...getFontSizes('h1')
-    },
-    h2: {
-        ...getFontSizes('h2')
-    }
-};
-
 /** MuiMenu */
 /** Make padding larger for lg and xlg */
 theme.overrides.MuiMenu.paper = {

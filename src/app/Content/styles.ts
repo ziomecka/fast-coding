@@ -19,7 +19,7 @@ const styles = createStyles(theme => {
                 primary: { main: mainBackground }
         },
         typography: {
-            h4: { fontSize: titleFontSize }
+            h2: { fontSize: WELCOME_HEADING_OTHER }
         }
     } = theme;
 
@@ -53,17 +53,16 @@ const styles = createStyles(theme => {
             minHeight: 'calc(100vh)'
         },
         contentTitle: {
-            [ theme.breakpoints.down('md') ]: {
-                display: 'none'
+            fontSize: WELCOME_HEADING_OTHER_XS,
+            [theme.breakpoints.up('sm')]: {
+                fontSize: WELCOME_HEADING_OTHER,
             },
             position: 'relative',
             display: 'block',
             width: '100%',
             left: 0,
-            fontSize: titleFontSize,
             margin: `1em 0`,
-            whiteSpace: 'pre-line',
-            lineHeight: `${ LINE_HEIGHT }em`
+            whiteSpace: 'pre-line'
         }
     };
 });

@@ -155,7 +155,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                         : welcomeOther
                     }`
             }>
-                <Typography variant="h1" className={`${ welcomeHeading } ${ !isHome && welcomeHeadingOther }`}>
+                <Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
                     { heading() }
                 </Typography>
 

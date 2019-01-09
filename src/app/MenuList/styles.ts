@@ -6,7 +6,7 @@ const style = createStyles(theme => {
     const {
         palette: { grey: { 200: menuBackgroundColor }},
         typography: {
-            h6: { fontSize: fontSizeMenuItem }
+            h4: { fontSize: fontSizeMenuItem }
         }
     } = theme;
 
@@ -15,7 +15,6 @@ const style = createStyles(theme => {
             maxWidth: `${ NAV_MAXWIDTH }px`,
             backgroundColor: menuBackgroundColor
         },
-        ...menuIconClass(theme),
         menuItemClass: {
             boxSizing: 'border-box',
             width: '100%',

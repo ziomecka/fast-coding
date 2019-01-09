@@ -19,9 +19,7 @@ const { xs, lg, xl, sm, md } = MediaEnum;
 const styles = createStyles(theme => {
     const {
         typography: {
-            fontWeightMedium,
-            h4: { fontSize: headingFontSize },
-            h5: { fontSize: descriptionFontSize }
+            fontWeightMedium
         },
         spacing: { unit: spacingUnit },
         palette: {
@@ -32,6 +30,9 @@ const styles = createStyles(theme => {
     } = theme;
 
     let duration = theme.transitions.duration[ TRANSITION_DURATION ];
+
+    // 1.5em Mui-Button fontSize
+    const labelFontSize = 2 / 1.5;
 
     return {
         panel: {
@@ -76,12 +77,10 @@ const styles = createStyles(theme => {
         },
         summaryHeading: {
             paddingTop: '1em',
-            fontSize: headingFontSize,
             fontWeight: fontWeightMedium
         },
         summaryDescription: {
             paddingTop: '1em',
-            fontSize: descriptionFontSize
         },
         detailsLessons: {
             overflowY: 'scroll',
@@ -169,8 +168,11 @@ const styles = createStyles(theme => {
             flexWrap: 'wrap',
             height: '100%',
             width: `calc(100% - ${ PAPER_PADDING_LG })`,
-            fontSize: '1em',
+            // fontSize: `${ labelFontSize }em`,
             boxSizing: 'border-box',
+            '& h5': {
+                fontSize: `${ labelFontSize }em`,
+            }
         },
         lessonCardLinkText: {
             display: 'inline-block',

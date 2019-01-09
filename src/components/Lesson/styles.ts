@@ -2,7 +2,6 @@ import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles(theme => {
     const {
-        typography: { h6: { fontSize: inviteFontSize } },
         palette: { secondary: { main: hintColor } },
         spacing: { unit: spacingUnit }
     } = theme;
@@ -14,7 +13,6 @@ const styles = createStyles(theme => {
         lessonInvite: {
             padding: 0,
             margin: 0,
-            fontSize: inviteFontSize,
         },
         lessonTime: {
             position: 'relative',
