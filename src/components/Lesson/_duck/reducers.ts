@@ -122,7 +122,7 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
                 otherSigns: [],
                 lessonText: LESSON_DEMO_TEXT[language],
                 text: '',
-                title: LESSON_DEMO_TITLE[language]
+                title: LESSON_DEMO_TITLE // language is selected in content
             };
         }
 

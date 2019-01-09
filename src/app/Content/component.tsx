@@ -107,18 +107,23 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             onDrop={this.onDrop}
         >
             <Typography variant="h2" className={contentTitle}>
-                <Translate id={title} options={ {
-                    // TODO nie podoba mi się
-                    // bo jest zbyt 'proste'
-                    // bo trudno dodawać style
-                    onMissingTranslation: () => (
-                        isLesson && (
-                            `${ lessonTranslation } ${ lessonNo + 1 }
-                            ${ lessonTitle }`
-                        )
-                    ) || '',
-                    renderToStaticMarkup
-                }} />
+                <Translate id={ title } options={ { onMissingTranslation: () => null, renderToStaticMarkup }} />
+
+                {/* // TODO nie podoba mi się
+                // bo jest zbyt 'hacky' i zbyt duzo sprawdzania przy każdym uruchomienniu lekcji
+                // np trudno dodawać style */}
+                { isLesson && (
+                    `${
+                        lessonNo !== undefined && lessonNo !== null
+                            ? `${ lessonTranslation } ${ lessonNo + 1 }`
+                            : ''
+                    }
+                    ${
+                        lessonTitle
+                            ? lessonTitle
+                            : ''
+                    }` // in case no-title
+                )}
             </Typography>
 
             {this.props.children}
