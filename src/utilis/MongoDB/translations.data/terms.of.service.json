@@ -1,0 +1,27 @@
+{
+    "id": "termsOfService",
+    "pl": {
+        "h_Main": "Warunki świadczenia usług",
+        "lastUpdated": "Ostatnia modyfikacja:",
+        "p_1": "Dziękujemy za korzystanie z naszych produktów i usług (\"Usługi\").",
+        "p_2": "Korzystając z naszych Usług, zgadzasz się na poniższe warunki.",
+        "p_3": "Polityka prywatności wyjaśnia, w jaki sposób wykorzystujemy Twoje dane osobowe i chronimy Twoją prywatność podczas korzystania z naszych Usług. Korzystając z naszych Usług, zgadzasz się na wykorzystywanie przez nas Twoich danych zgodnie z naszą polityką prywatności.",
+        "p_4": "Ciągle zmieniamy i ulepszamy nasze Usługi. W każdym momencie możemy dodawać lub usuwać funkcjonalności lub całkowicie zawiesić świadczenie Usługi.",
+        "p_5": "Możesz zaprzestać korzystania z naszych Usług w dowolnym momencie. Możemy również w dowolnym momencie przestać świadczyć Ci Usługi lub dodawać lub tworzyć nowe ograniczenia naszych Usług.",
+        "p_6": "W celu świadczenia usług wykorzystujemy uzasadniony handlowo poziom umiejętności i zaangażowania.",
+        "p_7": "Możemy zmienić niniejsze warunki lub dodatkowe warunki dotyczące Usług, na przykład w celu odzwierciedlenia zmian w prawie lub zmiana w naszych Usługach. Powinieneś regularnie sprawdzać warunki na tej stronie. Jeśli wprowadzimy jakiekolwiek istotne zmiany w niniejszych warunkach umieścimy powiadomienie na naszej stronie internetowej. Jeśli nie wyrażasz zgody na zmienione warunki usług, przestań z nich korzystać.",
+        "p_8": "Jeśli masz jakiekolwiek pytania dotyczące niniejszych Warunków świadczenia usług, skontaktuj się z nami."
+    },
+    "en": {
+        "h_Main": "Terms of service",
+        "lastUpdated": "Last updated:",
+        "p_1": "Thank you for using our products and services (\"Services\").",
+        "p_2": "By using our Services, you are agreeing to these terms.",
+        "p_3": "The privacy policy explains how we treat your personal data and protect your privacy when you use our Services. By using our Services, you agree that we can use such data in accordance with our privacy policies.",
+        "p_4": "We are constantly changing and improving our Services. We may add or remove functionalities or features, and we may suspend or stop a Service altogether.",
+        "p_5": "You can stop using our Services at any time. We may also stop providing Services to you, or add or create new limits to our Services at any time.",
+        "p_6": "We provide our Services using a commercially reasonable level of skill and care.",
+        "p_7": "We may modify these terms or any additional terms that apply to a Service to, for example, reflect changes to the law or changes to our Services. You should look at the terms regularly. We’ll post notice of modifications to these terms on this page. If you do not agree to the modified terms for a Service, you should discontinue your use of that Service.",
+        "p_8": "If you have any questions about these Terms of Service, please contact us."
+    }
+  }
