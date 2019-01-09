@@ -8,6 +8,8 @@ import { DialogState } from './_duck/reducers';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 
+import { WithStyles } from '@material-ui/core/styles';
+
 const { app } = ApplicationContainersEnum;
 const { dialog } = AppContainersEnum;
 
@@ -19,4 +21,6 @@ const DialogContainer = connect(mapStateToProps)(Dialog);
 
 export default DialogContainer;
 
-export interface AppDialogProps extends DialogState {};
+export interface AppDialogProps extends
+DialogState,
+WithStyles {};
