@@ -42,7 +42,7 @@ export const userMenuItems: NavMenuType[] = [
             variant: simple,
             Component: LoginForm
         })),
-        rules: [ onlyUnauthorized, notCurrentLocation ]
+        rules: [ onlyUnauthorized ]
     },
     {
         title: 'subMenuUserNewUser',
@@ -50,7 +50,7 @@ export const userMenuItems: NavMenuType[] = [
             variant: simple,
             Component: NewUserForm
         })),
-        rules: [ onlyUnauthorized, notCurrentLocation ]
+        rules: [ onlyUnauthorized ]
     },
     {
         title: 'subMenuUserChangePassword',
@@ -58,7 +58,7 @@ export const userMenuItems: NavMenuType[] = [
             variant: simple,
             Component: ChangePasswordForm
         })),
-        rules: [ onlyAuthorized, notCurrentLocation, fastCodingAuthorization ]
+        rules: [ onlyAuthorized, fastCodingAuthorization ]
     },
     {
         title: 'subMenuRemindPassword',
@@ -66,6 +66,6 @@ export const userMenuItems: NavMenuType[] = [
             variant: simple,
             Component: RemindPasswordForm
         })),
-        rules: [ onlyUnauthorized, notCurrentLocation ]
+        rules: [ onlyUnauthorized ]
     }
 ];
