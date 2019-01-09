@@ -8,8 +8,7 @@ import {
 import { GetTranslationsActions } from './actions';
 
 export const INITIAL_STATE: TranslationsLoaderState = {
-    en: null,
-    pl: null
+    translations: null
 };
 
 const { APP_TRANSLATIONS_SAVE } = GetTranslationsActionsEnum;
@@ -19,7 +18,7 @@ const reducer: Reducer<TranslationsLoaderState, GetTranslationsActions> = (state
         case APP_TRANSLATIONS_SAVE: {
             return {
                 ...state,
-                ...action.data
+                translations: [ ...action.data ]
             };
         }
 
@@ -34,6 +33,5 @@ export { reducer as translationsLoaderReducer };
 export default INITIAL_STATE;
 
 export interface TranslationsLoaderState {
-    en: TranslationsType,
-    pl: TranslationsType
+   translations: TranslationsType[]
 };

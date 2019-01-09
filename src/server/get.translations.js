@@ -3,8 +3,7 @@ let Mongo = require('./Mongo/index.js');
 
 module.exports = async function(id) {
     try {
-        let data = await new Mongo({ collection: 'translations' }).find({ id });
-        return Array.isArray(data) ? data[0] : null;
+        return await new Mongo({ collection: 'translations' }).find({ id: { $in:  id } });
 
     } catch (err) {
         throw err;
