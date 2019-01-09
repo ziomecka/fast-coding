@@ -8,6 +8,8 @@ import {
     DialogDispatch
 } from '@shared/dialog';
 
+import { WithStyles } from '@material-ui/core/styles';
+
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch): PrivacyPolicyButtonDispatch => ({
@@ -21,7 +23,9 @@ export default PrivacyPolicyButtonContainer;
 
 export interface PrivacyPolicyButtonDispatch extends DialogDispatch {};
 
-export interface PrivacyPolicyButtonProps extends PrivacyPolicyButtonDispatch {
+export interface PrivacyPolicyButtonProps extends
+PrivacyPolicyButtonDispatch,
+WithStyles {
     translationId: string;
     options: OpenDialogOptions;
 };
