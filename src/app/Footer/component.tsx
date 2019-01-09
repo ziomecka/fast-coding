@@ -12,13 +12,17 @@ import styles from './styles';
 import { FooterProps } from './container';
 import Grid from '@material-ui/core/Grid';
 import PrivacyPolicy from '@app/PrivacyPolicy';
+import TermsOfService from '@app/TermsOfService';
 
-import List from '@material-ui/core/List'
+import GridList from '@material-ui/core/GridList'
 import ListItem from '@material-ui/core/ListItem'
 
 import OpenDialogButton from '@app/OpenDialogButton';
 import { DialogsEnum } from '@app/Dialog/'
 
+import { InfoEnum } from '@app/Info';
+
+const { dialog } = InfoEnum;
 const { yes } = DialogsEnum;
 
 const FooterComponent: React.StatelessComponent< FooterProps > = props => {
@@ -29,8 +33,10 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
         classes: {
             footerPaper,
             footerGrid,
+            footerGridList,
             footerColumnItem,
-            footerColumnContainer
+            footerColumnContainer,
+            footerListItem
         }
     } = props;
 
@@ -57,30 +63,38 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
             >
                 {/*
                 // @ts-ignore */}
-                <Grid { ...columnProps } alignItems="flex-start" >
-                    <List dense disablePadding >
-                        <ListItem>
-                            <span style={{ whiteSpace: 'pre' }}>
-                                <Translate id={ coded } />
-                            </span>
-                            <span>
-                                <Translate id={ author } />
-                            </span>
+                <Grid { ...columnProps } alignItems="flex-start" style={{ paddingRight: '1em' }} >
+                    <GridList className={ footerGridList }>
+                        <ListItem className={ footerListItem }>
+                            <Translate id={ coded } />
+                            <Translate id={ author } />
                         </ListItem>
-                        <ListItem>
-                            <OpenDialogButton
-                                translationId="privacyPolicy"
-                                options={{
-                                    variant: yes,
-                                    Component: PrivacyPolicy
-                                }}
-                            />
-                        </ListItem>
-                    </List>
+                    </GridList>
                 </Grid>
                 {/*
                 // @ts-ignore */}
-                <Grid { ...columnProps } alignItems="flex-end" >
+                <Grid { ...columnProps } alignItems="flex-end" style={{ paddingLeft: '1em' }} >
+                <GridList className={ footerGridList }>
+                    <ListItem className={ footerListItem }>
+                        <OpenDialogButton
+                            translationId="privacyPolicy"
+                            options={{
+                                variant: yes,
+                                Component: () => <PrivacyPolicy variant={ dialog } />
+                            }}
+                        />
+                    </ListItem>
+
+                    <ListItem className={ footerListItem }>
+                        <OpenDialogButton
+                            translationId="termsOfService"
+                            options={{
+                                variant: yes,
+                                Component: () => <TermsOfService variant={ dialog } />
+                            }}
+                        />
+                    </ListItem>
+                    </GridList>
                 </Grid>
             </Grid>
         </Paper>

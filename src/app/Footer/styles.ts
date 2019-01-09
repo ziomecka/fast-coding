@@ -15,13 +15,6 @@ const styles = createStyles( theme => {
     const {
         palette: {
             grey: { [ 100 ]: backgroundColor },
-            primary: {
-                // light: backgroundColor,
-                textColor: endColor
-            }
-        },
-        transitions: {
-            duration: { complex },
         }
     } = theme;
 
@@ -54,7 +47,29 @@ const styles = createStyles( theme => {
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ PAPER_PADDING_LG } ${ PAPER_PADDING_MAX_LG }`
             },
-            backgroundColor: 'inherit'
+            backgroundColor: 'inherit',
+            '&:nth-of-type(2), & u:nth-child(2)': {
+                '& button, & > button': {
+                    justifyContent: 'flex-end',
+                }
+            }
+        },
+        footerListItem: {
+            height: 'auto !important',
+            whiteSpace: 'pre-wrap',
+            width: '100% !important',
+            margin: `.5em 0` // TODO spacing
+        },
+        footerGridList: {
+            overflow: 'hidden',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            flexWrap: 'nowrap',
+            '&:nth-of-type(2), &:nth-child(2)': {
+                '& button, & > button': {
+                    justifyContent: 'flex-end'
+                }
+            }
         }
     };
 });

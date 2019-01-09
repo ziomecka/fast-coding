@@ -230,5 +230,9 @@
     "buttonCancel": [
         "Cancel",
         "Zrezygnuj"
+    ],
+    "termsOfService": [
+        "Terms of service",
+        "Warunki korzystania"
     ]
 }
