@@ -60,10 +60,8 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   componentDidUpdate(prevProps: ContentProps) {
-    const { appLocation } = this.props;
-    const prevAppLocation = prevProps.appLocation;
-    const { pathname } = this.props.location;
-    const prevPathname = prevProps.location.pathname;
+    const { props: { appLocation, location: { pathname } } } = this;
+    const { appLocation: prevAppLocation, location: { pathname: prevPathname }  } = prevProps;
 
     // TODO - improve / change?
     if (appLocation !== prevAppLocation) {
@@ -85,7 +83,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
   get lessonTitle(): string {
       return this.props.lessonTitle[this.langCode];
-    }
+  }
 
   get lessonTranslation(): string {
       return getTranslation(this.props.localize, "lessonsLesson");
