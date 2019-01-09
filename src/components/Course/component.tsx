@@ -267,7 +267,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <Grid
                     container
-                    justify="space-evenly"
                     spacing={ 40 }
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
@@ -310,13 +309,14 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     item
                     container
                     key={ _id }
+                    component='li'
                     classes={{
                         item: `${ lessonTile } ${ isReview ? lessonTileReview : '' }`
                     }}
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
                 >
-                    <GridListTile  className={ lessonTileContainer }>
+                    <GridListTile component='div' className={ lessonTileContainer }>
                     <Button
                         onClick={ () => this.handleOnClick(lesson) }
                         classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}

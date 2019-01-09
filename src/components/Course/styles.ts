@@ -5,16 +5,16 @@ import {
     COLUMNS,
     SPACING_BEETWEEN_LESSONS,
     TRANSITION_DURATION,
-    SVG_SIZE
+    SVG_SIZE_MD,
+    SVG_SIZE_LG,
+    COURSE_NUMBER_OF_ROWS_DISPLAYED,
+    COURSE_BACKGROUND_GREY
 } from './constants.styles';
 
 import {
-    PAPER_PADDING_LG
+    PAPER_PADDING_LG,
+    PAPER_PADDING_MD
 } from '@constantsStyles';
-
-import { LESSONS_GRID } from '@components/Lessons';
-import { MediaEnum } from '@app/Media/'
-const { xs, lg, xl, sm, md } = MediaEnum;
 
 const styles = createStyles(theme => {
     const {
@@ -25,11 +25,14 @@ const styles = createStyles(theme => {
         palette: {
             secondary: { dark: reviewColor },
             action: { hover },
-            background: { paper: lessonCardBackground }
+            background: { paper: lessonCardBackground },
+            grey: { [ COURSE_BACKGROUND_GREY ]: courseBackgroundColor }
         }
     } = theme;
 
     let duration = theme.transitions.duration[ TRANSITION_DURATION ];
+
+    let cols = 1;
 
     // 1.5em Mui-Button fontSize
     const labelFontSize = 2 / 1.5;
@@ -38,7 +41,7 @@ const styles = createStyles(theme => {
         panel: {
             overflowX: 'hidden',
             alignItems: 'flex-start',
-            backgroundColor: '#f5f5f5',
+            backgroundColor: courseBackgroundColor,
             maxWidth: '100%'
         },
         collapsedContainer: {
@@ -57,7 +60,10 @@ const styles = createStyles(theme => {
             width: 'inherit'
         },
         summaryContent: {
-            padding: `${ PAPER_PADDING_LG }`,
+            padding: `${ PAPER_PADDING_MD }`,
+            [theme.breakpoints.up('lg')]: {
+                padding: `${ PAPER_PADDING_LG }`,
+            },
             margin: '0',
             flexGrow: 0
         },
@@ -85,16 +91,21 @@ const styles = createStyles(theme => {
         detailsLessons: {
             overflowY: 'scroll',
             paddingTop: 0,
-            paddingBottom: 0
+            paddingBottom: 0,
+            '&::-webkit-scrollbar': {
+                display: 'none'
+            }
         },
         lessonsContainer: {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             width: '100%',
-            /** 2 tiles, 4 spacings visible */
-            maxHeight: COURSE_HEIGHT_MD * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2,
+            flex: '1 1 100%',
+            margin: `0 !important`,
+            // TODO simplify
+            maxHeight: COURSE_HEIGHT_MD * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1,
             [theme.breakpoints.up('lg')]: {
-                maxHeight: COURSE_HEIGHT_LG * 2 + spacingUnit * SPACING_BEETWEEN_LESSONS * 4 + 2
+                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED  + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
             },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
@@ -137,14 +148,21 @@ const styles = createStyles(theme => {
             flexGrow: 0,
             transition: theme.transitions.create('transform', { duration }),
             "& svg": {
-                width: SVG_SIZE,
-                height: SVG_SIZE
+                width: SVG_SIZE_MD,
+                height: SVG_SIZE_MD,
             },
-            // to be aligned with the right border of lessons in the last column
-            // So:
-            // PAPER_PADDING - the same as in collapsedEntered
-            // SVG_SIZE / 2 - because material design applies translateY(-50%) to the expansionButton ( I offset it )
-            right: `calc(${ PAPER_PADDING_LG } + ${ SVG_SIZE } / 2)`,
+            [ theme.breakpoints.down('lg') ]: {
+                bottom: '1rem',
+                right: '1rem',
+                top: 'auto',
+            },
+            [ theme.breakpoints.up('lg') ]: {
+                right: '2rem',
+                // "& svg": {
+                //     width: SVG_SIZE_LG,
+                //     height: SVG_SIZE_LG,
+                // },
+            },
             padding: 0
         },
         lessonCardContent: {
@@ -189,20 +207,18 @@ const styles = createStyles(theme => {
             transition: theme.transitions.create('width', { duration })
         },
         gridListTileRootCollapsed: {
-            [ theme.breakpoints.only('xs')]: {
-                width: `${ 100 / LESSONS_GRID.get(xs).cols }%`,
-            },
+            width: `${ 100 / cols++ }%`,
             [ theme.breakpoints.only('sm')]: {
-                width: `${ 100 / LESSONS_GRID.get(sm).cols }%`,
+                width: `${ 100 / cols++ }%`,
             },
             [ theme.breakpoints.only('md')]: {
-                width: `${ 100 / LESSONS_GRID.get(md).cols }%`,
+                width: `${ 100 / cols }%`,
             },
             [ theme.breakpoints.only('lg')]: {
-                width: `${ 100 / LESSONS_GRID.get(lg).cols }%`,
+                width: `${ 100 / cols }%`,
             },
             [ theme.breakpoints.only('xl')]: {
-                width: `${ 100 / LESSONS_GRID.get(xl).cols }%`,
+                width: `${ 100 / cols }%`,
             },
             height: 'inherit',
         },

@@ -10,12 +10,10 @@ export const COURSE_HEIGHT_LG = 225;
 export const COLUMNS = 2;
 export const SPACING_BEETWEEN_LESSONS = 2;
 export const TRANSITION_DURATION = 'complex';
+export const COURSE_NUMBER_OF_ROWS_DISPLAYED = 2;
 
-// TODO remove
-export const COLS_MD = 3;
-export const COLS_LG = 4;
-
-export const SVG_SIZE = '1.5em';
+export const SVG_SIZE_MD = '2rem';
+export const SVG_SIZE_LG = '2rem';
 
 export const GRID: CourseGrid = new Map([
     [ xs, { cols: 1, cellHeight: 200 }],
@@ -24,3 +22,5 @@ export const GRID: CourseGrid = new Map([
     [ lg, { cols: 4, cellHeight: 225 }],
     [ xl, { cols: 5, cellHeight: 225 }]
 ]);
+
+export const COURSE_BACKGROUND_GREY = 100;
