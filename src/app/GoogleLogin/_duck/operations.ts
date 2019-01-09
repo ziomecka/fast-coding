@@ -25,7 +25,7 @@ import history from '@shared/history';
 const { app } = ApplicationContainersEnum;
 const { googleLogin } = AppContainersEnum;
 
-const { lessons: signInSuccessUrl, privacyPolicy: privacyPolicyUrl } = AppRoutesEnum;
+const { lessons: signInSuccessUrl, privacyPolicy: privacyPolicyUrl, termsOfService: tosUrl } = AppRoutesEnum;
 
 export let ui;
 
@@ -93,7 +93,8 @@ export const onStartFirebaseUI = (): any => (
                     signInFailure: err => signInFailure(err, dispatch)
                 },
                 signInFlow: 'popup',
-                tosUrl: privacyPolicyUrl,
+                privacyPolicyUrl,
+                tosUrl,
                 signInOptions: [
                     {
                         provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
