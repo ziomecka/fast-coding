@@ -18,7 +18,7 @@ const styles = theme => {
                 letterSpacing,
                 lineHeight,
             }
-        }
+        },
     } = theme;
 
     const buttonShadow = theme.shadows[3];
@@ -48,9 +48,15 @@ const styles = theme => {
                 padding: '.5rem 1rem',
                 margin: '1rem 0',
                 maxHeight: '3rem',
+                boxSizing: 'border-box'
             },
             '& .firebaseui-idp-icon-wrapper': {
-                height: '2rem' // needed for Firefox, in Chrome 32px by user.agent
+                display: 'inline-block',
+                height: '1em', // needed for Firefox, in Chrome 32px by user.agent,
+                marginRight: 5,
+                [ theme.breakpoints.up('sm') ]: {
+                    height: '1.5em' // needed for Firefox, in Chrome 32px by user.agent
+                }
             },
             '& .firebaseui-idp-icon': {
                 marginRight: '10px ',
@@ -59,6 +65,16 @@ const styles = theme => {
             },
             '& .firebaseui-idp-text-short': {
                 display: 'none'
+            },
+            // Terms of service and privacy policy information
+            '& .firebaseui-tos': {
+                color: buttonBackgroundColor,
+                fontSize: '.9em',
+                font: 'inherit',
+                textAlign: 'center'
+            },
+            '& .firebaseui-link, .firebaseui-tos-link, .firebaseui-pp-link': {
+                textDecoration: 'underline'
             }
         }
     })
