@@ -5,11 +5,9 @@ import {
     NAV_HEIGHT_LG,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
-    PAPER_PADDING_MD,
-    PAPER_PADDING_LG,
-    LINE_HEIGHT,
     FOOTER_HEIGHT_LG,
-    FOOTER_HEIGHT_MD
+    FOOTER_HEIGHT_MD,
+    WELCOME_HEADING_OTHER_XS
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -29,20 +27,17 @@ const styles = createStyles(theme => {
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
             padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
-            paddingBottom: FOOTER_HEIGHT_MD,
-            backgroundColor: mainBackground,
-            height: '100vh',
-            [ theme.breakpoints.up('md') ]: {
-                height: 'auto',
-                backgroundColor: defaultBackground,
-                overflow: 'hidden'
-            },
+            backgroundColor: defaultBackground,
+            height: 'auto',
+            overflow: 'hidden',
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
-                paddingBottom: FOOTER_HEIGHT_LG
             }
         },
         contentBoxHome: {
+            backgroundColor: mainBackground,
+            height: '100vh',
+            paddingBottom: 0,
             [ theme.breakpoints.up('md') ]: {
                 height: '0',
                 padding: '0',
@@ -50,7 +45,11 @@ const styles = createStyles(theme => {
             }
         },
         contentBoxOther: {
-            minHeight: 'calc(100vh)'
+            paddingBottom: FOOTER_HEIGHT_MD,
+            minHeight: 'calc(100vh)',
+            [ theme.breakpoints.up('lg') ]: {
+                paddingBottom: FOOTER_HEIGHT_LG
+            }
         },
         contentTitle: {
             fontSize: WELCOME_HEADING_OTHER_XS,
