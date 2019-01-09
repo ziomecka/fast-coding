@@ -6,10 +6,12 @@ import { ApplicationState } from '@appStore';
 import { AppContainersEnum } from '@appTypes';
 import { ApplicationContainersEnum } from '@applicationTypes';
 
-import { LocalizeState } from 'react-localize-redux';
+import { LocalizeState, LocalizeContextProps } from 'react-localize-redux';
 
 import { TranslationsLoaderState } from '../TranslationsLoader/_duck/reducers';
-import { RenderType } from './_duck/types';
+import { IRenderInfo, InfoEnum } from './_duck/types';
+
+import { WithStyles } from '@material-ui/core/styles';
 
 const { app } = ApplicationContainersEnum;
 const { translationsLoader } = AppContainersEnum;
@@ -24,12 +26,16 @@ const InfoContainer = connect(mapStateToProps)(Info);
 export default InfoContainer;
 
 interface IMapStateToProps extends TranslationsLoaderState {
-    localize: LocalizeState
+    localize: LocalizeState;
 }
 
 export interface InfoProps extends
+WithStyles,
+LocalizeContextProps,
 IMapStateToProps {
-    render: RenderType;
+    render: IRenderInfo;
     displayError?: boolean;
     useLocalize?: boolean;
+    id?: string;
+    variant: InfoEnum
 };
