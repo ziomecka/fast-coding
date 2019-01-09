@@ -5,6 +5,8 @@ import history from '@shared/history';
 import HomeView from '../Home/';
 import LessonsView from '../Lessons/';
 import LessonView from '../Lesson/';
+import PrivacyPolicy from '@views/PrivacyPolicy/';
+import TermsOfService from '@views/TermsOfService/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../../theme/';
@@ -28,6 +30,8 @@ const Root: React.StatelessComponent<AppRouterPropsI> = () => {
                             <Switch>
                                 <Route path={`${ lessons }/:id`} component={ LessonView } />
                                 <Route exact path={`${ lessons }`} component={ LessonsView } />,
+                                <Route exact path={`${ privacyPolicy }`} component={ PrivacyPolicy } />,
+                                <Route exact path={`${ termsOfService }`} component={ TermsOfService } />,
                             </Switch>
                         </HomeView>
                     </Route>
