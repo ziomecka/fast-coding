@@ -160,7 +160,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         return (Math.ceil( (selectedLesson + 1) / numberOfLessonsDisplayed ) - 1) * numberOfLessonsDisplayed;
     }
 
-    async getNewState(): Promise<boolean>  {
+    async getNewState(): Promise<boolean> {
         const {
             props: { openedCourseId },
             areHidden
@@ -421,7 +421,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         return (
             <IconButton
                onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall(e) }
-               className={ `${ iconDense } ${ disabled ? buttonDisabled : null }`  }
+               className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
                style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
             >
                 <IconNext />

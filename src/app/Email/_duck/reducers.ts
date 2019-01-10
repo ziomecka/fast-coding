@@ -16,7 +16,7 @@ const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
 
             return {
                 email,
-                emailValid: applyRules( [ [ NOT_EMAIL,  { value: email } ] ] )
+                emailValid: applyRules( [ [ NOT_EMAIL, { value: email } ] ] )
             };
         }
     }

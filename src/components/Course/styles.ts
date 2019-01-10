@@ -109,7 +109,7 @@ const styles = createStyles(theme => {
             // TODO simplify
             maxHeight: COURSE_HEIGHT_MD * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1,
             [theme.breakpoints.up('lg')]: {
-                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED  + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
+                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
             },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {

@@ -6,7 +6,7 @@ import { AppRoutesEnum, LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { ApplicationContainersEnum } from '@applicationTypes';
 
-const { components  } = ApplicationContainersEnum;
+const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
 const _url = AppRoutesEnum.lessonsGet;

@@ -34,7 +34,7 @@ class LocationChange extends React.Component<LocationChangeProps> {
     return false;
   }
 
-  render()  {
+  render() {
     return null;
   }
 }

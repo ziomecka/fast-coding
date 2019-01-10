@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { LoginFormActionsEnum } from './types';
 import { PasswordActionsEnum } from '@app/Password/';
-import { LoginFormActions }  from './actions';
+import { LoginFormActions } from './actions';
 
 import {
     passwordReducer,

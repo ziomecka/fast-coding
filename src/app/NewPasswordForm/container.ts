@@ -8,7 +8,7 @@ import { NewPasswordFormState } from './_duck/reducers';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
-import { reset  } from './_duck/actions';
+import { reset } from './_duck/actions';
 import { SendFormNewPasswordFormI } from './_duck/types';
 
 import { onSendForm } from './_duck/operations';

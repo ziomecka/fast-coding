@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { RemindPasswordActionsEnum } from './types';
-import { RemindPasswordActions }  from './actions';
+import { RemindPasswordActions } from './actions';
 
 import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState

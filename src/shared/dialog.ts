@@ -1,4 +1,4 @@
-import { Action,  Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 
 import {
     OpenDialogOptions,

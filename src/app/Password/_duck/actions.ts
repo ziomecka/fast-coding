@@ -80,7 +80,7 @@ export const setPassword: ActionCreator<SetPasswordAction> = (password, password
     actionsMap[passwordType][0](password, container)
 );
 
-export const validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum,  passwordType: string, container: AppContainersEnum) => (
+export const validatePassword: ActionCreator<ValidatePasswordAction> = (passwordValid: RulesErrorEnum, passwordType: string, container: AppContainersEnum) => (
     actionsMap[passwordType][1](passwordValid, container) || (() => {})
 );
 

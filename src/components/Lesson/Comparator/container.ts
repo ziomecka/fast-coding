@@ -17,7 +17,7 @@ const { comparator, lesson } = ComponentsContainersEnum;
 import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
 import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
 
-import { default as operations  } from './_duck/operations/index';
+import { default as operations } from './_duck/operations/index';
 const {
     onAddEventListener,
     onTurnOnComparator,

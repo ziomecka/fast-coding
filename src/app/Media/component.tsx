@@ -53,7 +53,7 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
             }
         }
 
-        start = null;  //GC
+        start = null; //GC
         return breakpoint;
     }
 

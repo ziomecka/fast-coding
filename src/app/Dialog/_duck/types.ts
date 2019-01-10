@@ -28,7 +28,7 @@ type DialogContentVariants =
         variant: 'COMPONENT',
         Component: React.ComponentClass | React.FunctionComponent
     }
-|   {
+| {
         variant: 'HTML',
         html: JSX.Element
     };

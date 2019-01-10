@@ -12,7 +12,7 @@ import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 /** Keyboard listener imports */
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
-import * as manageKeydownListeners  from '@app/KeyboardListener/_duck/operations';
+import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 

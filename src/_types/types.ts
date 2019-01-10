@@ -7,7 +7,7 @@ export enum ApplicationContainersEnum {
     app = 'APP'
 }
 
-export type ThunkGetStateType =  () => ApplicationState ;
+export type ThunkGetStateType = () => ApplicationState ;
 
 export enum LanguagesEnum {
     pl = 'pl',

@@ -74,7 +74,7 @@ const signInSuccessWithAuthResult = (authResult, dispatch: Dispatch): boolean =>
         return false; // false means 'do not redirect'
 };
 
-const signInFailure = (dispatch:  Dispatch): boolean => {
+const signInFailure = (dispatch: Dispatch): boolean => {
     dispatch(openNotification({ text: 'notificationLoginFailure', variant: error }));
     return false;
 };

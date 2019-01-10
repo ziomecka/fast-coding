@@ -24,7 +24,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
          */
         if ( firebaseAuthorized ) {
             return this.startFirebaseUI();
-        }  else {
+        } else {
             return this.authorizeFirebase();
         }
     }

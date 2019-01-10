@@ -30,7 +30,7 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
         translations
     } = props;
 
-    const className = ( variant ===  standalone )
+    const className = ( variant === standalone )
         ? props.classes.standalone
         : null;
 

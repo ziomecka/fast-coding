@@ -21,7 +21,7 @@ export interface UserAuthorizeI {
 
 /** Left side === providerId in firebase authResult */
 export enum UserAuthorizationMethodEnum {
-    'google.com'  = 'GOOGLE',
+    'google.com' = 'GOOGLE',
     'facebook.com' = 'FACEBOOK',
     'fastcoding' = 'FAST_CODING'
 }

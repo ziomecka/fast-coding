@@ -17,7 +17,7 @@ export const actions = {
 export type ISaveTranslations = TranslationsType[];
 
 export type SaveTranslationsActionType = Action & {
-    data:  ISaveTranslations
+    data: ISaveTranslations
 };
 
 export type GetTranslationsActions = SaveTranslationsActionType;

@@ -65,7 +65,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         const { props: { location: { pathname }, authorized, menuItems } } = this;
         const { location: { pathname: prevPathname }, authorized: prevAuthorized, menuItems: prevMenuItems } = prevProps;
 
-        const activeLang =  getActiveLanguage(this.props.localize);
+        const activeLang = getActiveLanguage(this.props.localize);
         const prevActiveLang = getActiveLanguage(prevProps.localize);
 
         /**

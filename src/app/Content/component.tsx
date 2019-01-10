@@ -61,7 +61,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
   componentDidUpdate(prevProps: ContentProps) {
     const { props: { appLocation, location: { pathname } } } = this;
-    const { appLocation: prevAppLocation, location: { pathname: prevPathname }  } = prevProps;
+    const { appLocation: prevAppLocation, location: { pathname: prevPathname } } = prevProps;
 
     // TODO - improve / change?
     if (appLocation !== prevAppLocation) {

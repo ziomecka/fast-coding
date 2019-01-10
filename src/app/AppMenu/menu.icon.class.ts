@@ -12,7 +12,7 @@ const style = theme => {
             padding: 0,
             marginLeft: '20px',
             '&:nth-of-type(1)': {
-                marginLeft: 0  // for Home Icon on xs screen
+                marginLeft: 0 // for Home Icon on xs screen
             }
         }
     };

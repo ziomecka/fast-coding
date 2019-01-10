@@ -20,7 +20,7 @@ import { STATS_AVERAGE_WORD_LENGTH } from './constants';
 import getTranslation from '@shared/get.translation';
 const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
 
-const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
+const StatsComponent: React.StatelessComponent<StatsProps> = (props) => {
     const { start, stop, time, allErrors, text,
             classes: { statsPaper, statsNote },
             createTable,

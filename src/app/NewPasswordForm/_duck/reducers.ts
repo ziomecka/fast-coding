@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { NewPasswordFormActionsEnum } from './types';
-import { NewPasswordFormActions }  from './actions';
+import { NewPasswordFormActions } from './actions';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState

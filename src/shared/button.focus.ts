@@ -15,7 +15,7 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
 
         /** If tab or arrow right */
         if (keyCode === 9 || keyCode === 39) {
-            nextIndex = index++ <= length - 2  ? index : 0;
+            nextIndex = index++ <= length - 2 ? index : 0;
         }
 
         /** If arrow left */
@@ -46,7 +46,7 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
         }
 
         /** If tab or arrow right or arrow left */
-        if (keyCode === 9 || keyCode === 39 || keyCode === 37)  {
+        if (keyCode === 9 || keyCode === 39 || keyCode === 37) {
             manageFocus(e);
             return true;
         }

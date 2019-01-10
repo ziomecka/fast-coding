@@ -20,7 +20,7 @@ export const onUnauthorize = (): any => {
     };
 };
 
-export default  {
+export default {
     onAuthorize,
     onUnauthorize
 };

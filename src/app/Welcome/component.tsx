@@ -15,7 +15,7 @@ import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
-import MenuButton, { MenuButtonOptionsI  } from '@app/MenuButton/';
+import MenuButton, { MenuButtonOptionsI } from '@app/MenuButton/';
 
 const { notAnyLesson, notHome } = MenuRulesEnum;
 
@@ -131,7 +131,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         return <>{ heading }</>;
     };
 
-    render()  {
+    render() {
         const {
             heading, isHome, isLesson,
             props: {

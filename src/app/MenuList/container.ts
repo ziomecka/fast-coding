@@ -26,7 +26,7 @@ const { app } = ApplicationContainersEnum;
 const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
-import { WithMenuRules }  from '@app/MenuRulesHoc/';
+import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({

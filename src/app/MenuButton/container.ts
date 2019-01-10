@@ -16,7 +16,7 @@ import { AppContainersEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
-import { WithMenuRules }  from '@app/MenuRulesHoc/';
+import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 const { app } = ApplicationContainersEnum;
 const { appMenu } = AppContainersEnum;
