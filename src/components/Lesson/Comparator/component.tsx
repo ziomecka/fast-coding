@@ -10,9 +10,10 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
     }
 
     scroll(id: string): void {
-        try {
-            document.getElementById(id).scrollIntoView(false);
-        } catch (err) {
+        let htmlElement = document.getElementById(id);
+        if (htmlElement) {
+            htmlElement.scrollIntoView(false);
+            htmlElement = null; // GC
         }
     };
 

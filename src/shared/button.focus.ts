@@ -26,7 +26,10 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
         try {
             getButton(buttonsIds[nextIndex]).focus();
             focusedButton = buttonsIds[nextIndex];
-        } catch {}
+        // TODO code
+        /* eslint-disable no-empty */
+        } catch (err) {}
+        /* eslint-enable no-empty */
     };
 
     return (e: KeyboardEvent): boolean => {

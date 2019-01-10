@@ -19,7 +19,10 @@ export const onLoadTranslations = (url: string = _url ): any => (
                 answer = null; // GC
                 return true;
             }
+        // TODO catch err
+        /* eslint-disable no-empty */
         } catch (err) {}
+        /* eslint-enable no-empty */
 });
 
 export default {

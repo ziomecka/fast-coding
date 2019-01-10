@@ -78,7 +78,10 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
             if ( previousNo !== undefined && no !== previousNo ){
                 this.getLessonHTML(previousNo).classList.remove(selectedLessonClass);
             }
+        // TODO code
+        /* eslint-disable no-empty */
         } catch (err) {}
+        /* eslint-enable no-empty */
     }
 
     getLessonHTML(no): HTMLElement {
@@ -91,7 +94,9 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         if ( e.keyCode === 13 ) {
             try {
                 this.getLessonHTML( this.state.selectedRange ).querySelector('button').click();
+            /* eslint-disable no-empty */
             } finally {}
+            /* eslint-enable no-empty */
         }
 
         // 37 - arrow left

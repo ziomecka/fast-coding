@@ -12,12 +12,15 @@ export const INITIAL_STATE: ICourseState = {};
 
 const reducer: Reducer<ICourseState, CourseActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        /* eslint-disable no-empty */
+        // TODO code
         case COMPONENTS_COURSE_INITIAL_STATE_SET: {
         }
 
+        // TODO code
         case COMPONENTS_COURSE_UPDATE: {
         }
-
+        /* eslint-enable no-empty */
         default: {
             return { ...state };
         }
