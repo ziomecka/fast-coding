@@ -154,6 +154,16 @@ const styles = createStyles(theme => {
                 backgroundColor: 'transparent'
             },
             padding: 0
+        },
+        welcomeHomeButton: {
+            position: 'absolute',
+            left: PAPER_PADDING_MAX_MD,
+            /** Breakpoint not needed because dispalayed only on xs
+             *  CAREFUL
+             */
+            // [ theme.breakpoints.up('lg') ]: {
+            //     left: PAPER_PADDING_MAX_LG,
+            // }
         }
     };
 });

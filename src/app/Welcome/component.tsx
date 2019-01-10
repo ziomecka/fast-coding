@@ -6,6 +6,8 @@ import { WelcomeProps } from './container';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import HomeIcon from '@material-ui/icons/Home';
+
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
@@ -20,6 +22,9 @@ const { notAnyLesson, notHome } = MenuRulesEnum;
 
 /** Translations */
 import { Translate } from 'react-localize-redux';
+
+import { withMedia, MediaEnum } from '@app/Media';
+const { xs } = MediaEnum;
 
 require('./style.sass');
 
@@ -136,8 +141,10 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 classes: {
                     welcomePaper, welcomeHome, welcomeOther, welcomeButtons,
                     welcomeButton, welcomeButtonMain, welcomeHeading,
-                    welcomeHeadingHome, welcomeHeadingOther, welcomeLesson
-                }
+                    welcomeHeadingHome, welcomeHeadingOther, welcomeLesson,
+                    welcomeHomeButton
+                },
+                media
             }
         } = this;
 
@@ -151,15 +158,24 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                         : welcomeOther
                     }`
             }>
-                <Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
-                    { heading() }
-                </Typography>
 
-                {/**
-                 /* Link to Welcome page
-                 /* Hidden, under title, rendered on not Welcome page
-                 */}
-                <MenuButton { ...this.button } />
+                { ( media !== xs || isHome ) && (
+                    <>
+                        <Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
+                            { heading() }
+                        </Typography>
+                        {/* /**
+                        /* Link to Welcome page
+                        /* Hidden, under title, rendered on not Welcome page
+                        */ }
+                        <MenuButton { ...this.button } />
+                    </>
+                )}
+
+                { media === xs && (
+                    <MenuButton { ...Object.assign({}, this.button, { icon: <HomeIcon />, iconButton: { ...this.button.iconButton, classes: { root: welcomeHomeButton } } }) } />
+                )}
+
 
                 {/* Render buttons only when Home and desktop */}
                     {isHome && (
@@ -185,4 +201,4 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     }
 };
 
-export default withStyles(styles)(WelcomeComponent);
+export default withStyles(styles)(withMedia(WelcomeComponent));
