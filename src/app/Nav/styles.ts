@@ -31,7 +31,7 @@ const style = createStyles(theme => {
         },
         navLessonClass: {
             top: `-${ NAV_HEIGHT_MD }px`,
-            [theme.breakpoints.up('lg')]: {
+            [theme.breakpoints.up('sm')]: {
                 top: `-${ NAV_HEIGHT_LG }px`,
             }
         },
@@ -41,7 +41,7 @@ const style = createStyles(theme => {
                 content: "attr(login)",
                 position: 'absolute',
                 left: '50%',
-                top: '100%',
+                top: '95%',
                 transform: 'translate(-50%, -50%)',
                 fontSize: LOGIN_FONT_SIZE,
                 fontWeight: loginFontWeight,
