@@ -9,6 +9,10 @@ export enum NotificationVariantEnum {
     error = 'ERROR'
 };
 
+const { success, error } = NotificationVariantEnum;
+
+export { success as success, error as error };
+
 export enum NotificationDurationEnum {
     short = 3000,
     standard = 5000,
