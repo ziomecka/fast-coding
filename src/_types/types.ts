@@ -1,6 +1,6 @@
 
 import { ApplicationState } from '../_reducers/';
-
+export { MediaEnum } from '../theme/types/';
 export enum ApplicationContainersEnum {
     views = 'VIEWS',
     components = 'COMPONENTS',
