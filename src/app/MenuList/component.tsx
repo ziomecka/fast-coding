@@ -219,25 +219,21 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         /** Render list only if at least one item meets the rules */
         return (
             <ClickAwayListener onClickAway={ this.handleClickAway }>
-                <>
-                    {
+                <>'                   '{
                         (title && (
                             <Tooltip title={getTranslation(this.props.localize, title)}>
                                 { this.getIconButton() }
                             </Tooltip>
                         )) ||
                         this.getIconButton()
-                    }
-
-                    {/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}
-                    {<Menu
+                    }'
+                   '{/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}'                   '{<Menu
                         anchorEl={ anchorEl }
                         open={ Boolean(anchorEl) }
                         classes={ { paper : menuClass } }
                     >
                         { this.state.listItems }
-                    </Menu>}
-                </>
+                    </Menu>}'               '</>
             </ClickAwayListener>
         );
     }
@@ -245,9 +241,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     render () {
         if ( this.state.render ) {
             return (
-                <>
-                    { this.renderList() }
-                </>
+                <>'                   '{ this.renderList() }'               '</>
             );
         }
         return null;

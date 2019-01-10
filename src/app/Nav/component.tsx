@@ -60,7 +60,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                         } });
                     return acc;
                 }, []) }
-            icon={ <> { activeLanguage? activeLanguage.code : '' } </> }
+            icon={ <>''{ activeLanguage? activeLanguage.code : '' }''</> }
             container={ languagesMenu }
             title={ 'submenuChangeLanguage' }
     />

@@ -64,7 +64,7 @@ const styles = createStyles(theme => {
             display: 'block',
             width: '100%',
             left: 0,
-            margin: `1em 0`,
+            margin: '1em 0',
             whiteSpace: 'pre-line'
         }
     };

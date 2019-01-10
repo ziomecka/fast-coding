@@ -17,7 +17,7 @@ const styles = createStyles(theme => {
         lessonTime: {
             position: 'relative',
             '&:after': {
-                content: "attr(aftertext)",
+                content: 'attr(aftertext)',
                 color: hintColor,
                 position: 'absolute',
                 marginLeft: spacingUnit

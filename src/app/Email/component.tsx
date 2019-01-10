@@ -13,7 +13,7 @@ const Email: React.StatelessComponent<EmailPropsI> = props => {
 
     return (
         <TextField
-            inputProps={{ tabIndex, type: "email" }}
+            inputProps={{ tabIndex, type: 'email' }}
             label={getTranslation(localize, 'emailLabel')}
             placeholder={getTranslation(localize, 'emailPlaceholder')}
             required

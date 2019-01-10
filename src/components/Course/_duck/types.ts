@@ -6,7 +6,7 @@ export enum CourseActionsEnum {
 };
 
 export enum LessonsTypesEnum {
-    review = "review"
+    review = 'review'
 }
 
 export type CourseGrid = Map< MediaEnum, { cols: number, cellHeight: number }>;

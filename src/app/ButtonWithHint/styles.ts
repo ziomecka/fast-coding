@@ -7,7 +7,7 @@ const styles = createStyles(theme => {
             flexDirection: 'column',
             '&:after': {
                 display: 'block',
-                content: "attr(aftertext)",
+                content: 'attr(aftertext)',
                 width: '100%',
                 textTransform: 'lowercase',
                 fontSize: '.9em'

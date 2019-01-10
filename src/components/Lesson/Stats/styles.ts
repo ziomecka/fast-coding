@@ -24,7 +24,7 @@ const styles = createStyles(theme => {
         },
         statsNote: {
             '&:after': {
-                content: "':'"
+                content: '\':\''
             }
         }
     };

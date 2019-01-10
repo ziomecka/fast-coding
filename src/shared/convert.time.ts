@@ -10,7 +10,7 @@ export const showTwoDigits = (value: number): string => {
     }
 
     if (!str.length) {
-        return `00`;
+        return '00';
     }
 
     return str;
@@ -32,14 +32,14 @@ export const getTime = (time: number): {hours: number, minutes: number, seconds:
 
 export const getSeconds = (time: number) => {
     return (
-        calculate( time / minute ) + " : " +
+        calculate( time / minute ) + ' : ' +
         calculate( time % minute / second )
     );
 };
 
 export const getMilliseconds = (time: number) => {
     return (
-        getSeconds( time ) + " : " +
+        getSeconds( time ) + ' : ' +
         calculate( time % minute % second )
     );
 };

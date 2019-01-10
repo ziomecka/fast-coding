@@ -67,7 +67,7 @@ const styles = createStyles( theme => {
             height: 'auto !important',
             whiteSpace: 'pre-wrap',
             width: '100% !important',
-            margin: `.5em 0` // TODO spacing
+            margin: '.5em 0' // TODO spacing
         },
         footerGridList: {
             overflow: 'hidden',

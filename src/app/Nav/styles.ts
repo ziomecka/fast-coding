@@ -38,7 +38,7 @@ const style = createStyles(theme => {
         navLogin: {
             '&:after': {
                 display: 'block',
-                content: "attr(login)",
+                content: 'attr(login)',
                 position: 'absolute',
                 right: 0,
                 top: -spacingUnit * 2,
@@ -53,7 +53,7 @@ const style = createStyles(theme => {
                     width: LOGIN_WIDTH,
                     right: 'auto',
                     left: '50%',
-                    top: `100%`,
+                    top: '100%',
                     transform: 'translateX(-50%)',
                     whiteSpace: 'normal'
                 }

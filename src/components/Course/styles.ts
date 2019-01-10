@@ -105,7 +105,7 @@ const styles = createStyles(theme => {
             justifyContent: 'flex-start',
             width: '100%',
             flex: '1 1 100%',
-            margin: `0 !important`,
+            margin: '0 !important',
             // TODO simplify
             maxHeight: COURSE_HEIGHT_MD * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1,
             [theme.breakpoints.up('lg')]: {
@@ -141,7 +141,7 @@ const styles = createStyles(theme => {
             '& h5:after': {
                 display: 'inline-block',
                 width: '100%',
-                content: "attr(info)",
+                content: 'attr(info)',
                 fontSize: '.7em',
                 marginTop: '.7em',
                 textTransform: 'lowercase',
@@ -151,7 +151,7 @@ const styles = createStyles(theme => {
         expansionButton: {
             flexGrow: 0,
             transition: theme.transitions.create('transform', { duration }),
-            "& svg": {
+            '& svg': {
                 width: SVG_SIZE_MD,
                 height: SVG_SIZE_MD,
             },

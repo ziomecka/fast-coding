@@ -37,7 +37,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   get isLesson() {
-      return RegExp(`.*\lesson-.*`).test(this.props.location.pathname);
+      return RegExp('.*\lesson-.*').test(this.props.location.pathname);
   }
 
   get isHome() {
@@ -86,7 +86,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   get lessonTranslation(): string {
-      return getTranslation(this.props.localize, "lessonsLesson");
+      return getTranslation(this.props.localize, 'lessonsLesson');
   }
 
   render() {

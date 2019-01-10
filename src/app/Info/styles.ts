@@ -7,7 +7,7 @@ const styles = createStyles({
         alignItems: 'flex-start',
         '& h1, h2, h3, h4, h5, h6, p': {
             textAlign: 'left',
-            margin: `20px 0`
+            margin: '20px 0'
         }
     }
 });

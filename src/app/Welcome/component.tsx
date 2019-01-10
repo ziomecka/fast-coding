@@ -115,8 +115,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             const remainingHeading = heading.slice(0, lastSpace + 1);
 
             return (
-                <>
-                    <span>{ remainingHeading }</span> {
+                <>'                   '<span>{ remainingHeading }</span>''{
                         Array.from(lastWord).map((letter, ind) => (
                             <span
                                 className={ `${ fallingLetters } ${ this.isHome ? classFalling : '' }` }
@@ -125,8 +124,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                                 { letter }
                             </span>
                         ))
-                    }
-                </>
+                    }'               '</>
             );
         }
 
@@ -159,16 +157,12 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             }>
 
                 { ( media !== xs || isHome ) && (
-                    <>
-                        <Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
+                    <>'                       '<Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
                             { heading() }
-                        </Typography>
-                        {/* /**
+                        </Typography>'                       '{/* /**
                         /* Link to Welcome page
                         /* Hidden, under title, rendered on not Welcome page
-                        */ }
-                        <MenuButton { ...this.button } />
-                    </>
+                        */ }'                       '<MenuButton { ...this.button } />'                   '</>
                 )}
 
                 { media === xs && (

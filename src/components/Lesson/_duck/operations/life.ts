@@ -52,7 +52,7 @@ export const onEndLesson = (): any => (dispatch: Dispatch) => {
     let answer = dispatch(endLesson());
     if (answer) {
         addEscapeReturnListener(dispatch);
-        document.getElementById("lessonStats").scrollIntoView(true);
+        document.getElementById('lessonStats').scrollIntoView(true);
         dispatch(onKeepState(LocalStorageItemEnum.lesson, lesson));
         dispatch(onKeepState(LocalStorageItemEnum.comparator, comparator));
     }

@@ -149,8 +149,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         } = this;
 
         return (
-            <>
-                <Paper className={lessonPaper}>
+            <>'               '<Paper className={lessonPaper}>
                     <Typography variant="h3" className={lessonInvite}>
                         { !started
                             ? <Translate id="lessonInvite" />
@@ -163,12 +162,9 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                     </Typography>
 
                     <Comparator />
-                </Paper>
-
-                <LessonButtons />
-
-                <Stats />
-            </>
+                </Paper>'
+               '<LessonButtons />'
+               '<Stats />'           '</>
         );
     }
 }

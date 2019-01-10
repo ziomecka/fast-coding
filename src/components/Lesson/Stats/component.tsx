@@ -38,12 +38,9 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
 
     const renderTime = (time: number, id: string): JSX.Element => (
         time > 0 && (
-            <>
-                { time }
-                &nbsp;
-                <Translate {...{ id }} />
-                &nbsp;
-            </>
+            <>'               '{ time }'                &nbsp;
+               '<Translate {...{ id }} />'                &nbsp;
+           '</>
         )
     );
 
@@ -67,32 +64,28 @@ const StatsComponent: React.StatelessComponent<StatsProps> = (props)  => {
                         <span className={statsNote}>
                             <Translate id="lessonStatsTime" />
                         </span>,
-                        <>
-                            { renderTime(hours, getUnitId(hours, Hours) ) }
-                            { renderTime(minutes, getUnitId(minutes, Minutes) ) }
-                            { renderTime(seconds, getUnitId(seconds, Seconds) ) }
-                        </>,
+                        <>'                           '{ renderTime(hours, getUnitId(hours, Hours) ) }'                           '{ renderTime(minutes, getUnitId(minutes, Minutes) ) }'                           '{ renderTime(seconds, getUnitId(seconds, Seconds) ) }'                       '</>,
                     ],
                     [
-                        <Tooltip title={getTranslation(props.localize, "lessonStatsAccuracyNote")}>
+                        <Tooltip title={getTranslation(props.localize, 'lessonStatsAccuracyNote')}>
                             <span className={statsNote}>
                                 <Translate id="lessonStatsAccuracy" />
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <>{ accuracy }%</>
+                        <>{ accuracy }''</>
                     ],
                     [
-                        <Tooltip title={getTranslation(props.localize, "lessonStatsRealAccuracyNote")}>
+                        <Tooltip title={getTranslation(props.localize, 'lessonStatsRealAccuracyNote')}>
                             <span className={statsNote}>
                                 <Translate id="lessonStatsRealAccuracy" />
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <>{ realAccuracy }%</>
+                        <>{ realAccuracy }''</>
                     ],
                     [
-                        <Tooltip title={getTranslation(props.localize, "lessonStatsWPMNote")}>
+                        <Tooltip title={getTranslation(props.localize, 'lessonStatsWPMNote')}>
                             <span className={statsNote}>
                                 <Translate id="lessonStatsWPM" />
                                 <sup>*</sup>

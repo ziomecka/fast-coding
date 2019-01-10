@@ -57,12 +57,12 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const leaveLesson = () => history.push(lessons);
 
 
-    const justType = getTranslation(props.localize, "lessonButtonsJustType");
-    const press = getTranslation(props.localize, "buttonsPress");
+    const justType = getTranslation(props.localize, 'lessonButtonsJustType');
+    const press = getTranslation(props.localize, 'buttonsPress');
 
     const commonProps = {
-        variant: "contained",
-        color: "primary",
+        variant: 'contained',
+        color: 'primary',
     } as ButtonProps;
 
     const buttonStartLeaving = (
@@ -132,30 +132,19 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
      * button cancel placed to the left - to encourage to press
      */
     const buttonsWhenRunning = (
-        <>
-            { buttonStartLeaving }
-            { buttonPause }
-        </>
+        <>'           '{ buttonStartLeaving }'           '{ buttonPause }'       '</>
     );
 
     const buttonsWhenNotStarted = (
-        <>
-            { buttonLeave }
-        </>
+        <>'           '{ buttonLeave }'       '</>
     );
 
     const buttonsWhenPaused = (
-        <>
-            { buttonStartLeaving }
-            { buttonUnpause }
-        </>
+        <>'           '{ buttonStartLeaving }'           '{ buttonUnpause }'       '</>
     );
 
     const buttonsWhenEnded = (
-        <>
-            { buttonLeave }
-            { buttonRestart }
-        </>
+        <>'           '{ buttonLeave }'           '{ buttonRestart }'       '</>
     );
 
     const getButtons = (): JSX.Element => {

@@ -35,14 +35,14 @@ const styles = createStyles(theme => {
                 position: 'relative',
             },
             '& > span:nth-child(1):before': {
-                content: "' '",
+                content: '\' \'',
                 display: 'inline-block',
                 width: '100%',
                 position: 'absolute',
                 bottom: '-2px',
                 left: '0px',
                 height: '1px',
-                animation: `invite .4s infinite alternate`
+                animation: 'invite .4s infinite alternate'
             }
         },
         '@global': {

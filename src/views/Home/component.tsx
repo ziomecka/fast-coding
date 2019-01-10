@@ -28,21 +28,15 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
     render() {
         return (
-            <>
-            {/* Containers will be informed about location change before it happens, because
+            <>'           '{/* Containers will be informed about location change before it happens, because
                 LocationChange uses 'shouldComponentUpdate'
-                */}
-            <LocationChange containers={[
+                */}'           '<LocationChange containers={[
                 content,
                 welcome
-            ]} />
-
-            <User />
-
-            <KeyboardListener />
-            <LessonsLoader />
-
-            <MediaProvider>
+            ]} />'
+           '<User />'
+           '<KeyboardListener />'           '<LessonsLoader />'
+           '<MediaProvider>
                 <Nav />
 
                 <Content>
@@ -51,9 +45,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
                     { this.props.children }
                 </Content>
 
-            </MediaProvider>
-            <TranslationsLoader />
-            </>
+            </MediaProvider>'           '<TranslationsLoader />'           '</>
         );
     }
 }
