@@ -89,7 +89,7 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
         answer = await dispatch(registerBackspace());
 
         if (answer && ending) {
-            answer = await dispatch(onNotEndingLesson())
+            answer = await dispatch(onNotEndingLesson());
         };
     }
 

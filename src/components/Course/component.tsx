@@ -12,7 +12,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withTheme from '@material-ui/core/styles/withTheme';
 
 /** Materials core */
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -341,7 +341,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     </GridListTile>
                 </Grid>
             );
-        })
+        });
     }
 
     render () {

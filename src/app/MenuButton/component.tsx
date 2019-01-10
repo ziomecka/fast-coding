@@ -11,7 +11,7 @@ import styles from './styles';
 
 import getTranslation from '@shared/get.translation';
 
-import { withMenuRules } from '@app/MenuRulesHoc/'
+import { withMenuRules } from '@app/MenuRulesHoc/';
 
 const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => {
     const {
@@ -57,6 +57,6 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
             ) || <> { IconButton } </>)
         }</>
     );
-}
+};
 
 export default withMenuRules(withStyles(styles)(MenuButtonComponent));

@@ -73,7 +73,7 @@ const reducer: Reducer<ChangePasswordFormState, ChangePasswordFormActions> = (st
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as changePasswordFormReducer };
 

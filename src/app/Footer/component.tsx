@@ -14,11 +14,11 @@ import Grid from '@material-ui/core/Grid';
 import PrivacyPolicy from '@app/PrivacyPolicy';
 import TermsOfService from '@app/TermsOfService';
 
-import GridList from '@material-ui/core/GridList'
-import ListItem from '@material-ui/core/ListItem'
+import GridList from '@material-ui/core/GridList';
+import ListItem from '@material-ui/core/ListItem';
 
 import OpenDialogButton from '@app/OpenDialogButton';
-import { DialogsEnum } from '@app/Dialog/'
+import { DialogsEnum } from '@app/Dialog/';
 
 import { InfoEnum } from '@app/Info';
 

@@ -56,7 +56,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                         rules: [ notActiveLanguage ],
                         lang: code,
                         onClick: () => {
-                            setActiveLanguage(code)
+                            setActiveLanguage(code);
                         } });
                     return acc;
                 }, []) }

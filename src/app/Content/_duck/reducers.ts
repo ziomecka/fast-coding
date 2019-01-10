@@ -55,7 +55,7 @@ const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as contentReducer };
 

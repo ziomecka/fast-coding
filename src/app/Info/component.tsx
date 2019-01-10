@@ -38,7 +38,7 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
 
     const getTranslation = useLocalize
         ? (id: string): string => {
-            const a = translate(id)
+            const a = translate(id);
             return translate(id) as string;
         }
         : (() => {

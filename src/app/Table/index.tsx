@@ -24,7 +24,7 @@ const withTable = (SomeComponent) => {
                 </Provider>
             );
         }
-    }
+    };
 };
 
 export default withTable;

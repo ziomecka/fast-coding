@@ -40,7 +40,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value)
+        this.props.setLogin(e.target.value);
     }
 
     submit () {

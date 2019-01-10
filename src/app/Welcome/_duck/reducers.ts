@@ -27,7 +27,7 @@ const reducer: Reducer<WelcomeState, WelcomeActions > = (state = INITIAL_STATE, 
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as welcomeReducer };
 

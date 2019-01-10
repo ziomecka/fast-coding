@@ -23,7 +23,7 @@ const reducer: Reducer<TranslationsLoaderState, GetTranslationsActions> = (state
         }
 
         default: {
-            return { ...state }
+            return { ...state };
         }
     }
 };

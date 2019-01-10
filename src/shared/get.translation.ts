@@ -12,7 +12,7 @@ const getTranslation = (localize: LocalizeState, id: string, missingTranslationS
             .findIndex(lang => (
                 lang.code === getActiveLanguage(localize).code)
             )
-        ]
+        ];
     } catch (err) {
         return missingTranslationString || 'Missing translation';
     }

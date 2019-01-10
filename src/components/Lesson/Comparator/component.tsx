@@ -27,7 +27,7 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
     }
 
     componentDidUpdate(prevProps: ComparatorProps) {
-        const { currentSignIndex, lessonText } = this.props
+        const { currentSignIndex, lessonText } = this.props;
         const prevCurrentSignIndex= prevProps.currentSignIndex;
 
         if (currentSignIndex !== prevCurrentSignIndex) {

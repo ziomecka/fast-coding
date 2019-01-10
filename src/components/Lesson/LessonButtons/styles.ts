@@ -52,7 +52,7 @@ const styles = createStyles(theme => {
             display: 'flex',
             justifyContent: 'space-between'
         }
-    }
+    };
 });
 
 export default styles;

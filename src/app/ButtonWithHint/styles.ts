@@ -13,7 +13,7 @@ const styles = createStyles(theme => {
                 fontSize: '.9em'
             }
         }
-    }
+    };
 });
 
 export default styles;

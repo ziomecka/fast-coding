@@ -11,7 +11,7 @@ import { LocalStorageItemEnum } from '@appTypes';
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
-import { activateLesson } from '@components/Lessons/_duck/actions'
+import { activateLesson } from '@components/Lessons/_duck/actions';
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {
@@ -30,7 +30,7 @@ export const onOpenRandomLesson = (lesson: LessonData): any => {
             return dispatch(turnOnTextGenerator());
         }
         return response;
-    }
+    };
 };
 
 export const onOpenLesson = (lessonData: LessonData): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {

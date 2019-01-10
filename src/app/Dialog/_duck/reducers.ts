@@ -47,7 +47,7 @@ const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, act
         default:
             return { ...state };
     }
-}
+};
 
 export { reducer as dialogReducer };
 

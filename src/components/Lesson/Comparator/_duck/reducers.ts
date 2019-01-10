@@ -9,7 +9,7 @@ import {
     statsReducer,
     StatsState,
     INITIAL_STATE as STATS_INITIAL_STATE
-} from '../../Stats/_duck/reducers'
+} from '../../Stats/_duck/reducers';
 
 import { ComparatorContainersEnum } from '@componentsTypes';
 const { stats } = ComparatorContainersEnum;
@@ -108,7 +108,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
             return {
                 ...state,
                 ...(action as RestoreStateAction).state
-            }
+            };
         }
 
         default: {

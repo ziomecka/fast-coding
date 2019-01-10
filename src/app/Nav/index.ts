@@ -1,2 +1,2 @@
 export { default } from './container';
-export { NavMenuProps } from './_duck/'
+export { NavMenuProps } from './_duck/';

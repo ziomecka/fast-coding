@@ -41,7 +41,7 @@ const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action)
             };
         }
     }
-}
+};
 
 export { reducer as userReducer };
 

@@ -20,7 +20,7 @@ const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
             };
         }
     }
-}
+};
 
 export { reducer as emailReducer };
 

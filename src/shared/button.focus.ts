@@ -27,7 +27,7 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
             getButton(buttonsIds[nextIndex]).focus();
             focusedButton = buttonsIds[nextIndex];
         } catch {}
-    }
+    };
 
     return (e: KeyboardEvent): boolean => {
         const { keyCode } = e;

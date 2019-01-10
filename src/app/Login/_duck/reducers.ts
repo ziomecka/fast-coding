@@ -26,7 +26,7 @@ const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
             };
         }
     }
-}
+};
 
 export { reducer as loginReducer };
 

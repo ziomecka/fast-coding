@@ -34,7 +34,7 @@ const style = createStyles(theme => {
                 height: NAV_HEIGHT_LG
             }
         }
-    }
+    };
 });
 
 export default style;

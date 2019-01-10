@@ -33,7 +33,7 @@ const styles = createStyles(theme => {
             },
             overflowX: 'hidden'
         }
-    }
+    };
 });
 
 export default styles;

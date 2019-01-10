@@ -49,7 +49,7 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as notificationReducer };
 

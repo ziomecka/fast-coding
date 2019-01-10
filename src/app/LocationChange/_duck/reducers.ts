@@ -34,6 +34,6 @@ const reducer: Reducer<ApplicationState, LocationChangeActions > = (state, actio
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as locationChangeReducer };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Button from '@material-ui/core/ButtonBase'
+import Button from '@material-ui/core/ButtonBase';
 
 import { PrivacyPolicyButtonProps } from './container';
 

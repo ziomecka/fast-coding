@@ -12,7 +12,7 @@ const reducer: Reducer<FormHelperTextState, FormHelperTextActions> = (state = IN
             return { formHelperText: action.formHelperText };
         }
     }
-}
+};
 
 export { reducer as formHelperTextReducer };
 

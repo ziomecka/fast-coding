@@ -69,7 +69,7 @@ const escapeReturnListener = (e: KeyboardEvent, dispatch: Dispatch) => {
     if (e.keyCode === 13) {
         dispatch(onRestartLesson());
     }
-}
+};
 
 let listenerId;
 

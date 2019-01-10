@@ -209,7 +209,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         default: {
             return {
                 ...combinedReducers(state, action)
-            }
+            };
         }
     }
 };

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AuthRouteProps } from './container';
 
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
 import { AppRoutesEnum } from '@appTypes';
 

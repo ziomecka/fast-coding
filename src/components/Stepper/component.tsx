@@ -299,7 +299,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
                 this.timeout = setTimeout(() => {
                     this.stepperRemoveClass(`${ takeOffTransition }`);
                     this.stepperRemoveClass(`${ moveLeft }`);
-                    clearTimeout(this.timeout)
+                    clearTimeout(this.timeout);
                 }, this.animationDuration );
             });
         }

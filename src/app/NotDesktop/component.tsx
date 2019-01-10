@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 
 /** Materials core */
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -23,7 +23,7 @@ const NotDesktopComponent: React.StatelessComponent< NotDektopProps > = props =>
                 <Translate id="notDesktopInfo" />
             </Typography>
         </Paper>
-    )
+    );
 };
 
 export default withStyles(styles)(NotDesktopComponent);

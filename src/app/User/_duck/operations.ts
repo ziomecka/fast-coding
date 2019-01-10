@@ -8,8 +8,8 @@ export const onAuthorize = ( options?: UserAuthorizeI ): any => (
     async (dispatch: Dispatch ): Promise<UserAuthorizationAction> => {
         const { login, email } = Object(options);
 
-        console.log('options.authorizationMethod')
-        console.log(options.authorizationMethod)
+        console.log('options.authorizationMethod');
+        console.log(options.authorizationMethod);
         /** Store login or email in place of login */
         return dispatch( authorizeUser( Object.assign(
             Object(options), { login: login || email }
@@ -19,7 +19,7 @@ export const onAuthorize = ( options?: UserAuthorizeI ): any => (
 
 export const onUnauthorize = (): any => {
     async (dispatch: Dispatch ): Promise<any> => {
-    }
+    };
 };
 
 export default  {

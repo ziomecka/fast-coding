@@ -11,12 +11,12 @@ export const buildUrl = (params: URLParamsI, url: string): string => {
         let _params = params[paramName];
 
         if (Array.isArray(_params)) {
-            url += buildParamsFromArray(paramName, _params as string[])
+            url += buildParamsFromArray(paramName, _params as string[]);
         } else {
             url += buildParam(paramName, _params);
         }
 
-        _params = null // GC?
+        _params = null; // GC?
     });
 
     return url;

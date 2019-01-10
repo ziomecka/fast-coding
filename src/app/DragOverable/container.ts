@@ -1,5 +1,5 @@
 import { default as DragOverable } from './component';
-import { PaperProps } from '@material-ui/core/Paper'
+import { PaperProps } from '@material-ui/core/Paper';
 const DragOverableContainer = DragOverable;
 
 export default DragOverableContainer;

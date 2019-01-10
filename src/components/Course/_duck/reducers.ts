@@ -22,7 +22,7 @@ const reducer: Reducer<ICourseState, CourseActions> = (state = INITIAL_STATE, ac
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as courseReducer };
 
@@ -36,7 +36,7 @@ interface ICourseCourseData {
 
 export type CourseDataType = ICourseCourseData & {
     lastLesson: number;
-}
+};
 
 export interface ICourseState {
     [courseId: string]: CourseDataType

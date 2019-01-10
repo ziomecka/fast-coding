@@ -41,6 +41,6 @@ const parseQueries = (str: string): QueriesI => {
     };
 
     return parse(str);
-}
+};
 
 export default parseQueries;

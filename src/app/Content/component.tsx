@@ -69,7 +69,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     }
 
     if ( pathname !== prevPathname ) {
-        this.props.changeTitle(this.titles[pathname])
+        this.props.changeTitle(this.titles[pathname]);
     }
   }
 
@@ -78,7 +78,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   get langCode() {
-      return getActiveLanguage(this.props.localize).code
+      return getActiveLanguage(this.props.localize).code;
   }
 
   get lessonTitle(): string {
@@ -133,6 +133,6 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         </DragOverable>
     );
   }
-}
+};
 
 export default withStyles(styles)(ContentComponent);

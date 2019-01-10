@@ -59,7 +59,7 @@ const style = createStyles(theme => {
                 }
             }
         }
-    }
+    };
 });
 
 export default style;

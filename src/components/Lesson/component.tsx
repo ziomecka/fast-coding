@@ -78,7 +78,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         const { _interval, time } = this;
         this.interval = setInterval(() => {
             this.setState(() => ({ time: time() })
-            )},
+            );},
         _interval);
     }
 

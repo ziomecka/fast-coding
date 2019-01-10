@@ -12,7 +12,7 @@ const MenuRulesHoc = (Component) => (props => {
         <Consumer>{ menuRules => (
             <Component {...{ menuRules }} { ...props } />
         ) }</Consumer>
-    )
+    );
 });
 
 export default MenuRulesHoc;

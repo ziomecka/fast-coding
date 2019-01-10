@@ -4,7 +4,7 @@ import {
     OpenDialogOptions,
     closeDialog,
     openDialog,
-} from '@app/Dialog/'
+} from '@app/Dialog/';
 
 export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({
     openDialog: options => dispatch( openDialog( options ) ),

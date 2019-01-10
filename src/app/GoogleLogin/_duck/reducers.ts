@@ -18,13 +18,13 @@ const reducer: Reducer<GoogleLoginState> = (state = INITIAL_STATE, action)=> {
             return {
                 ...state,
                 firebaseAuthorized: true
-            }
+            };
         }
         default: {
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as googleLoginReducer };
 

@@ -66,7 +66,7 @@ const reducer: Reducer<ICSRState, CSRActions> = (state = INITIAL_STATE, action) 
             return { ...state };
         }
     }
-}
+};
 
 export interface ICSRState extends ApplicationState {
     // loading: boolean;

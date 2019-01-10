@@ -32,7 +32,7 @@ const reducer: Reducer<TextGeneratorState, TextGeneratorActions> = (state = INIT
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as textGeneratorReducer };
 

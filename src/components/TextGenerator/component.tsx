@@ -45,7 +45,7 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
          */
         if (otherSigns && otherSigns.length) {
             allSigns = (() => {
-                let result = []
+                let result = [];
                 for (let i = 0; i < probability; i++) {
                     result = [...result, ...signs];
                 }

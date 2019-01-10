@@ -19,9 +19,9 @@ export interface DialogButtonsProps extends ButtonProps {
     key?: string
 }
 
-type ExcludeOpenProp<K> = K extends 'open' ? never : K
+type ExcludeOpenProp<K> = K extends 'open' ? never : K;
 
-type AppDialogProps = { [ K in ExcludeOpenProp<keyof DialogProps>]?: DialogProps[K] }
+type AppDialogProps = { [ K in ExcludeOpenProp<keyof DialogProps>]?: DialogProps[K] };
 
 type DialogContentVariants =
     {
@@ -31,25 +31,25 @@ type DialogContentVariants =
 |   {
         variant: 'HTML',
         html: JSX.Element
-    }
+    };
 
 type ExcludeVariant<T> = T extends 'variant' ? never : T;
 
 type ExcludeVariantField<T> = {
     [K in ExcludeVariant<keyof T> ]: T[K]
-}
+};
 
-type ExtractOptions<D, V> = D extends {variant: V} ? D : never
+type ExtractOptions<D, V> = D extends {variant: V} ? D : never;
 
 type DialogComponentOptions =
 ExcludeVariantField<ExtractOptions<DialogContentVariants, 'COMPONENT'>> & {
     dialogProps?: AppDialogProps;
-}
+};
 
 type DialogHTMLOptions =
 ExcludeVariantField<ExtractOptions<DialogContentVariants, 'HTML'>> & {
     dialogProps?: AppDialogProps;
-}
+};
 
 interface Buttons {
     [key: string]: DialogButtonsProps
@@ -65,15 +65,15 @@ interface YesCancelButtons extends YesButton {
 
 export type DialogVariant = DialogContentVariants['variant'];
 
-export type SimpleDialogOptions = ( DialogComponentOptions | DialogHTMLOptions )
+export type SimpleDialogOptions = ( DialogComponentOptions | DialogHTMLOptions );
 
 export type YesDialogOptions = ( DialogComponentOptions | DialogHTMLOptions ) & {
     buttons?: YesButton;
-}
+};
 
 export type YesCancelDialogOptions = ( DialogComponentOptions | DialogHTMLOptions ) & {
     buttons?: YesCancelButtons;
-}
+};
 
 
 export enum DialogsEnum {
@@ -88,4 +88,4 @@ export type OpenDialogOptions = (
     YesCancelDialogOptions & { variant: DialogsEnum.yesCancel }
 ) | (
     SimpleDialogOptions & { variant: DialogsEnum.simple }
-)
+);

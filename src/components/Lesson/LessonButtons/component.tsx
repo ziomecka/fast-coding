@@ -173,7 +173,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
 
         return buttonsWhenPaused;
 
-    }
+    };
 
     /** Render only if dialog is not opened */
     return ( !dialogOpened &&

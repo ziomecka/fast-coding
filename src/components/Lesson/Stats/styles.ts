@@ -27,7 +27,7 @@ const styles = createStyles(theme => {
                 content: "':'"
             }
         }
-    }
+    };
 });
 
 export default styles;

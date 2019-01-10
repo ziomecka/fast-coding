@@ -1,5 +1,5 @@
-import { MenuButtonOptionsI } from '@app/MenuButton/'
-import { MenuListItemType } from '@app/MenuList/container'
+import { MenuButtonOptionsI } from '@app/MenuButton/';
+import { MenuListItemType } from '@app/MenuList/container';
 
 export enum MenuContainersEnum {
     userMenu = 'USER_MENU',

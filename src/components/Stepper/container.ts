@@ -29,7 +29,7 @@ const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): IStepperDispatch => ({
     addListener: options => dispatch(onAddListener(options)),
     removeListener: options => dispatch(onRemoveListener(options))
-})
+});
 
 // @ts-ignore
 const StepperContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Stepper));

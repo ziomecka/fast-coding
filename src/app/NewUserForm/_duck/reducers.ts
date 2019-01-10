@@ -88,7 +88,7 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as newUserFormReducer };
 

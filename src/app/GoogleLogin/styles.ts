@@ -77,7 +77,7 @@ const styles = theme => {
                 textDecoration: 'underline'
             }
         }
-    })
+    });
 };
 
 export default styles;

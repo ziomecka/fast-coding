@@ -34,7 +34,7 @@ const reducer: Reducer<MenuState, AppMenuActions> = (state = INITIAL_STATE, acti
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as menuReducer };
 

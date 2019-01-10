@@ -34,7 +34,7 @@ export const onOpenNotification = (options: SetNotificationAction, autoHidedurat
                     clearTimeout(_timeout);
                 }, autoHideduration);
 
-                answer = null // GC
+                answer = null; // GC
             }
     }
 );

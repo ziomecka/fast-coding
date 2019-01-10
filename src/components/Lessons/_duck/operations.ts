@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes'
-import { ComponentsContainersEnum } from '@componentsTypes'
+import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
 const { components } = ApplicationContainersEnum;
 const { lessons } = ComponentsContainersEnum;

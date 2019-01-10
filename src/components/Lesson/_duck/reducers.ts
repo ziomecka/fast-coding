@@ -150,7 +150,7 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as lessonReducer };
 

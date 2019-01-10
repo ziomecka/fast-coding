@@ -17,7 +17,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import getTranslation from '@shared/get.translation';
-import { getActiveLanguage } from 'react-localize-redux'
+import { getActiveLanguage } from 'react-localize-redux';
 
 import { withMenuRules } from '@app/MenuRulesHoc/';
 
@@ -46,7 +46,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         this.state = {
             render: this.areRulesMet(),
             listItems: this.listItems
-        }
+        };
 
         this._listTimeout = 1000;
     }

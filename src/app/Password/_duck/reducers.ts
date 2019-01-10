@@ -46,7 +46,7 @@ const reducer: Reducer<PasswordState> = (state = INITIAL_STATE, action)=> {
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as passwordReducer };
 

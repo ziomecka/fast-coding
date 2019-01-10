@@ -34,7 +34,7 @@ export const INITIAL_STATE: KeyboardListenerState = {
 
 const reducer: Reducer<KeyboardListenerState, KeyboardListenerActions> = (state = INITIAL_STATE) => {
     return { ...state };
-}
+};
 
 export { reducer as keyboardListenerReducer };
 
