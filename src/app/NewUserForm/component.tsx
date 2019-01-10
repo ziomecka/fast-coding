@@ -27,26 +27,26 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainersEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.container = newUserForm;
 
-        this.emailOnChange = this.emailOnChange.bind(this);
-        this.loginOnChange = this.loginOnChange.bind(this);
-        this.sendNewUserForm = this.sendNewUserForm.bind(this);
+        this.emailOnChange = this.emailOnChange.bind( this );
+        this.loginOnChange = this.loginOnChange.bind( this );
+        this.sendNewUserForm = this.sendNewUserForm.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setEmail(e.target.value);
+    emailOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setEmail( e.target.value );
     }
 
-    loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value);
+    loginOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setLogin( e.target.value );
     }
 
     sendNewUserForm () {
@@ -63,7 +63,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
              !!loginValid || !!newPasswordValid || !! confirmPasswordValid || !!emailValid ) {
                 this.props.formInvalid();
         } else {
-            this.props.sendNewUserForm({ login, password: newPassword, email });
+            this.props.sendNewUserForm( { login, password: newPassword, email } );
         }
     }
 
@@ -79,7 +79,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                         <Password {...{ container, passwordType: newPass }} tabIndex={2} />
@@ -105,4 +105,4 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
     }
 }
 
-export default withStyles(styles)(NewUserFormComponent);
+export default withStyles( styles )( NewUserFormComponent );

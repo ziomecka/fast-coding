@@ -8,11 +8,11 @@ import { saveTranslations } from './actions';
 
 const _url = AppRoutesEnum.translationsGet;
 
-export const onLoadTranslations = (url: string = _url ): any => (
-    async (dispatch: Dispatch): Promise<boolean> => {
+export const onLoadTranslations = ( url: string = _url ): any => (
+    async ( dispatch: Dispatch ): Promise<boolean> => {
         try {
-            let data = await get({ path: url }) as GetTranslationsResponseI;
-            let answer = await dispatch(saveTranslations(data.translations));
+            let data = await get( { path: url } ) as GetTranslationsResponseI;
+            let answer = await dispatch( saveTranslations( data.translations ) );
             data = null; // GC
 
             if ( answer ) {
@@ -21,9 +21,9 @@ export const onLoadTranslations = (url: string = _url ): any => (
             }
         // TODO catch err
         /* eslint-disable no-empty */
-        } catch (err) {}
+        } catch ( err ) {}
         /* eslint-enable no-empty */
-});
+} );
 
 export default {
     onLoadTranslations

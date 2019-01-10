@@ -7,7 +7,7 @@ import {
 
 import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         spacing: { unit },
         palette: {
@@ -33,10 +33,10 @@ const styles = createStyles(theme => {
         },
         notificationContent: {
             padding: PAPER_PADDING_MAX_XS,
-            [theme.breakpoints.up('sm')] :{
+            [theme.breakpoints.up( 'sm' )] :{
                 padding: PAPER_PADDING_MAX_MD
             },
-            [theme.breakpoints.up('lg')] :{
+            [theme.breakpoints.up( 'lg' )] :{
                 padding: PAPER_PADDING_MAX_LG
             }
         },
@@ -57,6 +57,6 @@ const styles = createStyles(theme => {
             color: errorText
         }
     };
-});
+} );
 
 export default styles;

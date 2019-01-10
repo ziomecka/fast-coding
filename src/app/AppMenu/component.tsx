@@ -7,14 +7,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './styles';
 
-const AppMenuComponent: React.StatelessComponent<AppMenuProps> = (props) => {
+const AppMenuComponent: React.StatelessComponent<AppMenuProps> = ( props ) => {
     const { subMenus, classes: { toolbar } } = props;
 
     return (
         <Toolbar className={toolbar}>
-            { subMenus.map((subAppMenu, ind) => <React.Fragment key={ ind } > { subAppMenu.component } </React.Fragment> ) }
+            { subMenus.map( ( subAppMenu, ind ) => <React.Fragment key={ ind } > { subAppMenu.component } </React.Fragment> ) }
         </Toolbar>
     );
 };
 
-export default withStyles(style)(AppMenuComponent);
+export default withStyles( style )( AppMenuComponent );

@@ -17,6 +17,6 @@ const App = () => {
     );
 };
 
-const render = () => ReactDOM.render(<App />, ROOT_NODE);
+const render = () => ReactDOM.render( <App />, ROOT_NODE );
 
 render();

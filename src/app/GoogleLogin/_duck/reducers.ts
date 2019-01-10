@@ -11,8 +11,8 @@ export const INITIAL_STATE: GoogleLoginState = {
     firebaseAuthorized: false
 };
 
-const reducer: Reducer<GoogleLoginState> = (state = INITIAL_STATE, action)=> {
-    switch (action.type) {
+const reducer: Reducer<GoogleLoginState> = ( state = INITIAL_STATE, action )=> {
+    switch ( action.type ) {
 
         case APP_GOOGLE_LOGIN_FIREBASE_AUTHORIZE: {
             return {

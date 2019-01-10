@@ -24,20 +24,20 @@ const { lessons } = ComponentsContainersEnum;
 
 import { IWithMedia } from '@app/Media/';
 
-const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     localize: state.localize,
     openedCourseId: state[components][lessons].openedCourseId
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): CourseDispatch => ({
-    handleOpenLesson: (lessonData) => dispatch(onOpenLesson(lessonData)),
-    handleOpenRandomLesson: (lessonData) => dispatch(onOpenRandomLesson(lessonData)),
-    openCourse: (courseId) => dispatch(openCourse(courseId)),
-    closeCourse: (courseId) => dispatch(onCloseCourse(courseId))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): CourseDispatch => ( {
+    handleOpenLesson: ( lessonData ) => dispatch( onOpenLesson( lessonData ) ),
+    handleOpenRandomLesson: ( lessonData ) => dispatch( onOpenRandomLesson( lessonData ) ),
+    openCourse: ( courseId ) => dispatch( openCourse( courseId ) ),
+    closeCourse: ( courseId ) => dispatch( onCloseCourse( courseId ) )
+} );
 
 // @ts-ignore
-const CourseContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Course));
+const CourseContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Course ) );
 
 export default CourseContainer;
 
@@ -47,10 +47,10 @@ interface MapStateToProps {
 }
 
 export interface CourseDispatch {
-    handleOpenLesson: (lessonData: LessonData) => Action;
-    handleOpenRandomLesson: (lessonData: LessonData) => Action;
-    openCourse: (courseId: string) => OpenCourseAction;
-    closeCourse: (courseId: string) => Action;
+    handleOpenLesson: ( lessonData: LessonData ) => Action;
+    handleOpenRandomLesson: ( lessonData: LessonData ) => Action;
+    openCourse: ( courseId: string ) => OpenCourseAction;
+    closeCourse: ( courseId: string ) => Action;
 }
 
 export interface CourseProps extends

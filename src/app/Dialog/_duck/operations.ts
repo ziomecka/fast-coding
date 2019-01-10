@@ -4,17 +4,17 @@ import { YesDialogOptions, YesCancelDialogOptions, DialogsEnum, OpenDialogOption
 
 const { simple, yes, yesCancel } = DialogsEnum;
 
-const onOpenSimpleDialog = (options: YesDialogOptions): any => (
+const onOpenSimpleDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
-        dispatch(openDialog(Object.assign(options, {
+        dispatch( openDialog( Object.assign( options, {
             dialogProps: {
                 ...options.dialogProps,
-                onBackdropClick: () => dispatch(closeDialog())
+                onBackdropClick: () => dispatch( closeDialog() )
             }
-    })));
-});
+    } ) ) );
+} );
 
-const onOpenYesDialog = (options: YesDialogOptions): any => (
+const onOpenYesDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
@@ -22,28 +22,28 @@ const onOpenYesDialog = (options: YesDialogOptions): any => (
             } = { buttonYes: { buttonProps: { onClick: null }}}
         } = options;
 
-        dispatch(openDialog(Object.assign(
+        dispatch( openDialog( Object.assign(
             options, { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
-                    ...Object(options.buttons).buttonYes,
+                    ...Object( options.buttons ).buttonYes,
                     buttonProps: {
-                        ...Object(Object(options.buttons).buttonYes).buttonProps,
-                        onClick: async (e) => {
-                            if (typeof onClickYes === 'function') {
-                                onClickYes(e);
+                        ...Object( Object( options.buttons ).buttonYes ).buttonProps,
+                        onClick: async ( e ) => {
+                            if ( typeof onClickYes === 'function' ) {
+                                onClickYes( e );
                                 onClickYes = null; // GC
                             }
-                            dispatch(closeDialog());
+                            dispatch( closeDialog() );
                         }
                     }
                 }
             }
         }
-    )));
-});
+    ) ) );
+} );
 
-const onOpenYesCancelDialog = (options: YesCancelDialogOptions): any => (
+const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
@@ -55,56 +55,56 @@ const onOpenYesCancelDialog = (options: YesCancelDialogOptions): any => (
             }
         } = options;
 
-        dispatch(openDialog(Object.assign(
+        dispatch( openDialog( Object.assign(
             options, { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
-                    ...Object(options.buttons).buttonYes,
+                    ...Object( options.buttons ).buttonYes,
                     buttonProps: {
-                        ...Object(Object(options.buttons).buttonYes).buttonProps,
-                        onClick: async (e) => {
-                            if (typeof onClickYes === 'function') {
-                                onClickYes(e);
+                        ...Object( Object( options.buttons ).buttonYes ).buttonProps,
+                        onClick: async ( e ) => {
+                            if ( typeof onClickYes === 'function' ) {
+                                onClickYes( e );
                                 onClickYes = null; // GC
                             }
                             onClickCancel = null; // GC
-                            dispatch(closeDialog());
+                            dispatch( closeDialog() );
                         }
                     }
                 },
                 buttonCancel: {
                     translationId: 'buttonCancel',
-                    ...Object(options.buttons).buttonCancel,
+                    ...Object( options.buttons ).buttonCancel,
                     buttonProps: {
-                        ...Object(Object(options.buttons).buttonCancel).buttonProps,
-                        onClick: async (e) => {
-                            if (typeof onClickCancel === 'function') {
-                                onClickCancel(e);
+                        ...Object( Object( options.buttons ).buttonCancel ).buttonProps,
+                        onClick: async ( e ) => {
+                            if ( typeof onClickCancel === 'function' ) {
+                                onClickCancel( e );
                                 onClickCancel = null; // GC
                             }
                             onClickYes = null; // GC
-                            dispatch(closeDialog());
+                            dispatch( closeDialog() );
                         }
                     },
                 }
             }
         }
-    )));
-});
+    ) ) );
+} );
 
-const map = new Map([
+const map = new Map( [
     [ simple, onOpenSimpleDialog ],
     [ yes, onOpenYesDialog ],
     [ yesCancel, onOpenYesCancelDialog ]
-]);
+] );
 
-export const onOpenDialog = (options: OpenDialogOptions): any => (
+export const onOpenDialog = ( options: OpenDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         const { variant, ...other } = options;
-        dispatch(map.get(variant)(other));
-});
+        dispatch( map.get( variant )( other ) );
+} );
 
-export const onCloseDialog = (): any => ( dispatch: Dispatch ): Action => dispatch(closeDialog());
+export const onCloseDialog = (): any => ( dispatch: Dispatch ): Action => dispatch( closeDialog() );
 
 export default {
     onCloseDialog,

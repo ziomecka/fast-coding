@@ -7,12 +7,12 @@ import { ApplicationState } from '@appStore';
 
 import { InfoEnum } from '@app/Info/';
 
-const mapStateToProps = (state: ApplicationState): IMapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: state.localize
-});
+} );
 
 // @ts-ignore
-const PrivacyPolicyContainer = connect(mapStateToProps)(PrivacyPolicy);
+const PrivacyPolicyContainer = connect( mapStateToProps )( PrivacyPolicy );
 
 export default PrivacyPolicyContainer;
 

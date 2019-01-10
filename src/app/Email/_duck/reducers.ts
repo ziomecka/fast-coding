@@ -9,8 +9,8 @@ export const INITIAL_STATE: EmailState = {
 import { RulesErrorEnum } from '@shared/_types/';
 const { NOT_EMAIL } = RulesErrorEnum;
 
-const reducer: Reducer<EmailState> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<EmailState> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         default: {
             const { email } = action;
 

@@ -17,12 +17,12 @@ const defaultParamNames = {
     [defaultParamName]: defaultParam
 };
 
-export const onLoadLessons = (params: URLParamsI = defaultParamNames, url: string = _url, ): any => (dispatch: Dispatch) => {
+export const onLoadLessons = ( params: URLParamsI = defaultParamNames, url: string = _url, ): any => ( dispatch: Dispatch ) => {
     const applicationContainer = components;
     const container = lessonsLoader;
     const lsItem = LocalStorageItemEnum.lessons;
 
-    dispatch(onLoadData(buildUrl(params, url), applicationContainer, container, lsItem, 'lessons'));
+    dispatch( onLoadData( buildUrl( params, url ), applicationContainer, container, lsItem, 'lessons' ) );
 };
 
 export default {

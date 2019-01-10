@@ -12,8 +12,8 @@ export const INITIAL_STATE: TextGeneratorState = {
     turnedOn: false
 };
 
-const reducer: Reducer<TextGeneratorState, TextGeneratorActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<TextGeneratorState, TextGeneratorActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_TEXT_GENERATOR_TURNON: {
             return {
                 ...state,

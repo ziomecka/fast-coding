@@ -9,23 +9,23 @@ const {
 
 } = LessonButtonsActionsEnum;
 
-export const moveLessonButtons: ActionCreator<MoveLessonButtonsAction> = (top, left) => ({
+export const moveLessonButtons: ActionCreator<MoveLessonButtonsAction> = ( top, left ) => ( {
     type: COMPONENTS_LESSON_BUTTONS_MOVE,
     top,
     left
-});
+} );
 
-export const turnOnDraggableLessonButtons: ActionCreator<Action> = () => ({
+export const turnOnDraggableLessonButtons: ActionCreator<Action> = () => ( {
     type: COMPONENTS_LESSON_DRAGABLE_TURNON
-});
+} );
 
-export const turnOffDraggableLessonButtons: ActionCreator<Action> = () => ({
+export const turnOffDraggableLessonButtons: ActionCreator<Action> = () => ( {
     type: COMPONENTS_LESSON_DRAGABLE_TURNOFF
-});
+} );
 
-export const resetDraggableLessonButtons: ActionCreator<Action> = () => ({
+export const resetDraggableLessonButtons: ActionCreator<Action> = () => ( {
     type: COMPONENTS_LESSON_DRAGABLE_RESET
-});
+} );
 
 export interface MoveLessonButtonsAction extends Action {
     readonly type: string;

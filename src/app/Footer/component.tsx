@@ -101,4 +101,4 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
     );
 };
 
-export default withStyles(styles)(FooterComponent);
+export default withStyles( styles )( FooterComponent );

@@ -7,7 +7,7 @@ import {
     PAPER_PADDING_MAX_MD
 } from '@constantsStyles';
 
-const style = createStyles(theme => {
+const style = createStyles( theme => {
     const {
         palette: { grey: { 200: menuBackgroundColor }},
         typography: {
@@ -16,7 +16,7 @@ const style = createStyles(theme => {
     } = theme;
 
     return {
-        ...menuIconClass(theme),
+        ...menuIconClass( theme ),
         menuClass: {
             maxWidth: `${ NAV_MAXWIDTH }px`,
             backgroundColor: menuBackgroundColor
@@ -27,11 +27,11 @@ const style = createStyles(theme => {
             fontSize: fontSizeMenuItem,
             letterSpacing: '0.1em',
             padding: PAPER_PADDING_LG,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: PAPER_PADDING_MAX_MD
             }
         }
     };
-});
+} );
 
 export default style;

@@ -18,7 +18,7 @@ const states: {
     }
 };
 
-export const getClasses = (location: AppLocationEnum): ContentClasses => {
+export const getClasses = ( location: AppLocationEnum ): ContentClasses => {
     return states[location] || states[isOther];
 };
 

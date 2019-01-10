@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: { secondary: { main: hintColor } },
         spacing: { unit: spacingUnit }
@@ -24,6 +24,6 @@ const styles = createStyles(theme => {
             }
         }
     };
-});
+} );
 
 export default styles;

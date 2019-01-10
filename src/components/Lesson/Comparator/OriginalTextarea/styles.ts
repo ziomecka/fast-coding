@@ -9,7 +9,7 @@ import {
 
 import { FONT_SIZE } from './constants.styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     return {
         comparatorTextAreaPaper: {
             maxWidth: `${LESSON_MAX_WIDTH}px`,
@@ -76,6 +76,6 @@ const styles = createStyles(theme => {
             backgroundColor: COLOR_CORRECTED
         },
     };
-});
+} );
 
 export default styles;

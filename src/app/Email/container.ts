@@ -9,11 +9,11 @@ import { ApplicationState } from '@appStore';
 
 import { EmailState } from './_duck/reducers';
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     localize: state.localize
-});
+} );
 
-const EmailContainer = connect(mapStateToProps)(Email);
+const EmailContainer = connect( mapStateToProps )( Email );
 
 export default EmailContainer;
 

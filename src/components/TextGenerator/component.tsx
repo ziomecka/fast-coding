@@ -3,15 +3,15 @@ import * as React from 'react';
 import { TextGeneratorProps } from './container';
 
 class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
-    constructor (props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
     }
 
-    componentDidUpdate(prevProps: TextGeneratorProps) {
+    componentDidUpdate( prevProps: TextGeneratorProps ) {
         const { turnedOn } = this.props;
         const prevTurnedOn = prevProps.turnedOn;
-        if (turnedOn !== prevTurnedOn && turnedOn) {
-            this.props.sendText(this.prepareText());
+        if ( turnedOn !== prevTurnedOn && turnedOn ) {
+            this.props.sendText( this.prepareText() );
         }
     }
 
@@ -43,15 +43,15 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
          *  (where x === probability)
          *  Do it only if there are otherSigns
          */
-        if (otherSigns && otherSigns.length) {
-            allSigns = (() => {
+        if ( otherSigns && otherSigns.length ) {
+            allSigns = ( () => {
                 let result = [];
-                for (let i = 0; i < probability; i++) {
+                for ( let i = 0; i < probability; i++ ) {
                     result = [...result, ...signs];
                 }
                 result = [...result, ...otherSigns];
                 return result;
-            })();
+            } )();
         } else {
             allSigns = signs;
         }
@@ -60,9 +60,9 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
         let result = '';
 
         /** Create text */
-        if (noOfSigns) {
-            let random = () => Math.floor(Math.random() * (noOfSigns));
-            for (let i = 0, len = length; i < len; i++) {
+        if ( noOfSigns ) {
+            let random = () => Math.floor( Math.random() * ( noOfSigns ) );
+            for ( let i = 0, len = length; i < len; i++ ) {
                 result += allSigns[random()];
             }
             random = null;

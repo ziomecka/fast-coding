@@ -29,23 +29,23 @@ import { LocalizeState } from 'react-localize-redux';
 import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][appMenu],
     authorized: state[app][user].authorized,
     localize: state.localize
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): MenuListDispatch => ({
-    setNavAnchorEl: (container, element) => dispatch(onSetNavAnchorEl(container, element || null))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): MenuListDispatch => ( {
+    setNavAnchorEl: ( container, element ) => dispatch( onSetNavAnchorEl( container, element || null ) )
+} );
 
 // @ts-ignore
-const MenuListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuListComponent));
+const MenuListContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( MenuListComponent ) );
 
 export default MenuListContainer;
 
 export interface MenuListDispatch {
-    setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
+    setNavAnchorEl: ( container: MenuContainersEnum, element?: HTMLElement | null ) => void
 }
 
 export type MenuListItemType = {

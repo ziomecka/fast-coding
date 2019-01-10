@@ -45,16 +45,16 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRActionsEnum;
 
-const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): ApplicationState => {
+const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): ApplicationState => {
     /** get ^@@.*_$ from type */
-    const actionType = action.type.slice(0, action.type.indexOf('_'));
+    const actionType = action.type.slice( 0, action.type.indexOf( '_' ) );
 
-    switch (true) {
+    switch ( true ) {
         // TODO improve - przeniesc loacationChange poza app
-        case (action.type === APP_LOCATION_CHANGE_CHANGE_LOCATION): {
+        case ( action.type === APP_LOCATION_CHANGE_CHANGE_LOCATION ): {
             return {
                 ...state,
-                ...locationChangeReducer(state, action as LocationChangeActions),
+                ...locationChangeReducer( state, action as LocationChangeActions ),
             };
         }
 
@@ -64,25 +64,25 @@ const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): App
         case action.type === APP_CSR_UPDATE_DATA: {
             return {
                 ...state,
-                ...csrReducer(state, action as CSRActions)
+                ...csrReducer( state, action as CSRActions )
             };
         }
 
         /** TODO Improve */
-        case (actionType === '@@app'): {
+        case ( actionType === '@@app' ): {
             return {
                 ...state,
                 // @ts-ignore
-                [app]: { ...appReducer(state[app], action) }
+                [app]: { ...appReducer( state[app], action ) }
             };
         }
 
         /** TODO Improve */
-        case (actionType === '@@components'): {
+        case ( actionType === '@@components' ): {
             return {
                 ...state,
                 // @ts-ignore
-                [components]: { ...componentsReducer(state[components], action as ComponentsActions) }
+                [components]: { ...componentsReducer( state[components], action as ComponentsActions ) }
             };
         }
 
@@ -97,7 +97,7 @@ const reducers: Reducer<ApplicationState> = (state = INITIAL_STATE, action): App
             return {
                 ...state,
                 // @ts-ignore
-                localize: localizeReducer(state.localize, action)
+                localize: localizeReducer( state.localize, action )
             };
         }
     }

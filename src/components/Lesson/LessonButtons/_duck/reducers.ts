@@ -16,8 +16,8 @@ export const INITIAL_STATE: LessonButtonsState = {
     draggable: false
 };
 
-const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_LESSON_BUTTONS_MOVE: {
             const { top, left } = action as MoveLessonButtonsAction;
             return {

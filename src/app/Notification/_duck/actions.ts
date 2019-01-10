@@ -7,18 +7,18 @@ const {
     APP_NOTIFICATION_SET
 } = NotificationActionsEnum;
 
-export const openNotification: ActionCreator<Action> = () => ({
+export const openNotification: ActionCreator<Action> = () => ( {
     type: APP_NOTIFICATION_OPEN
-});
+} );
 
-export const closeNotification: ActionCreator<Action> = () => ({
+export const closeNotification: ActionCreator<Action> = () => ( {
     type: APP_NOTIFICATION_CLOSE
-});
+} );
 
-export const setNotification: ActionCreator<SetNotificationAction & Action> = (options: SetNotificationAction) => ({
+export const setNotification: ActionCreator<SetNotificationAction & Action> = ( options: SetNotificationAction ) => ( {
     type: APP_NOTIFICATION_SET,
     ...options
-});
+} );
 
 export const actions = {
     openNotification,

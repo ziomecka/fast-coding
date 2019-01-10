@@ -16,12 +16,12 @@ import { WithStyles } from '@material-ui/core/styles';
 const { app } = ApplicationContainersEnum;
 const { translationsLoader } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): IMapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: state.localize,
     ...state[ app ][ translationsLoader ]
-});
+} );
 
-const InfoContainer = connect(mapStateToProps)(Info);
+const InfoContainer = connect( mapStateToProps )( Info );
 
 export default InfoContainer;
 

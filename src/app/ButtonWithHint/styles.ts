@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     return {
         buttonClass: {
             margin: '1em',
@@ -14,6 +14,6 @@ const styles = createStyles(theme => {
             }
         }
     };
-});
+} );
 
 export default styles;

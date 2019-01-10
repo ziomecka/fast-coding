@@ -16,11 +16,11 @@ export const INITIAL_STATE: RemindPasswordState = {
     ...EmailInitialState,
 };
 
-const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_REMIND_PASSWORD_SET_EMAIL : {
             return {
-                ...emailReducer(state, action)
+                ...emailReducer( state, action )
             };
         }
 

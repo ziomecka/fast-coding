@@ -27,11 +27,11 @@ const styles = createStyles( theme => {
             width: '100%',
             paddingTop: PAPER_PADDING_XS,
             height: FOOTER_HEIGHT_MD,
-            [ theme.breakpoints.up('md') ]: {
+            [ theme.breakpoints.up( 'md' ) ]: {
                 height: FOOTER_HEIGHT_LG,
                 paddingTop: PAPER_PADDING_MD
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 height: FOOTER_HEIGHT_LG,
                 paddingTop: PAPER_PADDING_LG
             },
@@ -50,10 +50,10 @@ const styles = createStyles( theme => {
         footerColumnContainer: {
             height: '100%',
             padding: `${ PAPER_PADDING_XS } ${ PAPER_PADDING_MAX_XS }`,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: `${ PAPER_PADDING_MD } ${ PAPER_PADDING_MAX_MD }`,
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: `${ PAPER_PADDING_LG } ${ PAPER_PADDING_MAX_LG }`
             },
             backgroundColor: 'inherit',
@@ -81,6 +81,6 @@ const styles = createStyles( theme => {
             }
         }
     };
-});
+} );
 
 export default styles;

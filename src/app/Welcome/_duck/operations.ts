@@ -37,42 +37,42 @@ const states: {
 };
 
 const clearLocalStorage = () => {
-    localStorageRemoveItem(comparator);
-    localStorageRemoveItem(lesson);
-    localStorageRemoveItem(stats);
+    localStorageRemoveItem( comparator );
+    localStorageRemoveItem( lesson );
+    localStorageRemoveItem( stats );
 };
 
-export const getClasses = (location: AppLocationEnum): WelcomeClasses => {
+export const getClasses = ( location: AppLocationEnum ): WelcomeClasses => {
     return states[location] || states[isOther];
 };
 
-export const onOpenDemoLesson = (): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
-    const language = getActiveLanguage(getState().localize).code;
+export const onOpenDemoLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+    const language = getActiveLanguage( getState().localize ).code;
 
     clearLocalStorage();
 
-    return dispatch(openDemoLesson(language));
+    return dispatch( openDemoLesson( language ) );
 };
 
 /** Keyboard listener */
 const { welcome: container } = AppContainersEnum;
 export const buttonsIds = [ 'homeSeeLessons', 'homeStartTyping' ];
 
-const manageButtonFocus = buttonFocus(buttonsIds, 1);
+const manageButtonFocus = buttonFocus( buttonsIds, 1 );
 
-const manageFocus = (e: KeyboardEvent): void => manageButtonFocus(e);
+const manageFocus = ( e: KeyboardEvent ): void => manageButtonFocus( e );
 
 let listenerId;
 
-export const onAddKeyDownListener = (): any => (dispatch: Dispatch): number => {
-    listenerId = dispatch(manageKeydownListeners.onAddListener({
+export const onAddKeyDownListener = (): any => ( dispatch: Dispatch ): number => {
+    listenerId = dispatch( manageKeydownListeners.onAddListener( {
         container,
         listener: [ 'keydown', manageFocus ]
-    }));
+    } ) );
 
     return listenerId;
 };
 
-export const onRemoveKeyDownListener = (): any => (dispatch: Dispatch): boolean => {
-    return dispatch(manageKeydownListeners.onRemoveListener({ container, listenerId }));
+export const onRemoveKeyDownListener = (): any => ( dispatch: Dispatch ): boolean => {
+    return dispatch( manageKeydownListeners.onRemoveListener( { container, listenerId } ) );
 };

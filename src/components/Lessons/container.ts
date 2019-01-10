@@ -15,13 +15,13 @@ import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state[components][lessonsLoader],
     ...state[components][lessons]
-});
+} );
 
 // @ts-ignore
-const LessonsContainer = withRouter(connect(mapStateToProps)(Lessons));
+const LessonsContainer = withRouter( connect( mapStateToProps )( Lessons ) );
 
 export default LessonsContainer;
 

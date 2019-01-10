@@ -5,10 +5,10 @@ const {
     APP_FORM_HELPER_TEXT_SET
 } = FormHelperTextActionsEnum;
 
-export const setFormHelperText: ActionCreator<SetFormHelperTextAction> = (formHelperText: string) => ({
+export const setFormHelperText: ActionCreator<SetFormHelperTextAction> = ( formHelperText: string ) => ( {
     type: APP_FORM_HELPER_TEXT_SET,
     formHelperText
-});
+} );
 
 export const actions = {
     setFormHelperText

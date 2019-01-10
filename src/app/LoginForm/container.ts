@@ -21,26 +21,26 @@ import { DialogDispatch, mapDispatchToProps as mapDialogDispatchToProps } from '
 const { app } = ApplicationContainersEnum;
 const { loginForm } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): LoginFormState => ({
+const mapStateToProps = ( state: ApplicationState ): LoginFormState => ( {
     ...state[app][loginForm]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): LoginFormDispatch => ({
-    setLogin: (login) => dispatch(setLogin(login)),
-    log: (options) => dispatch(onLog(options)),
-    reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid()),
-    ...mapDialogDispatchToProps(dispatch)
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): LoginFormDispatch => ( {
+    setLogin: ( login ) => dispatch( setLogin( login ) ),
+    log: ( options ) => dispatch( onLog( options ) ),
+    reset: () => dispatch( reset() ),
+    formInvalid: () => dispatch( onFormInvalid() ),
+    ...mapDialogDispatchToProps( dispatch )
+} );
 
 // @ts-ignore
-const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
+const LabelContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( LoginForm ) );
 
 export default LabelContainer;
 
 export interface LoginFormDispatch extends DialogDispatch {
-    setLogin: (login: string) => SetLoginAction;
-    log: (options: SendLoginFormI) => Action;
+    setLogin: ( login: string ) => SetLoginAction;
+    log: ( options: SendLoginFormI ) => Action;
     reset: () => Action;
     formInvalid: () => Action;
 }

@@ -28,27 +28,27 @@ interface MapStateToPropsI extends ContentState {
     lessonNo: number;
 }
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][content],
     localize: { ...state.localize },
     lessonTitle: state[components][lesson].title,
     lessonNo: state[components][lesson].no
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): ContentDispatch => ({
-    ...notificationMapDiaptchToProps(dispatch),
-    changeLocation: (appLocation: AppLocationEnum) => dispatch(changeLocation(appLocation)),
-    changeTitle: (title) => dispatch(changeTitle(title))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): ContentDispatch => ( {
+    ...notificationMapDiaptchToProps( dispatch ),
+    changeLocation: ( appLocation: AppLocationEnum ) => dispatch( changeLocation( appLocation ) ),
+    changeTitle: ( title ) => dispatch( changeTitle( title ) )
+} );
 
 // @ts-ignore
-const ContentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));
+const ContentContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Content ) );
 
 export default ContentContainer;
 
 export interface ContentDispatch extends NotificationDispatch {
-    changeLocation: (appLocation: AppLocationEnum) => ChangeLocationAction;
-    changeTitle: (title: string) => ChangeTitleAction;
+    changeLocation: ( appLocation: AppLocationEnum ) => ChangeLocationAction;
+    changeTitle: ( title: string ) => ChangeTitleAction;
 }
 
 export interface ContentProps extends ContentDispatch,

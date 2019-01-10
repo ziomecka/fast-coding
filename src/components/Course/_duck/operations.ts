@@ -15,35 +15,35 @@ import { activateLesson } from '@components/Lessons/_duck/actions';
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {
-    localStorageRemoveItem(comparator);
-    localStorageRemoveItem(lesson);
-    localStorageRemoveItem(stats);
+    localStorageRemoveItem( comparator );
+    localStorageRemoveItem( lesson );
+    localStorageRemoveItem( stats );
 };
 
-export const onOpenRandomLesson = (lesson: LessonData): any => {
+export const onOpenRandomLesson = ( lesson: LessonData ): any => {
     /** When new lesson opened - clear local storage */
     clearLocalStorage();
 
-    return async (dispatch: Dispatch ) => {
-        const response = await dispatch(updateLesson(lesson));
-        if (response) {
-            return dispatch(turnOnTextGenerator());
+    return async ( dispatch: Dispatch ) => {
+        const response = await dispatch( updateLesson( lesson ) );
+        if ( response ) {
+            return dispatch( turnOnTextGenerator() );
         }
         return response;
     };
 };
 
-export const onOpenLesson = (lessonData: LessonData): any => (dispatch: Dispatch, getState: ThunkGetStateType) => {
-    const { code } = getActiveLanguage(getState().localize);
+export const onOpenLesson = ( lessonData: LessonData ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+    const { code } = getActiveLanguage( getState().localize );
 
     /** When new lesson opened - clear local storage */
     clearLocalStorage();
 
-    lessonData.lessonText = (lessonData.translatedTexts && lessonData.translatedTexts[code]) ||
+    lessonData.lessonText = ( lessonData.translatedTexts && lessonData.translatedTexts[code] ) ||
         lessonData.text ||
         '';
 
     /** Set activeLessonId in lessons state */
-    dispatch(activateLesson(lessonData._id));
-    return dispatch(openLesson(lessonData));
+    dispatch( activateLesson( lessonData._id ) );
+    return dispatch( openLesson( lessonData ) );
 };

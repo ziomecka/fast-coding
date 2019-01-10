@@ -3,8 +3,8 @@ import * as React from 'react';
 import { UserProps } from './container';
 
 class UserComponent extends React.Component<UserProps> {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
     componentDidMount() {

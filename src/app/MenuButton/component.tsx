@@ -26,13 +26,13 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
     } = props;
 
     const onClick = () => {
-        history.push(appRoute);
+        history.push( appRoute );
     };
 
     const areMenuButtonRulesMet = (): boolean => {
         return (
             !componentRules ||
-            componentRules.every(rule => menuRules({ path: appRoute })[rule]())
+            componentRules.every( rule => menuRules( { path: appRoute } )[rule]() )
         );
     };
 
@@ -50,13 +50,13 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
         <>{
             areMenuButtonRulesMet() && (
                 ( title && (
-                    <Tooltip title={ getTranslation(props.localize, title) }>
+                    <Tooltip title={ getTranslation( props.localize, title ) }>
                         { IconButton }
                     </Tooltip>
                 )
-            ) || <>''{ IconButton }''</>)
+            ) || <>''{ IconButton }''</> )
         }</>
     );
 };
 
-export default withMenuRules(withStyles(styles)(MenuButtonComponent));
+export default withMenuRules( withStyles( styles )( MenuButtonComponent ) );

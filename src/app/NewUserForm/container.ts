@@ -19,26 +19,26 @@ const { newUserForm } = AppContainersEnum;
 
 import { WithStyles } from '@material-ui/core/styles';
 
-const mapStateToProps = (state: ApplicationState): NewUserFormState => ({
+const mapStateToProps = ( state: ApplicationState ): NewUserFormState => ( {
     ...state[app][newUserForm]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): NewUserFormDispatch => ({
-    sendNewUserForm: (options) => dispatch(onSendNewUserForm(options)),
-    setEmail: (email) => dispatch(setEmail(email)),
-    setLogin: (login) => dispatch(setLogin(login)),
-    reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): NewUserFormDispatch => ( {
+    sendNewUserForm: ( options ) => dispatch( onSendNewUserForm( options ) ),
+    setEmail: ( email ) => dispatch( setEmail( email ) ),
+    setLogin: ( login ) => dispatch( setLogin( login ) ),
+    reset: () => dispatch( reset() ),
+    formInvalid: () => dispatch( onFormInvalid() )
+} );
 
-const NewUserFormContainer = connect(mapStateToProps, mapDispatchToProps)(NewUserForm);
+const NewUserFormContainer = connect( mapStateToProps, mapDispatchToProps )( NewUserForm );
 
 export default NewUserFormContainer;
 
 export interface NewUserFormDispatch {
-    sendNewUserForm: (options: SendNewUserFormI) => Action;
-    setEmail: (email: string) => SetEmailAction;
-    setLogin: (login: string) => SetLoginAction;
+    sendNewUserForm: ( options: SendNewUserFormI ) => Action;
+    setEmail: ( email: string ) => SetEmailAction;
+    setLogin: ( login: string ) => SetLoginAction;
     reset: () => Action;
     formInvalid: () => Action;
 }

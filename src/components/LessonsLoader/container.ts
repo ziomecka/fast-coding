@@ -16,16 +16,16 @@ const { app, components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 const { user } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[components][lessonsLoader],
     authorized: state[app][user].authorized
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): LessonsLoaderDispatch => ({
-    loadData: () => dispatch(onLoadLessons())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): LessonsLoaderDispatch => ( {
+    loadData: () => dispatch( onLoadLessons() )
+} );
 
-const LessonsLoaderContainer = connect(mapStateToProps, mapDispatchToProps)(LessonsLoader);
+const LessonsLoaderContainer = connect( mapStateToProps, mapDispatchToProps )( LessonsLoader );
 
 export default LessonsLoaderContainer;
 

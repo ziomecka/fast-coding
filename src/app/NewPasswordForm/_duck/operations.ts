@@ -15,8 +15,8 @@ const {
     QUERY_PARAM_EMAIL,
 } = SERVER_CONSTANTS;
 
-export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
-    async ( dispatch: Dispatch): Promise<Action> => {
+export const onSendForm = ( options: SendFormNewPasswordFormI ): any => (
+    async ( dispatch: Dispatch ): Promise<Action> => {
         const { key, newPassword, email } = options;
         return await dispatch( _onSendForm( {
             request: {
@@ -36,7 +36,7 @@ export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
                 successNotification: 'notificationNewPasswordSuccess',
                 // redirectUrl: login TODO HERE
             }
-        } ));
+        } ) );
     }
 );
 

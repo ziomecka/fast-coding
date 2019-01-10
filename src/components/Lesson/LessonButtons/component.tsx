@@ -52,13 +52,13 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const INITIAL_LEFT = INITIAL_STATE.left;
     const INITIAL_WIDTH = '100%';
 
-    const isMoved = (top !== INITIAL_TOP || left !== INITIAL_LEFT);
+    const isMoved = ( top !== INITIAL_TOP || left !== INITIAL_LEFT );
 
-    const leaveLesson = () => history.push(lessons);
+    const leaveLesson = () => history.push( lessons );
 
 
-    const justType = getTranslation(props.localize, 'lessonButtonsJustType');
-    const press = getTranslation(props.localize, 'buttonsPress');
+    const justType = getTranslation( props.localize, 'lessonButtonsJustType' );
+    const press = getTranslation( props.localize, 'buttonsPress' );
 
     const commonProps = {
         variant: 'contained',
@@ -152,11 +152,11 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             return buttonsWhenNotStarted;
         }
 
-        if (started && ended) {
+        if ( started && ended ) {
             return buttonsWhenEnded;
         }
 
-        if (!paused) {
+        if ( !paused ) {
             return buttonsWhenRunning;
         }
 
@@ -184,7 +184,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             {/* Buttons for managing draggable menu */}
             {/* Available only if lesson is not started or has been ended */}
             {
-                (!started || ended) && (
+                ( !started || ended ) && (
                     <div className={lessonButtonsDragHandle}>
                         <Button
                             title="Drag the buttons menu"
@@ -212,4 +212,4 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 };
 
-export default withStyles(styles)(LessonButtonsComponent);
+export default withStyles( styles )( LessonButtonsComponent );

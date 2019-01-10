@@ -11,12 +11,12 @@ import { LocalizeState } from 'react-localize-redux';
 
 const { app } = ApplicationContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app],
     localize: state.localize
-});
+} );
 
-const LoginContainer = connect(mapStateToProps)(Login);
+const LoginContainer = connect( mapStateToProps )( Login );
 
 export default LoginContainer;
 

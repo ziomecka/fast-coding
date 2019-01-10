@@ -7,7 +7,7 @@ export const INITIAL_STATE: LessonsLoaderState = {
     lessons: []
 };
 
-const reducer: Reducer<LessonsLoaderState> = (state = INITIAL_STATE) => {
+const reducer: Reducer<LessonsLoaderState> = ( state = INITIAL_STATE ) => {
     return { ...state };
 };
 

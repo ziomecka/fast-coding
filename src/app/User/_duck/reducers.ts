@@ -19,8 +19,8 @@ export const INITIAL_STATE: UserState = {
     authorizationMethod: null
 };
 
-const reducer: Reducer<UserState, UserActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<UserState, UserActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_USER_AUTHORIZE_USER: {
             return {
                 ...state,

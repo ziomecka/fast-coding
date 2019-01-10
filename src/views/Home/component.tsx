@@ -20,8 +20,8 @@ const { content, welcome } = AppContainersEnum;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
     homeUrl: string;
-    constructor(props: HomeViewProps) {
-        super(props);
+    constructor( props: HomeViewProps ) {
+        super( props );
 
         this.homeUrl = AppRoutesEnum.home;
     }

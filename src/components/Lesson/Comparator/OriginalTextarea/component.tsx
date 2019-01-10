@@ -28,38 +28,38 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
         comparatorTextAreaParagraphInvite
     } = classes;
 
-    const isCorrect = (ind: number): boolean => {
+    const isCorrect = ( ind: number ): boolean => {
       return (
         ind <= currentSignIndex &&
-        !isErrors(ind) &&
-        !isCorrectedErrors(ind)
+        !isErrors( ind ) &&
+        !isCorrectedErrors( ind )
       );
     };
 
-    const isErrors = (ind: number): boolean => errors.indexOf(ind) > -1;
+    const isErrors = ( ind: number ): boolean => errors.indexOf( ind ) > -1;
 
-    const isCorrectedErrors = (ind: number): boolean => {
+    const isCorrectedErrors = ( ind: number ): boolean => {
         return (
             ( ind <= currentSignIndex ) &&
-            ( correctedErrors.indexOf(ind) > -1 )
+            ( correctedErrors.indexOf( ind ) > -1 )
         );
     };
 
     const textRender = () => {
-        return Array.from(lessonText || '').map((cv, index) => {
+        return Array.from( lessonText || '' ).map( ( cv, index ) => {
             let name = '';
 
             /** Check if letter is incorrect */
-            switch (true) {
-                case isErrors(index): {
+            switch ( true ) {
+                case isErrors( index ): {
                     name = comparatorTextAreaFontError;
                     break;
                 }
-                case isCorrectedErrors(index): {
+                case isCorrectedErrors( index ): {
                     name = comparatorTextAreaFontCorrected;
                     break;
                 }
-                case isCorrect(index): {
+                case isCorrect( index ): {
                     name = comparatorTextAreaFontCorrect;
                     break;
                 }
@@ -77,10 +77,10 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
                     {cv}
                 </span>
             );
-        });
+        } );
     };
 
-    const inviteClass = (currentSignIndex === -1)
+    const inviteClass = ( currentSignIndex === -1 )
         ? comparatorTextAreaParagraphInvite
         : '';
 
@@ -95,4 +95,4 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     );
 };
 
-export default withStyles(styles)(OriginalTextareaComponent);
+export default withStyles( styles )( OriginalTextareaComponent );

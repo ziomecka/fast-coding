@@ -5,14 +5,14 @@ import { ComparatorProps } from './container';
 import OriginalTextarea from './OriginalTextarea/';
 
 class ComparatorComponent extends React.Component<ComparatorProps> {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
 
-    scroll(id: string): void {
-        let htmlElement = document.getElementById(id);
-        if (htmlElement) {
-            htmlElement.scrollIntoView(false);
+    scroll( id: string ): void {
+        let htmlElement = document.getElementById( id );
+        if ( htmlElement ) {
+            htmlElement.scrollIntoView( false );
             htmlElement = null; // GC
         }
     }
@@ -27,21 +27,21 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
         this.props.keepState();
     }
 
-    componentDidUpdate(prevProps: ComparatorProps) {
+    componentDidUpdate( prevProps: ComparatorProps ) {
         const { currentSignIndex, lessonText } = this.props;
         const prevCurrentSignIndex= prevProps.currentSignIndex;
 
-        if (currentSignIndex !== prevCurrentSignIndex) {
-            if (currentSignIndex === 0) {
+        if ( currentSignIndex !== prevCurrentSignIndex ) {
+            if ( currentSignIndex === 0 ) {
                 this.props.startLesson();
                 this.props.turnOnComparator();
             }
 
-            if (currentSignIndex >= lessonText.length - 1) {
+            if ( currentSignIndex >= lessonText.length - 1 ) {
                 this.props.endingLesson();
             }
 
-            this.scroll(`letter-${currentSignIndex + 3}`);
+            this.scroll( `letter-${currentSignIndex + 3}` );
         }
     }
 

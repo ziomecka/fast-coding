@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     return {
         dialog: {
             lineHeight: '1.3em',
@@ -28,12 +28,12 @@ const styles = createStyles(theme => {
             }
         },
         dialogContent: {
-            [theme.breakpoints.only('xs')]: {
+            [theme.breakpoints.only( 'xs' )]: {
                 padding: 0,
             },
             overflowX: 'hidden'
         }
     };
-});
+} );
 
 export default styles;

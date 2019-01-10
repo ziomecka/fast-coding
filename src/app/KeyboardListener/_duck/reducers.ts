@@ -14,25 +14,25 @@ const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 
 export const INITIAL_STATE: KeyboardListenerState = {
-    listeners: new Map([
+    listeners: new Map( [
         [ dialog, new Map() ],
         // @ts-ignore
-        [ lesson, new Map([]) ],
+        [ lesson, new Map( [] ) ],
         // @ts-ignore
-        [ homeView, new Map([]) ],
-        [ welcome, new Map([]) ],
+        [ homeView, new Map( [] ) ],
+        [ welcome, new Map( [] ) ],
         // @ts-ignore
-        [ languagesMenu, new Map([]) ],
+        [ languagesMenu, new Map( [] ) ],
         // @ts-ignore
-        [ mainMenu, new Map([]) ],
+        [ mainMenu, new Map( [] ) ],
         // @ts-ignore
-        [ userMenu, new Map([]) ],
+        [ userMenu, new Map( [] ) ],
         // @ts-ignore
-        [ lessonStepper, new Map([]) ]
-    ])
+        [ lessonStepper, new Map( [] ) ]
+    ] )
 };
 
-const reducer: Reducer<KeyboardListenerState, KeyboardListenerActions> = (state = INITIAL_STATE) => {
+const reducer: Reducer<KeyboardListenerState, KeyboardListenerActions> = ( state = INITIAL_STATE ) => {
     return { ...state };
 };
 

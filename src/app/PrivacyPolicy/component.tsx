@@ -7,13 +7,13 @@ import Info from '@app/Info';
 
 const PrivacyPolicyComponent: React.StatelessComponent<PrivacyPolicyProps> = props => {
 
-    const date = Date.UTC(2019,0,6);
+    const date = Date.UTC( 2019,0,6 );
 
-    const effectiveOf = new Date(date).toLocaleDateString(getActiveLanguage(props.localize).code, {
+    const effectiveOf = new Date( date ).toLocaleDateString( getActiveLanguage( props.localize ).code, {
         month: 'long',
         year: 'numeric',
         day: 'numeric'
-    });
+    } );
 
     return (
         <Info

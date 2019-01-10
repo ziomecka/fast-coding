@@ -9,8 +9,8 @@ const { changePassword, lessons } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
-export const onSendForm = (options: SendFormChangePasswordI ): any => (
-    async ( dispatch: Dispatch): Promise<Action> => {
+export const onSendForm = ( options: SendFormChangePasswordI ): any => (
+    async ( dispatch: Dispatch ): Promise<Action> => {
         return await dispatch( _onSendForm( {
             request: {
                 path: changePassword,
@@ -24,7 +24,7 @@ export const onSendForm = (options: SendFormChangePasswordI ): any => (
                 },
                 successNotification: 'notificationPasswordChangeSuccess'
             }
-        } ));
+        } ) );
     }
 );
 

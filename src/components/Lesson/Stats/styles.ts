@@ -1,7 +1,7 @@
 import { createStyles } from '@material-ui/core/styles';
 import { LESSON_MAX_WIDTH } from '@constantsStyles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: {
             primary: { main: borderColor }
@@ -28,6 +28,6 @@ const styles = createStyles(theme => {
             }
         }
     };
-});
+} );
 
 export default styles;

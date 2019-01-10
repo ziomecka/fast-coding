@@ -13,8 +13,8 @@ const { fastcoding } = UserAuthorizationMethodEnum;
 
 import { onSendForm as _onSendForm } from '@app/Form/';
 
-export const onLog = (options: SendLoginFormI): any => (
-    async (dispatch: Dispatch ): Promise<Action> => {
+export const onLog = ( options: SendLoginFormI ): any => (
+    async ( dispatch: Dispatch ): Promise<Action> => {
         const { login, password } = options;
 
         let response = await dispatch( _onSendForm( {
@@ -31,15 +31,15 @@ export const onLog = (options: SendLoginFormI): any => (
                 successNotification: 'notificationAuthorized',
                 redirectUrl: lessons
             }
-        } ));
+        } ) );
 
         /** Authorize user */
         if ( response.result === SUCCESS ) {
             response = null; // GC
-            return dispatch(authorizeUser({
+            return dispatch( authorizeUser( {
                 login,
                 authorizationMethod: fastcoding
-            }));
+            } ) );
         }
     }
 );

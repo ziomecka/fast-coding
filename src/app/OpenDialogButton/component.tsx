@@ -12,7 +12,7 @@ import styles from './styles';
 const OpenDialogButtonComponent: React.StatelessComponent<PrivacyPolicyButtonProps> = props => {
     const { translationId, options, classes: { button } } = props;
 
-    const onClick = () => props.openDialog(options);
+    const onClick = () => props.openDialog( options );
 
     return (
         <Button
@@ -24,4 +24,4 @@ const OpenDialogButtonComponent: React.StatelessComponent<PrivacyPolicyButtonPro
     );
 };
 
-export default withStyles(styles)(OpenDialogButtonComponent);
+export default withStyles( styles )( OpenDialogButtonComponent );

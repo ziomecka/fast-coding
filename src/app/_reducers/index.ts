@@ -143,7 +143,7 @@ const {
     APP_PASSWORD_VALIDATE
 } = PasswordActionsEnum;
 
-const combinedReducers = combineReducers({
+const combinedReducers = combineReducers( {
     [dialog]: dialogReducer,
     [loginForm]: loginFormReducer,
     [newUserForm]: newUserFormReducer,
@@ -159,10 +159,10 @@ const combinedReducers = combineReducers({
     [newPasswordForm]: newPasswordFormReducer,
     [googleLogin]: googleLoginReducer,
     [translationsLoader]: translationsLoaderReducer
-});
+} );
 
-const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<AppState, AppActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_VALIDATE_CONFIRM:
         case APP_PASSWORD_VALIDATE_CURRENT:
@@ -171,32 +171,32 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
         case APP_PASSWORD_SET_PASSWORD_CONFIRM:
         case APP_PASSWORD_SET_PASSWORD_CURRENT:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
-            switch ((action as SetPasswordAction).container) {
+            switch ( ( action as SetPasswordAction ).container ) {
                 case loginForm: {
                     return {
                         ...state,
-                        [loginForm]: loginFormReducer(state[loginForm], action)
+                        [loginForm]: loginFormReducer( state[loginForm], action )
                     };
                 }
 
                 case newUserForm: {
                     return {
                         ...state,
-                        [newUserForm]: newUserFormReducer(state[newUserForm], action),
+                        [newUserForm]: newUserFormReducer( state[newUserForm], action ),
                     };
                 }
 
                 case changePasswordForm: {
                     return {
                         ...state,
-                        [changePasswordForm]: changePasswordFormReducer(state[changePasswordForm], action)
+                        [changePasswordForm]: changePasswordFormReducer( state[changePasswordForm], action )
                     };
                 }
 
                 case newPasswordForm: {
                     return {
                         ...state,
-                        [newPasswordForm]: newPasswordFormReducer(state[newPasswordForm], action)
+                        [newPasswordForm]: newPasswordFormReducer( state[newPasswordForm], action )
                     };
                 }
 
@@ -208,7 +208,7 @@ const reducer: Reducer<AppState, AppActions> = (state = INITIAL_STATE, action) =
 
         default: {
             return {
-                ...combinedReducers(state, action)
+                ...combinedReducers( state, action )
             };
         }
     }

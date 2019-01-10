@@ -26,4 +26,4 @@ const NotDesktopComponent: React.StatelessComponent< NotDektopProps > = props =>
     );
 };
 
-export default withStyles(styles)(NotDesktopComponent);
+export default withStyles( styles )( NotDesktopComponent );

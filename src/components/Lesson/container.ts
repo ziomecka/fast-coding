@@ -28,7 +28,7 @@ import { WithStyles } from '@material-ui/core/styles';
 import { LocalizeState } from 'react-localize-redux';
 import { onStartLeaving } from './LessonButtons/_duck/operations';
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => {
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { time, start, stop, running } = state[components][comparator][stats];
 
     return {
@@ -41,19 +41,19 @@ const mapStateToProps = (state: ApplicationState): MapStateToPropsI => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): LessonDispatch => ({
-    ...notificationMapDiaptchToProps(dispatch),
-    reset: () => dispatch(onReset()),
-    registerOnDrop: (fun) => dispatch(registerOnDrop(fun)),
-    deregisterOnDrop: (fun) => dispatch(deregisterOnDrop(fun)),
-    onMoveLesonButtons: (x, y) => dispatch(moveLessonButtons(x, y)),
-    restoreState: () => dispatch(onRestoreState(LocalStorageItemEnum.lesson, restoreState)),
-    keepState: () => dispatch(onKeepState(LocalStorageItemEnum.lesson, lesson)),
-    startLeaving: () => dispatch(onStartLeaving())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
+    ...notificationMapDiaptchToProps( dispatch ),
+    reset: () => dispatch( onReset() ),
+    registerOnDrop: ( fun ) => dispatch( registerOnDrop( fun ) ),
+    deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
+    onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
+    restoreState: () => dispatch( onRestoreState( LocalStorageItemEnum.lesson, restoreState ) ),
+    keepState: () => dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) ),
+    startLeaving: () => dispatch( onStartLeaving() )
+} );
 
 // @ts-ignore
-const LessonContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Lesson));
+const LessonContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Lesson ) );
 
 export default LessonContainer;
 
@@ -67,9 +67,9 @@ interface MapStateToPropsI extends LessonState {
 
 export interface LessonDispatch extends NotificationDispatch {
     reset: () => void;
-    registerOnDrop: (fun: Function) => void;
-    deregisterOnDrop: (fun: Function) => void;
-    onMoveLesonButtons: (x: number | 'auto', y: number | 'auto') => void;
+    registerOnDrop: ( fun: Function ) => void;
+    deregisterOnDrop: ( fun: Function ) => void;
+    onMoveLesonButtons: ( x: number | 'auto', y: number | 'auto' ) => void;
     restoreState: () => Action;
     keepState: () => Action;
     startLeaving: () => Action;

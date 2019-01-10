@@ -51,15 +51,15 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         )}
 
         <DialogActions>
-            { Object.keys(buttons).map((button, ind) => (
+            { Object.keys( buttons ).map( ( button, ind ) => (
                 <ButtonWithHint
                     key={`dialogButton-${ ind }`}
                     { ...buttons[ button ] }
                 />
-            )) }
+            ) ) }
         </DialogActions>
     </Dialog>
   );
 };
 
-export default withStyles(styles)(DialogComponent);
+export default withStyles( styles )( DialogComponent );

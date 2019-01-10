@@ -8,7 +8,7 @@ import {
 
 import { createStyles } from '@material-ui/core/styles';
 
-const style = createStyles(theme => {
+const style = createStyles( theme => {
 
     const {
         typography: {
@@ -26,15 +26,15 @@ const style = createStyles(theme => {
                 fontSize,
             },
             height: NAV_HEIGHT_MD,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 right: PAPER_PADDING_MAX_MD,
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 right: PAPER_PADDING_MAX_LG,
                 height: NAV_HEIGHT_LG
             }
         }
     };
-});
+} );
 
 export default style;

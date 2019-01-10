@@ -7,6 +7,6 @@ export interface IWithMedia {
 
 const defaultValue: IWithMedia = { media: null };
 
-const context = React.createContext(defaultValue);
+const context = React.createContext( defaultValue );
 
 export default context;

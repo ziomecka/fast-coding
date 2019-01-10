@@ -24,13 +24,13 @@ const { appMenu } = AppContainersEnum;
 import { LocalizeState } from 'react-localize-redux';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][appMenu],
     localize: state.localize
-});
+} );
 
 // @ts-ignore
-const MenuButtonContainer = withRouter(connect(mapStateToProps)(MenuButtonComponent));
+const MenuButtonContainer = withRouter( connect( mapStateToProps )( MenuButtonComponent ) );
 
 export default MenuButtonContainer;
 

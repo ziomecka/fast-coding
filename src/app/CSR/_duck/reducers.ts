@@ -18,8 +18,8 @@ export const INITIAL_STATE: ICSRState = {
     // error: '',
 };
 
-const reducer: Reducer<ICSRState, CSRActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<ICSRState, CSRActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_CSR_CHANGE_LOADING_STATE: {
             const { applicationContainer, container, loading } = action as ChangeLoadingStateAction;
             return {

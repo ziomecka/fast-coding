@@ -21,26 +21,26 @@ import { IWithMedia } from '@app/Media';
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state[components][lessonsLoader],
     ...state[components][lessons]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): IStepperDispatch => ({
-    addListener: options => dispatch(onAddListener(options)),
-    removeListener: options => dispatch(onRemoveListener(options))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
+    addListener: options => dispatch( onAddListener( options ) ),
+    removeListener: options => dispatch( onRemoveListener( options ) )
+} );
 
 // @ts-ignore
-const StepperContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Stepper));
+const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Stepper ) );
 
 export default StepperContainer;
 
 interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
 
 export interface IStepperDispatch {
-    addListener: (options: AddListener) => Action;
-    removeListener: (options: RemoveListener) => Action;
+    addListener: ( options: AddListener ) => Action;
+    removeListener: ( options: RemoveListener ) => Action;
 }
 export interface StepperProps extends
     LessonsLoaderState,

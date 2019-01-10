@@ -14,41 +14,41 @@ import {
 } from '@app/LocalStorage/_duck/operations';
 
 export const onLoadData =
-(url: string, applicationContainer: ApplicationContainersEnum, container: ComponentsContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string): any => (
-    async (dispatch: Dispatch): Promise<any> => {
+( url: string, applicationContainer: ApplicationContainersEnum, container: ComponentsContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string ): any => (
+    async ( dispatch: Dispatch ): Promise<any> => {
 
         /** Loading => true */
-        dispatch(changeLoadingState(true, applicationContainer, container));
+        dispatch( changeLoadingState( true, applicationContainer, container ) );
 
-        let localStorage = localStorageGetItem(lsItem);
+        let localStorage = localStorageGetItem( lsItem );
 
         /** lsItem.toLowerCase() => string under which data will be saved in new state
          *  see reducer
         */
-        dispatch(updateData({ [`${lsItem.toLowerCase()}`]: localStorage }, applicationContainer, container));
+        dispatch( updateData( { [`${lsItem.toLowerCase()}`]: localStorage }, applicationContainer, container ) );
 
         /** If data was in local storage
          *  Loading => false
         */
-        if(localStorage) {
-            dispatch(changeLoadingState(false, applicationContainer, container, lsItem));
+        if( localStorage ) {
+            dispatch( changeLoadingState( false, applicationContainer, container, lsItem ) );
             localStorage = null; // GC
         }
 
         try {
-            let data = await getData({ path: url }) as GetDataType;
-            dispatch(updateData({ [stateName]: data[stateName] }, applicationContainer, container));
-            localStorageSetItem(lsItem, data[stateName]);
+            let data = await getData( { path: url } ) as GetDataType;
+            dispatch( updateData( { [stateName]: data[stateName] }, applicationContainer, container ) );
+            localStorageSetItem( lsItem, data[stateName] );
         }
-        catch (err) {
-            dispatch(reportError(
+        catch ( err ) {
+            dispatch( reportError(
                 err,
                 applicationContainer,
                 container
-            ));
+            ) );
         }
         finally {
-            dispatch(changeLoadingState(false, applicationContainer, container));
+            dispatch( changeLoadingState( false, applicationContainer, container ) );
         }
     }
 );

@@ -20,24 +20,24 @@ import { IWithMedia } from '@app/Media/';
 const { app } = ApplicationContainersEnum;
 const { welcome } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): WelcomeState => ({
+const mapStateToProps = ( state: ApplicationState ): WelcomeState => ( {
     ...state[app][welcome]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): WelcomeDispatch => ({
-    changeLocation: (appLocation: AppLocationEnum) => dispatch(changeLocation(appLocation)),
-    openDemoLesson: () => dispatch(onOpenDemoLesson()),
-    addEventListener: () => dispatch(onAddKeyDownListener()),
-    removeEventListener: () => dispatch(onRemoveKeyDownListener())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): WelcomeDispatch => ( {
+    changeLocation: ( appLocation: AppLocationEnum ) => dispatch( changeLocation( appLocation ) ),
+    openDemoLesson: () => dispatch( onOpenDemoLesson() ),
+    addEventListener: () => dispatch( onAddKeyDownListener() ),
+    removeEventListener: () => dispatch( onRemoveKeyDownListener() )
+} );
 
 // @ts-ignore
-const WelcomeContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Welcome));
+const WelcomeContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Welcome ) );
 
 export default WelcomeContainer;
 
 export interface WelcomeDispatch {
-    changeLocation: (appLocation: AppLocationEnum) => Action;
+    changeLocation: ( appLocation: AppLocationEnum ) => Action;
     openDemoLesson: () => Action;
     addEventListener: () => Action;
     removeEventListener: () => Action;

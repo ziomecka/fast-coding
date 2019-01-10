@@ -37,18 +37,18 @@ const {
 export const INITIAL_STATE: NewUserFormState = {
     ...LoginInitialState,
     ...EmailInitialState,
-    [newPass]: Object.assign({}, PasswordInitialState),
-    [confirmPass]: Object.assign({}, PasswordInitialState),
+    [newPass]: Object.assign( {}, PasswordInitialState ),
+    [confirmPass]: Object.assign( {}, PasswordInitialState ),
 };
 
-const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<NewUserFormState, NewUserFormActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
             const { password, passwordValid } = state[newPass];
             return {
                 ...state,
-                [newPass]: passwordReducer({ password, passwordValid }, action)
+                [newPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
@@ -57,21 +57,21 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             const { password, passwordValid } = state[confirmPass];
             return {
                 ...state,
-                [confirmPass]: passwordReducer({ password, passwordValid }, action)
+                [confirmPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_NEWUSERFORM_SET_LOGIN: {
             return {
                 ...state,
-                ...loginReducer(state, action)
+                ...loginReducer( state, action )
             };
         }
 
         case APP_NEWUSERFORM_SET_EMAIL: {
             return {
                 ...state,
-                ...emailReducer(state, action)
+                ...emailReducer( state, action )
             };
         }
 
@@ -79,8 +79,8 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             return {
                 ...LoginInitialState,
                 ...EmailInitialState,
-                [newPass]: Object.assign({}, PasswordInitialState),
-                [confirmPass]: Object.assign({}, PasswordInitialState)
+                [newPass]: Object.assign( {}, PasswordInitialState ),
+                [confirmPass]: Object.assign( {}, PasswordInitialState )
             };
         }
 

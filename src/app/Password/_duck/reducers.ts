@@ -18,12 +18,12 @@ export const INITIAL_STATE: PasswordState = {
     passwordValid: undefined
 };
 
-const reducer: Reducer<PasswordState> = (state = INITIAL_STATE, action)=> {
-    switch (action.type) {
-        case (APP_PASSWORD_SET_PASSWORD):
-        case (APP_PASSWORD_SET_PASSWORD_CONFIRM):
-        case (APP_PASSWORD_SET_PASSWORD_CURRENT):
-        case (APP_PASSWORD_SET_PASSWORD_NEW): {
+const reducer: Reducer<PasswordState> = ( state = INITIAL_STATE, action )=> {
+    switch ( action.type ) {
+        case ( APP_PASSWORD_SET_PASSWORD ):
+        case ( APP_PASSWORD_SET_PASSWORD_CONFIRM ):
+        case ( APP_PASSWORD_SET_PASSWORD_CURRENT ):
+        case ( APP_PASSWORD_SET_PASSWORD_NEW ): {
             const { password } = action;
 
             return {

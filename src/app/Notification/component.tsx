@@ -66,4 +66,4 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     );
 };
 
-export default withStyles(styles)(NotificationComponent);
+export default withStyles( styles )( NotificationComponent );

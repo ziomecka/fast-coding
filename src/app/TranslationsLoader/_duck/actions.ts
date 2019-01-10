@@ -5,10 +5,10 @@ const {
     APP_TRANSLATIONS_SAVE
 } = GetTranslationsActionsEnum;
 
-export const saveTranslations: ActionCreator<SaveTranslationsActionType> = (data: ISaveTranslations) => ({
+export const saveTranslations: ActionCreator<SaveTranslationsActionType> = ( data: ISaveTranslations ) => ( {
     type: APP_TRANSLATIONS_SAVE,
     data
-});
+} );
 
 export const actions = {
     saveTranslations

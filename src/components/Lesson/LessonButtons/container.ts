@@ -32,25 +32,25 @@ import { onStartLeaving } from './_duck/operations';
 
 import { LocalizeState } from 'react-localize-redux';
 
-const mapDispatchToProps = (dispatch: Dispatch): LessonButtonsDispatch => ({
-    restartLesson: () => dispatch(onRestartLesson()),
-    resetLesson: () => dispatch(onReset()),
-    turnOnDraggable: () => dispatch(turnOnDraggableLessonButtons()),
-    turnOffDraggable: () => dispatch(turnOffDraggableLessonButtons()),
-    resetLessonButtons: () => dispatch(resetDraggableLessonButtons()),
-    startLeaving: () => dispatch(onStartLeaving()),
-    pauseLesson: () => dispatch(onPauseLesson(unpauseLessonOnJustType)),
-    unpauseLesson: () => dispatch(onUnpauseLesson())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
+    restartLesson: () => dispatch( onRestartLesson() ),
+    resetLesson: () => dispatch( onReset() ),
+    turnOnDraggable: () => dispatch( turnOnDraggableLessonButtons() ),
+    turnOffDraggable: () => dispatch( turnOffDraggableLessonButtons() ),
+    resetLessonButtons: () => dispatch( resetDraggableLessonButtons() ),
+    startLeaving: () => dispatch( onStartLeaving() ),
+    pauseLesson: () => dispatch( onPauseLesson( unpauseLessonOnJustType ) ),
+    unpauseLesson: () => dispatch( onUnpauseLesson() )
+} );
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[components][lesson],
     ...state[components][lessonButtons],
     dialogOpened: state[app][dialog].dialogProps.open,
     localize: state.localize
-});
+} );
 
-const LessonButtonsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LessonButtons));
+const LessonButtonsContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( LessonButtons ) );
 
 export default LessonButtonsContainer;
 

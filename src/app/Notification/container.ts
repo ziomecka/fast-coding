@@ -13,11 +13,11 @@ import { WithStyles } from '@material-ui/core/styles';
 const { app } = ApplicationContainersEnum;
 const { notification } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): NotificationState => ({
+const mapStateToProps = ( state: ApplicationState ): NotificationState => ( {
     ...state[app][notification]
-});
+} );
 
-const NotificationContainer = connect(mapStateToProps)(Notification);
+const NotificationContainer = connect( mapStateToProps )( Notification );
 
 export default NotificationContainer;
 

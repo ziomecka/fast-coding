@@ -9,11 +9,11 @@ import { AppContainersEnum } from '@appTypes';
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): AppRouterMapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): AppRouterMapStateToProps => ( {
     authorized: state[app][user].authorized
-});
+} );
 
-const Container = connect(mapStateToProps)(AppRouter);
+const Container = connect( mapStateToProps )( AppRouter );
 
 export default Container;
 

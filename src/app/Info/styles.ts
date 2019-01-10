@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-const styles = createStyles({
+const styles = createStyles( {
     standalone: {
         width: '100%',
         alignSelf: 'flex-start',
@@ -10,6 +10,6 @@ const styles = createStyles({
             margin: '20px 0'
         }
     }
-});
+} );
 
 export default styles;

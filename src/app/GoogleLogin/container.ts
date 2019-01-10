@@ -16,18 +16,18 @@ import { WithStyles } from '@material-ui/core/styles/withStyles';
 const { app } = ApplicationContainersEnum;
 const { googleLogin } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][googleLogin],
     localize: state.localize
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): GoogleLoginDispatch => ({
-    authorizeFirebase: () => dispatch(onAuthorizeFirebase()),
-    startFirebaseUI: () => dispatch(onStartFirebaseUI()),
-    setTranslations: () => dispatch(onSetTranslations())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): GoogleLoginDispatch => ( {
+    authorizeFirebase: () => dispatch( onAuthorizeFirebase() ),
+    startFirebaseUI: () => dispatch( onStartFirebaseUI() ),
+    setTranslations: () => dispatch( onSetTranslations() )
+} );
 
-const GoogleLoginContainer = connect(mapStateToProps, mapDispatchToProps)(GoogleLogin);
+const GoogleLoginContainer = connect( mapStateToProps, mapDispatchToProps )( GoogleLogin );
 
 export default GoogleLoginContainer;
 

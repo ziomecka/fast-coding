@@ -9,17 +9,17 @@ import history from '@shared/history';
 const { lessons } = AppRoutesEnum;
 
 export const onLogOut = (): any => (
-    async (dispatch: Dispatch): Promise<Action> => {
-        let response = await dispatch(unauthorizeUser());
+    async ( dispatch: Dispatch ): Promise<Action> => {
+        let response = await dispatch( unauthorizeUser() );
 
         // TODO if not try catch?
         /** redirect to lessons and notify about success */
-        if (response) {
+        if ( response ) {
             response = null;
-            history.push(lessons);
-            return dispatch(onOpenNotification({ text: 'notificationSignOutSuccess' }));
+            history.push( lessons );
+            return dispatch( onOpenNotification( { text: 'notificationSignOutSuccess' } ) );
         }
-});
+} );
 
 export default {
     onLogOut

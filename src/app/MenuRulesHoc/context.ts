@@ -15,7 +15,7 @@ export interface MenuRulesHocOptionsI {
     authorizationMethod?: UserAuthorizationMethodEnum;
 }
 
-export type MenuRulesHocType = (options?: MenuRulesHocOptionsI) => ({
+export type MenuRulesHocType = ( options?: MenuRulesHocOptionsI ) => ( {
     [onlyAuthorized]: () => boolean;
     [onlyUnauthorized]: () => boolean;
     [notCurrentLocation]: () => boolean;
@@ -25,9 +25,9 @@ export type MenuRulesHocType = (options?: MenuRulesHocOptionsI) => ({
     [notAnyLesson]: () => boolean;
     [notHome]: () => boolean;
     [fastCodingAuthorization]: () => boolean
-});
+} );
 
-const defaultValue: MenuRulesHocType = (options) => ({
+const defaultValue: MenuRulesHocType = ( options ) => ( {
     [onlyAuthorized]: () => false,
     [onlyUnauthorized]: () => true,
     [notCurrentLocation]: () => false,
@@ -37,8 +37,8 @@ const defaultValue: MenuRulesHocType = (options) => ({
     [notAnyLesson]: () => false,
     [notHome]: () => false,
     [fastCodingAuthorization]: () => false
-});
+} );
 
-const context = React.createContext(defaultValue);
+const context = React.createContext( defaultValue );
 
 export default context;

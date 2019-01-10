@@ -14,8 +14,8 @@ const {
    APP_LOCATION_CHANGE_CHANGE_LOCATION
 } = LocationChangeActionsEnum;
 
-const reducer: Reducer<ApplicationState, LocationChangeActions > = (state, action) => {
-    switch (action.type) {
+const reducer: Reducer<ApplicationState, LocationChangeActions > = ( state, action ) => {
+    switch ( action.type ) {
         /** Propagetes location, before it changes */
         case APP_LOCATION_CHANGE_CHANGE_LOCATION: {
             return {
@@ -24,7 +24,7 @@ const reducer: Reducer<ApplicationState, LocationChangeActions > = (state, actio
                     ...state[app],
                     [action.container]: {
                         ...state[app][action.container],
-                        appLocation: checkLocation(action.pathname)
+                        appLocation: checkLocation( action.pathname )
                     }
                 }
             };

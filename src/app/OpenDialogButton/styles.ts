@@ -1,6 +1,6 @@
 import createStyles from '@material-ui/core/styles/createStyles';
 
-const styles = createStyles({
+const styles = createStyles( {
     /** Make it look like standard text */
     button: {
         padding: 0,
@@ -11,6 +11,6 @@ const styles = createStyles({
         textDecoration: 'underline',
         textDirection: 'inherit'
     }
-});
+} );
 
 export default styles;

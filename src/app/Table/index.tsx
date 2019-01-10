@@ -7,10 +7,10 @@ const { Provider, Consumer } = TableContext;
 
 export interface WithTableProps extends TableProps, WithTableContextProps {}
 
-const withTable = (SomeComponent) => {
+const withTable = ( SomeComponent ) => {
     return class extends React.Component<WithTableProps> {
-        constructor(props) {
-            super(props);
+        constructor( props ) {
+            super( props );
         }
 
         render() {

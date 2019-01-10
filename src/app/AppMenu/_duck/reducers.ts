@@ -19,8 +19,8 @@ export const INITIAL_STATE: MenuState = {
     [languagesMenu]: { ...MENU_LIST_INITIAL_STATE }
 };
 
-const reducer: Reducer<MenuState, AppMenuActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<MenuState, AppMenuActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_MENU_LIST_SET_ANCHOREL: {
             return {
                 ...state,

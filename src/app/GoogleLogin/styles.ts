@@ -23,7 +23,7 @@ const styles = theme => {
 
     const buttonShadow = theme.shadows[3];
 
-    return createStyles({
+    return createStyles( {
         firebaseClass: {
             '& ul.firebaseui-idp-list': {
                 listStyle: 'none',
@@ -54,7 +54,7 @@ const styles = theme => {
                 display: 'inline-block',
                 height: '1em', // needed for Firefox, in Chrome 32px by user.agent,
                 marginRight: 5,
-                [ theme.breakpoints.up('sm') ]: {
+                [ theme.breakpoints.up( 'sm' ) ]: {
                     height: '1.5em' // needed for Firefox, in Chrome 32px by user.agent
                 }
             },
@@ -77,7 +77,7 @@ const styles = theme => {
                 textDecoration: 'underline'
             }
         }
-    });
+    } );
 };
 
 export default styles;

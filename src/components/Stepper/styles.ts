@@ -13,7 +13,7 @@ import {
     COURSE_BACKGROUND_GREY
 } from './constants.styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: {
             action: { hover },
@@ -48,7 +48,7 @@ const styles = createStyles(theme => {
         stepper: {
             position: 'relative',
             width: STEPPER_WIDTH_XS,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 width: STEPPER_WIDTH_SM
             },
             padding: 0,
@@ -57,7 +57,7 @@ const styles = createStyles(theme => {
         step: {
             display: 'inline-block',
             width: STEP_XS,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 width: STEP_SM
             },
             margin: 0,
@@ -83,7 +83,7 @@ const styles = createStyles(theme => {
             margin: 0,
             height: '100%',
             width: STEP_XS,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 width: STEP_SM,
                 transform: 'initial',
             },
@@ -132,6 +132,6 @@ const styles = createStyles(theme => {
             left: 0
         }
     };
-});
+} );
 
 export default styles;

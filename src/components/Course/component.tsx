@@ -44,7 +44,7 @@ const { review } = LessonsTypesEnum;
 
 import getTranslation from '@shared/get.translation';
 
-require('./style.sass');
+require( './style.sass' );
 
 /**
  * Needed for renderig lessons.
@@ -63,8 +63,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     lessonsRoute: AppRoutesEnum;
     timeout: any
     grid: CourseGrid;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.lessonsRoute = AppRoutesEnum.lessons;
 
@@ -73,25 +73,25 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             lessons: this.isExpanded? this.props.lessons : [],
         };
 
-        this.handleOnClick = this.handleOnClick.bind(this);
+        this.handleOnClick = this.handleOnClick.bind( this );
 
         this.grid = GRID;
     }
 
-    handleOnClick(lesson: LessonData): void {
+    handleOnClick( lesson: LessonData ): void {
         const { _id } = lesson;
         const randomLesson = false;
-        if (randomLesson) {
-            this.props.handleOpenRandomLesson(lesson);
+        if ( randomLesson ) {
+            this.props.handleOpenRandomLesson( lesson );
         } else {
-            this.props.handleOpenLesson(lesson);
+            this.props.handleOpenLesson( lesson );
         }
 
-        this.props.history.push(`${this.lessonsRoute}/${_id}`);
+        this.props.history.push( `${this.lessonsRoute}/${_id}` );
     }
 
     get langCode () {
-        return getActiveLanguage(this.props.localize).code;
+        return getActiveLanguage( this.props.localize ).code;
     }
 
     get numberOfLessons () {
@@ -112,14 +112,14 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 
     componentWillUnmount() {
-        document.querySelector('body').scroll({ top: 0 });
+        document.querySelector( 'body' ).scroll( { top: 0 } );
     }
 
     /**
      *  Scroll the body to the course
      */
-    scroll(id = this.props.openedCourseId, smooth = true) {
-        if (id) {
+    scroll( id = this.props.openedCourseId, smooth = true ) {
+        if ( id ) {
             const {
                 props: {
                     theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}},
@@ -127,32 +127,32 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 },
             } = this;
 
-            this.timeout = setTimeout(() => {
-                let body = document.querySelector('body');
+            this.timeout = setTimeout( () => {
+                let body = document.querySelector( 'body' );
 
                 /** Course's top relative to the viewport */
-                const { top } = document.getElementById(id).getBoundingClientRect();
+                const { top } = document.getElementById( id ).getBoundingClientRect();
                 /** Body is scrolled by */
                 const { scrollTop } = body;
 
                 // TODO - simplify when NAV_HEIGHT GRID implementes
-                const NAV_HEIGHT = (media === lg || media === xl) ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
+                const NAV_HEIGHT = ( media === lg || media === xl ) ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
 
-                body.scroll({
+                body.scroll( {
                     top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top - NAV_HEIGHT ), top + scrollTop ),
                     behavior: smooth ? 'smooth' : 'auto'
-                });
+                } );
 
                 body = null; // GC
-                clearTimeout(this.timeout); // GC
-            }, duration);
+                clearTimeout( this.timeout ); // GC
+            }, duration );
         }
     }
 
     getLessonsGrid() {
         const spacing = SPACING_BEETWEEN_LESSONS * this.props.theme.spacing.unit;
         const { props: { media } } = this;
-        const { cols, cellHeight } = this.grid.get(media);
+        const { cols, cellHeight } = this.grid.get( media );
 
         return (
             <GridList
@@ -207,29 +207,29 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                         wrapper: collapsedWrapper
                     }
                 }}
-                onChange={ async (event, expanded) => {
+                onChange={ async ( event, expanded ) => {
                     /** If course is expanded */
                     if ( expanded ) {
                         /** Inform other courses so that they can close */
-                        let answer = await this.props.openCourse(id);
+                        let answer = await this.props.openCourse( id );
 
                         /** When Other courses are already collapsed
                          * Render lessons and after that
                          * scroll the body to the course that is opened
                          * */
                         if ( answer ) {
-                            this.setState(() => ({
+                            this.setState( () => ( {
                                 lessons: this.props.lessons
-                            }), () => this.scroll() );
+                            } ), () => this.scroll() );
                         }
                     } else {
                         /** Do not render lessons */
-                        this.setState({ lessons: [] });
+                        this.setState( { lessons: [] } );
 
                         /**
                          * Close the course.
                          */
-                        let answer = await this.props.closeCourse(id);
+                        let answer = await this.props.closeCourse( id );
 
                         /**
                          * If the course has been closed and
@@ -237,7 +237,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                          * Scroll the body to this particular course
                          */
                         if ( answer && !this.props.openedCourseId ) {
-                            this.scroll(id);
+                            this.scroll( id );
                         }
                     }
                 }}
@@ -278,7 +278,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 
     get reviewInfo() {
-        return getTranslation(this.props.localize, 'lessonTypeReview');
+        return getTranslation( this.props.localize, 'lessonTypeReview' );
     }
 
     get lessons () {
@@ -297,11 +297,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             reviewInfo
         } = this;
 
-        return this.state.lessons.map(( lesson: LessonData ) => {
+        return this.state.lessons.map( ( lesson: LessonData ) => {
             // @ts-ignore
             let { _id, title: { [ langCode ]: title }, no, type } = lesson;
 
-            const isReview = type.indexOf(review) !== -1;
+            const isReview = type.indexOf( review ) !== -1;
             const info = isReview? reviewInfo : '';
 
             return (
@@ -318,7 +318,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 >
                     <GridListTile component='div' className={ lessonTileContainer }>
                     <Button
-                        onClick={ () => this.handleOnClick(lesson) }
+                        onClick={ () => this.handleOnClick( lesson ) }
                         classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
                         >
                         {/*
@@ -341,7 +341,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     </GridListTile>
                 </Grid>
             );
-        });
+        } );
     }
 
     render () {
@@ -371,4 +371,4 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 }
 
-export default withStyles(styles)(withTheme()(withMedia(CourseComponent)));
+export default withStyles( styles )( withTheme()( withMedia( CourseComponent ) ) );

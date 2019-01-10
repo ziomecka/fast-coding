@@ -19,17 +19,17 @@ import { onValidatePassword } from './_duck/operations';
 
 const { app } = ApplicationContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app],
     localize: state.localize
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): PasswordDispatch => ({
-    setPassword: (passwordType, container, event) => dispatch(setPassword(event.target.value, passwordType, container)),
-    validatePassword: (password, passwordType, container, rules, value2) => dispatch(onValidatePassword(password, passwordType, container, rules, value2))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): PasswordDispatch => ( {
+    setPassword: ( passwordType, container, event ) => dispatch( setPassword( event.target.value, passwordType, container ) ),
+    validatePassword: ( password, passwordType, container, rules, value2 ) => dispatch( onValidatePassword( password, passwordType, container, rules, value2 ) )
+} );
 
-const PasswordContainer = connect(mapStateToProps, mapDispatchToProps)(Password);
+const PasswordContainer = connect( mapStateToProps, mapDispatchToProps )( Password );
 
 export default PasswordContainer;
 
@@ -43,7 +43,7 @@ export interface PasswordDispatch {
         container: AppContainersEnum,
         event: React.ChangeEvent<HTMLInputElement>
     ) => SetPasswordAction;
-    validatePassword: (password: string, passwordType: PasswordsEnum, container: AppContainersEnum, rules: RulesErrorEnum[], value2?: string) => Action
+    validatePassword: ( password: string, passwordType: PasswordsEnum, container: AppContainersEnum, rules: RulesErrorEnum[], value2?: string ) => Action
 }
 
 export interface PasswordProps extends PasswordDispatch, MapStateToPropsI, StandardTextFieldProps {

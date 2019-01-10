@@ -40,16 +40,16 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
     queries: QueriesI;
     key?: string;
     email?: string;
-    constructor (props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
 
         this.keyParam = QUERY_PARAM_KEY;
         this.emailParam = QUERY_PARAM_EMAIL;
         this.expectedKeyLength = QUERY_PARAM_KEY_LENGTH;
 
-        this.submit = this.submit.bind(this);
+        this.submit = this.submit.bind( this );
 
-        Object.assign(this, parseQueries(props.location.search));
+        Object.assign( this, parseQueries( props.location.search ) );
     }
 
     get queryIsValid () {
@@ -79,7 +79,7 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
 
         } else {
             // @ts-ignore
-            this.props.sendForm({ newPassword, key, email });
+            this.props.sendForm( { newPassword, key, email } );
         }
     }
 
@@ -92,7 +92,7 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
             }
          } = this;
 
-        if (queryIsValid) {
+        if ( queryIsValid ) {
             return (
                 <Paper>
                     <form onSubmit={ e => e.preventDefault() } className={ FCForm }>
@@ -118,10 +118,10 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
             );
         }
 
-        this.props.displayAppError({ text: 'newpasswordRouteError' });
+        this.props.displayAppError( { text: 'newpasswordRouteError' } );
 
         return null;
     }
 }
 
-export default withStyles(styles)(NewPasswordFormComponent);
+export default withStyles( styles )( NewPasswordFormComponent );

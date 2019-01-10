@@ -14,8 +14,8 @@ import { IMediaProviderState } from './containter';
 
 class MediaProvider extends React.Component<{}, IMediaProviderState> {
     breakPoints: Map< MediaEnum, number >;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.breakPoints = BREAKPOINTS;
 
@@ -23,7 +23,7 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
             media: this.detectMedia()
         };
 
-        this.onMediaQueryChange = this.onMediaQueryChange.bind(this);
+        this.onMediaQueryChange = this.onMediaQueryChange.bind( this );
     }
 
     detectMedia(): MediaEnum {
@@ -36,8 +36,8 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
 
             if ( entry ) {
                 const windowMatches = (
-                    window.matchMedia(`(min-width: ${ start? start[1] : 0 } px)`) &&
-                    window.matchMedia(`(max-width: ${ entry[1] - 1 } px)`).matches
+                    window.matchMedia( `(min-width: ${ start? start[1] : 0 } px)` ) &&
+                    window.matchMedia( `(max-width: ${ entry[1] - 1 } px)` ).matches
                 );
 
                 if ( windowMatches ) {
@@ -57,28 +57,28 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
         return breakpoint;
     }
 
-    onMediaQueryChange(media: MediaEnum): void {
-        this.setState({ media });
+    onMediaQueryChange( media: MediaEnum ): void {
+        this.setState( { media } );
     }
 
     get mXs() {
-        return this.breakPoints.get(xs);
+        return this.breakPoints.get( xs );
     }
 
     get mSm() {
-        return this.breakPoints.get(sm);
+        return this.breakPoints.get( sm );
     }
 
     get mMd() {
-        return this.breakPoints.get(md);
+        return this.breakPoints.get( md );
     }
 
     get mLg() {
-        return this.breakPoints.get(lg);
+        return this.breakPoints.get( lg );
     }
 
     get mXl() {
-        return this.breakPoints.get(xl);
+        return this.breakPoints.get( xl );
     }
 
     render() {
@@ -87,23 +87,23 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
         return (
             <>'               '<Media
                     query={`(max-width: ${ mSm - 1 }px)`}
-                    onChange={ matches => matches ? this.onMediaQueryChange(xs) : null }
+                    onChange={ matches => matches ? this.onMediaQueryChange( xs ) : null }
                 />'
                '<Media
                     query={{ minWidth: `${ mSm }px`, maxWidth: `${ mMd - 1}px`}}
-                    onChange={ matches => matches ? this.onMediaQueryChange(sm) : null }
+                    onChange={ matches => matches ? this.onMediaQueryChange( sm ) : null }
                 />'
                '<Media
                     query={{ minWidth: `${ mMd }px`, maxWidth: `${ mLg - 1}px`}}
-                    onChange={ matches => matches ? this.onMediaQueryChange(md) : null }
+                    onChange={ matches => matches ? this.onMediaQueryChange( md ) : null }
                 />'
                '<Media
                     query={{ minWidth: `${ mLg }px`, maxWidth: `${ mXl - 1}px`}}
-                    onChange={ matches => matches ? this.onMediaQueryChange(lg) : null }
+                    onChange={ matches => matches ? this.onMediaQueryChange( lg ) : null }
                 />'
                '<Media
                     query={`(min-width: ${ mXl }px)`}
-                    onChange={ matches => matches ? this.onMediaQueryChange(xl) : null }
+                    onChange={ matches => matches ? this.onMediaQueryChange( xl ) : null }
                 />'
                '<Provider value={{ media: this.state.media }}>
                     { this.props.children }

@@ -20,7 +20,7 @@ import {
     PAPER_PADDING_MAX_LG,
 } from '@constantsStyles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: {
             primary: { main: mainPrimary },
@@ -64,7 +64,7 @@ const styles = createStyles(theme => {
         welcomeOther: {
             height: `${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
-            [ theme.breakpoints.up('lg')]: {
+            [ theme.breakpoints.up( 'lg' )]: {
                 height: `${ NAV_HEIGHT_LG }px`,
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
@@ -73,7 +73,7 @@ const styles = createStyles(theme => {
         welcomeLesson: {
             top: `-${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
-            [ theme.breakpoints.up('lg')]: {
+            [ theme.breakpoints.up( 'lg' )]: {
                 top: `-${ NAV_HEIGHT_LG }px`,
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
@@ -81,26 +81,26 @@ const styles = createStyles(theme => {
         welcomeHeading: {
             display: 'inline-block',
             color: textPrimary,
-            transition: theme.transitions.create(['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut}),
+            transition: theme.transitions.create( ['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut} ),
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
             maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_XS }px - ${ PAPER_PADDING_MAX_MD })`,
             overflow: 'visible',
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up( 'sm' )]: {
                 maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_SM }px - ${ PAPER_PADDING_MAX_MD })`,
             },
-            [theme.breakpoints.up('lg')]: {
+            [theme.breakpoints.up( 'lg' )]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
             },
         },
         welcomeHeadingHome: {
             fontSize: WELCOME_HEADING_HOME_XS,
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up( 'sm' )]: {
                 fontSize: WELCOME_HEADING_HOME_SM,
             },
         },
         welcomeHeadingOther: {
             fontSize: WELCOME_HEADING_OTHER_XS,
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up( 'sm' )]: {
                 fontSize: WELCOME_HEADING_OTHER,
             },
             color: contrastTextSecondary,
@@ -115,10 +115,10 @@ const styles = createStyles(theme => {
                 textAlign: 'left'
             },
             flexDirection: 'column-reverse',
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 flexDirection: 'row',
             },
-            [theme.breakpoints.up('lg')]: {
+            [theme.breakpoints.up( 'lg' )]: {
                 paddingLeft: PAPER_PADDING_MAX_LG
             }
         },
@@ -126,7 +126,7 @@ const styles = createStyles(theme => {
             textAlign: 'left',
             justifyContent: 'flex-start',
             margin: `${ spacingUnit * WELCOME_BUTTON_MARGIN_TOP } ${ spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT } ${ spacingUnit } 0`,
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 justifyContent: 'center',
                 textAlign: 'center',
             }
@@ -144,10 +144,10 @@ const styles = createStyles(theme => {
             position: 'absolute',
             left: PAPER_PADDING_MAX_XS,
             width: '50%',
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 left: PAPER_PADDING_MAX_MD,
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 left: PAPER_PADDING_MAX_LG,
                 width: '70%',
             },
@@ -171,6 +171,6 @@ const styles = createStyles(theme => {
             // }
         }
     };
-});
+} );
 
 export default styles;

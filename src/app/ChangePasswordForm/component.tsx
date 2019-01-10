@@ -38,26 +38,26 @@ const {
 
 class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProps> {
     container: AppContainersEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.container = changePasswordForm;
 
-        this.emailOnChange = this.emailOnChange.bind(this);
-        this.loginOnChange = this.loginOnChange.bind(this);
-        this.sendForm = this.sendForm.bind(this);
+        this.emailOnChange = this.emailOnChange.bind( this );
+        this.loginOnChange = this.loginOnChange.bind( this );
+        this.sendForm = this.sendForm.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setEmail(e.target.value);
+    emailOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setEmail( e.target.value );
     }
 
-    loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value);
+    loginOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setLogin( e.target.value );
     }
 
     sendForm () {
@@ -71,7 +71,7 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
              !!currentPasswordValid || !!newPasswordValid || !! confirmPasswordValid ) {
                 this.props.formInvalid();
         } else {
-            this.props.sendForm({ currentPassword, newPassword });
+            this.props.sendForm( { currentPassword, newPassword } );
         }
     }
 
@@ -87,7 +87,7 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
                         {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
@@ -114,4 +114,4 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
     }
 }
 
-export default withStyles(styles)(ChangePasswordFormComponent);
+export default withStyles( styles )( ChangePasswordFormComponent );

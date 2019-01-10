@@ -9,8 +9,8 @@ const { remindPassword } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
-export const onSendForm = (options: SendFormRemindPasswordI ): any => (
-    async ( dispatch: Dispatch): Promise<Action> => {
+export const onSendForm = ( options: SendFormRemindPasswordI ): any => (
+    async ( dispatch: Dispatch ): Promise<Action> => {
         return await dispatch( _onSendForm( {
             request: {
                 path: remindPassword,
@@ -23,7 +23,7 @@ export const onSendForm = (options: SendFormRemindPasswordI ): any => (
                 },
                 successNotification: 'notificationPasswordRemindSuccess'
             }
-        } ));
+        } ) );
     }
 );
 

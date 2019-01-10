@@ -14,12 +14,12 @@ export const INITIAL_STATE: WelcomeState = {
     classAnimated: classTitleFalling,
 };
 
-const reducer: Reducer<WelcomeState, WelcomeActions > = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<WelcomeState, WelcomeActions > = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_WELCOME_CHANGE_LOCATION: {
             return {
                 ...state,
-                ...getClasses(action.appLocation)
+                ...getClasses( action.appLocation )
             };
         }
 

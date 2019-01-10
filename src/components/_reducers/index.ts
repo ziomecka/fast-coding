@@ -47,14 +47,14 @@ export const INITIAL_STATE = {
     [lessonButtons]: { ...LESSONBUTTONS_INITIAL_STATE }
 };
 
-const reducer = combineReducers({
+const reducer = combineReducers( {
     [lesson]: lessonReducer,
     [comparator]: comparatorReducer,
     [textGenerator]: textGeneratorReducer,
     [lessons]: lessonsReducer,
     [lessonButtons]: lessonButtonsReducer,
     [lessonsLoader]: lessonsLoaderReducer
-});
+} );
 
 export { reducer as componentsReducer };
 

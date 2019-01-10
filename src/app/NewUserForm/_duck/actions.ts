@@ -9,19 +9,19 @@ const {
     APP_NEWUSERFORM_RESET
 } = NewUserFormActionsEnum;
 
-export const setLogin: ActionCreator<SetLoginAction> = (login: string) => ({
+export const setLogin: ActionCreator<SetLoginAction> = ( login: string ) => ( {
     type: APP_NEWUSERFORM_SET_LOGIN,
     login
-});
+} );
 
-export const setEmail: ActionCreator<SetEmailAction> = (email: string) => ({
+export const setEmail: ActionCreator<SetEmailAction> = ( email: string ) => ( {
     type: APP_NEWUSERFORM_SET_EMAIL,
     email
-});
+} );
 
-export const reset: ActionCreator<Action> = () => ({
+export const reset: ActionCreator<Action> = () => ( {
     type: APP_NEWUSERFORM_RESET
-});
+} );
 
 export const actions = {
     setLogin,

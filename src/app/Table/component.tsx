@@ -30,42 +30,42 @@ const TableComponent: React.StatelessComponent<TableProps> = props => {
             { head && (
                 <TableHead { ...tableHeadProps }>
                     <TableRow { ...tableHeadRowProps }>
-                        {head.map((headCell, cellInd) => (
+                        {head.map( ( headCell, cellInd ) => (
                             <TableCell key={`head-${cellInd}`} { ...tableHeadCellProps }>
                                 { headCell }
                             </TableCell>
-                        ))}
+                        ) )}
                     </TableRow>
                 </TableHead>
             ) }
 
             { body && (
                 <TableBody { ...tableBodyProps }>
-                    {body.map((row, rowInd) => (
+                    {body.map( ( row, rowInd ) => (
                         <TableRow key={rowInd} { ...tableBodyRowProps }>
-                            {row.map((rowCell, cellInd) => (
+                            {row.map( ( rowCell, cellInd ) => (
                                 <TableCell key={`row-${rowInd}-${cellInd}`} { ...tableBodyCellProps }>
                                     { rowCell }
                                 </TableCell>
-                            ))}
+                            ) )}
                         </TableRow>
-                    ))}
+                    ) )}
                 </TableBody>
             )}
 
             { foot && (
                 <TableFoot { ...tableFootProps } >
-                    {foot.map((footCell, cellInd) => (
+                    {foot.map( ( footCell, cellInd ) => (
                         <TableRow key={`foot-${cellInd}`}{ ...tableFootRowProps }>
                             <TableCell { ...tableFootCellProps }>
                                 { footCell }
                             </TableCell>
                         </TableRow>
-                    ))}
+                    ) )}
                 </TableFoot>
             ) }
         </Table>
     );
 };
 
-export default withStyles(styles)(TableComponent);
+export default withStyles( styles )( TableComponent );

@@ -35,8 +35,8 @@ export interface LoginFormState extends LoginState {
     [pass]: PasswordState
 }
 
-const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<LoginFormState, LoginFormActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         /** Watch out! */
         case APP_PASSWORD_VALIDATE:
         case APP_PASSWORD_SET_PASSWORD: {
@@ -44,14 +44,14 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STAT
 
             return {
                 ...state,
-                [pass]: passwordReducer({ password, passwordValid }, action)
+                [pass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_LOGINFORM_SET_LOGIN: {
             return {
                 ...state,
-                ...loginReducer(state, action)
+                ...loginReducer( state, action )
             };
         }
 

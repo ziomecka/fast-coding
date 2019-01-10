@@ -7,14 +7,14 @@ const {
 } = RemindPasswordActionsEnum;
 
 
-export const setEmail: ActionCreator<SetEmailAction> = (options: SetEmail) => ({
+export const setEmail: ActionCreator<SetEmailAction> = ( options: SetEmail ) => ( {
     type: APP_REMIND_PASSWORD_SET_EMAIL,
     ...options
-});
+} );
 
-export const reset: ActionCreator<Action> = () => ({
+export const reset: ActionCreator<Action> = () => ( {
     type: APP_REMIND_PASSWORD_RESET
-});
+} );
 
 export const actions = {
     setEmail,

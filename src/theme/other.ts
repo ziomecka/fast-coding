@@ -30,7 +30,7 @@ import {
 const { palette: {
     error : { main : errorColor },
     text: { disabled }
-}} = require('./palette').default;
+}} = require( './palette' ).default;
 
 export default {
     props: {

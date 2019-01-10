@@ -11,26 +11,26 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRActionsEnum;
 
-export const changeLoadingState: ActionCreator<ChangeLoadingStateAction> = (loading: boolean, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum) => ({
+export const changeLoadingState: ActionCreator<ChangeLoadingStateAction> = ( loading: boolean, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
     type: APP_CSR_CHANGE_LOADING_STATE,
     loading,
     applicationContainer,
     container,
-});
+} );
 
-export const updateData: ActionCreator<UpdateDataAction> = (data: Object | Array<Object>, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum) => ({
+export const updateData: ActionCreator<UpdateDataAction> = ( data: Object | Array<Object>, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
     type: APP_CSR_UPDATE_DATA,
     data,
     applicationContainer,
     container
-});
+} );
 
-export const reportError: ActionCreator<ReportErrorAction> = (error: string, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum) => ({
+export const reportError: ActionCreator<ReportErrorAction> = ( error: string, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
     type: APP_CSR_REPORT_ERROR,
     error,
     applicationContainer,
     container,
-});
+} );
 
 export default {
     changeLoadingState,

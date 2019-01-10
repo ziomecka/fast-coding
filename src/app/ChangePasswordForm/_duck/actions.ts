@@ -9,19 +9,19 @@ const {
     APP_CHANGEPASSWORDFORM_RESET
 } = ChangePasswordFormActionsEnum;
 
-export const setLogin: ActionCreator<SetLoginAction> = (login: string) => ({
+export const setLogin: ActionCreator<SetLoginAction> = ( login: string ) => ( {
     type: APP_CHANGEPASSWORDFORM_SET_LOGIN,
     login
-});
+} );
 
-export const setEmail: ActionCreator<SetEmailAction> = (email: string) => ({
+export const setEmail: ActionCreator<SetEmailAction> = ( email: string ) => ( {
     type: APP_CHANGEPASSWORDFORM_SET_EMAIL,
     email
-});
+} );
 
-export const reset: ActionCreator<Action> = () => ({
+export const reset: ActionCreator<Action> = () => ( {
     type: APP_CHANGEPASSWORDFORM_RESET
-});
+} );
 
 export const actions = {
     setLogin,

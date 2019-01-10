@@ -13,8 +13,8 @@ export const INITIAL_STATE: TranslationsLoaderState = {
 
 const { APP_TRANSLATIONS_SAVE } = GetTranslationsActionsEnum;
 
-const reducer: Reducer<TranslationsLoaderState, GetTranslationsActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<TranslationsLoaderState, GetTranslationsActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_TRANSLATIONS_SAVE: {
             return {
                 ...state,

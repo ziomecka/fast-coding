@@ -7,10 +7,10 @@ const {
  } = WelcomeActionsEnum;
 
 
-export const changeLocation: ActionCreator<ChangeLocationAction> = (appLocation: AppLocationEnum) => ({
+export const changeLocation: ActionCreator<ChangeLocationAction> = ( appLocation: AppLocationEnum ) => ( {
     type: APP_WELCOME_CHANGE_LOCATION,
     appLocation
-});
+} );
 
 export const actions = {
     changeLocation

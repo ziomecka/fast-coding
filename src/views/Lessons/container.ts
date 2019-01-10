@@ -12,11 +12,11 @@ const { lessonsLoader } = ComponentsContainersEnum;
 
 import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
 
-const mapStateToProps = (state: ApplicationState): LessonsLoaderState => ({
+const mapStateToProps = ( state: ApplicationState ): LessonsLoaderState => ( {
     ...state[components][lessonsLoader]
-});
+} );
 
-const LessonsViewContainer = connect(mapStateToProps)(LessonsView);
+const LessonsViewContainer = connect( mapStateToProps )( LessonsView );
 
 export default LessonsViewContainer;
 
