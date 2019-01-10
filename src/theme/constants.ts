@@ -14,9 +14,11 @@ export {
 } from '@app/Footer/constants.styles';
 
 /** PADDING */
+export const PAPER_PADDING_XS = '.5rem';
 export const PAPER_PADDING_MD = '1rem';
 export const PAPER_PADDING_LG = '2rem';
 
+export const PAPER_PADDING_MAX_XS = '1rem';
 export const PAPER_PADDING_MAX_MD = '3rem';
 export const PAPER_PADDING_MAX_LG = '6rem';
 

@@ -1,5 +1,7 @@
 import { createStyles } from '@material-ui/core/styles';
 import {
+    PAPER_PADDING_XS,
+    PAPER_PADDING_MAX_XS,
     PAPER_PADDING_MD,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_LG,
@@ -26,8 +28,12 @@ const styles = createStyles(theme => {
             width: '100%',
             position: 'relative',
             justifyContent: 'space-around',
-            padding: PAPER_PADDING_MD,
-            marginTop: PAPER_PADDING_MAX_MD,
+            padding: PAPER_PADDING_XS,
+            marginTop: PAPER_PADDING_MAX_XS,
+            [theme.breakpoints.up('sm')]: {
+                padding: PAPER_PADDING_MD,
+                marginTop: PAPER_PADDING_MAX_MD,
+            },
             [theme.breakpoints.up('lg')]: {
                 padding: PAPER_PADDING_LG,
                 marginTop: PAPER_PADDING_MAX_LG,

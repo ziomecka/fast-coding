@@ -1,5 +1,9 @@
 import { createStyles } from '@material-ui/core/styles';
-import { PAPER_PADDING_MD, PAPER_PADDING_LG } from '@constantsStyles';
+import {
+    PAPER_PADDING_MAX_XS,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_LG
+} from '@constantsStyles';
 
 import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
@@ -25,9 +29,12 @@ const styles = createStyles(theme => {
             backgroundColor: errorBackground
         },
         notificationContent: {
-            padding: PAPER_PADDING_MD,
+            padding: PAPER_PADDING_MAX_XS,
             [theme.breakpoints.up('sm')] :{
-                padding: PAPER_PADDING_LG
+                padding: PAPER_PADDING_MAX_MD
+            },
+            [theme.breakpoints.up('lg')] :{
+                padding: PAPER_PADDING_MAX_LG
             }
         },
         notificationContentSuccess: {

@@ -1,4 +1,5 @@
 import {
+    PAPER_PADDING_MAX_XS,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
     NAV_HEIGHT_MD,
@@ -20,11 +21,14 @@ const style = createStyles(theme => {
             width: 'auto', // without it takes 100% and is over the main title
             padding: 0,
             position: 'fixed',
-            right: PAPER_PADDING_MAX_MD,
+            right: PAPER_PADDING_MAX_XS,
             '& button': {
                 fontSize,
             },
             height: NAV_HEIGHT_MD,
+            [ theme.breakpoints.up('sm') ]: {
+                right: PAPER_PADDING_MAX_MD,
+            },
             [ theme.breakpoints.up('lg') ]: {
                 right: PAPER_PADDING_MAX_LG,
                 height: NAV_HEIGHT_LG

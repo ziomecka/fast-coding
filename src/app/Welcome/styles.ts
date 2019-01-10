@@ -15,6 +15,7 @@ import {
     NAV_HEIGHT_LG,
     NAV_HEIGHT_MD,
     NAV_WELCOME_GO_UP,
+    PAPER_PADDING_MAX_XS,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
 } from '@constantsStyles';
@@ -85,7 +86,7 @@ const styles = createStyles(theme => {
             maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_XS }px - ${ PAPER_PADDING_MAX_MD })`,
             overflow: 'visible',
             [theme.breakpoints.up('sm')]: {
-                    maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_SM }px - ${ PAPER_PADDING_MAX_MD })`,
+                maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_SM }px - ${ PAPER_PADDING_MAX_MD })`,
             },
             [theme.breakpoints.up('lg')]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
@@ -141,8 +142,11 @@ const styles = createStyles(theme => {
          */
         welcomeHomeSubMenu: {
             position: 'absolute',
-            left: PAPER_PADDING_MAX_MD,
+            left: PAPER_PADDING_MAX_XS,
             width: '50%',
+            [ theme.breakpoints.up('sm') ]: {
+                left: PAPER_PADDING_MAX_MD,
+            },
             [ theme.breakpoints.up('lg') ]: {
                 left: PAPER_PADDING_MAX_LG,
                 width: '70%',
@@ -157,7 +161,8 @@ const styles = createStyles(theme => {
         },
         welcomeHomeButton: {
             position: 'absolute',
-            left: PAPER_PADDING_MAX_MD,
+            left: PAPER_PADDING_MAX_XS,
+            padding: 0
             /** Breakpoint not needed because dispalayed only on xs
              *  CAREFUL
              */

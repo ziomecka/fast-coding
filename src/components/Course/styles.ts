@@ -13,7 +13,8 @@ import {
 
 import {
     PAPER_PADDING_LG,
-    PAPER_PADDING_MD
+    PAPER_PADDING_MD,
+    PAPER_PADDING_XS
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -60,7 +61,10 @@ const styles = createStyles(theme => {
             width: 'inherit'
         },
         summaryContent: {
-            padding: `${ PAPER_PADDING_MD }`,
+            padding: `${ PAPER_PADDING_XS }`,
+            [theme.breakpoints.up('sm')]: {
+                padding: `${ PAPER_PADDING_MD }`,
+            },
             [theme.breakpoints.up('lg')]: {
                 padding: `${ PAPER_PADDING_LG }`,
             },

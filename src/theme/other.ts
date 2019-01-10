@@ -1,8 +1,8 @@
 import {
     NAV_LEFT,
     NAV_TOP,
-    PAPER_PADDING_MD,
-    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_XS,
+    PAPER_PADDING_MAX_XS,
     ELEVATION,
     FONT_SIZE,
     LINE_HEIGHT,
@@ -91,7 +91,7 @@ export default {
         },
         MuiMenu: {
             paper: {
-                padding: PAPER_PADDING_MD
+                padding: PAPER_PADDING_XS
             }
         },
         MuiExpansionPanelSummary: {
@@ -133,7 +133,7 @@ export default {
              *  */
             root: {
                 boxSizing: "border-box",
-                padding: `0 ${ PAPER_PADDING_MAX_MD }`,
+                padding: `0 ${ PAPER_PADDING_MAX_XS }`,
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 ...flexRowJustifyFlexEndAlignCenter,
@@ -149,7 +149,7 @@ export default {
                 width: "100%"
             },
             paper: {
-                padding: PAPER_PADDING_MD
+                padding: PAPER_PADDING_XS
             }
         },
         MuiDialogContent: {

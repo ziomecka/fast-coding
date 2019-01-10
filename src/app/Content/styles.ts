@@ -3,6 +3,7 @@ import { createStyles } from '@material-ui/core/styles';
 import {
     NAV_HEIGHT_MD,
     NAV_HEIGHT_LG,
+    PAPER_PADDING_MAX_XS,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
     FOOTER_HEIGHT_LG,
@@ -26,10 +27,13 @@ const styles = createStyles(theme => {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
-            padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
+            padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_XS }`,
             backgroundColor: defaultBackground,
             height: 'auto',
             overflow: 'hidden',
+            [ theme.breakpoints.up('sm') ]: {
+                padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
+            },
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
             }
