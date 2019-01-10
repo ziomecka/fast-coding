@@ -1,5 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 import { NAV_MAXWIDTH, PAPER_PADDING_MAX_MD } from '@constantsStyles';
+import menuIconClass from '../AppMenu/menu.icon.class';
 
 const style = createStyles(theme => {
     const {
@@ -10,6 +11,7 @@ const style = createStyles(theme => {
     } = theme;
 
     return {
+        ...menuIconClass(theme),
         menuClass: {
             maxWidth: `${ NAV_MAXWIDTH }px`,
             backgroundColor: menuBackgroundColor

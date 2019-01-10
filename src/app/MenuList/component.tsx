@@ -166,7 +166,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
 
         return (
             <IconButton
-                className={ `${ iconButtonClassName }` }
+                className={ `${ menuIconClass } ${ iconButtonClassName ? iconButtonClassName : '' }` }
                 { ...other }
                 { ...{ onClick } }
             >
