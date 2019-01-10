@@ -106,7 +106,9 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
                                     return display(content[i], getTranslation(id, text), ind);
                                 }
 
+                                /* eslint-disable no-console */
                                 console.error('Some item in Info component is neither Content nor translation. Not rendered');
+                                /* eslint-enable no-console */
                                 return null;
                             })}
                         </Component>
