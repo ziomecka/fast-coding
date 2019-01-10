@@ -45,7 +45,7 @@
     "lessonStatsRealAccuracyNote": [ "Corrected errors are considered.", "Poprawione błędy są brane pod uwagę." ],
     "lessonStatsWPM": [ "Words per minute", "Liczba słów na minutę" ],
     "lessonStatsWPMNote": [ "Five signs word", "Pięcioznakowy wyraz" ],
-    "submenuGoToHome": [ "Return to home", "Wróć do strony początkowej"],
+    "submenuGoToHome": [ "return to home", "wróć do strony początkowej"],
     "submenuChangeLanguage": [ "language", "język"],
     "submenuGoToCourses": [ "courses", "kursy"],
     "submenuOpenUserMenu": [ "user's menu", "menu użytkownika"],
@@ -200,8 +200,8 @@
         "Zaloguj się z Facebookiem"
     ],
     "signInWithFastCoding": [
-        "Sign in with Fast coding",
-        "Zaloguj się z Fast coding"
+        "Sign in with fast coding",
+        "Zaloguj się z fast coding"
     ],
     "notDesktopInfo": [
         "This page is for touch typing learning. I strongly encourage you to use it on a laptop or desktop computer.",
