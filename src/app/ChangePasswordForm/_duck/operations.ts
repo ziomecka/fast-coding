@@ -7,7 +7,7 @@ import { ChangePasswordFormResponseEnum } from './types';
 import { SendFormChangePasswordI } from './types';
 
 const { SUCCESS, ERROR, CURRENT_PASSWORD_ERROR } = ChangePasswordFormResponseEnum;
-const { changePasswordGet: changePassword, lessons } = AppRoutesEnum;
+const { changePassword, lessons } = AppRoutesEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
