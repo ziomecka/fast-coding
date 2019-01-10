@@ -34,4 +34,4 @@ export default INITIAL_STATE;
 
 export interface TranslationsLoaderState {
    translations: TranslationsType[]
-};
+}

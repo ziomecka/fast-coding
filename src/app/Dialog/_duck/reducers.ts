@@ -57,4 +57,4 @@ export interface DialogState {
     dialogProps?: DialogProps;
     Component: React.ComponentClass | React.FunctionComponent;
     html: JSX.Element
-};
+}

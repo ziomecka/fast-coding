@@ -19,4 +19,4 @@ export interface LessonsLoaderState {
     loading: boolean;
     error: string;
     lessons: LessonsDataI[];
-};
+}

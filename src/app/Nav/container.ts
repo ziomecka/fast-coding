@@ -27,13 +27,13 @@ const mapDispatchToProps = (dispatch: Dispatch): NavDispatchI => ({
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavComponent));
 
 
-export interface NavProps extends MapStateToPropsI, WithStyles, LocalizeContextProps, RouteComponentProps<{}>, NavDispatchI {};
+export interface NavProps extends MapStateToPropsI, WithStyles, LocalizeContextProps, RouteComponentProps<{}>, NavDispatchI {}
 
 interface MapStateToPropsI {
     localize: LocalizeState;
     login: string;
     displayName: string;
-};
+}
 
 interface NavDispatchI {
     logOut: () => Action;

@@ -38,6 +38,6 @@ export { reducer as textGeneratorReducer };
 
 export interface TextGeneratorData {
     turnedOn: boolean;
-};
+}
 
-export interface TextGeneratorState extends TextGeneratorData {};
+export interface TextGeneratorState extends TextGeneratorData {}

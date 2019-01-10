@@ -26,4 +26,4 @@ interface MapStateToPropsI extends AppState {
 
 export interface LoginPropsI extends StandardTextFieldProps, MapStateToPropsI {
     container: AppContainersEnum;
-};
+}

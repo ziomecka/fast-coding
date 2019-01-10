@@ -18,6 +18,6 @@ export interface ChangeLocationAction extends Action {
     readonly type: string;
     pathname: string;
     container: string;
-};
+}
 
 export type LocationChangeActions = ChangeLocationAction;

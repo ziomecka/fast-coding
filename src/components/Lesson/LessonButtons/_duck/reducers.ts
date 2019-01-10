@@ -59,4 +59,4 @@ export interface LessonButtonsState {
     left: number | 'auto';
     top: number | 'auto';
     draggable: boolean;
-};
+}

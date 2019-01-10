@@ -49,4 +49,4 @@ export interface StepperProps extends
     MapStateToProps,
     WithStyles,
     IWithMedia,
-    WithTheme {};
+    WithTheme {}

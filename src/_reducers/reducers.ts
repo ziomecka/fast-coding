@@ -109,5 +109,5 @@ export interface ApplicationState {
     // @ts-ignore
     [key: ApplicationContainersEnum ]: ComponentsState | AppState;
     localize: LocalizeState;
-};
+}
 

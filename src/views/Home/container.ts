@@ -16,11 +16,11 @@ const HomeViewContainer = withRouter(connect(mapStateToProps, mapDispatchToProps
 
 export default HomeViewContainer;
 
-export interface HomeViewDispatch extends NotificationDispatch {};
+export interface HomeViewDispatch extends NotificationDispatch {}
 
 export interface HomeViewProps extends
     HomeViewDispatch,
     RouteComponentProps<{}> {
         heading?: string;
         animateHeading?: boolean;
-    };
+    }

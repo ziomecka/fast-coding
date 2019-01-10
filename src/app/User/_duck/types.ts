@@ -9,7 +9,7 @@ export enum UserRolesEnum {
     individual = 'INDIVIDUAL',
     teacher = 'TEACHER',
     pupil = 'PUPIL'
-};
+}
 
 export interface UserAuthorizeI {
     displayName?: string;
@@ -17,11 +17,11 @@ export interface UserAuthorizeI {
     photoURL?: string;
     refreshToken?: string;
     authorizationMethod: UserAuthorizationMethodEnum
-};
+}
 
 /** Left side === providerId in firebase authResult */
 export enum UserAuthorizationMethodEnum {
     'google.com'  = 'GOOGLE',
     'facebook.com' = 'FACEBOOK',
     'fastcoding' = 'FAST_CODING'
-};
+}

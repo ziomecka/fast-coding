@@ -19,6 +19,6 @@ export default Container;
 
 export interface AppRouterMapStateToProps {
     authorized: boolean;
-};
+}
 
-export interface AppRouterPropsI extends AppRouterMapStateToProps {};
+export interface AppRouterPropsI extends AppRouterMapStateToProps {}

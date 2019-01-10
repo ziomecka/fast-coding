@@ -63,7 +63,7 @@ export const unpauseLessonOnJustType = (event: KeyboardEvent, dispatch: Dispatch
     if (isValidCode(keyCode) || isBackspace(keyCode)) {
         dispatch(onUnpauseLesson());
         handleKeyboardDown(event, dispatch, getState);
-    };
+    }
 };
 
 export const unpauseLessonOnEsc = (event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType): void => {
@@ -75,7 +75,7 @@ export const unpauseLessonOnEsc = (event: KeyboardEvent, dispatch: Dispatch, get
     /** If valid code or backspace then unpause and handle keydown */
     if (keyCode === 27) {
         dispatch(onUnpauseLesson());
-    };
+    }
 };
 
 export const onPauseComparator = (eventListener? ): any => (dispatch: Dispatch) => {

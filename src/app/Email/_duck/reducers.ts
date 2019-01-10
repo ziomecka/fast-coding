@@ -27,4 +27,4 @@ export { reducer as emailReducer };
 export interface EmailState {
     email: string;
     emailValid: string;
-};
+}

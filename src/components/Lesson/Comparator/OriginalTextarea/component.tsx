@@ -66,7 +66,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
                 default: {
                     break;
                 }
-            };
+            }
 
             return (
                 <span

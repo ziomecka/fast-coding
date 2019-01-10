@@ -31,12 +31,12 @@ export default LessonsLoaderContainer;
 
 interface MapStateToPropsI extends LessonsLoaderState {
     authorized: boolean;
-};
+}
 
 export interface LessonsLoaderDispatch {
     loadData: () => Action;
-};
+}
 
 export interface LessonsLoaderProps extends
     LessonsLoaderDispatch,
-    MapStateToPropsI {};
+    MapStateToPropsI {}

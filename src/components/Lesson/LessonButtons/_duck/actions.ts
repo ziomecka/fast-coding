@@ -31,6 +31,6 @@ export interface MoveLessonButtonsAction extends Action {
     readonly type: string;
     top: number | 'auto';
     left: number | 'auto';
-};
+}
 
 export type LessonButtonsActions = Action | MoveLessonButtonsAction;

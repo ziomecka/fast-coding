@@ -15,7 +15,7 @@ export const updateLesson: ActionCreator<UpdateCourseAction> = (courseData: Cour
 export interface UpdateCourseAction extends Action {
     readonly type: string;
     courseData: CourseDataType;
-};
+}
 
 export type CourseActions = Action |
     UpdateCourseAction;

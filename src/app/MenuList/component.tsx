@@ -32,7 +32,7 @@ import { withMenuRules } from '@app/MenuRulesHoc/';
 interface InternalState {
     render: boolean;
     listItems: JSX.Element[] | MenuListItemType
-};
+}
 
 class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     private _listTimeout: number;
@@ -109,18 +109,18 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         if (this.props.container) {
             this.props.setNavAnchorEl(this.props.container);
         }
-    };
+    }
 
     handleClickAway () {
         if (this.anchorEl) {
             this.props.setNavAnchorEl(this.props.container);
         }
-    };
+    }
 
     areRulesMet (rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
         // @ts-ignore
         return (!rules || rules.every(rule => this.props.menuRules({ path: pathname, lang })[rule]()));
-    };
+    }
 
     getLink (appRoute: AppRoutesEnum, title: string, className: string) {
         let ind = 0;
@@ -137,7 +137,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                 </NavLink>
             </MenuItem>
         );
-    };
+    }
 
     getButton (onClick, title: string, className: string) {
         let ind = 0;
@@ -151,7 +151,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                 { getTranslation(this.props.localize, title, title) }
             </MenuItem>
         );
-    };
+    }
 
     getIconButton () {
         const {

@@ -14,4 +14,4 @@ export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({
 export interface DialogDispatch {
     openDialog: ( options: OpenDialogOptions ) => Action;
     closeDialog: () => Action;
-};
+}

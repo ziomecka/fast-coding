@@ -38,8 +38,8 @@ export { reducer as welcomeReducer };
 export interface WelcomeClasses {
     classAnimated: string;
     classTitle: string;
-};
+}
 
 export interface WelcomeState extends WelcomeClasses {
     appLocation: AppLocationEnum;
-};
+}

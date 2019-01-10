@@ -19,4 +19,4 @@ const FormHelperTextContainer = connect(mapStateToProps)(FormHelperText);
 
 export default FormHelperTextContainer;
 
-export interface FormHelperTextProps extends FormHelperTextState {};
+export interface FormHelperTextProps extends FormHelperTextState {}

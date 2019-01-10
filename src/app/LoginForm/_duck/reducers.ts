@@ -33,7 +33,7 @@ export const INITIAL_STATE: LoginFormState = {
 
 export interface LoginFormState extends LoginState {
     [pass]: PasswordState
-};
+}
 
 const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
     switch (action.type) {

@@ -60,7 +60,7 @@ export type ApplyRulesType = Array<[ RulesErrorEnum, RulesDataI ]>;
 
 interface RulesRegexpI {
     [key: string]: (min?: number, max?: number) => RegExp
-};
+}
 
 export interface RulesDataI {
     value: string;
@@ -68,8 +68,8 @@ export interface RulesDataI {
     max?: number;
     value2?: string;
     opposite?: boolean;
-};
+}
 
 interface RulesI {
     [key: string]: (options: RulesDataI) => boolean
-};
+}

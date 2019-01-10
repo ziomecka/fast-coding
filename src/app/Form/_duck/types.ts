@@ -23,4 +23,4 @@ export interface SendFormI {
             [key: string]: string // TODO key
         };
     }
-};
+}

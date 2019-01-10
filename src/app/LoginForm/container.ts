@@ -43,10 +43,10 @@ export interface LoginFormDispatch extends DialogDispatch {
     log: (options: SendLoginFormI) => Action;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface LoginFormPropsI extends
     LoginFormDispatch,
     LoginFormState,
     WithStyles,
-    RouteComponentProps<{}> {};
+    RouteComponentProps<{}> {}

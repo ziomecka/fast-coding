@@ -10,6 +10,6 @@ class TranslationsLoaderComponent extends React.Component<TranslationsLoaderProp
     render() {
         return null;
     }
-};
+}
 
 export default TranslationsLoaderComponent;

@@ -44,10 +44,10 @@ export interface RemindPasswordDispatch extends DialogDispatch {
     setEmail: (options: SetEmail) => SetEmailAction;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface RemindPasswordPropsI extends
     RemindPasswordDispatch,
     RemindPasswordState,
     WithStyles,
-    RouteComponentProps {};
+    RouteComponentProps {}

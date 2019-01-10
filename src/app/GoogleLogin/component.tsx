@@ -72,6 +72,6 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
             </div>
         );
     }
-};
+}
 
 export default withStyles(styles)(GoogleLoginComponent);

@@ -81,7 +81,7 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
             // @ts-ignore
             this.props.sendForm({ newPassword, key, email });
         }
-    };
+    }
 
     render () {
         const {

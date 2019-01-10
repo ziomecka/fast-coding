@@ -103,6 +103,6 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             </Paper>
         );
     }
-};
+}
 
 export default withStyles(styles)(NewUserFormComponent);

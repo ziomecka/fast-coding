@@ -26,6 +26,6 @@ class LessonsLoaderComponent extends React.Component<LessonsLoaderProps> {
     render() {
         return <CSR/>;
     }
-};
+}
 
 export default LessonsLoaderComponent;

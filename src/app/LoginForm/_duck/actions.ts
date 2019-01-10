@@ -24,7 +24,7 @@ export const actions = {
 
 export interface SetLoginAction extends Action {
     login: string;
-};
+}
 
 export type LoginFormActions = Action | SetLoginAction |
     SetPasswordAction;

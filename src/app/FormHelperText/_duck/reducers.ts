@@ -18,4 +18,4 @@ export { reducer as formHelperTextReducer };
 
 export interface FormHelperTextState {
     formHelperText: string;
-};
+}

@@ -52,24 +52,24 @@ export default {
 export interface RegisterNewKeyAction extends Action {
     readonly type: string;
     currentSignIndex: number;
-};
+}
 
 export interface RegisterErrorAction extends Action {
     readonly type: string;
     errors: number[];
     allErrors: number[];
     currentSignIndex: number;
-};
+}
 
 export interface CorrectErrorAction extends Action {
     readonly type: string;
     correctedErrors: number[];
-};
+}
 
 export interface RestoreStateAction extends Action {
     readonly type: string;
     state: ComparatorState;
-};
+}
 
 export type ComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |

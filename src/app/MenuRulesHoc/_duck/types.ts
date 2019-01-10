@@ -8,7 +8,7 @@ export enum MenuRulesEnum {
     'notDemoLesson' = 'NOT_DEMO_LESSON',
     'notAnyLesson' = 'NOT_ANY_LESSON',
     'fastCodingAuthorization' = 'FAST_CODING_AUTHORIZATION'
-};
+}
 
 const {
     fastCodingAuthorization,

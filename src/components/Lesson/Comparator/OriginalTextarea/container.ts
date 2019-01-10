@@ -23,8 +23,8 @@ const OriginalTextAreaContainer = connect(mapStateToProps)(OriginalTextArea);
 
 export default OriginalTextAreaContainer;
 
-interface MapStateToPropsI extends ComparatorState, LessonState {};
+interface MapStateToPropsI extends ComparatorState, LessonState {}
 
 export interface OriginalTextAreaProps extends
     MapStateToPropsI,
-    WithStyles {};
+    WithStyles {}

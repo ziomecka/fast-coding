@@ -25,8 +25,8 @@ export interface SetEmail {
     email: string;
 }
 
-export interface SetEmailAction extends Action, SetEmail {};
-export interface ResetAction extends Action {};
+export interface SetEmailAction extends Action, SetEmail {}
+export interface ResetAction extends Action {}
 
 export type RemindPasswordActions = Action |
     SetEmailAction;

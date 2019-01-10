@@ -48,4 +48,4 @@ export { reducer as userReducer };
 export interface UserState extends UserAuthorizeI {
     login: string;
     authorized: boolean
-};
+}

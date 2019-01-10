@@ -36,10 +36,10 @@ export default MenuButtonContainer;
 
 interface MapStateToPropsI extends MenuState {
     localize: LocalizeState;
-};
+}
 
 export interface MenuButtonProps extends MenuButtonOptionsI,
     MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles,
-    WithMenuRules {};
+    WithMenuRules {}

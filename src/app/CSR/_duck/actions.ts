@@ -43,20 +43,20 @@ export interface ChangeLoadingStateAction extends Action {
     loading?: boolean;
     applicationContainer: ApplicationContainersEnum;
     container: AppContainersEnum | ComponentsContainersEnum;
-};
+}
 
 export interface UpdateDataAction extends Action {
     readonly type: string;
     data: Object | Array<Object>;
     applicationContainer: ApplicationContainersEnum;
     container: AppContainersEnum | ComponentsContainersEnum;
-};
+}
 
 export interface ReportErrorAction extends Action {
     readonly type: string;
     error: string;
     applicationContainer: ApplicationContainersEnum;
     container: AppContainersEnum | ComponentsContainersEnum;
-};
+}
 
 export type CSRActions = ChangeLoadingStateAction | UpdateDataAction | ReportErrorAction;

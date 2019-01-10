@@ -46,7 +46,7 @@ export default MenuListContainer;
 
 export interface MenuListDispatch {
     setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
-};
+}
 
 export type MenuListItemType = {
     title: string;
@@ -63,16 +63,16 @@ export interface __MenuListProps {
     rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
-};
+}
 
 interface MapStateToPropsI extends MenuState {
     authorized: boolean;
     localize: LocalizeState;
-};
+}
 
 export interface MenuListProps extends __MenuListProps,
     MenuListDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles,
-    WithMenuRules {};
+    WithMenuRules {}

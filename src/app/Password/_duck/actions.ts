@@ -93,11 +93,11 @@ export interface SetPasswordAction extends Action {
     readonly type: string;
     password: string;
     container: AppContainersEnum;
-};
+}
 
 export interface ValidatePasswordAction extends Action {
     passwordValid: RulesErrorEnum;
     container: AppContainersEnum;
-};
+}
 
 export type PasswordActions = SetPasswordAction | ValidatePasswordAction;

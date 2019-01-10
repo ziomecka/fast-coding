@@ -31,4 +31,4 @@ export { reducer as googleLoginReducer };
 export interface GoogleLoginState {
     googleUrl: string;
     firebaseAuthorized: boolean;
-};
+}

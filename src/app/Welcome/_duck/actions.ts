@@ -19,6 +19,6 @@ export const actions = {
 export interface ChangeLocationAction extends Action {
     readonly type: string;
     appLocation: AppLocationEnum;
-};
+}
 
 export type WelcomeActions = ChangeLocationAction;

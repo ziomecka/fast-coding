@@ -6,4 +6,4 @@ export enum AppLocationEnum {
     isHome = 'IS_HOME',
     isLesson = 'IS_LESSON',
     isOther = 'IS_OTHER'
-};
+}

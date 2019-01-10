@@ -51,7 +51,7 @@ export interface CourseDispatch {
     handleOpenRandomLesson: (lessonData: LessonData) => Action;
     openCourse: (courseId: string) => OpenCourseAction;
     closeCourse: (courseId: string) => Action;
-};
+}
 
 export interface CourseProps extends
 CourseDispatch,
@@ -61,4 +61,4 @@ WithTheme,
 LessonsDataI,
 IWithMedia,
 MapStateToProps {
-};
+}

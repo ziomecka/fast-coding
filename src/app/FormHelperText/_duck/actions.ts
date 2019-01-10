@@ -16,6 +16,6 @@ export const actions = {
 
 export interface SetFormHelperTextAction extends Action {
     formHelperText: string;
-};
+}
 
 export type FormHelperTextActions = SetFormHelperTextAction;

@@ -37,6 +37,6 @@ class LocationChange extends React.Component<LocationChangeProps> {
   render()  {
     return null;
   }
-};
+}
 
 export default LocationChange;

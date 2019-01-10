@@ -12,4 +12,4 @@ export interface TranslationsType {
 
 export interface GetTranslationsResponseI extends GetResponseI {
     translations: TranslationsType[]
-};
+}

@@ -65,4 +65,4 @@ export interface ComponentsState {
     [textGenerator]: TextGeneratorState;
     [lessonsLoader]: LessonsLoaderState;
     [lessonButtons]: LessonButtonsState;
-};
+}

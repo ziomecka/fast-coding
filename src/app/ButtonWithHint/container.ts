@@ -12,4 +12,4 @@ export interface ButtonWithHintProps extends WithStyles {
     translationId?: string;
     buttonProps: ButtonProps;
     aftertext?: string;
-};
+}

@@ -55,9 +55,9 @@ export interface ComparatorDispatch {
     removeEventListener: () => Action;
     keepState: () => Action;
     restoreState: () => Action;
-};
+}
 
 export interface ComparatorProps extends
     ComparatorState,
     ComparatorDispatch,
-    LessonState {};
+    LessonState {}

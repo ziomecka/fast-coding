@@ -70,7 +70,7 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
 
         allSigns = null;
         return result;
-    };
+    }
 
     render() {
         return null;

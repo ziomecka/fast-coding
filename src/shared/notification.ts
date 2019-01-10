@@ -13,4 +13,4 @@ export const mapDispatchToProps = (dispatch: Dispatch): NotificationDispatch => 
 export interface NotificationDispatch {
     openNotification: (options: SetNotificationAction) => SetNotificationAction & Action;
     closeNotification: () => Action;
-};
+}

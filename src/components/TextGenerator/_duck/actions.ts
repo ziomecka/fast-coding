@@ -16,6 +16,6 @@ export const turnOffTextGenerator: ActionCreator<TurnOnOffTextGeneratorAction> =
 
 export interface TurnOnOffTextGeneratorAction extends Action {
     readonly type: string;
-};
+}
 
 export type TextGeneratorActions = TurnOnOffTextGeneratorAction;

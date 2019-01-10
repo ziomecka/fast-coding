@@ -110,6 +110,6 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
                 </Provider>'           '</>
         );
     }
-};
+}
 
 export default MediaProvider;

@@ -9,7 +9,7 @@ export enum NewUserFormResponseEnum {
     'SUCCESS' = 1,
     'LOGIN_EXISTS' = 2,
     'EMAIL_EXISTS' = 3
-};
+}
 
 /** Interface
  *  @property {string} email
@@ -20,7 +20,7 @@ export interface SendNewUserFormI {
     email: string;
     password: string;
     login: string;
-};
+}
 
 export type NewUserFormErrorType = NewUserFormResponseEnum.ERROR |
     NewUserFormResponseEnum.LOGIN_EXISTS |

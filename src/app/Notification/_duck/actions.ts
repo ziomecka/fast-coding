@@ -29,6 +29,6 @@ export const actions = {
 export interface SetNotificationAction {
     text: string;
     variant?: NotificationVariantEnum;
-};
+}
 
 export type NotificationActions = Action & SetNotificationAction;

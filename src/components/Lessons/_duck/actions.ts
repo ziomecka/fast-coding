@@ -30,19 +30,19 @@ export const deactivateLesson: ActionCreator<DeactivateLessonAction> = (activeLe
 
 export interface OpenCourseAction extends Action {
     openedCourseId: string;
-};
+}
 
 export interface CloseCourseAction extends Action {
     openedCourseId: string;
-};
+}
 
 export interface ActivateLessonAction extends Action {
     activeLessonId: string;
-};
+}
 
 export interface DeactivateLessonAction extends Action {
     activeLessonId: string;
-};
+}
 
 export type LessonsActions =
     OpenCourseAction |

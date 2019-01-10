@@ -15,7 +15,7 @@ interface SetNavAnchorElAction extends Action {
     readonly type: string;
     menuContainer: MenuContainersEnum;
     anchorEl: HTMLElement | null;
-};
+}
 
 export const actions = {
     setNavAnchorEl

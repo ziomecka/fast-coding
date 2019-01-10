@@ -31,11 +31,11 @@ export const actions = {
 
 export interface SetLoginAction extends Action {
     login: string;
-};
+}
 
 export interface SetEmailAction extends Action {
     email: string;
-};
+}
 
 export type ChangePasswordFormActions = Action | SetPasswordAction |
     SetLoginAction |

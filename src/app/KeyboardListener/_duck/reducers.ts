@@ -40,4 +40,4 @@ export { reducer as keyboardListenerReducer };
 
 export interface KeyboardListenerState {
     listeners: KeyboardListenerListenersType;
-};
+}

@@ -21,4 +21,4 @@ export interface UserDispatch {
     unauthorize: () => Action;
 }
 
-export interface UserProps extends UserDispatch {};
+export interface UserProps extends UserDispatch {}

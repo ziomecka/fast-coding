@@ -20,4 +20,4 @@ const LessonsViewContainer = connect(mapStateToProps)(LessonsView);
 
 export default LessonsViewContainer;
 
-export interface LessonsViewProps extends LessonsLoaderState, WithStyles {};
+export interface LessonsViewProps extends LessonsLoaderState, WithStyles {}

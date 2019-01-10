@@ -33,15 +33,15 @@ export default GoogleLoginContainer;
 
 interface MapStateToPropsI extends GoogleLoginState {
     localize: LocalizeState
-};
+}
 
 export interface GoogleLoginDispatch {
     authorizeFirebase: () => Promise<any>;
     startFirebaseUI: () => Promise<any>;
     setTranslations: () => void;
-};
+}
 
 export interface GoogleLoginProps extends
     GoogleLoginDispatch,
     MapStateToPropsI,
-    WithStyles {};
+    WithStyles {}

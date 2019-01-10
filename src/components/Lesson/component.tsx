@@ -22,7 +22,7 @@ import { LESSON_TIME_INTERVAL } from './constants';
  */
 interface LessonComponentState {
     time: string;
-};
+}
 
 class LessonComponent extends React.Component<LessonProps, LessonComponentState> {
     style: React.CSSProperties;

@@ -33,7 +33,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
 
     emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
         this.props.setEmail({ email: e.target.value });
-    };
+    }
 
     submit () {
         const { email, emailValid } = this.props;
@@ -43,7 +43,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
         } else {
             this.props.sendForm({ email });
         }
-    };
+    }
 
     redirect () {
         this.props.openDialog({
@@ -98,6 +98,6 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
             </Paper>
         );
     }
-};
+}
 
 export default withStyles(styles)(RemindPasswordComponent);

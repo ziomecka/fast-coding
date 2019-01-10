@@ -33,22 +33,22 @@ export const changeTitle: ActionCreator<ChangeTitleAction> = (title: string) => 
 export interface ChangeLocationAction extends Action {
     readonly type: string;
     appLocation: AppLocationEnum;
-};
+}
 
 export interface RegisterOnDropAction extends Action {
     readonly type: string;
     onDrop
-};
+}
 
 export interface DeregisterOnDropAction extends Action {
     readonly type: string;
     onDrop
-};
+}
 
 export interface ChangeTitleAction extends Action {
     readonly type: string;
     title: string
-};
+}
 
 export type ContentActions = ChangeLocationAction |
     RegisterOnDropAction |

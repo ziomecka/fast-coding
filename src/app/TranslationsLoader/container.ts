@@ -17,7 +17,7 @@ export default TranslationsLoaderContainer;
 
 export interface TranslationsLoaderDispatch {
     loadData: () => Action;
-};
+}
 
 export interface TranslationsLoaderProps extends
-    TranslationsLoaderDispatch {};
+    TranslationsLoaderDispatch {}

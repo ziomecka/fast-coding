@@ -81,4 +81,4 @@ export interface ChangePasswordFormState {
     [currentPass]: PasswordState;
     [newPass]: PasswordState;
     [confirmPass]: PasswordState;
-};
+}

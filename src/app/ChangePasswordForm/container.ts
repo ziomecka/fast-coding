@@ -41,9 +41,9 @@ export interface ChangePasswordFormDispatch {
     setLogin: (login: string) => SetLoginAction;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface ChangePasswordFormProps extends
     ChangePasswordFormDispatch,
     ChangePasswordFormState,
-    WithStyles {};
+    WithStyles {}

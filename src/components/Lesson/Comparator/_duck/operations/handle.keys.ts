@@ -90,7 +90,7 @@ export const handleBackSpace = async (dispatch: Dispatch, getState: ThunkGetStat
 
         if (answer && ending) {
             answer = await dispatch(onNotEndingLesson());
-        };
+        }
     }
 
     /** Keep state in local storage. In case page is refreshed (like F5) */

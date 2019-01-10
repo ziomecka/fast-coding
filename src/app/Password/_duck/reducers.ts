@@ -53,4 +53,4 @@ export { reducer as passwordReducer };
 export interface PasswordState {
     password: string;
     passwordValid: string | undefined
-};
+}

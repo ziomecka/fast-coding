@@ -41,7 +41,7 @@ export interface WelcomeDispatch {
     openDemoLesson: () => Action;
     addEventListener: () => Action;
     removeEventListener: () => Action;
-};
+}
 
 export interface WelcomeProps extends WelcomeDispatch,
     WelcomeState,
@@ -51,4 +51,4 @@ export interface WelcomeProps extends WelcomeDispatch,
         heading: string;
         animated: boolean;
         timeout: number;
-    };
+    }

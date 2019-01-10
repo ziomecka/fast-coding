@@ -23,4 +23,4 @@ export default NotificationContainer;
 
 export interface AppNotificationProps extends
     NotificationState,
-    WithStyles {};
+    WithStyles {}

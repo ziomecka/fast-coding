@@ -163,7 +163,7 @@ export interface OriginalLessonData {
     translatedTexts?: TextTranslationsI;
     signs: string[];
     otherSigns: string[];
-};
+}
 
 export interface LessonData extends OriginalLessonData {
     lessonText: string;
@@ -171,6 +171,6 @@ export interface LessonData extends OriginalLessonData {
     paused: boolean;
     ended: boolean;
     ending: boolean;
-};
+}
 
-export interface LessonState extends LessonData {};
+export interface LessonState extends LessonData {}

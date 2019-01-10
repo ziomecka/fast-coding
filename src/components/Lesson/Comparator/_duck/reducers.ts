@@ -125,4 +125,4 @@ export interface ComparatorState {
     allErrors: number[];
     correctedErrors: number[];
     [stats]: StatsState;
-};
+}

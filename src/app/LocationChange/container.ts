@@ -27,8 +27,8 @@ export default LocationChangeContainer;
 
 export interface LocationChangeDispatch {
     handleChangeLocation: (pathname: string, container: AppContainersEnum) => ChangeLocationAction;
-};
+}
 
 export interface LocationChangeProps extends LocationChangeDispatch, AppState, RouteComponentProps<{}> {
     containers: AppContainersEnum[];
-};
+}

@@ -29,8 +29,8 @@ interface MapStateToPropsI {
     authorized: boolean;
     authorizationMethod: UserAuthorizationMethodEnum;
     localize: LocalizeState;
-};
+}
 
 export interface MenuProviderProps extends
     MapStateToPropsI,
-    RouteComponentProps<{}> {};
+    RouteComponentProps<{}> {}

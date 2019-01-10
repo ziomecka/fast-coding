@@ -15,7 +15,7 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
             htmlElement.scrollIntoView(false);
             htmlElement = null; // GC
         }
-    };
+    }
 
     componentDidMount() {
         this.props.addEventListener();
@@ -50,6 +50,6 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
             <OriginalTextarea />
         );
     }
-};
+}
 
 export default ComparatorComponent;

@@ -59,4 +59,4 @@ export interface NotificationState {
     text: string;
     autoHideDuration: number;
     variant: NotificationVariantEnum;
-};
+}

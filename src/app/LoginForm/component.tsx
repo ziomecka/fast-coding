@@ -104,6 +104,6 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
           </Paper>
         );
     }
-};
+}
 
 export default withStyles(styles)(LoginFormComponent);

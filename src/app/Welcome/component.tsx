@@ -192,6 +192,6 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             </Paper>
         );
     }
-};
+}
 
 export default withStyles(styles)(withMedia(WelcomeComponent));

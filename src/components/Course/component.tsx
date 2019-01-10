@@ -369,6 +369,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             </GridListTile>
         );
     }
-};
+}
 
 export default withStyles(styles)(withTheme()(withMedia(CourseComponent)));

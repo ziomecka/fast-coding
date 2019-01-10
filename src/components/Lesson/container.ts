@@ -73,9 +73,9 @@ export interface LessonDispatch extends NotificationDispatch {
     restoreState: () => Action;
     keepState: () => Action;
     startLeaving: () => Action;
-};
+}
 
 export interface LessonProps extends LessonDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles {}

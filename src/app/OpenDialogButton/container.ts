@@ -21,11 +21,11 @@ const PrivacyPolicyButtonContainer =
 
 export default PrivacyPolicyButtonContainer;
 
-export interface PrivacyPolicyButtonDispatch extends DialogDispatch {};
+export interface PrivacyPolicyButtonDispatch extends DialogDispatch {}
 
 export interface PrivacyPolicyButtonProps extends
 PrivacyPolicyButtonDispatch,
 WithStyles {
     translationId: string;
     options: OpenDialogOptions;
-};
+}

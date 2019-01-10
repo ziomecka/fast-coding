@@ -8,7 +8,7 @@ export enum LoginFormResponseEnum {
     'SUCCESS' = 1,
     'LOGIN_DOES_NOT_EXIST' = 4,
     'ERROR' = 0
-};
+}
 
 /** Interface
  *  @property {string} password
@@ -17,4 +17,4 @@ export enum LoginFormResponseEnum {
 export interface SendLoginFormI {
     password: string;
     login: string;
-};
+}

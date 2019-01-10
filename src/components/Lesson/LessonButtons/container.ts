@@ -57,7 +57,7 @@ export default LessonButtonsContainer;
 interface MapStateToPropsI extends LessonState, LessonButtonsState {
     localize: LocalizeState,
     dialogOpened: boolean;
-};
+}
 
 export interface LessonButtonsDispatch {
     restartLesson: () => Action;
@@ -68,10 +68,10 @@ export interface LessonButtonsDispatch {
     startLeaving: () => Action;
     pauseLesson: () => Action;
     unpauseLesson: () => Action;
-};
+}
 
 export interface LessonButtonsProps extends
     MapStateToPropsI,
     LessonButtonsDispatch,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles {}

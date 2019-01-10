@@ -22,4 +22,4 @@ interface IMapStateToProps {
 
 export interface PrivacyPolicyProps extends IMapStateToProps {
     variant: InfoEnum;
-};
+}

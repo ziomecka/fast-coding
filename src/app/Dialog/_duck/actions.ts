@@ -27,6 +27,6 @@ export const actions = {
 
 export interface OpenDialogAction extends Action {
     options: YesDialogOptions | YesCancelDialogOptions;
-};
+}
 
 export type DialogActions = OpenDialogAction;

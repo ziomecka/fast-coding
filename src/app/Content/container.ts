@@ -26,7 +26,7 @@ interface MapStateToPropsI extends ContentState {
     localize: LocalizeState;
     lessonTitle: string;
     lessonNo: number;
-};
+}
 
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
     ...state[app][content],
@@ -49,9 +49,9 @@ export default ContentContainer;
 export interface ContentDispatch extends NotificationDispatch {
     changeLocation: (appLocation: AppLocationEnum) => ChangeLocationAction;
     changeTitle: (title: string) => ChangeTitleAction;
-};
+}
 
 export interface ContentProps extends ContentDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles {}

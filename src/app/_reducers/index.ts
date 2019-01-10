@@ -232,4 +232,4 @@ export interface AppState {
     [newPasswordForm]: NewPasswordFormState;
     [googleLogin]: GoogleLoginState;
     [translationsLoader]: TranslationsLoaderState;
-};
+}

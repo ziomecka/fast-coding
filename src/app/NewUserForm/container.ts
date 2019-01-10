@@ -41,9 +41,9 @@ export interface NewUserFormDispatch {
     setLogin: (login: string) => SetLoginAction;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface NewUserFormProps extends
     NewUserFormDispatch,
     NewUserFormState,
-    WithStyles {};
+    WithStyles {}

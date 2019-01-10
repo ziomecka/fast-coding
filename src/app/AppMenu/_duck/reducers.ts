@@ -41,4 +41,4 @@ export { reducer as menuReducer };
 export interface MenuState {
     // @ts-ignore
     [subMenuName: MenuContainersEnum]: MenuListState
-};
+}

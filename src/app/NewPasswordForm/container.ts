@@ -44,10 +44,10 @@ export interface NewPasswordFormDispatch {
     reset: () => Action;
     formInvalid: () => Action;
     displayAppError: (options?: AppErrorI) => Action;
-};
+}
 
 export interface NewPasswordFormPropsI extends
     NewPasswordFormDispatch,
     NewPasswordFormState,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles {}

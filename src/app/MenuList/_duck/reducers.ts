@@ -6,4 +6,4 @@ export const INITIAL_STATE: MenuListState = {
 
 export interface MenuListState {
     anchorEl: HTMLElement | null;
-};
+}

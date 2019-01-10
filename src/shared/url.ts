@@ -24,4 +24,4 @@ export const buildUrl = (params: URLParamsI, url: string): string => {
 
 export interface URLParamsI {
     [paramName: string]: string | string[]
-};
+}

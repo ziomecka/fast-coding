@@ -21,7 +21,7 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
         /** If arrow left */
         if (keyCode === 37) {
             nextIndex = --index >= 0 ? index : length - 1;
-        };
+        }
 
         try {
             getButton(buttonsIds[nextIndex]).focus();

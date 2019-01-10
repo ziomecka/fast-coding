@@ -5,7 +5,7 @@ import { LessonData } from '@components/Lesson/_duck/reducers';
 
 export interface GetLessonsResponseI extends GetResponseI {
     lessons: CourseDataType
-};
+}
 
 export interface LessonsDataI {
     title: TextTranslationsI;
@@ -25,4 +25,4 @@ export interface TextTranslationsI {
 export enum LessonsCategoriesEnum {
     JS = 'js',
     basics = 'basics'
-};
+}

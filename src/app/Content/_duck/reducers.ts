@@ -61,10 +61,10 @@ export { reducer as contentReducer };
 
 export interface ContentClasses {
     contentClass: string;
-};
+}
 
 export interface ContentState extends ContentClasses {
     appLocation: AppLocationEnum;
     onDrop: Array<(e: React.DragEvent<HTMLElement>)=> void>;
     title: string;
-};
+}

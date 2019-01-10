@@ -65,4 +65,4 @@ export { reducer as newPasswordFormReducer };
 export interface NewPasswordFormState {
     [newPass]: PasswordState;
     [confirmPass]: PasswordState;
-};
+}

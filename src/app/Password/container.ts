@@ -35,7 +35,7 @@ export default PasswordContainer;
 
 interface MapStateToPropsI extends AppState {
     localize: LocalizeState
-};
+}
 
 export interface PasswordDispatch {
     setPassword: (
@@ -44,11 +44,11 @@ export interface PasswordDispatch {
         event: React.ChangeEvent<HTMLInputElement>
     ) => SetPasswordAction;
     validatePassword: (password: string, passwordType: PasswordsEnum, container: AppContainersEnum, rules: RulesErrorEnum[], value2?: string) => Action
-};
+}
 
 export interface PasswordProps extends PasswordDispatch, MapStateToPropsI, StandardTextFieldProps {
     container: AppContainersEnum;
     passwordType: PasswordsEnum;
     rules?: RulesErrorEnum[];
     value2?: string;
-};
+}

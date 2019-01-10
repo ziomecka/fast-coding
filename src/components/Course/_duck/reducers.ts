@@ -31,11 +31,11 @@ export { reducer as courseReducer };
 
 interface ILessonData {
     allErrors: number[][];
-};
+}
 
 interface ICourseCourseData {
     [lessonId: string]: ILessonData;
-};
+}
 
 export type CourseDataType = ICourseCourseData & {
     lastLesson: number;
@@ -43,4 +43,4 @@ export type CourseDataType = ICourseCourseData & {
 
 export interface ICourseState {
     [courseId: string]: CourseDataType
-};
+}

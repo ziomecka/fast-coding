@@ -23,4 +23,4 @@ export default DialogContainer;
 
 export interface AppDialogProps extends
 DialogState,
-WithStyles {};
+WithStyles {}

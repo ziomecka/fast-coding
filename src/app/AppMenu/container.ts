@@ -10,4 +10,4 @@ export interface AppMenuProps extends
     RouteComponentProps<{}>,
     WithStyles {
     subMenus: NavMenuProps[];
-};
+}

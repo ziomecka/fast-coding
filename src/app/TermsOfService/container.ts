@@ -22,4 +22,4 @@ interface IMapStateToProps {
 
 export interface TermsOfServiceProps extends IMapStateToProps {
     variant: InfoEnum;
-};
+}

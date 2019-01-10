@@ -86,22 +86,22 @@ export default {
 export interface OpenLessonAction extends Action {
     readonly type: string;
     lessonData: LessonData;
-};
+}
 
 export interface UpdateTextAction extends Action {
     readonly type: string;
     text: string;
-};
+}
 
 export interface OpenDemoLessonAction extends Action {
     readonly type: string;
     language: LanguagesEnum;
-};
+}
 
 export interface RestoreStateAction extends Action {
     readonly type: string;
     state: LessonState;
-};
+}
 
 export type LessonActions = Action |
     OpenLessonAction |

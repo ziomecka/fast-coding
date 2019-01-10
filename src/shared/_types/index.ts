@@ -6,4 +6,4 @@ export enum RulesErrorEnum {
     NO_SPECIALS = 4,
     NO_MATCH = 5,
     MATCH = 6
-};
+}

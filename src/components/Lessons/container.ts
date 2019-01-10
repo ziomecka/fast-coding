@@ -31,4 +31,4 @@ interface MapStateToProps extends LessonsLoaderState, ILessonsState {
 export interface LessonsProps extends
     LessonsLoaderState,
     RouteComponentProps<{}>,
-    MapStateToProps {};
+    MapStateToProps {}

@@ -38,4 +38,4 @@ IMapStateToProps {
     useLocalize?: boolean;
     id?: string;
     variant: InfoEnum
-};
+}

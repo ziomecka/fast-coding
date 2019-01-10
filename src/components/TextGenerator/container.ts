@@ -30,6 +30,6 @@ export default TextGeneratorContainer;
 
 export interface TextGeneratorDispatch {
     sendText: (text: string) => Action;
-};
+}
 
-export interface TextGeneratorProps extends TextGeneratorDispatch, TextGeneratorState, LessonState {};
+export interface TextGeneratorProps extends TextGeneratorDispatch, TextGeneratorState, LessonState {}

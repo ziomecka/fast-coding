@@ -95,4 +95,4 @@ export { reducer as newUserFormReducer };
 export interface NewUserFormState extends LoginState, EmailState {
     [newPass]: PasswordState;
     [confirmPass]: PasswordState;
-};
+}

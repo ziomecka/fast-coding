@@ -112,6 +112,6 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             </Paper>
         );
     }
-};
+}
 
 export default withStyles(styles)(ChangePasswordFormComponent);

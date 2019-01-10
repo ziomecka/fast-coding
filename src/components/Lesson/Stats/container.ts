@@ -38,4 +38,4 @@ interface ExtendedStatsState extends StatsState {
     localize: LocalizeState;
 }
 
-export interface StatsProps extends ExtendedStatsState, WithStyles, WithTableProps {};
+export interface StatsProps extends ExtendedStatsState, WithStyles, WithTableProps {}

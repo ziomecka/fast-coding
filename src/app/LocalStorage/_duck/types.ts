@@ -7,4 +7,4 @@ export enum LocalStorageItemEnum {
     comparator = 'COMPARATOR',
     lesson = 'LESSON',
     stats = 'STATS'
-};
+}

@@ -38,4 +38,4 @@ const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = (state = IN
 
 export { reducer as remindPasswordReducer };
 
-export interface RemindPasswordState extends EmailState {};
+export interface RemindPasswordState extends EmailState {}

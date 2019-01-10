@@ -89,4 +89,4 @@ export interface StatsState {
     start: number;
     stop: number;
     time: number;
-};
+}

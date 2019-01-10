@@ -19,6 +19,6 @@ export default EmailContainer;
 
 export interface MapStateToPropsI {
     localize: LocalizeState
-};
+}
 
-export interface EmailPropsI extends StandardTextFieldProps, MapStateToPropsI, EmailState {};
+export interface EmailPropsI extends StandardTextFieldProps, MapStateToPropsI, EmailState {}

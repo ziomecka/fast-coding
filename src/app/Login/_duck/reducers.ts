@@ -33,4 +33,4 @@ export { reducer as loginReducer };
 export interface LoginState {
     login: string;
     loginValid: string;
-};
+}

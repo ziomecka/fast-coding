@@ -13,7 +13,7 @@ export interface MenuRulesHocOptionsI {
     path?: AppRoutesEnum; // path to which Component redirects
     lang?: LanguagesEnum; // language to which component redirects
     authorizationMethod?: UserAuthorizationMethodEnum;
-};
+}
 
 export type MenuRulesHocType = (options?: MenuRulesHocOptionsI) => ({
     [onlyAuthorized]: () => boolean;

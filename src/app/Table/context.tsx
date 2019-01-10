@@ -3,7 +3,7 @@ import Table, { TableI } from './container';
 
 export interface WithTableContextProps {
     createTable: (props: TableI) => JSX.Element
-};
+}
 
 export const defaultTable: WithTableContextProps = {
     createTable: (props: TableI): JSX.Element => (
