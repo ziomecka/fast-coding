@@ -70,7 +70,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
         /** If course is expanded then lessons otherwise empty array */
         this.state = {
-            lessons: this.isExpanded? this.props.lessons : [],
+            lessons: this.isExpanded ? this.props.lessons : [],
         };
 
         this.handleOnClick = this.handleOnClick.bind( this );
@@ -302,7 +302,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             let { _id, title: { [ langCode ]: title }, no, type } = lesson;
 
             const isReview = type.indexOf( review ) !== -1;
-            const info = isReview? reviewInfo : '';
+            const info = isReview ? reviewInfo : '';
 
             return (
                 <Grid

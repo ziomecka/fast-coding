@@ -35,7 +35,7 @@ const rules: RulesI = {
 };
 
 export const helperTexts = ( rule, value: string, localize: LocalizeState ): string => (
-    rule? getTranslation( localize, `${rule}_${value.toUpperCase()}` ) : ''
+    rule ? getTranslation( localize, `${rule}_${value.toUpperCase()}` ) : ''
 );
 
 export const applyRules = ( options: ApplyRulesType ): string => {

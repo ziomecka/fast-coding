@@ -36,7 +36,7 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
 
             if ( entry ) {
                 const windowMatches = (
-                    window.matchMedia( `(min-width: ${ start? start[1] : 0 } px)` ) &&
+                    window.matchMedia( `(min-width: ${ start ? start[1] : 0 } px)` ) &&
                     window.matchMedia( `(max-width: ${ entry[1] - 1 } px)` ).matches
                 );
 

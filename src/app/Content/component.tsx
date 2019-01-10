@@ -100,7 +100,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
     return (
         <DragOverable
-            className={`${contentBox} ${isHome? contentBoxHome : contentBoxOther}`}
+            className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
             id="content"
             onDrop={this.onDrop}
         >

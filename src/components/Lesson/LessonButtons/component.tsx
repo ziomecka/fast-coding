@@ -172,8 +172,8 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             style={ {
                 top,
                 left,
-                width: isMoved? 'auto' : INITIAL_WIDTH,
-                flexDirection: isMoved? 'column' : 'row'
+                width: isMoved ? 'auto' : INITIAL_WIDTH,
+                flexDirection: isMoved ? 'column' : 'row'
             }}
         >
             {/* Lesson's buttons */}
