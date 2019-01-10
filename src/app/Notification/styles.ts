@@ -13,12 +13,15 @@ const styles = createStyles(theme => {
         palette: {
             primary: { dark: successBackground, contrastText: successText },
             secondary: { dark: errorBackground, contrastText: errorText }
-        }
+        },
+        typography: { lineHeight }
     } = theme;
 
     return {
         notificationMessage: {
-            fontSize: NOTIFICATION_FONTSIZE
+            fontSize: NOTIFICATION_FONTSIZE,
+            textAlign: 'center',
+            lineHeight
         },
         notificationMessageSuccess: {
             color: successText,
