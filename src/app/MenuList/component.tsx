@@ -19,7 +19,7 @@ import styles from './styles';
 import getTranslation from '@shared/get.translation';
 import { getActiveLanguage } from 'react-localize-redux'
 
-import { withMenuRules } from '../MenuRulesHoc/';
+import { withMenuRules } from '@app/MenuRulesHoc/';
 
 /**
  * @param { boolean } render                  - is menu rendered?

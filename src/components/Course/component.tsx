@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { CourseProps } from './container';
-import { LessonData } from  '../Lesson/_duck/reducers';
-import Stepper from '../Stepper/';
+import { LessonData } from  '@components/Lesson/_duck/reducers';
+import Stepper from '@components/Stepper/';
 
 import { AppRoutesEnum } from '@appTypes';
 import styles from './styles';

@@ -5,8 +5,8 @@ import LoginForm from '@app/LoginForm';
 import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;
 
-import Email from '../Email';
-import Message from '../FormHelperText/';
+import Email from '@app/Email';
+import Message from '@app/FormHelperText/';
 
 /* Materials */
 import Paper from '@material-ui/core/Paper';

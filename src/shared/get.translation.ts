@@ -1,4 +1,9 @@
-import { getTranslations, getLanguages, getActiveLanguage, LocalizeState } from 'react-localize-redux';
+import {
+    LocalizeState,
+    getActiveLanguage,
+    getLanguages,
+    getTranslations,
+} from 'react-localize-redux';
 
 const getTranslation = (localize: LocalizeState, id: string, missingTranslationString?: string): string => {
     try {

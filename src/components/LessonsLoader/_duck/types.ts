@@ -1,7 +1,7 @@
 import { GetResponseI } from '@app/api/';
-import { CourseDataType } from '../../Course/_duck/reducers';
+import { CourseDataType } from '@components/Course/_duck/reducers';
 import { LanguagesEnum } from '@applicationTypes';
-import { LessonData } from '../../Lesson/_duck/reducers';
+import { LessonData } from '@components/Lesson/_duck/reducers';
 
 export interface GetLessonsResponseI extends GetResponseI {
     lessons: CourseDataType

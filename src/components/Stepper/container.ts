@@ -7,10 +7,10 @@ import { default as Stepper } from './component';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
-import { ApplicationState } from '../../_reducers/';
+import { ApplicationState } from '@appStore';
 
-import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
-import { ILessonsState } from '../Lessons/_duck/reducers';
+import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
+import { ILessonsState } from '@components/Lessons/_duck/reducers';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';

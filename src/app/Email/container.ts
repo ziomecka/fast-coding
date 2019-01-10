@@ -5,7 +5,7 @@ import { default as Email } from './component';
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
 
 import { LocalizeState } from 'react-localize-redux';
-import { ApplicationState } from '../../_reducers';
+import { ApplicationState } from '@appStore';
 
 import { EmailState } from './_duck/reducers';
 

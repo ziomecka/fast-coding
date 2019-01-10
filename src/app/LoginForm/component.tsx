@@ -5,10 +5,10 @@ import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 const { loginForm } = AppContainersEnum;
 
-import Password from '../Password/';
-import Login from '../Login/';
-import Message from '../FormHelperText/';
-import GoogleLogin from '../GoogleLogin/';
+import Password from '@app/Password/';
+import Login from '@app/Login/';
+import Message from '@app/FormHelperText/';
+import GoogleLogin from '@app/GoogleLogin/';
 import RemindPasswordForm from '@app/RemindPasswordForm';
 import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;

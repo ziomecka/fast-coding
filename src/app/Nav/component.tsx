@@ -10,7 +10,7 @@ import {
     HOME_WELCOME_TIMEOUT
 } from './constants';
 
-import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
+import { getTranslations, getActiveLanguage, getLanguages, withLocalize } from 'react-localize-redux';
 
 /** Materials */
 import AppBar from '@material-ui/core/AppBar';
@@ -28,12 +28,11 @@ const appBarColor = 'primary';
 
 import * as submenus from './submenus';
 import { NavMenuProps } from './_duck/types';
-import { withLocalize } from 'react-localize-redux';
 
-import { MenuProvider } from '../MenuRulesHoc/index';
+import { MenuProvider } from '@app/MenuRulesHoc/index';
 
-import MenuButton from '../MenuButton';
-import MenuList from '../MenuList';
+import MenuButton from '@app/MenuButton';
+import MenuList from '@app/MenuList';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;

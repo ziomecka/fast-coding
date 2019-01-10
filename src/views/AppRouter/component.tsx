@@ -2,19 +2,19 @@ import * as React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import history from '@shared/history';
 
-import HomeView from '../Home/';
-import LessonsView from '../Lessons/';
-import LessonView from '../Lesson/';
+import HomeView from '@views/Home/';
+import LessonsView from '@views/Lessons/';
+import LessonView from '@views/Lesson/';
 import PrivacyPolicy from '@views/PrivacyPolicy/';
 import TermsOfService from '@views/TermsOfService/';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { theme } from '../../theme/';
+import { theme } from '@theme';
 
 import { AppRoutesEnum } from '@appTypes';
 
 import { LocalizeProvider } from 'react-localize-redux';
-import store from '../../store';
+import store from '@appStore';
 
 import { AppRouterPropsI } from './container';
 

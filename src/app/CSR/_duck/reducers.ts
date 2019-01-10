@@ -10,7 +10,7 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRActionsEnum;
 
-import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '../../../_reducers/';
+import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '@src/_reducers/';
 
 export const INITIAL_STATE: ICSRState = {
     ...APPLICATION_INITIAL_STATE,

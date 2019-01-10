@@ -2,9 +2,7 @@ import { Dispatch, Action } from 'redux';
 
 import { AppRoutesEnum } from '@appTypes';
 
-import { NewPasswordFormResponseEnum } from './types';
-
-import { SendFormNewPasswordFormI } from './types';
+import { NewPasswordFormResponseEnum, SendFormNewPasswordFormI } from './types';
 
 const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
 const { newPasswordSet } = AppRoutesEnum;

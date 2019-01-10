@@ -10,7 +10,7 @@ import { ApplicationContainersEnum, } from '@applicationTypes';
 import { AppContainersEnum, } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
-import { ApplicationState } from '../../_reducers/';
+import { ApplicationState } from '@appStore';
 
 const { app, components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;

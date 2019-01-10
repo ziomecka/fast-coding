@@ -1,7 +1,7 @@
 import { Action, ActionCreator } from 'redux';
 import { LoginFormActionsEnum } from './types';
 
-import { SetPasswordAction } from '../../Password/_duck/actions';
+import { SetPasswordAction } from '@app/Password/';
 
 const {
     APP_LOGINFORM_SET_LOGIN,

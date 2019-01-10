@@ -1,19 +1,17 @@
 import { Dispatch } from 'redux';
-import { get as getData } from '../../api';
+import { get as getData } from '@app/api';
 import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
 import {
     localStorageGetItem,
     localStorageSetItem
 } from '@app/LocalStorage/_duck/operations';
-
-import { LocalStorageItemEnum } from '@appTypes';
 
 export const onLoadData =
 (url: string, applicationContainer: ApplicationContainersEnum, container: ComponentsContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string): any => (

@@ -1,16 +1,15 @@
-import theme from './theme';
-
 import {
-    PAPER_PADDING_XS,
-    PAPER_PADDING_MD,
-    PAPER_PADDING_LG,
-    PAPER_PADDING_MAX_XS,
-    PAPER_PADDING_MAX_MD,
-    PAPER_PADDING_MAX_LG,
-    FONT_SIZE,
+    NAV_HEIGHT_LG,
     NAV_HEIGHT_MD,
-    NAV_HEIGHT_LG
+    PAPER_PADDING_LG,
+    PAPER_PADDING_MAX_LG,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_XS,
+    PAPER_PADDING_MD,
+    PAPER_PADDING_XS,
 } from './constants';
+
+import theme from './theme';
 
 /** MuiMenu */
 /** Make padding larger for lg and xlg */

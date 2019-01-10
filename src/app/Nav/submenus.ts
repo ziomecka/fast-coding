@@ -13,7 +13,7 @@ const { home, lessons } = AppRoutesEnum;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson, fastCodingAuthorization } = MenuRulesEnum;
 
 import { openDialog } from '@app/Dialog';
-import store from '../../store';
+import store from '@appStore';
 
 export const lessonsMenuItem: NavMenuType = {
     title: 'courses',

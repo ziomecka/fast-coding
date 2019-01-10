@@ -1,10 +1,9 @@
 import { Dispatch } from 'redux';
 
-import { turnOnTextGenerator } from '../../TextGenerator/_duck/actions';
-import { updateLesson } from '../../Lesson/_duck/actions';
+import { turnOnTextGenerator } from '@components/TextGenerator/_duck/actions';
+import { updateLesson, openLesson } from '@components/Lesson/_duck/actions';
 
-import { LessonData } from '../../Lesson/_duck/reducers';
-import { openLesson } from '../../Lesson/_duck/actions';
+import { LessonData } from '@components/Lesson/_duck/reducers';
 
 import { ThunkGetStateType } from '@applicationTypes';
 import { LocalStorageItemEnum } from '@appTypes';
@@ -12,7 +11,7 @@ import { LocalStorageItemEnum } from '@appTypes';
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
-import { activateLesson } from '../../Lessons/_duck/actions'
+import { activateLesson } from '@components/Lessons/_duck/actions'
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {

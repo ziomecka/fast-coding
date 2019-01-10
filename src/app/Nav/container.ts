@@ -3,8 +3,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { default as NavComponent } from './component';
 import { WithStyles } from '@material-ui/core/styles';
-import { LocalizeState } from 'react-localize-redux';
-import { ApplicationState } from '../../_reducers';
+import { LocalizeState, LocalizeContextProps } from 'react-localize-redux';
+import { ApplicationState } from '@appStore';
 
 import { onLogOut } from './_duck/operations';
 
@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch): NavDispatchI => ({
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavComponent));
 
-import { LocalizeContextProps } from 'react-localize-redux';
 
 export interface NavProps extends MapStateToPropsI, WithStyles, LocalizeContextProps, RouteComponentProps<{}>, NavDispatchI {};
 

@@ -1,20 +1,19 @@
 import { Reducer } from 'redux';
 
 import { NewUserFormActionsEnum } from './types';
-import { PasswordActionsEnum } from '../../Password/_duck/types';
-import { LoginActionsEnum } from '../../Login/_duck/types';
+import { PasswordActionsEnum } from '@app/Password/';
 
 import {
     loginReducer, LoginState, INITIAL_STATE as LoginInitialState
-} from '../../Login/_duck/reducers';
+} from '@app/Login/_duck/reducers';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
-} from '../../Password/_duck/reducers';
+} from '@app/Password/_duck/reducers';
 
 import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState
-} from '../../Email/_duck/reducers';
+} from '@app/Email/_duck/reducers';
 
 import { PasswordsEnum } from '@appTypes';
 

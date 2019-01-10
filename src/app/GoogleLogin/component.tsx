@@ -9,8 +9,6 @@ import styles from './styles';
 
 import { getActiveLanguage } from 'react-localize-redux';
 
-import { ui } from './_duck/operations';
-
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
     constructor(props) {
@@ -71,8 +69,6 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         return (
             <div>
                 <Paper { ...{ id } } className={ firebaseClass } />
-                {/* <Paper id="firebaseui-auth-container">dupcia</Paper> */}
-
             </div>
         );
     }

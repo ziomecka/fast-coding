@@ -1,10 +1,10 @@
-import { SendFormChangePasswordI } from '../../ChangePasswordForm/_duck/types';
-import { SendFormRemindPasswordI } from '../../RemindPasswordForm/_duck/types';
-import { SendNewUserFormI } from '../../NewUserForm/_duck/types';
-import { SendLoginFormI } from '../../LoginForm/_duck/types';
+import { SendFormChangePasswordI } from '@app/ChangePasswordForm/';
+import { SendFormRemindPasswordI } from '@app/RemindPasswordForm/';
+import { SendNewUserFormI } from '@app/NewUserForm/';
+import { SendLoginFormI } from '@app/LoginForm/';
 
 import { AppRoutesEnum } from '@appTypes';
-import { QueriesI } from '@app/api/index';
+import { QueriesI } from '@app/api/';
 
 export interface SendFormI {
     request: {

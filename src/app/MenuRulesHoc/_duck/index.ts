@@ -1,7 +1,3 @@
-export { default as MenuProvider } from './container';
-export { default as withMenuRules } from './hoc';
-export { WithMenuRules } from './hoc';
-
 export {
     fastCodingAuthorization,
     notActiveLanguage,
@@ -12,4 +8,4 @@ export {
     notLesson,
     onlyAuthorized,
     onlyUnauthorized
-} from './_duck/';
+} from './types';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LessonsProps } from './container';
-import Course from '../Course/';
+import Course from '@components/Course/';
 
 /** Materials core */
 import Grid from '@material-ui/core/Grid';

@@ -9,7 +9,7 @@ import { ContentState } from './_duck/reducers';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, AppLocationEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
 const { app, components } = ApplicationContainersEnum;
@@ -17,12 +17,10 @@ const { content } = AppContainersEnum;
 const { lesson } = ComponentsContainersEnum;
 
 import { changeLocation, changeTitle, ChangeLocationAction, ChangeTitleAction } from './_duck/actions';
-import { AppLocationEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
-import { LessonState } from '@components/Lesson/_duck/reducers';
 
 interface MapStateToPropsI extends ContentState {
     localize: LocalizeState;

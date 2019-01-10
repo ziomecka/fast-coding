@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { NewUserFormProps } from './container';
 
-import Password from '../Password/';
-import Login from '../Login/';
-import Email from '../Email/';
-import Message from '../FormHelperText/';
+import Password from '@app/Password/';
+import Login from '@app/Login/';
+import Email from '@app/Email/';
+import Message from '@app/FormHelperText/';
 
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { newUserForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
-import { PasswordsEnum } from '@appTypes';
 const { newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '@shared/_types/';

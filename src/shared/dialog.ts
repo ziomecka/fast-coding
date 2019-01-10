@@ -1,9 +1,9 @@
-import { Dispatch, Action } from 'redux';
+import { Action,  Dispatch } from 'redux';
 
 import {
+    OpenDialogOptions,
     closeDialog,
     openDialog,
-    OpenDialogOptions
 } from '@app/Dialog/'
 
 export const mapDispatchToProps = (dispatch: Dispatch): DialogDispatch => ({

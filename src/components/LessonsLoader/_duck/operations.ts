@@ -1,9 +1,6 @@
 import { Dispatch } from 'redux';
 import { onLoadData } from '@app/CSR/_duck/operations';
-import * as urlFuncs from '@shared/url';
-import { URLParamsI } from '@shared/url';
-
-const { buildUrl } = urlFuncs;
+import { buildUrl, URLParamsI} from '@shared/url';
 
 import { AppRoutesEnum, LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';

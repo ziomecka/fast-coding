@@ -8,7 +8,7 @@ import { ApplicationContainersEnum } from '@applicationTypes';
 
 import { LocalizeState, LocalizeContextProps } from 'react-localize-redux';
 
-import { TranslationsLoaderState } from '../TranslationsLoader/_duck/reducers';
+import { TranslationsLoaderState } from '@app/TranslationsLoader/_duck/reducers';
 import { IRenderInfo, InfoEnum } from './_duck/types';
 
 import { WithStyles } from '@material-ui/core/styles';

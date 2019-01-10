@@ -14,7 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withTheme from '@material-ui/core/styles/withTheme';
 import styles from './styles';
 
-import { LessonData } from '../Lesson/_duck/reducers';
+import { LessonData } from '@components/Lesson/_duck/reducers';
 
 import { ComponentsContainersEnum } from '@componentsTypes';
 const { lessonStepper } = ComponentsContainersEnum;

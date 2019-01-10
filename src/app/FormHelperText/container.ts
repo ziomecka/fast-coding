@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as FormHelperText } from './component';

@@ -1,100 +1,100 @@
 import { Reducer, combineReducers } from 'redux';
 
-import { PasswordActionsEnum } from '../Password/_duck/types';
-import { SetPasswordAction } from '../Password/_duck/actions';
+import { PasswordActionsEnum } from '@app/Password/_duck/types';
+import { SetPasswordAction } from '@app/Password/_duck/actions';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
     LoginFormState,
     loginFormReducer
-} from '../LoginForm/_duck/reducers';
+} from '@app/LoginForm/_duck/reducers';
 
 import {
     INITIAL_STATE as DIALOG_INITIAL_STATE,
     DialogState,
     dialogReducer
-} from '../Dialog/_duck/reducers';
+} from '@app/Dialog/_duck/reducers';
 
 import {
     INITIAL_STATE as NOTIFICATION_INITIAL_STATE,
     NotificationState,
     notificationReducer
-} from '../Notification/_duck/reducers';
+} from '@app/Notification/_duck/reducers';
 
 import {
     INITIAL_STATE as NEWUSERFORM_INITIAL_STATE,
     newUserFormReducer,
     NewUserFormState
-} from '../NewUserForm/_duck/reducers';
+} from '@app/NewUserForm/_duck/reducers';
 
 import {
     INITIAL_STATE as MENU_INITIAL_STATE,
     menuReducer,
     MenuState
-} from '../AppMenu/_duck/reducers';
+} from '@app/AppMenu/_duck/reducers';
 
 import {
     INITIAL_STATE as WELCOME_INITIAL_STATE,
     welcomeReducer,
     WelcomeState
-} from '../Welcome/_duck/reducers';
+} from '@app/Welcome/_duck/reducers';
 
 import {
     INITIAL_STATE as CONTENT_INITIAL_STATE,
     contentReducer,
     ContentState
-} from '../Content/_duck/reducers';
+} from '@app/Content/_duck/reducers';
 
 import {
     INITIAL_STATE as USER_INITIAL_STATE,
     userReducer,
     UserState
-} from '../User/_duck/reducers';
+} from '@app/User/_duck/reducers';
 
 import { AppContainersEnum } from '@appTypes';
-import { AppActions } from '../_actions/';
+import { AppActions } from '@app/_actions/';
 
 import {
     INITIAL_STATE as FORM_HELPER_TEXT_INITIAL_STATE,
     formHelperTextReducer,
     FormHelperTextState
-} from '../FormHelperText/_duck/reducers';
+} from '@app/FormHelperText/_duck/reducers';
 
 import {
     INITIAL_STATE as CHANGEPASSWORDFORM_INITIAL_STATE,
     changePasswordFormReducer,
     ChangePasswordFormState
-} from '../ChangePasswordForm/_duck/reducers';
+} from '@app/ChangePasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE,
     keyboardListenerReducer,
     KeyboardListenerState
-} from '../KeyboardListener/_duck/reducers';
+} from '@app/KeyboardListener/_duck/reducers';
 
 import {
     INITIAL_STATE as REMIND_PASSWORD_INITIAL_STATE,
     remindPasswordReducer,
     RemindPasswordState
-} from '../RemindPasswordForm/_duck/reducers';
+} from '@app/RemindPasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as NEW_PASSWORD_INITIAL_STATE,
     newPasswordFormReducer,
     NewPasswordFormState
-} from '../NewPasswordForm/_duck/reducers';
+} from '@app/NewPasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as GOOGLE_LOGIN_INITIAL_STATE,
     googleLoginReducer,
     GoogleLoginState
-} from '../GoogleLogin/_duck/reducers';
+} from '@app/GoogleLogin/_duck/reducers';
 
 import {
     INITIAL_STATE as TRANSLATIONS_LOADER_INITIAL_STATE,
     translationsLoaderReducer,
     TranslationsLoaderState
-} from '../TranslationsLoader/_duck/reducers';
+} from '@app/TranslationsLoader/_duck/reducers';
 
 const {
     loginForm,

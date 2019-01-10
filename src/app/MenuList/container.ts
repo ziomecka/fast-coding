@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 
 import { default as MenuListComponent } from './component';
 
-import { ApplicationState } from '../../store';
-import { Dispatch, Action } from 'redux';
+import { ApplicationState } from '@appStore';
+import { Dispatch } from 'redux';
 
 import { onSetNavAnchorEl } from './_duck/operations';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
-import { MenuState } from '../AppMenu/_duck/reducers';
+import { MenuState } from '@app/AppMenu/_duck/reducers';
 
 import { ApplicationContainersEnum, LanguagesEnum } from '@applicationTypes';
 import {
@@ -26,7 +26,7 @@ const { app } = ApplicationContainersEnum;
 const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
-import { WithMenuRules }  from '../MenuRulesHoc/';
+import { WithMenuRules }  from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({

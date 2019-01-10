@@ -6,20 +6,19 @@ import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { default as Course } from './component';
 
-import { LessonData } from '../Lesson/_duck/reducers';
+import { LessonData } from '@components/Lesson/_duck/reducers';
 
 import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
 
-import { ApplicationState } from '../../_reducers/';
+import { ApplicationState } from '@appStore';
 
-import { LessonsDataI } from '@componentsTypes';
+import { LessonsDataI, ComponentsContainersEnum } from '@componentsTypes';
 
 import { LocalizeState } from 'react-localize-redux';
-import { openCourse, OpenCourseAction } from '../Lessons/_duck/actions';
-import { onCloseCourse } from '../Lessons/_duck/operations';
+import { openCourse, OpenCourseAction } from '@components/Lessons/_duck/actions';
+import { onCloseCourse } from '@components/Lessons/_duck/operations';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
 const { components } = ApplicationContainersEnum;
 const { lessons } = ComponentsContainersEnum;
 

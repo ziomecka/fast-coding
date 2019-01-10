@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 
-import { actions as dialogActions, DialogActions } from '../Dialog/_duck/actions';
-import { actions as newUserFormActions, NewUserFormActions } from '../NewUserForm/_duck/actions';
-import { actions as notificationActions, NotificationActions } from '../Notification/_duck/actions';
-import { actions as passwordActions, PasswordActions } from '../Password/_duck/actions';
-import { actions as formHelperTextActions, FormHelperTextActions } from '../FormHelperText/_duck/actions';
-import { actions as welcomeActions, WelcomeActions } from '../Welcome/_duck/actions';
-import { actions as menuListActions, MenuListActions } from '../MenuList/_duck/actions';
-import { actions as appmenuActions, AppMenuActions } from '../AppMenu/_duck/actions';
+import { actions as dialogActions, DialogActions } from '@app/Dialog/_duck/actions';
+import { actions as newUserFormActions, NewUserFormActions } from '@app/NewUserForm/_duck/actions';
+import { actions as notificationActions, NotificationActions } from '@app/Notification/_duck/actions';
+import { actions as passwordActions, PasswordActions } from '@app/Password/_duck/actions';
+import { actions as formHelperTextActions, FormHelperTextActions } from '@app/FormHelperText/_duck/actions';
+import { actions as welcomeActions, WelcomeActions } from '@app/Welcome/_duck/actions';
+import { actions as menuListActions, MenuListActions } from '@app/MenuList/_duck/actions';
+import { actions as appmenuActions, AppMenuActions } from '@app/AppMenu/_duck/actions';
 
 export const actions = {
     ...dialogActions,

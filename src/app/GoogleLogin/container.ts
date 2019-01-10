@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Dispatch, Action } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as GoogleLogin } from './component';

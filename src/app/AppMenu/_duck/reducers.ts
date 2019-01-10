@@ -1,13 +1,11 @@
 import { Reducer } from 'redux';
 
-import { MenuListActionsEnum } from '../../MenuList/_duck/types';
-
-const { APP_MENU_LIST_SET_ANCHOREL } = MenuListActionsEnum;
+import { APP_MENU_LIST_SET_ANCHOREL } from '@app/MenuList/';
 
 import {
     MenuListState,
     INITIAL_STATE as MENU_LIST_INITIAL_STATE
-} from '../../MenuList/_duck/reducers';
+} from '@app/MenuList/_duck/reducers';
 
 import { MenuContainersEnum } from '@appTypes';
 

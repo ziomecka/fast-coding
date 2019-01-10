@@ -1,4 +1,4 @@
-import { MenuListState } from '../../MenuList/_duck/reducers';
+import { MenuListState } from '@app/MenuList/_duck/reducers';
 
 export const INITIAL_STATE: MenuListState = {
     anchorEl: null

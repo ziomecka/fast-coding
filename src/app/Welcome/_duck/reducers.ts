@@ -1,12 +1,10 @@
 import { Reducer } from 'redux';
 
-import { classTitleHome, classTitleFalling } from './operations';
+import { classTitleHome, classTitleFalling, getClasses } from './operations';
 import { WelcomeActions } from './actions';
 
 import { AppLocationEnum } from '@appTypes';
 import { WelcomeActionsEnum } from './types';
-
-import { getClasses } from './operations';
 
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeActionsEnum;
 

@@ -5,7 +5,7 @@ import { RemindPasswordActions }  from './actions';
 
 import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState
-} from '../../Email/_duck/reducers';
+} from '@app/Email/_duck/reducers';
 
 const {
     APP_REMIND_PASSWORD_SET_EMAIL,

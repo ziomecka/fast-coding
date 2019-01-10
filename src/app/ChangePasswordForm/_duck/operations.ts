@@ -2,9 +2,7 @@ import { Dispatch, Action } from 'redux';
 
 import { AppRoutesEnum } from '@appTypes';
 
-import { ChangePasswordFormResponseEnum } from './types';
-
-import { SendFormChangePasswordI } from './types';
+import { ChangePasswordFormResponseEnum, SendFormChangePasswordI } from './types';
 
 const { SUCCESS, ERROR, CURRENT_PASSWORD_ERROR } = ChangePasswordFormResponseEnum;
 const { changePassword, lessons } = AppRoutesEnum;

@@ -1,7 +1,18 @@
+import { LocalizeState } from 'react-localize-redux';
 import { RulesErrorEnum } from './_types/';
+import getTranslation from './get.translation';
+
 export { RulesErrorEnum };
 
-const { NO_SPACES, NOT_LONG, NOT_EMAIL, NO_DIGIT, NO_SPECIALS, NO_MATCH, MATCH } = RulesErrorEnum;
+const {
+    NO_SPACES,
+    NOT_LONG,
+    NOT_EMAIL,
+    NO_DIGIT,
+    NO_SPECIALS,
+    NO_MATCH,
+    MATCH
+} = RulesErrorEnum;
 
 export const rulesRegexp: RulesRegexpI = {
     [NO_SPACES]: () => /.*[\s].*/,
@@ -22,9 +33,6 @@ const rules: RulesI = {
     [NO_MATCH]: options => options.value === options.value2,
     [MATCH]: options => options.value !== options.value2
 };
-
-import { LocalizeState } from 'react-localize-redux';
-import getTranslation from './get.translation';
 
 export const helperTexts = (rule, value: string, localize: LocalizeState): string => (
     rule? getTranslation(localize, `${rule}_${value.toUpperCase()}`) : ''

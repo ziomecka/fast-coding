@@ -1,12 +1,12 @@
 import {
-    NAV_LEFT,
-    NAV_TOP,
-    PAPER_PADDING_XS,
-    PAPER_PADDING_MAX_XS,
     ELEVATION,
     FONT_SIZE,
     LINE_HEIGHT,
-    LINE_HEIGHT_H
+    LINE_HEIGHT_H,
+    NAV_LEFT,
+    NAV_TOP,
+    PAPER_PADDING_MAX_XS,
+    PAPER_PADDING_XS,
 } from '@constantsStyles';
 
 const {

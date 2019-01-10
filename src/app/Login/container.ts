@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { StandardTextFieldProps } from '@material-ui/core/TextField';
 import { default as Login } from './component';
 import { ApplicationState } from '@appStore';
-import { AppState } from '../_reducers/';
+import { AppState } from '@app/_reducers/';
 
 import { AppContainersEnum } from '@appTypes';
 import { ApplicationContainersEnum } from '@applicationTypes';

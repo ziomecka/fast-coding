@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { ChangePasswordFormProps } from './container';
 
-import Password from '../Password/';
-import Message from '../FormHelperText/';
+import Password from '@app/Password/';
+import Message from '@app/FormHelperText/';
 
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { changePasswordForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
@@ -16,7 +16,6 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import { PasswordsEnum } from '@appTypes';
 const { currentPass, newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '@shared/_types/';

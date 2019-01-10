@@ -11,12 +11,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
 import { buttonsIds } from './_duck/operations';
 
 /** SubMenu */
-import MenuButton, { MenuButtonOptionsI  } from '../MenuButton/'
-import { MenuRulesEnum } from '@appTypes';
+import MenuButton, { MenuButtonOptionsI  } from '@app/MenuButton/'
 
 const { notAnyLesson, notHome } = MenuRulesEnum;
 

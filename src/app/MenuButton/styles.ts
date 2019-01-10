@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-import menuIconClass from '../AppMenu/menu.icon.class';
+import menuIconClass from '@app/AppMenu/menu.icon.class';
 
 const style = createStyles(theme => {
     return {

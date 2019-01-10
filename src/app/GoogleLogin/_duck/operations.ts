@@ -4,7 +4,7 @@
 
 import { Dispatch, Action } from 'redux';
 import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
+import { AppContainersEnum, AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -17,8 +17,6 @@ import { authorizeFirebase, unauthorizeFirebase } from './actions';
 import getTranslation from '@shared/get.translation';
 
 import { onAuthorize } from '@app/User/_duck/operations';
-
-import { UserAuthorizationMethodEnum } from '@appTypes'
 
 import history from '@shared/history';
 

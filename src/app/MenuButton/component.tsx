@@ -11,7 +11,7 @@ import styles from './styles';
 
 import getTranslation from '@shared/get.translation';
 
-import { withMenuRules } from '../MenuRulesHoc/'
+import { withMenuRules } from '@app/MenuRulesHoc/'
 
 const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => {
     const {

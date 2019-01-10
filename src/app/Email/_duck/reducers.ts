@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { applyRules } from '../_duck/operations';
+import { applyRules } from './operations';
 
 export const INITIAL_STATE: EmailState = {
     email: '',

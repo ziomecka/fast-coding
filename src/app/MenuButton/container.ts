@@ -6,7 +6,7 @@ import { ApplicationState } from '@appStore';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
-import { MenuState } from '../AppMenu/_duck/reducers';
+import { MenuState } from '@app/AppMenu/_duck/reducers';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 
@@ -16,7 +16,7 @@ import { AppContainersEnum } from '@appTypes';
 
 import { WithStyles } from '@material-ui/core/styles';
 
-import { WithMenuRules }  from '../MenuRulesHoc/';
+import { WithMenuRules }  from '@app/MenuRulesHoc/';
 
 const { app } = ApplicationContainersEnum;
 const { appMenu } = AppContainersEnum;

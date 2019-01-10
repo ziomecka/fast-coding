@@ -9,3 +9,27 @@ export enum MenuRulesEnum {
     'notAnyLesson' = 'NOT_ANY_LESSON',
     'fastCodingAuthorization' = 'FAST_CODING_AUTHORIZATION'
 };
+
+const {
+    fastCodingAuthorization,
+    notActiveLanguage,
+    notAnyLesson,
+    notCurrentLocation,
+    notDemoLesson,
+    notHome,
+    notLesson,
+    onlyAuthorized,
+    onlyUnauthorized
+} = MenuRulesEnum;
+
+export {
+    fastCodingAuthorization,
+    notActiveLanguage,
+    notAnyLesson,
+    notCurrentLocation,
+    notDemoLesson,
+    notHome,
+    notLesson,
+    onlyAuthorized,
+    onlyUnauthorized
+};

@@ -4,7 +4,7 @@ import RootView from './views/';
 import { ROOT_NODE } from './constants';
 import { Provider } from 'react-redux';
 
-import { default as store } from './store';
+import { default as store } from '@appStore';
 
 /** Resets */
 import './styles/';

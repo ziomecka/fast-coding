@@ -5,7 +5,7 @@ import { default as TextGenerator } from './component';
 import { ApplicationState } from '@appStore';
 
 import { TextGeneratorState } from './_duck/reducers';
-import { LessonState } from '../Lesson/_duck/reducers';
+import { LessonState } from '@components/Lesson/_duck/reducers';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
