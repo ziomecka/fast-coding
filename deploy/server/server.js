@@ -17,8 +17,9 @@ const serverLessonsGet = require('./server.lessons.get');
 const serverChangePassword = require('./server.change.password');
 const serverRemindPassword = require('./server.remind.password');
 const serverNewPassword = require('./server.new.password');
+const serverTranslationsGet = require('./server.translations.get');
 
-const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD, NEW_PASSWORD } } = constants;
+const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD, NEW_PASSWORD, TRANSLATIONS_GET } } = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 
@@ -73,6 +74,9 @@ app.use( cookieParser() );
 
 /** Get lessons */
 app.get( LESSONS_GET, serverLessonsGet );
+
+/** Get translations */
+app.get( TRANSLATIONS_GET, serverTranslationsGet );
 
 /** Set newuser */
 app.post( NEW_USER_SET, serverNewUserSet );
