@@ -23,7 +23,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
       dialogProps,
       Component,
       html,
-      classes: { dialog }
+      classes: { dialog, dialogContent, dialogContentRoot }
      } = props;
 
   return (
@@ -31,9 +31,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         { ...dialogProps }
         disableBackdropClick={false}
         disableEscapeKeyDown={false}
-        classes={{
-            root: dialog
-        }}
+        classes={{ paper: dialog }}
     >
         { titleId && (
             <DialogTitle>
@@ -42,7 +40,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         )}
 
         { Component && (
-            <DialogContent style={ { overflowX: 'hidden' } }>
+            <DialogContent className={ dialogContent } >
                 <Component />
             </DialogContent>
         )}

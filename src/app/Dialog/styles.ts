@@ -26,6 +26,12 @@ const styles = createStyles(theme => {
                 textAlign: 'left',
                 width: '100%'
             }
+        },
+        dialogContent: {
+            [theme.breakpoints.only('xs')]: {
+                padding: 0,
+            },
+            overflowX: 'hidden'
         }
     }
 });
