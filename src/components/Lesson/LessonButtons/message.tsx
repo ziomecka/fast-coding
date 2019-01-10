@@ -1,11 +1,17 @@
 import * as React from 'react';
-import Info from '@app/Info/';
+import Info, { InfoEnum } from '@app/Info/';
+
+const { dialog } = InfoEnum
 
 const Component = () => (
-    <Info render={[
-        {id: 'lessonDialogLeaveQuestion', variant: 'h2'},
-        {id: 'lessonDialogLeaveExplanation', variant: 'body1'}
-    ]} useLocalize />
+    <Info
+        variant={ dialog }
+        render={[
+            {id: 'lessonDialogLeaveQuestion', variant: 'h2'},
+            {id: 'lessonDialogLeaveExplanation', variant: 'body1'}
+        ]}
+        useLocalize
+    />
 );
 
 export default Component;

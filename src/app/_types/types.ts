@@ -29,5 +29,6 @@ export enum AppRoutesEnum {
     remindPassword = '/remindpassword/post',
     newPasswordSet = '/newpassword/post',
     privacyPolicy = '/privacyPolicy',
-    translationsGet = '/translations/get'
+    translationsGet = '/translations/get',
+    termsOfService = '/termsOfService',
 };

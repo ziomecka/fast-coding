@@ -16,6 +16,8 @@ import { WithStyles, WithTheme } from '@material-ui/core/styles';
 import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';
 import { AddListener, RemoveListener } from '@app/KeyboardListener/_duck/actions';
 
+import { IWithMedia } from '@app/Media';
+
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
@@ -46,4 +48,5 @@ export interface StepperProps extends
     RouteComponentProps<{}>,
     MapStateToProps,
     WithStyles,
+    IWithMedia,
     WithTheme {};

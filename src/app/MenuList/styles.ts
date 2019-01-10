@@ -1,27 +1,35 @@
 import { createStyles } from '@material-ui/core/styles';
-import { NAV_MAXWIDTH, PAPER_PADDING_MAX_MD } from '@constantsStyles';
 import menuIconClass from '../AppMenu/menu.icon.class';
+
+import {
+    NAV_MAXWIDTH,
+    PAPER_PADDING_LG,
+    PAPER_PADDING_MAX_MD
+} from '@constantsStyles';
 
 const style = createStyles(theme => {
     const {
         palette: { grey: { 200: menuBackgroundColor }},
         typography: {
-            h6: { fontSize: fontSizeMenuItem }
+            h4: { fontSize: fontSizeMenuItem }
         }
     } = theme;
 
     return {
+        ...menuIconClass(theme),
         menuClass: {
             maxWidth: `${ NAV_MAXWIDTH }px`,
             backgroundColor: menuBackgroundColor
         },
-        ...menuIconClass(theme),
         menuItemClass: {
             boxSizing: 'border-box',
             width: '100%',
             fontSize: fontSizeMenuItem,
             letterSpacing: '0.1em',
-            padding: PAPER_PADDING_MAX_MD
+            padding: PAPER_PADDING_LG,
+            [ theme.breakpoints.up('sm') ]: {
+                padding: PAPER_PADDING_MAX_MD
+            }
         }
     };
 });

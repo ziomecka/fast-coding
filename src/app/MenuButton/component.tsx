@@ -38,7 +38,7 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
 
     const IconButton = (
         <MaterialIconButton
-            className={ `${ menuIconClass } ${ iconButtonClassName }` }
+            className={ `${ menuIconClass } ${ iconButtonClassName ? iconButtonClassName : '' }` }
             { ...{ onClick } }
             { ...other }
         >

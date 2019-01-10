@@ -10,15 +10,11 @@ export const saveTranslations: ActionCreator<SaveTranslationsActionType> = (data
     data
 });
 
-
 export const actions = {
     saveTranslations
 };
 
-export interface ISaveTranslations {
-    en: TranslationsType;
-    pl: TranslationsType;
-};
+export type ISaveTranslations = TranslationsType[];
 
 export type SaveTranslationsActionType = Action & {
     data:  ISaveTranslations

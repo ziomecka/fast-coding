@@ -10,6 +10,8 @@ import { onOpenNotification } from '../../Notification/_duck/operations';
 
 import history from '@shared/history';
 
+import { closeDialog } from '@app/Dialog/';
+
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
@@ -36,6 +38,8 @@ export const onSendForm = (options: SendFormI): any => (
         if (result === success) {
             if (redirectUrl) history.push(redirectUrl);
             dispatch(onOpenNotification({ text: successNotification }));
+            // TODO - nie wszystkie formularze otwierane w Dialog wiec ten dispatch nie zawsze jest uzasadniony
+            dispatch(closeDialog());
             return response;
         }
 

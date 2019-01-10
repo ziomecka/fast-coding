@@ -25,27 +25,35 @@ import GridListTile from '@material-ui/core/GridListTile';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
-import { TRANSITION_DURATION, COURSE_HEIGHT_MD, COURSE_HEIGHT_LG, COLS_MD, COLS_LG, SPACING_BEETWEEN_LESSONS } from './constants.styles';
-import { NAV_HEIGHT_LG, NAV_HEIGHT_MD, MEDIA_DESKTOP_LG } from '@constantsStyles';
+import { withMedia, MediaEnum } from '@app/Media/';
+const { lg, xl } = MediaEnum;
 
-import { LessonsTypesEnum } from './_duck/types';
+import {
+    TRANSITION_DURATION,
+    SPACING_BEETWEEN_LESSONS,
+    GRID
+} from './constants.styles';
+
+import {
+    NAV_HEIGHT_LG,
+    NAV_HEIGHT_MD,
+} from '@constantsStyles';
+
+import { LessonsTypesEnum, CourseGrid } from './_duck/types';
 const { review } = LessonsTypesEnum;
 
 import getTranslation from '@shared/get.translation';
 
-import Media from 'react-media';
-
 require('./style.sass');
 
 /**
- * Needed for renderig lessons and media query.
+ * Needed for renderig lessons.
  * If course is not expanded then
  * lessons will be an empty array.
  * Otherwise lessons === this.props.lessons
  */
 interface ICourseState {
     lessons: LessonData[];
-    mediaLarge: boolean;
 }
 
 /**
@@ -54,6 +62,7 @@ interface ICourseState {
 class CourseComponent extends React.Component<CourseProps, ICourseState> {
     lessonsRoute: AppRoutesEnum;
     timeout: any
+    grid: CourseGrid;
     constructor(props) {
         super(props);
 
@@ -62,11 +71,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         /** If course is expanded then lessons otherwise empty array */
         this.state = {
             lessons: this.isExpanded? this.props.lessons : [],
-            mediaLarge: window.matchMedia(`(min-width: ${ MEDIA_DESKTOP_LG } )`).matches
         };
 
         this.handleOnClick = this.handleOnClick.bind(this);
-        this.onMediaQueryChange = this.onMediaQueryChange.bind(this);
+
+        this.grid = GRID;
     }
 
     handleOnClick(lesson: LessonData): void {
@@ -113,9 +122,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         if (id) {
             const {
                 props: {
-                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}}
+                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}},
+                    media
                 },
-                state: { mediaLarge }
             } = this;
 
             this.timeout = setTimeout(() => {
@@ -125,7 +134,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 const { top } = document.getElementById(id).getBoundingClientRect();
                 /** Body is scrolled by */
                 const { scrollTop } = body;
-                const NAV_HEIGHT = mediaLarge ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
+
+                // TODO - simplify when NAV_HEIGHT GRID implementes
+                const NAV_HEIGHT = (media === lg || media === xl) ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
 
                 body.scroll({
                     top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top - NAV_HEIGHT ), top + scrollTop ),
@@ -138,25 +149,21 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         }
     }
 
-    getLessonsGrid(cellHeight: number, cols: number) {
+    getLessonsGrid() {
         const spacing = SPACING_BEETWEEN_LESSONS * this.props.theme.spacing.unit;
+        const { props: { media } } = this;
+        const { cols, cellHeight } = this.grid.get(media);
 
         return (
             <GridList
                 classes={{ root: this.props.classes.lessonsContainer }}
                 /** Id needed for scrolling within course window - stepper */
                 id={ `details-${ this.id }` }
-                { ...{ cellHeight, cols, spacing } }
+                { ...{ spacing, cols, cellHeight } }
             >
                 { this.lessons }
             </GridList>
         );
-    }
-
-    onMediaQueryChange(matches: boolean) {
-        this.setState({
-            mediaLarge: matches
-        });
     }
 
     get course () {
@@ -260,19 +267,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <Grid
                     container
-                    justify="space-evenly"
                     spacing={ 40 }
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
                 >
-                    <Media query={`(min-width: ${ MEDIA_DESKTOP_LG }px)`} onChange={ this.onMediaQueryChange }>{
-                        matches => {
-                            return matches
-                                ? this.getLessonsGrid( COURSE_HEIGHT_LG, COLS_LG )
-                                : this.getLessonsGrid( COURSE_HEIGHT_MD, COLS_MD )
-                        }
-                    }</Media>
-
+                    { this.getLessonsGrid() }
                 </Grid>
             </ExpansionPanel>
         );
@@ -310,13 +309,14 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     item
                     container
                     key={ _id }
+                    component='li'
                     classes={{
                         item: `${ lessonTile } ${ isReview ? lessonTileReview : '' }`
                     }}
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
                 >
-                    <GridListTile  className={ lessonTileContainer }>
+                    <GridListTile component='div' className={ lessonTileContainer }>
                     <Button
                         onClick={ () => this.handleOnClick(lesson) }
                         classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
@@ -371,4 +371,4 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     }
 };
 
-export default withStyles(styles)(withTheme()(CourseComponent));
+export default withStyles(styles)(withTheme()(withMedia(CourseComponent)));

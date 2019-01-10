@@ -60,10 +60,8 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   componentDidUpdate(prevProps: ContentProps) {
-    const { appLocation } = this.props;
-    const prevAppLocation = prevProps.appLocation;
-    const { pathname } = this.props.location;
-    const prevPathname = prevProps.location.pathname;
+    const { props: { appLocation, location: { pathname } } } = this;
+    const { appLocation: prevAppLocation, location: { pathname: prevPathname }  } = prevProps;
 
     // TODO - improve / change?
     if (appLocation !== prevAppLocation) {
@@ -85,7 +83,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
   get lessonTitle(): string {
       return this.props.lessonTitle[this.langCode];
-    }
+  }
 
   get lessonTranslation(): string {
       return getTranslation(this.props.localize, "lessonsLesson");
@@ -107,18 +105,23 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             onDrop={this.onDrop}
         >
             <Typography variant="h2" className={contentTitle}>
-                <Translate id={title} options={ {
-                    // TODO nie podoba mi się
-                    // bo jest zbyt 'proste'
-                    // bo trudno dodawać style
-                    onMissingTranslation: () => (
-                        isLesson && (
-                            `${ lessonTranslation } ${ lessonNo + 1 }
-                            ${ lessonTitle }`
-                        )
-                    ) || '',
-                    renderToStaticMarkup
-                }} />
+                <Translate id={ title } options={ { onMissingTranslation: () => null, renderToStaticMarkup }} />
+
+                {/* // TODO nie podoba mi się
+                // bo jest zbyt 'hacky' i zbyt duzo sprawdzania przy każdym uruchomienniu lekcji
+                // np trudno dodawać style */}
+                { isLesson && (
+                    `${
+                        lessonNo !== undefined && lessonNo !== null
+                            ? `${ lessonTranslation } ${ lessonNo + 1 }`
+                            : ''
+                    }
+                    ${
+                        lessonTitle
+                            ? lessonTitle
+                            : ''
+                    }` // in case no-title
+                )}
             </Typography>
 
             {this.props.children}

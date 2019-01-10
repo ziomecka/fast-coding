@@ -15,6 +15,8 @@ import { AppContainersEnum, AppLocationEnum } from '@appTypes';
 import { WithStyles } from '@material-ui/core/styles';
 import { onOpenDemoLesson, onAddKeyDownListener, onRemoveKeyDownListener } from './_duck/operations';
 
+import { IWithMedia } from '@app/Media/';
+
 const { app } = ApplicationContainersEnum;
 const { welcome } = AppContainersEnum;
 
@@ -44,6 +46,7 @@ export interface WelcomeDispatch {
 export interface WelcomeProps extends WelcomeDispatch,
     WelcomeState,
     WithStyles,
+    IWithMedia,
     RouteComponentProps<{}> {
         heading: string;
         animated: boolean;

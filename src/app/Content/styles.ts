@@ -3,13 +3,12 @@ import { createStyles } from '@material-ui/core/styles';
 import {
     NAV_HEIGHT_MD,
     NAV_HEIGHT_LG,
+    PAPER_PADDING_MAX_XS,
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
-    PAPER_PADDING_MD,
-    PAPER_PADDING_LG,
-    LINE_HEIGHT,
     FOOTER_HEIGHT_LG,
-    FOOTER_HEIGHT_MD
+    FOOTER_HEIGHT_MD,
+    WELCOME_HEADING_OTHER_XS
 } from '@constantsStyles';
 
 const styles = createStyles(theme => {
@@ -19,7 +18,7 @@ const styles = createStyles(theme => {
                 primary: { main: mainBackground }
         },
         typography: {
-            h4: { fontSize: titleFontSize }
+            h2: { fontSize: WELCOME_HEADING_OTHER }
         }
     } = theme;
 
@@ -28,21 +27,21 @@ const styles = createStyles(theme => {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
-            padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
-            paddingBottom: FOOTER_HEIGHT_MD,
-            backgroundColor: mainBackground,
-            height: '100vh',
-            [ theme.breakpoints.up('md') ]: {
-                height: 'auto',
-                backgroundColor: defaultBackground,
-                overflow: 'hidden'
+            padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_XS }`,
+            backgroundColor: defaultBackground,
+            height: 'auto',
+            overflow: 'hidden',
+            [ theme.breakpoints.up('sm') ]: {
+                padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
             },
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
-                paddingBottom: FOOTER_HEIGHT_LG
             }
         },
         contentBoxHome: {
+            backgroundColor: mainBackground,
+            height: '100vh',
+            paddingBottom: 0,
             [ theme.breakpoints.up('md') ]: {
                 height: '0',
                 padding: '0',
@@ -50,20 +49,23 @@ const styles = createStyles(theme => {
             }
         },
         contentBoxOther: {
-            minHeight: 'calc(100vh)'
+            paddingBottom: FOOTER_HEIGHT_MD,
+            minHeight: 'calc(100vh)',
+            [ theme.breakpoints.up('lg') ]: {
+                paddingBottom: FOOTER_HEIGHT_LG
+            }
         },
         contentTitle: {
-            [ theme.breakpoints.down('md') ]: {
-                display: 'none'
+            fontSize: WELCOME_HEADING_OTHER_XS,
+            [theme.breakpoints.up('sm')]: {
+                fontSize: WELCOME_HEADING_OTHER,
             },
             position: 'relative',
             display: 'block',
             width: '100%',
             left: 0,
-            fontSize: titleFontSize,
             margin: `1em 0`,
-            whiteSpace: 'pre-line',
-            lineHeight: `${ LINE_HEIGHT }em`
+            whiteSpace: 'pre-line'
         }
     };
 });

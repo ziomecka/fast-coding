@@ -5,12 +5,11 @@ export enum GetTranslationsActionsEnum {
 }
 
 export interface TranslationsType {
-    [key: string]: string;
+    id: string;
+    en: { [key: string]: string };
+    pl: { [key: string]: string };
 }
 
 export interface GetTranslationsResponseI extends GetResponseI {
-    translations: {
-        en: TranslationsType,
-        pl: TranslationsType
-    }
+    translations: TranslationsType[]
 };

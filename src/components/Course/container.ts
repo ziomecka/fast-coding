@@ -23,6 +23,8 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 const { components } = ApplicationContainersEnum;
 const { lessons } = ComponentsContainersEnum;
 
+import { IWithMedia } from '@app/Media/';
+
 const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
     localize: state.localize,
     openedCourseId: state[components][lessons].openedCourseId
@@ -58,5 +60,6 @@ RouteComponentProps<{}>,
 WithStyles,
 WithTheme,
 LessonsDataI,
+IWithMedia,
 MapStateToProps {
 };

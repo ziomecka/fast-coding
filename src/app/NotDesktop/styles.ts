@@ -1,5 +1,11 @@
 import { createStyles } from '@material-ui/core/styles';
-import { PAPER_PADDING_MAX_LG, PAPER_PADDING_MAX_MD, NAV_HEIGHT_MD, NAV_HEIGHT_LG } from '@constantsStyles';
+import {
+    PAPER_PADDING_MAX_LG,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_XS,
+    NAV_HEIGHT_MD,
+    NAV_HEIGHT_LG
+} from '@constantsStyles';
 import { MULTIPLY_ANIMATION } from './constants.styles';
 
 const styles = createStyles( theme => {
@@ -18,12 +24,15 @@ const styles = createStyles( theme => {
     return {
         FCPaper: {
             backgroundColor,
-            padding: `${ PAPER_PADDING_MAX_MD }`,
+            padding: `${ PAPER_PADDING_MAX_XS }`,
             paddingTop:NAV_HEIGHT_MD,
             height: '100%',
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
+            [ theme.breakpoints.up('sm') ]: {
+                padding: `${ PAPER_PADDING_MAX_MD }`,
+            },
             [ theme.breakpoints.up('lg') ]: {
                 padding: `${ PAPER_PADDING_MAX_LG }`,
             },

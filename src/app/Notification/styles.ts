@@ -1,5 +1,9 @@
 import { createStyles } from '@material-ui/core/styles';
-import { PAPER_PADDING_MD, PAPER_PADDING_LG } from '@constantsStyles';
+import {
+    PAPER_PADDING_MAX_XS,
+    PAPER_PADDING_MAX_MD,
+    PAPER_PADDING_MAX_LG
+} from '@constantsStyles';
 
 import { NOTIFICATION_FONTSIZE } from './constants.styles';
 
@@ -9,41 +13,45 @@ const styles = createStyles(theme => {
         palette: {
             primary: { dark: successBackground, contrastText: successText },
             secondary: { dark: errorBackground, contrastText: errorText }
-        }
+        },
+        typography: { lineHeight }
     } = theme;
 
     return {
-        notificationIcon: {
+        notificationMessage: {
             fontSize: NOTIFICATION_FONTSIZE,
-            marginLeft: unit,
-            marginRight: unit
+            textAlign: 'center',
+            lineHeight
         },
         notificationMessageSuccess: {
-            fontSize: NOTIFICATION_FONTSIZE,
             color: successText,
             backgroundColor: successBackground,
         },
-        notificationContentSuccess: {
-            padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('lg')] :{
-                padding: PAPER_PADDING_LG
-            },
-            backgroundColor: successBackground,
-        },
-        notificationIconSuccess: {
-            color: successText
-        },
         notificationMessageError: {
-            fontSize: NOTIFICATION_FONTSIZE,
             color: errorText,
             backgroundColor: errorBackground
         },
-        notificationContentError: {
-            padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('lg')] :{
-                padding: PAPER_PADDING_LG
+        notificationContent: {
+            padding: PAPER_PADDING_MAX_XS,
+            [theme.breakpoints.up('sm')] :{
+                padding: PAPER_PADDING_MAX_MD
             },
+            [theme.breakpoints.up('lg')] :{
+                padding: PAPER_PADDING_MAX_LG
+            }
+        },
+        notificationContentSuccess: {
+            backgroundColor: successBackground,
+        },
+        notificationContentError: {
             backgroundColor: errorBackground
+        },
+        notificationIcon: {
+            marginLeft: unit,
+            marginRight: unit
+        },
+        notificationIconSuccess: {
+            color: successText
         },
         notificationIconError: {
             color: errorText

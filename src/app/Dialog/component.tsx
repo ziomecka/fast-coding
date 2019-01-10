@@ -4,6 +4,7 @@ import * as React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 
 import ButtonWithHint from '../ButtonWithHint';
@@ -12,13 +13,17 @@ import { AppDialogProps } from './container';
 
 import { Translate } from 'react-localize-redux';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
+
 const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
   const {
       titleId,
       buttons,
       dialogProps,
       Component,
-      html
+      html,
+      classes: { dialog, dialogContent, dialogContentRoot }
      } = props;
 
   return (
@@ -26,6 +31,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         { ...dialogProps }
         disableBackdropClick={false}
         disableEscapeKeyDown={false}
+        classes={{ paper: dialog }}
     >
         { titleId && (
             <DialogTitle>
@@ -34,7 +40,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         )}
 
         { Component && (
-            <DialogContent>
+            <DialogContent className={ dialogContent } >
                 <Component />
             </DialogContent>
         )}
@@ -57,4 +63,4 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
   );
 };
 
-export default DialogComponent;
+export default withStyles(styles)(DialogComponent);
