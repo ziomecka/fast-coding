@@ -53,8 +53,6 @@ export const manageButtonFocus = (buttonsIds: string[], focusedIndex: number): (
     };
 };
 
-
-
 export default {
     manageButtonFocus,
     getButton

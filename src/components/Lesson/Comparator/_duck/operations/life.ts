@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import { Dispatch } from 'redux';
 import { ThunkGetStateType } from '@applicationTypes';
 
