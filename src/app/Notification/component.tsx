@@ -18,6 +18,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
         open,
         text,
         classes,
+        classes: { notificationMessage, notificationContent, notificationIcon },
         autoHideDuration,
         variant
     } = props;
@@ -45,10 +46,10 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
 
     const message = (
         <>
-            <span className={ classes[ variantClasses.message ] }>
+            <span className={ `${ notificationMessage } ${classes[ variantClasses.message ]}` }>
                 {text}
                 {/* Render icon only if truthy */}
-                { Icon && <Icon className={`${ classes.notificationIcon } ${ classes[ variantClasses.icon ] }`} /> }
+                { Icon && <Icon className={`${ notificationIcon } ${ classes[ variantClasses.icon ] }`} /> }
             </span>
         </>
     );
@@ -61,7 +62,7 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
             <SnackbarContent
                 {...{ message }}
                 aria-describedby="client-snackbar"
-                className={ classes[ variantClasses.content ] }
+                className={ `${ notificationContent } ${classes[ variantClasses.content ]}` }
             />
         </SnackBar>
     );

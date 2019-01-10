@@ -13,37 +13,35 @@ const styles = createStyles(theme => {
     } = theme;
 
     return {
-        notificationIcon: {
-            fontSize: NOTIFICATION_FONTSIZE,
-            marginLeft: unit,
-            marginRight: unit
+        notificationMessage: {
+            fontSize: NOTIFICATION_FONTSIZE
         },
         notificationMessageSuccess: {
-            fontSize: NOTIFICATION_FONTSIZE,
             color: successText,
             backgroundColor: successBackground,
         },
-        notificationContentSuccess: {
-            padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('lg')] :{
-                padding: PAPER_PADDING_LG
-            },
-            backgroundColor: successBackground,
-        },
-        notificationIconSuccess: {
-            color: successText
-        },
         notificationMessageError: {
-            fontSize: NOTIFICATION_FONTSIZE,
             color: errorText,
             backgroundColor: errorBackground
         },
-        notificationContentError: {
+        notificationContent: {
             padding: PAPER_PADDING_MD,
-            [theme.breakpoints.up('lg')] :{
+            [theme.breakpoints.up('sm')] :{
                 padding: PAPER_PADDING_LG
-            },
+            }
+        },
+        notificationContentSuccess: {
+            backgroundColor: successBackground,
+        },
+        notificationContentError: {
             backgroundColor: errorBackground
+        },
+        notificationIcon: {
+            marginLeft: unit,
+            marginRight: unit
+        },
+        notificationIconSuccess: {
+            color: successText
         },
         notificationIconError: {
             color: errorText
