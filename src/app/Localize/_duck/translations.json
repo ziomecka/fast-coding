@@ -179,6 +179,10 @@
         "Password has been changed. Please log in.",
         "Hasło zostało zmienione. Proszę zaloguj się."
     ],
+    "notificationLoginFailure": [
+        "Login failed. Please try again.",
+        "Logowanie nie powiodło się. Proszę spróbuj ponownie."
+    ],
     "oopsSomethingWentWrong": [
         "Oops! Something went wrong.",
         "Ups! Coś poszło nie tak."

@@ -22,6 +22,9 @@ import { UserAuthorizationMethodEnum } from '@appTypes'
 
 import history from '@shared/history';
 
+import { closeDialog } from '@app/Dialog/';
+import { openNotification, error, success } from '@app/Notification/';
+
 const { app } = ApplicationContainersEnum;
 const { googleLogin } = AppContainersEnum;
 
@@ -56,30 +59,26 @@ export const onAuthorizeFirebase = (): any => (
 
     });
 
-const signInSuccessWithAuthResult = async (authResult, redirectUrl, dispatch: Dispatch): Promise<boolean> => {
+const signInSuccessWithAuthResult = (authResult, dispatch: Dispatch): boolean => {
     const {
         user: { displayName, email, photoURL, refreshToken },
         additionalUserInfo: { providerId }
     } = authResult;
 
-    try {
-        let response = await dispatch(onAuthorize({
+        dispatch(onAuthorize({
             // @ts-ignore
             displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
         }));
-        if (response) {
-            history.push(signInSuccessUrl);
-            response = null; // GC
-        }
-    } catch (err) {
-        // TOD if failure
-    } finally {
+
+        dispatch(closeDialog());
+        history.push(signInSuccessUrl);
+        dispatch(openNotification({ text: 'notificationAuthorized', variant: success }));
         return false; // false means 'do not redirect'
-    }
 };
 
-const signInFailure = async (err, dispatch: Dispatch): Promise<boolean> => {
-    return Promise.resolve(false);
+const signInFailure = (dispatch:  Dispatch): boolean => {
+    dispatch(openNotification({ text: 'notificationLoginFailure', variant: error }));
+    return false;
 };
 
 export const onStartFirebaseUI = (): any => (
@@ -89,8 +88,8 @@ export const onStartFirebaseUI = (): any => (
 
             ui.start('#firebaseui-auth-container', {
                 callbacks: {
-                    signInSuccessWithAuthResult: async (authResult, redirectUrl) => signInSuccessWithAuthResult(authResult, redirectUrl, dispatch),
-                    signInFailure: err => signInFailure(err, dispatch)
+                    signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult(authResult, dispatch),
+                    signInFailure: () => signInFailure(dispatch)
                 },
                 signInFlow: 'popup',
                 privacyPolicyUrl,
