@@ -21,7 +21,8 @@
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
     "inspectNode": "node --inspect  ./bundle/server/server.js",
-    "start": "node --optimize_for_size deploy/server/server.js $PORT"
+    "start": "node --optimize_for_size deploy/server/server.js $PORT",
+    "lint": "eslint './src/**/*.ts{,?}'"
   },
   "repository": {
     "type": "git",

@@ -9,6 +9,6 @@
     }
   },
   "rules": {
-    "semi": 2
+    "no-duplicate-imports": "error",
   }
 }
