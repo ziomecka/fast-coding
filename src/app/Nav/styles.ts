@@ -40,17 +40,23 @@ const style = createStyles(theme => {
                 display: 'block',
                 content: "attr(login)",
                 position: 'absolute',
-                left: '50%',
-                top: '95%',
-                transform: 'translate(-50%, -50%)',
+                right: 0,
+                top: -spacingUnit * 2,
                 fontSize: LOGIN_FONT_SIZE,
                 fontWeight: loginFontWeight,
                 letterSpacing: LOGIN_LETTER_SPACING,
                 color: loginColor,
-                whiteSpace: 'wrap',
-                marginTop: spacingUnit,
-                width: LOGIN_WIDTH,
-                lineHeight: LOGIN_LINE_HEIGHT // decreased i case login takes upto three lines
+                whiteSpace: 'nowrap',
+                marginTop: 0,
+                lineHeight: LOGIN_LINE_HEIGHT, // decreased i case login takes upto three lines
+                [ theme.breakpoints.up('sm')]: { // up('sm') because from sm main headline is displayed
+                    width: LOGIN_WIDTH,
+                    right: 'auto',
+                    left: '50%',
+                    top: `100%`,
+                    transform: 'translateX(-50%)',
+                    whiteSpace: 'normal'
+                }
             }
         }
     }
