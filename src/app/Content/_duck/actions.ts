@@ -7,7 +7,7 @@ const {
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER,
     APP_CONTENT_TITLE_CHANGE
- } = ContentActionsEnum;
+} = ContentActionsEnum;
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> = ( appLocation: AppLocationEnum ) => ( {

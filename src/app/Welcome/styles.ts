@@ -43,7 +43,7 @@ const styles = createStyles( theme => {
         [ 'color' ], { duration: shorter, easing: easeOut }
     ) }, ${ theme.transitions.create(
         ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
-        ) }`;
+    ) }`;
 
     return {
         welcomePaper: {

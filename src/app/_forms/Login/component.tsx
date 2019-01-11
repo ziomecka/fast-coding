@@ -20,21 +20,21 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
         localize
     } = props;
 
-  return (
-      <TextField
-        label={getTranslation( props.localize, 'loginLabel' )}
-        placeholder={getTranslation( props.localize, 'loginPlaceholder' )}
-        required
-        {...{ onChange, autoFocus }}
-        value={ login }
-        inputProps={{ tabIndex }}
-        error={ !!loginValid }
-        helperText={ !!loginValid
-          ? helperTexts( loginValid, 'login', localize )
-          : null
-        }
-      />
-  );
+    return (
+        <TextField
+            label={getTranslation( props.localize, 'loginLabel' )}
+            placeholder={getTranslation( props.localize, 'loginPlaceholder' )}
+            required
+            {...{ onChange, autoFocus }}
+            value={ login }
+            inputProps={{ tabIndex }}
+            error={ !!loginValid }
+            helperText={ !!loginValid
+                ? helperTexts( loginValid, 'login', localize )
+                : null
+            }
+        />
+    );
 };
 
 export default LoginComponent;

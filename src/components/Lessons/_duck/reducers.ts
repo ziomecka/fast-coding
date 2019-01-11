@@ -8,7 +8,7 @@ const {
     COMPONENTS_LESSONS_CLOSE_COURSE,
     COMPONENTS_LESSONS_ACTIVATE_LESSON,
     COMPONENTS_LESSONS_DEACTIVATE_LESSON
- } = LessonsActionsEnum;
+} = LessonsActionsEnum;
 
 export const INITIAL_STATE: ILessonsState = {
     openedCourseId: null,

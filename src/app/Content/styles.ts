@@ -14,8 +14,8 @@ import {
 const styles = createStyles( theme => {
     const {
         palette: {
-                background: { default: defaultBackground },
-                primary: { main: mainBackground }
+            background: { default: defaultBackground },
+            primary: { main: mainBackground }
         },
         typography: {
             h2: { fontSize: WELCOME_HEADING_OTHER }

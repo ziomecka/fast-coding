@@ -74,26 +74,26 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
                 {/*
                 // @ts-ignore */}
                 <Grid { ...columnProps } alignItems="flex-end" style={{ paddingLeft: '1em' }} >
-                <GridList className={ footerGridList }>
-                    <ListItem className={ footerListItem }>
-                        <OpenDialogButton
-                            translationId="privacyPolicy"
-                            options={{
-                                variant: yes,
-                                Component: () => <PrivacyPolicy variant={ dialog } />
-                            }}
-                        />
-                    </ListItem>
+                    <GridList className={ footerGridList }>
+                        <ListItem className={ footerListItem }>
+                            <OpenDialogButton
+                                translationId="privacyPolicy"
+                                options={{
+                                    variant: yes,
+                                    Component: () => <PrivacyPolicy variant={ dialog } />
+                                }}
+                            />
+                        </ListItem>
 
-                    <ListItem className={ footerListItem }>
-                        <OpenDialogButton
-                            translationId="termsOfService"
-                            options={{
-                                variant: yes,
-                                Component: () => <TermsOfService variant={ dialog } />
-                            }}
-                        />
-                    </ListItem>
+                        <ListItem className={ footerListItem }>
+                            <OpenDialogButton
+                                translationId="termsOfService"
+                                options={{
+                                    variant: yes,
+                                    Component: () => <TermsOfService variant={ dialog } />
+                                }}
+                            />
+                        </ListItem>
                     </GridList>
                 </Grid>
             </Grid>

@@ -29,11 +29,11 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     } = classes;
 
     const isCorrect = ( ind: number ): boolean => {
-      return (
-        ind <= currentSignIndex &&
-        !isErrors( ind ) &&
-        !isCorrectedErrors( ind )
-      );
+        return (
+            ind <= currentSignIndex &&
+            !isErrors( ind ) &&
+            !isCorrectedErrors( ind )
+        );
     };
 
     const isErrors = ( ind: number ): boolean => errors.indexOf( ind ) > -1;

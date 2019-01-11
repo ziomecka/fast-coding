@@ -57,9 +57,9 @@ export const onStartLeaving = (): any => (
                 // @ts-ignore
                 onKeyDown: ( e ) => manageButtonFocus( e )
             }
-        } )
-    );
-} );
+        } ) );
+    }
+);
 
 export default {
     onStartLeaving

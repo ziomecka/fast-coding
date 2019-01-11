@@ -7,8 +7,9 @@ import { applicationReducer } from './_reducers/';
 const middlewares = [ thunk ];
 
 const actionSanitizer = ( action ) => (
-        action.type === 'FILE_DOWNLOAD_SUCCESS' && action.data ?
-        { ...action, data: '<<LONG_BLOB>>' } : action
+    ( action.type === 'FILE_DOWNLOAD_SUCCESS' && action.data )
+        ? { ...action, data: '<<LONG_BLOB>>' }
+        : action
 );
 
 const stateSanitizer = ( state ) => state.data ? { ...state, data: '<<LONG_BLOB>>' } : state;

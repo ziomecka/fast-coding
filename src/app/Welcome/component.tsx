@@ -152,11 +152,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
             <Paper className={
                 `${ welcomePaper } ${
                     isHome
-                    ? welcomeHome
-                    : isLesson
-                        ? welcomeLesson
-                        : welcomeOther
-                    }`
+                        ? welcomeHome
+                        : isLesson
+                            ? welcomeLesson
+                            : welcomeOther
+                }`
             }>
 
                 { ( media !== xs || isHome ) && (
@@ -179,24 +179,24 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
 
                 {/* Render buttons only when Home and desktop */}
-                    {isHome && (
-                        <div className={ welcomeButtons }>
-                            <Button
-                                onClick={ this.goToLessons }
-                                className={ welcomeButton }
-                                id={ buttonsIds[0] }
-                            >
-                                <Translate id="welcomeGoToCourses"/>
-                            </Button>
-                            <Button
-                                className={`${ welcomeButton } ${ welcomeButtonMain }`}
-                                onClick={ this.goToDemo }
-                                id={ buttonsIds[1] }
-                            >
-                                <Translate id="welcomeGoToDemo"/>
-                            </Button>
-                        </div>
-                    )}
+                {isHome && (
+                    <div className={ welcomeButtons }>
+                        <Button
+                            onClick={ this.goToLessons }
+                            className={ welcomeButton }
+                            id={ buttonsIds[0] }
+                        >
+                            <Translate id="welcomeGoToCourses"/>
+                        </Button>
+                        <Button
+                            className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                            onClick={ this.goToDemo }
+                            id={ buttonsIds[1] }
+                        >
+                            <Translate id="welcomeGoToDemo"/>
+                        </Button>
+                    </div>
+                )}
             </Paper>
         );
     }

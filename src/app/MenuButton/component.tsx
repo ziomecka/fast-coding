@@ -54,7 +54,8 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
                         { IconButton }
                     </Tooltip>
                 )
-            ) || <React.Fragment> { IconButton } </React.Fragment> )
+                ) || <React.Fragment> { IconButton } </React.Fragment>
+            )
         }</React.Fragment>
     );
 };

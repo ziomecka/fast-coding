@@ -12,8 +12,9 @@ const onOpenSimpleDialog = ( options: YesDialogOptions ): any => (
                 onBackdropClick: () => dispatch( closeDialog() )
             },
             closeButton: true
-    } ) ) );
-} );
+        } ) ) );
+    }
+);
 
 const onOpenYesDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
@@ -39,10 +40,10 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
                         }
                     }
                 }
-            }
-        }
-    ) ) );
-} );
+            } }
+        ) ) );
+    }
+);
 
 const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
@@ -88,10 +89,10 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                         }
                     },
                 }
-            }
-        }
-    ) ) );
-} );
+            } }
+        ) ) );
+    }
+);
 
 const map = new Map( [
     [ simple, onOpenSimpleDialog ],
@@ -103,7 +104,8 @@ export const onOpenDialog = ( options: OpenDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         const { variant, ...other } = options;
         dispatch( map.get( variant )( other ) );
-} );
+    }
+);
 
 export const onCloseDialog = (): any => ( dispatch: Dispatch ): Action => dispatch( closeDialog() );
 

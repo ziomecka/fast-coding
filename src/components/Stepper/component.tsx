@@ -375,9 +375,9 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
         return (
             <IconButton
-               onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
-               className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
-               >
+                onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
+                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+            >
                 <IconPrevious />
             </IconButton>
         );
@@ -420,9 +420,9 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
         return (
             <IconButton
-               onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
-               className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
-               style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
+                onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
+                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+                style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
             >
                 <IconNext />
             </IconButton>

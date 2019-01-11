@@ -23,118 +23,116 @@ const { demo, home, lessons } = AppRoutesEnum;
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
     constructor( props: ContentProps ) {
-    super( props );
-    this.onDrop = this.onDrop.bind( this );
-    this.home = AppRoutesEnum.home;
-  }
+        super( props );
+        this.onDrop = this.onDrop.bind( this );
+        this.home = AppRoutesEnum.home;
+    }
 
-  get titles() {
-    return {
-        [home]: '',
-        [demo]: 'demoLessonTitle',
-        [lessons]: 'coursesTitle'
-    };
-  }
+    get titles() {
+        return {
+            [home]: '',
+            [demo]: 'demoLessonTitle',
+            [lessons]: 'coursesTitle'
+        };
+    }
 
-  get isLesson() {
-      return RegExp( '.*\lesson-.*' ).test( this.props.location.pathname );
-  }
+    get isLesson() {
+        return RegExp( '.*\lesson-.*' ).test( this.props.location.pathname );
+    }
 
-  get isHome() {
-      return this.props.location.pathname === this.home;
-  }
+    get isHome() {
+        return this.props.location.pathname === this.home;
+    }
 
-  get pathname() {
-      return this.props.location.pathname;
-  }
+    get pathname() {
+        return this.props.location.pathname;
+    }
 
-  componentDidMount() {
-    const { pathname } = this;
+    componentDidMount() {
+        const { pathname } = this;
 
-    if ( pathname !== this.home ) {
-        let id = this.titles[pathname];
-        if ( id !== undefined ) {
+        if ( pathname !== this.home ) {
+            let id = this.titles[pathname];
+            if ( id !== undefined ) {
+                this.props.changeTitle( this.titles[pathname] );
+            }
+        }
+    }
+
+    componentDidUpdate( prevProps: ContentProps ) {
+        const { props: { appLocation, location: { pathname } } } = this;
+        const { appLocation: prevAppLocation, location: { pathname: prevPathname } } = prevProps;
+
+        // TODO - improve / change?
+        if ( appLocation !== prevAppLocation ) {
+            this.props.changeLocation( appLocation );
+        }
+
+        if ( pathname !== prevPathname ) {
             this.props.changeTitle( this.titles[pathname] );
         }
     }
-  }
 
-  componentDidUpdate( prevProps: ContentProps ) {
-    const { props: { appLocation, location: { pathname } } } = this;
-    const { appLocation: prevAppLocation, location: { pathname: prevPathname } } = prevProps;
-
-    // TODO - improve / change?
-    if ( appLocation !== prevAppLocation ) {
-      this.props.changeLocation( appLocation );
+    onDrop( e: React.DragEvent<HTMLElement> ) {
+        this.props.onDrop.forEach( fun => fun( e ) );
     }
 
-    if ( pathname !== prevPathname ) {
-        this.props.changeTitle( this.titles[pathname] );
+    get langCode() {
+        return getActiveLanguage( this.props.localize ).code;
     }
-  }
 
-  onDrop( e: React.DragEvent<HTMLElement> ) {
-      this.props.onDrop.forEach( fun => fun( e ) );
-  }
+    get lessonTitle(): string {
+        return this.props.lessonTitle[this.langCode];
+    }
 
-  get langCode() {
-      return getActiveLanguage( this.props.localize ).code;
-  }
+    get lessonTranslation(): string {
+        return getTranslation( this.props.localize, 'lessonsLesson' );
+    }
 
-  get lessonTitle(): string {
-      return this.props.lessonTitle[this.langCode];
-  }
+    render() {
+        const {
+            props: {
+                classes: { contentBox, contentBoxHome, contentBoxOther, contentTitle },
+                title, lessonNo
+            },
+            isHome, isLesson, lessonTitle, lessonTranslation
+        } = this;
 
-  get lessonTranslation(): string {
-      return getTranslation( this.props.localize, 'lessonsLesson' );
-  }
+        return (
+            <React.Fragment>
+                <DragOverable
+                    className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
+                    id="content"
+                    onDrop={this.onDrop}
+                >
+                    <Typography variant="h2" className={contentTitle}>
+                        <Translate id={ title } options={ { onMissingTranslation: () => null, renderToStaticMarkup }} />
 
-  render() {
-    const {
-        props: {
-            classes: { contentBox, contentBoxHome, contentBoxOther, contentTitle },
-            title, lessonNo
-        },
-        isHome, isLesson, lessonTitle, lessonTranslation
-     } = this;
+                        {/* // TODO nie podoba mi się
+                        // bo jest zbyt 'hacky' i zbyt duzo sprawdzania przy każdym uruchomienniu lekcji
+                        // np trudno dodawać style */}
+                        { isLesson && (
+                            `${ lessonNo !== undefined && lessonNo !== null
+                                ? `${ lessonTranslation } ${ lessonNo + 1 }`
+                                : ''
+                            }
+                            ${ lessonTitle
+                                ? lessonTitle
+                                : ''
+                            }` // in case no-title
+                        ) }
+                    </Typography>
 
-    return (
-        <React.Fragment>
-        <DragOverable
-            className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
-            id="content"
-            onDrop={this.onDrop}
-        >
-            <Typography variant="h2" className={contentTitle}>
-                <Translate id={ title } options={ { onMissingTranslation: () => null, renderToStaticMarkup }} />
+                    { this.props.children }
 
-                {/* // TODO nie podoba mi się
-                // bo jest zbyt 'hacky' i zbyt duzo sprawdzania przy każdym uruchomienniu lekcji
-                // np trudno dodawać style */}
-                { isLesson && (
-                    `${
-                        lessonNo !== undefined && lessonNo !== null
-                            ? `${ lessonTranslation } ${ lessonNo + 1 }`
-                            : ''
-                    }
-                    ${
-                        lessonTitle
-                            ? lessonTitle
-                            : ''
-                    }` // in case no-title
-                )}
-            </Typography>
+                    <Dialog />
 
-            {this.props.children}
-
-            <Dialog />
-
-            <Notification />
-        </DragOverable>
-        <Footer />
-        </React.Fragment>
-    );
-  }
+                    <Notification />
+                </DragOverable>
+                <Footer />
+            </React.Fragment>
+        );
+    }
 };
 
 export default withStyles( styles )( ContentComponent );

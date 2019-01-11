@@ -26,8 +26,9 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
     render() {
         return (
-            <React.Fragment>{/* Containers will be informed about location change before it happens, because
-                LocationChange uses 'shouldComponentUpdate'
+            <React.Fragment>
+                {/* Containers will be informed about location change before it happens, because
+                    LocationChange uses 'shouldComponentUpdate'
                 */}
                 <LocationChange containers={[
                     content,

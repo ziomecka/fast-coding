@@ -51,11 +51,11 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
         case COMPONENTS_STATS_PAUSE: {
             const { start, time } = state;
 
-           /** Time: check if start exists
+            /** Time: check if start exists
             *  Needed in case browser's back button is pressed
             *  because then the start becomes 0.
             *  Also in case the page is refreshed
-             */
+            */
             return {
                 ...state,
                 time: start

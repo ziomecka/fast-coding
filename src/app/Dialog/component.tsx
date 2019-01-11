@@ -18,65 +18,65 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
-  const {
-      titleId,
-      buttons,
-      dialogProps,
-      Component,
-      html,
-      classes: { dialog, dialogContent, closeButton : closeButtonClass },
-      closeButton,
-      closeDialog
-     } = props;
+    const {
+        titleId,
+        buttons,
+        dialogProps,
+        Component,
+        html,
+        classes: { dialog, dialogContent, closeButton : closeButtonClass },
+        closeButton,
+        closeDialog
+    } = props;
 
-  return (
-    <Dialog
-        { ...dialogProps }
-        disableBackdropClick={false}
-        disableEscapeKeyDown={false}
-        PaperProps={ closeButton
-            ? { style: { paddingTop: '4em' } }
-            : null
-        }
-        classes={{ paper: dialog }}
-    >
-        { closeButton && (
-            <IconButton
-                className={ closeButtonClass }
-                onClick={ closeDialog }
-            >
-                <CloseButton/>
-            </IconButton>
-        ) }
+    return (
+        <Dialog
+            { ...dialogProps }
+            disableBackdropClick={false}
+            disableEscapeKeyDown={false}
+            PaperProps={ closeButton
+                ? { style: { paddingTop: '4em' } }
+                : null
+            }
+            classes={{ paper: dialog }}
+        >
+            { closeButton && (
+                <IconButton
+                    className={ closeButtonClass }
+                    onClick={ closeDialog }
+                >
+                    <CloseButton/>
+                </IconButton>
+            ) }
 
-        { titleId && (
-            <DialogTitle>
-                <Translate id={ titleId } />
-            </DialogTitle>
-        )}
+            { titleId && (
+                <DialogTitle>
+                    <Translate id={ titleId } />
+                </DialogTitle>
+            )}
 
-        { Component && (
-            <DialogContent className={ dialogContent } >
-                <Component />
-            </DialogContent>
-        )}
+            { Component && (
+                <DialogContent className={ dialogContent } >
+                    <Component />
+                </DialogContent>
+            )}
 
-        { html && (
-            <DialogContent>
-                { html }
-            </DialogContent>
-        )}
+            { html && (
+                <DialogContent>
+                    { html }
+                </DialogContent>
+            )}
 
-        <DialogActions>
-            { Object.keys( buttons ).map( ( button, ind ) => (
-                <ButtonWithHint
-                    key={`dialogButton-${ ind }`}
-                    { ...buttons[ button ] }
-                />
-            ) ) }
-        </DialogActions>
-    </Dialog>
-  );
+            <DialogActions>
+                { Object.keys( buttons ).map( ( button, ind ) => (
+                    <ButtonWithHint
+                        key={`dialogButton-${ ind }`}
+                        { ...buttons[ button ] }
+                    />
+                ) ) }
+            </DialogActions>
+        </Dialog>
+    );
 };
 
 export default withStyles( styles )( DialogComponent );

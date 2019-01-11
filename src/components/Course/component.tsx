@@ -317,27 +317,27 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     tabIndex={ -1 } // single lesson is focusable
                 >
                     <GridListTile component='div' className={ lessonTileContainer }>
-                    <Button
-                        onClick={ () => this.handleOnClick( lesson ) }
-                        classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
+                        <Button
+                            onClick={ () => this.handleOnClick( lesson ) }
+                            classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
                         >
-                        {/*
-                            //@ts-ignore */}
-                        <Typography
-                            variant="h5"
-                            // @ts-ignore
-                            { ...{ info } }
-                        >
-                            <span className={ lessonCardLinkText }>
-                                <Translate id="lessonsLesson" />
-                                &nbsp;
-                                { no + 1 }
-                            </span>
-                            <span className={ lessonCardLinkText }>
-                                { title }
-                            </span>
-                        </Typography>
-                    </Button>
+                            {/*
+                                //@ts-ignore */}
+                            <Typography
+                                variant="h5"
+                                // @ts-ignore
+                                { ...{ info } }
+                            >
+                                <span className={ lessonCardLinkText }>
+                                    <Translate id="lessonsLesson" />
+                                    &nbsp;
+                                    { no + 1 }
+                                </span>
+                                <span className={ lessonCardLinkText }>
+                                    { title }
+                                </span>
+                            </Typography>
+                        </Button>
                     </GridListTile>
                 </Grid>
             );

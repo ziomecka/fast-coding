@@ -11,7 +11,7 @@ const { app } = ApplicationContainersEnum;
 import { checkLocation } from './operations';
 
 const {
-   APP_LOCATION_CHANGE_CHANGE_LOCATION
+    APP_LOCATION_CHANGE_CHANGE_LOCATION
 } = LocationChangeActionsEnum;
 
 const reducer: Reducer<ApplicationState, LocationChangeActions > = ( state, action ) => {

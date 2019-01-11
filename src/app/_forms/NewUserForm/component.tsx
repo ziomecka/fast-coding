@@ -63,7 +63,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
 
         if ( !login || !newPassword || !confirmPassword || !email ||
              !!loginValid || !!newPasswordValid || !! confirmPasswordValid || !!emailValid ) {
-                this.props.formInvalid();
+            this.props.formInvalid();
         } else {
             this.props.sendNewUserForm( { login, password: newPassword, email } );
         }
@@ -82,30 +82,30 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
         } = this;
 
         return (
-                <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
-                    <Login
-                        onChange={ this.loginOnChange }
-                        value={ login }
-                        tabIndex={1}
-                        {...{ container }}
-                        autoFocus={ media !== xs }
-                    />
-                    <Password {...{ container, passwordType: newPass }} tabIndex={2} />
-                    <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
-                    <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
-                    <Button
-                        onClick={this.sendNewUserForm}
-                        type="submit"
-                        tabIndex={5}
-                        variant="contained"
-                        color="primary"
-                        className={ FCFormButton }
-                    >
-                        <Translate id='submitForm' />
-                    </Button>
+            <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                <Login
+                    onChange={ this.loginOnChange }
+                    value={ login }
+                    tabIndex={1}
+                    {...{ container }}
+                    autoFocus={ media !== xs }
+                />
+                <Password {...{ container, passwordType: newPass }} tabIndex={2} />
+                <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
+                <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
+                <Button
+                    onClick={this.sendNewUserForm}
+                    type="submit"
+                    tabIndex={5}
+                    variant="contained"
+                    color="primary"
+                    className={ FCFormButton }
+                >
+                    <Translate id='submitForm' />
+                </Button>
 
-                    <Message />
-                </form>
+                <Message />
+            </form>
         );
     }
 }

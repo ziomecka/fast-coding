@@ -124,7 +124,7 @@ export const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: 
         ? currentSignIndex
         : currentSignIndex + 1;
 
-        const expectedSign = state[lesson].lessonText[nextCurrentSignIndex];
+    const expectedSign = state[lesson].lessonText[nextCurrentSignIndex];
 
     /** To keep dispatch answer */
     let answer: any;

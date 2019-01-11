@@ -19,7 +19,8 @@ export const onLogOut = (): any => (
             history.push( lessons );
             return dispatch( onOpenNotification( { text: 'notificationSignOutSuccess' } ) );
         }
-} );
+    }
+);
 
 export default {
     onLogOut

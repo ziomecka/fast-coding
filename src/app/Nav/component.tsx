@@ -108,7 +108,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 icon={ <React.Fragment> { activeLanguage ? activeLanguage.code : '' } </React.Fragment> }
                 container={ languagesMenu }
                 title={ 'submenuChangeLanguage' }
-        />
+            />
         };
     }
 
@@ -208,9 +208,9 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
         const heading = getTranslations( localize ).welcomeHeading[
             getLanguages( localize )
-            .findIndex( lang => (
-                lang.code === getActiveLanguage( localize ).code )
-            )
+                .findIndex( lang => (
+                    lang.code === getActiveLanguage( localize ).code )
+                )
         ];
 
         localize = null; // GC
@@ -227,7 +227,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                         animated={ HOME_HEADING_ANIMATED}
                         timeout={ HOME_WELCOME_TIMEOUT }
                     />
-                        <AppMenu subMenus={[ this.languageM, this.lessonsM, this.userM ]} />
+                    <AppMenu subMenus={[ this.languageM, this.lessonsM, this.userM ]} />
                 </MenuProvider>
             </AppBar>
         );

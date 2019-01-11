@@ -84,11 +84,11 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
         const { newUser, login, changePassword, remindPassword } = this;
 
         return [
-           <Route exact path={`${ newUser }`} component={ NewUserView } key="newUserView" />,
-           <Route exact path={`${ login }`} component={ LoginView } key="loginView" />,
-           <Route exact path={`${ remindPassword }`} component={ RemindPasswordView } key="remindPasswordView" />,
-           <Route exact path={`${ changePassword }`} component={ ChangePasswordView } key="changePasswordView" />,
-       ];
+            <Route exact path={`${ newUser }`} component={ NewUserView } key="newUserView" />,
+            <Route exact path={`${ login }`} component={ LoginView } key="loginView" />,
+            <Route exact path={`${ remindPassword }`} component={ RemindPasswordView } key="remindPasswordView" />,
+            <Route exact path={`${ changePassword }`} component={ ChangePasswordView } key="changePasswordView" />,
+        ];
     }
 
     get mobile(): JSX.Element {

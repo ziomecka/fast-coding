@@ -5,7 +5,7 @@ import Lesson from '@components/Lesson/';
 
 const LessonView: React.StatelessComponent<LessonViewProps> = props => {
     return (
-      <Lesson {...props.history.location.state} />
+        <Lesson {...props.history.location.state} />
     );
 };
 

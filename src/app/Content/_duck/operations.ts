@@ -6,10 +6,8 @@ export const contentClassOther = 'content-box content-box-other';
 
 const { isHome, isOther } = AppLocationEnum;
 
-const states: {
-    // @ts-ignore
-    [key: AppLocationEnum]: ContentClasses
-} = {
+// @ts-ignore
+const states: { [key: AppLocationEnum]: ContentClasses } = {
     [isHome]: {
         contentClass: contentClassHome
     },

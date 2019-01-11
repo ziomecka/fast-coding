@@ -63,15 +63,15 @@ const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean 
         additionalUserInfo: { providerId }
     } = authResult;
 
-        dispatch( onAuthorize( {
-            // @ts-ignore
-            displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
-        } ) );
+    dispatch( onAuthorize( {
+        // @ts-ignore
+        displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
+    } ) );
 
-        dispatch( closeDialog() );
-        history.push( signInSuccessUrl );
-        dispatch( openNotification( { text: 'notificationAuthorized', variant: success } ) );
-        return false; // false means 'do not redirect'
+    dispatch( closeDialog() );
+    history.push( signInSuccessUrl );
+    dispatch( openNotification( { text: 'notificationAuthorized', variant: success } ) );
+    return false; // false means 'do not redirect'
 };
 
 const signInFailure = ( dispatch: Dispatch ): boolean => {

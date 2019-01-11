@@ -22,10 +22,8 @@ export const classTitleHome = 'welcome welcome-home';
 export const classTitleOther = 'welcome welcome-other';
 export const classTitleFalling = 'title-falling';
 
-const states: {
-    // @ts-ignore
-    [key: AppLocationEnum]: WelcomeClasses
-} = {
+// @ts-ignore
+const states: { [key: AppLocationEnum]: WelcomeClasses } = {
     [isHome]: {
         classAnimated: classTitleFalling,
         classTitle: classTitleHome

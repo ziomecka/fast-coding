@@ -5,12 +5,12 @@ const PROD_ENV = process && process.env.NODE_ENV
     : false;
 
 const PORT = process && process.env.PORT
-  ? process.env.PORT
-  : process.env.PORT_DEV;
+    ? process.env.PORT
+    : process.env.PORT_DEV;
 
 const ROOT_URL = !PROD_ENV
-  ? `http://localhost:${PORT}`
-  : 'https://fast-coding.herokuapp.com';
+    ? `http://localhost:${PORT}`
+    : 'https://fast-coding.herokuapp.com';
 
 const parseQueries = ( queries: QueriesI ) => {
     return Object.keys( queries ).reduce( ( acc, cv ) => {

@@ -77,9 +77,9 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
          */
         if ( ( pathname !== prevPathname || authorized !== prevAuthorized || activeLang !== prevActiveLang ) ) {
             // @ts-ignore
-            this.setState( () => (
-                { render: this.areRulesMet() && this.atLeastOneItem }
-                ), () => {
+            this.setState(
+                () => ( { render: this.areRulesMet() && this.atLeastOneItem } ),
+                () => {
                     let timeout = setTimeout( () => {
                         this.setState( { listItems: this.listItems } );
                         clearTimeout( timeout ); // GC
@@ -91,12 +91,10 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
 
         /** if menuItems && the nnumber of menu items has changed then set new listItems */
         if ( menuItems && (
-                Object.keys( prevMenuItems ).length === 0 &&
-                Object.keys( menuItems ).length > 0 )
-            ) {
-            this.setState( {
-                listItems: this.listItems
-            } );
+            Object.keys( prevMenuItems ).length === 0 &&
+            Object.keys( menuItems ).length > 0 )
+        ) {
+            this.setState( { listItems: this.listItems } );
         }
     }
 
@@ -219,15 +217,16 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         /** Render list only if at least one item meets the rules */
         return (
             <ClickAwayListener onClickAway={ this.handleClickAway }>
-                <React.Fragment> {
-                        ( title && (
-                            <Tooltip title={getTranslation( this.props.localize, title )}>
-                                { this.getIconButton() }
-                            </Tooltip>
-                        ) ) ||
-                        this.getIconButton()
-                    }
-                    {/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}{<Menu
+                <React.Fragment>
+                    {( title && (
+                        <Tooltip title={getTranslation( this.props.localize, title )}>
+                            { this.getIconButton() }
+                        </Tooltip>
+                    ) ) ||
+                    this.getIconButton()}
+
+                    {/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}
+                    { <Menu
                         anchorEl={ anchorEl }
                         open={ Boolean( anchorEl ) }
                         classes={ { paper : menuClass } }

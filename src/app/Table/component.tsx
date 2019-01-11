@@ -13,16 +13,16 @@ import styles from './styles';
 
 const TableComponent: React.StatelessComponent<TableProps> = props => {
     const { head, body, foot, tableProps,
-            tableHeadProps,
-            tableBodyProps,
-            tableFootProps,
-            tableHeadRowProps,
-            tableHeadCellProps,
-            tableBodyRowProps,
-            tableBodyCellProps,
-            tableFootRowProps,
-            tableFootCellProps,
-            classes: { tableClass }
+        tableHeadProps,
+        tableBodyProps,
+        tableFootProps,
+        tableHeadRowProps,
+        tableHeadCellProps,
+        tableBodyRowProps,
+        tableBodyCellProps,
+        tableFootRowProps,
+        tableFootCellProps,
+        classes: { tableClass }
     } = props;
 
     return (

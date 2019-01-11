@@ -26,7 +26,7 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = ( props ) => {
         localize,
         children,
         authorizationMethod
-     } = props;
+    } = props;
 
     const { code: activeLang } = getActiveLanguage( localize );
 

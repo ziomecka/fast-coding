@@ -4,7 +4,7 @@ import { AppLocationEnum } from '@appTypes';
 
 const {
     APP_WELCOME_CHANGE_LOCATION
- } = WelcomeActionsEnum;
+} = WelcomeActionsEnum;
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> = ( appLocation: AppLocationEnum ) => ( {

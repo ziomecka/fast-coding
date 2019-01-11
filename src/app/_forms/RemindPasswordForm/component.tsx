@@ -72,39 +72,38 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
                 media,
             },
             xs
-         } = this;
+        } = this;
 
         return (
-                <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
-                    <Email
-                        onChange={ this.emailOnChange }
-                        {...{ email, emailValid }}
-                        autoFocus={ media !== xs }
-                    />
+            <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                <Email
+                    onChange={ this.emailOnChange }
+                    {...{ email, emailValid }}
+                    autoFocus={ media !== xs }
+                />
 
-                    <Button
-                        onClick={ this.submit }
-                        type="submit"
-                        tabIndex={3}
-                        variant="contained"
-                        color="primary"
-                    >
-                        <Translate id="submitForm" />
-                    </Button>
+                <Button
+                    onClick={ this.submit }
+                    type="submit"
+                    tabIndex={3}
+                    variant="contained"
+                    color="primary"
+                >
+                    <Translate id="submitForm" />
+                </Button>
 
-                    <Message />
-
-                        <Button
-                            onClick={ this.redirect }
-                            type="submit"
-                            tabIndex={3}
-                            variant="text"
-                            color="primary"
-                            className= { `${ FCFormButton } ${ FCFormButtonText }` }
-                        >
-                            <Translate id="remindPasswordRememberButton" />
-                        </Button>
-                </form>
+                <Message />
+                <Button
+                    onClick={ this.redirect }
+                    type="submit"
+                    tabIndex={3}
+                    variant="text"
+                    color="primary"
+                    className= { `${ FCFormButton } ${ FCFormButtonText }` }
+                >
+                    <Translate id="remindPasswordRememberButton" />
+                </Button>
+            </form>
         );
     }
 }

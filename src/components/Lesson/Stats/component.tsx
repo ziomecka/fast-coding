@@ -22,10 +22,10 @@ const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
 
 const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
     const { start, stop, time, allErrors, text,
-            classes: { statsPaper, statsNote },
-            createTable,
-            endedLesson,
-            errors
+        classes: { statsPaper, statsNote },
+        createTable,
+        endedLesson,
+        errors
     } = props;
 
     const totalTime = getTime( stop - start + time );

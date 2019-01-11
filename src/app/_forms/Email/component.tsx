@@ -24,7 +24,7 @@ const Email: React.StatelessComponent<EmailPropsI> = props => {
                 ? helperTexts( emailValid, 'email', localize )
                 : null
             }
-       />
+        />
     );
 };
 

@@ -9,9 +9,9 @@ const getTranslation = ( localize: LocalizeState, id: string, missingTranslation
     try {
         return getTranslations( localize )[id][
             getLanguages( localize )
-            .findIndex( lang => (
-                lang.code === getActiveLanguage( localize ).code )
-            )
+                .findIndex( lang => (
+                    lang.code === getActiveLanguage( localize ).code )
+                )
         ];
     } catch ( err ) {
         return missingTranslationString || 'Missing translation';

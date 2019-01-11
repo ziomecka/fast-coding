@@ -6,7 +6,7 @@ import { CourseActionsEnum } from './types';
 const {
     COMPONENTS_COURSE_UPDATE,
     COMPONENTS_COURSE_INITIAL_STATE_SET
- } = CourseActionsEnum;
+} = CourseActionsEnum;
 
 export const INITIAL_STATE: ICourseState = {};
 

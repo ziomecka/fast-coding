@@ -74,10 +74,10 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
             login,
             classes: { FCForm, FCFormButton, form, FCFormButtonText },
             media
-         } } = this;
+        } } = this;
 
-         return (
-              <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
+        return (
+            <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
                 <Login
                     onChange={ this.loginOnChange }
                     value={ login }
@@ -110,7 +110,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
                 </Button>
 
                 <GoogleLogin />
-              </form>
+            </form>
         );
     }
 }

@@ -23,7 +23,8 @@ export const onLoadTranslations = ( url: AppRoutesServerEnum = _url ): any => (
         /* eslint-disable no-empty */
         } catch ( err ) {}
         /* eslint-enable no-empty */
-} );
+    }
+);
 
 export default {
     onLoadTranslations

@@ -3,8 +3,8 @@ import { LocationChangeActionsEnum } from './types';
 import { AppLocationEnum } from '@appTypes';
 
 const {
-   APP_LOCATION_CHANGE_CHANGE_LOCATION
- } = LocationChangeActionsEnum;
+    APP_LOCATION_CHANGE_CHANGE_LOCATION
+} = LocationChangeActionsEnum;
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> =
