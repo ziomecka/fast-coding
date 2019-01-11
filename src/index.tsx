@@ -5,6 +5,7 @@ import { ROOT_NODE } from './constants';
 import { Provider } from 'react-redux';
 
 import { default as store } from '@appStore';
+import { MediaProvider } from '@app/Media/'
 
 /** Resets */
 import './styles/';
@@ -12,7 +13,9 @@ import './styles/';
 const App = () => {
     return (
         <Provider {...{ store }}>
-            <RootView />
+            <MediaProvider>
+                <RootView />
+            </MediaProvider>
         </Provider>
     );
 };

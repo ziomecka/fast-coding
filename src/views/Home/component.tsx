@@ -14,8 +14,6 @@ import TranslationsLoader from '@app/TranslationsLoader/';
 
 import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
 
-import { MediaProvider } from '@app/Media/';
-
 const { content, welcome } = AppContainersEnum;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
@@ -28,15 +26,16 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
     render() {
         return (
-            <>'           '{/* Containers will be informed about location change before it happens, because
+            <>{/* Containers will be informed about location change before it happens, because
                 LocationChange uses 'shouldComponentUpdate'
-                */}'           '<LocationChange containers={[
-                content,
-                welcome
-            ]} />'
-           '<User />'
-           '<KeyboardListener />'           '<LessonsLoader />'
-           '<MediaProvider>
+                */}
+                <LocationChange containers={[
+                    content,
+                    welcome
+                ]} />
+                <User />
+                <KeyboardListener />
+                <LessonsLoader />
                 <Nav />
 
                 <Content>
@@ -45,7 +44,8 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
                     { this.props.children }
                 </Content>
 
-            </MediaProvider>'           '<TranslationsLoader />'           '</>
+                <TranslationsLoader />
+            </>
         );
     }
 }
