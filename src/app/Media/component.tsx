@@ -85,29 +85,32 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
         const { mSm, mMd, mLg, mXl } = this;
 
         return (
-            <>'               '<Media
+            <>
+                <Media
                     query={`(max-width: ${ mSm - 1 }px)`}
                     onChange={ matches => matches ? this.onMediaQueryChange( xs ) : null }
-                />'
-               '<Media
+                />
+                <Media
                     query={{ minWidth: `${ mSm }px`, maxWidth: `${ mMd - 1}px`}}
                     onChange={ matches => matches ? this.onMediaQueryChange( sm ) : null }
-                />'
-               '<Media
+                />
+                <Media
                     query={{ minWidth: `${ mMd }px`, maxWidth: `${ mLg - 1}px`}}
                     onChange={ matches => matches ? this.onMediaQueryChange( md ) : null }
-                />'
-               '<Media
+                />
+                <Media
                     query={{ minWidth: `${ mLg }px`, maxWidth: `${ mXl - 1}px`}}
                     onChange={ matches => matches ? this.onMediaQueryChange( lg ) : null }
-                />'
-               '<Media
+                />
+                <Media
                     query={`(min-width: ${ mXl }px)`}
                     onChange={ matches => matches ? this.onMediaQueryChange( xl ) : null }
-                />'
-               '<Provider value={{ media: this.state.media }}>
+                />
+
+                <Provider value={{ media: this.state.media }}>
                     { this.props.children }
-                </Provider>'           '</>
+                </Provider>
+            </>
         );
     }
 }
