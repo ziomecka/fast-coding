@@ -46,25 +46,70 @@ const styles = theme => {
                 borderRadius: `${ borderRadius }px`,
                 width: '100%',
                 padding: '.5rem 1rem',
-                margin: '1rem 0',
+                margin: '1rem auto',
                 maxHeight: '3rem',
                 boxSizing: 'border-box'
             },
             '& .firebaseui-idp-icon-wrapper': {
                 display: 'inline-block',
-                height: '1em', // needed for Firefox, in Chrome 32px by user.agent,
-                marginRight: 5,
-                [ theme.breakpoints.up( 'sm' ) ]: {
-                    height: '1.5em' // needed for Firefox, in Chrome 32px by user.agent
-                }
+                marginRight: 5
+            },
+            '& .firebaseui-idp-list': {
+                display: 'flex',
+                justifyContent: 'space-between'
             },
             '& .firebaseui-idp-icon': {
                 marginRight: '10px ',
                 height: '100%',
                 width: 'auto'
             },
-            '& .firebaseui-idp-text-short': {
-                display: 'none'
+            [ theme.breakpoints.only('xs') ]: {
+                '& .firebaseui-idp-button': {
+                    width: `calc(100% - 1rem)`, // -1rem for left /right margin
+                },
+                '& .firebaseui-idp-text-short': {
+                    display: 'block',
+                },
+                '& .firebaseui-idp-text-long': {
+                    display: 'none',
+                },
+                '& .firebaseui-list-item': {
+                    width: '50%',
+                    '&:nth-child(1)': {
+                        '& button': {
+                            marginLeft: 0
+                        }
+                    },
+                    '&:nth-child(2)': {
+                        '& button': {
+                            marginRight: 0
+                        }
+                    },
+                },
+                '& .firebaseui-idp-icon-wrapper': {
+                    height: '1em', // needed for Firefox, in Chrome 32px by user.agent,
+                },
+            },
+            [ theme.breakpoints.up('sm') ]: {
+                '& .firebaseui-idp-button': {
+                    width: '100%',
+                },
+                '& .firebaseui-idp-text-short': {
+                    display: 'none',
+                },
+                '& .firebaseui-idp-text-long': {
+                    display: 'block',
+                },
+                '& .firebaseui-idp-list': {
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start'
+                },
+                '& .firebaseui-list-item': {
+                    width: '100%'
+                },
+                '& .firebaseui-idp-icon-wrapper': {
+                    height: '1.5em' // needed for Firefox, in Chrome 32px by user.agent
+                },
             },
             // Terms of service and privacy policy information
             '& .firebaseui-tos': {
