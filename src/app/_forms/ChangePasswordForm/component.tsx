@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { ChangePasswordFormProps } from './container';
 
-import Password from '@app/Password/';
-import Message from '@app/FormHelperText/';
+import Password from '@forms/Password/';
+import Message from '@forms/FormHelperText/';
 
 import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { changePasswordForm } = AppContainersEnum;

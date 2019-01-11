@@ -11,7 +11,7 @@ const { loginLog, lessons } = AppRoutesEnum;
 
 const { fastcoding } = UserAuthorizationMethodEnum;
 
-import { onSendForm as _onSendForm } from '@app/Form/';
+import { onSendForm as _onSendForm } from '@forms/Form/';
 
 export const onLog = ( options: SendLoginFormI ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {

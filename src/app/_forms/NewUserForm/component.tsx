@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { NewUserFormProps } from './container';
 
-import Password from '@app/Password/';
-import Login from '@app/Login/';
-import Email from '@app/Email/';
-import Message from '@app/FormHelperText/';
+import Password from '@forms/Password/';
+import Login from '@forms/Login/';
+import Email from '@forms/Email/';
+import Message from '@forms/FormHelperText/';
 
 import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { newUserForm } = AppContainersEnum;

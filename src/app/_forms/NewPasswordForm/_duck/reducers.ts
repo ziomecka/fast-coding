@@ -5,9 +5,9 @@ import { NewPasswordFormActions } from './actions';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
-} from '@app/Password/_duck/reducers';
+} from '@forms/Password/_duck/reducers';
 
-import { PasswordActionsEnum } from '@app/Password/';
+import { PasswordActionsEnum } from '@forms/Password/';
 
 import { PasswordsEnum} from '@appTypes';
 const { confirmPass, newPass } = PasswordsEnum;

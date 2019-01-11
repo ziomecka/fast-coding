@@ -1,5 +1,5 @@
 import { Dispatch, Action } from 'redux';
-import { setFormHelperText } from '@app/FormHelperText/_duck/actions';
+import { setFormHelperText } from '@forms/FormHelperText/_duck/actions';
 import { SendFormI } from './types';
 import { post as postData, PostResponseI } from '@app/api/';
 

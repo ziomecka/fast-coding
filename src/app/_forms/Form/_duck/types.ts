@@ -1,7 +1,7 @@
-import { SendFormChangePasswordI } from '@app/ChangePasswordForm/';
-import { SendFormRemindPasswordI } from '@app/RemindPasswordForm/';
-import { SendNewUserFormI } from '@app/NewUserForm/';
-import { SendLoginFormI } from '@app/LoginForm/';
+import { SendFormChangePasswordI } from '@forms/ChangePasswordForm/';
+import { SendFormRemindPasswordI } from '@forms/RemindPasswordForm/';
+import { SendNewUserFormI } from '@forms/NewUserForm/';
+import { SendLoginFormI } from '@forms/LoginForm/';
 
 import { AppRoutesEnum } from '@appTypes';
 import { QueriesI } from '@app/api/';

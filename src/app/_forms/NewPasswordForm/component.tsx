@@ -7,8 +7,8 @@ const { newPasswordForm: container } = AppContainersEnum;
 
 const { newPass, confirmPass } = PasswordsEnum;
 
-import Password from '@app/Password/';
-import Message from '@app/FormHelperText/';
+import Password from '@forms/Password/';
+import Message from '@forms/FormHelperText/';
 
 import { RulesErrorEnum } from '@sharedTypes';
 const { NO_MATCH } = RulesErrorEnum;

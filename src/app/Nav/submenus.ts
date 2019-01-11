@@ -4,10 +4,10 @@ import { NavMenuType } from './_duck/types';
 import { DialogsEnum } from '@app/Dialog/';
 const { simple } = DialogsEnum;
 
-import LoginForm from '@app/LoginForm';
-import NewUserForm from '@app/NewUserForm';
-import RemindPasswordForm from '@app/RemindPasswordForm';
-import ChangePasswordForm from '@app/ChangePasswordForm';
+import LoginForm from '@forms/LoginForm';
+import NewUserForm from '@forms/NewUserForm';
+import RemindPasswordForm from '@forms/RemindPasswordForm';
+import ChangePasswordForm from '@forms/ChangePasswordForm';
 
 const { home, lessons } = AppRoutesEnum;
 const { onlyAuthorized, onlyUnauthorized, notCurrentLocation, notAnyLesson, fastCodingAuthorization } = MenuRulesEnum;

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { RemindPasswordPropsI } from './container';
-import LoginForm from '@app/LoginForm';
+import LoginForm from '@forms/LoginForm';
 import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;
 
-import Email from '@app/Email';
-import Message from '@app/FormHelperText/';
+import Email from '@forms/Email';
+import Message from '@forms/FormHelperText/';
 
 /* Materials */
 import Paper from '@material-ui/core/Paper';

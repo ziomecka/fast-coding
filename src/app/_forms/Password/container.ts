@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { default as Password } from './component';
 import { ApplicationState } from '@appStore';
-import { AppState } from '../_reducers/';
+import { AppState } from '@app/_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
 
