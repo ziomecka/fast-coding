@@ -11,10 +11,11 @@ module.exports = {
     '@componentsTypes': ( path.resolve ( __dirname, '../src/components/_types/' ) ),
     '@viewsTypes': ( path.resolve ( __dirname, '../src/views/_types/' ) ),
     '@sharedTypes': ( path.resolve ( __dirname, '../src/shared/_types/'  )),
-    '@appForm': ( path.resolve ( __dirname, '../src/app/Form/' )),
+    '@appForm': ( path.resolve ( __dirname, '../src/app/_forms/Form/' )),
     '@constants': ( path.resolve ( __dirname, '../src/constants' )),
     '@constantsStyles': ( path.resolve ( __dirname, '../src/theme/constants' )),
     '@appStore': ( path.resolve ( __dirname, '../src/store' )),
     '@theme': ( path.resolve ( __dirname, '../src/theme/index' )),
-    '@src': ( path.resolve ( __dirname, '../src/' ))
+    '@src': ( path.resolve ( __dirname, '../src/' )),
+    '@forms': ( path.resolve ( __dirname, '../src/app/_forms/' ))
 };
