@@ -17,18 +17,21 @@ export enum AppContainersEnum {
     translationsLoader = 'TRANSLATIONS_LOADER'
 }
 
+export enum AppRoutesServerEnum {
+    lessonsGet = '/lessons/get',
+    newUserSet = '/newuser/post',
+    changePassword = '/changepassword/post',
+    remindPassword = '/remindpassword/post',
+    newPasswordSet = '/newpassword/post',
+    translationsGet = '/translations/get',
+    loginLog = '/login/log',
+}
+
 export enum AppRoutesEnum {
     home = '/',
     lessons = '/lessons',
     lesson = '/lessons/lesson-',
     demo = '/lessons/lesson-demo',
-    lessonsGet = '/lessons/get',
-    newUserSet = '/newuser/post',
-    loginLog = '/login/log',
-    changePassword = '/changepassword/post',
-    remindPassword = '/remindpassword/post',
-    newPasswordSet = '/newpassword/post',
     privacyPolicy = '/privacyPolicy',
-    translationsGet = '/translations/get',
     termsOfService = '/termsOfService',
 }

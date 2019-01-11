@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-
+import { AppRoutesServerEnum } from '@appTypes';
 const PROD_ENV = process && process.env.NODE_ENV
     ? process.env.NODE_ENV.trim() === 'production'
     : false;

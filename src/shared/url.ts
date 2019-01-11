@@ -1,3 +1,5 @@
+import { AppRoutesServerEnum  } from '@appTypes';
+
 export const buildParam = ( paramName: string, param: string ) => `?${paramName}=${param.toLowerCase()}`;
 
 export const buildParamsFromArray = ( paramName:string, params: string[] ): string => {

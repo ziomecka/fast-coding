@@ -2,12 +2,13 @@ import { Dispatch, Action } from 'redux';
 
 import{ authorizeUser } from '@app/User/';
 
-import { AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
+import { AppRoutesEnum, AppRoutesServerEnum, UserAuthorizationMethodEnum } from '@appTypes';
 import { LoginFormResponseEnum, SendLoginFormI } from './types';
 
 const { SUCCESS, INCORRECT_PASSWORD, LOGIN_DOES_NOT_EXIST } = LoginFormResponseEnum;
 
-const { loginLog, lessons } = AppRoutesEnum;
+const { lessons } = AppRoutesEnum;
+const { loginLog } = AppRoutesServerEnum;
 
 const { fastcoding } = UserAuthorizationMethodEnum;
 

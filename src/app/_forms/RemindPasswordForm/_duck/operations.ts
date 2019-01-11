@@ -1,11 +1,11 @@
 import { Dispatch, Action } from 'redux';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesServerEnum } from '@appTypes';
 
 import { RemindPasswordResponseEnum, SendFormRemindPasswordI } from './types';
 
 const { SUCCESS, EMAIL_DOES_NOT_EXIST } = RemindPasswordResponseEnum;
-const { remindPassword } = AppRoutesEnum;
+const { remindPassword } = AppRoutesServerEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 

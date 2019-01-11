@@ -1,13 +1,13 @@
 import { Dispatch, Action } from 'redux';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesServerEnum } from '@appTypes';
 
 import { NewUserFormResponseEnum, SendNewUserFormI } from './types';
 
 const { LOGIN_EXISTS, EMAIL_EXISTS } = NewUserFormResponseEnum;
 
 const { SUCCESS } = NewUserFormResponseEnum;
-const { newUserSet } = AppRoutesEnum;
+const { newUserSet } = AppRoutesServerEnum;
 
 import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 

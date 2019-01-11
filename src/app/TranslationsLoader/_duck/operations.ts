@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesServerEnum } from '@appTypes';
 import { get } from '@app/api/';
 
 import { GetTranslationsResponseI } from './types';
 import { saveTranslations } from './actions';
 
-const _url = AppRoutesEnum.translationsGet;
+const _url = AppRoutesServerEnum.translationsGet;
 
-export const onLoadTranslations = ( url: string = _url ): any => (
+export const onLoadTranslations = ( url: AppRoutesServerEnum = _url ): any => (
     async ( dispatch: Dispatch ): Promise<boolean> => {
         try {
             let data = await get( { path: url } ) as GetTranslationsResponseI;

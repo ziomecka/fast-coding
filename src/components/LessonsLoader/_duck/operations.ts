@@ -2,14 +2,14 @@ import { Dispatch } from 'redux';
 import { onLoadData } from '@app/CSR/_duck/operations';
 import { buildUrl, URLParamsI} from '@shared/url';
 
-import { AppRoutesEnum, LocalStorageItemEnum } from '@appTypes';
+import { AppRoutesServerEnum, LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { ApplicationContainersEnum } from '@applicationTypes';
 
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader } = ComponentsContainersEnum;
 
-const _url = AppRoutesEnum.lessonsGet;
+const _url = AppRoutesServerEnum.lessonsGet;
 const defaultParamName = 'login';
 const defaultParam = 'basic_user';
 
