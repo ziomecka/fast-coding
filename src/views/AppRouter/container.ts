@@ -8,6 +8,8 @@ import { AppContainersEnum } from '@appTypes';
 
 import { IWithMedia } from '@app/Media/';
 
+import { DialogDispatch, mapDispatchToProps } from '@shared/dialog';
+
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
@@ -15,7 +17,7 @@ const mapStateToProps = ( state: ApplicationState ): AppRouterMapStateToProps =>
     authorized: state[app][user].authorized
 } );
 
-const Container = connect( mapStateToProps )( AppRouter );
+const Container = connect( mapStateToProps, mapDispatchToProps )( AppRouter );
 
 export default Container;
 
@@ -25,4 +27,5 @@ export interface AppRouterMapStateToProps {
 
 export interface AppRouterPropsI extends
 AppRouterMapStateToProps,
-IWithMedia {}
+IWithMedia,
+DialogDispatch {}

@@ -8,7 +8,6 @@ import LessonView from '@views/Lesson/';
 import PrivacyPolicy from '@views/PrivacyPolicy/';
 import TermsOfService from '@views/TermsOfService/';
 
-import NewPasswordView from '@views/NewPassword/';
 import NewUserView from '@views/NewUser/';
 import RemindPasswordView from '@views/RemindPassword';
 import ChangePasswordView from '@views/ChangePassword';
@@ -25,61 +24,99 @@ import store from '@appStore';
 import { AppRouterPropsI } from './container';
 
 import { withMedia, MediaEnum } from '@app/Media/';
-const { xs } = MediaEnum;
+import { MediaProvider } from '@app/Media/';
 
-const Root: React.StatelessComponent<AppRouterPropsI> = props => {
-    const { media } = props;
-    const {
-        lessons,
-        termsOfService,
-        privacyPolicy,
-        newPassword,
-        newUser,
-        login,
-        remindPassword,
-        changePassword
-    } = AppRoutesEnum;
+interface IAppRouterState {
+    routes: JSX.Element
+}
 
-    const common = [
-        <Route path={`${ lessons }/:id`} component={ LessonView } key="lessonView" />,
-        <Route exact path={`${ lessons }`} component={ LessonsView } key="lessonsView" />,
-        <Route exact path={`${ privacyPolicy }`} component={ PrivacyPolicy } key="privacyPolicyView" />,
-        <Route exact path={`${ termsOfService }`} component={ TermsOfService } key="termsOfServiceView" />,
-        <Redirect from='/.+' to='/' key="redirectToHome" />
-    ];
+class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
+    lessons: AppRoutesEnum;
+    newUser: AppRoutesEnum;
+    login: AppRoutesEnum;
+    remindPassword: AppRoutesEnum;
+    changePassword: AppRoutesEnum;
+    termsOfService: AppRoutesEnum;
+    privacyPolicy: AppRoutesEnum;
 
-    const onlyMobile = [
-        <Route exact path={`${ newPassword }`} component={ NewPasswordView } key="newPasswordView" />,
-        <Route exact path={`${ newUser }`} component={ NewUserView } key="newUserView" />,
-        <Route exact path={`${ login }`} component={ LoginView } key="loginView" />,
-        <Route exact path={`${ remindPassword }`} component={ RemindPasswordView } key="remindPasswordView" />,
-        <Route exact path={`${ changePassword }`} component={ ChangePasswordView } key="changePasswordView" />,
-    ];
+    xs: MediaEnum;
+    constructor(props) {
+        super(props);
 
-    const mobile = (
-        <Switch>{ [ ...onlyMobile, ...common ] }</Switch>
-    );
+        Object.assign( this, AppRoutesEnum );
 
-    const desktop = (
-        <Switch>{ common }</Switch>
-    );
+        this.state = {
+            routes: this.routes
+        }
 
-    return (
-        <MuiThemeProvider {...{ theme }}>
-            <LocalizeProvider {...{ store }} >
-                <Router {...{ history }}>
-                    <Route path="/">
-                        <HomeView>
-                            { media === xs
-                                ? mobile
-                                : desktop
-                            }
-                        </HomeView>
-                    </Route>
-                </Router>
-            </LocalizeProvider>
-        </MuiThemeProvider>
-    );
+        this.xs = MediaEnum.xs;
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props: { media }, xs } = this;
+        const { media: prevMedia } = prevProps;
+
+        if ( media !== prevMedia && ( media === xs || prevMedia === xs )) {
+            this.setState({ routes: this.routes });
+        }
+    }
+
+    get routes(): JSX.Element {
+        if ( this.props.media === this.xs ){
+            return this.mobile;
+        }
+
+        return this.desktop;
+    }
+
+    get common(): JSX.Element[] {
+        const { lessons, privacyPolicy, termsOfService } = this;
+
+        return [
+            <Route path={`${ lessons }/:id`} component={ LessonView } key="lessonView" />,
+            <Route exact path={`${ lessons }`} component={ LessonsView } key="lessonsView" />,
+            <Route exact path={`${ privacyPolicy }`} component={ PrivacyPolicy } key="privacyPolicyView" />,
+            <Route exact path={`${ termsOfService }`} component={ TermsOfService } key="termsOfServiceView" />,
+            <Redirect from='/.+' to='/' key="redirectToHome" />
+        ];
+    }
+
+    get onlyMobile(): JSX.Element[] {
+        const { newUser, login, changePassword, remindPassword } = this;
+
+        return [
+           <Route exact path={`${ newUser }`} component={ NewUserView } key="newUserView" />,
+           <Route exact path={`${ login }`} component={ LoginView } key="loginView" />,
+           <Route exact path={`${ remindPassword }`} component={ RemindPasswordView } key="remindPasswordView" />,
+           <Route exact path={`${ changePassword }`} component={ ChangePasswordView } key="changePasswordView" />,
+       ];
+    }
+
+    get mobile(): JSX.Element {
+        return <Switch>{ [ ...this.onlyMobile, ...this.common ] }</Switch>;
+    }
+
+    get desktop(): JSX.Element {
+        return <Switch>{ [ ...this.onlyMobile, ...this.common ] }</Switch>
+    }
+
+    render() {
+        return (
+            <MuiThemeProvider {...{ theme }}>
+                <LocalizeProvider {...{ store }} >
+                    <MediaProvider>
+                        <Router {...{ history }}>
+                            <Route path="/">
+                                <HomeView>
+                                    { this.state.routes }
+                                </HomeView>
+                            </Route>
+                        </Router>
+                    </MediaProvider>
+                </LocalizeProvider>
+            </MuiThemeProvider>
+        );
+    }
 };
 
 export default withMedia( Root );
