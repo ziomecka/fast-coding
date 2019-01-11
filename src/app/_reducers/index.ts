@@ -1,13 +1,13 @@
 import { Reducer, combineReducers } from 'redux';
 
-import { PasswordActionsEnum } from '../Password/_duck/types';
-import { SetPasswordAction } from '../Password/_duck/actions';
+import { PasswordActionsEnum } from '@forms/Password/_duck/types';
+import { SetPasswordAction } from '@forms/Password/_duck/actions';
 
 import {
     INITIAL_STATE as LOGINFORM_INITIAL_STATE,
     LoginFormState,
     loginFormReducer
-} from '../LoginForm/_duck/reducers';
+} from '@forms/LoginForm/_duck/reducers';
 
 import {
     INITIAL_STATE as DIALOG_INITIAL_STATE,
@@ -19,13 +19,13 @@ import {
     INITIAL_STATE as NOTIFICATION_INITIAL_STATE,
     NotificationState,
     notificationReducer
-} from '../Notification/_duck/reducers';
+} from '@app/Notification/_duck/reducers';
 
 import {
     INITIAL_STATE as NEWUSERFORM_INITIAL_STATE,
     newUserFormReducer,
     NewUserFormState
-} from '../NewUserForm/_duck/reducers';
+} from '@forms/NewUserForm/_duck/reducers';
 
 import {
     INITIAL_STATE as MENU_INITIAL_STATE,
@@ -49,7 +49,7 @@ import {
     INITIAL_STATE as USER_INITIAL_STATE,
     userReducer,
     UserState
-} from '../User/_duck/reducers';
+} from '@app/User/_duck/reducers';
 
 import { AppContainersEnum } from '@appTypes';
 import { AppActions } from '../_actions/';
@@ -58,13 +58,13 @@ import {
     INITIAL_STATE as FORM_HELPER_TEXT_INITIAL_STATE,
     formHelperTextReducer,
     FormHelperTextState
-} from '../FormHelperText/_duck/reducers';
+} from '@forms/FormHelperText/_duck/reducers';
 
 import {
     INITIAL_STATE as CHANGEPASSWORDFORM_INITIAL_STATE,
     changePasswordFormReducer,
     ChangePasswordFormState
-} from '../ChangePasswordForm/_duck/reducers';
+} from '@forms/ChangePasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE,
@@ -76,19 +76,19 @@ import {
     INITIAL_STATE as REMIND_PASSWORD_INITIAL_STATE,
     remindPasswordReducer,
     RemindPasswordState
-} from '../RemindPasswordForm/_duck/reducers';
+} from '@forms/RemindPasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as NEW_PASSWORD_INITIAL_STATE,
     newPasswordFormReducer,
     NewPasswordFormState
-} from '../NewPasswordForm/_duck/reducers';
+} from '@forms/NewPasswordForm/_duck/reducers';
 
 import {
     INITIAL_STATE as GOOGLE_LOGIN_INITIAL_STATE,
     googleLoginReducer,
     GoogleLoginState
-} from '../GoogleLogin/_duck/reducers';
+} from '@forms/GoogleLogin/_duck/reducers';
 
 import {
     INITIAL_STATE as TRANSLATIONS_LOADER_INITIAL_STATE,

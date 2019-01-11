@@ -1,5 +1,5 @@
 
-import { ApplicationState } from '../_reducers/';
+import { ApplicationState } from '@src/_reducers/';
 export { MediaEnum } from '../theme/types/';
 export enum ApplicationContainersEnum {
     views = 'VIEWS',

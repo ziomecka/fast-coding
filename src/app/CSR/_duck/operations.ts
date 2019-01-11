@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { get as getData } from '../../api';
+import { get as getData } from '@app/api';
 import { GetDataType } from './types';
 
 import { changeLoadingState, updateData, reportError } from './actions';
