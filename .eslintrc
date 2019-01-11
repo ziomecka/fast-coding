@@ -1,6 +1,11 @@
 {
-  "parser": "typescript-eslint-parser",
-  "plugins": ["typescript"],
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+},
+"parser": "typescript-eslint-parser",
+  "plugins": [ "react", "typescript" ],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -10,5 +15,18 @@
   },
   "rules": {
     "no-duplicate-imports": "error",
+    "no-extra-semi": "error",
+    "no-empty": "error",
+    "no-console": "error",
+    "semi": "error",
+    "quotes": [ "error", "single" ],
+    "no-multi-spaces": "error",
+    "typescript/no-unused-vars": "error",
+    "no-multiple-empty-lines": "error",
+    "no-trailing-spaces": "error",
+    "semi-spacing": [ "error", { "before": false, "after": true }],
+    "space-in-parens": [ "error", "always" ],
+    "space-infix-ops": "error",
+    "eol-last": "error"
   }
 }
