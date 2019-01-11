@@ -17,7 +17,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import style from './styles';
 
 import { MenuContainersEnum, MenuRulesEnum, AppRoutesEnum } from '@appTypes';
-import { NavMenuProps } from './_duck/types';
+import { NavMenuProps, INavState } from './_duck/types';
 
 import AppMenu from '@app/AppMenu';
 import { DialogsEnum } from '@app/Dialog/';
@@ -25,133 +25,206 @@ import { MenuProvider } from '@app/MenuRulesHoc/index';
 import MenuList from '@app/MenuList';
 import MenuButton from '@app/MenuButton';
 import Welcome from '@app/Welcome/';
+import { withMedia, MediaEnum } from '@app/Media';
 
 import LoginForm from '@forms/LoginForm';
 import NewUserForm from '@forms/NewUserForm';
 import RemindPasswordForm from '@forms/RemindPasswordForm';
 import ChangePasswordForm from '@forms/ChangePasswordForm';
 
-const { languagesMenu, userMenu } = MenuContainersEnum;
-const appBarColor = 'primary';
-const { simple } = DialogsEnum;
-const { lessons } = AppRoutesEnum;
-const { onlyUnauthorized, notCurrentLocation, fastCodingAuthorization } = MenuRulesEnum;
+class NavComponent extends React.Component<NavProps, INavState> {
+    notAnyLesson: MenuRulesEnum;
+    notActiveLanguage: MenuRulesEnum;
+    onlyAuthorized: MenuRulesEnum;
+    onlyUnauthorized: MenuRulesEnum;
+    notCurrentLocation: MenuRulesEnum;
+    fastCodingAuthorization: MenuRulesEnum;
 
-const NavComponent: React.StatelessComponent<NavProps> = props => {
-    const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;
-    const {
-        languages,
-        setActiveLanguage,
-        activeLanguage,
-        classes: { navClass, navLessonClass, navLogin },
-        logOut,
-        login,
-        displayName,
-        openDialog
-    } = props;
+    login: AppRoutesEnum;
+    newUser: AppRoutesEnum;
+    changePassword: AppRoutesEnum;
+    remindPassword: AppRoutesEnum;
+    lessons: AppRoutesEnum;
 
-    const languageM: NavMenuProps = {
-        component: <MenuList
-            menuItems={ languages
-                .reduce( ( acc, cv ) => {
-                    const { code } = cv;
-                    acc.push( {
-                        title: code,
-                        rules: [ notActiveLanguage ],
-                        lang: code,
-                        onClick: () => {
-                            setActiveLanguage( code );
-                        } } );
-                    return acc;
-                }, [] ) }
-            icon={ <>''{ activeLanguage ? activeLanguage.code : '' }''</> }
-            container={ languagesMenu }
-            title={ 'submenuChangeLanguage' }
-    />
-    };
+    xs: MediaEnum;
+    simple: DialogsEnum.simple;
+    appBarColor: any;
 
-    const lessonsM: NavMenuProps = {
-        component: <MenuButton
-            appRoute={ lessons }
-            rules={ [ notCurrentLocation, notAnyLesson ] }
-            icon ={ <Dashboard /> }
-            title={ 'submenuGoToCourses' }
+    languagesMenu: MenuContainersEnum;
+    userMenu: MenuContainersEnum;
+    constructor(props) {
+        super(props);
+        this.state = {
+            media: this.props.media
+        }
+
+        this.userOnClick = this.userOnClick.bind(this);
+
+        Object.assign( this, MenuRulesEnum );
+        Object.assign( this, AppRoutesEnum );
+
+        this.xs = MediaEnum.xs;
+        this.simple = DialogsEnum.simple;
+        this.appBarColor = 'primary';
+
+        this.languagesMenu = MenuContainersEnum.languagesMenu;
+        this.userMenu = MenuContainersEnum.userMenu;
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props: { media }} = this;
+        const { media: prevMedia } = prevProps;
+
+        if ( media !== prevMedia ) {
+            this.setState({ media });
+        }
+    }
+
+    get languageM(): NavMenuProps {
+        const {
+            props: {
+                languages,
+                setActiveLanguage,
+                activeLanguage,
+            },
+            notActiveLanguage,
+            languagesMenu
+        } = this;
+
+        return {
+            component: <MenuList
+                menuItems={ languages
+                    .reduce( ( acc, cv ) => {
+                        const { code } = cv;
+                        acc.push( {
+                            title: code,
+                            rules: [ notActiveLanguage ],
+                            lang: code,
+                            onClick: () => {
+                                setActiveLanguage( code );
+                            } } );
+                        return acc;
+                    }, [] ) }
+                icon={ <>''{ activeLanguage ? activeLanguage.code : '' }''</> }
+                container={ languagesMenu }
+                title={ 'submenuChangeLanguage' }
         />
-    };
+        };
+    }
 
-    const userM: NavMenuProps = {
-        component: <MenuList
-            menuItems={ [
-                {
-                    title: 'subMenuUserLogin',
-                    onClick: () => openDialog( {
-                        variant: simple,
-                        Component: LoginForm
-                    } ),
-                    rules: [ onlyUnauthorized ]
-                },
-                {
-                    title: 'subMenuUserNewUser',
-                    onClick: () => openDialog( {
-                        variant: simple,
-                        Component: NewUserForm
-                    } ),
-                    rules: [ onlyUnauthorized ]
-                },
-                {
-                    title: 'subMenuUserChangePassword',
-                    onClick: () => openDialog( {
-                        variant: simple,
-                        Component: ChangePasswordForm
-                    } ),
-                    rules: [ onlyAuthorized, fastCodingAuthorization ]
-                },
-                {
-                    title: 'subMenuRemindPassword',
-                    onClick: () => openDialog( {
-                        variant: simple,
-                        Component: RemindPasswordForm
-                    } ),
-                    rules: [ onlyUnauthorized ]
-                },
-                {
-                    title: 'subMenuUserLogOut',
-                    rules: [ onlyAuthorized ],
-                    onClick: logOut
-                }
-            ] }
-            //@ts-ignore
-            icon={ <span> <Face /> </span> }
-            container={ userMenu }
-            title={ 'submenuOpenUserMenu' }
-            iconButton={{
-                className: navLogin,
-                login: displayName || login // Displayed under Face icon
-            }}
-        />
-    };
+    get lessonsM(): NavMenuProps {
+        const { notAnyLesson, notCurrentLocation, lessons } = this;
 
-    const isLesson = () => RegExp( /.*lessons\/lesson-.*/ ).test( props.location.pathname );
+        return {
+            component: <MenuButton
+                appRoute={ lessons }
+                rules={ [ notCurrentLocation, notAnyLesson ] }
+                icon ={ <Dashboard /> }
+                title={ 'submenuGoToCourses' }
+            />
+        };
+    }
 
-    return (
-        <AppBar color={appBarColor} className={`${navClass} ${isLesson() ? navLessonClass : ''}`}>
-            <MenuProvider>
-                <Welcome
-                    heading={
-                        getTranslations( props.localize ).welcomeHeading[
-                            getLanguages( props.localize )
-                            .findIndex( lang => (
-                                lang.code === getActiveLanguage( props.localize ).code )
-                            )
-                        ]
+    userOnClick( Component: React.FunctionComponent | React.ComponentClass, appRoute: string ): void {
+        const {
+            props: { openDialog, history },
+            state:{ media },
+            xs, simple
+        } = this;
+
+        if ( media !== xs ) {
+            openDialog( { variant: simple, Component } );
+        } else {
+            history.push(appRoute);
+        }
+    }
+
+    get userM(): NavMenuProps {
+        const {
+            props: { classes: { navLogin }, logOut, login : loginClass, displayName },
+            onlyAuthorized, onlyUnauthorized, fastCodingAuthorization,
+            login,
+            newUser,
+            changePassword,
+            remindPassword,
+            userMenu
+        } = this;
+
+        return {
+            component: <MenuList
+                menuItems={ [
+                    {
+                        title: 'subMenuUserLogin',
+                        onClick: () => this.userOnClick( LoginForm, login ),
+                        rules: [ onlyUnauthorized ]
+                    },
+                    {
+                        title: 'subMenuUserNewUser',
+                        onClick: () => this.userOnClick( NewUserForm, newUser ),
+                        rules: [ onlyUnauthorized ]
+                    },
+                    {
+                        title: 'subMenuUserChangePassword',
+                        onClick: () => this.userOnClick( ChangePasswordForm, changePassword ),
+                        rules: [ onlyAuthorized, fastCodingAuthorization ]
+                    },
+                    {
+                        title: 'subMenuRemindPassword',
+                        onClick: () => this.userOnClick( RemindPasswordForm, remindPassword ),
+                        rules: [ onlyUnauthorized ]
+                    },
+                    {
+                        title: 'subMenuUserLogOut',
+                        rules: [ onlyAuthorized ],
+                        onClick: logOut
                     }
-                    animated={HOME_HEADING_ANIMATED}
-                    timeout={HOME_WELCOME_TIMEOUT}
-                />
-                    <AppMenu subMenus={[ languageM, lessonsM, userM ]} />
-            </MenuProvider>
-        </AppBar>
-    );
+                ] }
+                //@ts-ignore
+                icon={ <span> <Face /> </span> }
+                container={ userMenu }
+                title={ 'submenuOpenUserMenu' }
+                iconButton={{
+                    className: navLogin,
+                    login: displayName || loginClass // Displayed under Face icon
+                }}
+            />
+        };
+    }
+
+    get isLesson() {
+        return RegExp( /.*lessons\/lesson-.*/ ).test( this.props.location.pathname );
+    }
+
+    render() {
+        const {
+            props: { classes: { navClass, navLessonClass } },
+            isLesson, appBarColor
+        } = this;
+
+        let { localize } = this.props
+
+        const heading = getTranslations( localize ).welcomeHeading[
+            getLanguages( localize )
+            .findIndex( lang => (
+                lang.code === getActiveLanguage( localize ).code )
+            )
+        ];
+
+        localize = null; // GC
+
+        return (
+            <AppBar color={ appBarColor } className={` ${ navClass } ${ isLesson ? navLessonClass : '' }` }>
+                <MenuProvider>
+                    <Welcome
+                        { ... { heading } }
+                        animated={ HOME_HEADING_ANIMATED}
+                        timeout={ HOME_WELCOME_TIMEOUT }
+                    />
+                        <AppMenu subMenus={[ this.languageM, this.lessonsM, this.userM ]} />
+                </MenuProvider>
+            </AppBar>
+        );
+    }
 };
 
-export default withStyles( style )( withLocalize( NavComponent ) );
+export default withStyles( style )( withLocalize( withMedia( NavComponent ) ) );

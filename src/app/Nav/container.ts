@@ -13,6 +13,8 @@ import { AppContainersEnum } from '@appTypes';
 
 import { DialogDispatch, mapDispatchToProps as dialogMapDispatchToProps } from '@shared/dialog';
 
+import { IWithMedia } from '@app/Media/';
+
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
@@ -27,10 +29,16 @@ const mapDispatchToProps = ( dispatch: Dispatch ): NavDispatchI => ( {
     ...dialogMapDispatchToProps(dispatch)
 } );
 
+// @ts-ignore
 export default withRouter( connect( mapStateToProps, mapDispatchToProps )( NavComponent ) );
 
-
-export interface NavProps extends MapStateToPropsI, WithStyles, LocalizeContextProps, RouteComponentProps<{}>, NavDispatchI {}
+export interface NavProps extends
+MapStateToPropsI,
+WithStyles,
+LocalizeContextProps,
+RouteComponentProps<{}>,
+NavDispatchI,
+IWithMedia {}
 
 interface MapStateToPropsI {
     localize: LocalizeState;
