@@ -6,6 +6,8 @@ import { ApplicationState } from '@appStore';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 
+import { IWithMedia } from '@app/Media/';
+
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
@@ -21,4 +23,6 @@ export interface AppRouterMapStateToProps {
     authorized: boolean;
 }
 
-export interface AppRouterPropsI extends AppRouterMapStateToProps {}
+export interface AppRouterPropsI extends
+AppRouterMapStateToProps,
+IWithMedia {}

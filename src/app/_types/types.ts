@@ -34,4 +34,9 @@ export enum AppRoutesEnum {
     demo = '/lessons/lesson-demo',
     privacyPolicy = '/privacyPolicy',
     termsOfService = '/termsOfService',
+    newUser = '/newuser',
+    changePassword = '/changepassword',
+    remindPassword = '/remindpassword',
+    newPassword = '/newpassword',
+    login = '/login',
 }
