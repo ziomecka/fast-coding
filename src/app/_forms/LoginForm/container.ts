@@ -18,6 +18,8 @@ import { WithStyles } from '@material-ui/core/styles';
 
 import { DialogDispatch, mapDispatchToProps as mapDialogDispatchToProps } from '@shared/dialog';
 
+import { IWithMedia } from '@app/Media/';
+
 const { app } = ApplicationContainersEnum;
 const { loginForm } = AppContainersEnum;
 
@@ -49,4 +51,5 @@ export interface LoginFormPropsI extends
     LoginFormDispatch,
     LoginFormState,
     WithStyles,
+    IWithMedia,
     RouteComponentProps<{}> {}

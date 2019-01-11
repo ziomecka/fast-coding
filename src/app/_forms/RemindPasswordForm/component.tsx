@@ -17,9 +17,18 @@ import { Translate } from 'react-localize-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
+import { withMedia, MediaEnum } from '@app/Media/';
+import { AppRoutesEnum } from '@appTypes';
+
 class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
+    xs: MediaEnum;
+    redirectUrl: AppRoutesEnum;
     constructor( props ) {
         super( props );
+
+        this.xs = MediaEnum.xs;
+        this.redirectUrl = AppRoutesEnum.login;
+
         this.emailOnChange = this.emailOnChange.bind( this );
         this.submit = this.submit.bind( this );
         this.redirect = this.redirect.bind( this );
@@ -44,10 +53,14 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     }
 
     redirect () {
-        this.props.openDialog( {
-            Component: LoginForm,
-            variant: simple
-        } );
+        if ( this.props.media !== this.xs ) {
+            this.props.openDialog( {
+                Component: LoginForm,
+                variant: simple
+            } );
+        } else {
+            this.props.history.push( this.redirectUrl );
+        }
     }
 
     render () {
@@ -90,4 +103,4 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     }
 }
 
-export default withStyles( styles )( RemindPasswordComponent );
+export default withStyles( styles )( withMedia( RemindPasswordComponent ) );

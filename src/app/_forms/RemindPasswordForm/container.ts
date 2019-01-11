@@ -19,6 +19,8 @@ import { WithStyles } from '@material-ui/core/styles';
 
 import { mapDispatchToProps as mapDialogDispatchToProps, DialogDispatch } from '@shared/dialog';
 
+import { IWithMedia } from '@app/Media/';
+
 const { app } = ApplicationContainersEnum;
 const { remindPasswordForm } = AppContainersEnum;
 
@@ -50,4 +52,5 @@ export interface RemindPasswordPropsI extends
     RemindPasswordDispatch,
     RemindPasswordState,
     WithStyles,
+    IWithMedia,
     RouteComponentProps {}

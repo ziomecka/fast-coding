@@ -21,14 +21,21 @@ import { Translate } from 'react-localize-redux';
 const { pass } = PasswordsEnum;
 
 import withStyles from '@material-ui/core/styles/withStyles';
-
 import styles from './styles';
+
+import { withMedia, MediaEnum } from '@app/Media/';
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainersEnum;
+    xs: MediaEnum;
+    redirectUrl: AppRoutesEnum;
     constructor ( props ) {
         super( props );
         this.container = loginForm;
+
+        this.xs = MediaEnum.xs;
+        this.redirectUrl = AppRoutesEnum.remindPassword;
+
         this.loginOnChange = this.loginOnChange.bind( this );
         this.submit = this.submit.bind( this );
         this.redirect = this.redirect.bind( this );
@@ -53,10 +60,14 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     redirect () {
-        this.props.openDialog( {
-            Component: RemindPasswordForm,
-            variant: simple
-        } );
+        if ( this.props.media !== this.xs ) {
+            this.props.openDialog( {
+                Component: RemindPasswordForm,
+                variant: simple
+            } );
+        } else {
+            this.props.history.push( this.redirectUrl );
+        }
     }
 
     render() {
@@ -100,4 +111,4 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 }
 
-export default withStyles( styles )( LoginFormComponent );
+export default withStyles( styles )( withMedia( LoginFormComponent ) );
