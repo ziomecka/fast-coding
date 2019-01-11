@@ -9,7 +9,9 @@ const styles = createStyles( theme => {
     return {
         ...formStyles(theme),
         form: {
-            minHeight: MIN_HEIGHT
+            [ theme.breakpoints.up('sm') ]: {
+                minHeight: MIN_HEIGHT
+            }
         }
     };
 });
