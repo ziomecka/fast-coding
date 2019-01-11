@@ -23,8 +23,7 @@ import store from '@appStore';
 
 import { AppRouterPropsI } from './container';
 
-import { withMedia, MediaEnum } from '@app/Media/';
-import { MediaProvider } from '@app/Media/';
+import { withMedia, MediaEnum, MediaProvider } from '@app/Media/';
 
 interface IAppRouterState {
     routes: JSX.Element
@@ -40,24 +39,24 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
     privacyPolicy: AppRoutesEnum;
 
     xs: MediaEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         Object.assign( this, AppRoutesEnum );
 
         this.state = {
             routes: this.routes
-        }
+        };
 
         this.xs = MediaEnum.xs;
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate( prevProps ) {
         const { props: { media }, xs } = this;
         const { media: prevMedia } = prevProps;
 
-        if ( media !== prevMedia && ( media === xs || prevMedia === xs )) {
-            this.setState({ routes: this.routes });
+        if ( media !== prevMedia && ( media === xs || prevMedia === xs ) ) {
+            this.setState( { routes: this.routes } );
         }
     }
 
@@ -97,7 +96,7 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
     }
 
     get desktop(): JSX.Element {
-        return <Switch>{ [ ...this.onlyMobile, ...this.common ] }</Switch>
+        return <Switch>{ [ ...this.onlyMobile, ...this.common ] }</Switch>;
     }
 
     render() {
@@ -117,6 +116,6 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
             </MuiThemeProvider>
         );
     }
-};
+}
 
 export default withMedia( Root );

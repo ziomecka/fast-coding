@@ -63,9 +63,9 @@ const styles = theme => {
                 height: '100%',
                 width: 'auto'
             },
-            [ theme.breakpoints.only('xs') ]: {
+            [ theme.breakpoints.only( 'xs' ) ]: {
                 '& .firebaseui-idp-button': {
-                    width: `calc(100% - 1rem)`, // -1rem for left /right margin
+                    width: 'calc(100% - 1rem)', // -1rem for left /right margin
                 },
                 '& .firebaseui-idp-text-short': {
                     display: 'block',
@@ -90,7 +90,7 @@ const styles = theme => {
                     height: '1em', // needed for Firefox, in Chrome 32px by user.agent,
                 },
             },
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 '& .firebaseui-idp-button': {
                     width: '100%',
                 },

@@ -26,7 +26,7 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NavDispatchI => ( {
     logOut: () => dispatch( onLogOut() ),
-    ...dialogMapDispatchToProps(dispatch)
+    ...dialogMapDispatchToProps( dispatch )
 } );
 
 // @ts-ignore

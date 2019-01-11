@@ -52,13 +52,13 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     languagesMenu: MenuContainersEnum;
     userMenu: MenuContainersEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             media: this.props.media
-        }
+        };
 
-        this.userOnClick = this.userOnClick.bind(this);
+        this.userOnClick = this.userOnClick.bind( this );
 
         Object.assign( this, MenuRulesEnum );
         Object.assign( this, AppRoutesEnum );
@@ -71,12 +71,12 @@ class NavComponent extends React.Component<NavProps, INavState> {
         this.userMenu = MenuContainersEnum.userMenu;
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate( prevProps ) {
         const { props: { media }} = this;
         const { media: prevMedia } = prevProps;
 
         if ( media !== prevMedia ) {
-            this.setState({ media });
+            this.setState( { media } );
         }
     }
 
@@ -135,7 +135,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
         if ( media !== xs ) {
             openDialog( { variant: simple, Component } );
         } else {
-            history.push(appRoute);
+            history.push( appRoute );
         }
     }
 
@@ -204,7 +204,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
             isLesson, appBarColor, xs
         } = this;
 
-        let { localize } = this.props
+        let { localize } = this.props;
 
         const heading = getTranslations( localize ).welcomeHeading[
             getLanguages( localize )
@@ -232,6 +232,6 @@ class NavComponent extends React.Component<NavProps, INavState> {
             </AppBar>
         );
     }
-};
+}
 
 export default withStyles( style )( withLocalize( withMedia( NavComponent ) ) );

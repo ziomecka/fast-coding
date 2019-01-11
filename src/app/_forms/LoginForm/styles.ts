@@ -7,13 +7,13 @@ import {
 
 const styles = createStyles( theme => {
     return {
-        ...formStyles(theme),
+        ...formStyles( theme ),
         form: {
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 minHeight: MIN_HEIGHT
             }
         }
     };
-});
+} );
 
 export default styles;
