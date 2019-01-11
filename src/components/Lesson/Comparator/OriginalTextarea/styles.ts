@@ -7,7 +7,12 @@ import {
     LESSON_PARAGRAPH_SIZE_REM
 } from '@constantsStyles';
 
-import { FONT_SIZE } from './constants.styles';
+import {
+    FONT_SIZE_LG,
+    FONT_SIZE_MD,
+    FONT_SIZE_SM,
+    FONT_SIZE_XS,
+} from './constants.styles';
 
 const styles = createStyles( theme => {
     return {
@@ -60,7 +65,16 @@ const styles = createStyles( theme => {
             display: 'inline-block',
             margin: '.1em',
             minWidth: '1em',
-            fontSize: FONT_SIZE,
+            fontSize: FONT_SIZE_XS,
+            [ theme.breakpoints.up('sm')]: {
+                fontSize: FONT_SIZE_SM,
+            },
+            [ theme.breakpoints.up('md')]: {
+                fontSize: FONT_SIZE_MD,
+            },
+            [ theme.breakpoints.up('lg')]: {
+                fontSize: FONT_SIZE_LG,
+            },
             padding: '.15em',
             whiteSpace: 'pre',
             textAlign: 'center',
