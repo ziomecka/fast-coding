@@ -47,15 +47,15 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
     );
 
     return (
-        <>{
+        <React.Fragment>{
             areMenuButtonRulesMet() && (
                 ( title && (
                     <Tooltip title={ getTranslation( props.localize, title ) }>
                         { IconButton }
                     </Tooltip>
                 )
-            ) || <> { IconButton } </> )
-        }</>
+            ) || <React.Fragment> { IconButton } </React.Fragment> )
+        }</React.Fragment>
     );
 };
 

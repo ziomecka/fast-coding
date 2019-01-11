@@ -10,13 +10,13 @@ const FormHelperTextComponent: React.StatelessComponent<FormHelperTextProps> = p
     const { formHelperText } = props;
 
     return (
-        <>
+        <React.Fragment>
             { formHelperText && (
                 <FormHelperText>
                     { formHelperText && ( <Translate id={formHelperText}/> )}
                 </FormHelperText>
             ) }
-        </>
+        </React.Fragment>
     );
 };
 

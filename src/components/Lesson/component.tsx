@@ -149,7 +149,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         } = this;
 
         return (
-            <>
+            <React.Fragment>
                 <Paper className={lessonPaper}>
                     <Typography variant="h3" className={lessonInvite}>
                         { !started
@@ -166,7 +166,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                 </Paper>
                 <LessonButtons />
                 <Stats />
-            </>
+            </React.Fragment>
         );
     }
 }

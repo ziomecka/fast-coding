@@ -85,7 +85,7 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
         const { mSm, mMd, mLg, mXl } = this;
 
         return (
-            <>
+            <React.Fragment>
                 <Media
                     query={`(max-width: ${ mSm - 1 }px)`}
                     onChange={ matches => matches ? this.onMediaQueryChange( xs ) : null }
@@ -110,7 +110,7 @@ class MediaProvider extends React.Component<{}, IMediaProviderState> {
                 <Provider value={{ media: this.state.media }}>
                     { this.props.children }
                 </Provider>
-            </>
+            </React.Fragment>
         );
     }
 }

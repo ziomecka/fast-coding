@@ -99,7 +99,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
      } = this;
 
     return (
-        <>
+        <React.Fragment>
         <DragOverable
             className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
             id="content"
@@ -132,7 +132,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             <Notification />
         </DragOverable>
         <Footer />
-        </>
+        </React.Fragment>
     );
   }
 };

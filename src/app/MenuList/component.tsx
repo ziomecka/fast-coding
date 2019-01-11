@@ -219,7 +219,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         /** Render list only if at least one item meets the rules */
         return (
             <ClickAwayListener onClickAway={ this.handleClickAway }>
-                <> {
+                <React.Fragment> {
                         ( title && (
                             <Tooltip title={getTranslation( this.props.localize, title )}>
                                 { this.getIconButton() }
@@ -234,7 +234,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                     >
                         { this.state.listItems }
                     </Menu>}
-                </>
+                </React.Fragment>
             </ClickAwayListener>
         );
     }
@@ -242,7 +242,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     render () {
         if ( this.state.render ) {
             return (
-                <>{ this.renderList() }</>
+                <React.Fragment>{ this.renderList() }</React.Fragment>
             );
         }
         return null;

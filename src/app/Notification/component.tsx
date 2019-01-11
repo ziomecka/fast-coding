@@ -45,13 +45,13 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     const Icon = _icons[variant];
 
     const message = (
-        <>
+        <React.Fragment>
             <span className={ `${ notificationMessage } ${classes[ variantClasses.message ]}` }>
                 {text}
                 {/* Render icon only if truthy */}
                 { Icon && <Icon className={`${ notificationIcon } ${ classes[ variantClasses.icon ] }`} /> }
             </span>
-        </>
+        </React.Fragment>
     );
 
     return (

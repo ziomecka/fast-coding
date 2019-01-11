@@ -38,10 +38,10 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
 
     const renderTime = ( time: number, id: string ): JSX.Element => (
         time > 0 && (
-            <>
+            <React.Fragment>
                 { time }&nbsp;
                 <Translate {...{ id }} />&nbsp;
-            </>
+            </React.Fragment>
         )
     );
 
@@ -65,11 +65,11 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
                         <span className={statsNote}>
                             <Translate id="lessonStatsTime" />
                         </span>,
-                        <>
+                        <React.Fragment>
                             { renderTime( hours, getUnitId( hours, Hours ) ) }
                             { renderTime( minutes, getUnitId( minutes, Minutes ) ) }
                             { renderTime( seconds, getUnitId( seconds, Seconds ) ) }
-                        </>,
+                        </React.Fragment>,
                     ],
                     [
                         <Tooltip title={getTranslation( props.localize, 'lessonStatsAccuracyNote' )}>
@@ -78,7 +78,7 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <>{ accuracy }</>
+                        <React.Fragment>{ accuracy }</React.Fragment>
                     ],
                     [
                         <Tooltip title={getTranslation( props.localize, 'lessonStatsRealAccuracyNote' )}>
@@ -87,7 +87,7 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <>{ realAccuracy }</>
+                        <React.Fragment>{ realAccuracy }</React.Fragment>
                     ],
                     [
                         <Tooltip title={getTranslation( props.localize, 'lessonStatsWPMNote' )}>
@@ -96,7 +96,7 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <>{ WPM }</>
+                        <React.Fragment>{ WPM }</React.Fragment>
                     ]
                 ]
             } )}
