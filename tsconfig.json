@@ -34,12 +34,10 @@
       "@componentsTypes": [ "src/components/_types/index" ],
       "@viewsTypes": [ "src/views/_types/index" ],
       "@sharedTypes": [ "src/shared/_types/index" ],
-      "@appForm/*": [ "src/forms/Form/*" ],
+      "@appForm/*": [ "src/app/Form/*" ],
       "@constants": [ "src/constants" ],
       "@constantsStyles": [ "src/theme/constants" ],
-      "@appStore": [ "src/store" ],
-      "@forms/*": [ "src/forms/*" ],
-      "@src/*": [ "src/*" ]
+      "@appStore": [ "src/store" ]
     },
     "resolveJsonModule": true
   }
