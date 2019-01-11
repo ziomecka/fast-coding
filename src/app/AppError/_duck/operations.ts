@@ -1,5 +1,5 @@
 import { Dispatch, Action } from 'redux';
-import { onOpenNotification } from '@app/Notification/_duck/operations';
+import { onOpenNotification } from '../../Notification/_duck/operations';
 
 import history from '@shared/history';
 import {

@@ -1,7 +1,7 @@
 import { Dispatch, Action } from 'redux';
 
-import { unauthorizeUser } from '@app/User/_duck/actions';
-import { onOpenNotification } from '@app/Notification/_duck/operations';
+import { unauthorizeUser } from '../../User/_duck/actions';
+import { onOpenNotification } from '../../Notification/_duck/operations';
 
 import { AppRoutesEnum } from '@appTypes';
 import history from '@shared/history';
