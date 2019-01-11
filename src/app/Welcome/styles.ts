@@ -2,7 +2,7 @@ import { createStyles } from '@material-ui/core/styles';
 
 import {
     WELCOME_BUTTON_MARGIN_RIGHT,
-    WELCOME_BUTTON_MARGIN_TOP,
+    WELCOME_BUTTON_MARGIN_TOP_XS,
     WELCOME_HEADING_OTHER_XS,
     TOOLBAR_MAX_WIDTH_SM,
     TOOLBAR_MAX_WIDTH_XS,
@@ -115,8 +115,9 @@ const styles = createStyles( theme => {
                 textAlign: 'left'
             },
             flexDirection: 'column-reverse',
+            marginTop: `${ spacingUnit * WELCOME_BUTTON_MARGIN_TOP_XS }`,
             [ theme.breakpoints.up( 'sm' ) ]: {
-                flexDirection: 'row',
+                flexDirection: 'row'
             },
             [theme.breakpoints.up( 'lg' )]: {
                 paddingLeft: PAPER_PADDING_MAX_LG
@@ -125,8 +126,10 @@ const styles = createStyles( theme => {
         welcomeButton: {
             textAlign: 'left',
             justifyContent: 'flex-start',
-            margin: `${ spacingUnit * WELCOME_BUTTON_MARGIN_TOP } ${ spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT } ${ spacingUnit } 0`,
+            margin: 0,
+            marginRight: 0,
             [ theme.breakpoints.up( 'sm' ) ]: {
+                marginRight: spacingUnit * WELCOME_BUTTON_MARGIN_RIGHT,
                 justifyContent: 'center',
                 textAlign: 'center',
             }
