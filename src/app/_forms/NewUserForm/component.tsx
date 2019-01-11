@@ -13,7 +13,6 @@ const { newUserForm } = AppContainersEnum;
 import { Translate } from 'react-localize-redux';
 
 /** Materials */
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const { newPass, confirmPass } = PasswordsEnum;
@@ -78,7 +77,6 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
         } = this;
 
         return (
-            <Paper>
                 <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
                     <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                     <Password {...{ container, passwordType: newPass }} tabIndex={2} />
@@ -97,7 +95,6 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
 
                     <Message />
                 </form>
-            </Paper>
         );
     }
 }

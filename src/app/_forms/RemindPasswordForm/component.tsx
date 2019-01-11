@@ -9,7 +9,6 @@ import Email from '@forms/Email';
 import Message from '@forms/FormHelperText/';
 
 /* Materials */
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -59,7 +58,6 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
          } = this.props;
 
         return (
-            <Paper>
                 <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
                     <Email onChange={ this.emailOnChange } {...{ email, emailValid }} />
 
@@ -88,7 +86,6 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
                         </Button>
                     </Typography>
                 </form>
-            </Paper>
         );
     }
 }

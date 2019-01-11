@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import Paper from '@material-ui/core/Paper';
-
 import { GoogleLoginProps } from './container';
 
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -67,9 +65,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         const { id, props: { classes: { firebaseClass } } } = this;
 
         return (
-            <div>
-                <Paper { ...{ id } } className={ firebaseClass } />
-            </div>
+            <div { ...{ id } } className={ firebaseClass } />
         );
     }
 }

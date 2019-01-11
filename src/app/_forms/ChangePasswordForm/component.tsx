@@ -11,7 +11,6 @@ const { changePasswordForm } = AppContainersEnum;
 import { Translate } from 'react-localize-redux';
 
 /** Materials */
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
@@ -84,7 +83,6 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
         } = this;
 
         return (
-            <Paper>
                 <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
                     <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
                     {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
@@ -104,7 +102,6 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
                         <Message />
                     </FormHelperText>
                 </form>
-            </Paper>
         );
     }
 }

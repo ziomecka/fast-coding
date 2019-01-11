@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LoginFormPropsI } from './container';
-import { AppContainersEnum, PasswordsEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum, AppRoutesEnum } from '@appTypes';
 
 const { loginForm } = AppContainersEnum;
 
@@ -14,7 +14,6 @@ import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;
 
 /* Materials */
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -67,7 +66,6 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
          } } = this;
 
          return (
-          <Paper>
               <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
                 <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
                 <Password {...{ container, passwordType: pass }} tabIndex={2} rules={[]}/>
@@ -98,7 +96,6 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
 
                 <GoogleLogin />
               </form>
-          </Paper>
         );
     }
 }
