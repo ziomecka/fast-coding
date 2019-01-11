@@ -16,7 +16,6 @@ export * from '@forms/Login/_duck/types';
 export * from '@forms/LoginForm/_duck/types';
 export * from '@app/MenuRulesHoc/_duck/types';
 export * from '@app/Nav/_duck/types';
-export * from '@forms/NewPasswordForm/_duck/types';
 export * from '@forms/NewUserForm/_duck/types';
 export * from '@app/Notification/_duck/types';
 export * from '@forms/Password/_duck/types';
