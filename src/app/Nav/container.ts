@@ -11,17 +11,20 @@ import { onLogOut } from './_duck/operations';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
 
+import { DialogDispatch, mapDispatchToProps as dialogMapDispatchToProps } from '@shared/dialog';
+
 const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     localize: { ...state.localize },
     login: state[app][user].login,
-    displayName: state[app][user].displayName
+    displayName: state[app][user].displayName,
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NavDispatchI => ( {
-    logOut: () => dispatch( onLogOut() )
+    logOut: () => dispatch( onLogOut() ),
+    ...dialogMapDispatchToProps(dispatch)
 } );
 
 export default withRouter( connect( mapStateToProps, mapDispatchToProps )( NavComponent ) );
@@ -35,6 +38,6 @@ interface MapStateToPropsI {
     displayName: string;
 }
 
-interface NavDispatchI {
+interface NavDispatchI extends DialogDispatch {
     logOut: () => Action;
 }

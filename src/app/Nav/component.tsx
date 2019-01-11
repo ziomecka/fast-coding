@@ -2,9 +2,6 @@ import * as React from 'react';
 
 import { NavProps } from './container';
 
-import AppMenu from '@app/AppMenu';
-import Welcome from '@app/Welcome/';
-
 import {
     HOME_HEADING_ANIMATED,
     HOME_WELCOME_TIMEOUT
@@ -14,25 +11,31 @@ import { getTranslations, getActiveLanguage, getLanguages, withLocalize } from '
 
 /** Materials */
 import AppBar from '@material-ui/core/AppBar';
-import Face from '@material-ui/icons/Face';
 import Dashboard from '@material-ui/icons/Dashboard';
-
-/* Materials */
+import Face from '@material-ui/icons/Face';
 import withStyles from '@material-ui/core/styles/withStyles';
 import style from './styles';
 
-import { MenuContainersEnum, MenuRulesEnum } from '@appTypes';
-const { userMenu, languagesMenu } = MenuContainersEnum;
-
-const appBarColor = 'primary';
-
-import * as submenus from './submenus';
+import { MenuContainersEnum, MenuRulesEnum, AppRoutesEnum } from '@appTypes';
 import { NavMenuProps } from './_duck/types';
 
+import AppMenu from '@app/AppMenu';
+import { DialogsEnum } from '@app/Dialog/';
 import { MenuProvider } from '@app/MenuRulesHoc/index';
-
-import MenuButton from '@app/MenuButton';
 import MenuList from '@app/MenuList';
+import MenuButton from '@app/MenuButton';
+import Welcome from '@app/Welcome/';
+
+import LoginForm from '@forms/LoginForm';
+import NewUserForm from '@forms/NewUserForm';
+import RemindPasswordForm from '@forms/RemindPasswordForm';
+import ChangePasswordForm from '@forms/ChangePasswordForm';
+
+const { languagesMenu, userMenu } = MenuContainersEnum;
+const appBarColor = 'primary';
+const { simple } = DialogsEnum;
+const { lessons } = AppRoutesEnum;
+const { onlyUnauthorized, notCurrentLocation, fastCodingAuthorization } = MenuRulesEnum;
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;
@@ -43,10 +46,11 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         classes: { navClass, navLessonClass, navLogin },
         logOut,
         login,
-        displayName
+        displayName,
+        openDialog
     } = props;
 
-    const language: NavMenuProps = {
+    const languageM: NavMenuProps = {
         component: <MenuList
             menuItems={ languages
                 .reduce( ( acc, cv ) => {
@@ -66,23 +70,56 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
     />
     };
 
-    const lessons: NavMenuProps = {
+    const lessonsM: NavMenuProps = {
         component: <MenuButton
-            { ...submenus.lessonsMenuItem }
+            appRoute={ lessons }
+            rules={ [ notCurrentLocation, notAnyLesson ] }
             icon ={ <Dashboard /> }
             title={ 'submenuGoToCourses' }
         />
     };
 
-    const user: NavMenuProps = {
+    const userM: NavMenuProps = {
         component: <MenuList
-            menuItems={ submenus.userMenuItems
-            /** Sign out added */
-            .concat( [ {
-                title: 'subMenuUserLogOut',
-                rules: [ onlyAuthorized ],
-                onClick: logOut
-            } ] ) }
+            menuItems={ [
+                {
+                    title: 'subMenuUserLogin',
+                    onClick: () => openDialog( {
+                        variant: simple,
+                        Component: LoginForm
+                    } ),
+                    rules: [ onlyUnauthorized ]
+                },
+                {
+                    title: 'subMenuUserNewUser',
+                    onClick: () => openDialog( {
+                        variant: simple,
+                        Component: NewUserForm
+                    } ),
+                    rules: [ onlyUnauthorized ]
+                },
+                {
+                    title: 'subMenuUserChangePassword',
+                    onClick: () => openDialog( {
+                        variant: simple,
+                        Component: ChangePasswordForm
+                    } ),
+                    rules: [ onlyAuthorized, fastCodingAuthorization ]
+                },
+                {
+                    title: 'subMenuRemindPassword',
+                    onClick: () => openDialog( {
+                        variant: simple,
+                        Component: RemindPasswordForm
+                    } ),
+                    rules: [ onlyUnauthorized ]
+                },
+                {
+                    title: 'subMenuUserLogOut',
+                    rules: [ onlyAuthorized ],
+                    onClick: logOut
+                }
+            ] }
             //@ts-ignore
             icon={ <span> <Face /> </span> }
             container={ userMenu }
@@ -111,7 +148,7 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
                     animated={HOME_HEADING_ANIMATED}
                     timeout={HOME_WELCOME_TIMEOUT}
                 />
-                    <AppMenu subMenus={[ language, lessons, user ]} />
+                    <AppMenu subMenus={[ languageM, lessonsM, userM ]} />
             </MenuProvider>
         </AppBar>
     );
