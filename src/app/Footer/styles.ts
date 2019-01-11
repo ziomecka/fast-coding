@@ -22,7 +22,7 @@ const styles = createStyles( theme => {
 
     return {
         footerPaper: {
-            position: 'fixed',
+            position: 'absolute',
             bottom: 0,
             width: '100%',
             paddingTop: PAPER_PADDING_XS,

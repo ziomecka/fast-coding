@@ -99,6 +99,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
      } = this;
 
     return (
+        <>
         <DragOverable
             className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
             id="content"
@@ -129,8 +130,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
             <Dialog />
 
             <Notification />
-            <Footer />
         </DragOverable>
+        <Footer />
+        </>
     );
   }
 };
