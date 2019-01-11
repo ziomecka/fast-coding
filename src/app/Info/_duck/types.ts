@@ -31,24 +31,20 @@ const isString = (value: any) => typeof value === 'string';
 export function isContent(item: IRenderType): item is ContentT {
 
     /** Content is array and does not have id and does not have text */
-    if ( Array.isArray( (<ContentT>item).content ) &&
-         (<TranslationT>item).id === undefined &&
-         (<TranslationT>item).text === undefined ) {
-        return true;
-    }
-
-    return false;
+    return (
+        Array.isArray( (<ContentT>item).content ) &&
+        (<TranslationT>item).id === undefined &&
+        (<TranslationT>item).text === undefined
+    );
 }
 
 export function isTranslation(item: IRenderType): item is TranslationT {
 
     /** Does not have content and has either id of type string or text of type string */
-    if ( ( (<ContentT>item).content === undefined ) &&
-         ( isString( (<TranslationT>item).id ) || isString( (<TranslationT>item).text) ) ) {
-        return true;
-    };
-
-    return false;
+    return (
+        (<ContentT>item).content === undefined &&
+        ( isString( (<TranslationT>item).id ) || isString( (<TranslationT>item).text) )
+    );
 }
 
 export default IRenderType;
