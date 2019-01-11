@@ -13,7 +13,6 @@ import { Translate } from 'react-localize-redux';
 /** Materials */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 const { currentPass, newPass, confirmPass } = PasswordsEnum;
@@ -21,9 +20,8 @@ const { currentPass, newPass, confirmPass } = PasswordsEnum;
 import { RulesErrorEnum } from '@shared/_types/';
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from '@appForm/styles';
+import styles from './styles';
 
-// import styles from '@appForm/styles';
 
 // TODO NO_MATCH ad MATCH
 // mogłoby być jedno gdbym mogła w props rules komponentu Password przekazywać inforamcję czy rule ma być spełnione czy nie
@@ -81,33 +79,30 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             props: {
                 [newPass]: { password: newPassword },
                 [currentPass]: { password: currentPassword },
-                classes: { FCForm }
+                classes: { FCForm, form }
             }
         } = this;
 
         return (
             <Paper>
-                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
-                    <FormControl tabIndex={1}>
-                        <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
-                        {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
-                        <Password {...{ container, passwordType: newPass }} tabIndex={3} rules={[ NOT_LONG, NO_SPACES, NO_DIGIT, NO_SPECIALS, MATCH ]} value2={ currentPassword } />
-                        <Password {...{ container, passwordType: confirmPass }} tabIndex={4} rules={[ NO_MATCH ]} value2={ newPassword } />
-                        <Button
-                            onClick={this.sendForm}
-                            type="submit"
-                            tabIndex={6}
-                            variant="contained"
-                            color="primary"
-                        >
-                            <Translate id='submitForm' />
-                        </Button>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                    <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
+                    {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
+                    <Password {...{ container, passwordType: newPass }} tabIndex={3} rules={[ NOT_LONG, NO_SPACES, NO_DIGIT, NO_SPECIALS, MATCH ]} value2={ currentPassword } />
+                    <Password {...{ container, passwordType: confirmPass }} tabIndex={4} rules={[ NO_MATCH ]} value2={ newPassword } />
+                    <Button
+                        onClick={this.sendForm}
+                        type="submit"
+                        tabIndex={6}
+                        variant="contained"
+                        color="primary"
+                    >
+                        <Translate id='submitForm' />
+                    </Button>
 
-                        <FormHelperText>
-                            <Message />
-                        </FormHelperText>
-
-                    </FormControl>
+                    <FormHelperText>
+                        <Message />
+                    </FormHelperText>
                 </form>
             </Paper>
         );

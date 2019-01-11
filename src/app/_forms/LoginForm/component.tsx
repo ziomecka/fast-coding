@@ -16,14 +16,14 @@ const { simple } = DialogsEnum;
 /* Materials */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
 const { pass } = PasswordsEnum;
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from '@appForm/styles';
+
+import styles from './styles';
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainersEnum;
@@ -63,43 +63,40 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     render() {
         const { container, props: {
             login,
-            classes: { FCForm, FCFormButton }
+            classes: { FCForm, FCFormButton, form }
          } } = this;
 
-        return (
+         return (
           <Paper>
-              <form onSubmit={ e => e.preventDefault() } className= { FCForm } >
-                <FormControl tabIndex={1}>
-                    <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
-                    <Password {...{ container, passwordType: pass }} tabIndex={2} rules={[]}/>
+              <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
+                <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
+                <Password {...{ container, passwordType: pass }} tabIndex={2} rules={[]}/>
+                <Button
+                    onClick={this.submit}
+                    type="submit"
+                    tabIndex={3}
+                    variant="contained"
+                    color="primary"
+                >
+                    <Translate id="signInWithFastCoding" />
+                </Button>
+
+                <Message />
+
+                <Typography variant="body1">
                     <Button
-                        onClick={this.submit}
+                        onClick={ this.redirect }
                         type="submit"
                         tabIndex={3}
-                        variant="contained"
+                        variant="text"
                         color="primary"
+                        className= { FCFormButton }
                     >
-                        <Translate id="signInWithFastCoding" />
+                        <Translate id="loginDoNotRememberButton" />
                     </Button>
+                </Typography>
 
-                    <Message />
-
-                    <Typography variant="body1">
-                        <Button
-                            onClick={ this.redirect }
-                            type="submit"
-                            tabIndex={3}
-                            variant="text"
-                            color="primary"
-                            className= { FCFormButton }
-                        >
-                            <Translate id="loginDoNotRememberButton" />
-                        </Button>
-                    </Typography>
-
-                    <GoogleLogin />
-
-                </FormControl>
+                <GoogleLogin />
               </form>
           </Paper>
         );

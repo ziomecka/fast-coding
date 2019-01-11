@@ -15,15 +15,15 @@ import { Translate } from 'react-localize-redux';
 /** Materials */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 
 const { newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '@shared/_types/';
 const { NO_MATCH } = RulesErrorEnum;
 
-import styles from '@appForm/styles';
+
 import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainersEnum;
@@ -73,32 +73,29 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             props: {
                 email, emailValid, login,
                 [newPass]: { password: newPassword },
-                classes: { FCForm, FCFormButton }
+                classes: { FCForm, FCFormButton, form }
             }
         } = this;
 
         return (
             <Paper>
-                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
-                    <FormControl tabIndex={1}>
-                        <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
-                        <Password {...{ container, passwordType: newPass }} tabIndex={2} />
-                        <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
-                        <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
-                        <Button
-                            onClick={this.sendNewUserForm}
-                            type="submit"
-                            tabIndex={5}
-                            variant="contained"
-                            color="primary"
-                            className={ FCFormButton }
-                        >
-                            <Translate id='submitForm' />
-                        </Button>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                    <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
+                    <Password {...{ container, passwordType: newPass }} tabIndex={2} />
+                    <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
+                    <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
+                    <Button
+                        onClick={this.sendNewUserForm}
+                        type="submit"
+                        tabIndex={5}
+                        variant="contained"
+                        color="primary"
+                        className={ FCFormButton }
+                    >
+                        <Translate id='submitForm' />
+                    </Button>
 
-                        <Message />
-
-                    </FormControl>
+                    <Message />
                 </form>
             </Paper>
         );

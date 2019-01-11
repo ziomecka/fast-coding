@@ -12,12 +12,11 @@ import Message from '@forms/FormHelperText/';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
 
 import { Translate } from 'react-localize-redux';
 
-import styles from '@appForm/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
+import styles from './styles';
 
 class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
     constructor( props ) {
@@ -56,44 +55,38 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
         const {
             email,
             emailValid,
-            classes: { FCForm, FCFormButton }
+            classes: { FCForm, FCFormButton, form }
          } = this.props;
 
         return (
             <Paper>
-                <form onSubmit={ e => e.preventDefault() } className={ FCForm }>
-                    <FormControl tabIndex={1}>
-                        <Typography>
+                <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                    <Email onChange={ this.emailOnChange } {...{ email, emailValid }} />
 
-                        </Typography>
+                    <Button
+                        onClick={ this.submit }
+                        type="submit"
+                        tabIndex={3}
+                        variant="contained"
+                        color="primary"
+                    >
+                        <Translate id="submitForm" />
+                    </Button>
 
-                        <Email onChange={ this.emailOnChange } {...{ email, emailValid }} />
+                    <Message />
 
+                    <Typography variant="body1">
                         <Button
-                            onClick={ this.submit }
+                            onClick={ this.redirect }
                             type="submit"
                             tabIndex={3}
-                            variant="contained"
+                            variant="text"
                             color="primary"
+                            className={ FCFormButton }
                         >
-                            <Translate id="submitForm" />
+                            <Translate id="remindPasswordRememberButton" />
                         </Button>
-
-                        <Message />
-
-                        <Typography variant="body1">
-                            <Button
-                                onClick={ this.redirect }
-                                type="submit"
-                                tabIndex={3}
-                                variant="text"
-                                color="primary"
-                                className={ FCFormButton }
-                            >
-                                <Translate id="remindPasswordRememberButton" />
-                            </Button>
-                        </Typography>
-                    </FormControl>
+                    </Typography>
                 </form>
             </Paper>
         );

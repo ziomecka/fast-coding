@@ -18,7 +18,6 @@ import parseQueries from '@shared/parse.queries';
 /* Materials */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 
 import { Translate } from 'react-localize-redux';
 import { SERVER_CONSTANTS } from '@constants';
@@ -31,7 +30,8 @@ const {
 } = SERVER_CONSTANTS;
 
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from '@appForm/styles';
+
+import styles from './styles';
 
 class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
     keyParam: string;
@@ -88,31 +88,28 @@ class NewPasswordFormComponent extends React.Component<NewPasswordFormPropsI> {
             queryIsValid,
             props: {
                 [newPass]: { password: newPassword },
-                classes: { FCForm }
+                classes: { FCForm, form }
             }
          } = this;
 
         if ( queryIsValid ) {
             return (
                 <Paper>
-                    <form onSubmit={ e => e.preventDefault() } className={ FCForm }>
-                        <FormControl>
-                            <Password {...{ container, passwordType: newPass }} />
-                            <Password {...{ container, passwordType: confirmPass }} rules={[ NO_MATCH ]} value2={ newPassword } />
+                    <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
+                        <Password {...{ container, passwordType: newPass }} />
+                        <Password {...{ container, passwordType: confirmPass }} rules={[ NO_MATCH ]} value2={ newPassword } />
 
-                            <Button
-                                onClick={ this.submit }
-                                type="submit"
-                                tabIndex={3}
-                                variant="contained"
-                                color="primary"
-                            >
-                                <Translate id="submitForm" />
-                            </Button>
+                        <Button
+                            onClick={ this.submit }
+                            type="submit"
+                            tabIndex={3}
+                            variant="contained"
+                            color="primary"
+                        >
+                            <Translate id="submitForm" />
+                        </Button>
 
-                            <Message />
-
-                        </FormControl>
+                        <Message />
                     </form>
                 </Paper>
             );
