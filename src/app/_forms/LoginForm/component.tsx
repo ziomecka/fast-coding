@@ -15,7 +15,6 @@ const { simple } = DialogsEnum;
 
 /* Materials */
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 import { Translate } from 'react-localize-redux';
 const { pass } = PasswordsEnum;
@@ -73,7 +72,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     render() {
         const { container, xs, props: {
             login,
-            classes: { FCForm, FCFormButton, form },
+            classes: { FCForm, FCFormButton, form, FCFormButtonText },
             media
          } } = this;
 
@@ -99,18 +98,16 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
 
                 <Message />
 
-                <Typography variant="body1">
-                    <Button
-                        onClick={ this.redirect }
-                        type="submit"
-                        tabIndex={3}
-                        variant="text"
-                        color="primary"
-                        className= { FCFormButton }
-                    >
-                        <Translate id="loginDoNotRememberButton" />
-                    </Button>
-                </Typography>
+                <Button
+                    onClick={ this.redirect }
+                    type="submit"
+                    tabIndex={3}
+                    variant="text"
+                    color="primary"
+                    className= { `${ FCFormButton } ${ FCFormButtonText }` }
+                >
+                    <Translate id="loginDoNotRememberButton" />
+                </Button>
 
                 <GoogleLogin />
               </form>

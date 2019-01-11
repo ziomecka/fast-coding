@@ -8,6 +8,8 @@ import {
 } from '@constantsStyles';
 
 const styles = theme => {
+    const { typography: { body1: { fontSize } } } = theme;
+
     return {
         FCForm: {
             '& input, label': {
@@ -29,6 +31,9 @@ const styles = theme => {
         },
         FCFormButton: {
             width: '100%'
+        },
+        FCFormButtonText: {
+            fontSize
         }
     };
 };

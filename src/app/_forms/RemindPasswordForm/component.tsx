@@ -68,7 +68,7 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
             props: {
                 email,
                 emailValid,
-                classes: { FCForm, FCFormButton, form },
+                classes: { FCForm, FCFormButton, form, FCFormButtonText },
                 media,
             },
             xs
@@ -94,18 +94,16 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
 
                     <Message />
 
-                    <Typography variant="body1">
                         <Button
                             onClick={ this.redirect }
                             type="submit"
                             tabIndex={3}
                             variant="text"
                             color="primary"
-                            className={ FCFormButton }
+                            className= { `${ FCFormButton } ${ FCFormButtonText }` }
                         >
                             <Translate id="remindPasswordRememberButton" />
                         </Button>
-                    </Typography>
                 </form>
         );
     }
