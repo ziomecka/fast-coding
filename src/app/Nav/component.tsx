@@ -105,7 +105,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                             } } );
                         return acc;
                     }, [] ) }
-                icon={ <>''{ activeLanguage ? activeLanguage.code : '' }''</> }
+                icon={ <> { activeLanguage ? activeLanguage.code : '' } </> }
                 container={ languagesMenu }
                 title={ 'submenuChangeLanguage' }
         />

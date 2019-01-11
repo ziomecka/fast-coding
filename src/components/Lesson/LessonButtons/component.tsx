@@ -132,19 +132,19 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
      * button cancel placed to the left - to encourage to press
      */
     const buttonsWhenRunning = (
-        <>'           '{ buttonStartLeaving }'           '{ buttonPause }'       '</>
+        <> { buttonStartLeaving } { buttonPause } </>
     );
 
     const buttonsWhenNotStarted = (
-        <>'           '{ buttonLeave }'       '</>
+        <> { buttonLeave } </>
     );
 
     const buttonsWhenPaused = (
-        <>'           '{ buttonStartLeaving }'           '{ buttonUnpause }'       '</>
+        <> { buttonStartLeaving } { buttonUnpause } </>
     );
 
     const buttonsWhenEnded = (
-        <>'           '{ buttonLeave }'           '{ buttonRestart }'       '</>
+        <> { buttonLeave } { buttonRestart } </>
     );
 
     const getButtons = (): JSX.Element => {
