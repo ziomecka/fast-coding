@@ -13,7 +13,7 @@ const style = createStyles( theme => {
         toolbar: {
             width: 'auto', // without it takes 100% and is over the main title
             padding: 0,
-            position: 'fixed',
+            position: 'inherit',
             right: PAPER_PADDING_MAX_XS,
             height: NAV_HEIGHT_MD,
             [ theme.breakpoints.up( 'sm' ) ]: {

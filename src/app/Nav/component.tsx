@@ -197,8 +197,11 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     render() {
         const {
-            props: { classes: { navClass, navLessonClass } },
-            isLesson, appBarColor
+            props: {
+                classes: { navClass, navLessonClass },
+                media
+            },
+            isLesson, appBarColor, xs
         } = this;
 
         let { localize } = this.props
@@ -213,7 +216,11 @@ class NavComponent extends React.Component<NavProps, INavState> {
         localize = null; // GC
 
         return (
-            <AppBar color={ appBarColor } className={` ${ navClass } ${ isLesson ? navLessonClass : '' }` }>
+            <AppBar
+                position={ media === xs ? 'absolute' : 'fixed' }
+                color={ appBarColor }
+                className={` ${ navClass } ${ isLesson ? navLessonClass : '' }` }
+            >
                 <MenuProvider>
                     <Welcome
                         { ... { heading } }

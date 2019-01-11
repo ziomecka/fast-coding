@@ -49,7 +49,7 @@ const styles = createStyles( theme => {
         welcomePaper: {
             alignItems: 'flex-start',
             padding: 0,
-            position: 'fixed',
+            position: 'inherit',
             justifyContent: 'center',
             top: 0,
             left: 0,
@@ -59,7 +59,7 @@ const styles = createStyles( theme => {
             transition: `${ transHeightFontSizeColor }`
         },
         welcomeHome: {
-            height: '100%',
+            height: '100vh',
         },
         welcomeOther: {
             height: `${ NAV_HEIGHT_MD }px`,
