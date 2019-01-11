@@ -45,13 +45,11 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     const Icon = _icons[variant];
 
     const message = (
-        <>
-            <span className={ `${ notificationMessage } ${classes[ variantClasses.message ]}` }>
+        <>'           '<span className={ `${ notificationMessage } ${classes[ variantClasses.message ]}` }>
                 {text}
                 {/* Render icon only if truthy */}
                 { Icon && <Icon className={`${ notificationIcon } ${ classes[ variantClasses.icon ] }`} /> }
-            </span>
-        </>
+            </span>'       '</>
     );
 
     return (
@@ -68,4 +66,4 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     );
 };
 
-export default withStyles(styles)(NotificationComponent);
+export default withStyles( styles )( NotificationComponent );

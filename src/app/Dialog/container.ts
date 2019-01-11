@@ -13,14 +13,14 @@ import { WithStyles } from '@material-ui/core/styles';
 const { app } = ApplicationContainersEnum;
 const { dialog } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): DialogState => ({
+const mapStateToProps = ( state: ApplicationState ): DialogState => ( {
     ...state[app][dialog]
-});
+} );
 
-const DialogContainer = connect(mapStateToProps)(Dialog);
+const DialogContainer = connect( mapStateToProps )( Dialog );
 
 export default DialogContainer;
 
 export interface AppDialogProps extends
 DialogState,
-WithStyles {};
+WithStyles {}

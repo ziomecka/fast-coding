@@ -16,17 +16,17 @@ import getTranslation from '@shared/get.translation';
 import Message from '../message';
 
 const buttonsIds = [ 'dialogLeave', 'dialogCancel' ];
-const manageButtonFocus = buttonFocus(buttonsIds, 1);
+const manageButtonFocus = buttonFocus( buttonsIds, 1 );
 
 export const onStartLeaving = (): any => (
 
-    (dispatch: Dispatch, getState: ThunkGetStateType) => {
+    ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
 
-        dispatch(onPauseLesson());
+        dispatch( onPauseLesson() );
 
-        const press = getTranslation(getState().localize, 'buttonsPress');
+        const press = getTranslation( getState().localize, 'buttonsPress' );
 
-        dispatch(openDialog({
+        dispatch( openDialog( {
             variant: yesCancel,
             Component: Message,
             buttons: {
@@ -34,8 +34,8 @@ export const onStartLeaving = (): any => (
                     buttonProps: {
                         id: buttonsIds[0],
                         onClick: async () => {
-                            history.push(lessons);
-                            return await dispatch(onReset());
+                            history.push( lessons );
+                            return await dispatch( onReset() );
                         }
                     },
                     translationId: 'lessonDialogOKLeave',
@@ -46,20 +46,20 @@ export const onStartLeaving = (): any => (
                         id: buttonsIds[1],
                         color: 'secondary',
                         autoFocus: true,
-                        onClick: async () => await dispatch(onUnpauseLesson())
+                        onClick: async () => await dispatch( onUnpauseLesson() )
                     },
                     translationId: 'lessonDialogCancelLeave',
                     aftertext: `${ press } ESC`
                 }
             },
             dialogProps: {
-                onClose: () => dispatch(onUnpauseLesson()),
+                onClose: () => dispatch( onUnpauseLesson() ),
                 // @ts-ignore
-                onKeyDown: (e) => manageButtonFocus(e)
+                onKeyDown: ( e ) => manageButtonFocus( e )
             }
-        })
+        } )
     );
-});
+} );
 
 export default {
     onStartLeaving

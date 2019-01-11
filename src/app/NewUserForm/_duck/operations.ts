@@ -13,7 +13,7 @@ import { onSendForm as _onSendForm } from '@appForm/_duck/operations';
 
 // TODO Redirect to login or log in
 
-export const onSendNewUserForm = (options: SendNewUserFormI ): any => (
+export const onSendNewUserForm = ( options: SendNewUserFormI ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
         const { login: userLogin, password, email } = options;
 
@@ -31,7 +31,7 @@ export const onSendNewUserForm = (options: SendNewUserFormI ): any => (
                 successNotification: 'notificationNewUserSet',
                 // redirectUrl: login
             }
-        } ));
+        } ) );
     }
 );
 

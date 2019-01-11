@@ -1,7 +1,7 @@
 import { Action, ActionCreator } from 'redux';
 import { NewUserFormActionsEnum } from './types';
 
-import { SetPasswordAction } from '../../Password/_duck/actions';
+import { SetPasswordAction } from '@app/Password/_duck/actions';
 
 const {
     APP_NEWUSERFORM_SET_LOGIN,
@@ -9,19 +9,19 @@ const {
     APP_NEWUSERFORM_RESET
 } = NewUserFormActionsEnum;
 
-export const setLogin: ActionCreator<SetLoginAction> = (login: string) => ({
+export const setLogin: ActionCreator<SetLoginAction> = ( login: string ) => ( {
     type: APP_NEWUSERFORM_SET_LOGIN,
     login
-});
+} );
 
-export const setEmail: ActionCreator<SetEmailAction> = (email: string) => ({
+export const setEmail: ActionCreator<SetEmailAction> = ( email: string ) => ( {
     type: APP_NEWUSERFORM_SET_EMAIL,
     email
-});
+} );
 
-export const reset: ActionCreator<Action> = () => ({
+export const reset: ActionCreator<Action> = () => ( {
     type: APP_NEWUSERFORM_RESET
-});
+} );
 
 export const actions = {
     setLogin,
@@ -31,11 +31,11 @@ export const actions = {
 
 export interface SetLoginAction extends Action {
     login: string;
-};
+}
 
 export interface SetEmailAction extends Action {
     email: string;
-};
+}
 
 export type NewUserFormActions = Action | SetPasswordAction |
     SetLoginAction |

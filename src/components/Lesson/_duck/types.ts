@@ -14,4 +14,4 @@ export enum LessonActionsEnum {
     COMPONENTS_LESSON_OPEN_DEMO = '@@components_lesson/OPEN_DEMO',
     COMPONENTS_LESSON_RESTART = '@@components_lesson/RESTART',
     COMPONENTS_LESSON_RESTORE_STATE = '@@components_lesson/RESTORE_STATE'
-};
+}

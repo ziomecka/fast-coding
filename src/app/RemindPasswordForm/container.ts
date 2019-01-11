@@ -22,32 +22,32 @@ import { mapDispatchToProps as mapDialogDispatchToProps, DialogDispatch } from '
 const { app } = ApplicationContainersEnum;
 const { remindPasswordForm } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): RemindPasswordState => ({
+const mapStateToProps = ( state: ApplicationState ): RemindPasswordState => ( {
     ...state[app][remindPasswordForm]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): RemindPasswordDispatch => ({
-    sendForm: (options) => dispatch(onSendForm(options)),
-    setEmail: (options) => dispatch(setEmail(options)),
-    reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid()),
-    ...mapDialogDispatchToProps(dispatch)
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): RemindPasswordDispatch => ( {
+    sendForm: ( options ) => dispatch( onSendForm( options ) ),
+    setEmail: ( options ) => dispatch( setEmail( options ) ),
+    reset: () => dispatch( reset() ),
+    formInvalid: () => dispatch( onFormInvalid() ),
+    ...mapDialogDispatchToProps( dispatch )
+} );
 
 // @ts-ignore
-const LabelContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(RemindPasswordForm));
+const LabelContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( RemindPasswordForm ) );
 
 export default LabelContainer;
 
 export interface RemindPasswordDispatch extends DialogDispatch {
-    sendForm: (options: SendFormRemindPasswordI) => Action;
-    setEmail: (options: SetEmail) => SetEmailAction;
+    sendForm: ( options: SendFormRemindPasswordI ) => Action;
+    setEmail: ( options: SetEmail ) => SetEmailAction;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface RemindPasswordPropsI extends
     RemindPasswordDispatch,
     RemindPasswordState,
     WithStyles,
-    RouteComponentProps {};
+    RouteComponentProps {}

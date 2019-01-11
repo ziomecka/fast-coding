@@ -9,12 +9,10 @@ import styles from './styles';
 
 import { getActiveLanguage } from 'react-localize-redux';
 
-import { ui } from './_duck/operations';
-
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.id = 'firebaseui-auth-container';
     }
 
@@ -26,7 +24,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
          */
         if ( firebaseAuthorized ) {
             return this.startFirebaseUI();
-        }  else {
+        } else {
             return this.authorizeFirebase();
         }
     }
@@ -34,24 +32,24 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     async authorizeFirebase (): Promise<void> {
         let response = await this.props.authorizeFirebase();
 
-        if (response) {
+        if ( response ) {
             response = null; // GC
-            return(this.startFirebaseUI());
+            return( this.startFirebaseUI() );
         }
     }
 
     async startFirebaseUI (): Promise<void> {
         let response = await this.props.startFirebaseUI();
 
-        if (response) {
+        if ( response ) {
             response = null; // GC
-            return (this.props.setTranslations());
+            return ( this.props.setTranslations() );
         }
     }
 
-    componentDidUpdate(prevProps) {
-        const activeLanguage = getActiveLanguage(this.props.localize);
-        const prevActiveLanguage = getActiveLanguage(prevProps.localize);
+    componentDidUpdate( prevProps ) {
+        const activeLanguage = getActiveLanguage( this.props.localize );
+        const prevActiveLanguage = getActiveLanguage( prevProps.localize );
 
         const { firebaseAuthorized } = this.props;
         const { firebaseAuthorized: prevFirebaseAuthorized } = prevProps;
@@ -60,7 +58,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
             this.props.setTranslations();
         }
 
-        if (firebaseAuthorized !== prevFirebaseAuthorized && !firebaseAuthorized) {
+        if ( firebaseAuthorized !== prevFirebaseAuthorized && !firebaseAuthorized ) {
             this.authorizeFirebase();
         }
     }
@@ -71,11 +69,9 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         return (
             <div>
                 <Paper { ...{ id } } className={ firebaseClass } />
-                {/* <Paper id="firebaseui-auth-container">dupcia</Paper> */}
-
             </div>
         );
     }
-};
+}
 
-export default withStyles(styles)(GoogleLoginComponent);
+export default withStyles( styles )( GoogleLoginComponent );

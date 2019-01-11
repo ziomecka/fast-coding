@@ -5,8 +5,8 @@ import LoginForm from '@app/LoginForm';
 import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;
 
-import Email from '../Email';
-import Message from '../FormHelperText/';
+import Email from '@app/Email';
+import Message from '@app/FormHelperText/';
 
 /* Materials */
 import Paper from '@material-ui/core/Paper';
@@ -20,20 +20,20 @@ import styles from '@appForm/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
-    constructor(props) {
-        super(props);
-        this.emailOnChange = this.emailOnChange.bind(this);
-        this.submit = this.submit.bind(this);
-        this.redirect = this.redirect.bind(this);
+    constructor( props ) {
+        super( props );
+        this.emailOnChange = this.emailOnChange.bind( this );
+        this.submit = this.submit.bind( this );
+        this.redirect = this.redirect.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setEmail({ email: e.target.value });
-    };
+    emailOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setEmail( { email: e.target.value } );
+    }
 
     submit () {
         const { email, emailValid } = this.props;
@@ -41,15 +41,15 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
         if ( !email || !!emailValid ) {
             this.props.formInvalid();
         } else {
-            this.props.sendForm({ email });
+            this.props.sendForm( { email } );
         }
-    };
+    }
 
     redirect () {
-        this.props.openDialog({
+        this.props.openDialog( {
             Component: LoginForm,
             variant: simple
-        });
+        } );
     }
 
     render () {
@@ -98,6 +98,6 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
             </Paper>
         );
     }
-};
+}
 
-export default withStyles(styles)(RemindPasswordComponent);
+export default withStyles( styles )( RemindPasswordComponent );

@@ -7,8 +7,8 @@ export enum ComparatorActionsEnum {
     COMPONENTS_COMPARATOR_CORRECT_ERROR = '@@components_comparator/CORRECT_ERROR',
     COMPONENTS_COMPARATOR_RESET = '@@components_comparator/RESET',
     COMPONENTS_COMPARATOR_RESTORE_STATE = '@@components_comparator/RESTORE_STATE'
-};
+}
 
 export enum ComparatorContainersEnum {
     stats = 'STATS'
-};
+}

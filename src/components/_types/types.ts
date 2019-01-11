@@ -6,4 +6,4 @@ export enum ComponentsContainersEnum {
     lessons = 'LESSONS',
     lessonButtons = 'LESSON_BUTTONS',
     lessonStepper = 'LESSON_STEPPER'
-};
+}

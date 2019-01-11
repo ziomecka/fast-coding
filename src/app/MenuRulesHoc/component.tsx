@@ -19,7 +19,7 @@ const { demo, lesson, home } = AppRoutesEnum;
 
 import { getActiveLanguage } from 'react-localize-redux';
 
-const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
+const MenuProvider: React.StatelessComponent<MenuProviderProps> = ( props ) => {
     const {
         authorized,
         location: { pathname },
@@ -28,7 +28,7 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
         authorizationMethod
      } = props;
 
-    const { code: activeLang } = getActiveLanguage(localize);
+    const { code: activeLang } = getActiveLanguage( localize );
 
     return (
         <Provider value={options => {
@@ -39,9 +39,9 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = (props) => {
                 [onlyUnauthorized]: () => !authorized,
                 [notCurrentLocation]: () => path !== pathname,
                 [notActiveLanguage]: () => !lang || lang !== activeLang,
-                [notLesson]: () => !RegExp(`.*${lesson}.*`, 'g').test(pathname),
+                [notLesson]: () => !RegExp( `.*${lesson}.*`, 'g' ).test( pathname ),
                 [notDemoLesson]: () => pathname !== demo,
-                [notAnyLesson]: () => !RegExp(`.*${lesson}.*`,'g').test(pathname) && pathname !== demo,
+                [notAnyLesson]: () => !RegExp( `.*${lesson}.*`,'g' ).test( pathname ) && pathname !== demo,
                 [notHome]: () => pathname !== home,
                 [fastCodingAuthorization]: () => authorizationMethod === fastcoding
             };

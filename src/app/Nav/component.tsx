@@ -10,7 +10,7 @@ import {
     HOME_WELCOME_TIMEOUT
 } from './constants';
 
-import { getTranslations, getActiveLanguage, getLanguages } from 'react-localize-redux';
+import { getTranslations, getActiveLanguage, getLanguages, withLocalize } from 'react-localize-redux';
 
 /** Materials */
 import AppBar from '@material-ui/core/AppBar';
@@ -28,12 +28,11 @@ const appBarColor = 'primary';
 
 import * as submenus from './submenus';
 import { NavMenuProps } from './_duck/types';
-import { withLocalize } from 'react-localize-redux';
 
-import { MenuProvider } from '../MenuRulesHoc/index';
+import { MenuProvider } from '@app/MenuRulesHoc/index';
 
-import MenuButton from '../MenuButton';
-import MenuList from '../MenuList';
+import MenuButton from '@app/MenuButton';
+import MenuList from '@app/MenuList';
 
 const NavComponent: React.StatelessComponent<NavProps> = props => {
     const { notAnyLesson, notActiveLanguage, onlyAuthorized } = MenuRulesEnum;
@@ -50,18 +49,18 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
     const language: NavMenuProps = {
         component: <MenuList
             menuItems={ languages
-                .reduce((acc, cv) => {
+                .reduce( ( acc, cv ) => {
                     const { code } = cv;
-                    acc.push({
+                    acc.push( {
                         title: code,
                         rules: [ notActiveLanguage ],
                         lang: code,
                         onClick: () => {
-                            setActiveLanguage(code)
-                        } });
+                            setActiveLanguage( code );
+                        } } );
                     return acc;
-                }, []) }
-            icon={ <> { activeLanguage? activeLanguage.code : '' } </> }
+                }, [] ) }
+            icon={ <>''{ activeLanguage ? activeLanguage.code : '' }''</> }
             container={ languagesMenu }
             title={ 'submenuChangeLanguage' }
     />
@@ -79,11 +78,11 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         component: <MenuList
             menuItems={ submenus.userMenuItems
             /** Sign out added */
-            .concat([ {
+            .concat( [ {
                 title: 'subMenuUserLogOut',
                 rules: [ onlyAuthorized ],
                 onClick: logOut
-            } ]) }
+            } ] ) }
             //@ts-ignore
             icon={ <span> <Face /> </span> }
             container={ userMenu }
@@ -95,17 +94,17 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
         />
     };
 
-    const isLesson = () => RegExp(/.*lessons\/lesson-.*/).test(props.location.pathname);
+    const isLesson = () => RegExp( /.*lessons\/lesson-.*/ ).test( props.location.pathname );
 
     return (
         <AppBar color={appBarColor} className={`${navClass} ${isLesson() ? navLessonClass : ''}`}>
             <MenuProvider>
                 <Welcome
                     heading={
-                        getTranslations(props.localize).welcomeHeading[
-                            getLanguages(props.localize)
-                            .findIndex(lang => (
-                                lang.code === getActiveLanguage(props.localize).code)
+                        getTranslations( props.localize ).welcomeHeading[
+                            getLanguages( props.localize )
+                            .findIndex( lang => (
+                                lang.code === getActiveLanguage( props.localize ).code )
                             )
                         ]
                     }
@@ -118,4 +117,4 @@ const NavComponent: React.StatelessComponent<NavProps> = props => {
     );
 };
 
-export default withStyles(style)(withLocalize(NavComponent));
+export default withStyles( style )( withLocalize( NavComponent ) );

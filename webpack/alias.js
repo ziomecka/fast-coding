@@ -14,5 +14,7 @@ module.exports = {
     '@appForm': ( path.resolve ( __dirname, '../src/app/Form/' )),
     '@constants': ( path.resolve ( __dirname, '../src/constants' )),
     '@constantsStyles': ( path.resolve ( __dirname, '../src/theme/constants' )),
-    '@appStore': ( path.resolve ( __dirname, '../src/store' ))
+    '@appStore': ( path.resolve ( __dirname, '../src/store' )),
+    '@theme': ( path.resolve ( __dirname, '../src/theme/index' )),
+    '@src': ( path.resolve ( __dirname, '../src/' ))
 };

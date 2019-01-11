@@ -5,10 +5,10 @@ import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
 const { loginForm } = AppContainersEnum;
 
-import Password from '../Password/';
-import Login from '../Login/';
-import Message from '../FormHelperText/';
-import GoogleLogin from '../GoogleLogin/';
+import Password from '@app/Password/';
+import Login from '@app/Login/';
+import Message from '@app/FormHelperText/';
+import GoogleLogin from '@app/GoogleLogin/';
 import RemindPasswordForm from '@app/RemindPasswordForm';
 import { DialogsEnum } from '@app/Dialog';
 const { simple } = DialogsEnum;
@@ -27,20 +27,20 @@ import styles from '@appForm/styles';
 
 class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainersEnum;
-    constructor (props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
         this.container = loginForm;
-        this.loginOnChange = this.loginOnChange.bind(this);
-        this.submit = this.submit.bind(this);
-        this.redirect = this.redirect.bind(this);
+        this.loginOnChange = this.loginOnChange.bind( this );
+        this.submit = this.submit.bind( this );
+        this.redirect = this.redirect.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value)
+    loginOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setLogin( e.target.value );
     }
 
     submit () {
@@ -49,15 +49,15 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
         if ( !login || !password || !!loginValid || !!passwordValid ) {
             this.props.formInvalid();
         } else {
-            this.props.log({ login, password });
+            this.props.log( { login, password } );
         }
     }
 
     redirect () {
-        this.props.openDialog({
+        this.props.openDialog( {
             Component: RemindPasswordForm,
             variant: simple
-        });
+        } );
     }
 
     render() {
@@ -104,6 +104,6 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
           </Paper>
         );
     }
-};
+}
 
-export default withStyles(styles)(LoginFormComponent);
+export default withStyles( styles )( LoginFormComponent );

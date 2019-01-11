@@ -37,7 +37,9 @@
       "@appForm/*": [ "src/app/Form/*" ],
       "@constants": [ "src/constants" ],
       "@constantsStyles": [ "src/theme/constants" ],
-      "@appStore": [ "src/store" ]
+      "@appStore": [ "src/store" ],
+      "@theme": [ "src/theme/index" ],
+      "@src/*": [ "src/*" ],
     },
     "resolveJsonModule": true
   }

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AuthRouteProps } from './container';
 
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
 import { AppRoutesEnum } from '@appTypes';
 
@@ -17,7 +17,7 @@ const RouteAuthComponent: React.StatelessComponent<AuthRouteProps> = props => {
 
     /** If condition is not met - redirect to redirect or home */
     if ( !condition ) {
-        history.push(redirect || home);
+        history.push( redirect || home );
     }
 
     return <Route { ...other } />;

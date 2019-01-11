@@ -15,4 +15,4 @@ export interface MenuButtonOptionsI {
     rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
-};
+}

@@ -22,16 +22,16 @@ import { LESSON_TIME_INTERVAL } from './constants';
  */
 interface LessonComponentState {
     time: string;
-};
+}
 
 class LessonComponent extends React.Component<LessonProps, LessonComponentState> {
     style: React.CSSProperties;
     private interval: null | number | NodeJS.Timer;
     private _interval: number;
-    getSeconds: (time: number) => string;
-    constructor(props) {
-        super(props);
-        this.onDrop = this.onDrop.bind(this);
+    getSeconds: ( time: number ) => string;
+    constructor( props ) {
+        super( props );
+        this.onDrop = this.onDrop.bind( this );
 
         this.interval = 0;
         this._interval = LESSON_TIME_INTERVAL;
@@ -39,22 +39,22 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
         this.state = { time: this.time() };
 
-        this.backForwardButton = this.backForwardButton.bind(this);
-        this.time = this.time.bind(this);
+        this.backForwardButton = this.backForwardButton.bind( this );
+        this.time = this.time.bind( this );
     }
 
     async componentDidMount() {
-        this.props.registerOnDrop(this.onDrop);
+        this.props.registerOnDrop( this.onDrop );
 
         /** if new lesson loaded */
-        if (this.props.lessonText) {
+        if ( this.props.lessonText ) {
             this.props.keepState();
         } else {
             this.props.restoreState();
         }
 
         /** If back or forward button is pressed redirect the user to the same lesson */
-        this.props.history.push(location.href);
+        this.props.history.push( location.href );
         window.onpopstate = this.backForwardButton;
     }
 
@@ -66,34 +66,34 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
             ? Date.now() - start + time
             : time;
 
-        return this.getSeconds(_time);
+        return this.getSeconds( _time );
     }
 
-    backForwardButton(e: PopStateEvent): any {
-        this.props.history.go(1);
+    backForwardButton( e: PopStateEvent ): any {
+        this.props.history.go( 1 );
         this.props.startLeaving();
     }
 
     _setInterval() {
         const { _interval, time } = this;
-        this.interval = setInterval(() => {
-            this.setState(() => ({ time: time() })
-            )},
-        _interval);
+        this.interval = setInterval( () => {
+            this.setState( () => ( { time: time() } )
+            );},
+        _interval );
     }
 
     stopTime() {
-        clearInterval(this.interval as number);
-        this.setState({ time: this.time() });
+        clearInterval( this.interval as number );
+        this.setState( { time: this.time() } );
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate( prevProps ) {
         const { running, ended } = this.props;
         const { running: prevRunning, ended: prevEnded } = prevProps;
 
         /** Calculate time only if timer is running */
-        if (running !== prevRunning ) {
-            if (running) {
+        if ( running !== prevRunning ) {
+            if ( running ) {
                 this._setInterval();
             } else {
                 this.stopTime();
@@ -101,7 +101,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         }
 
         /** Needed for refreshing page e.g. pressing F5 */
-        if (ended !== prevEnded) {
+        if ( ended !== prevEnded ) {
             this.stopTime();
         }
     }
@@ -109,16 +109,16 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     componentWillUnmount() {
         /** no matter if running or not, cheaper than checking */
         this.props.reset();
-        this.props.deregisterOnDrop(this.onDrop);
+        this.props.deregisterOnDrop( this.onDrop );
 
         /** stop internal interval for showing time */
         this.stopTime();
     }
 
-    onDrop (e: React.DragEvent<HTMLElement>) {
+    onDrop ( e: React.DragEvent<HTMLElement> ) {
         e.preventDefault();
         const { clientX, clientY } = e;
-        this.props.onMoveLesonButtons(clientY, clientX);
+        this.props.onMoveLesonButtons( clientY, clientX );
     }
 
     /** Display after time:
@@ -132,9 +132,9 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
         return (
             ended
-                ? { aftertext: getTranslation(this.props.localize, 'lessonEnded') }
+                ? { aftertext: getTranslation( this.props.localize, 'lessonEnded' ) }
                 : !running
-                    ? { aftertext: getTranslation(this.props.localize, 'lessonPaused') }
+                    ? { aftertext: getTranslation( this.props.localize, 'lessonPaused' ) }
                     : null
         );
     }
@@ -149,8 +149,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         } = this;
 
         return (
-            <>
-                <Paper className={lessonPaper}>
+            <>'               '<Paper className={lessonPaper}>
                     <Typography variant="h3" className={lessonInvite}>
                         { !started
                             ? <Translate id="lessonInvite" />
@@ -163,14 +162,11 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                     </Typography>
 
                     <Comparator />
-                </Paper>
-
-                <LessonButtons />
-
-                <Stats />
-            </>
+                </Paper>'
+               '<LessonButtons />'
+               '<Stats />'           '</>
         );
     }
 }
 
-export default withStyles(styles)(LessonComponent);
+export default withStyles( styles )( LessonComponent );

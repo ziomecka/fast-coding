@@ -20,29 +20,23 @@ const { content, welcome } = AppContainersEnum;
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
     homeUrl: string;
-    constructor(props: HomeViewProps) {
-        super(props);
+    constructor( props: HomeViewProps ) {
+        super( props );
 
         this.homeUrl = AppRoutesEnum.home;
     }
 
     render() {
         return (
-            <>
-            {/* Containers will be informed about location change before it happens, because
+            <>'           '{/* Containers will be informed about location change before it happens, because
                 LocationChange uses 'shouldComponentUpdate'
-                */}
-            <LocationChange containers={[
+                */}'           '<LocationChange containers={[
                 content,
                 welcome
-            ]} />
-
-            <User />
-
-            <KeyboardListener />
-            <LessonsLoader />
-
-            <MediaProvider>
+            ]} />'
+           '<User />'
+           '<KeyboardListener />'           '<LessonsLoader />'
+           '<MediaProvider>
                 <Nav />
 
                 <Content>
@@ -51,9 +45,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
                     { this.props.children }
                 </Content>
 
-            </MediaProvider>
-            <TranslationsLoader />
-            </>
+            </MediaProvider>'           '<TranslationsLoader />'           '</>
         );
     }
 }

@@ -10,27 +10,27 @@ export const INITIAL_STATE: LoginState = {
     loginValid: null
 };
 
-const reducer: Reducer<LoginState> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<LoginState> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         default: {
             const { login } = action;
 
             return {
                 login,
-                loginValid: applyRules([
+                loginValid: applyRules( [
                     [ NO_SPACES, { value: login } ],
                     [ NO_SPECIALS, { value: login, opposite: true } ],
                     [ NO_DIGIT, { value: login, opposite: true } ],
                     [ NOT_LONG, { value: login } ]
-                ])
+                ] )
             };
         }
     }
-}
+};
 
 export { reducer as loginReducer };
 
 export interface LoginState {
     login: string;
     loginValid: string;
-};
+}

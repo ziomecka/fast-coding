@@ -1,11 +1,11 @@
 import { Reducer } from 'redux';
 
 import { RemindPasswordActionsEnum } from './types';
-import { RemindPasswordActions }  from './actions';
+import { RemindPasswordActions } from './actions';
 
 import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState
-} from '../../Email/_duck/reducers';
+} from '@app/Email/_duck/reducers';
 
 const {
     APP_REMIND_PASSWORD_SET_EMAIL,
@@ -16,11 +16,11 @@ export const INITIAL_STATE: RemindPasswordState = {
     ...EmailInitialState,
 };
 
-const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_REMIND_PASSWORD_SET_EMAIL : {
             return {
-                ...emailReducer(state, action)
+                ...emailReducer( state, action )
             };
         }
 
@@ -38,4 +38,4 @@ const reducer: Reducer<RemindPasswordState, RemindPasswordActions> = (state = IN
 
 export { reducer as remindPasswordReducer };
 
-export interface RemindPasswordState extends EmailState {};
+export interface RemindPasswordState extends EmailState {}

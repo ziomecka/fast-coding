@@ -1,20 +1,20 @@
 import { Reducer } from 'redux';
 
 import { LoginFormActionsEnum } from './types';
-import { PasswordActionsEnum } from '../../Password/_duck/types';
-import { LoginFormActions }  from './actions';
+import { PasswordActionsEnum } from '@app/Password/';
+import { LoginFormActions } from './actions';
 
 import {
     passwordReducer,
     PasswordState,
     INITIAL_STATE as PASSWORD_INITIAL_STATE
-} from '../../Password/_duck/reducers';
+} from '@app/Password/_duck/reducers';
 
 import {
     loginReducer,
     LoginState,
     INITIAL_STATE as LOGIN_INITIAL_STATE
-} from '../../Login/_duck/reducers';
+} from '@app/Login/_duck/reducers';
 
 const {
     APP_LOGINFORM_SET_LOGIN,
@@ -33,10 +33,10 @@ export const INITIAL_STATE: LoginFormState = {
 
 export interface LoginFormState extends LoginState {
     [pass]: PasswordState
-};
+}
 
-const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<LoginFormState, LoginFormActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         /** Watch out! */
         case APP_PASSWORD_VALIDATE:
         case APP_PASSWORD_SET_PASSWORD: {
@@ -44,14 +44,14 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = (state = INITIAL_STAT
 
             return {
                 ...state,
-                [pass]: passwordReducer({ password, passwordValid }, action)
+                [pass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_LOGINFORM_SET_LOGIN: {
             return {
                 ...state,
-                ...loginReducer(state, action)
+                ...loginReducer( state, action )
             };
         }
 

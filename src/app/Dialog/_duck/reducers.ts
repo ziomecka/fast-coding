@@ -21,8 +21,8 @@ export const INITIAL_STATE: DialogState = {
     html: null
 };
 
-const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<DialogState, DialogActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_DIALOG_OPEN:
 
             const { dialogProps, buttons, ...other } = action.options;
@@ -47,7 +47,7 @@ const reducer: Reducer<DialogState, DialogActions> = (state = INITIAL_STATE, act
         default:
             return { ...state };
     }
-}
+};
 
 export { reducer as dialogReducer };
 
@@ -57,4 +57,4 @@ export interface DialogState {
     dialogProps?: DialogProps;
     Component: React.ComponentClass | React.FunctionComponent;
     html: JSX.Element
-};
+}

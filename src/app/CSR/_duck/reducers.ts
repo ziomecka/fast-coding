@@ -10,7 +10,7 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRActionsEnum;
 
-import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '../../../_reducers/';
+import { INITIAL_STATE as APPLICATION_INITIAL_STATE } from '@src/_reducers/';
 
 export const INITIAL_STATE: ICSRState = {
     ...APPLICATION_INITIAL_STATE,
@@ -18,8 +18,8 @@ export const INITIAL_STATE: ICSRState = {
     // error: '',
 };
 
-const reducer: Reducer<ICSRState, CSRActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<ICSRState, CSRActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_CSR_CHANGE_LOADING_STATE: {
             const { applicationContainer, container, loading } = action as ChangeLoadingStateAction;
             return {
@@ -66,7 +66,7 @@ const reducer: Reducer<ICSRState, CSRActions> = (state = INITIAL_STATE, action) 
             return { ...state };
         }
     }
-}
+};
 
 export interface ICSRState extends ApplicationState {
     // loading: boolean;

@@ -15,7 +15,7 @@ export enum AppContainersEnum {
     newPasswordForm = 'NEW_PASSWORD',
     googleLogin = 'GOOGLE_LOGIN',
     translationsLoader = 'TRANSLATIONS_LOADER'
-};
+}
 
 export enum AppRoutesEnum {
     home = '/',
@@ -31,4 +31,4 @@ export enum AppRoutesEnum {
     privacyPolicy = '/privacyPolicy',
     translationsGet = '/translations/get',
     termsOfService = '/termsOfService',
-};
+}

@@ -5,12 +5,12 @@ import { TableProps } from './container';
 
 const { Provider, Consumer } = TableContext;
 
-export interface WithTableProps extends TableProps, WithTableContextProps {};
+export interface WithTableProps extends TableProps, WithTableContextProps {}
 
-const withTable = (SomeComponent) => {
+const withTable = ( SomeComponent ) => {
     return class extends React.Component<WithTableProps> {
-        constructor(props) {
-            super(props);
+        constructor( props ) {
+            super( props );
         }
 
         render() {
@@ -24,7 +24,7 @@ const withTable = (SomeComponent) => {
                 </Provider>
             );
         }
-    }
+    };
 };
 
 export default withTable;

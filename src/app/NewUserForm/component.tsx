@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { NewUserFormProps } from './container';
 
-import Password from '../Password/';
-import Login from '../Login/';
-import Email from '../Email/';
-import Message from '../FormHelperText/';
+import Password from '@app/Password/';
+import Login from '@app/Login/';
+import Email from '@app/Email/';
+import Message from '@app/FormHelperText/';
 
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { newUserForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
@@ -17,7 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
-import { PasswordsEnum } from '@appTypes';
 const { newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '@shared/_types/';
@@ -28,26 +27,26 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainersEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.container = newUserForm;
 
-        this.emailOnChange = this.emailOnChange.bind(this);
-        this.loginOnChange = this.loginOnChange.bind(this);
-        this.sendNewUserForm = this.sendNewUserForm.bind(this);
+        this.emailOnChange = this.emailOnChange.bind( this );
+        this.loginOnChange = this.loginOnChange.bind( this );
+        this.sendNewUserForm = this.sendNewUserForm.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setEmail(e.target.value);
+    emailOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setEmail( e.target.value );
     }
 
-    loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value);
+    loginOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setLogin( e.target.value );
     }
 
     sendNewUserForm () {
@@ -64,7 +63,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
              !!loginValid || !!newPasswordValid || !! confirmPasswordValid || !!emailValid ) {
                 this.props.formInvalid();
         } else {
-            this.props.sendNewUserForm({ login, password: newPassword, email });
+            this.props.sendNewUserForm( { login, password: newPassword, email } );
         }
     }
 
@@ -80,7 +79,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
                         <Password {...{ container, passwordType: newPass }} tabIndex={2} />
@@ -104,6 +103,6 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             </Paper>
         );
     }
-};
+}
 
-export default withStyles(styles)(NewUserFormComponent);
+export default withStyles( styles )( NewUserFormComponent );

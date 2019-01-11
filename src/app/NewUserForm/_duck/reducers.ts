@@ -1,20 +1,19 @@
 import { Reducer } from 'redux';
 
 import { NewUserFormActionsEnum } from './types';
-import { PasswordActionsEnum } from '../../Password/_duck/types';
-import { LoginActionsEnum } from '../../Login/_duck/types';
+import { PasswordActionsEnum } from '@app/Password/';
 
 import {
     loginReducer, LoginState, INITIAL_STATE as LoginInitialState
-} from '../../Login/_duck/reducers';
+} from '@app/Login/_duck/reducers';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
-} from '../../Password/_duck/reducers';
+} from '@app/Password/_duck/reducers';
 
 import {
     emailReducer, EmailState, INITIAL_STATE as EmailInitialState
-} from '../../Email/_duck/reducers';
+} from '@app/Email/_duck/reducers';
 
 import { PasswordsEnum } from '@appTypes';
 
@@ -38,18 +37,18 @@ const {
 export const INITIAL_STATE: NewUserFormState = {
     ...LoginInitialState,
     ...EmailInitialState,
-    [newPass]: Object.assign({}, PasswordInitialState),
-    [confirmPass]: Object.assign({}, PasswordInitialState),
+    [newPass]: Object.assign( {}, PasswordInitialState ),
+    [confirmPass]: Object.assign( {}, PasswordInitialState ),
 };
 
-const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<NewUserFormState, NewUserFormActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
             const { password, passwordValid } = state[newPass];
             return {
                 ...state,
-                [newPass]: passwordReducer({ password, passwordValid }, action)
+                [newPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
@@ -58,21 +57,21 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             const { password, passwordValid } = state[confirmPass];
             return {
                 ...state,
-                [confirmPass]: passwordReducer({ password, passwordValid }, action)
+                [confirmPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_NEWUSERFORM_SET_LOGIN: {
             return {
                 ...state,
-                ...loginReducer(state, action)
+                ...loginReducer( state, action )
             };
         }
 
         case APP_NEWUSERFORM_SET_EMAIL: {
             return {
                 ...state,
-                ...emailReducer(state, action)
+                ...emailReducer( state, action )
             };
         }
 
@@ -80,8 +79,8 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             return {
                 ...LoginInitialState,
                 ...EmailInitialState,
-                [newPass]: Object.assign({}, PasswordInitialState),
-                [confirmPass]: Object.assign({}, PasswordInitialState)
+                [newPass]: Object.assign( {}, PasswordInitialState ),
+                [confirmPass]: Object.assign( {}, PasswordInitialState )
             };
         }
 
@@ -89,11 +88,11 @@ const reducer: Reducer<NewUserFormState, NewUserFormActions> = (state = INITIAL_
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as newUserFormReducer };
 
 export interface NewUserFormState extends LoginState, EmailState {
     [newPass]: PasswordState;
     [confirmPass]: PasswordState;
-};
+}

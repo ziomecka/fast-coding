@@ -3,8 +3,8 @@ import * as React from 'react';
 import { ContentProps } from './container';
 import { default as Dialog } from '@app/Dialog/';
 import { default as Notification } from '@app/Notification/';
-import DragOverable from '../DragOverable';
-import Footer from '../Footer/';
+import DragOverable from '@app/DragOverable';
+import Footer from '@app/Footer/';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -22,9 +22,9 @@ const { demo, home, lessons } = AppRoutesEnum;
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
     home: string;
-    constructor(props: ContentProps) {
-    super(props);
-    this.onDrop = this.onDrop.bind(this);
+    constructor( props: ContentProps ) {
+    super( props );
+    this.onDrop = this.onDrop.bind( this );
     this.home = AppRoutesEnum.home;
   }
 
@@ -37,7 +37,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   get isLesson() {
-      return RegExp(`.*\lesson-.*`).test(this.props.location.pathname);
+      return RegExp( '.*\lesson-.*' ).test( this.props.location.pathname );
   }
 
   get isHome() {
@@ -51,34 +51,34 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   componentDidMount() {
     const { pathname } = this;
 
-    if (pathname !== this.home) {
+    if ( pathname !== this.home ) {
         let id = this.titles[pathname];
-        if (id !== undefined) {
-            this.props.changeTitle(this.titles[pathname]);
+        if ( id !== undefined ) {
+            this.props.changeTitle( this.titles[pathname] );
         }
     }
   }
 
-  componentDidUpdate(prevProps: ContentProps) {
+  componentDidUpdate( prevProps: ContentProps ) {
     const { props: { appLocation, location: { pathname } } } = this;
-    const { appLocation: prevAppLocation, location: { pathname: prevPathname }  } = prevProps;
+    const { appLocation: prevAppLocation, location: { pathname: prevPathname } } = prevProps;
 
     // TODO - improve / change?
-    if (appLocation !== prevAppLocation) {
-      this.props.changeLocation(appLocation);
+    if ( appLocation !== prevAppLocation ) {
+      this.props.changeLocation( appLocation );
     }
 
     if ( pathname !== prevPathname ) {
-        this.props.changeTitle(this.titles[pathname])
+        this.props.changeTitle( this.titles[pathname] );
     }
   }
 
-  onDrop(e: React.DragEvent<HTMLElement>) {
-      this.props.onDrop.forEach(fun => fun(e));
+  onDrop( e: React.DragEvent<HTMLElement> ) {
+      this.props.onDrop.forEach( fun => fun( e ) );
   }
 
   get langCode() {
-      return getActiveLanguage(this.props.localize).code
+      return getActiveLanguage( this.props.localize ).code;
   }
 
   get lessonTitle(): string {
@@ -86,7 +86,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
   }
 
   get lessonTranslation(): string {
-      return getTranslation(this.props.localize, "lessonsLesson");
+      return getTranslation( this.props.localize, 'lessonsLesson' );
   }
 
   render() {
@@ -100,7 +100,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
     return (
         <DragOverable
-            className={`${contentBox} ${isHome? contentBoxHome : contentBoxOther}`}
+            className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
             id="content"
             onDrop={this.onDrop}
         >
@@ -133,6 +133,6 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         </DragOverable>
     );
   }
-}
+};
 
-export default withStyles(styles)(ContentComponent);
+export default withStyles( styles )( ContentComponent );

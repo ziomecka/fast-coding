@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Dispatch, Action } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as GoogleLogin } from './component';
@@ -17,32 +16,32 @@ import { WithStyles } from '@material-ui/core/styles/withStyles';
 const { app } = ApplicationContainersEnum;
 const { googleLogin } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][googleLogin],
     localize: state.localize
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): GoogleLoginDispatch => ({
-    authorizeFirebase: () => dispatch(onAuthorizeFirebase()),
-    startFirebaseUI: () => dispatch(onStartFirebaseUI()),
-    setTranslations: () => dispatch(onSetTranslations())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): GoogleLoginDispatch => ( {
+    authorizeFirebase: () => dispatch( onAuthorizeFirebase() ),
+    startFirebaseUI: () => dispatch( onStartFirebaseUI() ),
+    setTranslations: () => dispatch( onSetTranslations() )
+} );
 
-const GoogleLoginContainer = connect(mapStateToProps, mapDispatchToProps)(GoogleLogin);
+const GoogleLoginContainer = connect( mapStateToProps, mapDispatchToProps )( GoogleLogin );
 
 export default GoogleLoginContainer;
 
 interface MapStateToPropsI extends GoogleLoginState {
     localize: LocalizeState
-};
+}
 
 export interface GoogleLoginDispatch {
     authorizeFirebase: () => Promise<any>;
     startFirebaseUI: () => Promise<any>;
     setTranslations: () => void;
-};
+}
 
 export interface GoogleLoginProps extends
     GoogleLoginDispatch,
     MapStateToPropsI,
-    WithStyles {};
+    WithStyles {}

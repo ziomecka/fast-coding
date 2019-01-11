@@ -7,10 +7,10 @@ import { default as Stepper } from './component';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 
-import { ApplicationState } from '../../_reducers/';
+import { ApplicationState } from '@appStore';
 
-import { LessonsLoaderState } from '../LessonsLoader/_duck/reducers';
-import { ILessonsState } from '../Lessons/_duck/reducers';
+import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
+import { ILessonsState } from '@components/Lessons/_duck/reducers';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';
@@ -21,26 +21,26 @@ import { IWithMedia } from '@app/Media';
 const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToProps => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state[components][lessonsLoader],
     ...state[components][lessons]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): IStepperDispatch => ({
-    addListener: options => dispatch(onAddListener(options)),
-    removeListener: options => dispatch(onRemoveListener(options))
-})
+const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
+    addListener: options => dispatch( onAddListener( options ) ),
+    removeListener: options => dispatch( onRemoveListener( options ) )
+} );
 
 // @ts-ignore
-const StepperContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(Stepper));
+const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Stepper ) );
 
 export default StepperContainer;
 
 interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
 
 export interface IStepperDispatch {
-    addListener: (options: AddListener) => Action;
-    removeListener: (options: RemoveListener) => Action;
+    addListener: ( options: AddListener ) => Action;
+    removeListener: ( options: RemoveListener ) => Action;
 }
 export interface StepperProps extends
     LessonsLoaderState,
@@ -49,4 +49,4 @@ export interface StepperProps extends
     MapStateToProps,
     WithStyles,
     IWithMedia,
-    WithTheme {};
+    WithTheme {}

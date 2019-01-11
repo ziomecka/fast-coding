@@ -8,7 +8,7 @@ export enum ChangePasswordFormResponseEnum {
     'ERROR' = 0,
     'SUCCESS' = 1,
     'CURRENT_PASSWORD_ERROR' = 6
-};
+}
 
 export type ChangePasswordFormErrorType = ChangePasswordFormResponseEnum.ERROR |
     ChangePasswordFormResponseEnum.CURRENT_PASSWORD_ERROR;
@@ -21,4 +21,4 @@ export type ChangePasswordFormErrorType = ChangePasswordFormResponseEnum.ERROR |
 export interface SendFormChangePasswordI {
     currentPassword: string;
     newPassword: string;
-};
+}

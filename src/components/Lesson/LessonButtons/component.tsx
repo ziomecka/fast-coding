@@ -52,17 +52,17 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const INITIAL_LEFT = INITIAL_STATE.left;
     const INITIAL_WIDTH = '100%';
 
-    const isMoved = (top !== INITIAL_TOP || left !== INITIAL_LEFT);
+    const isMoved = ( top !== INITIAL_TOP || left !== INITIAL_LEFT );
 
-    const leaveLesson = () => history.push(lessons);
+    const leaveLesson = () => history.push( lessons );
 
 
-    const justType = getTranslation(props.localize, "lessonButtonsJustType");
-    const press = getTranslation(props.localize, "buttonsPress");
+    const justType = getTranslation( props.localize, 'lessonButtonsJustType' );
+    const press = getTranslation( props.localize, 'buttonsPress' );
 
     const commonProps = {
-        variant: "contained",
-        color: "primary",
+        variant: 'contained',
+        color: 'primary',
     } as ButtonProps;
 
     const buttonStartLeaving = (
@@ -132,30 +132,19 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
      * button cancel placed to the left - to encourage to press
      */
     const buttonsWhenRunning = (
-        <>
-            { buttonStartLeaving }
-            { buttonPause }
-        </>
+        <>'           '{ buttonStartLeaving }'           '{ buttonPause }'       '</>
     );
 
     const buttonsWhenNotStarted = (
-        <>
-            { buttonLeave }
-        </>
+        <>'           '{ buttonLeave }'       '</>
     );
 
     const buttonsWhenPaused = (
-        <>
-            { buttonStartLeaving }
-            { buttonUnpause }
-        </>
+        <>'           '{ buttonStartLeaving }'           '{ buttonUnpause }'       '</>
     );
 
     const buttonsWhenEnded = (
-        <>
-            { buttonLeave }
-            { buttonRestart }
-        </>
+        <>'           '{ buttonLeave }'           '{ buttonRestart }'       '</>
     );
 
     const getButtons = (): JSX.Element => {
@@ -163,17 +152,17 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             return buttonsWhenNotStarted;
         }
 
-        if (started && ended) {
+        if ( started && ended ) {
             return buttonsWhenEnded;
         }
 
-        if (!paused) {
+        if ( !paused ) {
             return buttonsWhenRunning;
         }
 
         return buttonsWhenPaused;
 
-    }
+    };
 
     /** Render only if dialog is not opened */
     return ( !dialogOpened &&
@@ -183,8 +172,8 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             style={ {
                 top,
                 left,
-                width: isMoved? 'auto' : INITIAL_WIDTH,
-                flexDirection: isMoved? 'column' : 'row'
+                width: isMoved ? 'auto' : INITIAL_WIDTH,
+                flexDirection: isMoved ? 'column' : 'row'
             }}
         >
             {/* Lesson's buttons */}
@@ -195,7 +184,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             {/* Buttons for managing draggable menu */}
             {/* Available only if lesson is not started or has been ended */}
             {
-                (!started || ended) && (
+                ( !started || ended ) && (
                     <div className={lessonButtonsDragHandle}>
                         <Button
                             title="Drag the buttons menu"
@@ -223,4 +212,4 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     );
 };
 
-export default withStyles(styles)(LessonButtonsComponent);
+export default withStyles( styles )( LessonButtonsComponent );

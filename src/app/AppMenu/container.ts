@@ -1,13 +1,13 @@
 import { default as AppMenuComponent } from './component';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { NavMenuProps  } from '../Nav/_duck/types';
+import { NavMenuProps } from '@app/Nav/';
 import { WithStyles } from '@material-ui/core/styles/';
 
-export default withRouter(AppMenuComponent);
+export default withRouter( AppMenuComponent );
 
 export interface AppMenuProps extends
     RouteComponentProps<{}>,
     WithStyles {
     subMenus: NavMenuProps[];
-};
+}

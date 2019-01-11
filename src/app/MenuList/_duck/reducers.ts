@@ -1,4 +1,4 @@
-import { MenuListState } from '../../MenuList/_duck/reducers';
+import { MenuListState } from '@app/MenuList/_duck/reducers';
 
 export const INITIAL_STATE: MenuListState = {
     anchorEl: null
@@ -6,4 +6,4 @@ export const INITIAL_STATE: MenuListState = {
 
 export interface MenuListState {
     anchorEl: HTMLElement | null;
-};
+}

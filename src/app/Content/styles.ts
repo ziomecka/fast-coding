@@ -11,7 +11,7 @@ import {
     WELCOME_HEADING_OTHER_XS
 } from '@constantsStyles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: {
                 background: { default: defaultBackground },
@@ -31,10 +31,10 @@ const styles = createStyles(theme => {
             backgroundColor: defaultBackground,
             height: 'auto',
             overflow: 'hidden',
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: `${ NAV_HEIGHT_MD } ${ PAPER_PADDING_MAX_MD }`,
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
             }
         },
@@ -42,7 +42,7 @@ const styles = createStyles(theme => {
             backgroundColor: mainBackground,
             height: '100vh',
             paddingBottom: 0,
-            [ theme.breakpoints.up('md') ]: {
+            [ theme.breakpoints.up( 'md' ) ]: {
                 height: '0',
                 padding: '0',
                 overflow: 'hidden'
@@ -51,23 +51,23 @@ const styles = createStyles(theme => {
         contentBoxOther: {
             paddingBottom: FOOTER_HEIGHT_MD,
             minHeight: 'calc(100vh)',
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 paddingBottom: FOOTER_HEIGHT_LG
             }
         },
         contentTitle: {
             fontSize: WELCOME_HEADING_OTHER_XS,
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up( 'sm' )]: {
                 fontSize: WELCOME_HEADING_OTHER,
             },
             position: 'relative',
             display: 'block',
             width: '100%',
             left: 0,
-            margin: `1em 0`,
+            margin: '1em 0',
             whiteSpace: 'pre-line'
         }
     };
-});
+} );
 
 export default styles;

@@ -11,30 +11,30 @@ const {
     COMPONENTS_STATS_RESTORE_STATE
 } = StatsActionsEnum;
 
-export const startTimer: ActionCreator<Action> = () => ({
+export const startTimer: ActionCreator<Action> = () => ( {
     type: COMPONENTS_STATS_TIMER_START
-});
+} );
 
-export const stopTimer: ActionCreator<Action> = () => ({
+export const stopTimer: ActionCreator<Action> = () => ( {
     type: COMPONENTS_STATS_TIMER_STOP
-});
+} );
 
-export const resetStats: ActionCreator<Action> = () => ({
+export const resetStats: ActionCreator<Action> = () => ( {
     type: COMPONENTS_STATS_RESET
-});
+} );
 
-export const pauseStats: ActionCreator<Action> = () => ({
+export const pauseStats: ActionCreator<Action> = () => ( {
     type: COMPONENTS_STATS_PAUSE
-});
+} );
 
-export const unpauseStats: ActionCreator<Action> = () => ({
+export const unpauseStats: ActionCreator<Action> = () => ( {
     type: COMPONENTS_STATS_UNPAUSE
-});
+} );
 
-export const restoreState: ActionCreator<RestoreStateAction> = (state: StatsState) => ({
+export const restoreState: ActionCreator<RestoreStateAction> = ( state: StatsState ) => ( {
     type: COMPONENTS_STATS_RESTORE_STATE,
     state
-});
+} );
 
 export interface RestoreStateAction extends Action {
     state: StatsState

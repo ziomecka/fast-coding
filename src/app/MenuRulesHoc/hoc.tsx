@@ -5,14 +5,14 @@ const { Consumer } = context;
 
 export interface WithMenuRules {
     menuRules: MenuRulesHocType
-};
+}
 
-const MenuRulesHoc = (Component) => (props => {
+const MenuRulesHoc = ( Component ) => ( props => {
     return (
         <Consumer>{ menuRules => (
             <Component {...{ menuRules }} { ...props } />
         ) }</Consumer>
-    )
-});
+    );
+} );
 
 export default MenuRulesHoc;

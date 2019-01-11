@@ -18,8 +18,8 @@ export const INITIAL_STATE: StatsState = {
     time: 0
 };
 
-const reducer: Reducer<StatsState, StatsActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_STATS_TIMER_START: {
             return {
                 ...state,
@@ -89,4 +89,4 @@ export interface StatsState {
     start: number;
     stop: number;
     time: number;
-};
+}

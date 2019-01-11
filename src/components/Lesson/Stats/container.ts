@@ -17,16 +17,16 @@ const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): ExtendedStatsState => ({
+const mapStateToProps = ( state: ApplicationState ): ExtendedStatsState => ( {
     allErrors: state[components][comparator].allErrors,
     errors: state[components][comparator].errors,
     text: state[components][lesson].lessonText,
     endedLesson: state[components][lesson].ended,
     ...state[components][comparator][stats],
     localize: state.localize
-});
+} );
 
-const StatsContainer = connect(mapStateToProps)(Stats);
+const StatsContainer = connect( mapStateToProps )( Stats );
 
 export default StatsContainer;
 
@@ -38,4 +38,4 @@ interface ExtendedStatsState extends StatsState {
     localize: LocalizeState;
 }
 
-export interface StatsProps extends ExtendedStatsState, WithStyles, WithTableProps {};
+export interface StatsProps extends ExtendedStatsState, WithStyles, WithTableProps {}

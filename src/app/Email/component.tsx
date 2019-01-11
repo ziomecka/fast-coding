@@ -13,15 +13,15 @@ const Email: React.StatelessComponent<EmailPropsI> = props => {
 
     return (
         <TextField
-            inputProps={{ tabIndex, type: "email" }}
-            label={getTranslation(localize, 'emailLabel')}
-            placeholder={getTranslation(localize, 'emailPlaceholder')}
+            inputProps={{ tabIndex, type: 'email' }}
+            label={getTranslation( localize, 'emailLabel' )}
+            placeholder={getTranslation( localize, 'emailPlaceholder' )}
             required
             value={email}
             {...{ onChange }}
             error={ !!emailValid }
             helperText={ !!emailValid
-                ? helperTexts(emailValid, 'email', localize)
+                ? helperTexts( emailValid, 'email', localize )
                 : null
             }
        />

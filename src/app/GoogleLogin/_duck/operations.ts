@@ -4,7 +4,7 @@
 
 import { Dispatch, Action } from 'redux';
 import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum, AppRoutesEnum } from '@appTypes';
+import { AppContainersEnum, AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -17,8 +17,6 @@ import { authorizeFirebase, unauthorizeFirebase } from './actions';
 import getTranslation from '@shared/get.translation';
 
 import { onAuthorize } from '@app/User/_duck/operations';
-
-import { UserAuthorizationMethodEnum } from '@appTypes'
 
 import history from '@shared/history';
 
@@ -33,63 +31,63 @@ const { lessons: signInSuccessUrl, privacyPolicy: privacyPolicyUrl, termsOfServi
 export let ui;
 
 export const onAuthorizeFirebase = (): any => (
-    async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
+    async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
         if ( !getState()[app][googleLogin].firebaseAuthorized ) {
             try {
-                let response = await firebase.initializeApp({
+                let response = await firebase.initializeApp( {
                     projectId,
                     apiKey: process.env.FIREBASE_API_KEY,
                     authDomain,
                     databaseURL
-                });
+                } );
 
-                if (response) {
-                    ui = new firebaseui.auth.AuthUI(firebase.auth());
-                    dispatch(authorizeFirebase());
+                if ( response ) {
+                    ui = new firebaseui.auth.AuthUI( firebase.auth() );
+                    dispatch( authorizeFirebase() );
                     response = null; // GC
                     return true;
-                } else if (!response) {
+                } else if ( !response ) {
                     return false;
                 }
 
-            } catch (err) {
-                return Promise.resolve(false);
+            } catch ( err ) {
+                return Promise.resolve( false );
             }
         }
 
-    });
+    } );
 
-const signInSuccessWithAuthResult = (authResult, dispatch: Dispatch): boolean => {
+const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean => {
     const {
         user: { displayName, email, photoURL, refreshToken },
         additionalUserInfo: { providerId }
     } = authResult;
 
-        dispatch(onAuthorize({
+        dispatch( onAuthorize( {
             // @ts-ignore
             displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
-        }));
+        } ) );
 
-        dispatch(closeDialog());
-        history.push(signInSuccessUrl);
-        dispatch(openNotification({ text: 'notificationAuthorized', variant: success }));
+        dispatch( closeDialog() );
+        history.push( signInSuccessUrl );
+        dispatch( openNotification( { text: 'notificationAuthorized', variant: success } ) );
         return false; // false means 'do not redirect'
 };
 
-const signInFailure = (dispatch:  Dispatch): boolean => {
-    dispatch(openNotification({ text: 'notificationLoginFailure', variant: error }));
+const signInFailure = ( dispatch: Dispatch ): boolean => {
+    dispatch( openNotification( { text: 'notificationLoginFailure', variant: error } ) );
     return false;
 };
 
 export const onStartFirebaseUI = (): any => (
-    async (dispatch: Dispatch): Promise<any> => {
+    async ( dispatch: Dispatch ): Promise<any> => {
 
-        if (ui) {
+        if ( ui ) {
 
-            ui.start('#firebaseui-auth-container', {
+            ui.start( '#firebaseui-auth-container', {
                 callbacks: {
-                    signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult(authResult, dispatch),
-                    signInFailure: () => signInFailure(dispatch)
+                    signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
+                    signInFailure: () => signInFailure( dispatch )
                 },
                 signInFlow: 'popup',
                 privacyPolicyUrl,
@@ -109,9 +107,9 @@ export const onStartFirebaseUI = (): any => (
                         ]
                     }
                 ]
-            });
+            } );
 
-            return Promise.resolve(true);
+            return Promise.resolve( true );
         } else {
             return dispatch( unauthorizeFirebase() );
         }
@@ -121,16 +119,16 @@ export const onStartFirebaseUI = (): any => (
 const firebaseClassName = value => `${ value } .firebaseui-idp-text-long`;
 
 export const onSetTranslations = (): any => (
-    (dispatch: Dispatch, getState: ThunkGetStateType): boolean => {
+    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         let { localize } = getState();
 
         document
-            .querySelector(firebaseClassName('.firebaseui-idp-google'))
-            .innerHTML = getTranslation(localize, 'signInWithGoogle');
+            .querySelector( firebaseClassName( '.firebaseui-idp-google' ) )
+            .innerHTML = getTranslation( localize, 'signInWithGoogle' );
 
         document
-            .querySelector(firebaseClassName('.firebaseui-idp-facebook'))
-            .innerHTML = getTranslation(localize, 'signInWithFacebook');
+            .querySelector( firebaseClassName( '.firebaseui-idp-facebook' ) )
+            .innerHTML = getTranslation( localize, 'signInWithFacebook' );
 
         localize = null; // GC
 

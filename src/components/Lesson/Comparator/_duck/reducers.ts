@@ -9,7 +9,7 @@ import {
     statsReducer,
     StatsState,
     INITIAL_STATE as STATS_INITIAL_STATE
-} from '../../Stats/_duck/reducers'
+} from '../../Stats/_duck/reducers';
 
 import { ComparatorContainersEnum } from '@componentsTypes';
 const { stats } = ComparatorContainersEnum;
@@ -43,8 +43,8 @@ export const INITIAL_STATE: ComparatorState = {
     [stats]: { ...STATS_INITIAL_STATE }
 };
 
-const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_COMPARATOR_REGISTER_NEW_KEY: {
             return {
                 ...state,
@@ -68,14 +68,14 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_COMPARATOR_REGISTER_BACKSPACE: {
             return {
                 ...state,
-                currentSignIndex: Math.max(-1, state.currentSignIndex - 1)
+                currentSignIndex: Math.max( -1, state.currentSignIndex - 1 )
             };
         }
 
         case COMPONENTS_COMPARATOR_CORRECT_ERROR: {
             return {
                 ...state,
-                errors: [ ...state.errors.slice(0, state.errors.length - 1) ],
+                errors: [ ...state.errors.slice( 0, state.errors.length - 1 ) ],
                 // @ts-ignore
                 correctedErrors: [ ...action.correctedErrors ],
                 currentSignIndex: state.currentSignIndex - 1
@@ -89,7 +89,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_STATS_RESET: {
             return {
                 ...state,
-                [stats]: statsReducer(state[stats], action)
+                [stats]: statsReducer( state[stats], action )
             };
 
         }
@@ -107,8 +107,8 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = (state = INITIAL_ST
         case COMPONENTS_COMPARATOR_RESTORE_STATE: {
             return {
                 ...state,
-                ...(action as RestoreStateAction).state
-            }
+                ...( action as RestoreStateAction ).state
+            };
         }
 
         default: {
@@ -125,4 +125,4 @@ export interface ComparatorState {
     allErrors: number[];
     correctedErrors: number[];
     [stats]: StatsState;
-};
+}

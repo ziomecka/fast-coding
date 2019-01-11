@@ -49,20 +49,20 @@ export const INITIAL_STATE: LessonState = {
     ending: false,
 };
 
-const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<LessonState, LessonActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_LESSON_UPDATE:
         case COMPONENTS_LESSON_OPEN: {
             return {
                 ...state,
-                ...(action as OpenLessonAction).lessonData
+                ...( action as OpenLessonAction ).lessonData
             };
         }
 
         case COMPONENTS_LESSON_TEXT_UPDATE: {
             return {
                 ...state,
-                text: (action as UpdateTextAction).text
+                text: ( action as UpdateTextAction ).text
             };
         }
 
@@ -142,7 +142,7 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
 
         case COMPONENTS_LESSON_RESTORE_STATE: {
             return {
-                ...(action as RestoreStateAction).state
+                ...( action as RestoreStateAction ).state
             };
         }
 
@@ -150,7 +150,7 @@ const reducer: Reducer<LessonState, LessonActions> = (state = INITIAL_STATE, act
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as lessonReducer };
 
@@ -163,7 +163,7 @@ export interface OriginalLessonData {
     translatedTexts?: TextTranslationsI;
     signs: string[];
     otherSigns: string[];
-};
+}
 
 export interface LessonData extends OriginalLessonData {
     lessonText: string;
@@ -171,6 +171,6 @@ export interface LessonData extends OriginalLessonData {
     paused: boolean;
     ended: boolean;
     ending: boolean;
-};
+}
 
-export interface LessonState extends LessonData {};
+export interface LessonState extends LessonData {}

@@ -25,8 +25,8 @@ const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props =
         </Paper>
     );
 
-    if (loading) return loader;
+    if ( loading ) return loader;
     return <Lessons />;
 };
 
-export default withStyles(styles)(LessonsViewComponent);
+export default withStyles( styles )( LessonsViewComponent );

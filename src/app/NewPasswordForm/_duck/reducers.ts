@@ -1,13 +1,13 @@
 import { Reducer } from 'redux';
 
 import { NewPasswordFormActionsEnum } from './types';
-import { NewPasswordFormActions }  from './actions';
+import { NewPasswordFormActions } from './actions';
 
 import {
     passwordReducer, PasswordState, INITIAL_STATE as PasswordInitialState
-} from '../../Password/_duck/reducers';
+} from '@app/Password/_duck/reducers';
 
-import { PasswordActionsEnum } from '../../Password/_duck/types';
+import { PasswordActionsEnum } from '@app/Password/';
 
 import { PasswordsEnum} from '@appTypes';
 const { confirmPass, newPass } = PasswordsEnum;
@@ -24,18 +24,18 @@ const {
 } = PasswordActionsEnum;
 
 export const INITIAL_STATE: NewPasswordFormState = {
-    [newPass]: Object.assign({}, PasswordInitialState),
-    [confirmPass]: Object.assign({}, PasswordInitialState)
+    [newPass]: Object.assign( {}, PasswordInitialState ),
+    [confirmPass]: Object.assign( {}, PasswordInitialState )
 };
 
-const reducer: Reducer<NewPasswordFormState, NewPasswordFormActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<NewPasswordFormState, NewPasswordFormActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
             const { password, passwordValid } = state[newPass];
             return {
                 ...state,
-                [newPass]: passwordReducer({ password, passwordValid }, action)
+                [newPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
@@ -44,7 +44,7 @@ const reducer: Reducer<NewPasswordFormState, NewPasswordFormActions> = (state = 
             const { password, passwordValid } = state[confirmPass];
             return {
                 ...state,
-                [confirmPass]: passwordReducer({ password, passwordValid }, action)
+                [confirmPass]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
@@ -65,4 +65,4 @@ export { reducer as newPasswordFormReducer };
 export interface NewPasswordFormState {
     [newPass]: PasswordState;
     [confirmPass]: PasswordState;
-};
+}

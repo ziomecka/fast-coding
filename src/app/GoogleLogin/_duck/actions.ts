@@ -6,13 +6,13 @@ const {
 } = GoogleLoginActionsEnum;
 
 
-export const authorizeFirebase: ActionCreator<Action> = () => ({
+export const authorizeFirebase: ActionCreator<Action> = () => ( {
     type: APP_GOOGLE_LOGIN_FIREBASE_AUTHORIZE,
-});
+} );
 
-export const unauthorizeFirebase: ActionCreator<Action> = () => ({
+export const unauthorizeFirebase: ActionCreator<Action> = () => ( {
     type: APP_GOOGLE_LOGIN_FIREBASE_AUTHORIZE,
-});
+} );
 
 export const actions = {
     authorizeFirebase,

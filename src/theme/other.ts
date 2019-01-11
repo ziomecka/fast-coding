@@ -1,12 +1,12 @@
 import {
-    NAV_LEFT,
-    NAV_TOP,
-    PAPER_PADDING_XS,
-    PAPER_PADDING_MAX_XS,
     ELEVATION,
     FONT_SIZE,
     LINE_HEIGHT,
-    LINE_HEIGHT_H
+    LINE_HEIGHT_H,
+    NAV_LEFT,
+    NAV_TOP,
+    PAPER_PADDING_MAX_XS,
+    PAPER_PADDING_XS,
 } from '@constantsStyles';
 
 const {
@@ -30,7 +30,7 @@ import {
 const { palette: {
     error : { main : errorColor },
     text: { disabled }
-}} = require('./palette').default;
+}} = require( './palette' ).default;
 
 export default {
     props: {
@@ -132,21 +132,21 @@ export default {
              *  included in case changes in material design
              *  */
             root: {
-                boxSizing: "border-box",
+                boxSizing: 'border-box',
                 padding: `0 ${ PAPER_PADDING_MAX_XS }`,
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 ...flexRowJustifyFlexEndAlignCenter,
-                position: "fixed",
+                position: 'fixed',
                 top: NAV_TOP,
                 left: NAV_LEFT,
                 height: '100%',
-                width: "100%",
+                width: '100%',
             }
         },
         MuiDialog: {
             container: {
-                width: "100%"
+                width: '100%'
             },
             paper: {
                 padding: PAPER_PADDING_XS
@@ -157,7 +157,7 @@ export default {
         },
         MuiDialogContentText: {
             root: {
-                width: "100%"
+                width: '100%'
             }
         },
         MuiDialogActions: {

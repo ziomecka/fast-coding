@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         palette: { secondary: { main: hintColor } },
         spacing: { unit: spacingUnit }
@@ -17,13 +17,13 @@ const styles = createStyles(theme => {
         lessonTime: {
             position: 'relative',
             '&:after': {
-                content: "attr(aftertext)",
+                content: 'attr(aftertext)',
                 color: hintColor,
                 position: 'absolute',
                 marginLeft: spacingUnit
             }
         }
     };
-});
+} );
 
 export default styles;

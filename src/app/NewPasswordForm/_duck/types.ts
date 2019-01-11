@@ -7,7 +7,7 @@ export enum NewPasswordFormResponseEnum {
     'SUCCESS' = 1,
     'ERROR' = 0,
     'INVALID_REMIND_PASSWORD_LINK' = 7
-};
+}
 
 /** Interface
  *  @property {string} newPassword
@@ -17,4 +17,4 @@ export interface SendFormNewPasswordFormI {
     newPassword: string;
     key: string;
     email: string;
-};
+}

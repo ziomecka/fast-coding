@@ -2,9 +2,7 @@ import { Dispatch, Action } from 'redux';
 
 import { AppRoutesEnum } from '@appTypes';
 
-import { NewPasswordFormResponseEnum } from './types';
-
-import { SendFormNewPasswordFormI } from './types';
+import { NewPasswordFormResponseEnum, SendFormNewPasswordFormI } from './types';
 
 const { SUCCESS, INVALID_REMIND_PASSWORD_LINK } = NewPasswordFormResponseEnum;
 const { newPasswordSet } = AppRoutesEnum;
@@ -17,8 +15,8 @@ const {
     QUERY_PARAM_EMAIL,
 } = SERVER_CONSTANTS;
 
-export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
-    async ( dispatch: Dispatch): Promise<Action> => {
+export const onSendForm = ( options: SendFormNewPasswordFormI ): any => (
+    async ( dispatch: Dispatch ): Promise<Action> => {
         const { key, newPassword, email } = options;
         return await dispatch( _onSendForm( {
             request: {
@@ -38,7 +36,7 @@ export const onSendForm = (options: SendFormNewPasswordFormI ): any => (
                 successNotification: 'notificationNewPasswordSuccess',
                 // redirectUrl: login TODO HERE
             }
-        } ));
+        } ) );
     }
 );
 

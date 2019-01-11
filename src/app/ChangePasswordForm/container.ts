@@ -19,31 +19,31 @@ import { WithStyles } from '@material-ui/core/styles/withStyles';
 const { app } = ApplicationContainersEnum;
 const { changePasswordForm } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): ChangePasswordFormState => ({
+const mapStateToProps = ( state: ApplicationState ): ChangePasswordFormState => ( {
     ...state[app][changePasswordForm]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): ChangePasswordFormDispatch => ({
-    sendForm: (options) => dispatch(onSendForm(options)),
-    setEmail: (email) => dispatch(setEmail(email)),
-    setLogin: (login) => dispatch(setLogin(login)),
-    reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid())
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): ChangePasswordFormDispatch => ( {
+    sendForm: ( options ) => dispatch( onSendForm( options ) ),
+    setEmail: ( email ) => dispatch( setEmail( email ) ),
+    setLogin: ( login ) => dispatch( setLogin( login ) ),
+    reset: () => dispatch( reset() ),
+    formInvalid: () => dispatch( onFormInvalid() )
+} );
 
-const ChangePasswordFormContainer = connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);
+const ChangePasswordFormContainer = connect( mapStateToProps, mapDispatchToProps )( ChangePasswordForm );
 
 export default ChangePasswordFormContainer;
 
 export interface ChangePasswordFormDispatch {
-    sendForm: (options: SendFormChangePasswordI) => Action;
-    setEmail: (email: string) => SetEmailAction;
-    setLogin: (login: string) => SetLoginAction;
+    sendForm: ( options: SendFormChangePasswordI ) => Action;
+    setEmail: ( email: string ) => SetEmailAction;
+    setLogin: ( login: string ) => SetLoginAction;
     reset: () => Action;
     formInvalid: () => Action;
-};
+}
 
 export interface ChangePasswordFormProps extends
     ChangePasswordFormDispatch,
     ChangePasswordFormState,
-    WithStyles {};
+    WithStyles {}

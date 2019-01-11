@@ -7,11 +7,11 @@ export enum RemindPasswordResponseEnum {
     'SUCCESS' = 1,
     'ERROR' = 0,
     'EMAIL_DOES_NOT_EXIST' = 7
-};
+}
 
 /** Interface
  *  @property {string} email
 */
 export interface SendFormRemindPasswordI {
     email: string;
-};
+}

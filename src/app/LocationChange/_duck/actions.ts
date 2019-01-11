@@ -8,16 +8,16 @@ const {
 
 
 export const changeLocation: ActionCreator<ChangeLocationAction> =
-    (pathname: AppLocationEnum, container: string) => ({
+    ( pathname: AppLocationEnum, container: string ) => ( {
         type: APP_LOCATION_CHANGE_CHANGE_LOCATION,
         pathname,
         container,
-    });
+    } );
 
 export interface ChangeLocationAction extends Action {
     readonly type: string;
     pathname: string;
     container: string;
-};
+}
 
 export type LocationChangeActions = ChangeLocationAction;

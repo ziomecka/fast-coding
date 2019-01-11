@@ -25,4 +25,4 @@ const ButtonWithHintComponent: React.StatelessComponent<ButtonWithHintProps> = p
     );
 };
 
-export default withStyles(styles)(ButtonWithHintComponent);
+export default withStyles( styles )( ButtonWithHintComponent );

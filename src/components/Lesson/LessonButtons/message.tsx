@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Info, { InfoEnum } from '@app/Info/';
 
-const { dialog } = InfoEnum
+const { dialog } = InfoEnum;
 
 const Component = () => (
     <Info

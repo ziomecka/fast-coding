@@ -8,7 +8,7 @@ import { NewPasswordFormState } from './_duck/reducers';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
-import { reset  } from './_duck/actions';
+import { reset } from './_duck/actions';
 import { SendFormNewPasswordFormI } from './_duck/types';
 
 import { onSendForm } from './_duck/operations';
@@ -23,31 +23,31 @@ import { AppErrorI } from '@app/AppError/_duck/types';
 const { app } = ApplicationContainersEnum;
 const { newPasswordForm } = AppContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): NewPasswordFormState => ({
+const mapStateToProps = ( state: ApplicationState ): NewPasswordFormState => ( {
     ...state[app][newPasswordForm]
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): NewPasswordFormDispatch => ({
-    sendForm: (options) => dispatch(onSendForm(options)),
-    reset: () => dispatch(reset()),
-    formInvalid: () => dispatch(onFormInvalid()),
-    displayAppError: (options) => dispatch(onAppError( options ))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): NewPasswordFormDispatch => ( {
+    sendForm: ( options ) => dispatch( onSendForm( options ) ),
+    reset: () => dispatch( reset() ),
+    formInvalid: () => dispatch( onFormInvalid() ),
+    displayAppError: ( options ) => dispatch( onAppError( options ) )
+} );
 
 // @ts-ignore
-const NewPasswordFormContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPasswordForm));
+const NewPasswordFormContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( NewPasswordForm ) );
 
 export default NewPasswordFormContainer;
 
 export interface NewPasswordFormDispatch {
-    sendForm: (options: SendFormNewPasswordFormI) => Action;
+    sendForm: ( options: SendFormNewPasswordFormI ) => Action;
     reset: () => Action;
     formInvalid: () => Action;
-    displayAppError: (options?: AppErrorI) => Action;
-};
+    displayAppError: ( options?: AppErrorI ) => Action;
+}
 
 export interface NewPasswordFormPropsI extends
     NewPasswordFormDispatch,
     NewPasswordFormState,
     RouteComponentProps<{}>,
-    WithStyles {};
+    WithStyles {}

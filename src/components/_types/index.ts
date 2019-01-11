@@ -1,6 +1,6 @@
 export * from './types';
-export * from '../Lesson/_types';
-// export * from '../LessonSettings/_duck/types';
-export * from '../Lessons/_duck/types';
-export * from '../LessonsLoader/_duck/types';
-export * from '../TextGenerator/_duck/types';
+export * from '@components/Lesson/_types';
+// export * from '@components/LessonSettings/_duck/types';
+export * from '@components/Lessons/_duck/types';
+export * from '@components/LessonsLoader/_duck/types';
+export * from '@components/TextGenerator/_duck/types';

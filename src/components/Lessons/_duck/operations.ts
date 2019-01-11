@@ -1,17 +1,17 @@
 import { Dispatch } from 'redux';
-import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes'
-import { ComponentsContainersEnum } from '@componentsTypes'
+import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
 const { components } = ApplicationContainersEnum;
 const { lessons } = ComponentsContainersEnum;
 import { closeCourse } from './actions';
 
-export const onCloseCourse = (id: string): any => (
-    async (dispatch: Dispatch, getState: ThunkGetStateType): Promise<boolean> => {
+export const onCloseCourse = ( id: string ): any => (
+    async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
 
         /** If the course is still opened */
         if ( id === getState()[components][lessons].openedCourseId ) {
-            let answer = await dispatch(closeCourse());
+            let answer = await dispatch( closeCourse() );
 
             if ( answer ) {
                 answer = null; // GC

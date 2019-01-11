@@ -14,17 +14,17 @@ import { WithStyles } from '@material-ui/core/styles';
 const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[components][comparator],
     ...state[components][lesson]
-});
+} );
 
-const OriginalTextAreaContainer = connect(mapStateToProps)(OriginalTextArea);
+const OriginalTextAreaContainer = connect( mapStateToProps )( OriginalTextArea );
 
 export default OriginalTextAreaContainer;
 
-interface MapStateToPropsI extends ComparatorState, LessonState {};
+interface MapStateToPropsI extends ComparatorState, LessonState {}
 
 export interface OriginalTextAreaProps extends
     MapStateToPropsI,
-    WithStyles {};
+    WithStyles {}

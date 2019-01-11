@@ -17,7 +17,7 @@ import {
     PAPER_PADDING_XS
 } from '@constantsStyles';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     const {
         typography: {
             fontWeightMedium
@@ -62,10 +62,10 @@ const styles = createStyles(theme => {
         },
         summaryContent: {
             padding: `${ PAPER_PADDING_XS }`,
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up( 'sm' )]: {
                 padding: `${ PAPER_PADDING_MD }`,
             },
-            [theme.breakpoints.up('lg')]: {
+            [theme.breakpoints.up( 'lg' )]: {
                 padding: `${ PAPER_PADDING_LG }`,
             },
             margin: '0',
@@ -105,11 +105,11 @@ const styles = createStyles(theme => {
             justifyContent: 'flex-start',
             width: '100%',
             flex: '1 1 100%',
-            margin: `0 !important`,
+            margin: '0 !important',
             // TODO simplify
             maxHeight: COURSE_HEIGHT_MD * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1,
-            [theme.breakpoints.up('lg')]: {
-                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED  + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
+            [theme.breakpoints.up( 'lg' )]: {
+                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
             },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
@@ -133,7 +133,7 @@ const styles = createStyles(theme => {
                 backgroundColor: hover
             },
             height: COURSE_HEIGHT_MD,
-            [ theme.breakpoints.up('lg') ]:{
+            [ theme.breakpoints.up( 'lg' ) ]:{
                 height: COURSE_HEIGHT_LG
             }
         },
@@ -141,7 +141,7 @@ const styles = createStyles(theme => {
             '& h5:after': {
                 display: 'inline-block',
                 width: '100%',
-                content: "attr(info)",
+                content: 'attr(info)',
                 fontSize: '.7em',
                 marginTop: '.7em',
                 textTransform: 'lowercase',
@@ -150,17 +150,17 @@ const styles = createStyles(theme => {
         },
         expansionButton: {
             flexGrow: 0,
-            transition: theme.transitions.create('transform', { duration }),
-            "& svg": {
+            transition: theme.transitions.create( 'transform', { duration } ),
+            '& svg': {
                 width: SVG_SIZE_MD,
                 height: SVG_SIZE_MD,
             },
-            [ theme.breakpoints.down('lg') ]: {
+            [ theme.breakpoints.down( 'lg' ) ]: {
                 bottom: '1rem',
                 right: '1rem',
                 top: 'auto',
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 right: '2rem',
                 // "& svg": {
                 //     width: SVG_SIZE_LG,
@@ -208,20 +208,20 @@ const styles = createStyles(theme => {
         gridListTileRoot: {
             padding: `${ spacingUnit * SPACING_BEETWEEN_LESSONS }px`,
             height: 'initial',
-            transition: theme.transitions.create('width', { duration })
+            transition: theme.transitions.create( 'width', { duration } )
         },
         gridListTileRootCollapsed: {
             width: `${ 100 / cols++ }%`,
-            [ theme.breakpoints.only('sm')]: {
+            [ theme.breakpoints.only( 'sm' )]: {
                 width: `${ 100 / cols++ }%`,
             },
-            [ theme.breakpoints.only('md')]: {
+            [ theme.breakpoints.only( 'md' )]: {
                 width: `${ 100 / cols }%`,
             },
-            [ theme.breakpoints.only('lg')]: {
+            [ theme.breakpoints.only( 'lg' )]: {
                 width: `${ 100 / cols }%`,
             },
-            [ theme.breakpoints.only('xl')]: {
+            [ theme.breakpoints.only( 'xl' )]: {
                 width: `${ 100 / cols }%`,
             },
             height: 'inherit',
@@ -235,6 +235,6 @@ const styles = createStyles(theme => {
             width: 'initial',
         }
     };
-});
+} );
 
 export default styles;

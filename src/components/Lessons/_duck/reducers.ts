@@ -15,8 +15,8 @@ export const INITIAL_STATE: ILessonsState = {
     activeLessonId: null
 };
 
-const reducer: Reducer<ILessonsState, LessonsActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<ILessonsState, LessonsActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case COMPONENTS_LESSONS_OPEN_COURSE: {
             return {
                 ...state,

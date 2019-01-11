@@ -15,12 +15,12 @@ export const COURSE_NUMBER_OF_ROWS_DISPLAYED = 2;
 export const SVG_SIZE_MD = '2rem';
 export const SVG_SIZE_LG = '2rem';
 
-export const GRID: CourseGrid = new Map([
+export const GRID: CourseGrid = new Map( [
     [ xs, { cols: 1, cellHeight: 200 }],
     [ sm, { cols: 2, cellHeight: 200 }],
     [ md, { cols: 3, cellHeight: 200 }],
     [ lg, { cols: 4, cellHeight: 225 }],
     [ xl, { cols: 5, cellHeight: 225 }]
-]);
+] );
 
 export const COURSE_BACKGROUND_GREY = 100;

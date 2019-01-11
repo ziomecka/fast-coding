@@ -1,12 +1,10 @@
 import { Reducer } from 'redux';
 
-import { classTitleHome, classTitleFalling } from './operations';
+import { classTitleHome, classTitleFalling, getClasses } from './operations';
 import { WelcomeActions } from './actions';
 
 import { AppLocationEnum } from '@appTypes';
 import { WelcomeActionsEnum } from './types';
-
-import { getClasses } from './operations';
 
 const { APP_WELCOME_CHANGE_LOCATION } = WelcomeActionsEnum;
 
@@ -16,12 +14,12 @@ export const INITIAL_STATE: WelcomeState = {
     classAnimated: classTitleFalling,
 };
 
-const reducer: Reducer<WelcomeState, WelcomeActions > = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<WelcomeState, WelcomeActions > = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_WELCOME_CHANGE_LOCATION: {
             return {
                 ...state,
-                ...getClasses(action.appLocation)
+                ...getClasses( action.appLocation )
             };
         }
 
@@ -29,7 +27,7 @@ const reducer: Reducer<WelcomeState, WelcomeActions > = (state = INITIAL_STATE, 
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as welcomeReducer };
 
@@ -40,8 +38,8 @@ export { reducer as welcomeReducer };
 export interface WelcomeClasses {
     classAnimated: string;
     classTitle: string;
-};
+}
 
 export interface WelcomeState extends WelcomeClasses {
     appLocation: AppLocationEnum;
-};
+}

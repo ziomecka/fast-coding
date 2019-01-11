@@ -20,8 +20,8 @@ export const INITIAL_STATE: NotificationState = {
     variant: success
 };
 
-const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<NotificationState, NotificationActions> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_NOTIFICATION_SET: {
             /** INITIAL_STATE works like reset */
             return {
@@ -49,7 +49,7 @@ const reducer: Reducer<NotificationState, NotificationActions> = (state = INITIA
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as notificationReducer };
 
@@ -59,4 +59,4 @@ export interface NotificationState {
     text: string;
     autoHideDuration: number;
     variant: NotificationVariantEnum;
-};
+}

@@ -4,10 +4,9 @@ import * as React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 
-import ButtonWithHint from '../ButtonWithHint';
+import ButtonWithHint from '@app/ButtonWithHint';
 
 import { AppDialogProps } from './container';
 
@@ -52,15 +51,15 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         )}
 
         <DialogActions>
-            { Object.keys(buttons).map((button, ind) => (
+            { Object.keys( buttons ).map( ( button, ind ) => (
                 <ButtonWithHint
                     key={`dialogButton-${ ind }`}
                     { ...buttons[ button ] }
                 />
-            )) }
+            ) ) }
         </DialogActions>
     </Dialog>
   );
 };
 
-export default withStyles(styles)(DialogComponent);
+export default withStyles( styles )( DialogComponent );

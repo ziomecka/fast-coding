@@ -26,11 +26,11 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
       value2
     } = props;
 
-    const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        let answer = await setPassword(passwordType, container, e);
+    const onChange = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
+        let answer = await setPassword( passwordType, container, e );
 
         if ( answer && rules && rules.length ) {
-            validatePassword(answer.password, passwordType, container, rules, value2);
+            validatePassword( answer.password, passwordType, container, rules, value2 );
             answer = null; // GC
         }
     };
@@ -38,15 +38,15 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
     return (
     <TextField
         inputProps={{ tabIndex }}
-        label={getTranslation(localize, `${passwordType}_Label`)}
-        placeholder={getTranslation(localize, `${passwordType}_Placeholder`)}
+        label={getTranslation( localize, `${passwordType}_Label` )}
+        placeholder={getTranslation( localize, `${passwordType}_Placeholder` )}
         required
         type="password"
         value={password}
         error={!!passwordValid}
         onChange={onChange}
         helperText={!!passwordValid
-            ? helperTexts(passwordValid, 'password', localize)
+            ? helperTexts( passwordValid, 'password', localize )
             : null
         }
     />

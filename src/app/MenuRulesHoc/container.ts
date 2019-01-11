@@ -14,14 +14,14 @@ const { user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
 
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     authorized: state[app][user].authorized,
     authorizationMethod: state[app][user].authorizationMethod,
     localize: state.localize
-});
+} );
 
 // @ts-ignore
-const MenuProviderContainer = withRouter(connect(mapStateToProps)(MenuProviderComponenet));
+const MenuProviderContainer = withRouter( connect( mapStateToProps )( MenuProviderComponenet ) );
 
 export default MenuProviderContainer;
 
@@ -29,8 +29,8 @@ interface MapStateToPropsI {
     authorized: boolean;
     authorizationMethod: UserAuthorizationMethodEnum;
     localize: LocalizeState;
-};
+}
 
 export interface MenuProviderProps extends
     MapStateToPropsI,
-    RouteComponentProps<{}> {};
+    RouteComponentProps<{}> {}

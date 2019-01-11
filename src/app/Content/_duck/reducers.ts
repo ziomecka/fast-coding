@@ -17,12 +17,12 @@ export const INITIAL_STATE: ContentState = {
     title: ''
 };
 
-const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+const reducer: Reducer<ContentState> = ( state = INITIAL_STATE, action ) => {
+    switch ( action.type ) {
         case APP_CONTENT_CHANGE_LOCATION: {
             return {
                 ...state,
-                ...getClasses(action.appLocation),
+                ...getClasses( action.appLocation ),
             };
         }
 
@@ -35,9 +35,9 @@ const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
 
         // TODO improve, GC
         case APP_CONTENT_ONDROP_DEREGISTER: {
-            const index = state.onDrop.findIndex(item => item === action.onDrop);
+            const index = state.onDrop.findIndex( item => item === action.onDrop );
             const temp = [...state.onDrop];
-            temp.splice(index, 1);
+            temp.splice( index, 1 );
             return {
                 ...state,
                 onDrop: [ ...temp ]
@@ -55,16 +55,16 @@ const reducer: Reducer<ContentState> = (state = INITIAL_STATE, action) => {
             return { ...state };
         }
     }
-}
+};
 
 export { reducer as contentReducer };
 
 export interface ContentClasses {
     contentClass: string;
-};
+}
 
 export interface ContentState extends ContentClasses {
     appLocation: AppLocationEnum;
-    onDrop: Array<(e: React.DragEvent<HTMLElement>)=> void>;
+    onDrop: Array<( e: React.DragEvent<HTMLElement> )=> void>;
     title: string;
-};
+}

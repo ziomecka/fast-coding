@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 
 import { default as MenuListComponent } from './component';
 
-import { ApplicationState } from '../../store';
-import { Dispatch, Action } from 'redux';
+import { ApplicationState } from '@appStore';
+import { Dispatch } from 'redux';
 
 import { onSetNavAnchorEl } from './_duck/operations';
 
 import { withRouter, RouteComponentProps} from 'react-router-dom';
 
-import { MenuState } from '../AppMenu/_duck/reducers';
+import { MenuState } from '@app/AppMenu/_duck/reducers';
 
 import { ApplicationContainersEnum, LanguagesEnum } from '@applicationTypes';
 import {
@@ -26,27 +26,27 @@ const { app } = ApplicationContainersEnum;
 const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
-import { WithMenuRules }  from '../MenuRulesHoc/';
+import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
-const mapStateToProps = (state: ApplicationState): MapStateToPropsI => ({
+const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state[app][appMenu],
     authorized: state[app][user].authorized,
     localize: state.localize
-});
+} );
 
-const mapDispatchToProps = (dispatch: Dispatch): MenuListDispatch => ({
-    setNavAnchorEl: (container, element) => dispatch(onSetNavAnchorEl(container, element || null))
-});
+const mapDispatchToProps = ( dispatch: Dispatch ): MenuListDispatch => ( {
+    setNavAnchorEl: ( container, element ) => dispatch( onSetNavAnchorEl( container, element || null ) )
+} );
 
 // @ts-ignore
-const MenuListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuListComponent));
+const MenuListContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( MenuListComponent ) );
 
 export default MenuListContainer;
 
 export interface MenuListDispatch {
-    setNavAnchorEl: (container: MenuContainersEnum, element?: HTMLElement | null) => void
-};
+    setNavAnchorEl: ( container: MenuContainersEnum, element?: HTMLElement | null ) => void
+}
 
 export type MenuListItemType = {
     title: string;
@@ -63,16 +63,16 @@ export interface __MenuListProps {
     rules?: MenuRulesEnum[];
     iconButton?: IconButtonProps;
     title: string;
-};
+}
 
 interface MapStateToPropsI extends MenuState {
     authorized: boolean;
     localize: LocalizeState;
-};
+}
 
 export interface MenuListProps extends __MenuListProps,
     MenuListDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles,
-    WithMenuRules {};
+    WithMenuRules {}

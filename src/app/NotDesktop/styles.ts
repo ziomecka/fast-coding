@@ -30,10 +30,10 @@ const styles = createStyles( theme => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            [ theme.breakpoints.up('sm') ]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: `${ PAPER_PADDING_MAX_MD }`,
             },
-            [ theme.breakpoints.up('lg') ]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: `${ PAPER_PADDING_MAX_LG }`,
             },
             '& p': {
@@ -54,6 +54,6 @@ const styles = createStyles( theme => {
             }
         }
     };
-});
+} );
 
 export default styles;

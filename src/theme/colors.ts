@@ -8,4 +8,4 @@ const { primary, secondary } = palette;
 export default {
     primary,
     secondary
-}
+};

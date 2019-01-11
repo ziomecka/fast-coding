@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { ChangePasswordFormProps } from './container';
 
-import Password from '../Password/';
-import Message from '../FormHelperText/';
+import Password from '@app/Password/';
+import Message from '@app/FormHelperText/';
 
-import { AppContainersEnum } from '@appTypes';
+import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 const { changePasswordForm } = AppContainersEnum;
 
 import { Translate } from 'react-localize-redux';
@@ -16,7 +16,6 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import { PasswordsEnum } from '@appTypes';
 const { currentPass, newPass, confirmPass } = PasswordsEnum;
 
 import { RulesErrorEnum } from '@shared/_types/';
@@ -39,26 +38,26 @@ const {
 
 class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProps> {
     container: AppContainersEnum;
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.container = changePasswordForm;
 
-        this.emailOnChange = this.emailOnChange.bind(this);
-        this.loginOnChange = this.loginOnChange.bind(this);
-        this.sendForm = this.sendForm.bind(this);
+        this.emailOnChange = this.emailOnChange.bind( this );
+        this.loginOnChange = this.loginOnChange.bind( this );
+        this.sendForm = this.sendForm.bind( this );
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    emailOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setEmail(e.target.value);
+    emailOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setEmail( e.target.value );
     }
 
-    loginOnChange (e: React.ChangeEvent<HTMLInputElement>) {
-        this.props.setLogin(e.target.value);
+    loginOnChange ( e: React.ChangeEvent<HTMLInputElement> ) {
+        this.props.setLogin( e.target.value );
     }
 
     sendForm () {
@@ -72,7 +71,7 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
              !!currentPasswordValid || !!newPasswordValid || !! confirmPasswordValid ) {
                 this.props.formInvalid();
         } else {
-            this.props.sendForm({ currentPassword, newPassword });
+            this.props.sendForm( { currentPassword, newPassword } );
         }
     }
 
@@ -88,7 +87,7 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
 
         return (
             <Paper>
-                <form onSubmit={ (e) => e.preventDefault() } className={ FCForm }>
+                <form onSubmit={ ( e ) => e.preventDefault() } className={ FCForm }>
                     <FormControl tabIndex={1}>
                         <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
                         {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
@@ -113,6 +112,6 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             </Paper>
         );
     }
-};
+}
 
-export default withStyles(styles)(ChangePasswordFormComponent);
+export default withStyles( styles )( ChangePasswordFormComponent );

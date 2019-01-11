@@ -17,9 +17,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import getTranslation from '@shared/get.translation';
-import { getActiveLanguage } from 'react-localize-redux'
+import { getActiveLanguage } from 'react-localize-redux';
 
-import { withMenuRules } from '../MenuRulesHoc/';
+import { withMenuRules } from '@app/MenuRulesHoc/';
 
 /**
  * @param { boolean } render                  - is menu rendered?
@@ -32,21 +32,21 @@ import { withMenuRules } from '../MenuRulesHoc/';
 interface InternalState {
     render: boolean;
     listItems: JSX.Element[] | MenuListItemType
-};
+}
 
 class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     private _listTimeout: number;
-    constructor (props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
 
-        this.handleClick = this.handleClick.bind(this);
-        this.handleClickAway = this.handleClickAway.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.handleClick = this.handleClick.bind( this );
+        this.handleClickAway = this.handleClickAway.bind( this );
+        this.handleClose = this.handleClose.bind( this );
 
         this.state = {
             render: this.areRulesMet(),
             listItems: this.listItems
-        }
+        };
 
         this._listTimeout = 1000;
     }
@@ -61,12 +61,12 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         );
     }
 
-    componentDidUpdate(prevProps: MenuListProps) {
+    componentDidUpdate( prevProps: MenuListProps ) {
         const { props: { location: { pathname }, authorized, menuItems } } = this;
         const { location: { pathname: prevPathname }, authorized: prevAuthorized, menuItems: prevMenuItems } = prevProps;
 
-        const activeLang =  getActiveLanguage(this.props.localize);
-        const prevActiveLang = getActiveLanguage(prevProps.localize);
+        const activeLang = getActiveLanguage( this.props.localize );
+        const prevActiveLang = getActiveLanguage( prevProps.localize );
 
         /**
          *  Updates menu only if pathname, authorization or langugage changed, therefore
@@ -75,13 +75,13 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
          *  Moreove: listItems are updated with delay, therefore
          *  menu items do not change when menu is transitioning
          */
-        if (( pathname !== prevPathname || authorized !== prevAuthorized || activeLang !== prevActiveLang )) {
+        if ( ( pathname !== prevPathname || authorized !== prevAuthorized || activeLang !== prevActiveLang ) ) {
             // @ts-ignore
-            this.setState(() => (
+            this.setState( () => (
                 { render: this.areRulesMet() && this.atLeastOneItem }
                 ), () => {
                     let timeout = setTimeout( () => {
-                        this.setState({ listItems: this.listItems });
+                        this.setState( { listItems: this.listItems } );
                         clearTimeout( timeout ); // GC
                         timeout = null; // GC
                     }, this._listTimeout );
@@ -91,55 +91,55 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
 
         /** if menuItems && the nnumber of menu items has changed then set new listItems */
         if ( menuItems && (
-                Object.keys(prevMenuItems).length === 0 &&
-                Object.keys(menuItems).length > 0)
+                Object.keys( prevMenuItems ).length === 0 &&
+                Object.keys( menuItems ).length > 0 )
             ) {
-            this.setState({
+            this.setState( {
                 listItems: this.listItems
-            });
+            } );
         }
     }
 
-    handleClick (event: React.MouseEvent<HTMLButtonElement>) {
-        this.props.setNavAnchorEl(this.props.container, event.currentTarget);
+    handleClick ( event: React.MouseEvent<HTMLButtonElement> ) {
+        this.props.setNavAnchorEl( this.props.container, event.currentTarget );
     }
 
-    handleClose (loc: string) {
-        this.props.history.push(loc);
-        if (this.props.container) {
-            this.props.setNavAnchorEl(this.props.container);
+    handleClose ( loc: string ) {
+        this.props.history.push( loc );
+        if ( this.props.container ) {
+            this.props.setNavAnchorEl( this.props.container );
         }
-    };
+    }
 
     handleClickAway () {
-        if (this.anchorEl) {
-            this.props.setNavAnchorEl(this.props.container);
+        if ( this.anchorEl ) {
+            this.props.setNavAnchorEl( this.props.container );
         }
-    };
+    }
 
-    areRulesMet (rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | ''): boolean {
+    areRulesMet ( rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | '' ): boolean {
         // @ts-ignore
-        return (!rules || rules.every(rule => this.props.menuRules({ path: pathname, lang })[rule]()));
-    };
+        return ( !rules || rules.every( rule => this.props.menuRules( { path: pathname, lang } )[rule]() ) );
+    }
 
-    getLink (appRoute: AppRoutesEnum, title: string, className: string) {
+    getLink ( appRoute: AppRoutesEnum, title: string, className: string ) {
         let ind = 0;
 
         return (
             <MenuItem
-                onClick={ () => this.handleClose(appRoute) }
+                onClick={ () => this.handleClose( appRoute ) }
                 key={ `link-${ title }-${ ind++ }` }
                 divider={ true }
                 {...{ className }}
             >
                 <NavLink to={ appRoute }>
-                    { getTranslation(this.props.localize, title) }
+                    { getTranslation( this.props.localize, title ) }
                 </NavLink>
             </MenuItem>
         );
-    };
+    }
 
-    getButton (onClick, title: string, className: string) {
+    getButton ( onClick, title: string, className: string ) {
         let ind = 0;
         return (
             <MenuItem
@@ -148,10 +148,10 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                 divider={ true }
                 {...{ className }}
             >
-                { getTranslation(this.props.localize, title, title) }
+                { getTranslation( this.props.localize, title, title ) }
             </MenuItem>
         );
-    };
+    }
 
     getIconButton () {
         const {
@@ -183,7 +183,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
      */
     get atLeastOneItem () {
         return (
-            this.props.menuItems.some( item => this.areRulesMet(item.rules, item.appRoute, item.lang || '' ))
+            this.props.menuItems.some( item => this.areRulesMet( item.rules, item.appRoute, item.lang || '' ) )
         );
     }
 
@@ -193,17 +193,17 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         } = this.props;
 
         return (
-            this.props.menuItems.map((menuItem) => {
+            this.props.menuItems.map( ( menuItem ) => {
                 const { rules, appRoute, title, onClick, lang = '' } = menuItem;
 
-                if ( this.areRulesMet(rules, appRoute, lang )) {
+                if ( this.areRulesMet( rules, appRoute, lang ) ) {
                     return (
                         ( appRoute && this.getLink( appRoute, title, menuItemClass ) ) ||
                         ( onClick && this.getButton( onClick, title, menuItemClass ) )
                     );
                 }
                 return null;
-            })
+            } )
         );
     }
 
@@ -219,25 +219,21 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
         /** Render list only if at least one item meets the rules */
         return (
             <ClickAwayListener onClickAway={ this.handleClickAway }>
-                <>
-                    {
-                        (title && (
-                            <Tooltip title={getTranslation(this.props.localize, title)}>
+                <>'                   '{
+                        ( title && (
+                            <Tooltip title={getTranslation( this.props.localize, title )}>
                                 { this.getIconButton() }
                             </Tooltip>
-                        )) ||
+                        ) ) ||
                         this.getIconButton()
-                    }
-
-                    {/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}
-                    {<Menu
+                    }'
+                   '{/** Could be rendered only when anchorEl. It decreases menu's responsiveness */}'                   '{<Menu
                         anchorEl={ anchorEl }
-                        open={ Boolean(anchorEl) }
+                        open={ Boolean( anchorEl ) }
                         classes={ { paper : menuClass } }
                     >
                         { this.state.listItems }
-                    </Menu>}
-                </>
+                    </Menu>}'               '</>
             </ClickAwayListener>
         );
     }
@@ -245,13 +241,11 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
     render () {
         if ( this.state.render ) {
             return (
-                <>
-                    { this.renderList() }
-                </>
+                <>'                   '{ this.renderList() }'               '</>
             );
         }
         return null;
     }
 }
 
-export default withMenuRules(withStyles(styles)(MenuListComponent));
+export default withMenuRules( withStyles( styles )( MenuListComponent ) );

@@ -4,11 +4,11 @@ import {
     FC_FORM_WIDTH_SM
 } from './constants';
 
-const styles = createStyles(theme => {
+const styles = createStyles( theme => {
     return {
         FCForm: {
             minWidth: FC_FORM_WIDTH_XS,
-            [ theme.breakpoints.up('sm')]: {
+            [ theme.breakpoints.up( 'sm' )]: {
                 minWidth: FC_FORM_WIDTH_SM,
             },
             overflow: 'hidden',
@@ -20,6 +20,6 @@ const styles = createStyles(theme => {
             width: '100%'
         }
     };
-});
+} );
 
 export default styles;
