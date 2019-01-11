@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import history from '@shared/history';
 
 import HomeView from '@views/Home/';
@@ -45,6 +45,7 @@ const Root: React.StatelessComponent<AppRouterPropsI> = props => {
         <Route exact path={`${ lessons }`} component={ LessonsView } key="lessonsView" />,
         <Route exact path={`${ privacyPolicy }`} component={ PrivacyPolicy } key="privacyPolicyView" />,
         <Route exact path={`${ termsOfService }`} component={ TermsOfService } key="termsOfServiceView" />,
+        <Redirect from='/.+' to='/' key="redirectToHome" />
     ];
 
     const onlyMobile = [
