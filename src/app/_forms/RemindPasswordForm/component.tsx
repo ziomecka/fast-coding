@@ -65,14 +65,22 @@ class RemindPasswordComponent extends React.Component<RemindPasswordPropsI> {
 
     render () {
         const {
-            email,
-            emailValid,
-            classes: { FCForm, FCFormButton, form }
-         } = this.props;
+            props: {
+                email,
+                emailValid,
+                classes: { FCForm, FCFormButton, form },
+                media,
+            },
+            xs
+         } = this;
 
         return (
                 <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
-                    <Email onChange={ this.emailOnChange } {...{ email, emailValid }} />
+                    <Email
+                        onChange={ this.emailOnChange }
+                        {...{ email, emailValid }}
+                        autoFocus={ media !== xs }
+                    />
 
                     <Button
                         onClick={ this.submit }

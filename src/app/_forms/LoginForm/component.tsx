@@ -71,14 +71,21 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     render() {
-        const { container, props: {
+        const { container, xs, props: {
             login,
-            classes: { FCForm, FCFormButton, form }
+            classes: { FCForm, FCFormButton, form },
+            media
          } } = this;
 
          return (
               <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
-                <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }}/>
+                <Login
+                    onChange={ this.loginOnChange }
+                    value={ login }
+                    tabIndex={1}
+                    {...{ container }}
+                    autoFocus={ media !== xs }
+                />
                 <Password {...{ container, passwordType: pass }} tabIndex={2} rules={[]}/>
                 <Button
                     onClick={this.submit}

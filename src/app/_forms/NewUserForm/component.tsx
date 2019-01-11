@@ -23,13 +23,16 @@ const { NO_MATCH } = RulesErrorEnum;
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
+import { withMedia, MediaEnum } from '@app/Media/';
 
 class NewUserFormComponent extends React.Component<NewUserFormProps> {
     container: AppContainersEnum;
+    xs: MediaEnum;
     constructor( props ) {
         super( props );
 
         this.container = newUserForm;
+        this.xs = MediaEnum.xs;
 
         this.emailOnChange = this.emailOnChange.bind( this );
         this.loginOnChange = this.loginOnChange.bind( this );
@@ -72,13 +75,21 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             props: {
                 email, emailValid, login,
                 [newPass]: { password: newPassword },
-                classes: { FCForm, FCFormButton, form }
-            }
+                classes: { FCForm, FCFormButton, form },
+                media
+            },
+            xs
         } = this;
 
         return (
                 <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
-                    <Login onChange={ this.loginOnChange } value={ login } tabIndex={1} {...{ container }} />
+                    <Login
+                        onChange={ this.loginOnChange }
+                        value={ login }
+                        tabIndex={1}
+                        {...{ container }}
+                        autoFocus={ media !== xs }
+                    />
                     <Password {...{ container, passwordType: newPass }} tabIndex={2} />
                     <Password {...{ container, passwordType: confirmPass }} tabIndex={3} rules={[ NO_MATCH ]} value2={ newPassword } />
                     <Email onChange={ this.emailOnChange } {...{ email, emailValid }} tabIndex={4} />
@@ -99,4 +110,4 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
     }
 }
 
-export default withStyles( styles )( NewUserFormComponent );
+export default withStyles( styles )( withMedia( NewUserFormComponent ) );

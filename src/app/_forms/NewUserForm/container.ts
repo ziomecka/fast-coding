@@ -18,6 +18,7 @@ const { app } = ApplicationContainersEnum;
 const { newUserForm } = AppContainersEnum;
 
 import { WithStyles } from '@material-ui/core/styles';
+import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): NewUserFormState => ( {
     ...state[app][newUserForm]
@@ -46,4 +47,5 @@ export interface NewUserFormDispatch {
 export interface NewUserFormProps extends
     NewUserFormDispatch,
     NewUserFormState,
+    IWithMedia,
     WithStyles {}

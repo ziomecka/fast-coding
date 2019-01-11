@@ -15,6 +15,7 @@ import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_du
 
 import { SendFormChangePasswordI } from './_duck/types';
 import { WithStyles } from '@material-ui/core/styles/withStyles';
+import { IWithMedia } from '@app/Media/';
 
 const { app } = ApplicationContainersEnum;
 const { changePasswordForm } = AppContainersEnum;
@@ -46,4 +47,5 @@ export interface ChangePasswordFormDispatch {
 export interface ChangePasswordFormProps extends
     ChangePasswordFormDispatch,
     ChangePasswordFormState,
+    IWithMedia,
     WithStyles {}

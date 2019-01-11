@@ -9,7 +9,7 @@ import { helperTexts } from '@shared/rules';
 import TextField from '@material-ui/core/TextField';
 
 const Email: React.StatelessComponent<EmailPropsI> = props => {
-    const { onChange, email, tabIndex, localize, emailValid } = props;
+    const { onChange, email, tabIndex, localize, emailValid, autoFocus } = props;
 
     return (
         <TextField
@@ -18,7 +18,7 @@ const Email: React.StatelessComponent<EmailPropsI> = props => {
             placeholder={getTranslation( localize, 'emailPlaceholder' )}
             required
             value={email}
-            {...{ onChange }}
+            {...{ onChange, autoFocus }}
             error={ !!emailValid }
             helperText={ !!emailValid
                 ? helperTexts( emailValid, 'email', localize )

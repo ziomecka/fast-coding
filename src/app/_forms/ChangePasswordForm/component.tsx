@@ -21,6 +21,7 @@ import { RulesErrorEnum } from '@shared/_types/';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
+import { withMedia, MediaEnum } from '@app/Media';
 
 // TODO NO_MATCH ad MATCH
 // mogłoby być jedno gdbym mogła w props rules komponentu Password przekazywać inforamcję czy rule ma być spełnione czy nie
@@ -35,10 +36,12 @@ const {
 
 class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProps> {
     container: AppContainersEnum;
+    xs: MediaEnum;
     constructor( props ) {
         super( props );
 
         this.container = changePasswordForm;
+        this.xs = MediaEnum.xs;
 
         this.emailOnChange = this.emailOnChange.bind( this );
         this.loginOnChange = this.loginOnChange.bind( this );
@@ -78,13 +81,19 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
             props: {
                 [newPass]: { password: newPassword },
                 [currentPass]: { password: currentPassword },
-                classes: { FCForm, form }
-            }
+                classes: { FCForm, form },
+                media
+            },
+            xs
         } = this;
 
         return (
                 <form onSubmit={ ( e ) => e.preventDefault() } className={ `${ FCForm } ${ form }` }>
-                    <Password {...{ container, passwordType: currentPass }} tabIndex={2} />
+                    <Password
+                        {...{ container, passwordType: currentPass }}
+                        tabIndex={2}
+                        autoFocus={ media !== xs }
+                    />
                     {/* // TODO niepotrzebnie muszę ustawiać defaultowe sprawdzenia jeżeli chcę codadć jedną zasadę */}
                     <Password {...{ container, passwordType: newPass }} tabIndex={3} rules={[ NOT_LONG, NO_SPACES, NO_DIGIT, NO_SPECIALS, MATCH ]} value2={ currentPassword } />
                     <Password {...{ container, passwordType: confirmPass }} tabIndex={4} rules={[ NO_MATCH ]} value2={ newPassword } />
@@ -106,4 +115,4 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
     }
 }
 
-export default withStyles( styles )( ChangePasswordFormComponent );
+export default withStyles( styles )( withMedia( ChangePasswordFormComponent ) );
