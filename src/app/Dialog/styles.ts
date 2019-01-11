@@ -32,6 +32,11 @@ const styles = createStyles( theme => {
                 padding: 0,
             },
             overflowX: 'hidden'
+        },
+        closeButton: {
+            position: 'absolute',
+            top: 0,
+            right: 0
         }
     };
 } );

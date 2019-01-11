@@ -5,6 +5,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseButton from '@material-ui/icons/Close';
 
 import ButtonWithHint from '@app/ButtonWithHint';
 
@@ -22,7 +24,9 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
       dialogProps,
       Component,
       html,
-      classes: { dialog, dialogContent, dialogContentRoot }
+      classes: { dialog, dialogContent, closeButton : closeButtonClass },
+      closeButton,
+      closeDialog
      } = props;
 
   return (
@@ -30,8 +34,21 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         { ...dialogProps }
         disableBackdropClick={false}
         disableEscapeKeyDown={false}
+        PaperProps={ closeButton
+            ? { style: { paddingTop: '4em' } }
+            : null
+        }
         classes={{ paper: dialog }}
     >
+        { closeButton && (
+            <IconButton
+                className={ closeButtonClass }
+                onClick={ closeDialog }
+            >
+                <CloseButton/>
+            </IconButton>
+        ) }
+
         { titleId && (
             <DialogTitle>
                 <Translate id={ titleId } />

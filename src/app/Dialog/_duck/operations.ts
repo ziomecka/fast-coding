@@ -10,7 +10,8 @@ const onOpenSimpleDialog = ( options: YesDialogOptions ): any => (
             dialogProps: {
                 ...options.dialogProps,
                 onBackdropClick: () => dispatch( closeDialog() )
-            }
+            },
+            closeButton: true
     } ) ) );
 } );
 

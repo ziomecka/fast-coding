@@ -18,7 +18,8 @@ export const INITIAL_STATE: DialogState = {
     buttons: {},
     dialogProps: { open: false },
     Component: null,
-    html: null
+    html: null,
+    closeButton: false
 };
 
 const reducer: Reducer<DialogState, DialogActions> = ( state = INITIAL_STATE, action ) => {
@@ -56,5 +57,6 @@ export interface DialogState {
     buttons: { [key: string]: DialogButtonsProps };
     dialogProps?: DialogProps;
     Component: React.ComponentClass | React.FunctionComponent;
-    html: JSX.Element
+    html: JSX.Element;
+    closeButton: boolean;
 }
