@@ -51,6 +51,9 @@ const styles = createStyles( theme => {
         contentBoxOther: {
             paddingBottom: FOOTER_HEIGHT_MD,
             minHeight: 'calc(100vh)',
+            [ theme.breakpoints.only( 'xs' ) ]: {
+                paddingTop: PAPER_PADDING_MAX_XS
+            },
             [ theme.breakpoints.up( 'lg' ) ]: {
                 paddingBottom: FOOTER_HEIGHT_LG
             }
