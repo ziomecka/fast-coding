@@ -26,7 +26,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
 import { withMedia, MediaEnum } from '@app/Media/';
-const { lg, xl } = MediaEnum;
 
 import {
     TRANSITION_DURATION,
@@ -63,6 +62,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     lessonsRoute: AppRoutesEnum;
     timeout: any
     grid: CourseGrid;
+    xs: MediaEnum;
+    lg: MediaEnum;
+    xl: MediaEnum;
     constructor( props ) {
         super( props );
 
@@ -76,6 +78,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.handleOnClick = this.handleOnClick.bind( this );
 
         this.grid = GRID;
+
+        this.xs = MediaEnum.xs;
+        this.lg = MediaEnum.lg;
+        this.xl = MediaEnum.xl;
+
     }
 
     handleOnClick( lesson: LessonData ): void {
@@ -125,7 +132,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}},
                     media
                 },
+                lg, xl, xs
             } = this;
+
 
             this.timeout = setTimeout( () => {
                 let body = document.querySelector( 'body' );
