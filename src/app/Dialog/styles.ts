@@ -31,6 +31,11 @@ const styles = createStyles( theme => {
                 padding: '1rem'
             },
         },
+        dialogTitle: {
+            '& h6': {
+                marginTop: 0
+            }
+        },
         dialogContent: {
             [ theme.breakpoints.only( 'xs' ) ]: {
                 padding: 0,

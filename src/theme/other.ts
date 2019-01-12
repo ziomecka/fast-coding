@@ -152,6 +152,11 @@ export default {
                 padding: PAPER_PADDING_XS
             }
         },
+        MuiDialogTitle: {
+            root: {
+                padding: 0
+            }
+        },
         MuiDialogContent: {
             root: { ... flexColumnJustifySpaceBetween }
         },

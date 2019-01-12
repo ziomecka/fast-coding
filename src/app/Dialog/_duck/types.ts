@@ -41,15 +41,18 @@ type ExcludeVariantField<T> = {
 
 type ExtractOptions<D, V> = D extends {variant: V} ? D : never;
 
-type DialogComponentOptions =
-ExcludeVariantField<ExtractOptions<DialogContentVariants, 'COMPONENT'>> & {
+type DialogCommonOptions = {
     dialogProps?: AppDialogProps;
+    titleId?: string;
 };
 
+type DialogComponentOptions =
+ExcludeVariantField<ExtractOptions<DialogContentVariants, 'COMPONENT'>> &
+DialogCommonOptions;
+
 type DialogHTMLOptions =
-ExcludeVariantField<ExtractOptions<DialogContentVariants, 'HTML'>> & {
-    dialogProps?: AppDialogProps;
-};
+ExcludeVariantField<ExtractOptions<DialogContentVariants, 'HTML'>> &
+DialogCommonOptions;
 
 interface Buttons {
     [key: string]: DialogButtonsProps

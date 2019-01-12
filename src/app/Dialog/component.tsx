@@ -24,7 +24,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
         dialogProps,
         Component,
         html,
-        classes: { dialog, dialogContent, closeButton: closeButtonClass },
+        classes: { dialog, dialogTitle, dialogContent, closeButton: closeButtonClass },
         closeButton,
         closeDialog
     } = props;
@@ -50,7 +50,7 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
             ) }
 
             { titleId && (
-                <DialogTitle>
+                <DialogTitle className={ dialogTitle }>
                     <Translate id={ titleId } />
                 </DialogTitle>
             )}
