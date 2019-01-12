@@ -20,6 +20,7 @@ import Button from '@material-ui/core/ButtonBase';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import ReviewIcon from '@material-ui/icons/Replay';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -39,9 +40,6 @@ import {
 } from '@constantsStyles';
 
 import { LessonsTypesEnum, CourseGrid } from './_duck/types';
-const { review } = LessonsTypesEnum;
-
-import getTranslation from '@shared/get.translation';
 
 require( './style.sass' );
 
@@ -65,6 +63,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     xs: MediaEnum;
     lg: MediaEnum;
     xl: MediaEnum;
+    review: LessonsTypesEnum;
+    icons: Map<LessonsTypesEnum, JSX.Element>
     constructor( props ) {
         super( props );
 
@@ -83,6 +83,13 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.lg = MediaEnum.lg;
         this.xl = MediaEnum.xl;
 
+        const { props: { classes: { iconClass } } } = this;
+
+        Object.assign( this, LessonsTypesEnum );
+
+        this.icons = new Map( [
+            [ this.review, <ReviewIcon className={ iconClass } /> ]
+        ] );
     }
 
     handleOnClick( lesson: LessonData ): void {
@@ -285,8 +292,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         );
     }
 
-    get reviewInfo() {
-        return getTranslation( this.props.localize, 'lessonTypeReview' );
+    getIcon( type: LessonsTypesEnum ): JSX.Element {
+        return this.icons.get( type );
     }
 
     get lessons () {
@@ -302,7 +309,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 }
             },
             langCode,
-            reviewInfo
+            review
         } = this;
 
         return this.state.lessons.map( ( lesson: LessonData ) => {
@@ -310,7 +317,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             let { _id, title: { [ langCode ]: title }, no, type } = lesson;
 
             const isReview = type.indexOf( review ) !== -1;
-            const info = isReview ? reviewInfo : '';
 
             return (
                 <Grid
@@ -340,6 +346,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                                 <span className={ lessonCardLinkText }>
                                     { title }
                                 </span>
+                                { isReview && this.getIcon( review ) }
                             </Typography>
                         </Button>
                     </GridListTile>

@@ -261,6 +261,12 @@ const styles = createStyles( theme => {
         gridListTileTile: {
             height: 'initial',
             width: 'initial',
+        },
+        iconClass: {
+            position: 'absolute',
+            top: '50%',
+            right: '1rem',
+            transform: 'translateY( -50% )'
         }
     };
 } );
