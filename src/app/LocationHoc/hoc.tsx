@@ -1,0 +1,15 @@
+import * as React from 'react';
+import { Consumer } from './context';
+import { AppLocationEnum } from './_duck/';
+
+const LocationHoc = ( Component: React.FunctionComponent | React.ComponentClass ) => ( props ) => {
+    return (
+        <Consumer>
+            { value => (
+                <Component { ...props } appLocation={ value } { ...AppLocationEnum } />
+            ) }
+        </Consumer>
+    );
+};
+
+export default LocationHoc;
