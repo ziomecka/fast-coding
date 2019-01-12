@@ -15,12 +15,12 @@ const styles = theme => {
             '& input, label': {
                 fontSize: '1rem'
             },
-            [ theme.breakpoints.only( 'xs' )]: {
+            [ theme.breakpoints.only( 'xs' ) ]: {
                 height: `calc(100vh - ${ NAV_HEIGHT_MD }px - 2rem - 1em)`,
                 width: FC_FORM_WIDTH_XS,
                 justifyContent: 'center',
             },
-            [ theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 justifyContent: 'center',
                 minWidth: FC_FORM_WIDTH_SM,
                 '& input, label': {

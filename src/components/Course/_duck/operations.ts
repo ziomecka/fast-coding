@@ -39,7 +39,7 @@ export const onOpenLesson = ( lessonData: LessonData ): any => ( dispatch: Dispa
     /** When new lesson opened - clear local storage */
     clearLocalStorage();
 
-    lessonData.lessonText = ( lessonData.translatedTexts && lessonData.translatedTexts[code] ) ||
+    lessonData.lessonText = ( lessonData.translatedTexts && lessonData.translatedTexts[ code ] ) ||
         lessonData.text ||
         '';
 

@@ -12,7 +12,7 @@ export const INITIAL_STATE: LocalizeState = {
     translations:{ ...translations },
     options: {
         renderToStaticMarkup,
-        defaultLanguage: languages[1].code,
+        defaultLanguage: languages[ 1 ].code,
         onMissingTranslation: () => 'Missing translation'
     }
 };

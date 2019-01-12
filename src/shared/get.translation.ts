@@ -7,7 +7,7 @@ import {
 
 const getTranslation = ( localize: LocalizeState, id: string, missingTranslationString?: string ): string => {
     try {
-        return getTranslations( localize )[id][
+        return getTranslations( localize )[ id ][
             getLanguages( localize )
                 .findIndex( lang => (
                     lang.code === getActiveLanguage( localize ).code )

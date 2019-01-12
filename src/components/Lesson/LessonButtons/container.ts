@@ -44,9 +44,9 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
 } );
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[components][lesson],
-    ...state[components][lessonButtons],
-    dialogOpened: state[app][dialog].dialogProps.open,
+    ...state[ components ][ lesson ],
+    ...state[ components ][ lessonButtons ],
+    dialogOpened: state[ app ][ dialog ].dialogProps.open,
     localize: state.localize
 } );
 

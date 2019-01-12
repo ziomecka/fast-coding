@@ -184,14 +184,14 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                         <Button
                             onClick={ this.goToLessons }
                             className={ welcomeButton }
-                            id={ buttonsIds[0] }
+                            id={ buttonsIds[ 0 ] }
                         >
                             <Translate id="welcomeGoToCourses"/>
                         </Button>
                         <Button
                             className={`${ welcomeButton } ${ welcomeButtonMain }`}
                             onClick={ this.goToDemo }
-                            id={ buttonsIds[1] }
+                            id={ buttonsIds[ 1 ] }
                         >
                             <Translate id="welcomeGoToDemo"/>
                         </Button>

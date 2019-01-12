@@ -207,7 +207,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     /** TODO cards with lesson id */
     get activeLesson(): LessonData {
-        return this.openedCourse.lessons.filter( lesson => lesson._id === this.props.activeLessonId )[0];
+        return this.openedCourse.lessons.filter( lesson => lesson._id === this.props.activeLessonId )[ 0 ];
     }
 
     get activeLessonNo(): number {
@@ -218,7 +218,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         const { props: { openedCourseId } } = this;
 
         if ( openedCourseId ) {
-            return this.props.lessons.filter( lesson => lesson._id === openedCourseId )[0];
+            return this.props.lessons.filter( lesson => lesson._id === openedCourseId )[ 0 ];
         } else {
             return { lessons: [ { _id: null } as LessonData ] };
         }

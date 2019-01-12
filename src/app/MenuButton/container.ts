@@ -25,7 +25,7 @@ import { LocalizeState } from 'react-localize-redux';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app][appMenu],
+    ...state[ app ][ appMenu ],
     localize: state.localize
 } );
 

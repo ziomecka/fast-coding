@@ -30,9 +30,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
 
     get titles() {
         return {
-            [home]: '',
-            [demo]: 'demoLessonTitle',
-            [lessons]: 'coursesTitle'
+            [ home ]: '',
+            [ demo ]: 'demoLessonTitle',
+            [ lessons ]: 'coursesTitle'
         };
     }
 
@@ -52,9 +52,9 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         const { pathname } = this;
 
         if ( pathname !== this.home ) {
-            let id = this.titles[pathname];
+            let id = this.titles[ pathname ];
             if ( id !== undefined ) {
-                this.props.changeTitle( this.titles[pathname] );
+                this.props.changeTitle( this.titles[ pathname ] );
             }
         }
     }
@@ -69,7 +69,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         }
 
         if ( pathname !== prevPathname ) {
-            this.props.changeTitle( this.titles[pathname] );
+            this.props.changeTitle( this.titles[ pathname ] );
         }
     }
 
@@ -82,7 +82,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     }
 
     get lessonTitle(): string {
-        return this.props.lessonTitle[this.langCode];
+        return this.props.lessonTitle[ this.langCode ];
     }
 
     get lessonTranslation(): string {

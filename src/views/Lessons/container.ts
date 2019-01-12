@@ -13,7 +13,7 @@ const { lessonsLoader } = ComponentsContainersEnum;
 import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
 
 const mapStateToProps = ( state: ApplicationState ): LessonsLoaderState => ( {
-    ...state[components][lessonsLoader]
+    ...state[ components ][ lessonsLoader ]
 } );
 
 const LessonsViewContainer = connect( mapStateToProps )( LessonsView );

@@ -16,8 +16,8 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
         setPassword,
         container,
         passwordType,
-        [container]: {
-            [passwordType]: { password, passwordValid }
+        [ container ]: {
+            [ passwordType ]: { password, passwordValid }
         },
         tabIndex,
         localize,

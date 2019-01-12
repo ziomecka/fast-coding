@@ -30,11 +30,11 @@ const styles = createStyles( theme => {
             justifyContent: 'space-around',
             padding: PAPER_PADDING_XS,
             marginTop: PAPER_PADDING_MAX_XS,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: PAPER_PADDING_MD,
                 marginTop: PAPER_PADDING_MAX_MD,
             },
-            [theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: PAPER_PADDING_LG,
                 marginTop: PAPER_PADDING_MAX_LG,
             },

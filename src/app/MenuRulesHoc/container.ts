@@ -15,8 +15,8 @@ const { user } = AppContainersEnum;
 import { LocalizeState } from 'react-localize-redux';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    authorized: state[app][user].authorized,
-    authorizationMethod: state[app][user].authorizationMethod,
+    authorized: state[ app ][ user ].authorized,
+    authorizationMethod: state[ app ][ user ].authorizationMethod,
     localize: state.localize
 } );
 

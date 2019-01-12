@@ -24,11 +24,11 @@ export const classTitleFalling = 'title-falling';
 
 // @ts-ignore
 const states: { [key: AppLocationEnum]: WelcomeClasses } = {
-    [isHome]: {
+    [ isHome ]: {
         classAnimated: classTitleFalling,
         classTitle: classTitleHome
     },
-    [isOther]: {
+    [ isOther ]: {
         classTitle: classTitleOther,
         classAnimated: '',
     }
@@ -41,7 +41,7 @@ const clearLocalStorage = () => {
 };
 
 export const getClasses = ( location: AppLocationEnum ): WelcomeClasses => {
-    return states[location] || states[isOther];
+    return states[ location ] || states[ isOther ];
 };
 
 export const onOpenDemoLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {

@@ -15,8 +15,8 @@ const { components } = ApplicationContainersEnum;
 const { comparator, lesson } = ComponentsContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[components][comparator],
-    ...state[components][lesson]
+    ...state[ components ][ comparator ],
+    ...state[ components ][ lesson ]
 } );
 
 const OriginalTextAreaContainer = connect( mapStateToProps )( OriginalTextArea );

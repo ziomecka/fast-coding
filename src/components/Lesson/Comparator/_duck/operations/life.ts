@@ -17,7 +17,7 @@ export const onTurnOnComparator = (): any => ( dispatch: Dispatch ) => {
 };
 
 export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
-    listeners.forEach( listener => document.removeEventListener( listener[0], listener[1] ) );
+    listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
 
     let timerStopped = await dispatch( onStopTimer() );
@@ -31,19 +31,19 @@ export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Prom
 
 export const onResetComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     listeners.push( [ event, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] );
-    document.addEventListener( event, listeners[listeners.length - 1][1] );
+    document.addEventListener( event, listeners[ listeners.length - 1 ][ 1 ] );
     dispatch( resetComparator() );
 };
 
 export const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     if ( listener ) {
         listeners.push( [ event, ( e: KeyboardEvent ) => listener( e, dispatch, getState ) ] );
-        document.addEventListener( event, listeners[listeners.length - 1][1] );
+        document.addEventListener( event, listeners[ listeners.length - 1 ][ 1 ] );
     }
 };
 
 export const onRemoveEventListener = (): any => () => {
-    listeners.forEach( listener => document.removeEventListener( listener[0], listener[1] ) );
+    listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
 };
 

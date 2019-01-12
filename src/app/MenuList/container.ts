@@ -30,8 +30,8 @@ import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app][appMenu],
-    authorized: state[app][user].authorized,
+    ...state[ app ][ appMenu ],
+    authorized: state[ app ][ user ].authorized,
     localize: state.localize
 } );
 

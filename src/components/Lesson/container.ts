@@ -29,10 +29,10 @@ import { LocalizeState } from 'react-localize-redux';
 import { onStartLeaving } from './LessonButtons/_duck/operations';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
-    const { time, start, stop, running } = state[components][comparator][stats];
+    const { time, start, stop, running } = state[ components ][ comparator ][ stats ];
 
     return {
-        ...state[components][lesson],
+        ...state[ components ][ lesson ],
         time,
         start,
         stop,

@@ -26,7 +26,7 @@ import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     localize: state.localize,
-    openedCourseId: state[components][lessons].openedCourseId
+    openedCourseId: state[ components ][ lessons ].openedCourseId
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): CourseDispatch => ( {

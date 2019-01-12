@@ -16,7 +16,7 @@ const LoginComponent: React.StatelessComponent<LoginPropsI> = props => {
         onChange,
         tabIndex,
         autoFocus = true,
-        [container]: { login, loginValid },
+        [ container ]: { login, loginValid },
         localize
     } = props;
 

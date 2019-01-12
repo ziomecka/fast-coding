@@ -62,9 +62,9 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
 
     sendForm () {
         const {
-            [currentPass]: { password: currentPassword, passwordValid: currentPasswordValid },
-            [newPass]: { password: newPassword, passwordValid: newPasswordValid },
-            [confirmPass]: { password: confirmPassword, passwordValid: confirmPasswordValid }
+            [ currentPass ]: { password: currentPassword, passwordValid: currentPasswordValid },
+            [ newPass ]: { password: newPassword, passwordValid: newPasswordValid },
+            [ confirmPass ]: { password: confirmPassword, passwordValid: confirmPasswordValid }
         } = this.props;
 
         if ( !currentPassword || !newPassword || !confirmPassword ||
@@ -79,8 +79,8 @@ class ChangePasswordFormComponent extends React.Component<ChangePasswordFormProp
         const {
             container,
             props: {
-                [newPass]: { password: newPassword },
-                [currentPass]: { password: currentPassword },
+                [ newPass ]: { password: newPassword },
+                [ currentPass ]: { password: currentPassword },
                 classes: { FCForm, form },
                 media
             },

@@ -63,7 +63,7 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
         if ( noOfSigns ) {
             let random = () => Math.floor( Math.random() * ( noOfSigns ) );
             for ( let i = 0, len = length; i < len; i++ ) {
-                result += allSigns[random()];
+                result += allSigns[ random() ];
             }
             random = null;
         }

@@ -14,7 +14,7 @@ const { app } = ApplicationContainersEnum;
 const { notification } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): NotificationState => ( {
-    ...state[app][notification]
+    ...state[ app ][ notification ]
 } );
 
 const NotificationContainer = connect( mapStateToProps )( Notification );

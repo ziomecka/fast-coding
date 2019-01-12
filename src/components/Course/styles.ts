@@ -69,10 +69,10 @@ const styles = createStyles( theme => {
         },
         summaryContent: {
             padding: `${ PAPER_PADDING_XS }`,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: `${ PAPER_PADDING_MD }`,
             },
-            [theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: `${ PAPER_PADDING_LG }`,
             },
             margin: '0',
@@ -116,13 +116,13 @@ const styles = createStyles( theme => {
             flex: '1 1 100%',
             margin: '0 !important',
             maxHeight: xsCellHeight * xsRows + spacingBetweenLessons * ( xsRows - 1 ),
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 maxHeight: smCellHeight * smRows + spacingBetweenLessons * ( smRows - 1 ),
             },
-            [theme.breakpoints.up( 'md' )]: {
+            [ theme.breakpoints.up( 'md' ) ]: {
                 maxHeight: mdCellHeight * mdRows + spacingBetweenLessons * ( mdRows - 1 ),
             },
-            [theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 maxHeight: lgCellHeight * lgRows + spacingBetweenLessons * ( lgRows - 1 ),
             },
             overflowY: 'scroll',
@@ -240,16 +240,16 @@ const styles = createStyles( theme => {
         },
         gridListTileRootCollapsed: {
             width: `${ 100 / cols++ }%`,
-            [ theme.breakpoints.only( 'sm' )]: {
+            [ theme.breakpoints.only( 'sm' ) ]: {
                 width: `${ 100 / cols++ }%`,
             },
-            [ theme.breakpoints.only( 'md' )]: {
+            [ theme.breakpoints.only( 'md' ) ]: {
                 width: `${ 100 / cols }%`,
             },
-            [ theme.breakpoints.only( 'lg' )]: {
+            [ theme.breakpoints.only( 'lg' ) ]: {
                 width: `${ 100 / cols }%`,
             },
-            [ theme.breakpoints.only( 'xl' )]: {
+            [ theme.breakpoints.only( 'xl' ) ]: {
                 width: `${ 100 / cols }%`,
             },
             height: 'inherit',

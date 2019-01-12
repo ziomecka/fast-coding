@@ -57,8 +57,8 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             emailValid,
             login,
             loginValid,
-            [newPass]: { password: newPassword, passwordValid: newPasswordValid },
-            [confirmPass]: { password: confirmPassword, passwordValid: confirmPasswordValid }
+            [ newPass ]: { password: newPassword, passwordValid: newPasswordValid },
+            [ confirmPass ]: { password: confirmPassword, passwordValid: confirmPasswordValid }
         } = this.props;
 
         if ( !login || !newPassword || !confirmPassword || !email ||
@@ -74,7 +74,7 @@ class NewUserFormComponent extends React.Component<NewUserFormProps> {
             container,
             props: {
                 email, emailValid, login,
-                [newPass]: { password: newPassword },
+                [ newPass ]: { password: newPassword },
                 classes: { FCForm, FCFormButton, form },
                 media
             },

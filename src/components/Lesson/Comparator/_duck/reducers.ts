@@ -40,7 +40,7 @@ export const INITIAL_STATE: ComparatorState = {
     errors: [],
     allErrors: [],
     correctedErrors: [],
-    [stats]: { ...STATS_INITIAL_STATE }
+    [ stats ]: { ...STATS_INITIAL_STATE }
 };
 
 const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_STATE, action ) => {
@@ -89,7 +89,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_S
         case COMPONENTS_STATS_RESET: {
             return {
                 ...state,
-                [stats]: statsReducer( state[stats], action )
+                [ stats ]: statsReducer( state[ stats ], action )
             };
 
         }

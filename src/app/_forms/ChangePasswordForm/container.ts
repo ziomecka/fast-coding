@@ -21,7 +21,7 @@ const { app } = ApplicationContainersEnum;
 const { changePasswordForm } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): ChangePasswordFormState => ( {
-    ...state[app][changePasswordForm]
+    ...state[ app ][ changePasswordForm ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ChangePasswordFormDispatch => ( {

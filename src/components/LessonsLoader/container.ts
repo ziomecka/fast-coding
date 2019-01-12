@@ -17,8 +17,8 @@ const { lessonsLoader } = ComponentsContainersEnum;
 const { user } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[components][lessonsLoader],
-    authorized: state[app][user].authorized
+    ...state[ components ][ lessonsLoader ],
+    authorized: state[ app ][ user ].authorized
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonsLoaderDispatch => ( {

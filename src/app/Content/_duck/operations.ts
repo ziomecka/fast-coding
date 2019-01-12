@@ -8,16 +8,16 @@ const { isHome, isOther } = AppLocationEnum;
 
 // @ts-ignore
 const states: { [key: AppLocationEnum]: ContentClasses } = {
-    [isHome]: {
+    [ isHome ]: {
         contentClass: contentClassHome
     },
-    [isOther]: {
+    [ isOther ]: {
         contentClass: contentClassOther
     }
 };
 
 export const getClasses = ( location: AppLocationEnum ): ContentClasses => {
-    return states[location] || states[isOther];
+    return states[ location ] || states[ isOther ];
 };
 
 export default {};

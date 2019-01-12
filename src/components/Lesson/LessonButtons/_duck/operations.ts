@@ -32,7 +32,7 @@ export const onStartLeaving = (): any => (
             buttons: {
                 buttonYes: {
                     buttonProps: {
-                        id: buttonsIds[0],
+                        id: buttonsIds[ 0 ],
                         onClick: async () => {
                             history.push( lessons );
                             return await dispatch( onReset() );
@@ -43,7 +43,7 @@ export const onStartLeaving = (): any => (
                 },
                 buttonCancel: {
                     buttonProps: {
-                        id: buttonsIds[1],
+                        id: buttonsIds[ 1 ],
                         color: 'secondary',
                         autoFocus: true,
                         onClick: async () => await dispatch( onUnpauseLesson() )

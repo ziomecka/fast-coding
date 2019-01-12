@@ -36,8 +36,8 @@ export const INITIAL_STATE: LessonState = {
     _id: null,
     no: null,
     title: {
-        [en]: '',
-        [pl]: '',
+        [ en ]: '',
+        [ pl ]: '',
     },
     text: '',
     lessonText: '',
@@ -120,7 +120,7 @@ const reducer: Reducer<LessonState, LessonActions> = ( state = INITIAL_STATE, ac
                 ...INITIAL_STATE,
                 signs: [],
                 otherSigns: [],
-                lessonText: LESSON_DEMO_TEXT[language],
+                lessonText: LESSON_DEMO_TEXT[ language ],
                 text: '',
                 title: LESSON_DEMO_TITLE // language is selected in content
             };

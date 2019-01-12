@@ -44,14 +44,14 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
         : ( () => {
 
             const trans = Array.isArray( translations )
-                ? translations.filter( translation => translation.id === translationsId )[0]
+                ? translations.filter( translation => translation.id === translationsId )[ 0 ]
                 : null;
 
             const activeLanguageTranslations = Object( trans ) === trans
                 ? trans[ activeLanguage.code ]
                 : {};
 
-            return ( id: string, text: string ): string => activeLanguageTranslations[id] || text || errMessage;
+            return ( id: string, text: string ): string => activeLanguageTranslations[ id ] || text || errMessage;
         } )();
 
     const display = ( item: IRenderType, txt: string, key: string | number ): JSX.Element => {
@@ -101,9 +101,9 @@ const InfoComponent: React.StatelessComponent< InfoProps > = props => {
                     return (
                         <Component { ...componentProps } key={ ind }>
                             { Object.keys( content ).map( ( i, ind ) => {
-                                if ( isTranslation( content[i] ) ) {
-                                    const { id, text } = content[i];
-                                    return display( content[i], getTranslation( id, text ), ind );
+                                if ( isTranslation( content[ i ] ) ) {
+                                    const { id, text } = content[ i ];
+                                    return display( content[ i ], getTranslation( id, text ), ind );
                                 }
 
                                 /* eslint-disable no-console */

@@ -12,7 +12,7 @@ const { app } = ApplicationContainersEnum;
 const { formHelperText } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): FormHelperTextState => ( {
-    ...state[app][formHelperText]
+    ...state[ app ][ formHelperText ]
 } );
 
 const FormHelperTextContainer = connect( mapStateToProps )( FormHelperText );

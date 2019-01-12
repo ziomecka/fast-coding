@@ -31,7 +31,7 @@ const style = createStyles( theme => {
         },
         navLessonClass: {
             top: `-${ NAV_HEIGHT_MD }px`,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 top: `-${ NAV_HEIGHT_LG }px`,
             }
         },
@@ -49,7 +49,7 @@ const style = createStyles( theme => {
                 whiteSpace: 'nowrap',
                 marginTop: 0,
                 lineHeight: LOGIN_LINE_HEIGHT, // decreased i case login takes upto three lines
-                [ theme.breakpoints.up( 'sm' )]: { // up('sm') because from sm main headline is displayed
+                [ theme.breakpoints.up( 'sm' ) ]: { // up('sm') because from sm main headline is displayed
                     width: LOGIN_WIDTH,
                     right: 'auto',
                     left: '50%',

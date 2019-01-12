@@ -19,7 +19,7 @@ export const onSendForm = ( options: SendFormRemindPasswordI ): any => (
             success: {
                 value: SUCCESS,
                 errorNotifications: {
-                    [EMAIL_DOES_NOT_EXIST]: 'notificationRemindPasswordEmailDoesNotExist'
+                    [ EMAIL_DOES_NOT_EXIST ]: 'notificationRemindPasswordEmailDoesNotExist'
                 },
                 successNotification: 'notificationPasswordRemindSuccess'
             }

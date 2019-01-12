@@ -20,8 +20,8 @@ const { user } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     localize: { ...state.localize },
-    login: state[app][user].login,
-    displayName: state[app][user].displayName,
+    login: state[ app ][ user ].login,
+    displayName: state[ app ][ user ].displayName,
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NavDispatchI => ( {

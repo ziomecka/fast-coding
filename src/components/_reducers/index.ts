@@ -39,21 +39,21 @@ import {
 } from '@components/Lessons/_duck/reducers';
 
 export const INITIAL_STATE = {
-    [comparator]: { ...COMPARATOR_INITIAL_STATE },
-    [lesson]: { ...LESSON_INITIAL_STATE },
-    [lessons]: { ...LESSONS_INITIAL_STATE },
-    [textGenerator]: { ...TEXT_GENERATOR_INITIAL_STATE },
-    [lessonsLoader]: { ...LESSONSLOADER_INITIAL_STATE },
-    [lessonButtons]: { ...LESSONBUTTONS_INITIAL_STATE }
+    [ comparator ]: { ...COMPARATOR_INITIAL_STATE },
+    [ lesson ]: { ...LESSON_INITIAL_STATE },
+    [ lessons ]: { ...LESSONS_INITIAL_STATE },
+    [ textGenerator ]: { ...TEXT_GENERATOR_INITIAL_STATE },
+    [ lessonsLoader ]: { ...LESSONSLOADER_INITIAL_STATE },
+    [ lessonButtons ]: { ...LESSONBUTTONS_INITIAL_STATE }
 };
 
 const reducer = combineReducers( {
-    [lesson]: lessonReducer,
-    [comparator]: comparatorReducer,
-    [textGenerator]: textGeneratorReducer,
-    [lessons]: lessonsReducer,
-    [lessonButtons]: lessonButtonsReducer,
-    [lessonsLoader]: lessonsLoaderReducer
+    [ lesson ]: lessonReducer,
+    [ comparator ]: comparatorReducer,
+    [ textGenerator ]: textGeneratorReducer,
+    [ lessons ]: lessonsReducer,
+    [ lessonButtons ]: lessonButtonsReducer,
+    [ lessonsLoader ]: lessonsLoaderReducer
 } );
 
 export { reducer as componentsReducer };

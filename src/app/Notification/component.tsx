@@ -24,25 +24,25 @@ const NotificationComponent: React.StatelessComponent<AppNotificationProps> = pr
     } = props;
 
     const _icons: { [ key: string ]: React.ComponentType<any> } = {
-        [success]: null,
-        [error]: null
+        [ success ]: null,
+        [ error ]: null
     };
 
     const _classes: { [ key: string ]: { message: string, content: string, icon: string } } = {
-        [success]: {
+        [ success ]: {
             message: 'notificationMessageSuccess',
             content: 'notificationContentSuccess',
             icon: 'notificationIconSuccess'
         },
-        [error]: {
+        [ error ]: {
             message: 'notificationMessageError',
             content: 'notificationContentError',
             icon: 'notificationIconError'
         }
     };
 
-    const variantClasses = _classes[variant];
-    const Icon = _icons[variant];
+    const variantClasses = _classes[ variant ];
+    const Icon = _icons[ variant ];
 
     const message = (
         <React.Fragment>

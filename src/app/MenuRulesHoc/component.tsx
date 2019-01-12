@@ -35,15 +35,15 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = ( props ) => {
             const { path, lang } = options;
 
             return {
-                [onlyAuthorized]: () => authorized,
-                [onlyUnauthorized]: () => !authorized,
-                [notCurrentLocation]: () => path !== pathname,
-                [notActiveLanguage]: () => !lang || lang !== activeLang,
-                [notLesson]: () => !RegExp( `.*${lesson}.*`, 'g' ).test( pathname ),
-                [notDemoLesson]: () => pathname !== demo,
-                [notAnyLesson]: () => !RegExp( `.*${lesson}.*`,'g' ).test( pathname ) && pathname !== demo,
-                [notHome]: () => pathname !== home,
-                [fastCodingAuthorization]: () => authorizationMethod === fastcoding
+                [ onlyAuthorized ]: () => authorized,
+                [ onlyUnauthorized ]: () => !authorized,
+                [ notCurrentLocation ]: () => path !== pathname,
+                [ notActiveLanguage ]: () => !lang || lang !== activeLang,
+                [ notLesson ]: () => !RegExp( `.*${lesson}.*`, 'g' ).test( pathname ),
+                [ notDemoLesson ]: () => pathname !== demo,
+                [ notAnyLesson ]: () => !RegExp( `.*${lesson}.*`,'g' ).test( pathname ) && pathname !== demo,
+                [ notHome ]: () => pathname !== home,
+                [ fastCodingAuthorization ]: () => authorizationMethod === fastcoding
             };
         }}>
             { children }

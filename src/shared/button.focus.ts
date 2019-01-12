@@ -4,7 +4,7 @@ export const getButton = ( id: string ): HTMLButtonElement => (
 
 export const manageButtonFocus = ( buttonsIds: string[], focusedIndex: number ): ( e: KeyboardEvent ) => void => {
     const { length } = buttonsIds;
-    let focusedButton = buttonsIds[focusedIndex];
+    let focusedButton = buttonsIds[ focusedIndex ];
 
     const manageFocus = ( e: KeyboardEvent ) => {
         e.preventDefault();
@@ -24,8 +24,8 @@ export const manageButtonFocus = ( buttonsIds: string[], focusedIndex: number ):
         }
 
         try {
-            getButton( buttonsIds[nextIndex] ).focus();
-            focusedButton = buttonsIds[nextIndex];
+            getButton( buttonsIds[ nextIndex ] ).focus();
+            focusedButton = buttonsIds[ nextIndex ];
         // TODO code
         /* eslint-disable no-empty */
         } catch ( err ) {}

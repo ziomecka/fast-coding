@@ -16,8 +16,8 @@ const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
-    ...state[components][lessonsLoader],
-    ...state[components][lessons]
+    ...state[ components ][ lessonsLoader ],
+    ...state[ components ][ lessons ]
 } );
 
 // @ts-ignore

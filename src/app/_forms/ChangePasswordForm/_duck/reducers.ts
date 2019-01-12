@@ -27,45 +27,45 @@ const {
 } = ChangePasswordFormActionsEnum;
 
 export const INITIAL_STATE: ChangePasswordFormState = {
-    [currentPass]: Object.assign( {}, PasswordInitialState ),
-    [newPass]: Object.assign( {}, PasswordInitialState ),
-    [confirmPass]: Object.assign( {}, PasswordInitialState ),
+    [ currentPass ]: Object.assign( {}, PasswordInitialState ),
+    [ newPass ]: Object.assign( {}, PasswordInitialState ),
+    [ confirmPass ]: Object.assign( {}, PasswordInitialState ),
 };
 
 const reducer: Reducer<ChangePasswordFormState, ChangePasswordFormActions> = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
         case APP_PASSWORD_VALIDATE_NEW:
         case APP_PASSWORD_SET_PASSWORD_NEW: {
-            const { password, passwordValid } = state[newPass];
+            const { password, passwordValid } = state[ newPass ];
             return {
                 ...state,
-                [newPass]: passwordReducer( { password, passwordValid }, action )
+                [ newPass ]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_PASSWORD_VALIDATE_CONFIRM:
         case APP_PASSWORD_SET_PASSWORD_CONFIRM: {
-            const { password, passwordValid } = state[confirmPass];
+            const { password, passwordValid } = state[ confirmPass ];
             return {
                 ...state,
-                [confirmPass]: passwordReducer( { password, passwordValid }, action )
+                [ confirmPass ]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_PASSWORD_VALIDATE_CURRENT:
         case APP_PASSWORD_SET_PASSWORD_CURRENT: {
-            const { password, passwordValid } = state[currentPass];
+            const { password, passwordValid } = state[ currentPass ];
             return {
                 ...state,
-                [currentPass]: passwordReducer( { password, passwordValid }, action )
+                [ currentPass ]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
         case APP_CHANGEPASSWORDFORM_RESET: {
             return {
-                [currentPass]: Object.assign( {}, PasswordInitialState ),
-                [newPass]: Object.assign( {}, PasswordInitialState ),
-                [confirmPass]: Object.assign( {}, PasswordInitialState )
+                [ currentPass ]: Object.assign( {}, PasswordInitialState ),
+                [ newPass ]: Object.assign( {}, PasswordInitialState ),
+                [ confirmPass ]: Object.assign( {}, PasswordInitialState )
             };
         }
 

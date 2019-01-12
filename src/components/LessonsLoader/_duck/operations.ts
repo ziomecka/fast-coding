@@ -14,7 +14,7 @@ const defaultParamName = 'login';
 const defaultParam = 'basic_user';
 
 const defaultParamNames = {
-    [defaultParamName]: defaultParam
+    [ defaultParamName ]: defaultParam
 };
 
 export const onLoadLessons = ( params: URLParamsI = defaultParamNames, url: string = _url, ): any => ( dispatch: Dispatch ) => {

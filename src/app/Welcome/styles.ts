@@ -64,7 +64,7 @@ const styles = createStyles( theme => {
         welcomeOther: {
             height: `${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
-            [ theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 height: `${ NAV_HEIGHT_LG }px`,
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
@@ -73,7 +73,7 @@ const styles = createStyles( theme => {
         welcomeLesson: {
             top: `-${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
-            [ theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 top: `-${ NAV_HEIGHT_LG }px`,
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
@@ -85,22 +85,22 @@ const styles = createStyles( theme => {
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
             maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_XS }px - ${ PAPER_PADDING_MAX_MD })`,
             overflow: 'visible',
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_SM }px - ${ PAPER_PADDING_MAX_MD })`,
             },
-            [theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
             },
         },
         welcomeHeadingHome: {
             fontSize: WELCOME_HEADING_HOME_XS,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: WELCOME_HEADING_HOME_SM,
             },
         },
         welcomeHeadingOther: {
             fontSize: WELCOME_HEADING_OTHER_XS,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: WELCOME_HEADING_OTHER,
             },
             color: contrastTextSecondary,
@@ -119,7 +119,7 @@ const styles = createStyles( theme => {
             [ theme.breakpoints.up( 'sm' ) ]: {
                 flexDirection: 'row'
             },
-            [theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 paddingLeft: PAPER_PADDING_MAX_LG
             }
         },

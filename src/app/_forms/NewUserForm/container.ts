@@ -21,7 +21,7 @@ import { WithStyles } from '@material-ui/core/styles';
 import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): NewUserFormState => ( {
-    ...state[app][newUserForm]
+    ...state[ app ][ newUserForm ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NewUserFormDispatch => ( {

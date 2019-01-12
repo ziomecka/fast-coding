@@ -66,13 +66,13 @@ const styles = createStyles( theme => {
             margin: '.1em',
             minWidth: '1em',
             fontSize: FONT_SIZE_XS,
-            [ theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: FONT_SIZE_SM,
             },
-            [ theme.breakpoints.up( 'md' )]: {
+            [ theme.breakpoints.up( 'md' ) ]: {
                 fontSize: FONT_SIZE_MD,
             },
-            [ theme.breakpoints.up( 'lg' )]: {
+            [ theme.breakpoints.up( 'lg' ) ]: {
                 fontSize: FONT_SIZE_LG,
             },
             padding: '.15em',

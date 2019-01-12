@@ -25,9 +25,9 @@ const parseQueries = ( str: string ): QueriesI => {
                 let nextQueryIndex = findQuery( newValue );
 
                 if ( nextQueryIndex !== -1 ) {
-                    result[queryName] = newValue.slice( 0, nextQueryIndex );
+                    result[ queryName ] = newValue.slice( 0, nextQueryIndex );
                 } else {
-                    result[queryName] = newValue.slice( 0, newValue.length + 1 );
+                    result[ queryName ] = newValue.slice( 0, newValue.length + 1 );
                 }
 
                 return parse( newValue.substr( nextQueryIndex ) );

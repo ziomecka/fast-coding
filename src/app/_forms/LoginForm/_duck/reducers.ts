@@ -27,7 +27,7 @@ const { pass } = PasswordsEnum;
 const { APP_PASSWORD_SET_PASSWORD, APP_PASSWORD_VALIDATE } = PasswordActionsEnum;
 
 export const INITIAL_STATE: LoginFormState = {
-    [pass]: { ...PASSWORD_INITIAL_STATE },
+    [ pass ]: { ...PASSWORD_INITIAL_STATE },
     ...LOGIN_INITIAL_STATE
 };
 
@@ -40,11 +40,11 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = ( state = INITIAL_STA
         /** Watch out! */
         case APP_PASSWORD_VALIDATE:
         case APP_PASSWORD_SET_PASSWORD: {
-            const { password, passwordValid } = state[pass];
+            const { password, passwordValid } = state[ pass ];
 
             return {
                 ...state,
-                [pass]: passwordReducer( { password, passwordValid }, action )
+                [ pass ]: passwordReducer( { password, passwordValid }, action )
             };
         }
 
@@ -57,7 +57,7 @@ const reducer: Reducer<LoginFormState, LoginFormActions> = ( state = INITIAL_STA
 
         case APP_LOGINFORM_RESET: {
             return {
-                [pass]: { ...PASSWORD_INITIAL_STATE },
+                [ pass ]: { ...PASSWORD_INITIAL_STATE },
                 ...LOGIN_INITIAL_STATE
             };
         }

@@ -10,7 +10,7 @@ export const buildParamsFromArray = ( paramName:string, params: string[] ): stri
 
 export const buildUrl = ( params: URLParamsI, url: string ): string => {
     Object.keys( params ).forEach( paramName => {
-        let _params = params[paramName];
+        let _params = params[ paramName ];
 
         if ( Array.isArray( _params ) ) {
             url += buildParamsFromArray( paramName, _params as string[] );

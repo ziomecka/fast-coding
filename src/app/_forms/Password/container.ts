@@ -20,7 +20,7 @@ import { onValidatePassword } from './_duck/operations';
 const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app],
+    ...state[ app ],
     localize: state.localize
 } );
 

@@ -49,7 +49,7 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     submit () {
-        const { login, loginValid, [pass]: { password, passwordValid } } = this.props;
+        const { login, loginValid, [ pass ]: { password, passwordValid } } = this.props;
 
         if ( !login || !password || !!loginValid || !!passwordValid ) {
             this.props.formInvalid();

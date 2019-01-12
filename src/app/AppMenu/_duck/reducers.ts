@@ -14,9 +14,9 @@ import { AppMenuActions } from './actions';
 const { mainMenu, userMenu, languagesMenu } = MenuContainersEnum;
 
 export const INITIAL_STATE: MenuState = {
-    [mainMenu]: { ...MENU_LIST_INITIAL_STATE },
-    [userMenu]: { ...MENU_LIST_INITIAL_STATE },
-    [languagesMenu]: { ...MENU_LIST_INITIAL_STATE }
+    [ mainMenu ]: { ...MENU_LIST_INITIAL_STATE },
+    [ userMenu ]: { ...MENU_LIST_INITIAL_STATE },
+    [ languagesMenu ]: { ...MENU_LIST_INITIAL_STATE }
 };
 
 const reducer: Reducer<MenuState, AppMenuActions> = ( state = INITIAL_STATE, action ) => {
@@ -24,7 +24,7 @@ const reducer: Reducer<MenuState, AppMenuActions> = ( state = INITIAL_STATE, act
         case APP_MENU_LIST_SET_ANCHOREL: {
             return {
                 ...state,
-                [action.menuContainer]: {
+                [ action.menuContainer ]: {
                     anchorEl: action.anchorEl
                 }
             };

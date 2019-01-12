@@ -24,7 +24,7 @@ const { app } = ApplicationContainersEnum;
 const { loginForm } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): LoginFormState => ( {
-    ...state[app][loginForm]
+    ...state[ app ][ loginForm ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LoginFormDispatch => ( {

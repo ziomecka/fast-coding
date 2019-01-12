@@ -18,11 +18,11 @@ const { comparator, lesson } = ComponentsContainersEnum;
 const { stats } = ComparatorContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): ExtendedStatsState => ( {
-    allErrors: state[components][comparator].allErrors,
-    errors: state[components][comparator].errors,
-    text: state[components][lesson].lessonText,
-    endedLesson: state[components][lesson].ended,
-    ...state[components][comparator][stats],
+    allErrors: state[ components ][ comparator ].allErrors,
+    errors: state[ components ][ comparator ].errors,
+    text: state[ components ][ lesson ].lessonText,
+    endedLesson: state[ components ][ lesson ].ended,
+    ...state[ components ][ comparator ][ stats ],
     localize: state.localize
 } );
 

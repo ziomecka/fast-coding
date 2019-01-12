@@ -115,21 +115,21 @@ const {
 } = AppContainersEnum;
 
 export const INITIAL_STATE = {
-    [loginForm]: LOGINFORM_INITIAL_STATE,
-    [dialog]: DIALOG_INITIAL_STATE,
-    [notification]: NOTIFICATION_INITIAL_STATE,
-    [newUserForm]: NEWUSERFORM_INITIAL_STATE,
-    [appMenu]: MENU_INITIAL_STATE,
-    [welcome]: WELCOME_INITIAL_STATE,
-    [content]: CONTENT_INITIAL_STATE,
-    [user]: USER_INITIAL_STATE,
-    [formHelperText]: FORM_HELPER_TEXT_INITIAL_STATE,
-    [changePasswordForm]: CHANGEPASSWORDFORM_INITIAL_STATE,
-    [keyboardListener]: KEYBOARD_LISTENER_INITIAL_STATE,
-    [remindPasswordForm]: REMIND_PASSWORD_INITIAL_STATE,
+    [ loginForm ]: LOGINFORM_INITIAL_STATE,
+    [ dialog ]: DIALOG_INITIAL_STATE,
+    [ notification ]: NOTIFICATION_INITIAL_STATE,
+    [ newUserForm ]: NEWUSERFORM_INITIAL_STATE,
+    [ appMenu ]: MENU_INITIAL_STATE,
+    [ welcome ]: WELCOME_INITIAL_STATE,
+    [ content ]: CONTENT_INITIAL_STATE,
+    [ user ]: USER_INITIAL_STATE,
+    [ formHelperText ]: FORM_HELPER_TEXT_INITIAL_STATE,
+    [ changePasswordForm ]: CHANGEPASSWORDFORM_INITIAL_STATE,
+    [ keyboardListener ]: KEYBOARD_LISTENER_INITIAL_STATE,
+    [ remindPasswordForm ]: REMIND_PASSWORD_INITIAL_STATE,
     // [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE,
-    [googleLogin]: GOOGLE_LOGIN_INITIAL_STATE,
-    [translationsLoader]: TRANSLATIONS_LOADER_INITIAL_STATE
+    [ googleLogin ]: GOOGLE_LOGIN_INITIAL_STATE,
+    [ translationsLoader ]: TRANSLATIONS_LOADER_INITIAL_STATE
 };
 
 const {
@@ -144,21 +144,21 @@ const {
 } = PasswordActionsEnum;
 
 const combinedReducers = combineReducers( {
-    [dialog]: dialogReducer,
-    [loginForm]: loginFormReducer,
-    [newUserForm]: newUserFormReducer,
-    [formHelperText]: formHelperTextReducer,
-    [welcome]: welcomeReducer,
-    [content]: contentReducer,
-    [notification]: notificationReducer,
-    [appMenu]: menuReducer,
-    [user]: userReducer,
-    [changePasswordForm]: changePasswordFormReducer,
-    [keyboardListener]: keyboardListenerReducer,
-    [remindPasswordForm]: remindPasswordReducer,
+    [ dialog ]: dialogReducer,
+    [ loginForm ]: loginFormReducer,
+    [ newUserForm ]: newUserFormReducer,
+    [ formHelperText ]: formHelperTextReducer,
+    [ welcome ]: welcomeReducer,
+    [ content ]: contentReducer,
+    [ notification ]: notificationReducer,
+    [ appMenu ]: menuReducer,
+    [ user ]: userReducer,
+    [ changePasswordForm ]: changePasswordFormReducer,
+    [ keyboardListener ]: keyboardListenerReducer,
+    [ remindPasswordForm ]: remindPasswordReducer,
     // [newPasswordForm]: newPasswordFormReducer,
-    [googleLogin]: googleLoginReducer,
-    [translationsLoader]: translationsLoaderReducer
+    [ googleLogin ]: googleLoginReducer,
+    [ translationsLoader ]: translationsLoaderReducer
 } );
 
 const reducer: Reducer<AppState, AppActions> = ( state = INITIAL_STATE, action ) => {
@@ -175,21 +175,21 @@ const reducer: Reducer<AppState, AppActions> = ( state = INITIAL_STATE, action )
                 case loginForm: {
                     return {
                         ...state,
-                        [loginForm]: loginFormReducer( state[loginForm], action )
+                        [ loginForm ]: loginFormReducer( state[ loginForm ], action )
                     };
                 }
 
                 case newUserForm: {
                     return {
                         ...state,
-                        [newUserForm]: newUserFormReducer( state[newUserForm], action ),
+                        [ newUserForm ]: newUserFormReducer( state[ newUserForm ], action ),
                     };
                 }
 
                 case changePasswordForm: {
                     return {
                         ...state,
-                        [changePasswordForm]: changePasswordFormReducer( state[changePasswordForm], action )
+                        [ changePasswordForm ]: changePasswordFormReducer( state[ changePasswordForm ], action )
                     };
                 }
 

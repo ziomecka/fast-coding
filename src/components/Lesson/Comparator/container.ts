@@ -29,8 +29,8 @@ import { restoreState } from './_duck/actions';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): ComparatorState & LessonState => ( {
-    ...state[components][comparator],
-    ...state[components][lesson]
+    ...state[ components ][ comparator ],
+    ...state[ components ][ lesson ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ComparatorDispatch => ( {

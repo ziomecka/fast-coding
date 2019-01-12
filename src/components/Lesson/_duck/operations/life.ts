@@ -86,9 +86,9 @@ const removeAllKeyDownListeners = ( dispatch: Dispatch ): boolean => {
 };
 
 const _endLesson = ( dispatch, getState ) => {
-    let state = getState()[components];
+    let state = getState()[ components ];
 
-    if ( ( state[lesson].lessonText.length - 1 ) <= state[comparator].currentSignIndex ) {
+    if ( ( state[ lesson ].lessonText.length - 1 ) <= state[ comparator ].currentSignIndex ) {
         /** Comparator ends lesson after switching off keyboardListener and stats */
         dispatch( onTurnOffComparator() );
     }
@@ -102,7 +102,7 @@ export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: Thun
 };
 
 export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    const { ending } = getState()[components][lesson];
+    const { ending } = getState()[ components ][ lesson ];
 
     if ( !ending ) {
         dispatch( endingLesson() );

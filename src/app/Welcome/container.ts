@@ -21,7 +21,7 @@ const { app } = ApplicationContainersEnum;
 const { welcome } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): WelcomeState => ( {
-    ...state[app][welcome]
+    ...state[ app ][ welcome ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): WelcomeDispatch => ( {

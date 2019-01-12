@@ -22,8 +22,8 @@ const { components } = ApplicationContainersEnum;
 const { lessonsLoader, lessons } = ComponentsContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
-    ...state[components][lessonsLoader],
-    ...state[components][lessons]
+    ...state[ components ][ lessonsLoader ],
+    ...state[ components ][ lessons ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {

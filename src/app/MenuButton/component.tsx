@@ -32,7 +32,7 @@ const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => 
     const areMenuButtonRulesMet = (): boolean => {
         return (
             !componentRules ||
-            componentRules.every( rule => menuRules( { path: appRoute } )[rule]() )
+            componentRules.every( rule => menuRules( { path: appRoute } )[ rule ]() )
         );
     };
 

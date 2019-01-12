@@ -12,7 +12,7 @@ import {
 import { KeyboardListenerContainerListenersType, ListenerType } from './types';
 
 const addKeyDownListener = ( listeners: KeyboardListenerContainerListenersType, listener: ListenerType ): number => {
-    document.addEventListener( listener[0], listener[1] );
+    document.addEventListener( listener[ 0 ], listener[ 1 ] );
     let i = listeners.size;
     listeners.set( ++i, listener );
     return i;
@@ -21,7 +21,7 @@ const addKeyDownListener = ( listeners: KeyboardListenerContainerListenersType, 
 const removeKeyDownListener = ( listeners: KeyboardListenerContainerListenersType, listenerId: number ): boolean => {
     try {
         let listener = listeners.get( listenerId );
-        document.removeEventListener( listener[0], listener[1] );
+        document.removeEventListener( listener[ 0 ], listener[ 1 ] );
         listener = null; // GC
         return listeners.delete( listenerId );
     } catch ( err ) {
@@ -31,7 +31,7 @@ const removeKeyDownListener = ( listeners: KeyboardListenerContainerListenersTyp
 
 const removeAllKeyDownListeners = ( listeners: KeyboardListenerContainerListenersType ): boolean => {
     if ( listeners.size ) {
-        listeners.forEach( listener => document.removeEventListener( listener[0], listener[1] ) );
+        listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
         listeners.clear();
     }
     return true;
@@ -40,21 +40,21 @@ const removeAllKeyDownListeners = ( listeners: KeyboardListenerContainerListener
 export const onAddListener = ( options: AddListener ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
         const { container } = options;
-        return addKeyDownListener( getState()[app][keyboardListener].listeners.get( container ), options.listener );
+        return addKeyDownListener( getState()[ app ][ keyboardListener ].listeners.get( container ), options.listener );
     }
 );
 
 export const onRemoveListener = ( options: RemoveListener ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         const { container, listenerId } = options;
-        return removeKeyDownListener( getState()[app][keyboardListener].listeners.get( container ), listenerId );
+        return removeKeyDownListener( getState()[ app ][ keyboardListener ].listeners.get( container ), listenerId );
     }
 );
 
 export const onRemoveAllListeners = ( options: RemoveAllListeners ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         const { container } = options;
-        return removeAllKeyDownListeners( getState()[app][keyboardListener].listeners.get( container ) );
+        return removeAllKeyDownListeners( getState()[ app ][ keyboardListener ].listeners.get( container ) );
     }
 );
 

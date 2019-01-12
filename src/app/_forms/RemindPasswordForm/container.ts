@@ -25,7 +25,7 @@ const { app } = ApplicationContainersEnum;
 const { remindPasswordForm } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): RemindPasswordState => ( {
-    ...state[app][remindPasswordForm]
+    ...state[ app ][ remindPasswordForm ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): RemindPasswordDispatch => ( {

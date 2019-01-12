@@ -24,10 +24,10 @@ const reducer: Reducer<ICSRState, CSRActions> = ( state = INITIAL_STATE, action 
             const { applicationContainer, container, loading } = action as ChangeLoadingStateAction;
             return {
                 ...state,
-                [applicationContainer]: {
-                    ...state[applicationContainer],
-                    [container]: {
-                        ...state[applicationContainer][container],
+                [ applicationContainer ]: {
+                    ...state[ applicationContainer ],
+                    [ container ]: {
+                        ...state[ applicationContainer ][ container ],
                         loading
                     }
                 }
@@ -38,10 +38,10 @@ const reducer: Reducer<ICSRState, CSRActions> = ( state = INITIAL_STATE, action 
             const { applicationContainer, container, error } = action as ReportErrorAction;
             return {
                 ...state,
-                [applicationContainer]: {
-                    ...state[applicationContainer],
-                    [container]: {
-                        ...state[applicationContainer][container],
+                [ applicationContainer ]: {
+                    ...state[ applicationContainer ],
+                    [ container ]: {
+                        ...state[ applicationContainer ][ container ],
                         error
                     }
                 }
@@ -52,10 +52,10 @@ const reducer: Reducer<ICSRState, CSRActions> = ( state = INITIAL_STATE, action 
             const { applicationContainer, container, data } = action as UpdateDataAction;
             return {
                 ...state,
-                [applicationContainer]: {
-                    ...state[applicationContainer],
-                    [container]: {
-                        ...state[applicationContainer][container],
+                [ applicationContainer ]: {
+                    ...state[ applicationContainer ],
+                    [ container ]: {
+                        ...state[ applicationContainer ][ container ],
                         ...data
                     }
                 }

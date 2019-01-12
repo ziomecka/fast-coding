@@ -12,7 +12,7 @@ import { LocalizeState } from 'react-localize-redux';
 const { app } = ApplicationContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app],
+    ...state[ app ],
     localize: state.localize
 } );
 

@@ -32,7 +32,7 @@ export let ui;
 
 export const onAuthorizeFirebase = (): any => (
     async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-        if ( !getState()[app][googleLogin].firebaseAuthorized ) {
+        if ( !getState()[ app ][ googleLogin ].firebaseAuthorized ) {
             try {
                 let response = await firebase.initializeApp( {
                     projectId,

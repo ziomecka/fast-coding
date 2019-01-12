@@ -21,7 +21,7 @@ const styles = theme => {
         },
     } = theme;
 
-    const buttonShadow = theme.shadows[3];
+    const buttonShadow = theme.shadows[ 3 ];
 
     return createStyles( {
         firebaseClass: {

@@ -21,7 +21,7 @@ export const onSendForm = ( options: SendFormChangePasswordI ): any => (
                 value: SUCCESS,
                 redirectUrl: lessons,
                 errorNotifications: {
-                    [CURRENT_PASSWORD_ERROR]: ChangePasswordFormResponseEnum[CURRENT_PASSWORD_ERROR]
+                    [ CURRENT_PASSWORD_ERROR ]: ChangePasswordFormResponseEnum[ CURRENT_PASSWORD_ERROR ]
                 },
                 successNotification: 'notificationPasswordChangeSuccess'
             }

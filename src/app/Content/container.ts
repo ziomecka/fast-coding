@@ -29,10 +29,10 @@ interface MapStateToPropsI extends ContentState {
 }
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app][content],
+    ...state[ app ][ content ],
     localize: { ...state.localize },
-    lessonTitle: state[components][lesson].title,
-    lessonNo: state[components][lesson].no
+    lessonTitle: state[ components ][ lesson ].title,
+    lessonNo: state[ components ][ lesson ].no
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ContentDispatch => ( {

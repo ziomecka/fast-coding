@@ -15,9 +15,9 @@ const ROOT_URL = !PROD_ENV
 const parseQueries = ( queries: QueriesI ) => {
     return Object.keys( queries ).reduce( ( acc, cv ) => {
         if ( acc.length ) {
-            acc += `&${cv}=${queries[cv]}`;
+            acc += `&${cv}=${queries[ cv ]}`;
         } else {
-            acc += `?${cv}=${queries[cv]}`;
+            acc += `?${cv}=${queries[ cv ]}`;
         }
         return acc;
     }, '' ) || '';

@@ -28,15 +28,15 @@ export type MenuRulesHocType = ( options?: MenuRulesHocOptionsI ) => ( {
 } );
 
 const defaultValue: MenuRulesHocType = ( options ) => ( {
-    [onlyAuthorized]: () => false,
-    [onlyUnauthorized]: () => true,
-    [notCurrentLocation]: () => false,
-    [notActiveLanguage]: () => false,
-    [notLesson]: () => false,
-    [notDemoLesson]: () => false,
-    [notAnyLesson]: () => false,
-    [notHome]: () => false,
-    [fastCodingAuthorization]: () => false
+    [ onlyAuthorized ]: () => false,
+    [ onlyUnauthorized ]: () => true,
+    [ notCurrentLocation ]: () => false,
+    [ notActiveLanguage ]: () => false,
+    [ notLesson ]: () => false,
+    [ notDemoLesson ]: () => false,
+    [ notAnyLesson ]: () => false,
+    [ notHome ]: () => false,
+    [ fastCodingAuthorization ]: () => false
 } );
 
 const context = React.createContext( defaultValue );

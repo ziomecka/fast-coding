@@ -70,18 +70,18 @@ export const _validatePassword: ActionCreator<ValidatePasswordAction> = ( passwo
 } );
 
 const actionsMap = {
-    [currentPass]: [ setPasswordCurrent, validatePasswordCurrent ],
-    [newPass]: [ setPasswordNew, validatePasswordNew ],
-    [confirmPass]: [ setPasswordConfirm, validatePasswordConfirm ],
-    [pass]: [ _setPassword, _validatePassword ]
+    [ currentPass ]: [ setPasswordCurrent, validatePasswordCurrent ],
+    [ newPass ]: [ setPasswordNew, validatePasswordNew ],
+    [ confirmPass ]: [ setPasswordConfirm, validatePasswordConfirm ],
+    [ pass ]: [ _setPassword, _validatePassword ]
 };
 
 export const setPassword: ActionCreator<SetPasswordAction> = ( password, passwordType: string, container: AppContainersEnum ) => (
-    actionsMap[passwordType][0]( password, container )
+    actionsMap[ passwordType ][ 0 ]( password, container )
 );
 
 export const validatePassword: ActionCreator<ValidatePasswordAction> = ( passwordValid: RulesErrorEnum, passwordType: string, container: AppContainersEnum ) => (
-    actionsMap[passwordType][1]( passwordValid, container ) || ( () => {} )
+    actionsMap[ passwordType ][ 1 ]( passwordValid, container ) || ( () => {} )
 );
 
 export const actions = {

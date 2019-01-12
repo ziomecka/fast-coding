@@ -60,7 +60,7 @@ const styles = createStyles( theme => {
         },
         contentTitle: {
             fontSize: WELCOME_HEADING_OTHER_XS,
-            [theme.breakpoints.up( 'sm' )]: {
+            [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: WELCOME_HEADING_OTHER,
             },
             position: 'relative',

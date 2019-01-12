@@ -16,8 +16,8 @@ const { components } = ApplicationContainersEnum;
 const { lesson, textGenerator } = ComponentsContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): TextGeneratorState & LessonState => ( {
-    ...state[components][textGenerator],
-    ...state[components][lesson]
+    ...state[ components ][ textGenerator ],
+    ...state[ components ][ lesson ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): TextGeneratorDispatch => ( {

@@ -13,8 +13,8 @@ const locations: [( pathname: string )=> boolean, AppLocationEnum][] = [
 
 export const checkLocation = ( pathname: string ): AppLocationEnum => {
     for ( const location in locations ) {
-        if ( locations[location][0]( pathname ) ) {
-            return locations[location][1];
+        if ( locations[ location ][ 0 ]( pathname ) ) {
+            return locations[ location ][ 1 ];
         }
     }
 

@@ -14,7 +14,7 @@ const { app } = ApplicationContainersEnum;
 const { user } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): AppRouterMapStateToProps => ( {
-    authorized: state[app][user].authorized
+    authorized: state[ app ][ user ].authorized
 } );
 
 const Container = connect( mapStateToProps, mapDispatchToProps )( AppRouter );

@@ -13,7 +13,7 @@ const { app } = ApplicationContainersEnum;
 import { changeLocation, ChangeLocationAction } from './_duck/actions';
 
 const mapStateToProps = ( state: ApplicationState ): AppState => ( {
-    ...state[app]
+    ...state[ app ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LocationChangeDispatch => ( {

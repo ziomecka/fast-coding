@@ -17,7 +17,7 @@ const { app } = ApplicationContainersEnum;
 const { googleLogin } = AppContainersEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[app][googleLogin],
+    ...state[ app ][ googleLogin ],
     localize: state.localize
 } );
 

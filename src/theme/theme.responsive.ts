@@ -16,10 +16,10 @@ import theme from './theme';
 theme.overrides.MuiMenu.paper = {
     ...theme.overrides.MuiMenu.paper,
     padding: PAPER_PADDING_XS,
-    [theme.breakpoints.up( 'sm' )]: {
+    [ theme.breakpoints.up( 'sm' ) ]: {
         padding: PAPER_PADDING_MD,
     },
-    [theme.breakpoints.up( 'lg' )]: {
+    [ theme.breakpoints.up( 'lg' ) ]: {
         padding: PAPER_PADDING_LG
     }
 };
@@ -46,10 +46,10 @@ theme.overrides.MuiAppBar.root = {
 theme.overrides.MuiDialog.paper = {
     ...theme.overrides.MuiDialog.paper,
     padding: PAPER_PADDING_XS,
-    [theme.breakpoints.up( 'sm' )]: {
+    [ theme.breakpoints.up( 'sm' ) ]: {
         padding: PAPER_PADDING_MD,
     },
-    [theme.breakpoints.up( 'lg' )]: {
+    [ theme.breakpoints.up( 'lg' ) ]: {
         padding: PAPER_PADDING_LG
     }
 };

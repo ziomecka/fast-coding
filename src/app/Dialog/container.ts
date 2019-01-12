@@ -16,7 +16,7 @@ const { dialog } = AppContainersEnum;
 
 
 const mapStateToProps = ( state: ApplicationState ): DialogState => ( {
-    ...state[app][dialog]
+    ...state[ app ][ dialog ]
 } );
 
 const DialogContainer = connect( mapStateToProps, mapDispatchToProps )( Dialog );

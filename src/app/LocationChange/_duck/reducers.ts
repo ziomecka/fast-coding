@@ -20,10 +20,10 @@ const reducer: Reducer<ApplicationState, LocationChangeActions > = ( state, acti
         case APP_LOCATION_CHANGE_CHANGE_LOCATION: {
             return {
                 ...state,
-                [app]: {
-                    ...state[app],
-                    [action.container]: {
-                        ...state[app][action.container],
+                [ app ]: {
+                    ...state[ app ],
+                    [ action.container ]: {
+                        ...state[ app ][ action.container ],
                         appLocation: checkLocation( action.pathname )
                     }
                 }

@@ -117,7 +117,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
 
     areRulesMet ( rules: MenuRulesEnum[] = this.props.rules, pathname?: AppRoutesEnum, lang?: LanguagesEnum | '' ): boolean {
         // @ts-ignore
-        return ( !rules || rules.every( rule => this.props.menuRules( { path: pathname, lang } )[rule]() ) );
+        return ( !rules || rules.every( rule => this.props.menuRules( { path: pathname, lang } )[ rule ]() ) );
     }
 
     getLink ( appRoute: AppRoutesEnum, title: string, className: string ) {

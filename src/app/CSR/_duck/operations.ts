@@ -25,7 +25,7 @@ export const onLoadData =
         /** lsItem.toLowerCase() => string under which data will be saved in new state
          *  see reducer
         */
-        dispatch( updateData( { [`${lsItem.toLowerCase()}`]: localStorage }, applicationContainer, container ) );
+        dispatch( updateData( { [ `${lsItem.toLowerCase()}` ]: localStorage }, applicationContainer, container ) );
 
         /** If data was in local storage
          *  Loading => false
@@ -37,8 +37,8 @@ export const onLoadData =
 
         try {
             let data = await getData( { path: url } ) as GetDataType;
-            dispatch( updateData( { [stateName]: data[stateName] }, applicationContainer, container ) );
-            localStorageSetItem( lsItem, data[stateName] );
+            dispatch( updateData( { [ stateName ]: data[ stateName ] }, applicationContainer, container ) );
+            localStorageSetItem( lsItem, data[ stateName ] );
         }
         catch ( err ) {
             dispatch( reportError(
