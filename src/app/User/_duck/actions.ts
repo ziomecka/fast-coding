@@ -1,5 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { UserActionsEnum, UserAuthorizeI} from './types';
+import { UserActionsEnum, UserAuthorizeI } from './types';
 
 const {
     APP_USER_AUTHORIZE_USER,

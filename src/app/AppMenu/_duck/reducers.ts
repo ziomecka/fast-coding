@@ -11,7 +11,7 @@ import { MenuContainersEnum } from '@appTypes';
 
 import { AppMenuActions } from './actions';
 
-const { mainMenu, userMenu, languagesMenu} = MenuContainersEnum;
+const { mainMenu, userMenu, languagesMenu } = MenuContainersEnum;
 
 export const INITIAL_STATE: MenuState = {
     [mainMenu]: { ...MENU_LIST_INITIAL_STATE },

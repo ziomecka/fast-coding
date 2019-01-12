@@ -27,7 +27,7 @@ const style = createStyles( theme => {
     return {
         navClass: {
             transition: `${theme.transitions.create(
-                ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut} )}`
+                [ 'top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut } )}`
         },
         navLessonClass: {
             top: `-${ NAV_HEIGHT_MD }px`,

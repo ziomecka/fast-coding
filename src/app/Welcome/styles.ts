@@ -38,11 +38,11 @@ const styles = createStyles( theme => {
     } = theme;
 
     const transHeightFontSizeColor = `${ theme.transitions.create(
-        ['height', 'font-size' ], { duration: complex, easing: easeOut },
+        [ 'height', 'font-size' ], { duration: complex, easing: easeOut },
     ) }, ${ theme.transitions.create(
         [ 'color' ], { duration: shorter, easing: easeOut }
     ) }, ${ theme.transitions.create(
-        ['top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
+        [ 'top' ], { duration: complex * NAV_WELCOME_GO_UP, easing: easeOut },
     ) }`;
 
     return {
@@ -81,7 +81,7 @@ const styles = createStyles( theme => {
         welcomeHeading: {
             display: 'inline-block',
             color: textPrimary,
-            transition: theme.transitions.create( ['color'], {duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut} ),
+            transition: theme.transitions.create( [ 'color' ], { duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut } ),
             padding: `0 0 0 ${ PAPER_PADDING_MAX_MD }`,
             maxWidth: `calc(100% - ${ TOOLBAR_MAX_WIDTH_XS }px - ${ PAPER_PADDING_MAX_MD })`,
             overflow: 'visible',

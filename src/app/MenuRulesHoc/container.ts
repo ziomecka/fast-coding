@@ -4,7 +4,7 @@ import { default as MenuProviderComponenet } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { withRouter, RouteComponentProps} from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum, UserAuthorizationMethodEnum } from '@appTypes';

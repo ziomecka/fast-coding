@@ -1,5 +1,5 @@
 import { default as LessonView } from './component';
-import { withRouter, RouteComponentProps} from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 const LessonViewContainer = withRouter( LessonView );
 

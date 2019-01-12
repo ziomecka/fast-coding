@@ -1,5 +1,5 @@
 import { MediaEnum } from './_duck';
-const { lg, md, sm, xl, xs} = MediaEnum;
+const { lg, md, sm, xl, xs } = MediaEnum;
 
 export const BREAKPOINTS = new Map( [
     [ xs, 0 ],

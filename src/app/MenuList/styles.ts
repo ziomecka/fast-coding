@@ -9,7 +9,7 @@ import {
 
 const style = createStyles( theme => {
     const {
-        palette: { grey: { 200: menuBackgroundColor }},
+        palette: { grey: { 200: menuBackgroundColor } },
         typography: {
             h4: { fontSize: fontSizeMenuItem }
         }

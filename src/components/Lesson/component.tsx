@@ -59,7 +59,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     }
 
     time() {
-        const { props: { start, time, ended }} = this;
+        const { props: { start, time, ended } } = this;
 
         /** Check start because it may have not bee set by stats i.e. may equal 0 */
         let _time = !ended && start

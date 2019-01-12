@@ -76,7 +76,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
     }
 
     componentDidUpdate( prevProps ) {
-        const { props: { media }} = this;
+        const { props: { media } } = this;
         const { media: prevMedia } = prevProps;
 
         if ( media !== prevMedia ) {

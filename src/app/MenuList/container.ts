@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 
 import { onSetNavAnchorEl } from './_duck/operations';
 
-import { withRouter, RouteComponentProps} from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { MenuState } from '@app/AppMenu/_duck/reducers';
 

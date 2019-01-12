@@ -4,7 +4,7 @@ import { default as MenuButtonComponent } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { withRouter, RouteComponentProps} from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { MenuState } from '@app/AppMenu/_duck/reducers';
 

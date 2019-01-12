@@ -129,7 +129,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     }
 
     async componentDidMount() {
-        const { state: { selectedLesson }} = this;
+        const { state: { selectedLesson } } = this;
 
         let answer = await this.getNewState();
 
@@ -158,7 +158,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         }
 
         if ( numberOfLessonsDisplayed !== prevState.numberOfLessonsDisplayed ) {
-            const { state: { selectedLesson }} = this;
+            const { state: { selectedLesson } } = this;
             this.focusLesson( selectedLesson );
             this.scroll( selectedLesson );
         }
@@ -275,7 +275,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     goToPrevious( step: number ): void {
         const newSelectedLesson = this.getPrevious( step );
-        const { state: { selectedLesson, selectedRange }} = this;
+        const { state: { selectedLesson, selectedRange } } = this;
 
         this.setState(
             () => ( { selectedLesson: newSelectedLesson } ),
@@ -352,7 +352,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     goToNext( step: number ): void {
         const newSelectedLesson = this.getNext( step );
-        const { state: { selectedLesson, selectedRange, numberOfLessonsDisplayed }} = this;
+        const { state: { selectedLesson, selectedRange, numberOfLessonsDisplayed } } = this;
 
         this.setState(
             () => ( { selectedLesson: newSelectedLesson } ),
@@ -377,7 +377,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     get iconPreviousSmall(): JSX.Element {
         const {
-            props: { classes: { buttonDisabled, iconDense }},
+            props: { classes: { buttonDisabled, iconDense } },
             state: { selectedLesson },
         } = this;
 
@@ -395,7 +395,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     get iconPreviousLarge(): JSX.Element {
         const {
-            props: { classes: { buttonDisabled, iconDense }},
+            props: { classes: { buttonDisabled, iconDense } },
             state: { selectedLesson, numberOfLessonsDisplayed }
         } = this;
 
@@ -441,7 +441,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     get iconNextLarge(): JSX.Element {
         const {
-            props: { classes: { buttonDisabled, iconDense }},
+            props: { classes: { buttonDisabled, iconDense } },
             state: { selectedLesson,numberOfLessonsDisplayed },
             numberOfLessons,
         } = this;

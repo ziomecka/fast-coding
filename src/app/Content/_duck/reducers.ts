@@ -29,14 +29,14 @@ const reducer: Reducer<ContentState> = ( state = INITIAL_STATE, action ) => {
         case APP_CONTENT_ONDROP_REGISTER: {
             return {
                 ...state,
-                onDrop: [...state.onDrop, action.onDrop]
+                onDrop: [ ...state.onDrop, action.onDrop ]
             };
         }
 
         // TODO improve, GC
         case APP_CONTENT_ONDROP_DEREGISTER: {
             const index = state.onDrop.findIndex( item => item === action.onDrop );
-            const temp = [...state.onDrop];
+            const temp = [ ...state.onDrop ];
             temp.splice( index, 1 );
             return {
                 ...state,

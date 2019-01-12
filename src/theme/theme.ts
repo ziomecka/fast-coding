@@ -4,4 +4,4 @@ import other from './other';
 import palette from './palette';
 
 // @ts-ignore
-export default createMuiTheme( {...palette, ...other} );
+export default createMuiTheme( { ...palette, ...other } );

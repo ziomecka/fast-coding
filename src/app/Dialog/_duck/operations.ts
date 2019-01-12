@@ -20,8 +20,8 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
-                buttonYes: { buttonProps: { onClick: onClickYes }},
-            } = { buttonYes: { buttonProps: { onClick: null }}}
+                buttonYes: { buttonProps: { onClick: onClickYes } },
+            } = { buttonYes: { buttonProps: { onClick: null } } }
         } = options;
 
         dispatch( openDialog( Object.assign(
@@ -49,11 +49,11 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
-                buttonYes: { buttonProps: { onClick: onClickYes }},
-                buttonCancel: { buttonProps: { onClick: onClickCancel }}
+                buttonYes: { buttonProps: { onClick: onClickYes } },
+                buttonCancel: { buttonProps: { onClick: onClickCancel } }
             } = {
-                buttonYes: { buttonProps: { onClick: null }},
-                buttonCancel: { buttonProps: { onClick: null }}
+                buttonYes: { buttonProps: { onClick: null } },
+                buttonCancel: { buttonProps: { onClick: null } }
             }
         } = options;
 

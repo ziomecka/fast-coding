@@ -7,8 +7,8 @@ const Component = () => (
     <Info
         variant={ dialog }
         render={[
-            {id: 'lessonDialogLeaveQuestion', variant: 'h2'},
-            {id: 'lessonDialogLeaveExplanation', variant: 'body1'}
+            { id: 'lessonDialogLeaveQuestion', variant: 'h2' },
+            { id: 'lessonDialogLeaveExplanation', variant: 'body1' }
         ]}
         useLocalize
     />

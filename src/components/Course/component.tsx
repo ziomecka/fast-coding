@@ -136,7 +136,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         if ( id ) {
             const {
                 props: {
-                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}},
+                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration } } },
                     media
                 },
                 lg, xl, xs
@@ -213,7 +213,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             title: { [ langCode ]: title },
             // @ts-ignore
             description: { [ langCode ]: description },
-        }} = this;
+        } } = this;
 
         return (
             <ExpansionPanel
@@ -367,7 +367,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 gridListTileRoot,
                 gridListTileRootCollapsed,
                 gridListTileRootExpanded,
-            }}
+            } }
         } = this;
 
         return (

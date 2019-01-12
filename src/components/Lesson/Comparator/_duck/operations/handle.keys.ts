@@ -33,12 +33,12 @@ import { onKeepState } from '../../../_duck/operations/restore.state';
  * [219, 222] - special chars
  */
 export const validCodes = [
-    [32, 32],
-    [48, 90],
-    [96, 111],
-    [173, 173],
-    [186, 192],
-    [219, 222],
+    [ 32, 32 ],
+    [ 48, 90 ],
+    [ 96, 111 ],
+    [ 173, 173 ],
+    [ 186, 192 ],
+    [ 219, 222 ],
 ];
 
 export const backspace = 8;

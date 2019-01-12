@@ -23,7 +23,7 @@ const {
 
 const palette = {
     'breakpoints': {
-        'keys': ['xs', 'sm', 'md', 'lg', 'xl'],
+        'keys': [ 'xs', 'sm', 'md', 'lg', 'xl' ],
         'values': {
             'xs': MEDIA_DESKTOP_XS,
             'lg': MEDIA_DESKTOP_LG,
