@@ -1,14 +1,11 @@
 import { createStyles } from '@material-ui/core/styles';
 import {
-    COURSE_HEIGHT_MD,
-    COURSE_HEIGHT_LG,
-    COLUMNS,
     SPACING_BEETWEEN_LESSONS,
     TRANSITION_DURATION,
     SVG_SIZE_MD,
     SVG_SIZE_LG,
-    COURSE_NUMBER_OF_ROWS_DISPLAYED,
-    COURSE_BACKGROUND_GREY
+    COURSE_BACKGROUND_GREY,
+    GRID
 } from './constants.styles';
 
 import {
@@ -16,6 +13,9 @@ import {
     PAPER_PADDING_MD,
     PAPER_PADDING_XS
 } from '@constantsStyles';
+
+import { MediaEnum } from '@app/Media';
+const { xs, md, lg, xl, sm } = MediaEnum;
 
 const styles = createStyles( theme => {
     const {
@@ -37,6 +37,13 @@ const styles = createStyles( theme => {
 
     // 1.5em Mui-Button fontSize
     const labelFontSize = 2 / 1.5;
+
+    const spacingBetweenLessons = spacingUnit * SPACING_BEETWEEN_LESSONS;
+
+    const { rows: xsRows, cellHeight: xsCellHeight } = GRID.get( xs );
+    const { rows: smRows, cellHeight: smCellHeight } = GRID.get( sm );
+    const { rows: mdRows, cellHeight: mdCellHeight } = GRID.get( md );
+    const { rows: lgRows, cellHeight: lgCellHeight } = GRID.get( lg );
 
     return {
         panel: {
@@ -106,10 +113,15 @@ const styles = createStyles( theme => {
             width: '100%',
             flex: '1 1 100%',
             margin: '0 !important',
-            // TODO simplify
-            maxHeight: COURSE_HEIGHT_MD * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1,
+            maxHeight: xsCellHeight * xsRows + spacingBetweenLessons * ( xsRows - 1 ),
+            [theme.breakpoints.up( 'sm' )]: {
+                maxHeight: smCellHeight * smRows + spacingBetweenLessons * ( smRows - 1 ),
+            },
+            [theme.breakpoints.up( 'md' )]: {
+                maxHeight: mdCellHeight * mdRows + spacingBetweenLessons * ( mdRows - 1 ),
+            },
             [theme.breakpoints.up( 'lg' )]: {
-                maxHeight: COURSE_HEIGHT_LG * COURSE_NUMBER_OF_ROWS_DISPLAYED + spacingUnit * SPACING_BEETWEEN_LESSONS * COURSE_NUMBER_OF_ROWS_DISPLAYED * 2 + 1
+                maxHeight: lgCellHeight * lgRows + spacingBetweenLessons * ( lgRows - 1 ),
             },
             overflowY: 'scroll',
             '&::-webkit-scrollbar': {
@@ -132,10 +144,6 @@ const styles = createStyles( theme => {
             '&:focus button': {
                 backgroundColor: hover
             },
-            height: COURSE_HEIGHT_MD,
-            [ theme.breakpoints.up( 'lg' ) ]:{
-                height: COURSE_HEIGHT_LG
-            }
         },
         lessonTileReview: {
             '& h5:after': {

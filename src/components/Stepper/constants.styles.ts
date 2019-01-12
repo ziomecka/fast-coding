@@ -1,6 +1,8 @@
 export {
-    COURSE_NUMBER_OF_ROWS_DISPLAYED,
-    COURSE_BACKGROUND_GREY
+    // COURSE_NUMBER_OF_ROWS_DISPLAYED,
+    SPACING_BEETWEEN_LESSONS,
+    COURSE_BACKGROUND_GREY,
+    GRID
 } from '@constantsStyles';
 
 // margins have to be zero - so the hidden step is not visible below the icon

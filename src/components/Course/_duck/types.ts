@@ -9,4 +9,4 @@ export enum LessonsTypesEnum {
     review = 'review'
 }
 
-export type CourseGrid = Map< MediaEnum, { cols: number, cellHeight: number }>;
+export type CourseGrid = Map< MediaEnum, { cols: number, cellHeight: number, rows: number }>;

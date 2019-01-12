@@ -2,8 +2,8 @@ export * from '@app/Nav/constants.styles';
 export * from '@components/Lesson/constants.styles';
 export {
     SPACING_BEETWEEN_LESSONS,
-    COURSE_NUMBER_OF_ROWS_DISPLAYED,
-    COURSE_BACKGROUND_GREY
+    COURSE_BACKGROUND_GREY,
+    GRID
 } from '@components/Course/constants.styles';
 
 export { WELCOME_HEADING_OTHER_XS } from '@app/Welcome/constants.styles';
