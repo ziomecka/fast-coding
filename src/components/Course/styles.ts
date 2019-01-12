@@ -103,6 +103,8 @@ const styles = createStyles( theme => {
             overflowY: 'scroll',
             paddingTop: 0,
             paddingBottom: 0,
+            padding: 0,
+            margin: 0,
             '&::-webkit-scrollbar': {
                 display: 'none'
             }
@@ -152,9 +154,12 @@ const styles = createStyles( theme => {
                 content: 'attr(info)',
                 fontSize: '.7em',
                 marginTop: '.7em',
-                textTransform: 'lowercase',
-                color: reviewColor
-            }
+                color: reviewColor,
+                [ theme.breakpoints.only( 'xs' ) ]: {
+                    display: 'inline',
+                    width: 'auto'
+                }
+            },
         },
         expansionButton: {
             flexGrow: 0,
@@ -211,6 +216,21 @@ const styles = createStyles( theme => {
                 fontWeight: fontWeightMedium,
                 alignSelf: 'flex-start',
                 top: 0
+            },
+            [ theme.breakpoints.only( 'xs' ) ]: {
+                width: 'auto',
+                '&:nth-child(1)': {
+                    fontWeight: fontWeightMedium,
+                    alignSelf: 'flex-start',
+                    top: 0,
+                    '&:after': {
+                        /* eslint-disable quotes */
+                        content: "' '",
+                        /* eslint-enable quotes */
+                        display: 'inline',
+                        whiteSpace: 'pre-wrap'
+                    }
+                }
             }
         },
         gridListTileRoot: {

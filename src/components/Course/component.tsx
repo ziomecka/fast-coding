@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/ButtonBase';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -267,7 +267,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <Grid
                     container
-                    spacing={ 40 }
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
                 >
@@ -319,15 +318,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     <GridListTile component='div' className={ lessonTileContainer }>
                         <Button
                             onClick={ () => this.handleOnClick( lesson ) }
-                            classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
+                            classes={ {
+                                root: lessonCardButton
+                            } }
                         >
-                            {/*
-                                //@ts-ignore */}
-                            <Typography
-                                variant="h5"
-                                // @ts-ignore
-                                { ...{ info } }
-                            >
+                            <Typography variant="h5" className={ lessonCardButtonLabel } >
                                 <span className={ lessonCardLinkText }>
                                     <Translate id="lessonsLesson" />
                                     &nbsp;

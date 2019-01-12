@@ -11,7 +11,7 @@ export const SVG_SIZE_MD = '2rem';
 export const SVG_SIZE_LG = '2rem';
 
 export const GRID: CourseGrid = new Map( [
-    [ xs, { cols: 1, cellHeight: 80, rows: 6 }],
+    [ xs, { cols: 1, cellHeight: 60, rows: 4 }],
     [ sm, { cols: 2, cellHeight: 150, rows: 2 }],
     [ md, { cols: 3, cellHeight: 200, rows: 2 }],
     [ lg, { cols: 4, cellHeight: 225, rows: 2 }],
