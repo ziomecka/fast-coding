@@ -7,8 +7,7 @@ import {
     PAPER_PADDING_MAX_MD,
     PAPER_PADDING_MAX_LG,
     FOOTER_HEIGHT_LG,
-    FOOTER_HEIGHT_MD,
-    WELCOME_HEADING_OTHER_XS
+    FOOTER_HEIGHT_MD
 } from '@constantsStyles';
 
 const styles = createStyles( theme => {
@@ -16,9 +15,6 @@ const styles = createStyles( theme => {
         palette: {
             background: { default: defaultBackground },
             primary: { main: mainBackground }
-        },
-        typography: {
-            h2: { fontSize: WELCOME_HEADING_OTHER }
         }
     } = theme;
 
@@ -57,18 +53,6 @@ const styles = createStyles( theme => {
             [ theme.breakpoints.up( 'lg' ) ]: {
                 paddingBottom: FOOTER_HEIGHT_LG
             }
-        },
-        contentTitle: {
-            fontSize: WELCOME_HEADING_OTHER_XS,
-            [ theme.breakpoints.up( 'sm' ) ]: {
-                fontSize: WELCOME_HEADING_OTHER,
-            },
-            position: 'relative',
-            display: 'block',
-            width: '100%',
-            left: 0,
-            margin: '1em 0',
-            whiteSpace: 'pre-line'
         }
     };
 } );

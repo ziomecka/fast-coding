@@ -1,0 +1,1 @@
+export { IContentTitleState } from './types';

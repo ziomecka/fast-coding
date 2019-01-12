@@ -7,38 +7,22 @@ import { ApplicationState } from '@appStore';
 
 import { ContentState } from './_duck/reducers';
 
-import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum, AppLocationEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
 
-const { app, components } = ApplicationContainersEnum;
+const { app } = ApplicationContainersEnum;
 const { content } = AppContainersEnum;
-const { lesson } = ComponentsContainersEnum;
 
-import { changeLocation, changeTitle, ChangeLocationAction, ChangeTitleAction } from './_duck/actions';
+import { changeLocation, ChangeLocationAction } from './_duck/actions';
 
 import { WithStyles } from '@material-ui/core/styles';
 
-import { LocalizeState } from 'react-localize-redux';
-
-interface MapStateToPropsI extends ContentState {
-    localize: LocalizeState;
-    lessonTitle: string;
-    lessonNo: number;
-}
-
-const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[ app ][ content ],
-    localize: { ...state.localize },
-    lessonTitle: state[ components ][ lesson ].title,
-    lessonNo: state[ components ][ lesson ].no
+const mapStateToProps = ( state: ApplicationState ): ContentState => ( {
+    ...state[ app ][ content ]
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ContentDispatch => ( {
-    ...notificationMapDiaptchToProps( dispatch ),
     changeLocation: ( appLocation: AppLocationEnum ) => dispatch( changeLocation( appLocation ) ),
-    changeTitle: ( title ) => dispatch( changeTitle( title ) )
 } );
 
 // @ts-ignore
@@ -46,12 +30,11 @@ const ContentContainer = withRouter( connect( mapStateToProps, mapDispatchToProp
 
 export default ContentContainer;
 
-export interface ContentDispatch extends NotificationDispatch {
+export interface ContentDispatch {
     changeLocation: ( appLocation: AppLocationEnum ) => ChangeLocationAction;
-    changeTitle: ( title: string ) => ChangeTitleAction;
 }
 
 export interface ContentProps extends ContentDispatch,
-    MapStateToPropsI,
+    ContentState,
     RouteComponentProps<{}>,
     WithStyles {}
