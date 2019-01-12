@@ -152,7 +152,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 const { scrollTop } = body;
 
                 // TODO - simplify when NAV_HEIGHT GRID implementes
-                const NAV_HEIGHT = ( media === lg || media === xl ) ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
+                const NAV_HEIGHT = ( media === lg || media === xl )
+                    ? NAV_HEIGHT_LG
+                    : ( media === xs )
+                        ? 0 // 0 because Nav has posisition absiolute not fixed - is moving up
+                        : NAV_HEIGHT_MD;
 
                 body.scroll( {
                     top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top - NAV_HEIGHT ), top + scrollTop ),
