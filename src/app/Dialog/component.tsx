@@ -67,14 +67,16 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
                 </DialogContent>
             )}
 
-            <DialogActions>
-                { Object.keys( buttons ).map( ( button, ind ) => (
-                    <ButtonWithHint
-                        key={`dialogButton-${ ind }`}
-                        { ...buttons[ button ] }
-                    />
-                ) ) }
-            </DialogActions>
+            { Object.keys( buttons ).length !== 0 && (
+                <DialogActions>
+                    { Object.keys( buttons ).map( ( button, ind ) => (
+                        <ButtonWithHint
+                            key={`dialogButton-${ ind }`}
+                            { ...buttons[ button ] }
+                        />
+                    ) ) }
+                </DialogActions>
+            ) }
         </Dialog>
     );
 };
