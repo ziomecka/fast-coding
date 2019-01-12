@@ -5,39 +5,20 @@ import { default as Dialog } from '@app/Dialog/';
 import { default as Notification } from '@app/Notification/';
 import DragOverable from '@app/DragOverable';
 import Footer from '@app/Footer/';
+import ContentTitle from '@app/ContentTitle';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
-import Typography from '@material-ui/core/Typography';
 
 import { AppRoutesEnum } from '@appTypes';
 
-import { Translate, getActiveLanguage } from 'react-localize-redux';
-import { renderToStaticMarkup } from 'react-dom/server';
-
-import getTranslation from '@shared/get.translation';
-
-const { demo, home, lessons } = AppRoutesEnum;
-
 const ContentComponent = class Content extends React.Component<ContentProps> {
-    home: string;
+    home: AppRoutesEnum;
     constructor( props: ContentProps ) {
         super( props );
         this.onDrop = this.onDrop.bind( this );
         this.home = AppRoutesEnum.home;
-    }
-
-    get titles() {
-        return {
-            [ home ]: '',
-            [ demo ]: 'demoLessonTitle',
-            [ lessons ]: 'coursesTitle'
-        };
-    }
-
-    get isLesson() {
-        return RegExp( '.*\lesson-.*' ).test( this.props.location.pathname );
     }
 
     get isHome() {
@@ -48,28 +29,12 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         return this.props.location.pathname;
     }
 
-    componentDidMount() {
-        const { pathname } = this;
-
-        if ( pathname !== this.home ) {
-            let id = this.titles[ pathname ];
-            if ( id !== undefined ) {
-                this.props.changeTitle( this.titles[ pathname ] );
-            }
-        }
-    }
-
     componentDidUpdate( prevProps: ContentProps ) {
-        const { props: { appLocation, location: { pathname } } } = this;
-        const { appLocation: prevAppLocation, location: { pathname: prevPathname } } = prevProps;
+        const { props: { appLocation } } = this;
 
         // TODO - improve / change?
-        if ( appLocation !== prevAppLocation ) {
+        if ( appLocation !== prevProps.appLocation ) {
             this.props.changeLocation( appLocation );
-        }
-
-        if ( pathname !== prevPathname ) {
-            this.props.changeTitle( this.titles[ pathname ] );
         }
     }
 
@@ -77,25 +42,12 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         this.props.onDrop.forEach( fun => fun( e ) );
     }
 
-    get langCode() {
-        return getActiveLanguage( this.props.localize ).code;
-    }
-
-    get lessonTitle(): string {
-        return this.props.lessonTitle[ this.langCode ];
-    }
-
-    get lessonTranslation(): string {
-        return getTranslation( this.props.localize, 'lessonsLesson' );
-    }
-
     render() {
         const {
             props: {
-                classes: { contentBox, contentBoxHome, contentBoxOther, contentTitle },
-                title, lessonNo
+                classes: { contentBox, contentBoxHome, contentBoxOther },
             },
-            isHome, isLesson, lessonTitle, lessonTranslation
+            isHome
         } = this;
 
         return (
@@ -105,23 +57,7 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
                     id="content"
                     onDrop={this.onDrop}
                 >
-                    <Typography variant="h2" className={contentTitle}>
-                        <Translate id={ title } options={ { onMissingTranslation: () => null, renderToStaticMarkup }} />
-
-                        {/* // TODO nie podoba mi się
-                        // bo jest zbyt 'hacky' i zbyt duzo sprawdzania przy każdym uruchomienniu lekcji
-                        // np trudno dodawać style */}
-                        { isLesson && (
-                            `${ lessonNo !== undefined && lessonNo !== null
-                                ? `${ lessonTranslation } ${ lessonNo + 1 }`
-                                : ''
-                            }
-                            ${ lessonTitle
-                                ? lessonTitle
-                                : ''
-                            }` // in case no-title
-                        ) }
-                    </Typography>
+                    <ContentTitle />
 
                     { this.props.children }
 
