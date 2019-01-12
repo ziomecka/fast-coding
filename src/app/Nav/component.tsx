@@ -129,7 +129,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
         };
     }
 
-    userOnClick( Component: React.FunctionComponent | React.ComponentClass, appRoute: string ): void {
+    userOnClick( Component: React.FunctionComponent | React.ComponentClass, appRoute: string, titleId: string ): void {
         const {
             state: { media },
             xs
@@ -142,7 +142,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 redirectUrl
             } = this;
 
-            openDialog( { variant: simple, Component } );
+            openDialog( { variant: simple, Component, titleId } );
             /** if already some user route displauyed then redirect to home */
             if ( this.userRoutes.indexOf( pathname as AppRoutesEnum ) !== -1 ) {
                 this.props.history.push( redirectUrl );
@@ -168,22 +168,22 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 menuItems={ [
                     {
                         title: 'subMenuUserLogin',
-                        onClick: () => this.userOnClick( LoginForm, login ),
+                        onClick: () => this.userOnClick( LoginForm, login, 'loginTitle' ),
                         rules: [ onlyUnauthorized ]
                     },
                     {
                         title: 'subMenuUserNewUser',
-                        onClick: () => this.userOnClick( NewUserForm, newUser ),
+                        onClick: () => this.userOnClick( NewUserForm, newUser, 'newuserTitle' ),
                         rules: [ onlyUnauthorized ]
                     },
                     {
                         title: 'subMenuUserChangePassword',
-                        onClick: () => this.userOnClick( ChangePasswordForm, changePassword ),
+                        onClick: () => this.userOnClick( ChangePasswordForm, changePassword, 'changePasswordTitle' ),
                         rules: [ onlyAuthorized, fastCodingAuthorization ]
                     },
                     {
                         title: 'subMenuRemindPassword',
-                        onClick: () => this.userOnClick( RemindPasswordForm, remindPassword ),
+                        onClick: () => this.userOnClick( RemindPasswordForm, remindPassword, 'remindPasswordTitle' ),
                         rules: [ onlyUnauthorized ]
                     },
                     {
