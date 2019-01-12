@@ -1,6 +1,6 @@
 import { Dispatch, Action } from 'redux';
 
-import{ authorizeUser } from '@app/User/';
+import { authorizeUser } from '@app/User/';
 
 import { AppRoutesEnum, AppRoutesServerEnum, UserAuthorizationMethodEnum } from '@appTypes';
 import { LoginFormResponseEnum, SendLoginFormI } from './types';

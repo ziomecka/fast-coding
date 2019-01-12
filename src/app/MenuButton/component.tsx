@@ -16,7 +16,7 @@ import { withMenuRules } from '@app/MenuRulesHoc/';
 const MenuButtonComponent: React.StatelessComponent<MenuButtonProps> = props => {
     const {
         history,
-        rules : componentRules,
+        rules: componentRules,
         appRoute,
         title,
         menuRules,

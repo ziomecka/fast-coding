@@ -9,7 +9,7 @@ const languages = [
 
 export const INITIAL_STATE: LocalizeState = {
     languages,
-    translations:{ ...translations },
+    translations: { ...translations },
     options: {
         renderToStaticMarkup,
         defaultLanguage: languages[ 1 ].code,

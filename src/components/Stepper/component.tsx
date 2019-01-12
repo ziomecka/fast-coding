@@ -442,7 +442,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     get iconNextLarge(): JSX.Element {
         const {
             props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson,numberOfLessonsDisplayed },
+            state: { selectedLesson, numberOfLessonsDisplayed },
             numberOfLessons,
         } = this;
 

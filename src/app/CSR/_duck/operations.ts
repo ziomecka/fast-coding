@@ -30,7 +30,7 @@ export const onLoadData =
         /** If data was in local storage
          *  Loading => false
         */
-        if( localStorage ) {
+        if ( localStorage ) {
             dispatch( changeLoadingState( false, applicationContainer, container, lsItem ) );
             localStorage = null; // GC
         }

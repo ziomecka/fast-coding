@@ -136,7 +136,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         if ( id ) {
             const {
                 props: {
-                    theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration } } },
+                    theme: { transitions: { duration: { [ TRANSITION_DURATION ]: duration } } },
                     media
                 },
                 lg, xl, xs

@@ -34,7 +34,7 @@ const reducer: Reducer<DialogState, DialogActions> = ( state = INITIAL_STATE, ac
                 buttons: { ...buttons },
                 dialogProps: {
                     ...dialogProps,
-                    open : true
+                    open: true
                 }
             };
 

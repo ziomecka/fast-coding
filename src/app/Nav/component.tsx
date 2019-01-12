@@ -131,7 +131,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     userOnClick( Component: React.FunctionComponent | React.ComponentClass, appRoute: string ): void {
         const {
-            state:{ media },
+            state: { media },
             xs
         } = this;
 
@@ -154,7 +154,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     get userM(): NavMenuProps {
         const {
-            props: { classes: { navLogin }, logOut, login : loginClass, displayName },
+            props: { classes: { navLogin }, logOut, login: loginClass, displayName },
             onlyAuthorized, onlyUnauthorized, fastCodingAuthorization,
             login,
             newUser,

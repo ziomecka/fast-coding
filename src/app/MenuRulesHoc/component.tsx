@@ -41,7 +41,7 @@ const MenuProvider: React.StatelessComponent<MenuProviderProps> = ( props ) => {
                 [ notActiveLanguage ]: () => !lang || lang !== activeLang,
                 [ notLesson ]: () => !RegExp( `.*${lesson}.*`, 'g' ).test( pathname ),
                 [ notDemoLesson ]: () => pathname !== demo,
-                [ notAnyLesson ]: () => !RegExp( `.*${lesson}.*`,'g' ).test( pathname ) && pathname !== demo,
+                [ notAnyLesson ]: () => !RegExp( `.*${lesson}.*`, 'g' ).test( pathname ) && pathname !== demo,
                 [ notHome ]: () => pathname !== home,
                 [ fastCodingAuthorization ]: () => authorizationMethod === fastcoding
             };

@@ -28,7 +28,7 @@ import {
 } from './flexes';
 
 const { palette: {
-    error : { main : errorColor },
+    error: { main: errorColor },
     text: { disabled }
 } } = require( './palette' ).default;
 
@@ -38,7 +38,7 @@ export default {
             padding: 0,
             elevation: 0
         },
-        MuiPaper:{
+        MuiPaper: {
             elevation: 0
         },
         MuiExpansionPanel: {

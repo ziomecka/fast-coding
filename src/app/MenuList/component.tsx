@@ -153,7 +153,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
 
     getIconButton () {
         const {
-            props : {
+            props: {
                 iconButton: { className: iconButtonClassName, ...other } = { className: '' },
                 classes: { menuIconClass },
                 icon // TODO GC?
@@ -229,7 +229,7 @@ class MenuListComponent extends React.Component<MenuListProps, InternalState> {
                     { <Menu
                         anchorEl={ anchorEl }
                         open={ Boolean( anchorEl ) }
-                        classes={ { paper : menuClass } }
+                        classes={ { paper: menuClass } }
                     >
                         { this.state.listItems }
                     </Menu>}

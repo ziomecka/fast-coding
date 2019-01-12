@@ -7,7 +7,7 @@ import Info from '@app/Info';
 
 const PrivacyPolicyComponent: React.StatelessComponent<PrivacyPolicyProps> = props => {
 
-    const date = Date.UTC( 2019,0,6 );
+    const date = Date.UTC( 2019, 0, 6 );
 
     const effectiveOf = new Date( date ).toLocaleDateString( getActiveLanguage( props.localize ).code, {
         month: 'long',
@@ -22,7 +22,7 @@ const PrivacyPolicyComponent: React.StatelessComponent<PrivacyPolicyProps> = pro
             render={ [
                 { variant: 'h2', id: 'h_Main' },
                 { variant: 'body1', content: [
-                    { id: 'lastUpdated', variant: 'span' } ,
+                    { id: 'lastUpdated', variant: 'span' },
                     { variant: 'span', text: ` ${ effectiveOf }.` }
                 ] },
                 { id: 'p_1', variant: 'body1' },
@@ -41,7 +41,7 @@ const PrivacyPolicyComponent: React.StatelessComponent<PrivacyPolicyProps> = pro
                 { variant: 'body1', content: [
                     { id: 'p_8', variant: 'span' },
                     { variant: 'span', text: ` ${ effectiveOf } `, pre: 'pre-wrap' },
-                    { id: 'p_9', variant: 'span' } ,
+                    { id: 'p_9', variant: 'span' },
                 ] },
                 { id: 'p_10', variant: 'body1' },
                 { id: 'p_11', variant: 'body1' },

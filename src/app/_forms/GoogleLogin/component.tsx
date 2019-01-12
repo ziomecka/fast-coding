@@ -32,7 +32,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
 
         if ( response ) {
             response = null; // GC
-            return( this.startFirebaseUI() );
+            return ( this.startFirebaseUI() );
         }
     }
 
