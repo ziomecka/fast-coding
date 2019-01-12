@@ -52,6 +52,8 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     languagesMenu: MenuContainersEnum;
     userMenu: MenuContainersEnum;
+    userRoutes: AppRoutesEnum[];
+    redirectUrl: string;
     constructor( props ) {
         super( props );
         this.state = {
@@ -69,6 +71,8 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
         this.languagesMenu = MenuContainersEnum.languagesMenu;
         this.userMenu = MenuContainersEnum.userMenu;
+        this.userRoutes = [ AppRoutesEnum.login, AppRoutesEnum.newUser, AppRoutesEnum.remindPassword, AppRoutesEnum.changePassword ];
+        this.redirectUrl = '/';
     }
 
     componentDidUpdate( prevProps ) {
@@ -127,15 +131,24 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     userOnClick( Component: React.FunctionComponent | React.ComponentClass, appRoute: string ): void {
         const {
-            props: { openDialog, history },
             state:{ media },
-            xs, simple
+            xs
         } = this;
 
         if ( media !== xs ) {
+            const {
+                props: { openDialog, location: { pathname } },
+                simple,
+                redirectUrl
+            } = this;
+
             openDialog( { variant: simple, Component } );
+            /** if already some user route displauyed then redirect to home */
+            if ( this.userRoutes.indexOf( pathname as AppRoutesEnum ) !== -1 ) {
+                this.props.history.push( redirectUrl );
+            }
         } else {
-            history.push( appRoute );
+            this.props.history.push( appRoute );
         }
     }
 
