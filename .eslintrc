@@ -24,9 +24,16 @@
     "typescript/no-unused-vars": "error",
     "no-multiple-empty-lines": "error",
     "no-trailing-spaces": "error",
-    "semi-spacing": [ "error", { "before": false, "after": true }],
+    "semi-spacing": "error",
+    "comma-spacing": "error",
+    "key-spacing": "error",
+    "keyword-spacing": "error",
     "space-in-parens": [ "error", "always" ],
+    "object-curly-spacing": [ "error", "always" ],
+    "array-bracket-spacing": [ "error", "always" ],
+    "computed-property-spacing": [ "error", "always" ],
     "space-infix-ops": "error",
-    "eol-last": "error"
+    "eol-last": "error",
+    "indent": [ "error", 4, { "SwitchCase": 1 } ]
   }
 }
