@@ -25,7 +25,11 @@ const styles = createStyles( theme => {
                 margin: '.75em 0',
                 textAlign: 'left',
                 width: '100%'
-            }
+            },
+            [ theme.breakpoints.only( 'xs' )]: {
+                margin: '1rem',
+                padding: '1rem'
+            },
         },
         dialogContent: {
             [theme.breakpoints.only( 'xs' )]: {
