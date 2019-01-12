@@ -7,4 +7,5 @@ export interface IStepperState {
     next: number;
     selectedLesson: number;
     numberOfLessonsDisplayed: number;
+    numberOfRowsDisplayed: number;
 }

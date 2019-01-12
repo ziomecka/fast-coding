@@ -16,17 +16,17 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/ButtonBase';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import ReviewIcon from '@material-ui/icons/Replay';
 
 /** Materials icons */
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { getActiveLanguage, Translate } from 'react-localize-redux';
 
 import { withMedia, MediaEnum } from '@app/Media/';
-const { lg, xl } = MediaEnum;
 
 import {
     TRANSITION_DURATION,
@@ -40,9 +40,6 @@ import {
 } from '@constantsStyles';
 
 import { LessonsTypesEnum, CourseGrid } from './_duck/types';
-const { review } = LessonsTypesEnum;
-
-import getTranslation from '@shared/get.translation';
 
 require( './style.sass' );
 
@@ -63,6 +60,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
     lessonsRoute: AppRoutesEnum;
     timeout: any
     grid: CourseGrid;
+    xs: MediaEnum;
+    lg: MediaEnum;
+    xl: MediaEnum;
+    review: LessonsTypesEnum;
+    icons: Map<LessonsTypesEnum, JSX.Element>
     constructor( props ) {
         super( props );
 
@@ -76,6 +78,18 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         this.handleOnClick = this.handleOnClick.bind( this );
 
         this.grid = GRID;
+
+        this.xs = MediaEnum.xs;
+        this.lg = MediaEnum.lg;
+        this.xl = MediaEnum.xl;
+
+        const { props: { classes: { iconClass } } } = this;
+
+        Object.assign( this, LessonsTypesEnum );
+
+        this.icons = new Map( [
+            [ this.review, <ReviewIcon className={ iconClass } /> ]
+        ] );
     }
 
     handleOnClick( lesson: LessonData ): void {
@@ -125,7 +139,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     theme: { transitions: { duration : { [ TRANSITION_DURATION ]: duration }}},
                     media
                 },
+                lg, xl, xs
             } = this;
+
 
             this.timeout = setTimeout( () => {
                 let body = document.querySelector( 'body' );
@@ -136,7 +152,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 const { scrollTop } = body;
 
                 // TODO - simplify when NAV_HEIGHT GRID implementes
-                const NAV_HEIGHT = ( media === lg || media === xl ) ? NAV_HEIGHT_LG : NAV_HEIGHT_MD;
+                const NAV_HEIGHT = ( media === lg || media === xl )
+                    ? NAV_HEIGHT_LG
+                    : ( media === xs )
+                        ? 0 // 0 because Nav has posisition absiolute not fixed - is moving up
+                        : NAV_HEIGHT_MD;
 
                 body.scroll( {
                     top: Math.min( Math.max( top + scrollTop - NAV_HEIGHT, 0, top - NAV_HEIGHT ), top + scrollTop ),
@@ -267,7 +287,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <Grid
                     container
-                    spacing={ 40 }
                     classes={{ container: detailsLessons }}
                     component={ ExpansionPanelDetails }
                 >
@@ -277,8 +296,8 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         );
     }
 
-    get reviewInfo() {
-        return getTranslation( this.props.localize, 'lessonTypeReview' );
+    getIcon( type: LessonsTypesEnum ): JSX.Element {
+        return this.icons.get( type );
     }
 
     get lessons () {
@@ -294,7 +313,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                 }
             },
             langCode,
-            reviewInfo
+            review
         } = this;
 
         return this.state.lessons.map( ( lesson: LessonData ) => {
@@ -302,7 +321,6 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             let { _id, title: { [ langCode ]: title }, no, type } = lesson;
 
             const isReview = type.indexOf( review ) !== -1;
-            const info = isReview ? reviewInfo : '';
 
             return (
                 <Grid
@@ -319,15 +337,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     <GridListTile component='div' className={ lessonTileContainer }>
                         <Button
                             onClick={ () => this.handleOnClick( lesson ) }
-                            classes={{ root: lessonCardButton, label: lessonCardButtonLabel }}
+                            classes={ {
+                                root: lessonCardButton
+                            } }
                         >
-                            {/*
-                                //@ts-ignore */}
-                            <Typography
-                                variant="h5"
-                                // @ts-ignore
-                                { ...{ info } }
-                            >
+                            <Typography variant="h5" className={ lessonCardButtonLabel } >
                                 <span className={ lessonCardLinkText }>
                                     <Translate id="lessonsLesson" />
                                     &nbsp;
@@ -336,6 +350,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                                 <span className={ lessonCardLinkText }>
                                     { title }
                                 </span>
+                                { isReview && this.getIcon( review ) }
                             </Typography>
                         </Button>
                     </GridListTile>

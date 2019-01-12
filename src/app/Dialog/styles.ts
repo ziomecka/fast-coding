@@ -26,7 +26,7 @@ const styles = createStyles( theme => {
                 textAlign: 'left',
                 width: '100%'
             },
-            [ theme.breakpoints.only('xs')]: {
+            [ theme.breakpoints.only( 'xs' )]: {
                 margin: '1rem',
                 padding: '1rem'
             },

@@ -23,34 +23,36 @@ import { withMedia, MediaEnum } from '@app/Media/';
 import { GRID } from '@components/Course/';
 
 import {
-    COURSE_NUMBER_OF_ROWS_DISPLAYED,
+    GRID as LESSONS_GRID,
     ANIMATION_DURATION,
     STEP_SM,
-    STEP_XS
+    STEP_XS,
+    SPACING_BEETWEEN_LESSONS
 } from './constants.styles';
 
 const { xs } = MediaEnum;
 
 class StepperComponent extends React.Component<StepperProps, IStepperState> {
-    numberOfRowsDisplayed: number;
-    step: number;
     listenerId: any;
     container: ComponentsContainersEnum.lessonStepper;
     timeout: any;
     animationDuration: number;
+    spacingBetweenLessons: number;
+
     constructor ( props ) {
         super( props );
-        this.numberOfRowsDisplayed = COURSE_NUMBER_OF_ROWS_DISPLAYED;
-        this.step = this.numberOfRowsDisplayed; // numbers of rows by which scrolled
+
         this.container = lessonStepper;
         this.animationDuration = ANIMATION_DURATION;
+        this.spacingBetweenLessons = props.theme.spacing.unit;
 
         this.state = {
             previous: null,
             selectedRange: null,
             next: null,
             selectedLesson: 0, // TODO
-            numberOfLessonsDisplayed: this.numberOfLessonsDisplayed
+            numberOfLessonsDisplayed: this.numberOfLessonsDisplayed,
+            numberOfRowsDisplayed: this.numberOfRowsDisplayed
         };
 
         this.goToNextLarge = this.goToNextLarge.bind( this );
@@ -59,6 +61,10 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         this.goToPreviousSmall = this.goToPreviousSmall.bind( this );
 
         this.listener = this.listener.bind( this );
+    }
+
+    get numberOfRowsDisplayed() {
+        return LESSONS_GRID.get( this.props.media ).rows;
     }
 
     getNext ( modifier: number ): number {
@@ -144,7 +150,10 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         if ( media !== prevProps.media ) {
             const answer = await this.getNewState();
             if ( answer || !answer ) {
-                this.setState( { numberOfLessonsDisplayed: this.numberOfLessonsDisplayed } );
+                this.setState( {
+                    numberOfLessonsDisplayed: this.numberOfLessonsDisplayed,
+                    numberOfRowsDisplayed: this.numberOfRowsDisplayed
+                } );
             }
         }
 
@@ -221,13 +230,14 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     scroll ( no: number, smooth = false ): void {
         let lessonHTML = this.getLessonHTML( no );
+        const { spacingBetweenLessons } = this;
 
         if ( lessonHTML ) {
             /** Scrolling could be avoided if there is no need i.e. parent's top already equals lessonHTML's top
              * Not worth coding?
              */
             document.getElementById( `details-${ this.props.openedCourseId }` ).scroll( {
-                top: lessonHTML.offsetTop,
+                top: ( lessonHTML.offsetTop + spacingBetweenLessons ),
                 behavior: smooth ? 'smooth' : 'auto'
             } );
 
