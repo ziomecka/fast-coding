@@ -20,7 +20,8 @@ const { xs, md, lg, xl, sm } = MediaEnum;
 const styles = createStyles( theme => {
     const {
         typography: {
-            fontWeightMedium
+            fontWeightMedium,
+            h4: { fontSize: labelFontSize }
         },
         spacing: { unit: spacingUnit },
         palette: {
@@ -34,9 +35,6 @@ const styles = createStyles( theme => {
     let duration = theme.transitions.duration[ TRANSITION_DURATION ];
 
     let cols = 1;
-
-    // 1.5em Mui-Button fontSize
-    const labelFontSize = 2 / 1.5;
 
     const spacingBetweenLessons = spacingUnit * SPACING_BEETWEEN_LESSONS;
 
@@ -196,18 +194,16 @@ const styles = createStyles( theme => {
             padding: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: lessonCardBackground
+            backgroundColor: lessonCardBackground,
+            fontSize: '1rem'
         },
         lessonCardButtonLabel: {
             display: 'flex-box',
             flexWrap: 'wrap',
             height: '100%',
             width: `calc(100% - ${ PAPER_PADDING_LG })`,
-            // fontSize: `${ labelFontSize }em`,
+            fontSize: labelFontSize,
             boxSizing: 'border-box',
-            '& h5': {
-                fontSize: `${ labelFontSize }em`,
-            }
         },
         lessonCardLinkText: {
             display: 'inline-block',
