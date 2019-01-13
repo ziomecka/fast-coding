@@ -14,6 +14,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import getTranslation from '@shared/get.translation';
 import { IContentTitleState } from './_duck/';
+import { withLocation } from '@app/LocationHoc/';
 
 class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState> {
     home: AppRoutesEnum;
@@ -63,14 +64,6 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
         return this.props.location.pathname;
     }
 
-    get isLesson (): boolean {
-        return RegExp( '.*\lesson-.*' ).test( this.pathname );
-    }
-
-    get isHome (): boolean {
-        return this.pathname === this.home;
-    }
-
     get langCode(): string {
         return getActiveLanguage( this.props.localize ).code;
     }
@@ -85,18 +78,26 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
 
     render () {
         const {
-            props: { classes: { contentTitle }, lessonNo },
+            props: {
+                classes: { contentTitle },
+                lessonNo,
+                appLocation,
+                isHome,
+                isLesson
+            },
             state: { titleId },
-            isHome, isLesson, lessonTitle, lessonTranslation,
+            lessonTitle, lessonTranslation,
         } = this;
 
-        return ( !isHome &&
+        const lesson = appLocation === isLesson;
+
+        return ( appLocation !== isHome &&
             <Typography variant="h2" className={ contentTitle }>
-                { !isLesson && (
+                { !lesson && (
                     <Translate id={ titleId } options={ this.onMissingTranslation } />
                 ) }
 
-                { isLesson && (
+                { lesson && (
                     `${ ( lessonNo !== undefined && lessonNo !== null )
                         ? `${ lessonTranslation } ${ lessonNo + 1 }`
                         : '' }
@@ -107,4 +108,4 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
     }
 }
 
-export default withStyles( styles )( ContentTitle );
+export default withStyles( styles )( withLocation( ContentTitle ) );
