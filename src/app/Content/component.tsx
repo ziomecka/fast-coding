@@ -28,7 +28,7 @@ const Content: React.StatelessComponent<ContentProps> = props => {
         ? boxHomeClass
         : appLocation !== isLesson
             ? boxOtherClass
-            : boxLessonClass;
+            : `${ boxOtherClass } ${ boxLessonClass }`;
 
     return (
         <React.Fragment>
