@@ -143,20 +143,20 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
         const {
             props: {
                 started,
-                classes: { lessonPaper, lessonInvite, lessonTime }
+                classes: { paperClass, inviteClass, timeClass }
             },
             state: { time }
         } = this;
 
         return (
             <React.Fragment>
-                <Paper className={lessonPaper}>
-                    <Typography variant="h3" className={lessonInvite}>
+                <Paper className={paperClass}>
+                    <Typography variant="h3" className={inviteClass}>
                         { !started
-                            ? <Translate id="lessonInvite" />
+                            ? <Translate id="inviteClass" />
                             : (
-                                <span className={ lessonTime } { ...this.timeAfterText } >
-                                    <Translate id="lessonTime" /> { time }
+                                <span className={ timeClass } { ...this.timeAfterText } >
+                                    <Translate id="timeClass" /> { time }
                                 </span>
                             )
                         }

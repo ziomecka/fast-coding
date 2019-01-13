@@ -7,15 +7,15 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        lessonPaper: {
+        paperClass: {
             position: 'relative',
         },
-        lessonInvite: {
+        inviteClass: {
             padding: 0,
             margin: 0,
             fontSize: '1.5em'
         },
-        lessonTime: {
+        timeClass: {
             position: 'relative',
             '&:after': {
                 content: 'attr(aftertext)',
