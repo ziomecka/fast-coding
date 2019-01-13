@@ -15,8 +15,8 @@ import { withLocation } from '@app/AppLocation/';
 
 const Content: React.StatelessComponent<ContentProps> = props => {
     const {
-        classes: { contentBox, contentBoxHome, contentBoxOther },
-        isHome,
+        classes: { contentBox, contentBoxHome, contentBoxOther, contentBoxLesson },
+        isHome, isLesson,
         appLocation
     } = props;
 
@@ -26,7 +26,9 @@ const Content: React.StatelessComponent<ContentProps> = props => {
 
     const className = appLocation === isHome
         ? contentBoxHome
-        : contentBoxOther;
+        : appLocation !== isLesson
+            ? contentBoxOther
+            : contentBoxLesson;
 
     return (
         <React.Fragment>

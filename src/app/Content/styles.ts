@@ -44,13 +44,21 @@ const styles = createStyles( theme => {
                 overflow: 'hidden'
             }
         },
+        contentBoxLesson: {
+            paddingTop: PAPER_PADDING_MAX_XS,
+            [ theme.breakpoints.up( 'sm' ) ]: {
+                paddingTop: `${ PAPER_PADDING_MAX_MD }`,
+            },
+            [ theme.breakpoints.up( 'lg' ) ]: {
+                paddingTop: `${ PAPER_PADDING_MAX_LG }`,
+            }
+        },
         contentBoxOther: {
             paddingBottom: FOOTER_HEIGHT_MD,
             minHeight: 'calc(100vh)',
-            [ theme.breakpoints.only( 'xs' ) ]: {
-                paddingTop: PAPER_PADDING_MAX_XS
-            },
+            paddingTop: NAV_HEIGHT_MD,
             [ theme.breakpoints.up( 'lg' ) ]: {
+                paddingTop: NAV_HEIGHT_LG,
                 paddingBottom: FOOTER_HEIGHT_LG
             }
         }
