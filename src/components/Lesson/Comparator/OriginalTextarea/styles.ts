@@ -1,21 +1,20 @@
+import { MediaEnum } from '@app/Media/';
 import { createStyles } from '@material-ui/core/styles';
+
 import {
     COLOR_SUCCESS,
     COLOR_CORRECTED,
-    LESSON_MAX_WIDTH,
-    LESSON_FONT_SIZE_REM,
-    LESSON_PARAGRAPH_SIZE_REM
 } from '@constantsStyles';
 
 import {
-    FONT_SIZE_LG,
-    FONT_SIZE_MD,
-    FONT_SIZE_SM,
-    FONT_SIZE_XS,
+    GRID,
+    LETTER_MARGIN,
+    LETTER_PADDING
 } from './constants.styles';
 
-const styles = createStyles( theme => {
+const { lg, md, sm, xl, xs } = MediaEnum;
 
+const styles = createStyles( theme => {
     const {
         palette: {
             secondary: { main: secondaryMain, veryLight: errorColor },
@@ -23,25 +22,43 @@ const styles = createStyles( theme => {
         },
     } = theme;
 
+    const letterHeight = 1 + ( LETTER_PADDING + LETTER_MARGIN ) * 2;
+
+    const props = ( media: MediaEnum ) => ({
+        fontSize: GRID.get( media ).fontSize,
+        maxWidth: `calc( ( 1em + ${ LETTER_MARGIN }em * 2 ) * ${ GRID.get( media ).lettersNumber })`,
+        '& div': {
+            maxHeight: `calc(( ${ letterHeight }em + 2px ) * ${ GRID.get( media ).rowsNumber })`,
+        },
+    });
+
     return {
         paperClass: {
-            maxWidth: `${LESSON_MAX_WIDTH}px`,
-            overflow: 'hidden',
-            paddingTop: '2em'
+            marginTop: '2rem',
+            ...props( xs ),
+            [ theme.breakpoints.up( 'sm' ) ]: {
+                ...props( sm ),
+            },
+            [ theme.breakpoints.up( 'md' ) ]: {
+                ...props( md ),
+            },
+            [ theme.breakpoints.up( 'lg' ) ]: {
+                ...props( lg ),
+            },
+            [ theme.breakpoints.up( 'xl' ) ]: {
+                ...props( xl ),
+            }
         },
         paperShortClass: {
             overflow: 'hidden',
-            padding: `${LESSON_FONT_SIZE_REM}rem 0`,
-            maxHeight: '15rem',
             alignItems: 'center',
             margin: 0
         },
         paragraphClass: {
-            height: `${LESSON_PARAGRAPH_SIZE_REM}rem`,
             overflow: 'visible',
             margin: 0,
             padding: 0,
-            textAlign: 'center'
+            textAlign: 'center',
         },
         inviteTitleClass: {
             '& > span:nth-child(1)': {
@@ -71,19 +88,10 @@ const styles = createStyles( theme => {
         fontClass: {
             boxSizing: 'border-box',
             display: 'inline-block',
-            margin: '.1em',
-            minWidth: '1em',
-            fontSize: FONT_SIZE_XS,
-            [ theme.breakpoints.up( 'sm' ) ]: {
-                fontSize: FONT_SIZE_SM,
-            },
-            [ theme.breakpoints.up( 'md' ) ]: {
-                fontSize: FONT_SIZE_MD,
-            },
-            [ theme.breakpoints.up( 'lg' ) ]: {
-                fontSize: FONT_SIZE_LG,
-            },
-            padding: '.15em',
+            margin: `${ LETTER_MARGIN }em`,
+            width: '1em',
+            lineHeight: '1em',
+            padding: `${ LETTER_PADDING }em`,
             whiteSpace: 'pre',
             textAlign: 'center',
             border: `1px solid ${ primaryMain }`
