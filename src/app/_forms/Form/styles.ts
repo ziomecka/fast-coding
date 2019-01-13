@@ -18,7 +18,7 @@ const styles = theme => {
             [ theme.breakpoints.only( 'xs' ) ]: {
                 height: `calc(100vh - ${ NAV_HEIGHT_MD }px - 2rem - 1em)`,
                 width: FC_FORM_WIDTH_XS,
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
             },
             [ theme.breakpoints.up( 'sm' ) ]: {
                 justifyContent: 'center',
