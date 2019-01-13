@@ -113,6 +113,8 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
 
         /** stop internal interval for showing time */
         this.stopTime();
+
+        window.onpopstate = null;
     }
 
     onDrop ( e: React.DragEvent<HTMLElement> ) {
