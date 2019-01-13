@@ -7,7 +7,6 @@ import {
     PAPER_PADDING_LG,
     PAPER_PADDING_MAX_LG,
     BORDER_THIN,
-    LESSON_MAX_WIDTH
 } from '@constantsStyles';
 
 const styles = createStyles( theme => {
@@ -19,15 +18,15 @@ const styles = createStyles( theme => {
 
     return {
         lessonButtonsButton: {
+            maxWidth: `calc( 50% + 2rem)`
         },
         lessonButtonsMenu: {
             minWidth: 'auto',
             minHeight: 'auto',
-            maxWidth: `${LESSON_MAX_WIDTH}px`,
             height: 'auto',
             width: '100%',
             position: 'relative',
-            justifyContent: 'space-around',
+            justifyContent: 'center',
             padding: PAPER_PADDING_XS,
             marginTop: PAPER_PADDING_MAX_XS,
             [ theme.breakpoints.up( 'sm' ) ]: {

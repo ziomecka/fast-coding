@@ -177,9 +177,9 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             }}
         >
             {/* Lesson's buttons */}
-            <div>
+            <React.Fragment>
                 { getButtons() }
-            </div>
+            </React.Fragment>
 
             {/* Buttons for managing draggable menu */}
             {/* Available only if lesson is not started or has been ended */}
