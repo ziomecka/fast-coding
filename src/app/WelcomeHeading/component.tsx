@@ -70,10 +70,10 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
             props: {
                 animated, heading,
                 classes: {
-                    welcomeHeadingHeading,
-                    welcomeHeadingHeadingHome, welcomeHeadingHeadingOther,
+                    headingClass,
+                    headingHomeClass, headingOtherClass,
                     welcomeHeadingHomeButton,
-                    fallingLetters
+                    headingFallingLettersClass
                 },
                 media,
                 appLocation,
@@ -97,14 +97,14 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
                         <Typography
                             variant="h1"
                             className={
-                                `${ welcomeHeadingHeading } ${ isHome && welcomeHeadingHeadingHome } ${ !checkHome && welcomeHeadingHeadingOther }`
+                                `${ headingClass } ${ isHome && headingHomeClass } ${ !checkHome && headingOtherClass }`
                             }
                         >
                             <span>{ remainingHeading }</span>
                             {
                                 Array.from( lastWord ).map( ( letter, ind ) => (
                                     <span
-                                        className={ `${ fallingLetters } ${ classFallingLetters }` }
+                                        className={ `${ headingFallingLettersClass } ${ classFallingLetters }` }
                                         key={ `${ ind }-${ letter }` }
                                     >
                                         { letter }

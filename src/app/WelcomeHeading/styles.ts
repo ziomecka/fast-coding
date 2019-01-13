@@ -27,7 +27,7 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        welcomeHeadingHeading: {
+        headingClass: {
             display: 'inline-block',
             color: textPrimary,
             transition: theme.transitions.create( [ 'color' ], { duration: theme.transitions.duration.enteringScreen, easing: theme.transitions.easing.easeOut } ),
@@ -41,13 +41,13 @@ const styles = createStyles( theme => {
                 padding: `0 0 0 ${ PAPER_PADDING_MAX_LG }`,
             },
         },
-        welcomeHeadingHeadingHome: {
+        headingHomeClass: {
             fontSize: WELCOME_HEADING_HOME_XS,
             [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: WELCOME_HEADING_HOME_SM,
             },
         },
-        welcomeHeadingHeadingOther: {
+        headingOtherClass: {
             fontSize: WELCOME_HEADING_OTHER_XS,
             [ theme.breakpoints.up( 'sm' ) ]: {
                 fontSize: WELCOME_HEADING_OTHER,
@@ -56,7 +56,7 @@ const styles = createStyles( theme => {
             maxHeight: NAV_HEIGHT_MD,
             overflow: 'hidden'
         },
-        fallingLetters: {
+        headingFallingLettersClass: {
             position: 'relative',
         },
         /** Link to WelcomeHeading page
