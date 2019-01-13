@@ -101,14 +101,14 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
                 { media === xs && (
                     <MenuButton
                         {
-                            ...Object.assign(
-                                {},
-                                this.button,
-                                {
-                                    icon: <HomeIcon />,
-                                    iconButton: { ...this.button.iconButton, classes: { root: welcomeHeadingHomeButton } }
-                                }
-                            )
+                        ...Object.assign(
+                            {},
+                            this.button,
+                            {
+                                icon: <HomeIcon />,
+                                iconButton: { ...this.button.iconButton, classes: { root: welcomeHeadingHomeButton } }
+                            }
+                        )
                         }
                     />
                 )}
