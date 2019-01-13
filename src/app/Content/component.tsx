@@ -3,39 +3,21 @@ import * as React from 'react';
 import { ContentProps } from './container';
 import { default as Dialog } from '@app/Dialog/';
 import { default as Notification } from '@app/Notification/';
-import DragOverable from '@app/DragOverable';
+import DragOverable from '@app/DragOverable/';
 import Footer from '@app/Footer/';
-import ContentTitle from '@app/ContentTitle';
+import ContentTitle from '@app/ContentTitle/';
 
 /** Materials */
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { AppRoutesEnum } from '@appTypes';
+import { withLocation } from '@app/LocationHoc/';
 
 const ContentComponent = class Content extends React.Component<ContentProps> {
-    home: AppRoutesEnum;
     constructor( props: ContentProps ) {
         super( props );
+
         this.onDrop = this.onDrop.bind( this );
-        this.home = AppRoutesEnum.home;
-    }
-
-    get isHome() {
-        return this.props.location.pathname === this.home;
-    }
-
-    get pathname() {
-        return this.props.location.pathname;
-    }
-
-    componentDidUpdate( prevProps: ContentProps ) {
-        const { props: { appLocation } } = this;
-
-        // TODO - improve / change?
-        if ( appLocation !== prevProps.appLocation ) {
-            this.props.changeLocation( appLocation );
-        }
     }
 
     onDrop( e: React.DragEvent<HTMLElement> ) {
@@ -46,16 +28,21 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
         const {
             props: {
                 classes: { contentBox, contentBoxHome, contentBoxOther },
+                isHome,
+                appLocation
             },
-            isHome
         } = this;
+
+        const className = appLocation === isHome
+            ? contentBoxHome
+            : contentBoxOther;
 
         return (
             <React.Fragment>
                 <DragOverable
-                    className={`${contentBox} ${isHome ? contentBoxHome : contentBoxOther}`}
+                    className={`${ contentBox } ${ className }`}
                     id="content"
-                    onDrop={this.onDrop}
+                    onDrop={ this.onDrop }
                 >
                     <ContentTitle />
 
@@ -71,4 +58,4 @@ const ContentComponent = class Content extends React.Component<ContentProps> {
     }
 };
 
-export default withStyles( styles )( ContentComponent );
+export default withStyles( styles )( withLocation( ContentComponent ) );
