@@ -63,9 +63,9 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         const {
             props: {
                 classes: {
-                    welcomePaper, welcomeHome, welcomeOther, welcomeButtons,
-                    welcomeButton, welcomeButtonMain,
-                    welcomeLesson,
+                    paperClass, homeClass, otherClass, buttonsClass,
+                    buttonClass, buttonMainClass,
+                    lessonClass,
                 },
                 appLocation,
                 isHome,
@@ -79,11 +79,11 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
         return (
             <Paper className={
-                `${ welcomePaper } ${ checkHome
-                    ? welcomeHome
+                `${ paperClass } ${ checkHome
+                    ? homeClass
                     : checkLesson
-                        ? welcomeLesson
-                        : welcomeOther
+                        ? lessonClass
+                        : otherClass
                 }`
             }>
 
@@ -91,16 +91,16 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
 
                 {/* Render buttons only when Home */}
                 { checkHome && (
-                    <div className={ welcomeButtons }>
+                    <div className={ buttonsClass }>
                         <Button
                             onClick={ this.goToLessons }
-                            className={ welcomeButton }
+                            className={ buttonClass }
                             id={ buttonsIds[ 0 ] }
                         >
                             <Translate id="welcomeGoToCourses"/>
                         </Button>
                         <Button
-                            className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                            className={`${ buttonClass } ${ buttonMainClass }`}
                             onClick={ this.goToDemo }
                             id={ buttonsIds[ 1 ] }
                         >

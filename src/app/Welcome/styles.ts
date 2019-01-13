@@ -36,7 +36,7 @@ const styles = createStyles( theme => {
     ) }`;
 
     return {
-        welcomePaper: {
+        paperClass: {
             alignItems: 'flex-start',
             padding: 0,
             position: 'inherit',
@@ -48,10 +48,10 @@ const styles = createStyles( theme => {
             width: '100%',
             transition: `${ transHeightFontSizeColor }`
         },
-        welcomeHome: {
+        homeClass: {
             height: '100vh',
         },
-        welcomeOther: {
+        otherClass: {
             height: `${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
             [ theme.breakpoints.up( 'lg' ) ]: {
@@ -60,7 +60,7 @@ const styles = createStyles( theme => {
             },
             color: textPrimary
         },
-        welcomeLesson: {
+        lessonClass: {
             top: `-${ NAV_HEIGHT_MD }px`,
             maxHeight: `${ NAV_HEIGHT_MD }px`,
             [ theme.breakpoints.up( 'lg' ) ]: {
@@ -68,7 +68,7 @@ const styles = createStyles( theme => {
                 maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
         },
-        welcomeButtons: {
+        buttonsClass: {
             fontSize: '1.5em',
             paddingLeft: PAPER_PADDING_MAX_MD,
             display: 'flex',
@@ -84,7 +84,7 @@ const styles = createStyles( theme => {
                 paddingLeft: PAPER_PADDING_MAX_LG
             }
         },
-        welcomeButton: {
+        buttonClass: {
             textAlign: 'left',
             justifyContent: 'flex-start',
             margin: 0,
@@ -95,7 +95,7 @@ const styles = createStyles( theme => {
                 textAlign: 'center',
             }
         },
-        welcomeButtonMain: {
+        buttonMainClass: {
             backgroundColor: mainSecondary
         }
     };
