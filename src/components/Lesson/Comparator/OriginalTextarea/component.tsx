@@ -18,14 +18,14 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     } = props;
 
     const {
-        comparatorTextAreaFont,
-        comparatorTextAreaFontCorrect,
-        comparatorTextAreaFontCorrected,
-        comparatorTextAreaFontError,
-        comparatorTextAreaPaper,
-        comparatorTextAreaPaperShort,
-        comparatorTextAreaParagraph,
-        comparatorTextAreaParagraphInvite
+        fontClass,
+        fontCorrectClass,
+        fontCorrectedClass,
+        fontErrorClass,
+        paperClass,
+        paperShortClass,
+        paragraphClass,
+        inviteTitleClass
     } = classes;
 
     const isCorrect = ( ind: number ): boolean => {
@@ -52,15 +52,15 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
             /** Check if letter is incorrect */
             switch ( true ) {
                 case isErrors( index ): {
-                    name = comparatorTextAreaFontError;
+                    name = fontErrorClass;
                     break;
                 }
                 case isCorrectedErrors( index ): {
-                    name = comparatorTextAreaFontCorrected;
+                    name = fontCorrectedClass;
                     break;
                 }
                 case isCorrect( index ): {
-                    name = comparatorTextAreaFontCorrect;
+                    name = fontCorrectClass;
                     break;
                 }
                 default: {
@@ -70,7 +70,7 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
 
             return (
                 <span
-                    className={`${comparatorTextAreaFont} ${name}`}
+                    className={`${fontClass} ${name}`}
                     key={index}
                     id={`letter-${index}`}
                 >
@@ -81,13 +81,13 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     };
 
     const inviteClass = ( currentSignIndex === -1 )
-        ? comparatorTextAreaParagraphInvite
+        ? inviteTitleClass
         : '';
 
     return (
-        <Paper className={`${comparatorTextAreaPaper}`}>
-            <Paper className={`${comparatorTextAreaPaperShort}`}>
-                <p className={`${comparatorTextAreaParagraph} ${inviteClass}`}>
+        <Paper className={`${paperClass}`}>
+            <Paper className={`${paperShortClass}`}>
+                <p className={`${paragraphClass} ${inviteClass}`}>
                     {textRender()}
                 </p>
             </Paper>

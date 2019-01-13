@@ -16,26 +16,26 @@ import {
 
 const styles = createStyles( theme => {
     return {
-        comparatorTextAreaPaper: {
+        paperClass: {
             maxWidth: `${LESSON_MAX_WIDTH}px`,
             overflow: 'hidden',
             paddingTop: '2em'
         },
-        comparatorTextAreaPaperShort: {
+        paperShortClass: {
             overflow: 'hidden',
             padding: `${LESSON_FONT_SIZE_REM}rem 0`,
             maxHeight: '15rem',
             alignItems: 'center',
             margin: 0
         },
-        comparatorTextAreaParagraph: {
+        paragraphClass: {
             height: `${LESSON_PARAGRAPH_SIZE_REM}rem`,
             overflow: 'visible',
             margin: 0,
             padding: 0,
             textAlign: 'center'
         },
-        comparatorTextAreaParagraphInvite: {
+        inviteTitleClass: {
             '& > span:nth-child(1)': {
                 position: 'relative',
             },
@@ -60,7 +60,7 @@ const styles = createStyles( theme => {
                 }
             }
         },
-        comparatorTextAreaFont: {
+        fontClass: {
             boxSizing: 'border-box',
             display: 'inline-block',
             margin: '.1em',
@@ -80,13 +80,13 @@ const styles = createStyles( theme => {
             textAlign: 'center',
             border: `1px solid ${theme.palette.primary.main}`
         },
-        comparatorTextAreaFontCorrect: {
+        fontCorrectClass: {
             backgroundColor: COLOR_SUCCESS
         },
-        comparatorTextAreaFontError: {
+        fontErrorClass: {
             backgroundColor: theme.palette.secondary.veryLight
         },
-        comparatorTextAreaFontCorrected: {
+        fontCorrectedClass: {
             backgroundColor: COLOR_CORRECTED
         },
     };
