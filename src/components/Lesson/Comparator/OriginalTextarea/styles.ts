@@ -15,6 +15,14 @@ import {
 } from './constants.styles';
 
 const styles = createStyles( theme => {
+
+    const {
+        palette: {
+            secondary: { main: secondaryMain, veryLight: errorColor },
+            primary: { main: primaryMain }
+        },
+    } = theme;
+
     return {
         paperClass: {
             maxWidth: `${LESSON_MAX_WIDTH}px`,
@@ -53,10 +61,10 @@ const styles = createStyles( theme => {
         '@global': {
             '@keyframes invite': {
                 '0%': {
-                    borderBottom: `1px solid ${theme.palette.primary.main}`
+                    borderBottom: `1px solid ${ primaryMain }`
                 },
                 '100%': {
-                    borderBottom: `3px solid ${theme.palette.secondary.main}`
+                    borderBottom: `3px solid ${ secondaryMain }`
                 }
             }
         },
@@ -78,13 +86,13 @@ const styles = createStyles( theme => {
             padding: '.15em',
             whiteSpace: 'pre',
             textAlign: 'center',
-            border: `1px solid ${theme.palette.primary.main}`
+            border: `1px solid ${ primaryMain }`
         },
         fontCorrectClass: {
             backgroundColor: COLOR_SUCCESS
         },
         fontErrorClass: {
-            backgroundColor: theme.palette.secondary.veryLight
+            backgroundColor: errorColor
         },
         fontCorrectedClass: {
             backgroundColor: COLOR_CORRECTED
