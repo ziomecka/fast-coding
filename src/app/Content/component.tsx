@@ -13,49 +13,39 @@ import styles from './styles';
 
 import { withLocation } from '@app/LocationHoc/';
 
-const ContentComponent = class Content extends React.Component<ContentProps> {
-    constructor( props: ContentProps ) {
-        super( props );
+const Content: React.StatelessComponent<ContentProps> = props => {
+    const {
+        classes: { contentBox, contentBoxHome, contentBoxOther },
+        isHome,
+        appLocation
+    } = props;
 
-        this.onDrop = this.onDrop.bind( this );
-    }
+    const onDrop = ( e: React.DragEvent<HTMLElement> ) => {
+        props.onDrop.forEach( fun => fun( e ) );
+    };
 
-    onDrop( e: React.DragEvent<HTMLElement> ) {
-        this.props.onDrop.forEach( fun => fun( e ) );
-    }
+    const className = appLocation === isHome
+        ? contentBoxHome
+        : contentBoxOther;
 
-    render() {
-        const {
-            props: {
-                classes: { contentBox, contentBoxHome, contentBoxOther },
-                isHome,
-                appLocation
-            },
-        } = this;
+    return (
+        <React.Fragment>
+            <DragOverable
+                className={`${ contentBox } ${ className }`}
+                id="content"
+                { ...{ onDrop } }
+            >
+                <ContentTitle />
 
-        const className = appLocation === isHome
-            ? contentBoxHome
-            : contentBoxOther;
+                { props.children }
 
-        return (
-            <React.Fragment>
-                <DragOverable
-                    className={`${ contentBox } ${ className }`}
-                    id="content"
-                    onDrop={ this.onDrop }
-                >
-                    <ContentTitle />
+                <Dialog />
 
-                    { this.props.children }
-
-                    <Dialog />
-
-                    <Notification />
-                </DragOverable>
-                <Footer />
-            </React.Fragment>
-        );
-    }
+                <Notification />
+            </DragOverable>
+            <Footer />
+        </React.Fragment>
+    );
 };
 
-export default withStyles( styles )( withLocation( ContentComponent ) );
+export default withStyles( styles )( withLocation( Content ) );
