@@ -1,8 +1,7 @@
 import { Dispatch } from 'redux';
 
-import { WelcomeClasses } from './reducers';
 import { ThunkGetStateType } from '@applicationTypes';
-import { AppLocationEnum, LocalStorageItemEnum, AppContainersEnum } from '@appTypes';
+import { LocalStorageItemEnum, AppContainersEnum } from '@appTypes';
 
 import { openDemoLesson } from '@components/Lesson/_duck/actions';
 
@@ -16,32 +15,10 @@ import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations'
 
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
-const { isHome, isOther } = AppLocationEnum;
-
-export const classTitleHome = 'welcome welcome-home';
-export const classTitleOther = 'welcome welcome-other';
-export const classTitleFalling = 'title-falling';
-
-// @ts-ignore
-const states: { [key: AppLocationEnum]: WelcomeClasses } = {
-    [ isHome ]: {
-        classAnimated: classTitleFalling,
-        classTitle: classTitleHome
-    },
-    [ isOther ]: {
-        classTitle: classTitleOther,
-        classAnimated: '',
-    }
-};
-
 const clearLocalStorage = () => {
     localStorageRemoveItem( comparator );
     localStorageRemoveItem( lesson );
     localStorageRemoveItem( stats );
-};
-
-export const getClasses = ( location: AppLocationEnum ): WelcomeClasses => {
-    return states[ location ] || states[ isOther ];
 };
 
 export const onOpenDemoLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {

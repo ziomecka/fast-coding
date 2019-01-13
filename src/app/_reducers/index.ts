@@ -34,12 +34,6 @@ import {
 } from '@app/AppMenu/_duck/reducers';
 
 import {
-    INITIAL_STATE as WELCOME_INITIAL_STATE,
-    welcomeReducer,
-    WelcomeState
-} from '@app/Welcome/_duck/reducers';
-
-import {
     INITIAL_STATE as CONTENT_INITIAL_STATE,
     contentReducer,
     ContentState
@@ -120,7 +114,6 @@ export const INITIAL_STATE = {
     [ notification ]: NOTIFICATION_INITIAL_STATE,
     [ newUserForm ]: NEWUSERFORM_INITIAL_STATE,
     [ appMenu ]: MENU_INITIAL_STATE,
-    [ welcome ]: WELCOME_INITIAL_STATE,
     [ content ]: CONTENT_INITIAL_STATE,
     [ user ]: USER_INITIAL_STATE,
     [ formHelperText ]: FORM_HELPER_TEXT_INITIAL_STATE,
@@ -148,7 +141,6 @@ const combinedReducers = combineReducers( {
     [ loginForm ]: loginFormReducer,
     [ newUserForm ]: newUserFormReducer,
     [ formHelperText ]: formHelperTextReducer,
-    [ welcome ]: welcomeReducer,
     [ content ]: contentReducer,
     [ notification ]: notificationReducer,
     [ appMenu ]: menuReducer,
@@ -222,7 +214,6 @@ export interface AppState {
     [notification]: NotificationState;
     [newUserForm]: NewUserFormState;
     [appMenu]: MenuState;
-    [welcome]: WelcomeState;
     [content]: ContentState;
     [user]: UserState;
     [formHelperText]: FormHelperTextState;

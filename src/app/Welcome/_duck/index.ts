@@ -1,1 +1,2 @@
-export { default } from './operations';
+export { buttonsIds } from './operations';
+export { WelcomeClasses } from './types';
