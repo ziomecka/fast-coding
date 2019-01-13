@@ -1,0 +1,1 @@
+export { WelcomeHeadingClasses } from './types';

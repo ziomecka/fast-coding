@@ -1,4 +1,4 @@
-export interface WelcomeClasses {
+export interface WelcomeHeadingClasses {
     classAnimated: string;
     classTitle: string;
 }
