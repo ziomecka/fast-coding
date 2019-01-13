@@ -46,7 +46,7 @@ const styles = createStyles( theme => {
         boxOtherClass: {
             paddingTop: NAV_HEIGHT_MD,
             paddingBottom: FOOTER_HEIGHT_MD,
-            minHeight: `100vh`,
+            minHeight: '100vh',
             [ theme.breakpoints.up( 'lg' ) ]: {
                 paddingTop: NAV_HEIGHT_LG,
                 paddingBottom: FOOTER_HEIGHT_LG,

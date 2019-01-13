@@ -9,7 +9,7 @@ import { onOpenDemoLesson, onAddKeyDownListener, onRemoveKeyDownListener } from 
 
 import { ILocationContextProps } from '@app/AppLocation/';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = () => ( {} );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): WelcomeDispatch => ( {
     openDemoLesson: () => dispatch( onOpenDemoLesson() ),

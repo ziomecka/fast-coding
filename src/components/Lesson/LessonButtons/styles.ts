@@ -18,7 +18,7 @@ const styles = createStyles( theme => {
 
     return {
         buttonClass: {
-            maxWidth: `calc( 50% + 2rem)`
+            maxWidth: 'calc( 50% + 2rem)'
         },
         menuClass: {
             minWidth: 'auto',

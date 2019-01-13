@@ -24,13 +24,13 @@ const styles = createStyles( theme => {
 
     const letterHeight = 1 + ( LETTER_PADDING + LETTER_MARGIN ) * 2;
 
-    const props = ( media: MediaEnum ) => ({
+    const props = ( media: MediaEnum ) => ( {
         fontSize: GRID.get( media ).fontSize,
         maxWidth: `calc( ( 1em + ${ LETTER_MARGIN }em * 2 ) * ${ GRID.get( media ).lettersNumber })`,
         '& div': {
             maxHeight: `calc(( ${ letterHeight }em + 2px ) * ${ GRID.get( media ).rowsNumber })`,
         },
-    });
+    } );
 
     return {
         paperClass: {
