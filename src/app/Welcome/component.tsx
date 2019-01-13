@@ -21,7 +21,6 @@ import { Translate } from 'react-localize-redux';
 import { withLocation } from '@app/LocationHoc/';
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
-    // classFalling: string;
     demoUrl: AppRoutesEnum;
     lessonsUrl: AppRoutesEnum;
     constructor( props ) {
@@ -86,7 +85,6 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                         : otherClass
                 }`
             }>
-
                 <WelcomeHeading { ...{ heading } } />
 
                 {/* Render buttons only when Home */}

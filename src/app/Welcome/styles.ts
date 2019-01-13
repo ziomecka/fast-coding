@@ -52,12 +52,10 @@ const styles = createStyles( theme => {
             height: '100vh',
         },
         otherClass: {
-            height: `${ NAV_HEIGHT_MD }px`,
-            maxHeight: `${ NAV_HEIGHT_MD }px`,
             [ theme.breakpoints.up( 'lg' ) ]: {
                 height: `${ NAV_HEIGHT_LG }px`,
-                maxHeight: `${ NAV_HEIGHT_LG }px`,
             },
+            height: `${ NAV_HEIGHT_MD }px`,
             color: textPrimary
         },
         lessonClass: {
