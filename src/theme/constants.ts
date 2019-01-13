@@ -1,5 +1,4 @@
 export * from '@app/Nav/constants.styles';
-export * from '@components/Lesson/constants.styles';
 export {
     SPACING_BEETWEEN_LESSONS,
     COURSE_BACKGROUND_GREY,

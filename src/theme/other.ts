@@ -174,8 +174,11 @@ export default {
             }
         },
         MuiTableCell: {
+            root: {
+                padding: '4px 16px 4px 8px'
+            },
             body: {
-                fontSize: '1.5em'
+                fontSize: '.9em'
             }
         },
         MuiFormControl: {
