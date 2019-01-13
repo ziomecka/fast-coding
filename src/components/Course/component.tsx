@@ -176,7 +176,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
         return (
             <GridList
-                classes={{ root: this.props.classes.lessonsContainer }}
+                classes={{ root: this.props.classes.lessonsContainerClass }}
                 /** Id needed for scrolling within course window - stepper */
                 id={ `details-${ this.id }` }
                 { ...{ spacing, cols, cellHeight } }
@@ -192,17 +192,17 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             langCode,
             props: {
                 classes: {
-                    panel,
-                    collapsedContainer,
-                    collapsedEntered,
-                    collapsedWrapper,
-                    summaryContent,
-                    summaryExpanded,
-                    expansionButton,
-                    detailsLessons,
-                    summaryHeading,
-                    summaryDescription,
-                    summaryRoot
+                    panelClass,
+                    collapsedContainerClass,
+                    collapsedEnteredClass,
+                    collapsedWrapperClass,
+                    summaryContentClass,
+                    summaryExpandedClass,
+                    expansionButtonClass,
+                    detailsLessonsClass,
+                    summaryHeadingClass,
+                    summaryDescriptionClass,
+                    summaryRootClass
                 }
             },
             isExpanded
@@ -218,13 +218,13 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         return (
             <ExpansionPanel
                 key={ id }
-                className={ panel }
+                className={ panelClass }
                 expanded={ isExpanded }
                 CollapseProps={{
                     classes: {
-                        container: collapsedContainer,
-                        entered: collapsedEntered,
-                        wrapper: collapsedWrapper
+                        container: collapsedContainerClass,
+                        entered: collapsedEnteredClass,
+                        wrapper: collapsedWrapperClass
                     }
                 }}
                 onChange={ async ( event, expanded ) => {
@@ -267,18 +267,18 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     tabIndex={ -1 }
                     expandIcon={ <ExpandMore /> }
                     classes={{
-                        root: summaryRoot,
-                        content: summaryContent,
-                        expanded: summaryExpanded,
-                        expandIcon: expansionButton
+                        root: summaryRootClass,
+                        content: summaryContentClass,
+                        expanded: summaryExpandedClass,
+                        expandIcon: expansionButtonClass
                     }}
                 >
                     <div>
-                        <Typography variant="h3" className={ summaryHeading }>
+                        <Typography variant="h3" className={ summaryHeadingClass }>
                             { title }
                         </Typography>
 
-                        <Typography variant="h4" className={ summaryDescription }>
+                        <Typography variant="h4" className={ summaryDescriptionClass }>
                             { description }
                         </Typography>
                     </div>
@@ -287,7 +287,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
 
                 <Grid
                     container
-                    classes={{ container: detailsLessons }}
+                    classes={{ container: detailsLessonsClass }}
                     component={ ExpansionPanelDetails }
                 >
                     { this.getLessonsGrid() }
@@ -304,12 +304,11 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         let {
             props: {
                 classes: {
-                    lessonTileContainer,
-                    lessonTile,
-                    lessonTileReview,
-                    lessonCardButton,
-                    lessonCardButtonLabel,
-                    lessonCardLinkText
+                    lessonTileContainerClass,
+                    lessonTileClass,
+                    lessonCardButtonClass,
+                    lessonCardButtonLabelClass,
+                    lessonCardLinkTextClass
                 }
             },
             langCode,
@@ -328,26 +327,24 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     container
                     key={ _id }
                     component='li'
-                    classes={{
-                        item: `${ lessonTile } ${ isReview ? lessonTileReview : '' }`
-                    }}
+                    classes={{ item: lessonTileClass }}
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
                 >
-                    <GridListTile component='div' className={ lessonTileContainer }>
+                    <GridListTile component='div' className={ lessonTileContainerClass }>
                         <Button
                             onClick={ () => this.handleOnClick( lesson ) }
                             classes={ {
-                                root: lessonCardButton
+                                root: lessonCardButtonClass
                             } }
                         >
-                            <Typography variant="h5" className={ lessonCardButtonLabel } >
-                                <span className={ lessonCardLinkText }>
+                            <Typography variant="h5" className={ lessonCardButtonLabelClass } >
+                                <span className={ lessonCardLinkTextClass }>
                                     <Translate id="lessonsLesson" />
                                     &nbsp;
                                     { no + 1 }
                                 </span>
-                                <span className={ lessonCardLinkText }>
+                                <span className={ lessonCardLinkTextClass }>
                                     { title }
                                 </span>
                                 { isReview && this.getIcon( review ) }
@@ -363,10 +360,10 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         const {
             isExpanded,
             props: { classes: {
-                gridListTileTile,
-                gridListTileRoot,
-                gridListTileRootCollapsed,
-                gridListTileRootExpanded,
+                gridListTileTileClass,
+                gridListTileRootClass,
+                gridListTileRootCollapsedClass,
+                gridListTileRootExpandedClass,
             } }
         } = this;
 
@@ -374,10 +371,10 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
             <GridListTile
                 classes={{
                     root: `${ isExpanded
-                        ? gridListTileRoot + ' ' + gridListTileRootExpanded
-                        : gridListTileRoot + ' ' + gridListTileRootCollapsed
+                        ? gridListTileRootClass + ' ' + gridListTileRootExpandedClass
+                        : gridListTileRootClass + ' ' + gridListTileRootCollapsedClass
                     }`,
-                    tile: gridListTileTile
+                    tile: gridListTileTileClass
                 }}
             >
                 { this.course }

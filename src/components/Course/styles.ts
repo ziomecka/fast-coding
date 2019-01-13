@@ -3,7 +3,6 @@ import {
     SPACING_BEETWEEN_LESSONS,
     TRANSITION_DURATION,
     SVG_SIZE_MD,
-    SVG_SIZE_LG,
     COURSE_BACKGROUND_GREY,
     GRID
 } from './constants.styles';
@@ -15,7 +14,7 @@ import {
 } from '@constantsStyles';
 
 import { MediaEnum } from '@app/Media';
-const { xs, md, lg, xl, sm } = MediaEnum;
+const { xs, md, lg, sm } = MediaEnum;
 
 const styles = createStyles( theme => {
     const {
@@ -25,7 +24,6 @@ const styles = createStyles( theme => {
         },
         spacing: { unit: spacingUnit },
         palette: {
-            secondary: { dark: reviewColor },
             action: { hover },
             background: { paper: lessonCardBackground },
             grey: { [ COURSE_BACKGROUND_GREY ]: courseBackgroundColor }
@@ -44,28 +42,28 @@ const styles = createStyles( theme => {
     const { rows: lgRows, cellHeight: lgCellHeight } = GRID.get( lg );
 
     return {
-        panel: {
+        panelClass: {
             overflowX: 'hidden',
             alignItems: 'flex-start',
             backgroundColor: courseBackgroundColor,
             maxWidth: '100%'
         },
-        collapsedContainer: {
+        collapsedContainerClass: {
             overflow: 'hidden',
             position: 'relative', // for scrolling offsetParent
             padding: 0,
             width: '100%'
         },
-        collapsedEntered: {
+        collapsedEnteredClass: {
             overflowX: 'hidden',
             margin: `${ PAPER_PADDING_LG } 0`,
             padding: `0 ${ PAPER_PADDING_LG }`
         },
-        collapsedWrapper: {
+        collapsedWrapperClass: {
             overflow: 'hidden',
             width: 'inherit'
         },
-        summaryContent: {
+        summaryContentClass: {
             padding: `${ PAPER_PADDING_XS }`,
             [ theme.breakpoints.up( 'sm' ) ]: {
                 padding: `${ PAPER_PADDING_MD }`,
@@ -76,13 +74,13 @@ const styles = createStyles( theme => {
             margin: '0',
             flexGrow: 0
         },
-        summaryExpanded: {
+        summaryExpandedClass: {
             width: 'auto',
             '&:hover': {
                 cursor: 'pointer !important' // Material design uses important for auto
             }
         },
-        summaryRoot: {
+        summaryRootClass: {
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
             flexDirection: 'row',
@@ -90,14 +88,14 @@ const styles = createStyles( theme => {
             paddingRight: 0,
             position: 'relative' // for Stepper
         },
-        summaryHeading: {
+        summaryHeadingClass: {
             paddingTop: '1em',
             fontWeight: fontWeightMedium
         },
-        summaryDescription: {
+        summaryDescriptionClass: {
             paddingTop: '1em',
         },
-        detailsLessons: {
+        detailsLessonsClass: {
             overflowY: 'scroll',
             paddingTop: 0,
             paddingBottom: 0,
@@ -107,7 +105,7 @@ const styles = createStyles( theme => {
                 display: 'none'
             }
         },
-        lessonsContainer: {
+        lessonsContainerClass: {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             width: '100%',
@@ -128,11 +126,11 @@ const styles = createStyles( theme => {
                 display: 'none'
             }
         },
-        lessonTileContainer: {
+        lessonTileContainerClass: {
             height: '100%',
             width: '100%'
         },
-        lessonTile: {
+        lessonTileClass: {
             justifyContent: 'center',
             alignItems: 'center',
             margin: 0,
@@ -145,21 +143,7 @@ const styles = createStyles( theme => {
                 backgroundColor: hover
             },
         },
-        lessonTileReview: {
-            '& h5:after': {
-                display: 'inline-block',
-                width: '100%',
-                content: 'attr(info)',
-                fontSize: '.7em',
-                marginTop: '.7em',
-                color: reviewColor,
-                [ theme.breakpoints.only( 'xs' ) ]: {
-                    display: 'inline',
-                    width: 'auto'
-                }
-            },
-        },
-        expansionButton: {
+        expansionButtonClass: {
             flexGrow: 0,
             transition: theme.transitions.create( 'transform', { duration } ),
             '& svg': {
@@ -180,7 +164,7 @@ const styles = createStyles( theme => {
             },
             padding: 0
         },
-        lessonCardContent: {
+        lessonCardContentClass: {
             padding: 0,
             width: '100%',
             height: '100%',
@@ -188,7 +172,7 @@ const styles = createStyles( theme => {
                 paddingBottom: 0 // to ovveride material design
             }
         },
-        lessonCardButton: {
+        lessonCardButtonClass: {
             boxSizing: 'border-box',
             margin: 0,
             padding: 0,
@@ -197,7 +181,7 @@ const styles = createStyles( theme => {
             backgroundColor: lessonCardBackground,
             fontSize: '1rem'
         },
-        lessonCardButtonLabel: {
+        lessonCardButtonLabelClass: {
             display: 'flex-box',
             flexWrap: 'wrap',
             height: '100%',
@@ -205,7 +189,7 @@ const styles = createStyles( theme => {
             fontSize: labelFontSize,
             boxSizing: 'border-box',
         },
-        lessonCardLinkText: {
+        lessonCardLinkTextClass: {
             display: 'inline-block',
             width: '100%',
             '&:nth-child(1)': {
@@ -229,12 +213,12 @@ const styles = createStyles( theme => {
                 }
             }
         },
-        gridListTileRoot: {
+        gridListTileRootClass: {
             padding: `${ spacingUnit * SPACING_BEETWEEN_LESSONS }px`,
             height: 'initial',
             transition: theme.transitions.create( 'width', { duration } )
         },
-        gridListTileRootCollapsed: {
+        gridListTileRootCollapsedClass: {
             width: `${ 100 / cols++ }%`,
             [ theme.breakpoints.only( 'sm' ) ]: {
                 width: `${ 100 / cols++ }%`,
@@ -250,11 +234,11 @@ const styles = createStyles( theme => {
             },
             height: 'inherit',
         },
-        gridListTileRootExpanded: {
+        gridListTileRootExpandedClass: {
             width: `${ 100 / 1 }%`,
             maxWidth: '100%'
         },
-        gridListTileTile: {
+        gridListTileTileClass: {
             height: 'initial',
             width: 'initial',
         },
