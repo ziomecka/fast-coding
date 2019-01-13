@@ -19,7 +19,7 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        contentBox: {
+        boxClass: {
             position: 'relative',
             width: '100%',
             maxWidth: '100%', // do not allow to increase size if draggable moved outside
@@ -34,7 +34,7 @@ const styles = createStyles( theme => {
                 padding: `${ NAV_HEIGHT_LG } ${ PAPER_PADDING_MAX_LG }`,
             }
         },
-        contentBoxHome: {
+        boxHomeClass: {
             backgroundColor: mainBackground,
             height: '100vh',
             paddingBottom: 0,
@@ -44,7 +44,7 @@ const styles = createStyles( theme => {
                 overflow: 'hidden'
             }
         },
-        contentBoxLesson: {
+        boxLessonClass: {
             paddingTop: PAPER_PADDING_MAX_XS,
             [ theme.breakpoints.up( 'sm' ) ]: {
                 paddingTop: `${ PAPER_PADDING_MAX_MD }`,
@@ -53,7 +53,7 @@ const styles = createStyles( theme => {
                 paddingTop: `${ PAPER_PADDING_MAX_LG }`,
             }
         },
-        contentBoxOther: {
+        boxOtherClass: {
             paddingBottom: FOOTER_HEIGHT_MD,
             minHeight: 'calc(100vh)',
             paddingTop: NAV_HEIGHT_MD,

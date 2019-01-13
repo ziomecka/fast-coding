@@ -15,7 +15,7 @@ import { withLocation } from '@app/AppLocation/';
 
 const Content: React.StatelessComponent<ContentProps> = props => {
     const {
-        classes: { contentBox, contentBoxHome, contentBoxOther, contentBoxLesson },
+        classes: { boxClass, boxHomeClass, boxOtherClass, boxLessonClass },
         isHome, isLesson,
         appLocation
     } = props;
@@ -25,15 +25,15 @@ const Content: React.StatelessComponent<ContentProps> = props => {
     };
 
     const className = appLocation === isHome
-        ? contentBoxHome
+        ? boxHomeClass
         : appLocation !== isLesson
-            ? contentBoxOther
-            : contentBoxLesson;
+            ? boxOtherClass
+            : boxLessonClass;
 
     return (
         <React.Fragment>
             <DragOverable
-                className={`${ contentBox } ${ className }`}
+                className={`${ boxClass } ${ className }`}
                 id="content"
                 { ...{ onDrop } }
             >
