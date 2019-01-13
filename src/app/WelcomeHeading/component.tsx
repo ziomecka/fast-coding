@@ -10,7 +10,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
-import { WelcomeHeadingClasses } from './_duck/';
 
 /** SubMenu */
 import MenuButton, { MenuButtonOptionsI } from '@app/MenuButton/';
@@ -20,18 +19,16 @@ const { notAnyLesson, notHome } = MenuRulesEnum;
 import { withMedia, MediaEnum } from '@app/Media';
 const { xs } = MediaEnum;
 
-import { withLocation, AppLocationEnum } from '@app/LocationHoc/';
+import { withLocation } from '@app/LocationHoc/';
 
 require( './style.sass' );
 
 class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
-    classFalling: string;
+    classTitleFalling: string;
     button: MenuButtonOptionsI;
     // @ts-ignore
-    classes: { [ key: AppLocationEnum ]: WelcomeHeadingClasses };
     constructor( props ) {
         super( props );
-        this.classFalling = null;
 
         /** Link to WelcomeHeading page
          *  Hidden, under title, rendered on not WelcomeHeading page
@@ -48,22 +45,8 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
             title: 'submenuGoToHome',
         };
 
-        const classTitleHome = 'welcomeHeading welcomeHeading-home';
-        const classTitleOther = 'welcomeHeading welcomeHeading-other';
-        const classTitleFalling = 'title-falling';
-
-        this.classes = {
-            [ props.isHome ]: {
-                classAnimated: classTitleFalling,
-                classTitle: classTitleHome
-            },
-            [ props.isOther ]: {
-                classTitle: classTitleOther,
-                classAnimated: '',
-            }
-        };
+        this.classTitleFalling = 'title-falling';
     }
-
 
     render() {
         const {
@@ -79,34 +62,31 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
                 appLocation,
                 isHome,
             },
-            classFalling
+            classTitleFalling
         } = this;
 
         const checkHome = appLocation === isHome;
+
         const lastSpace = heading.lastIndexOf( ' ' );
         const lastWord = heading.slice( lastSpace + 1 );
         const remainingHeading = heading.slice( 0, lastSpace + 1 );
-        const classFallingLetters = appLocation === isHome
-            ? classFalling
+
+        const classFallingLetters = checkHome
+            ? classTitleFalling
             : '';
+
+        const h1Class = `${ headingClass } ${ checkHome ? headingHomeClass : headingOtherClass }`;
+        const lettersClass = `${ headingFallingLettersClass } ${ checkHome ? classFallingLetters : '' }`;
 
         return (
             <React.Fragment>
                 { ( media !== xs || checkHome ) && (
                     <React.Fragment>
-                        <Typography
-                            variant="h1"
-                            className={
-                                `${ headingClass } ${ isHome && headingHomeClass } ${ !checkHome && headingOtherClass }`
-                            }
-                        >
+                        <Typography variant="h1" className={ h1Class }>
                             <span>{ remainingHeading }</span>
                             {
                                 Array.from( lastWord ).map( ( letter, ind ) => (
-                                    <span
-                                        className={ `${ headingFallingLettersClass } ${ classFallingLetters }` }
-                                        key={ `${ ind }-${ letter }` }
-                                    >
+                                    <span className={ lettersClass } key={ `${ ind }-${ letter }` }>
                                         { letter }
                                     </span>
                                 ) )
@@ -119,9 +99,19 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
                 ) }
 
                 { media === xs && (
-                    <MenuButton { ...Object.assign( {}, this.button, { icon: <HomeIcon />, iconButton: { ...this.button.iconButton, classes: { root: welcomeHeadingHomeButton } } } ) } />
+                    <MenuButton
+                        {
+                            ...Object.assign(
+                                {},
+                                this.button,
+                                {
+                                    icon: <HomeIcon />,
+                                    iconButton: { ...this.button.iconButton, classes: { root: welcomeHeadingHomeButton } }
+                                }
+                            )
+                        }
+                    />
                 )}
-
             </React.Fragment>
         );
     }
