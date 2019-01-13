@@ -5,73 +5,39 @@ import { WelcomeProps } from './container';
 /** Materials core */
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import HomeIcon from '@material-ui/icons/Home';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { AppRoutesEnum, MenuRulesEnum } from '@appTypes';
-import { buttonsIds } from './_duck/operations';
+import { AppRoutesEnum } from '@appTypes';
+import { buttonsIds } from './_duck/';
 
 /** SubMenu */
-import MenuButton, { MenuButtonOptionsI } from '@app/MenuButton/';
-
-const { notAnyLesson, notHome } = MenuRulesEnum;
+import WelcomeHeading from '@app/WelcomeHeading/';
 
 /** Translations */
 import { Translate } from 'react-localize-redux';
 
-import { withMedia, MediaEnum } from '@app/Media';
-const { xs } = MediaEnum;
-
-require( './style.sass' );
+import { withLocation } from '@app/AppLocation/';
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
-    classFalling: string;
     demoUrl: AppRoutesEnum;
     lessonsUrl: AppRoutesEnum;
-    home: AppRoutesEnum;
-    button: MenuButtonOptionsI;
     constructor( props ) {
         super( props );
-        this.classFalling = 'title-falling';
 
         this.demoUrl = AppRoutesEnum.demo;
-        this.home = AppRoutesEnum.home;
         this.lessonsUrl = AppRoutesEnum.lessons;
 
         this.goToDemo = this.goToDemo.bind( this );
         this.goToLessons = this.goToLessons.bind( this );
-
-        /** Link to Welcome page
-         *  Hidden, under title, rendered on not Welcome page
-         */
-        this.button = {
-            appRoute: this.home,
-            rules: [ notAnyLesson, notHome ],
-            icon: <div></div>,
-            iconButton: {
-                disableRipple: true,
-                disableTouchRipple: true,
-                classes: { root: this.props.classes.welcomeHomeSubMenu }
-            },
-            title: 'submenuGoToHome',
-        };
-    }
-
-    componentDidMount() {
-        /** Letters will not fall if language changed */
-        this.classFalling = '';
     }
 
     componentDidUpdate( prevProps: WelcomeProps ) {
         const { appLocation } = this.props;
-        const { appLocation: prevAppLocation } = prevProps;
 
-        if ( appLocation !== prevAppLocation ) {
-            this.props.changeLocation( appLocation );
-            if ( this.isHome ) {
+        if ( appLocation !== prevProps.appLocation ) {
+            if ( appLocation === this.props.isHome ) {
                 this.props.addEventListener();
             } else {
                 this.props.removeEventListener();
@@ -92,104 +58,47 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         this.props.history.push( this.lessonsUrl );
     }
 
-    get isHome() {
-        return this.props.location.pathname === this.home;
-    }
-
-    get isLesson() {
-        return RegExp( /.*lessons\/lesson-.*/ ).test( this.props.location.pathname );
-    }
-
-    heading = () => {
-        const {
-            classFalling,
-            props: {
-                animated, heading,
-                classes: { fallingLetters }
-            }
-        } = this;
-
-        if ( animated ) {
-            const lastSpace = heading.lastIndexOf( ' ' );
-            const lastWord = heading.slice( lastSpace + 1 );
-            const remainingHeading = heading.slice( 0, lastSpace + 1 );
-
-            return (
-                <React.Fragment>
-                    <span>{ remainingHeading }</span>
-                    {
-                        Array.from( lastWord ).map( ( letter, ind ) => (
-                            <span
-                                className={ `${ fallingLetters } ${ this.isHome ? classFalling : '' }` }
-                                key={ `${ind}-${letter}` }
-                            >
-                                { letter }
-                            </span>
-                        ) )
-                    }
-                </React.Fragment>
-            );
-        }
-
-        return <React.Fragment>{ heading }</React.Fragment>;
-    };
-
     render() {
         const {
-            heading, isHome, isLesson,
             props: {
                 classes: {
-                    welcomePaper, welcomeHome, welcomeOther, welcomeButtons,
-                    welcomeButton, welcomeButtonMain, welcomeHeading,
-                    welcomeHeadingHome, welcomeHeadingOther, welcomeLesson,
-                    welcomeHomeButton
+                    paperClass, homeClass, otherClass, buttonsClass,
+                    buttonClass, buttonMainClass,
+                    lessonClass,
                 },
-                media
+                appLocation,
+                isHome,
+                isLesson,
+                heading
             }
         } = this;
+
+        const checkHome = appLocation === isHome;
+        const checkLesson = appLocation === isLesson;
 
         return (
             <Paper className={
-                `${ welcomePaper } ${
-                    isHome
-                        ? welcomeHome
-                        : isLesson
-                            ? welcomeLesson
-                            : welcomeOther
+                `${ paperClass } ${ checkHome
+                    ? homeClass
+                    : checkLesson
+                        ? lessonClass
+                        : otherClass
                 }`
             }>
+                <WelcomeHeading { ...{ heading } } />
 
-                { ( media !== xs || isHome ) && (
-                    <React.Fragment>
-                        <Typography variant="h1" className={`${ welcomeHeading } ${ isHome && welcomeHeadingHome } ${ !isHome && welcomeHeadingOther }`}>
-                            { heading() }
-                        </Typography>
-
-                        {/* /**
-                        /* Link to Welcome page
-                        /* Hidden, under title, rendered on not Welcome page
-                        */ }
-                        <MenuButton { ...this.button } />
-                    </React.Fragment>
-                )}
-
-                { media === xs && (
-                    <MenuButton { ...Object.assign( {}, this.button, { icon: <HomeIcon />, iconButton: { ...this.button.iconButton, classes: { root: welcomeHomeButton } } } ) } />
-                )}
-
-
-                {/* Render buttons only when Home and desktop */}
-                {isHome && (
-                    <div className={ welcomeButtons }>
+                {/* Render buttons only when Home */}
+                { checkHome && (
+                    <div className={ buttonsClass }>
                         <Button
                             onClick={ this.goToLessons }
-                            className={ welcomeButton }
+                            className={ buttonClass }
                             id={ buttonsIds[ 0 ] }
                         >
                             <Translate id="welcomeGoToCourses"/>
                         </Button>
                         <Button
-                            className={`${ welcomeButton } ${ welcomeButtonMain }`}
+                            className={`${ buttonClass } ${ buttonMainClass }`}
                             onClick={ this.goToDemo }
                             id={ buttonsIds[ 1 ] }
                         >
@@ -202,4 +111,4 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
     }
 }
 
-export default withStyles( styles )( withMedia( WelcomeComponent ) );
+export default withStyles( styles )( withLocation( WelcomeComponent ) );

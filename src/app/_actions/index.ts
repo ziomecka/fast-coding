@@ -5,7 +5,6 @@ import { actions as newUserFormActions, NewUserFormActions } from '@forms/NewUse
 import { actions as notificationActions, NotificationActions } from '@app/Notification/_duck/actions';
 import { actions as passwordActions, PasswordActions } from '@forms/Password/_duck/actions';
 import { actions as formHelperTextActions, FormHelperTextActions } from '@forms/FormHelperText/_duck/actions';
-import { actions as welcomeActions, WelcomeActions } from '@app/Welcome/_duck/actions';
 import { actions as menuListActions, MenuListActions } from '@app/MenuList/_duck/actions';
 import { actions as appmenuActions, AppMenuActions } from '@app/AppMenu/_duck/actions';
 
@@ -15,7 +14,6 @@ export const actions = {
     ...notificationActions,
     ...passwordActions,
     ...formHelperTextActions,
-    ...welcomeActions,
     ...menuListActions,
     ...appmenuActions
 };
@@ -26,6 +24,5 @@ export type AppActions = Action |
     NotificationActions |
     PasswordActions |
     FormHelperTextActions |
-    WelcomeActions |
     MenuListActions |
     AppMenuActions;

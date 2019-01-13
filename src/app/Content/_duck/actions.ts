@@ -3,16 +3,9 @@ import { ContentActionsEnum } from './types';
 import { AppLocationEnum } from '@appTypes';
 
 const {
-    APP_CONTENT_CHANGE_LOCATION,
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER
 } = ContentActionsEnum;
-
-
-export const changeLocation: ActionCreator<ChangeLocationAction> = ( appLocation: AppLocationEnum ) => ( {
-    type: APP_CONTENT_CHANGE_LOCATION,
-    appLocation
-} );
 
 export const registerOnDrop: ActionCreator<RegisterOnDropAction> = ( onDrop: ( e: React.DragEvent<HTMLElement> ) => {} ) => ( {
     type: APP_CONTENT_ONDROP_REGISTER,

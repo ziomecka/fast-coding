@@ -13,7 +13,6 @@ import {
 
 import {
     CSRActionsEnum,
-    LocationChangeActionsEnum,
 } from '@appTypes';
 
 import {
@@ -25,10 +24,8 @@ import { CSRActions } from '@app/CSR/_duck/actions';
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '@app/Localize/_duck/reducers';
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsActions } from '@components/_actions';
-import { LocationChangeActions } from '@app/LocationChange/_duck/actions';
 import { Reducer } from 'redux';
 import { csrReducer } from '@app/CSR/_duck/reducers';
-import { locationChangeReducer } from '@app/LocationChange/_duck/reducers';
 
 const { components, app } = ApplicationContainersEnum;
 
@@ -38,7 +35,6 @@ export const INITIAL_STATE = {
     localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
-const { APP_LOCATION_CHANGE_CHANGE_LOCATION } = LocationChangeActionsEnum;
 const {
     APP_CSR_CHANGE_LOADING_STATE,
     APP_CSR_REPORT_ERROR,
@@ -50,14 +46,6 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
     const actionType = action.type.slice( 0, action.type.indexOf( '_' ) );
 
     switch ( true ) {
-        // TODO improve - przeniesc loacationChange poza app
-        case ( action.type === APP_LOCATION_CHANGE_CHANGE_LOCATION ): {
-            return {
-                ...state,
-                ...locationChangeReducer( state, action as LocationChangeActions ),
-            };
-        }
-
         // TODO improve - przeniesc csr poza app
         case action.type === APP_CSR_CHANGE_LOADING_STATE:
         case action.type === APP_CSR_REPORT_ERROR:
@@ -110,4 +98,3 @@ export interface ApplicationState {
     [key: ApplicationContainersEnum ]: ComponentsState | AppState;
     localize: LocalizeState;
 }
-

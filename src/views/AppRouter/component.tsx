@@ -24,6 +24,7 @@ import store from '@appStore';
 import { AppRouterPropsI } from './container';
 
 import { withMedia, MediaEnum, MediaProvider } from '@app/Media/';
+import { LocationProvider } from '@app/AppLocation';
 
 interface IAppRouterState {
     routes: JSX.Element
@@ -105,11 +106,13 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
                 <LocalizeProvider {...{ store }} >
                     <MediaProvider>
                         <Router {...{ history }}>
-                            <Route path="/">
-                                <HomeView>
-                                    { this.state.routes }
-                                </HomeView>
-                            </Route>
+                            <LocationProvider>
+                                <Route path="/">
+                                    <HomeView>
+                                        { this.state.routes }
+                                    </HomeView>
+                                </Route>
+                            </LocationProvider>
                         </Router>
                     </MediaProvider>
                 </LocalizeProvider>

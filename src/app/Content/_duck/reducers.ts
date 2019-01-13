@@ -1,29 +1,17 @@
 import { Reducer } from 'redux';
-import { AppLocationEnum } from '@appTypes';
 import { ContentActionsEnum } from './types';
-import { getClasses, contentClassHome } from './operations';
 
 const {
-    APP_CONTENT_CHANGE_LOCATION,
     APP_CONTENT_ONDROP_REGISTER,
     APP_CONTENT_ONDROP_DEREGISTER
 } = ContentActionsEnum;
 
 export const INITIAL_STATE: ContentState = {
-    contentClass: contentClassHome,
-    appLocation: AppLocationEnum.isHome,
     onDrop: []
 };
 
 const reducer: Reducer<ContentState> = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
-        case APP_CONTENT_CHANGE_LOCATION: {
-            return {
-                ...state,
-                ...getClasses( action.appLocation ),
-            };
-        }
-
         case APP_CONTENT_ONDROP_REGISTER: {
             return {
                 ...state,
@@ -50,11 +38,6 @@ const reducer: Reducer<ContentState> = ( state = INITIAL_STATE, action ) => {
 
 export { reducer as contentReducer };
 
-export interface ContentClasses {
-    contentClass: string;
-}
-
-export interface ContentState extends ContentClasses {
-    appLocation: AppLocationEnum;
+export interface ContentState {
     onDrop: Array<( e: React.DragEvent<HTMLElement> )=> void>;
 }

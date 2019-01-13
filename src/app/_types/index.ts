@@ -11,7 +11,6 @@ export * from '@forms/FormHelperText/_duck/types';
 export * from '@app/KeyboardListener/_duck/types';
 export * from '@app/LocalStorage/_duck/types';
 // export * from '@app/Localize/_duck/types';
-export * from '@app/LocationChange/_duck/types';
 export * from '@forms/Login/_duck/types';
 export * from '@forms/LoginForm/_duck/types';
 export * from '@app/MenuRulesHoc/_duck/types';
@@ -23,7 +22,7 @@ export * from '@forms/RemindPasswordForm/_duck/types';
 export * from '@app/MenuList/_duck/types';
 export * from '@app/MenuButton/_duck/types';
 // export * from '@app/Table/_duck/types';
+export * from '@app/AppLocation/_duck/types';
 export * from '@app/User/_duck/types';
-export * from '@app/Welcome/_duck/types';
 export * from '@app/AppError/_duck/types';
 

@@ -6,7 +6,7 @@ export {
     GRID
 } from '@components/Course/constants.styles';
 
-export { WELCOME_HEADING_OTHER_XS } from '@app/Welcome/constants.styles';
+export { WELCOME_HEADING_OTHER_XS } from '@app/WelcomeHeading/constants.styles';
 
 export {
     FOOTER_HEIGHT_LG,

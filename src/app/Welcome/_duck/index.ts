@@ -1,1 +1,1 @@
-export { default } from './operations';
+export { buttonsIds } from './operations';
