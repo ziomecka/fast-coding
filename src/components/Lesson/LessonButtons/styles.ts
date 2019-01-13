@@ -17,10 +17,10 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        lessonButtonsButton: {
+        buttonClass: {
             maxWidth: `calc( 50% + 2rem)`
         },
-        lessonButtonsMenu: {
+        menuClass: {
             minWidth: 'auto',
             minHeight: 'auto',
             height: 'auto',
@@ -39,10 +39,10 @@ const styles = createStyles( theme => {
             },
             border: `${BORDER_THIN} solid ${borderColor}`
         },
-        lessonButtonsMenuDragged: {
+        menuDraggedClass: {
             position: 'absolute'
         },
-        lessonButtonsDragHandle: {
+        dragHandleClass: {
             position: 'absolute',
             top: '.1em',
             left: '.1em',

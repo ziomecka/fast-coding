@@ -42,10 +42,10 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     const { lessons } = AppRoutesEnum;
 
     const {
-        lessonButtonsButton,
-        lessonButtonsDragHandle,
-        lessonButtonsMenu,
-        lessonButtonsMenuDragged
+        buttonClass,
+        dragHandleClass,
+        menuClass,
+        menuDraggedClass
     } = classes;
 
     const INITIAL_TOP = INITIAL_STATE.top;
@@ -70,7 +70,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             buttonProps={{
                 ...commonProps,
                 onClick: startLeaving,
-                className: lessonButtonsButton
+                className: buttonClass
             }}
             // @ts-ignore
             aftertext={`${press} ESC`}
@@ -83,7 +83,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             buttonProps={{
                 ...commonProps,
                 onClick: pauseLesson,
-                className: lessonButtonsButton
+                className: buttonClass
             }}
             translationId="lessonButtonsPause"
         />
@@ -94,7 +94,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             buttonProps={{
                 ...commonProps,
                 onClick: unpauseLesson,
-                className: lessonButtonsButton,
+                className: buttonClass,
             }}
             // @ts-ignore
             aftertext={justType}
@@ -107,7 +107,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             buttonProps={{
                 ...commonProps,
                 onClick: leaveLesson,
-                className: lessonButtonsButton,
+                className: buttonClass,
             }}
             // @ts-ignore
             aftertext={`${press} ESC`}
@@ -120,7 +120,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             buttonProps={{
                 ...commonProps,
                 onClick: restartLesson,
-                className: lessonButtonsButton
+                className: buttonClass
             }}
             // @ts-ignore
             aftertext={`${press} Enter`}
@@ -167,7 +167,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
     /** Render only if dialog is not opened */
     return ( !dialogOpened &&
         <Paper
-            className={`${lessonButtonsMenu} ${isMoved ? lessonButtonsMenuDragged : '' }`}
+            className={`${menuClass} ${isMoved ? menuDraggedClass : '' }`}
             draggable={draggable}
             style={ {
                 top,
@@ -185,7 +185,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
             {/* Available only if lesson is not started or has been ended */}
             {
                 ( !started || ended ) && (
-                    <div className={lessonButtonsDragHandle}>
+                    <div className={dragHandleClass}>
                         <Button
                             title="Drag the buttons menu"
                             onMouseEnter={turnOnDraggable}
