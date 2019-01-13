@@ -1,5 +1,4 @@
 import { createStyles } from '@material-ui/core/styles';
-import { LESSON_MAX_WIDTH } from '@constantsStyles';
 
 const styles = createStyles( theme => {
     const {
@@ -12,7 +11,6 @@ const styles = createStyles( theme => {
         statsPaper: {
             minWidth: 'auto',
             minHeight: 'auto',
-            maxWidth: `${LESSON_MAX_WIDTH}px`,
             height: 'auto',
             width: '100%',
             position: 'relative',
