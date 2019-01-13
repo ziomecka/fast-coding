@@ -155,10 +155,10 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                 <Paper className={paperClass}>
                     <Typography variant="h3" className={inviteClass}>
                         { !started
-                            ? <Translate id="inviteClass" />
+                            ? <Translate id="lessonInvite" />
                             : (
                                 <span className={ timeClass } { ...this.timeAfterText } >
-                                    <Translate id="timeClass" /> { time }
+                                    <Translate id="lessonTime" /> { time }
                                 </span>
                             )
                         }
