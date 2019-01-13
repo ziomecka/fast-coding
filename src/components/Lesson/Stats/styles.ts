@@ -8,7 +8,7 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        statsPaper: {
+        paperClass: {
             minWidth: 'auto',
             minHeight: 'auto',
             height: 'auto',
@@ -20,7 +20,7 @@ const styles = createStyles( theme => {
             margin: '1rem 0',
             border: `.5px solid ${borderColor}`
         },
-        statsNote: {
+        noteClass: {
             '&:after': {
                 content: '\':\''
             }
