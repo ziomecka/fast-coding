@@ -14,7 +14,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import getTranslation from '@shared/get.translation';
 import { IContentTitleState } from './_duck/';
-import { withLocation } from '@app/LocationHoc/';
+import { withLocation } from '@app/AppLocation/';
 
 class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState> {
     home: AppRoutesEnum;

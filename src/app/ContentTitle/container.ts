@@ -15,7 +15,7 @@ const { lesson } = ComponentsContainersEnum;
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
-import { ILocationContextProps } from '@app/LocationHoc/';
+import { ILocationContextProps } from '@app/AppLocation/';
 
 const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: { ...state.localize },

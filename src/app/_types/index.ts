@@ -22,7 +22,7 @@ export * from '@forms/RemindPasswordForm/_duck/types';
 export * from '@app/MenuList/_duck/types';
 export * from '@app/MenuButton/_duck/types';
 // export * from '@app/Table/_duck/types';
-export * from '@app/LocationHoc/_duck/types';
+export * from '@app/AppLocation/_duck/types';
 export * from '@app/User/_duck/types';
 export * from '@app/AppError/_duck/types';
 

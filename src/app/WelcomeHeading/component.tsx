@@ -19,7 +19,7 @@ const { notAnyLesson, notHome } = MenuRulesEnum;
 import { withMedia, MediaEnum } from '@app/Media';
 const { xs } = MediaEnum;
 
-import { withLocation } from '@app/LocationHoc/';
+import { withLocation } from '@app/AppLocation/';
 
 require( './style.sass' );
 

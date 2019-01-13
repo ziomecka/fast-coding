@@ -24,7 +24,7 @@ import store from '@appStore';
 import { AppRouterPropsI } from './container';
 
 import { withMedia, MediaEnum, MediaProvider } from '@app/Media/';
-import { LocationProvider } from '@app/LocationHoc';
+import { LocationProvider } from '@app/AppLocation';
 
 interface IAppRouterState {
     routes: JSX.Element

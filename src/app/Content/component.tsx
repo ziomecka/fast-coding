@@ -11,7 +11,7 @@ import ContentTitle from '@app/ContentTitle/';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-import { withLocation } from '@app/LocationHoc/';
+import { withLocation } from '@app/AppLocation/';
 
 const Content: React.StatelessComponent<ContentProps> = props => {
     const {

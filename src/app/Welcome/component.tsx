@@ -18,7 +18,7 @@ import WelcomeHeading from '@app/WelcomeHeading/';
 /** Translations */
 import { Translate } from 'react-localize-redux';
 
-import { withLocation } from '@app/LocationHoc/';
+import { withLocation } from '@app/AppLocation/';
 
 class WelcomeComponent extends React.Component<WelcomeProps> {
     demoUrl: AppRoutesEnum;

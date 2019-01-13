@@ -12,7 +12,7 @@ const { app } = ApplicationContainersEnum;
 const { content } = AppContainersEnum;
 
 import { WithStyles } from '@material-ui/core/styles';
-import { ILocationContextProps } from '@app/LocationHoc/';
+import { ILocationContextProps } from '@app/AppLocation/';
 
 const mapStateToProps = ( state: ApplicationState ): ContentState => ( {
     ...state[ app ][ content ]
