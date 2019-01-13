@@ -13,13 +13,13 @@ const styles = createStyles( theme => {
         lessonInvite: {
             padding: 0,
             margin: 0,
+            fontSize: '1.5em'
         },
         lessonTime: {
             position: 'relative',
             '&:after': {
                 content: 'attr(aftertext)',
                 color: hintColor,
-                position: 'absolute',
                 marginLeft: spacingUnit
             }
         }
