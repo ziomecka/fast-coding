@@ -97,12 +97,13 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
                     <Translate id={ titleId } options={ this.onMissingTranslation } />
                 ) }
 
-                { lesson && (
-                    `${ ( lessonNo !== undefined && lessonNo !== null )
-                        ? `${ lessonTranslation } ${ lessonNo + 1 }`
-                        : '' }
-                    ${ lessonTitle ? lessonTitle : '' }`
-                ) }
+                { lesson &&
+                    ( lessonNo !== undefined && lessonNo !== null ) && `${ lessonTranslation } ${ lessonNo + 1 }
+                    `
+                }
+                { lesson &&
+                    ( lessonTitle && `${ lessonTitle }` )
+                }
             </Typography>
         );
     }

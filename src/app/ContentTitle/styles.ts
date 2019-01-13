@@ -22,7 +22,8 @@ const styles = createStyles( theme => {
             width: '100%',
             left: 0,
             margin: '1em 0',
-            whiteSpace: 'pre-line'
+            whiteSpace: 'pre-line',
+            lineHeight: '1.1em'
         }
     };
 } );
