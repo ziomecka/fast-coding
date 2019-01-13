@@ -68,7 +68,7 @@ class WelcomeHeadingComponent extends React.Component<WelcomeHeadingProps> {
     render() {
         const {
             props: {
-                animated, heading,
+                heading,
                 classes: {
                     headingClass,
                     headingHomeClass, headingOtherClass,

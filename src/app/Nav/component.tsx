@@ -2,11 +2,6 @@ import * as React from 'react';
 
 import { NavProps } from './container';
 
-import {
-    HOME_HEADING_ANIMATED,
-    HOME_WELCOME_TIMEOUT
-} from './constants';
-
 import { getTranslations, getActiveLanguage, getLanguages, withLocalize } from 'react-localize-redux';
 
 /** Materials */
@@ -235,11 +230,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 className={` ${ navClass } ${ isLesson ? navLessonClass : '' }` }
             >
                 <MenuProvider>
-                    <Welcome
-                        { ... { heading } }
-                        animated={ HOME_HEADING_ANIMATED}
-                        timeout={ HOME_WELCOME_TIMEOUT }
-                    />
+                    <Welcome { ... { heading } } />
                     <AppMenu subMenus={[ this.languageM, this.lessonsM, this.userM ]} />
                 </MenuProvider>
             </AppBar>

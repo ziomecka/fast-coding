@@ -14,6 +14,4 @@ export interface WelcomeHeadingProps extends
     IWithMedia,
     ILocationContextProps {
         heading: string;
-        animated: boolean;
-        timeout: number;
     }

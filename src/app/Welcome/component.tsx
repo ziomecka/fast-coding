@@ -70,7 +70,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 appLocation,
                 isHome,
                 isLesson,
-                heading, animated, timeout
+                heading
             }
         } = this;
 
@@ -87,7 +87,7 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 }`
             }>
 
-                <WelcomeHeading { ...{ animated, heading, timeout } } />
+                <WelcomeHeading { ...{ heading } } />
 
                 {/* Render buttons only when Home */}
                 { checkHome && (

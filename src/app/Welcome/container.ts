@@ -33,6 +33,4 @@ export interface WelcomeProps extends WelcomeDispatch,
     ILocationContextProps,
     RouteComponentProps<{}> {
         heading: string;
-        animated: boolean;
-        timeout: number;
     }
