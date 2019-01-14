@@ -32,6 +32,11 @@ import history from '@shared/history';
 import { closeDialog } from '@app/Dialog/';
 import { openNotification, error, success } from '@app/Notification/';
 
+import { post } from '@app/api/';
+import { AppRoutesServerEnum } from '@appTypes';
+
+const { loginFirebase } = AppRoutesServerEnum;
+
 const {
     lessons: signInSuccessUrl,
     privacyPolicy: privacyPolicyUrl,
@@ -96,18 +101,23 @@ const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean 
         additionalUserInfo: { providerId }
     } = authResult;
 
+    const authorizationMethod = UserAuthorizationMethodEnum[ providerId ];
+
     dispatch( onAuthorize( {
         displayName,
         email,
         photoURL,
         refreshToken,
         // @ts-ignore
-        authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
+        authorizationMethod
     } ) );
 
     dispatch( closeDialog() );
     history.push( signInSuccessUrl );
     dispatch( openNotification( { text: 'notificationAuthorized', variant: success } ) );
+
+    post( { path: loginFirebase, body: { displayName, email, authorizationMethod, refreshToken } } );
+
     return false; // false means 'do not redirect'
 };
 
