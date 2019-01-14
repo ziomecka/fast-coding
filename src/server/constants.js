@@ -70,7 +70,8 @@ const REDIS_KEYS = {
     USERS_KEY: 'user_data',
     EMAILS_KEY: 'users_emails',
     LOGINS_KEY: 'users_logins',
-    REMIND_PASSWORD_KEY: 'maintain_remindPassword'
+    REMIND_PASSWORD_KEY: 'maintain_remindPassword',
+    SESSION: 'session_'
 };
 
 const CORS = {
@@ -78,6 +79,22 @@ const CORS = {
     production: 'https://fast-coding.herokuapp.com',
     exposedHeaders: [ 'Content-Type' ]
 };
+
+const SESSION = {
+    NAME: 'FC_SESSION',
+    MINUTES: 60,
+    MAX_AGE: 1000 * 60 * 60,
+    ROUTES: [
+        '/',
+        ROUTES.LESSONS_GET,
+        ROUTES.LOGIN_LOG,
+        ROUTES.NEW_PASSWORD,
+        ROUTES.NEW_USER_SET,
+        ROUTES.REMIND_PASSWORD,
+        ROUTES.TRANSLATIONS_GET
+    ]
+};
+
 
 module.exports = {
     DOMAIN,
@@ -89,5 +106,6 @@ module.exports = {
     ROUTES,
     EMAILS,
     EMAIL_RESPONSES,
-    CORS
+    CORS,
+    SESSION,
 };
