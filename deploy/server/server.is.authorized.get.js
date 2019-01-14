@@ -23,7 +23,7 @@ module.exports = async ( req, res ) => {
             login,
             authorizationMethod,
             displayName,
-            refreshToken
+            refreshToken: newRefreshToken
         });
     }
 };
