@@ -26,6 +26,7 @@ export enum AppRoutesServerEnum {
     translationsGet = '/translations/get',
     loginLog = '/login/log',
     loginFirebase = '/login/firebase/post',
+    isAuthorized = '/authorized/get'
 }
 
 export enum AppRoutesEnum {

@@ -11,6 +11,10 @@ import KeyboardListener from '@app/KeyboardListener/';
 import TranslationsLoader from '@app/TranslationsLoader/';
 
 class HomeViewComponent extends React.Component<HomeViewProps> {
+    componentDidMount() {
+        this.props.isAuthorized();
+    }
+
     render() {
         return (
             <React.Fragment>
