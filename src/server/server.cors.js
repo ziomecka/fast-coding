@@ -11,13 +11,14 @@ module.exports = () => {
     const corsOptions = {
         exposedHeaders,
         credentials: true,
-        origin: (origin, callback) => {
-            if ( !origin || whitelist.indexOf(origin) !== -1 ) {
-                callback(null, true);
-            } else {
-                callback(console.warn('Not allowed by CORS'), false);
-            }
-        }
+        origin: true
+        // origin: (origin, callback) => {
+        //     if ( !origin || whitelist.indexOf(origin) !== -1 ) {
+        //         callback(null, true);
+        //     } else {
+        //         callback(console.warn('Not allowed by CORS'), false);
+        //     }
+        // }
     };
 
     return cors(corsOptions);
