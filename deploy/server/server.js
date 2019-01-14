@@ -67,6 +67,7 @@ if (!PROD_ENV) {
 
     app.use(require('webpack-hot-middleware')(compiler));
 }
+
 app.use( serverCors() );
 
 app.use( express.json() );
