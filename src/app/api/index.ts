@@ -51,7 +51,7 @@ async function sendRequest( options: SendRequestRequestType, method: 'POST' | 'G
     }
 
     // TODO, does not have be promise?
-    return Promise.resolve(res);
+    return Promise.resolve( res );
 }
 
 export const post = async ( options: PostRequestI ): Promise<PostResponseI> => await sendRequest( options, 'POST' );
