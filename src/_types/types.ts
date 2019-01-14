@@ -2,9 +2,9 @@
 import { ApplicationState } from '@appStore';
 export { MediaEnum } from '@theme';
 export enum ApplicationContainersEnum {
-    views = 'VIEWS',
-    components = 'COMPONENTS',
-    app = 'APP'
+    views = 'views',
+    components = 'components',
+    app = 'app'
 }
 
 export type ThunkGetStateType = () => ApplicationState;
