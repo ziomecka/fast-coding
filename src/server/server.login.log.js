@@ -4,12 +4,23 @@ module.exports = async (req, res) => {
     const { login, password } = req.body;
 
     if ( !login || ! password ) {
-        res.json({ error: 'Login and password cannot be empty' });
+        res.json( { error: 'Login and password cannot be empty' } );
     }
 
     try {
-        res.json({ result: await passwordManager.verifyPassword({ login, password }) });
-    } catch (err) {
-        res.json({ error: err.message || err.toString() });
+        let loginResult = await passwordManager.verifyPassword({ login, password });
+        const { result, login } = Object( loginResult );
+
+        if ( !!result ) {
+            // TODO remove magic number
+            Object.assign( req.session, { login, authorizationMethod: 'FAST_CODING', authorized: true });
+            res.json( { result: loginResult } );
+        } else {
+            res.json( { result: loginResult } );
+        }
+
+        loginResult = null; // GC
+    } catch ( err ) {
+        res.json( { error: err.message || err.toString() } );
     }
 };
