@@ -4,7 +4,7 @@
 
 import { Dispatch } from 'redux';
 import { ThunkGetStateType } from '@applicationTypes';
-import { AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
+import { AppRoutesEnum, UserAuthorizationMethodEnum, AppRoutesServerEnum } from '@appTypes';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -33,7 +33,6 @@ import { closeDialog } from '@app/Dialog/';
 import { openNotification, error, success } from '@app/Notification/';
 
 import { post } from '@app/api/';
-import { AppRoutesServerEnum } from '@appTypes';
 
 const { loginFirebase } = AppRoutesServerEnum;
 
