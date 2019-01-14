@@ -20,6 +20,7 @@ const serverChangePassword = require('./server.change.password');
 const serverRemindPassword = require('./server.remind.password');
 const serverNewPassword = require('./server.new.password');
 const serverTranslationsGet = require('./server.translations.get');
+const serverLoginFirebase = require('./server.login.firebase.post');
 
 const {
     PORT: _PORT,
@@ -31,6 +32,7 @@ const {
         REMIND_PASSWORD,
         NEW_PASSWORD,
         TRANSLATIONS_GET,
+        LOGIN_FIREBASE
     },
     SESSION: { ROUTES }
 } = constants;
@@ -100,6 +102,8 @@ app.post( NEW_USER_SET, serverNewUserSet );
 
 /** Log user */
 app.post( LOGIN_LOG, serverLoginLog );
+
+app.post ( LOGIN_FIREBASE, serverLoginFirebase );
 
 /** Change password */
 app.post( CHANGE_PASSWORD, serverChangePassword );

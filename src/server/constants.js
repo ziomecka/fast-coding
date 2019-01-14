@@ -45,7 +45,8 @@ const ROUTES = {
     LOGIN_LOG: '/login/log',
     CHANGE_PASSWORD: '/changepassword/post',
     NEW_PASSWORD: '/newpassword/post',
-    REMIND_PASSWORD: '/remindpassword/post'
+    REMIND_PASSWORD: '/remindpassword/post',
+    LOGIN_FIREBASE: '/login/firebase/post'
 };
 
 const EMAILS = {
