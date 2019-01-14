@@ -19,7 +19,7 @@ module.exports = async ( req, res ) => {
         }
     } else {
         res.json({
-            authorized,
+            authorized: true,
             login,
             authorizationMethod,
             displayName,
