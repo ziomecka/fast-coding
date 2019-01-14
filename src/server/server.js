@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 
 const constants = require('./constants');
+const getSession = require('./server.session');
 
 const serverCors = require('./server.cors');
 const serverNewUserSet = require('./server.newuser.set');
@@ -19,8 +20,22 @@ const serverChangePassword = require('./server.change.password');
 const serverRemindPassword = require('./server.remind.password');
 const serverNewPassword = require('./server.new.password');
 const serverTranslationsGet = require('./server.translations.get');
+const serverIsAuthorized = require('./server.is.authorized.get');
+const serverLoginFirebase = require('./server.login.firebase.post');
 
-const { PORT: _PORT, ROUTES: { LESSONS_GET, NEW_USER_SET, LOGIN_LOG, CHANGE_PASSWORD, REMIND_PASSWORD, NEW_PASSWORD, TRANSLATIONS_GET } } = constants;
+const {
+    PORT: _PORT,
+    ROUTES: {
+        LESSONS_GET,
+        NEW_USER_SET,
+        LOGIN_LOG,
+        CHANGE_PASSWORD,
+        REMIND_PASSWORD,
+        NEW_PASSWORD,
+        TRANSLATIONS_GET,
+    },
+    SESSION: { ROUTES }
+} = constants;
 
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 
@@ -50,8 +65,12 @@ if (!PROD_ENV) {
 
     app.use(require('webpack-hot-middleware')(compiler));
 }
-
 app.use( serverCors() );
+
+app.use( express.json() );
+app.use( express.urlencoded({ extended: false }) );
+app.use( cookieParser() );
+app.use( ROUTES, getSession() );
 
 app.get('*.js', (req, res, next) => {
     req.url = req.url + '.gz';
@@ -71,9 +90,6 @@ app.use(express.static(ROOT, {
         }
 }}));
 
-app.use( express.json() );
-app.use( express.urlencoded({ extended: false }) );
-app.use( cookieParser() );
 
 /** Get lessons */
 app.get( LESSONS_GET, serverLessonsGet );
