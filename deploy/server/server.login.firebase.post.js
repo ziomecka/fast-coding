@@ -5,7 +5,7 @@ const {
         SUCCESS,
         ERROR,
     },
-} = require('../constants');
+} = require('./constants');
 
 
 module.exports = async (req, res) => {

@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const https = require('https');
-const constants = require('./constants');
+const constants = require('../constants');
 
 module.exports = ( refreshToken ) => {
     const { FIREBASE_API_KEY } = process.env;
