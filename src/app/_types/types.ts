@@ -24,7 +24,7 @@ export enum AppRoutesServerEnum {
     remindPassword = '/remindpassword/post',
     newPasswordSet = '/newpassword/post',
     translationsGet = '/translations/get',
-    loginLog = '/login/log',
+    loginLog = '/login/log/post',
     loginFirebase = '/login/firebase/post',
     isAuthorized = '/authorized/get'
 }

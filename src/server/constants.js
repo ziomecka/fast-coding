@@ -42,7 +42,7 @@ const ROUTES = {
     LESSONS_GET: '/lessons/get',
     TRANSLATIONS_GET: '/translations/get',
     NEW_USER_SET: '/newuser/post',
-    LOGIN_LOG: '/login/log',
+    LOGIN_LOG: '/login/log/post',
     CHANGE_PASSWORD: '/changepassword/post',
     NEW_PASSWORD: '/newpassword/post',
     REMIND_PASSWORD: '/remindpassword/post',
