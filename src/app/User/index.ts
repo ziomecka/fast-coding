@@ -1,2 +1,2 @@
 export { default } from './container';
-export { authorizeUser } from './_duck/';
+export { authorizeUser, unauthorizeUser } from './_duck/';

@@ -1,5 +1,8 @@
 import fetch from 'node-fetch';
 import { AppRoutesServerEnum } from '@appTypes';
+import store from '@appStore';
+import { authorizeUser, unauthorizeUser } from '@app/User/';
+
 const PROD_ENV = process && process.env.NODE_ENV
     ? process.env.NODE_ENV.trim() === 'production'
     : false;
@@ -35,7 +38,20 @@ async function sendRequest( options: SendRequestRequestType, method: 'POST' | 'G
     );
 
     headers = null; // GC
-    return response.json();
+
+    const res = await response.json();
+
+    const { authorized, login, authorizationMethod, displayName } = res;
+    const { authorized: userAuthorized } = store.getState().app.user;
+
+    if ( authorized && !userAuthorized ) {
+        store.dispatch( authorizeUser( { login, displayName, authorizationMethod } ) );
+    } else if ( authorized === false && userAuthorized ) {
+        store.dispatch( unauthorizeUser() );
+    }
+
+    // TODO, does not have be promise?
+    return Promise.resolve(res);
 }
 
 export const post = async ( options: PostRequestI ): Promise<PostResponseI> => await sendRequest( options, 'POST' );
