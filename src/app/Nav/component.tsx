@@ -149,9 +149,9 @@ class NavComponent extends React.Component<NavProps, INavState> {
 
     get userM(): NavMenuProps {
         const {
-            props: { classes: { navLogin }, logOut, login: loginClass, displayName },
+            props: { classes: { navLogin }, logOut, login, displayName },
             onlyAuthorized, onlyUnauthorized, fastCodingAuthorization,
-            login,
+            login: loginRoute,
             newUser,
             changePassword,
             remindPassword,
@@ -163,7 +163,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 menuItems={ [
                     {
                         title: 'subMenuUserLogin',
-                        onClick: () => this.userOnClick( LoginForm, login, 'loginTitle' ),
+                        onClick: () => this.userOnClick( LoginForm, loginRoute, 'loginTitle' ),
                         rules: [ onlyUnauthorized ]
                     },
                     {
@@ -193,7 +193,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
                 title={ 'submenuOpenUserMenu' }
                 iconButton={{
                     className: navLogin,
-                    login: displayName || loginClass // Displayed under Face icon
+                    login: displayName || login // Displayed under Face icon
                 }}
             />
         };
