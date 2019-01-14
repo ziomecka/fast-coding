@@ -2,9 +2,9 @@
 // https://firebase.google.com/docs/
 // https://developers.facebook.com/
 
-import { Dispatch, Action } from 'redux';
-import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum, AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
+import { Dispatch } from 'redux';
+import { ThunkGetStateType } from '@applicationTypes';
+import { AppRoutesEnum, UserAuthorizationMethodEnum } from '@appTypes';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -12,7 +12,6 @@ import 'firebase/auth';
 import firebaseui from 'firebaseui';
 
 import { projectId, authDomain, databaseURL } from '../constants';
-import { authorizeFirebase, unauthorizeFirebase } from './actions';
 
 import getTranslation from '@shared/get.translation';
 
@@ -23,16 +22,19 @@ import history from '@shared/history';
 import { closeDialog } from '@app/Dialog/';
 import { openNotification, error, success } from '@app/Notification/';
 
-const { app } = ApplicationContainersEnum;
-const { googleLogin } = AppContainersEnum;
+const {
+    lessons: signInSuccessUrl,
+    privacyPolicy: privacyPolicyUrl,
+    termsOfService: tosUrl
+} = AppRoutesEnum;
 
-const { lessons: signInSuccessUrl, privacyPolicy: privacyPolicyUrl, termsOfService: tosUrl } = AppRoutesEnum;
-
-export let ui;
-
-export const onAuthorizeFirebase = (): any => (
+export const onInitialiseFirebase = (): any => (
     async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-        if ( !getState()[ app ][ googleLogin ].firebaseAuthorized ) {
+
+        // @ts-ignore
+        const { authorized } = getState().app.user;
+        if ( !authorized ) {
+
             try {
                 let response = await firebase.initializeApp( {
                     projectId,
@@ -42,19 +44,43 @@ export const onAuthorizeFirebase = (): any => (
                 } );
 
                 if ( response ) {
-                    ui = new firebaseui.auth.AuthUI( firebase.auth() );
-                    dispatch( authorizeFirebase() );
-                    response = null; // GC
-                    return true;
-                } else if ( !response ) {
-                    return false;
-                }
+                    let ui = new firebaseui.auth.AuthUI( firebase.auth() );
+                    ui.start( '#firebaseui-auth-container', {
+                        callbacks: {
+                            signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
+                            signInFailure: () => signInFailure( dispatch )
+                        },
+                        signInFlow: 'popup',
+                        privacyPolicyUrl,
+                        tosUrl,
+                        signInOptions: [
+                            {
+                                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                                scopes: [ 'https://www.googleapis.com/auth/plus.login' ],
+                                // Forces account selection even when one account is available.
+                                customParameters: { prompt: 'select_account' }
+                            },
+                            {
+                                provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                                scopes: [
+                                    'public_profile',
+                                    'email',
+                                ]
+                            }
+                        ]
+                    } );
 
+                    response = null; // GC
+                    return Promise.resolve( true );
+                } else if ( !response ) {
+                    return Promise.resolve( false );
+                }
             } catch ( err ) {
                 return Promise.resolve( false );
             }
+        } else {
+            return Promise.resolve( false );
         }
-
     } );
 
 const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean => {
@@ -64,8 +90,12 @@ const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean 
     } = authResult;
 
     dispatch( onAuthorize( {
+        displayName,
+        email,
+        photoURL,
+        refreshToken,
         // @ts-ignore
-        displayName, email, photoURL, refreshToken, authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
+        authorizationMethod: UserAuthorizationMethodEnum[ providerId ]
     } ) );
 
     dispatch( closeDialog() );
@@ -74,47 +104,9 @@ const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean 
     return false; // false means 'do not redirect'
 };
 
-const signInFailure = ( dispatch: Dispatch ): boolean => {
-    dispatch( openNotification( { text: 'notificationLoginFailure', variant: error } ) );
-    return false;
+const signInFailure = ( dispatch: Dispatch ): Promise<any> => {
+    return dispatch( openNotification( { text: 'notificationLoginFailure', variant: error } ) );
 };
-
-export const onStartFirebaseUI = (): any => (
-    async ( dispatch: Dispatch ): Promise<any> => {
-
-        if ( ui ) {
-
-            ui.start( '#firebaseui-auth-container', {
-                callbacks: {
-                    signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
-                    signInFailure: () => signInFailure( dispatch )
-                },
-                signInFlow: 'popup',
-                privacyPolicyUrl,
-                tosUrl,
-                signInOptions: [
-                    {
-                        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                        scopes: [ 'https://www.googleapis.com/auth/plus.login' ],
-                        // Forces account selection even when one account is available.
-                        customParameters: { prompt: 'select_account' }
-                    },
-                    {
-                        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                        scopes: [
-                            'public_profile',
-                            'email',
-                        ]
-                    }
-                ]
-            } );
-
-            return Promise.resolve( true );
-        } else {
-            return dispatch( unauthorizeFirebase() );
-        }
-    }
-);
 
 const firebaseClassName = value => `${ value } .firebaseui-idp-text-long`;
 

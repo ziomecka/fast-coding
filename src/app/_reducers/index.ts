@@ -72,18 +72,6 @@ import {
     RemindPasswordState
 } from '@forms/RemindPasswordForm/_duck/reducers';
 
-// import {
-//     INITIAL_STATE as NEW_PASSWORD_INITIAL_STATE,
-//     newPasswordFormReducer,
-//     NewPasswordFormState
-// } from '@forms/NewPasswordForm/_duck/reducers';
-
-import {
-    INITIAL_STATE as GOOGLE_LOGIN_INITIAL_STATE,
-    googleLoginReducer,
-    GoogleLoginState
-} from '@forms/GoogleLogin/_duck/reducers';
-
 import {
     INITIAL_STATE as TRANSLATIONS_LOADER_INITIAL_STATE,
     translationsLoaderReducer,
@@ -96,15 +84,12 @@ const {
     notification,
     newUserForm,
     appMenu,
-    welcome,
     content,
     user,
     formHelperText,
     changePasswordForm,
     keyboardListener,
     remindPasswordForm,
-    newPasswordForm,
-    googleLogin,
     translationsLoader
 } = AppContainersEnum;
 
@@ -120,8 +105,6 @@ export const INITIAL_STATE = {
     [ changePasswordForm ]: CHANGEPASSWORDFORM_INITIAL_STATE,
     [ keyboardListener ]: KEYBOARD_LISTENER_INITIAL_STATE,
     [ remindPasswordForm ]: REMIND_PASSWORD_INITIAL_STATE,
-    // [newPasswordForm]: NEW_PASSWORD_INITIAL_STATE,
-    [ googleLogin ]: GOOGLE_LOGIN_INITIAL_STATE,
     [ translationsLoader ]: TRANSLATIONS_LOADER_INITIAL_STATE
 };
 
@@ -148,8 +131,6 @@ const combinedReducers = combineReducers( {
     [ changePasswordForm ]: changePasswordFormReducer,
     [ keyboardListener ]: keyboardListenerReducer,
     [ remindPasswordForm ]: remindPasswordReducer,
-    // [newPasswordForm]: newPasswordFormReducer,
-    [ googleLogin ]: googleLoginReducer,
     [ translationsLoader ]: translationsLoaderReducer
 } );
 
@@ -185,13 +166,6 @@ const reducer: Reducer<AppState, AppActions> = ( state = INITIAL_STATE, action )
                     };
                 }
 
-                // case newPasswordForm: {
-                //     return {
-                //         ...state,
-                //         [newPasswordForm]: newPasswordFormReducer( state[newPasswordForm], action )
-                //     };
-                // }
-
                 default: {
                     return { ...state };
                 }
@@ -220,7 +194,5 @@ export interface AppState {
     [changePasswordForm]: ChangePasswordFormState;
     [keyboardListener]: KeyboardListenerState;
     [remindPasswordForm]: RemindPasswordState;
-    // [newPasswordForm]: NewPasswordFormState;
-    [googleLogin]: GoogleLoginState;
     [translationsLoader]: TranslationsLoaderState;
 }
