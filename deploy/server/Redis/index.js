@@ -249,6 +249,51 @@ class Redis {
     }
 
     /**
+     * @param {object} options
+     * @property {string} options.email
+     */
+    async storeFirebaseUser(options) {
+        let { email } = options;
+
+        try {
+            /** Check if email exists */
+            const emailExists = await this.emailExists( email );
+
+            if ( emailExists === EMAIL_ALREADY_EXISTS ) {
+                console.log(`Store firebase user: email already exists: ${ email }`);
+                const login = await this.getLoginFromEmail( email );
+
+                return { result: SUCCESS, login };
+            } else {
+                console.log(`Store firebase user: brand new email: ${ email }`);
+
+                /** Store email as login */
+                this.storeSet({ key: this.loginsKey, value: email });
+                console.log(`Store firebase user: email: ${ email } stored in ${ this.loginsKey }.`);
+
+                /** Store email */
+                this.storeSet({ key: this.emailsKey, value: email });
+                console.log(`Store firebase user: email: ${ email } stored in ${ this.emailsKey }.`);
+
+                return { result: SUCCESS };
+            }
+
+        } catch (err) {
+            console.log(`Storing firebase user failed: ${ err.message || err.toString() }`);
+
+            if ( emailExists === EMAIL_DOES_NOT_EXIST ) {
+                this.removeSet({ key: this.loginsKey, value: email });
+                console.log(`Clear Store firebase user: email: ${ email } removed from ${ this.loginsKey }.`);
+
+                this.removeSet({ key: this.emailsKey, value: email });
+                console.log(`Clear Store firebase user: email: ${ email } removed from: ${ this.emailsKey }.`);
+            }
+
+            return { result: ERROR, err };
+        }
+    }
+
+    /**
      *
      * @param {Object} options
      * @property {key}
