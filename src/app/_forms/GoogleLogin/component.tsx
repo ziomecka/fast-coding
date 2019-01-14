@@ -6,12 +6,13 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { getActiveLanguage } from 'react-localize-redux';
+import { htmlId } from './constants';
 
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
     constructor( props ) {
         super( props );
-        this.id = 'firebaseui-auth-container';
+        this.id = htmlId;
     }
 
     componentDidMount() {

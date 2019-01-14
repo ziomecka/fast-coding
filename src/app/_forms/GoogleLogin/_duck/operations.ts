@@ -11,7 +11,17 @@ import 'firebase/auth';
 
 import firebaseui from 'firebaseui';
 
-import { projectId, authDomain, databaseURL } from '../constants';
+import {
+    projectId,
+    authDomain,
+    databaseURL,
+    htmlId,
+    facebookClass,
+    googleClass,
+    textLongClass,
+    googleScopes,
+    facebookScopes
+} from '../constants';
 
 import getTranslation from '@shared/get.translation';
 
@@ -45,7 +55,7 @@ export const onInitialiseFirebase = (): any => (
 
                 if ( response ) {
                     let ui = new firebaseui.auth.AuthUI( firebase.auth() );
-                    ui.start( '#firebaseui-auth-container', {
+                    ui.start( `#${ htmlId }`, {
                         callbacks: {
                             signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
                             signInFailure: () => signInFailure( dispatch )
@@ -56,16 +66,13 @@ export const onInitialiseFirebase = (): any => (
                         signInOptions: [
                             {
                                 provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                                scopes: [ 'https://www.googleapis.com/auth/plus.login' ],
+                                scopes: googleScopes,
                                 // Forces account selection even when one account is available.
                                 customParameters: { prompt: 'select_account' }
                             },
                             {
                                 provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                                scopes: [
-                                    'public_profile',
-                                    'email',
-                                ]
+                                scopes: facebookScopes
                             }
                         ]
                     } );
@@ -108,18 +115,18 @@ const signInFailure = ( dispatch: Dispatch ): Promise<any> => {
     return dispatch( openNotification( { text: 'notificationLoginFailure', variant: error } ) );
 };
 
-const firebaseClassName = value => `${ value } .firebaseui-idp-text-long`;
+const firebaseClassName = value => `${ value } .${ textLongClass }`;
 
 export const onSetTranslations = (): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         let { localize } = getState();
 
         document
-            .querySelector( firebaseClassName( '.firebaseui-idp-google' ) )
+            .querySelector( firebaseClassName( `.${ googleClass }` ) )
             .innerHTML = getTranslation( localize, 'signInWithGoogle' );
 
         document
-            .querySelector( firebaseClassName( '.firebaseui-idp-facebook' ) )
+            .querySelector( firebaseClassName( `.${ facebookClass }` ) )
             .innerHTML = getTranslation( localize, 'signInWithFacebook' );
 
         localize = null; // GC
