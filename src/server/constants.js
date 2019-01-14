@@ -46,6 +46,7 @@ const ROUTES = {
     CHANGE_PASSWORD: '/changepassword/post',
     NEW_PASSWORD: '/newpassword/post',
     REMIND_PASSWORD: '/remindpassword/post',
+    IS_AUTHORIZED: '/authorized/get',
     LOGIN_FIREBASE: '/login/firebase/post'
 };
 
@@ -96,6 +97,10 @@ const SESSION = {
     ]
 };
 
+const GOOGLE = {
+    HOST: 'securetoken.googleapis.com',
+    PATH: '/v1/token'
+};
 
 module.exports = {
     DOMAIN,
@@ -109,4 +114,5 @@ module.exports = {
     EMAIL_RESPONSES,
     CORS,
     SESSION,
+    GOOGLE
 };

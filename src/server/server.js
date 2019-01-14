@@ -20,6 +20,7 @@ const serverChangePassword = require('./server.change.password');
 const serverRemindPassword = require('./server.remind.password');
 const serverNewPassword = require('./server.new.password');
 const serverTranslationsGet = require('./server.translations.get');
+const serverIsAuthorized = require('./server.is.authorized.get');
 const serverLoginFirebase = require('./server.login.firebase.post');
 
 const {
@@ -32,6 +33,7 @@ const {
         REMIND_PASSWORD,
         NEW_PASSWORD,
         TRANSLATIONS_GET,
+        IS_AUTHORIZED,
         LOGIN_FIREBASE
     },
     SESSION: { ROUTES }
@@ -88,8 +90,11 @@ app.use(express.static(ROOT, {
         } else {
             res.set("Cache-Control", "public, max-age=0");
         }
-}}));
+    }
+}));
 
+/** Check if authorized */
+app.get( IS_AUTHORIZED, serverIsAuthorized );
 
 /** Get lessons */
 app.get( LESSONS_GET, serverLessonsGet );
