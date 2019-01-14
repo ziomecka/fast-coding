@@ -7,6 +7,7 @@ const app = express();
 const http = require('http');
 const server = http.Server(app);
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 const constants = require('./constants');
 
@@ -30,6 +31,8 @@ const ROOT = path.resolve(__dirname, '../');
 const HTML_PATH = !PROD_ENV
     ? path.resolve(ROOT, '/')
     : path.resolve(ROOT, '../../../index.html');
+
+app.use( helmet() );
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
