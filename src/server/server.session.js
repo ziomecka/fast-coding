@@ -10,7 +10,6 @@ const { NODE_ENV } = process.env;
 const {
     REDIS_KEYS: { SESSION },
     SESSION: { NAME: name, MAX_AGE: maxAge },
-    PORT
 } = constants;
 
 let { DOMAIN: domain } = constants;
@@ -18,7 +17,7 @@ const httpOnly = true;
 let secure = true;
 
 if ( !NODE_ENV ){
-    domain = `localhost:${ PORT }`;
+    domain = `localhost`;
     secure = false;
 }
 
