@@ -1,5 +1,5 @@
 const redis = require('./Redis/');
-
+const authorizeGoogle = require('./PasswordManager/authorize.google');
 const {
     REDIS_RESPONSES: {
         SUCCESS,
@@ -7,29 +7,53 @@ const {
     },
 } = require('./constants');
 
-
 module.exports = async (req, res) => {
     const { email, displayName, authorizationMethod, refreshToken } = req.body;
 
     if ( !email || !displayName || !authorizationMethod || !refreshToken ) {
-        res.json( { error: 'Email, displayName, authorizationMethod and refreshToken cannot be empty' } );
+        res.json( {
+            error: 'Email, displayName, authorizationMethod and refreshToken cannot be empty',
+            authorized: false
+        } );
     }
 
+    Object.assign( req.session, {
+        email,
+        displayName,
+        authorizationMethod,
+        refreshToken,
+    });
+    req.session.save();
+
     try {
-        let answer = await redis.storeFirebaseUser({ email });
-        const { login, result, err } = answer;
+        let googleAnswer = await authorizeGoogle( refreshToken );
 
-        if ( result === SUCCESS ) {
-            Object.assign( req.session, { email, displayName, authorizationMethod, refreshToken, login });
-            res.json( { result, login } );
+        if ( googleAnswer ) {
+            req.session.authorized = true;
+            req.session.save()
+            console.log(`Email: ${ email } authorized with Google`);
+
+            let answer = await redis.storeFirebaseUser({ email });
+            const { login, result, err } = answer;
+
+            if ( result === SUCCESS ) {
+                req.session.login = login;
+                req.session.save();
+
+                res.json( { result, login, authorized: true } );
+            }
+
+            if ( result === ERROR ) {
+                res.json( { error: err.message || err.toString(), authorized: true } );
+            }
+
+            answer = null;
+
+        } else {
+            res.json( { authorized: false } );
         }
 
-        if ( result === ERROR ) {
-            res.json( { error: err.message || err.toString() } );
-        }
-
-        answer = null;
     } catch ( err ) {
-        res.json({ error: err.message || err.toString() });
+        res.json({ error: err.message || err.toString(), authorized: false });
     }
 };
