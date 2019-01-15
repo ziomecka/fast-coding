@@ -3,13 +3,16 @@ import { Dispatch, Action } from 'redux';
 import { unauthorizeUser } from '@app/User/_duck/actions';
 import { onOpenNotification } from '@app/Notification/_duck/operations';
 
-import { AppRoutesEnum } from '@appTypes';
+import { AppRoutesEnum, AppRoutesServerEnum } from '@appTypes';
 import history from '@shared/history';
+import { get } from '@app/api/'
 
 const { lessons } = AppRoutesEnum;
+const { logOut } = AppRoutesServerEnum;
 
 export const onLogOut = (): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
+        get({ path: logOut });
         let response = await dispatch( unauthorizeUser() );
 
         // TODO if not try catch?
