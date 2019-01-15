@@ -22,6 +22,7 @@ const serverNewPassword = require('./server.new.password');
 const serverTranslationsGet = require('./server.translations.get');
 const serverIsAuthorized = require('./server.is.authorized.get');
 const serverLoginFirebase = require('./server.login.firebase.post');
+const serverLogOutGet = require('./server.logout.get');
 
 const {
     PORT: _PORT,
@@ -34,7 +35,8 @@ const {
         NEW_PASSWORD,
         TRANSLATIONS_GET,
         IS_AUTHORIZED,
-        LOGIN_FIREBASE
+        LOGIN_FIREBASE,
+        LOGOUT
     },
     SESSION: { ROUTES }
 } = constants;
@@ -109,7 +111,11 @@ app.post( NEW_USER_SET, serverNewUserSet );
 /** Log user */
 app.post( LOGIN_LOG, serverLoginLog );
 
+/** Log with firebase */
 app.post ( LOGIN_FIREBASE, serverLoginFirebase );
+
+/** Log out */
+app.get ( LOGOUT, serverLogOutGet );
 
 /** Change password */
 app.post( CHANGE_PASSWORD, serverChangePassword );
