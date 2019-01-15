@@ -1,11 +1,20 @@
 const authorizeGoogle = require('./PasswordManager/authorize.google');
 
 module.exports = async ( req, res ) => {
-    const { login, authorizationMethod, displayName, refreshToken } = Object( req.session );
+    const {
+        login,
+        authorizationMethod,
+        displayName,
+        refreshToken,
+        authorized,
+        email
+    } = Object( req.session );
 
     if ( authorizationMethod === 'GOOGLE' ) {
         try {
             let answer = await authorizeGoogle( refreshToken );
+
+            console.log(`Email: ${ email }, login: ${ login } authorized with Google`);
 
             const { refreshToken: newRefreshToken } = Object( answer.data );
 
@@ -19,11 +28,9 @@ module.exports = async ( req, res ) => {
         }
     } else {
         res.json({
-            authorized: true,
+            authorized,
             login,
-            authorizationMethod,
-            displayName,
-            refreshToken
+            displayName
         });
     }
 };
