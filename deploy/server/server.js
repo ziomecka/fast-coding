@@ -49,7 +49,7 @@ const HTML_PATH = !PROD_ENV
     ? path.resolve(ROOT, '/')
     : path.resolve(ROOT, '../../../index.html');
 
-// app.use( helmet() );
+app.use( helmet() );
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {

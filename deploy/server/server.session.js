@@ -6,7 +6,6 @@ const redisClient = require( './Redis/' );
 const constants = require('./constants');
 
 const { NODE_ENV } = process.env;
-const isProduction = NODE_ENV === 'production';
 
 const {
     REDIS_KEYS: { SESSION },
@@ -18,7 +17,7 @@ let { DOMAIN: domain } = constants;
 const httpOnly = true;
 let secure = true;
 
-if ( !isProduction ){
+if ( !NODE_ENV ){
     domain = `localhost:${ PORT }`;
     secure = false;
 }
@@ -31,11 +30,11 @@ const getSession = () => ( session( {
     saveUninitialized: true,
     store: new RedisStore({ client: redisClient.client, prefix: SESSION }),
     cookie: {
-        // secure,
-        // httpOnly,
+        secure,
+        httpOnly,
         maxAge,
-        // domain,
-        // path: '/',
+        domain,
+        path: '/',
     }
 } ) );
 
