@@ -22,6 +22,7 @@ if ( !NODE_ENV ){
 }
 
 const getSession = () => ( session( {
+    proxy: true,
     secret: process.env.SESSION_SECRET,
     resave: 'false',
     genid: getUUID,

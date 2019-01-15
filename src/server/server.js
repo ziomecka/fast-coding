@@ -70,6 +70,8 @@ if (!PROD_ENV) {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
+app.set('trust proxy', 1);
+
 app.use( serverCors() );
 
 app.use( express.json() );
