@@ -109,6 +109,7 @@ app.post( NEW_USER_SET, serverNewUserSet );
 /** Log user */
 app.post( LOGIN_LOG, serverLoginLog );
 
+/** Log with firebase */
 app.post ( LOGIN_FIREBASE, serverLoginFirebase );
 
 /** Change password */
