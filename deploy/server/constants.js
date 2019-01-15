@@ -1,6 +1,6 @@
 const { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_KEY_LENGTH } = require('./constants.client');
 const PORT = 3000;
-const DOMAIN = 'https://fast-coding.herokuapp.com';
+const DOMAIN = 'fast-coding.herokuapp.com';
 
 /** Server responses */
 const BASIC_RESPONSES = {

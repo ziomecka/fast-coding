@@ -46,7 +46,7 @@ class PasswordManager {
             email
         } = options
 
-        return `${ DOMAIN }${ NEW_PASSWORD }?${ QUERY_PARAM_KEY }=${ uuid }&${ QUERY_PARAM_EMAIL }=${ email }`;
+        return `https://${ DOMAIN }${ NEW_PASSWORD }?${ QUERY_PARAM_KEY }=${ uuid }&${ QUERY_PARAM_EMAIL }=${ email }`;
     }
 
     changePasswordURI(uuid) {
