@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
         if ( googleAnswer ) {
             req.session.authorized = true;
-            req.session.save()
+            req.session.save();
             console.log(`Email: ${ email } authorized with Google`);
 
             let answer = await redis.storeFirebaseUser({ email });

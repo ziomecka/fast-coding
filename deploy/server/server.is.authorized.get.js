@@ -17,9 +17,10 @@ module.exports = async ( req, res ) => {
 
             console.log(`Email: ${ email }, login: ${ login } authorized with Google`);
 
-            const { refreshToken: newRefreshToken } = Object( answer.data );
+            const { refresh_token: newRefreshToken } = Object( answer.data || answer );
 
             Object.assign( req.session, { refreshToken: newRefreshToken });
+            req.session.save();
 
             res.json({ authorized: true, login, displayName });
             answer = null; // GC

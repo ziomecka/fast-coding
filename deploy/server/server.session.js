@@ -5,7 +5,7 @@ const RedisStore = require( 'connect-redis' )( session );
 const redisClient = require( './Redis/' );
 const constants = require('./constants');
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV, SESSION_SECRET } = process.env;
 
 const {
     REDIS_KEYS: { SESSION },
@@ -23,7 +23,7 @@ if ( !NODE_ENV ){
 
 const getSession = () => ( session( {
     proxy: true,
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     resave: 'false',
     genid: getUUID,
     name,
