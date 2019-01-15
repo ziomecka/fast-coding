@@ -10,7 +10,8 @@ module.exports = async ( req, res ) => {
         email
     } = Object( req.session );
 
-    if ( authorizationMethod === 'GOOGLE' ) {
+    /** Confirm authorization only if already authorized */
+    if ( authorized && authorizationMethod === 'GOOGLE' ) {
         try {
             let answer = await authorizeGoogle( refreshToken );
 
