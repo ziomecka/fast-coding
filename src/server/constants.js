@@ -69,12 +69,19 @@ const REMIND_PASSWORD = {
     QUERY_PARAM_KEY_LENGTH
 };
 
+const VERIFY_PASSWORD = {
+    HASH_EXPIRES_SECONDS: 3600,
+    COOKIE_NAME: 'FC_AUTH',
+    AUTHORIZATION_METHOD: 'FAST_CODING'
+};
+
 const REDIS_KEYS = {
     USERS_KEY: 'user_data',
     EMAILS_KEY: 'users_emails',
     LOGINS_KEY: 'users_logins',
     REMIND_PASSWORD_KEY: 'maintain_remindPassword',
-    SESSION: 'session_'
+    SESSION: 'session_',
+    FC_AUTHORIZED: 'fc_auth'
 };
 
 const CORS = {
@@ -110,6 +117,7 @@ module.exports = {
     REDIS_RESPONSES,
     REDIS_KEYS,
     REMIND_PASSWORD,
+    VERIFY_PASSWORD,
     PASSWORD_MANAGER_RESPONSES,
     ROUTES,
     EMAILS,

@@ -23,7 +23,9 @@ const {
     },
     ROUTES: { NEW_PASSWORD },
     DOMAIN,
-    REMIND_PASSWORD: { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_LENGTH }
+    REMIND_PASSWORD: { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_LENGTH },
+    REDIS_KEYS: { FC_AUTHORIZED },
+    VERIFY_PASSWORD: { HASH_EXPIRES_SECONDS }
 } = require('../constants');
 
 class PasswordManager {
@@ -157,12 +159,29 @@ class PasswordManager {
 
         const passwordValid = storedPasswordHash === passwordHash;
 
-        response = null; // GC
+        /** Generate a token. Store in redis hash and salt, return token */
         const token = getUUID();
+        const { passwordHash: hash, salt } = this._encrypt( token, this._getSalt() );
+
+        try {
+            let hashResponse = await this.redis.storeString({
+                key: `${ FC_AUTHORIZED }_${ hash }`,
+                value: salt,
+                expires: HASH_EXPIRES_SECONDS
+            });
+
+            if ( hashResponse ) {
+                hashResponse = null; // GC
+                response = null; // GC
                 return {
                     result: passwordValid? SUCCESS : INCORRECT_PASSWORD,
                     token
                 };
+            }
+        } catch ( err ) {
+            console.warn(`Verify password error: store hash: ${err.message || err.toString()}`);
+            return { result: ERROR };
+        }
     }
 
     // TODO at present only one link can be stored in redis
