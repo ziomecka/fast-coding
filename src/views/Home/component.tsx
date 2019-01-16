@@ -10,9 +10,26 @@ import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
 import TranslationsLoader from '@app/TranslationsLoader/';
 
+
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseui from 'firebaseui';
+
+import {
+    projectId,
+    authDomain,
+    databaseURL
+} from './constants';
+
 class HomeViewComponent extends React.Component<HomeViewProps> {
     componentDidMount() {
         this.props.isAuthorized();
+        firebase.initializeApp( {
+            projectId,
+            apiKey: process.env.FIREBASE_API_KEY,
+            authDomain,
+            databaseURL
+        } );
     }
 
     render() {
