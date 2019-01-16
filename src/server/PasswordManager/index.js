@@ -212,6 +212,34 @@ class PasswordManager {
         }
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.token
+     * @param {string} options.login
+     * @returns {Promise<0 || 1>} BASIC_RESPONSES: ERROR = 0 || SUCCESS = 1
+     */
+    async logout(options) {
+        try {
+            const userVerified = await this.verifyUser(options);
+
+            /**
+             * If user verified positively then
+             * remove salt and hash from redis.
+             * Redis returns number of strings removed
+             * */
+            if ( userVerified ) {
+                let removeString = await this.redis.removeString(`${ FC_AUTHORIZED }_${ options.login }`);
+                return !!removeString;
+            } else {
+                return Promise.resolve( ERROR );
+            }
+        } catch ( err ) {
+            console.log(`Logout error: ${ login }`);
+            return Promise.resolve( ERROR );
+        }
+    }
+
     // TODO at present only one link can be stored in redis
     // TODO what if client generates several links?
     // Send the same link but change expiiry?
