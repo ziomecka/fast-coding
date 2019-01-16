@@ -14,7 +14,7 @@ export const onLogOut = (): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
         let serverResponse = await get( { path: logOut } );
 
-        if ( serverResponse ) {
+        if ( serverResponse && serverResponse.result ) {
             let response = await dispatch( unauthorizeUser() );
             // TODO if not try catch?
             /** redirect to lessons and notify about success */
