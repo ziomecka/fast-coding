@@ -165,8 +165,8 @@ class PasswordManager {
 
         try {
             let hashResponse = await this.redis.storeString({
-                key: `${ FC_AUTHORIZED }_${ hash }`,
-                value: salt,
+                key: `${ FC_AUTHORIZED }_${ login }`,
+                value: JSON.stringify({ salt, hash }),
                 expires: HASH_EXPIRES_SECONDS
             });
 
