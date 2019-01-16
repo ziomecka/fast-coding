@@ -13,13 +13,3 @@ module.exports = async (req, res) => {
         res.json({ error: err.message || err.toString() });
     }
 };
-
-// TODO
-/** If password set succesfully set cookie */
-// if (response.result === 1) {
-//     res.cookie(
-//         `${HASH_COOKIE_NAME}-${login}`,
-//         response.passwordHash,
-//         { maxAge: HASH_COOKIE_MAX_AGE, httpOnly: true }
-//     )
-// }

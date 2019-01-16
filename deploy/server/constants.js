@@ -69,12 +69,19 @@ const REMIND_PASSWORD = {
     QUERY_PARAM_KEY_LENGTH
 };
 
+const VERIFY_PASSWORD = {
+    HASH_EXPIRES_SECONDS: 3600,
+    COOKIE_NAME: 'FC_AUTH',
+    AUTHORIZATION_METHOD: 'FAST_CODING'
+};
+
 const REDIS_KEYS = {
     USERS_KEY: 'user_data',
     EMAILS_KEY: 'users_emails',
     LOGINS_KEY: 'users_logins',
     REMIND_PASSWORD_KEY: 'maintain_remindPassword',
-    SESSION: 'session_'
+    SESSION: 'session_',
+    FC_AUTHORIZED: 'fc_auth'
 };
 
 const CORS = {
@@ -98,9 +105,10 @@ const SESSION = {
     ]
 };
 
-const GOOGLE = {
+const FIREBASE = {
     HOST: 'securetoken.googleapis.com',
-    PATH: '/v1/token'
+    PATH: '/v1/token',
+    AUTHORIZATION_METHODS: [ 'GOOGLE', 'FACEBOOK' ]
 };
 
 module.exports = {
@@ -109,11 +117,12 @@ module.exports = {
     REDIS_RESPONSES,
     REDIS_KEYS,
     REMIND_PASSWORD,
+    VERIFY_PASSWORD,
     PASSWORD_MANAGER_RESPONSES,
     ROUTES,
     EMAILS,
     EMAIL_RESPONSES,
     CORS,
     SESSION,
-    GOOGLE
+    FIREBASE
 };

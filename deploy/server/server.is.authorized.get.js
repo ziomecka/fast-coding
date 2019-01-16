@@ -1,4 +1,5 @@
 const authorizeGoogle = require('./PasswordManager/authorize.google');
+const { FIREBASE: { AUTHORIZATION_METHODS }} = require('./constants');
 
 module.exports = async ( req, res ) => {
     const {
@@ -11,7 +12,7 @@ module.exports = async ( req, res ) => {
     } = Object( req.session );
 
     /** Confirm authorization only if already authorized */
-    if ( authorized && authorizationMethod === 'GOOGLE' ) {
+    if ( authorized && AUTHORIZATION_METHODS.indexOf( authorizationMethod ) !== -1 ) {
         try {
             let answer = await authorizeGoogle( refreshToken );
 
@@ -20,7 +21,6 @@ module.exports = async ( req, res ) => {
             const { refresh_token: newRefreshToken } = Object( answer.data || answer );
 
             Object.assign( req.session, { refreshToken: newRefreshToken });
-            req.session.save();
 
             res.json({ authorized: true, login, displayName });
             answer = null; // GC

@@ -7,7 +7,7 @@ const constants = require('../constants');
 
 module.exports = ( refreshToken ) => {
     const { FIREBASE_API_KEY } = process.env;
-    const { GOOGLE: { PATH, HOST }} = constants;
+    const { FIREBASE: { PATH, HOST }} = constants;
 
     let body = [];
 

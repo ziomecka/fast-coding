@@ -23,7 +23,9 @@ const {
     },
     ROUTES: { NEW_PASSWORD },
     DOMAIN,
-    REMIND_PASSWORD: { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_LENGTH }
+    REMIND_PASSWORD: { QUERY_PARAM_KEY, QUERY_PARAM_EMAIL, QUERY_PARAM_LENGTH },
+    REDIS_KEYS: { FC_AUTHORIZED },
+    VERIFY_PASSWORD: { HASH_EXPIRES_SECONDS }
 } = require('../constants');
 
 class PasswordManager {
@@ -127,6 +129,15 @@ class PasswordManager {
         return INCORRECT_CURRENT_PASSWORD;
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.login
+     * @param {string} options.password
+     * @returns {Object} object
+     * @returns {number} object.result
+     * @returns {string} object.token - optional
+     */
     async verifyPassword(options) {
         const { login, password } = options;
 
@@ -135,12 +146,12 @@ class PasswordManager {
         try {
             response = await this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'] });
         } catch (err) {
-            console.warn(`Verify password error: ${err.message || err.toString()}`);
-            return ERROR;
+            console.warn(`Verify password error: get password: ${err.message || err.toString()}`);
+            return { result: ERROR };
         }
 
         if (response === LOGIN_DOES_NOT_EXIST) {
-            return response;
+            return { result: response };
         }
 
         const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
@@ -148,8 +159,85 @@ class PasswordManager {
 
         const passwordValid = storedPasswordHash === passwordHash;
 
-        response = null; // GC
-        return passwordValid? SUCCESS : INCORRECT_PASSWORD;
+        /** Generate a token. Store in redis hash and salt, return token */
+        const token = getUUID();
+        const { passwordHash: hash, salt } = this._encrypt( token, this._getSalt() );
+
+        try {
+            let hashResponse = await this.redis.storeString({
+                key: `${ FC_AUTHORIZED }_${ login }`,
+                value: JSON.stringify({ salt, hash }),
+                expires: HASH_EXPIRES_SECONDS
+            });
+
+            if ( hashResponse ) {
+                hashResponse = null; // GC
+                response = null; // GC
+                return {
+                    result: passwordValid? SUCCESS : INCORRECT_PASSWORD,
+                    token
+                };
+            }
+        } catch ( err ) {
+            console.warn(`Verify password error: store hash: ${err.message || err.toString()}`);
+            return { result: ERROR };
+        }
+    }
+
+
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.token
+     * @param {string} options.login
+     * @returns {Promise<boolean>} Token is correct?
+     */
+    async verifyUser(options) {
+        const { token, login } = options;
+
+        const key = `${ FC_AUTHORIZED }_${ login }`;
+
+        try {
+            /** Get salt and has from redis */
+            let hashResponse = await this.redis.getString(key);
+
+            const { salt, hash: storedHash } = JSON.parse( hashResponse );
+            const { passwordHash } = this._encrypt( token, salt );
+
+            /** Hashed token equals to hash stored in Redis ? */
+            return storedHash === passwordHash;
+        } catch ( err ) {
+            console.log(`User verify error: ${ login }`);
+            return Promise.resolve( false );
+        }
+    }
+
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.token
+     * @param {string} options.login
+     * @returns {Promise<0 || 1>} BASIC_RESPONSES: ERROR = 0 || SUCCESS = 1
+     */
+    async logout(options) {
+        try {
+            const userVerified = await this.verifyUser(options);
+
+            /**
+             * If user verified positively then
+             * remove salt and hash from redis.
+             * Redis returns number of strings removed
+             * */
+            if ( userVerified ) {
+                let removeString = await this.redis.removeString(`${ FC_AUTHORIZED }_${ options.login }`);
+                return !!removeString;
+            } else {
+                return Promise.resolve( ERROR );
+            }
+        } catch ( err ) {
+            console.log(`Logout error: ${ login }`);
+            return Promise.resolve( ERROR );
+        }
     }
 
     // TODO at present only one link can be stored in redis
