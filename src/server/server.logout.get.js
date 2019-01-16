@@ -1,5 +1,6 @@
-module.exports = async (req, res) => {
+module.exports = ( req, res ) => {
+    const { login, email } = req.session;
     req.session.authorized = false;
-    req.session.save();
     res.json( { result: 1, authorized: false } );
+    console.log(`Email: ${ email }, login: ${ login } logged out`);
 };

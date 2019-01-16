@@ -21,7 +21,6 @@ module.exports = async ( req, res ) => {
             const { refresh_token: newRefreshToken } = Object( answer.data || answer );
 
             Object.assign( req.session, { refreshToken: newRefreshToken });
-            req.session.save();
 
             res.json({ authorized: true, login, displayName });
             answer = null; // GC

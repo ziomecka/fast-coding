@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
         if ( !!result ) {
             // TODO remove magic number
             Object.assign( req.session, { login, authorizationMethod: 'FAST_CODING', authorized: true });
-            req.session.save();
             res.json( { result: loginResult } );
         } else {
             res.json( { result: loginResult } );
