@@ -47,10 +47,13 @@ module.exports = async (req, res) => {
             answer = null;
 
         } else {
+            req.session.authorized = false;
             res.json( { authorized: false } );
         }
 
     } catch ( err ) {
+        console.log(`Login firebase error: ${ err.message || err.toString() }`);
+        req.session.authorized = false;
         res.json({ error: err.message || err.toString(), authorized: false });
     }
 };
