@@ -127,6 +127,15 @@ class PasswordManager {
         return INCORRECT_CURRENT_PASSWORD;
     }
 
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.login
+     * @param {string} options.password
+     * @returns {Object} object
+     * @returns {number} object.result
+     * @returns {string} object.token - optional
+     */
     async verifyPassword(options) {
         const { login, password } = options;
 
@@ -135,12 +144,12 @@ class PasswordManager {
         try {
             response = await this.redis.getPassword({ key: login, data: ['salt', 'passwordHash'] });
         } catch (err) {
-            console.warn(`Verify password error: ${err.message || err.toString()}`);
-            return ERROR;
+            console.warn(`Verify password error: get password: ${err.message || err.toString()}`);
+            return { result: ERROR };
         }
 
         if (response === LOGIN_DOES_NOT_EXIST) {
-            return response;
+            return { result: response };
         }
 
         const { passwordHash: storedPasswordHash, salt: storedSalt } = response;
@@ -149,7 +158,11 @@ class PasswordManager {
         const passwordValid = storedPasswordHash === passwordHash;
 
         response = null; // GC
-        return passwordValid? SUCCESS : INCORRECT_PASSWORD;
+        const token = getUUID();
+                return {
+                    result: passwordValid? SUCCESS : INCORRECT_PASSWORD,
+                    token
+                };
     }
 
     // TODO at present only one link can be stored in redis
