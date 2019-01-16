@@ -5,23 +5,27 @@ import { onOpenNotification } from '@app/Notification/_duck/operations';
 
 import { AppRoutesEnum, AppRoutesServerEnum } from '@appTypes';
 import history from '@shared/history';
-import { get } from '@app/api/'
+import { get } from '@app/api/';
 
 const { lessons } = AppRoutesEnum;
 const { logOut } = AppRoutesServerEnum;
 
 export const onLogOut = (): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
-        get({ path: logOut });
-        let response = await dispatch( unauthorizeUser() );
+        let serverResponse = await get( { path: logOut } );
 
-        // TODO if not try catch?
-        /** redirect to lessons and notify about success */
-        if ( response ) {
-            response = null;
-            history.push( lessons );
-            return dispatch( onOpenNotification( { text: 'notificationSignOutSuccess' } ) );
+        if ( serverResponse ) {
+            let response = await dispatch( unauthorizeUser() );
+            // TODO if not try catch?
+            /** redirect to lessons and notify about success */
+            if ( response ) {
+                response = null; // GC
+                history.push( lessons );
+                return dispatch( onOpenNotification( { text: 'notificationSignOutSuccess' } ) );
+            }
+            serverResponse = null; //GC
         }
+
     }
 );
 
