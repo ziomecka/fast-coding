@@ -13,7 +13,14 @@ module.exports = async ( req, res ) => {
 
         req.session.authorized = false;
 
-        res.clearCookie( COOKIE_NAME );
+        /** Delete cookie */
+        res.cookie( COOKIE_NAME, '', {
+            expires: new Date(Date.now()),
+            httpOnly: true,
+            secure,
+            domain
+        });
+
         res.json( { result: 1, authorized: false } );
         console.log(`Login: ${ login } logged out`);
 
