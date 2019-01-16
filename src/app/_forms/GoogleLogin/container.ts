@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { default as GoogleLogin } from './component';
 import { ApplicationState } from '@appStore';
 
-import { onInitialiseFirebase, onSetTranslations } from './_duck/operations';
+import { onSetTranslations, onStartUi } from './_duck/operations';
 
 import { LocalizeState } from 'react-localize-redux';
 import { WithStyles } from '@material-ui/core/styles/withStyles';
@@ -14,7 +14,7 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): GoogleLoginDispatch => ( {
-    initializeFirebase: () => dispatch( onInitialiseFirebase() ),
+    startUI: ui => dispatch( onStartUi ( ui ) ),
     setTranslations: () => dispatch( onSetTranslations() )
 } );
 
@@ -27,7 +27,7 @@ interface MapStateToPropsI {
 }
 
 export interface GoogleLoginDispatch {
-    initializeFirebase: () => Promise<boolean>;
+    startUI: (ui: any) => void;
     setTranslations: () => void;
 }
 

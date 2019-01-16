@@ -9,12 +9,7 @@ import { AppRoutesEnum, UserAuthorizationMethodEnum, AppRoutesServerEnum } from 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-import firebaseui from 'firebaseui';
-
 import {
-    projectId,
-    authDomain,
-    databaseURL,
     htmlId,
     facebookClass,
     googleClass,
@@ -42,57 +37,31 @@ const {
     termsOfService: tosUrl
 } = AppRoutesEnum;
 
-export const onInitialiseFirebase = (): any => (
-    async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-
-        // @ts-ignore
-        const { authorized } = getState().app.user;
-        if ( !authorized ) {
-
-            try {
-                let response = await firebase.initializeApp( {
-                    projectId,
-                    apiKey: process.env.FIREBASE_API_KEY,
-                    authDomain,
-                    databaseURL
-                } );
-
-                if ( response ) {
-                    let ui = new firebaseui.auth.AuthUI( firebase.auth() );
-                    ui.start( `#${ htmlId }`, {
-                        callbacks: {
-                            signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
-                            signInFailure: () => signInFailure( dispatch )
-                        },
-                        signInFlow: 'popup',
-                        privacyPolicyUrl,
-                        tosUrl,
-                        signInOptions: [
-                            {
-                                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                                scopes: googleScopes,
-                                // Forces account selection even when one account is available.
-                                customParameters: { prompt: 'select_account' }
-                            },
-                            {
-                                provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                                scopes: facebookScopes
-                            }
-                        ]
-                    } );
-
-                    response = null; // GC
-                    return Promise.resolve( true );
-                } else if ( !response ) {
-                    return Promise.resolve( false );
+export const onStartUi = (ui: any): any => (
+    async ( dispatch: Dispatch ): Promise<void> => {
+        ui.start( `#${ htmlId }`, {
+            callbacks: {
+                signInSuccessWithAuthResult: authResult => signInSuccessWithAuthResult( authResult, dispatch ),
+                signInFailure: () => signInFailure( dispatch )
+            },
+            signInFlow: 'popup',
+            privacyPolicyUrl,
+            tosUrl,
+            signInOptions: [
+                {
+                    provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    scopes: googleScopes,
+                    // Forces account selection even when one account is available.
+                    customParameters: { prompt: 'select_account' }
+                },
+                {
+                    provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                    scopes: facebookScopes
                 }
-            } catch ( err ) {
-                return Promise.resolve( false );
-            }
-        } else {
-            return Promise.resolve( false );
-        }
-    } );
+            ]
+        } );
+    }
+);
 
 const signInSuccessWithAuthResult = ( authResult, dispatch: Dispatch ): boolean => {
     const {

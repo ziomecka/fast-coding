@@ -1,22 +1,30 @@
 import * as React from 'react';
 
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseui from 'firebaseui';
+
 import { GoogleLoginProps } from './container';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 import { getActiveLanguage } from 'react-localize-redux';
+
 import { htmlId } from './constants';
 
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
+    ui: any;
     constructor( props ) {
         super( props );
         this.id = htmlId;
     }
 
-    componentDidMount() {
-        this.props.initializeFirebase();
+    async componentDidMount() {
+        // @ts-ignore
+        this.ui = new firebaseui.auth.AuthUI( firebase.auth() );
+        this.props.startUI( this.ui );
     }
 
     componentDidUpdate( prevProps ) {
@@ -26,6 +34,10 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         if ( activeLanguage !== prevActiveLanguage ){
             this.props.setTranslations();
         }
+    }
+
+    componentWillUnmount() {
+        this.ui.delete();
     }
 
     render() {
