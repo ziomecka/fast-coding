@@ -98,9 +98,10 @@ const SESSION = {
     ]
 };
 
-const GOOGLE = {
+const FIREBASE = {
     HOST: 'securetoken.googleapis.com',
-    PATH: '/v1/token'
+    PATH: '/v1/token',
+    AUTHORIZATION_METHODS: [ 'GOOGLE', 'FACEBOOK' ]
 };
 
 module.exports = {
@@ -115,5 +116,5 @@ module.exports = {
     EMAIL_RESPONSES,
     CORS,
     SESSION,
-    GOOGLE
+    FIREBASE
 };
