@@ -184,6 +184,34 @@ class PasswordManager {
         }
     }
 
+
+    /**
+     *
+     * @param {Object} options
+     * @param {string} options.token
+     * @param {string} options.login
+     * @returns {Promise<boolean>} Token is correct?
+     */
+    async verifyUser(options) {
+        const { token, login } = options;
+
+        const key = `${ FC_AUTHORIZED }_${ login }`;
+
+        try {
+            /** Get salt and has from redis */
+            let hashResponse = await this.redis.getString(key);
+
+            const { salt, hash: storedHash } = JSON.parse( hashResponse );
+            const { passwordHash } = this._encrypt( token, salt );
+
+            /** Hashed token equals to hash stored in Redis ? */
+            return storedHash === passwordHash;
+        } catch ( err ) {
+            console.log(`User verify error: ${ login }`);
+            return Promise.resolve( false );
+        }
+    }
+
     // TODO at present only one link can be stored in redis
     // TODO what if client generates several links?
     // Send the same link but change expiiry?
