@@ -1,5 +1,10 @@
 const authorizeGoogle = require('./PasswordManager/authorize.google');
-const { FIREBASE: { AUTHORIZATION_METHODS }} = require('./constants');
+const {
+    FIREBASE: { AUTHORIZATION_METHODS },
+    VERIFY_PASSWORD: { AUTHORIZATION_METHOD, COOKIE_NAME }
+} = require('./constants');
+
+const passwordManager = require('./PasswordManager/');
 
 module.exports = async ( req, res ) => {
     const {
@@ -28,11 +33,23 @@ module.exports = async ( req, res ) => {
             res.json({ authorized: false });
             console.log(`Https request to Google: ${ err.message || err.toString() }`);
         }
+    } else if ( authorized && authorizationMethod === AUTHORIZATION_METHOD ) {
+        try {
+            const isAuthorized = await passwordManager.verifyUser({ token: req.cookie[ COOKIE_NAME ], login });
+
+            if ( isAuthorized ) {
+                res.json({ authorized: true, login, displayName });
+                console.log(`User: ${ login } authorized with FC`);
+            } else {
+                res.json({ authorized: false });
+                console.log(`User: ${ login } not authorized by FC`);
+            }
+        } catch ( err ) {
+            res.json({ authorized: false });
+            console.log(`Authorized by FC error: ${ err.message || err.toString() }`);
+        }
+
     } else {
-        res.json({
-            authorized,
-            login,
-            displayName
-        });
+        res.json({ authorized: false });
     }
 };
