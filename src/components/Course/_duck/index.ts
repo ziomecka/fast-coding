@@ -1,2 +1,2 @@
-export { default } from './operations';
+export { onOpenLesson, onOpenRandomLesson } from './operations';
 export { LessonsTypesEnum } from './types';

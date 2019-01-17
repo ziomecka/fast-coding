@@ -8,7 +8,7 @@ import { default as Course } from './component';
 
 import { LessonData } from '@components/Lesson/_duck/reducers';
 
-import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
+import { onOpenRandomLesson, onOpenLesson } from './_duck/';
 
 import { ApplicationState } from '@appStore';
 
