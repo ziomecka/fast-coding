@@ -1,0 +1,18 @@
+{
+    "verbose": true,
+    "ignore": [
+        ".git",
+        "node_modules/**",
+        "src/app/**",
+        "src/components/**",
+        "src/views/**",
+        "src/theme/**",
+        "src/utilis/**",
+        "src/styles/**",
+        "src/shared/**",
+        "src/_types/**",
+        "src/_reducers/**"
+    ],
+    "ext": "js",
+    "watch": [ "bundle/server/**/*", "src/server/**/*" ]
+}
