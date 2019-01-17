@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux';
 
-import { ApplicationContainersEnum, ThunkGetStateType } from '@applicationTypes';
+import { ThunkGetStateType } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';
 
-const { components } = ApplicationContainersEnum;
-const { comparator, lesson } = ComponentsContainersEnum;
+const { comparator } = ComponentsContainersEnum;
 const { lessons } = AppRoutesEnum;
 
 import {
@@ -67,10 +66,10 @@ export const handleKeyboardDown
 };
 
 export const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-    let state = getState()[ components ];
+    let state = getState().components;
 
-    let { errors, correctedErrors, currentSignIndex } = state[ comparator ];
-    let { ending } = state[ lesson ];
+    let { errors, correctedErrors, currentSignIndex } = state.comparator;
+    let { ending } = state.lesson;
 
     const wasAnError = errors[ errors.length - 1 ] === currentSignIndex;
 
@@ -115,16 +114,16 @@ export const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetSta
 };
 
 export const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-    let state = getState()[ components ];
-    let { errors, allErrors, currentSignIndex } = state[ comparator ];
-    let { lessonText: text } = state[ lesson ];
+    let state = getState().components;
+    let { errors, allErrors, currentSignIndex } = state.comparator;
+    let { lessonText: text } = state.lesson;
 
     /** currentSignIndex cannot be higher then text.length - 1 */
     const nextCurrentSignIndex = ( currentSignIndex + 1 > text.length - 1 )
         ? currentSignIndex
         : currentSignIndex + 1;
 
-    const expectedSign = state[ lesson ].lessonText[ nextCurrentSignIndex ];
+    const expectedSign = state.lesson.lessonText[ nextCurrentSignIndex ];
 
     /** To keep dispatch answer */
     let answer: any;
@@ -159,7 +158,7 @@ export const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: 
 };
 
 export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-    if ( getState()[ components ][ comparator ].currentSignIndex >= 0 ) {
+    if ( getState().components.comparator.currentSignIndex >= 0 ) {
         await dispatch( onStartLeaving() );
     } else {
         await history.push( lessons );

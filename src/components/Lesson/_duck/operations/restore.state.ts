@@ -20,7 +20,7 @@ import { RestoreStateAction as ComparatorRestoreStateAction } from '../../Compar
 import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 export const onKeepState = ( localStorageItem: LocalStorageItemEnum, container: ComponentsContainersEnum ): any => (
-    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => localStorageSetItem( localStorageItem, getState()[ components ][ container ] ) );
+    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => localStorageSetItem( localStorageItem, getState().components[ container ] ) );
 
 export const onRemoveState = ( localStorageItem: LocalStorageItemEnum ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => localStorageRemoveItem( localStorageItem ) );

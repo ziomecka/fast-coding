@@ -22,16 +22,13 @@ import {
 
 import { CSRActions } from '@app/CSR/_duck/actions';
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '@app/Localize/_duck/reducers';
-import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsActions } from '@components/_actions';
 import { Reducer } from 'redux';
 import { csrReducer } from '@app/CSR/_duck/reducers';
 
-const { components, app } = ApplicationContainersEnum;
-
 export const INITIAL_STATE = {
-    [ components ]: { ...COMPONENTS_INITIAL_STATE },
-    [ app ]: { ...APP_INITIAL_STATE },
+    components: { ...COMPONENTS_INITIAL_STATE },
+    app: { ...APP_INITIAL_STATE },
     localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
@@ -61,7 +58,7 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
             return {
                 ...state,
                 // @ts-ignore
-                [ app ]: { ...appReducer( state[ app ], action ) }
+                app: { ...appReducer( state.app, action ) }
             };
         }
 
@@ -70,7 +67,7 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
             return {
                 ...state,
                 // @ts-ignore
-                [ components ]: { ...componentsReducer( state[ components ], action as ComponentsActions ) }
+                components: { ...componentsReducer( state.components, action as ComponentsActions ) }
             };
         }
 
@@ -94,7 +91,7 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
 export { reducers as applicationReducer };
 
 export interface ApplicationState {
-    // @ts-ignore
-    [key: ApplicationContainersEnum ]: ComponentsState | AppState;
+    components: ComponentsState,
+    app: AppState;
     localize: LocalizeState;
 }

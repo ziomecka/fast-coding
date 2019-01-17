@@ -11,9 +11,8 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { MenuState } from '@app/AppMenu/_duck/reducers';
 
-import { ApplicationContainersEnum, LanguagesEnum } from '@applicationTypes';
+import { LanguagesEnum } from '@applicationTypes';
 import {
-    AppContainersEnum,
     AppRoutesEnum,
     MenuContainersEnum,
     MenuRulesEnum
@@ -22,16 +21,14 @@ import {
 import { WithStyles } from '@material-ui/core/styles';
 
 import { IconButtonProps } from '@material-ui/core/IconButton';
-const { app } = ApplicationContainersEnum;
-const { appMenu, user } = AppContainersEnum;
 
 import { LocalizeState } from 'react-localize-redux';
 import { WithMenuRules } from '@app/MenuRulesHoc/';
 
 /** MenuState because component gets anchorEl from whole [menu] state */
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[ app ][ appMenu ],
-    authorized: state[ app ][ user ].authorized,
+    ...state.app.appMenu,
+    authorized: state.app.user.authorized,
     localize: state.localize
 } );
 

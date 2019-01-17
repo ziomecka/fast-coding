@@ -6,22 +6,17 @@ import { ApplicationState } from '@appStore';
 
 import { NewUserFormState } from './_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
 import { onSendNewUserForm } from './_duck/operations';
 import { SendNewUserFormI } from './_duck/types';
 import { onFormInvalid } from '@appForm/_duck/operations';
 
 import { setEmail, SetEmailAction, setLogin, SetLoginAction, reset } from './_duck/actions';
 
-const { app } = ApplicationContainersEnum;
-const { newUserForm } = AppContainersEnum;
-
 import { WithStyles } from '@material-ui/core/styles';
 import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): NewUserFormState => ( {
-    ...state[ app ][ newUserForm ]
+    ...state.app.newUserForm
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NewUserFormDispatch => ( {

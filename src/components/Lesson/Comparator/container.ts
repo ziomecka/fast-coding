@@ -7,12 +7,10 @@ import { ApplicationState } from '@appStore';
 import { ComparatorState } from './_duck/reducers';
 import { LessonState } from '../_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
-const { components } = ApplicationContainersEnum;
-const { comparator, lesson } = ComponentsContainersEnum;
+const { comparator } = ComponentsContainersEnum;
 
 import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
 import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
@@ -29,8 +27,8 @@ import { restoreState } from './_duck/actions';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): ComparatorState & LessonState => ( {
-    ...state[ components ][ comparator ],
-    ...state[ components ][ lesson ]
+    ...state.components.comparator,
+    ...state.components.lesson
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ComparatorDispatch => ( {

@@ -8,20 +8,14 @@ import { ApplicationState } from '@appStore';
 
 import { onLogOut } from './_duck/operations';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
-
 import { DialogDispatch, mapDispatchToProps as dialogMapDispatchToProps } from '@shared/dialog';
 
 import { IWithMedia } from '@app/Media/';
 
-const { app } = ApplicationContainersEnum;
-const { user } = AppContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     localize: { ...state.localize },
-    login: state[ app ][ user ].login,
-    displayName: state[ app ][ user ].displayName,
+    login: state.app.user.login,
+    displayName: state.app.user.displayName,
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): NavDispatchI => ( {

@@ -6,17 +6,13 @@ import { ApplicationState } from '@appStore';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum, UserAuthorizationMethodEnum } from '@appTypes';
-
-const { app } = ApplicationContainersEnum;
-const { user } = AppContainersEnum;
+import { UserAuthorizationMethodEnum } from '@appTypes';
 
 import { LocalizeState } from 'react-localize-redux';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    authorized: state[ app ][ user ].authorized,
-    authorizationMethod: state[ app ][ user ].authorizationMethod,
+    authorized: state.app.user.authorized,
+    authorizationMethod: state.app.user.authorizationMethod,
     localize: state.localize
 } );
 

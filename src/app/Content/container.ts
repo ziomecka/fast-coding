@@ -5,17 +5,11 @@ import { ApplicationState } from '@appStore';
 
 import { ContentState } from './_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
-
-const { app } = ApplicationContainersEnum;
-const { content } = AppContainersEnum;
-
 import { WithStyles } from '@material-ui/core/styles';
 import { ILocationContextProps } from '@app/AppLocation/';
 
 const mapStateToProps = ( state: ApplicationState ): ContentState => ( {
-    ...state[ app ][ content ]
+    ...state.app.content
 } );
 
 // @ts-ignore

@@ -40,21 +40,21 @@ const removeAllKeyDownListeners = ( listeners: KeyboardListenerContainerListener
 export const onAddListener = ( options: AddListener ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
         const { container } = options;
-        return addKeyDownListener( getState()[ app ][ keyboardListener ].listeners.get( container ), options.listener );
+        return addKeyDownListener( getState().app.keyboardListener.listeners.get( container ), options.listener );
     }
 );
 
 export const onRemoveListener = ( options: RemoveListener ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         const { container, listenerId } = options;
-        return removeKeyDownListener( getState()[ app ][ keyboardListener ].listeners.get( container ), listenerId );
+        return removeKeyDownListener( getState().app.keyboardListener.listeners.get( container ), listenerId );
     }
 );
 
 export const onRemoveAllListeners = ( options: RemoveAllListeners ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
         const { container } = options;
-        return removeAllKeyDownListeners( getState()[ app ][ keyboardListener ].listeners.get( container ) );
+        return removeAllKeyDownListeners( getState().app.keyboardListener.listeners.get( container ) );
     }
 );
 

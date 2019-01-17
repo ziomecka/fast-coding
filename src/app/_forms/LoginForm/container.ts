@@ -9,8 +9,6 @@ import { LoginFormState } from './_duck/reducers';
 import { onLog } from './_duck/operations';
 import { onFormInvalid } from '@appForm/_duck/operations';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
 import { setLogin, SetLoginAction, reset } from './_duck/actions';
 import { SendLoginFormI } from './_duck/types';
 
@@ -20,11 +18,8 @@ import { DialogDispatch, mapDispatchToProps as mapDialogDispatchToProps } from '
 
 import { IWithMedia } from '@app/Media/';
 
-const { app } = ApplicationContainersEnum;
-const { loginForm } = AppContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): LoginFormState => ( {
-    ...state[ app ][ loginForm ]
+    ...state.app.loginForm
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LoginFormDispatch => ( {

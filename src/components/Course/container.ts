@@ -12,21 +12,17 @@ import { onOpenRandomLesson, onOpenLesson } from './_duck/operations';
 
 import { ApplicationState } from '@appStore';
 
-import { LessonsDataI, ComponentsContainersEnum } from '@componentsTypes';
+import { LessonsDataI } from '@componentsTypes';
 
 import { LocalizeState } from 'react-localize-redux';
 import { openCourse, OpenCourseAction } from '@components/Lessons/_duck/actions';
 import { onCloseCourse } from '@components/Lessons/_duck/operations';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-const { components } = ApplicationContainersEnum;
-const { lessons } = ComponentsContainersEnum;
-
 import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     localize: state.localize,
-    openedCourseId: state[ components ][ lessons ].openedCourseId
+    openedCourseId: state.components.lessons.openedCourseId
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): CourseDispatch => ( {
