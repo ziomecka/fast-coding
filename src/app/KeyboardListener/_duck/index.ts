@@ -5,13 +5,7 @@ export {
 } from './operations';
 
 export {
-    AddListenerAction,
-    RemoveAllListenersAction,
-    RemoveListenerAction
-} from './actions';
-
-export {
     AddListener,
     RemoveAllListeners,
     RemoveListener
-} from './types'
+} from './types';

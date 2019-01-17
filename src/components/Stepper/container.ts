@@ -24,9 +24,9 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state.components.lessons
 } );
 
-const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
-    addListener: options => dispatch( addListener( options ) ),
-    removeListener: options => dispatch( removeListener( options ) )
+const mapDispatchToProps = (): IStepperDispatch => ( {
+    addListener: options => addListener( options ),
+    removeListener: options => removeListener( options )
 } );
 
 // @ts-ignore

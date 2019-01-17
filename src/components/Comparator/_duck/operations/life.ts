@@ -55,13 +55,12 @@ export const onResetComparator = (): any => ( dispatch: Dispatch, getState: Thun
     dispatch( resetComparator() );
 };
 
-
 export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    keyboardDownListenerId = dispatch ( addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } ) );
+    keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );
 };
 
-export const onStopListenKeys = (): any => ( dispatch: Dispatch ) => {
-    dispatch ( removeListener( { container, listenerId: keyboardDownListenerId } ) );
+export const onStopListenKeys = (): any => () => {
+    removeListener( { container, listenerId: keyboardDownListenerId } );
 };
 
 /** Listen to escape - start leaving lesson. Listen to validCode or backspace - unpause lesson */
@@ -81,18 +80,18 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
 };
 
 /** When lesson is paused */
-export const onPauseComparator = ( eventListener? ): any => ( dispatch: Dispatch ) => {
+export const onPauseComparator = ( eventListener? ): any => () => {
     /** Remove current eventListener */
     removeListener( { container, listenerId: keyboardDownListenerId } );
     if ( eventListener ) {
         /** Add keydown listener: if valid keyCode or backSpace then unpause lesson */
-        keyboardDownListenerId = dispatch( addListener( { container, listener: eventListener } ) );
+        keyboardDownListenerId = addListener( { container, listener: eventListener } );
     }
 };
 
 export const onUnpauseComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    dispatch( removeListener( { container, listenerId: keyboardDownListenerId } ) );
-    keyboardDownListenerId = dispatch( addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } ) );
+    removeListener( { container, listenerId: keyboardDownListenerId } );
+    keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );
 };
 
 export default {

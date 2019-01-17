@@ -1,11 +1,12 @@
-import { Dispatch } from 'redux';
-import { ThunkGetStateType } from '@applicationTypes';
-
 import {
-    AddListener, RemoveListener, RemoveAllListeners
-} from './actions';
+    AddListener,
+    KeyboardListenerContainerListenersType,
+    ListenerType,
+    RemoveListener,
+    RemoveAllListeners
+} from './types';
 
-import { KeyboardListenerContainerListenersType, ListenerType } from './types';
+import { LISTENERS } from './constants';
 
 const addKeyDownListener = ( listeners: KeyboardListenerContainerListenersType, listener: ListenerType ): number => {
     document.addEventListener( listener[ 0 ], listener[ 1 ] );
@@ -34,24 +35,15 @@ const removeAllKeyDownListeners = ( listeners: KeyboardListenerContainerListener
 };
 
 export const onAddListener = ( options: AddListener ): any => (
-    ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-        const { container } = options;
-        return addKeyDownListener( getState().app.keyboardListener.listeners.get( container ), options.listener );
-    }
+    addKeyDownListener( LISTENERS.get( options.container ), options.listener )
 );
 
-export const onRemoveListener = ( options: RemoveListener ): any => (
-    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
-        const { container, listenerId } = options;
-        return removeKeyDownListener( getState().app.keyboardListener.listeners.get( container ), listenerId );
-    }
+export const onRemoveListener = ( options: RemoveListener ): boolean => (
+    removeKeyDownListener( LISTENERS.get( options.container ), options.listenerId )
 );
 
-export const onRemoveAllListeners = ( options: RemoveAllListeners ): any => (
-    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
-        const { container } = options;
-        return removeAllKeyDownListeners( getState().app.keyboardListener.listeners.get( container ) );
-    }
+export const onRemoveAllListeners = ( options: RemoveAllListeners ): boolean => (
+    removeAllKeyDownListeners( LISTENERS.get( options.container ) )
 );
 
 export default {

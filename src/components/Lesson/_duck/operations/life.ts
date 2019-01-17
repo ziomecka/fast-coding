@@ -76,15 +76,15 @@ const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
 let listenerId;
 
 const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
-    listenerId = dispatch( manageKeydownListeners.onAddListener( {
+    listenerId = manageKeydownListeners.onAddListener( {
         container,
         listener: [ 'keydown', ( e: KeyboardEvent ) => escapeReturnListener( e, dispatch ) ]
-    } ) );
+    } );
     return listenerId;
 };
 
-const removeAllKeyDownListeners = ( dispatch: Dispatch ): boolean => {
-    return dispatch( manageKeydownListeners.onRemoveListener( { container, listenerId } ) );
+const removeAllKeyDownListeners = (): boolean => {
+    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
 };
 
 const _endLesson = ( dispatch, getState ) => {
@@ -122,7 +122,7 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
     clearTimeout( timeout );
-    removeAllKeyDownListeners( dispatch );
+    removeAllKeyDownListeners();
 
     dispatch( onRemoveState( LocalStorageItemEnum.lesson ) );
     dispatch( onRemoveState( LocalStorageItemEnum.comparator ) );
@@ -134,7 +134,7 @@ export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
     dispatch( resetStats() );
     dispatch( restartLesson() );
     clearTimeout( timeout );
-    removeAllKeyDownListeners( dispatch );
+    removeAllKeyDownListeners();
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };

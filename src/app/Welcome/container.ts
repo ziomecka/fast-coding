@@ -13,8 +13,8 @@ const mapStateToProps = () => ( {} );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): WelcomeDispatch => ( {
     openDemoLesson: () => dispatch( onOpenDemoLesson() ),
-    addEventListener: () => dispatch( onAddKeyDownListener() ),
-    removeEventListener: () => dispatch( onRemoveKeyDownListener() )
+    addEventListener: () => onAddKeyDownListener(),
+    removeEventListener: () => onRemoveKeyDownListener()
 } );
 
 // @ts-ignore
@@ -24,8 +24,8 @@ export default WelcomeContainer;
 
 export interface WelcomeDispatch {
     openDemoLesson: () => Action;
-    addEventListener: () => Action;
-    removeEventListener: () => Action;
+    addEventListener: () => number;
+    removeEventListener: () => boolean;
 }
 
 export interface WelcomeProps extends WelcomeDispatch,
