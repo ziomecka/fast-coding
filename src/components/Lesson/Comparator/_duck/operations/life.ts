@@ -43,11 +43,12 @@ export const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, get
 };
 
 export const onRemoveEventListener = (): any => () => {
+    console.log('remove')
     listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
 };
 
-export const unpauseLessonOnJustType = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
+export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     const { keyCode } = event;
 
     /** Do not scroll when space pressed */

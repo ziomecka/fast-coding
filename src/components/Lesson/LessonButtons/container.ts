@@ -13,7 +13,7 @@ import { AppContainersEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { ApplicationContainersEnum } from '@applicationTypes';
 
-import { unpauseLessonOnJustType } from '../Comparator/_duck/operations/life';
+import { pausedLessonListener } from '../Comparator/_duck/operations/life';
 import { onRestartLesson, onPauseLesson, onUnpauseLesson, onReset } from '../_duck/operations/life';
 
 const { components, app } = ApplicationContainersEnum;
@@ -39,7 +39,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
     turnOffDraggable: () => dispatch( turnOffDraggableLessonButtons() ),
     resetLessonButtons: () => dispatch( resetDraggableLessonButtons() ),
     startLeaving: () => dispatch( onStartLeaving() ),
-    pauseLesson: () => dispatch( onPauseLesson( unpauseLessonOnJustType ) ),
+    pauseLesson: () => dispatch( onPauseLesson( pausedLessonListener ) ),
     unpauseLesson: () => dispatch( onUnpauseLesson() )
 } );
 
