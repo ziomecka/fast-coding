@@ -79,7 +79,7 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
     render () {
         const {
             props: {
-                classes: { contentTitle },
+                classes: { contentTitle, contentTitleLesson },
                 lessonNo,
                 appLocation,
                 isHome,
@@ -92,7 +92,7 @@ class ContentTitle extends React.Component<ContentTitleProps, IContentTitleState
         const lesson = appLocation === isLesson;
 
         return ( appLocation !== isHome &&
-            <Typography variant="h2" className={ contentTitle }>
+            <Typography variant="h2" className={ `${ contentTitle } ${ lesson ? contentTitleLesson : '' }` }>
                 { !lesson && (
                     <Translate id={ titleId } options={ this.onMissingTranslation } />
                 ) }
