@@ -13,7 +13,9 @@ import {
 
 import {
     isBackspace,
-    isValidCode
+    isEscape,
+    isSpace,
+    isValidCode,
 } from './helpers';
 
 const event = 'keydown';
