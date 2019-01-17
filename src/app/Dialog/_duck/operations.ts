@@ -12,12 +12,18 @@ const { simple, yes, yesCancel } = DialogsEnum;
 
 const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
-        let { dialogProps, ...other } = options;
+        let {
+            closeOnBackdrop = true,
+            closeOnEscape = true,
+            dialogProps,
+            ...other
+        } = options;
 
         dispatch( openDialog( Object.assign( other, {
             dialogProps: {
                 ...dialogProps,
-                onBackdropClick: () => dispatch( closeDialog() ),
+                onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
             },
             closeButton: true
         } ) ) );
@@ -30,10 +36,12 @@ const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
 const onOpenYesDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
-            dialogProps,
             buttons: {
                 buttonYes: { buttonProps: { onClick: onClickYes } },
             } = { buttonYes: { buttonProps: { onClick: null } } },
+            closeOnBackdrop,
+            closeOnEscape,
+            dialogProps,
             ...other
         } = options;
 
@@ -54,7 +62,13 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
                     }
                 }
             } },
-            { dialogProps: { ...dialogProps } }
+            {
+                dialogProps: {
+                    ...dialogProps,
+                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                }
+            }
         ) ) );
 
         dialogProps = null;
@@ -65,7 +79,6 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
 const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
-            dialogProps,
             buttons: {
                 buttonYes: { buttonProps: { onClick: onClickYes } },
                 buttonCancel: { buttonProps: { onClick: onClickCancel } }
@@ -73,6 +86,9 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                 buttonYes: { buttonProps: { onClick: null } },
                 buttonCancel: { buttonProps: { onClick: null } }
             },
+            closeOnBackdrop,
+            closeOnEscape,
+            dialogProps,
             ...other
         } = options;
 
@@ -109,7 +125,13 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     },
                 }
             } },
-            { dialogProps: { ...dialogProps } }
+            {
+                dialogProps: {
+                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                    ...dialogProps
+                }
+            }
         ) ) );
 
         dialogProps = null;
