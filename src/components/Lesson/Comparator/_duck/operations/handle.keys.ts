@@ -158,7 +158,7 @@ export const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: 
     return true;
 };
 
-const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
+export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     if ( getState()[ components ][ comparator ].currentSignIndex >= 0 ) {
         await dispatch( onStartLeaving() );
     } else {

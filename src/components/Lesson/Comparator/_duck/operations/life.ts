@@ -5,8 +5,8 @@ import { resetComparator } from '../actions';
 
 import { onStartTimer, onStopTimer } from '../../../Stats/_duck/operations';
 import { onEndLesson, onUnpauseLesson } from '../../../_duck/operations/life';
+import { default as handleKeys, handleEscape } from './handle.keys';
 
-import { default as handleKeys } from './handle.keys';
 const { handleKeyboardDown, isValidCode, isBackspace } = handleKeys;
 
 const event = 'keydown';
@@ -43,11 +43,11 @@ export const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, get
 };
 
 export const onRemoveEventListener = (): any => () => {
-    console.log('remove')
     listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
 };
 
+/** Listen to escape - start leaving lesson. Listen to validCode or backspace - unpause lesson */
 export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     const { keyCode } = event;
 
@@ -59,6 +59,8 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
         dispatch( onUnpauseLesson() );
         handleKeyboardDown( event, dispatch, getState );
     }
+
+    if ( keyCode === 27 ) handleEscape( dispatch, getState );
 };
 
 export const unpauseLessonOnEsc = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
@@ -73,6 +75,7 @@ export const unpauseLessonOnEsc = ( event: KeyboardEvent, dispatch: Dispatch, ge
     }
 };
 
+/** When lesson is paused add eventListener */
 export const onPauseComparator = ( eventListener? ): any => ( dispatch: Dispatch ) => {
     dispatch( onRemoveEventListener() );
     /** Add eydown listener: if valid keyCode or backSpace then unpause lesson */
