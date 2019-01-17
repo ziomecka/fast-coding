@@ -25,7 +25,7 @@ export type ListenerType = [ string, EventListener ];
 export type KeyboardListenerContainerListenersType = Map< number, ListenerType >;
 
 export type KeyboardListenerListenersType =
-    Map< KeyboardListenerContainersType, KeyboardListenerContainerListenersType >;
+    Map< KeyboardListenerContainersType, [ KeyboardListenerContainerListenersType, number] >;
 
 export interface AddListener {
     container: KeyboardListenerContainersType;
