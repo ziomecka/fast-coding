@@ -5,9 +5,9 @@ export {
     StatsActionsEnum,
     StatsState,
     statsReducer,
-    onPauseTimer,
-    onStartTimer,
-    onStopTimer,
-    onUnpauseTimer,
-    resetStats
+    pauseStats,
+    resetStats,
+    startStats,
+    stopStats,
+    unpauseStats
 } from './_duck/';

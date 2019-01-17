@@ -29,9 +29,9 @@ import {
 } from '@components/Comparator/';
 
 import {
-    onPauseTimer,
-    onUnpauseTimer,
-    resetStats
+    pauseStats,
+    resetStats,
+    unpauseStats
 } from '@components/Stats/';
 
 import { resetDraggableLessonButtons } from '@components/LessonButtons/';
@@ -140,7 +140,7 @@ export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
-    dispatch( onPauseTimer() );
+    dispatch( pauseStats() );
     dispatch( onPauseComparator( listener ) );
     dispatch( pauseLesson() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
@@ -150,7 +150,7 @@ export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
     dispatch( onUnpauseComparator() );
     dispatch( unpauseLesson() );
-    dispatch( onUnpauseTimer() );
+    dispatch( unpauseStats() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };

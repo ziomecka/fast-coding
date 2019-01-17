@@ -1,8 +1,8 @@
 export {
-    onPauseTimer,
-    onStartTimer,
-    onStopTimer,
-    onUnpauseTimer,
+    onPauseTimer as pauseStats,
+    onStartTimer as startStats,
+    onStopTimer as stopStats,
+    onUnpauseTimer as unpauseStats,
 } from './operations';
 
 export {

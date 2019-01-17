@@ -3,7 +3,11 @@ import { ThunkGetStateType } from '@applicationTypes';
 
 import { resetComparator } from '../actions';
 
-import { onStartTimer, onStopTimer } from '@components/Stats/';
+import {
+    startStats,
+    stopStats
+} from '@components/Stats/';
+
 import { onEndLesson, onUnpauseLesson } from '@components/Lesson/';
 
 import {
@@ -22,14 +26,14 @@ const event = 'keydown';
 let listeners: [string, EventListenerOrEventListenerObject][] = [];
 
 export const onTurnOnComparator = (): any => ( dispatch: Dispatch ) => {
-    dispatch( onStartTimer() );
+    dispatch( startStats() );
 };
 
 export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
     listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
 
-    let timerStopped = await dispatch( onStopTimer() );
+    let timerStopped = await dispatch( stopStats() );
 
     if ( timerStopped ) {
         dispatch( onEndLesson() );
