@@ -63,18 +63,6 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
     if ( keyCode === 27 ) handleEscape( dispatch, getState );
 };
 
-export const unpauseLessonOnEsc = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
-    const { keyCode } = event;
-
-    /** Do not scroll when space pressed */
-    if ( keyCode === 32 ) event.preventDefault();
-
-    /** If valid code or backspace then unpause and handle keydown */
-    if ( keyCode === 27 ) {
-        dispatch( onUnpauseLesson() );
-    }
-};
-
 /** When lesson is paused add eventListener */
 export const onPauseComparator = ( eventListener? ): any => ( dispatch: Dispatch ) => {
     dispatch( onRemoveEventListener() );
