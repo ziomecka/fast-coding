@@ -12,26 +12,33 @@ const { simple, yes, yesCancel } = DialogsEnum;
 
 const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
-        dispatch( openDialog( Object.assign( options, {
+        let { dialogProps, ...other } = options;
+
+        dispatch( openDialog( Object.assign( other, {
             dialogProps: {
-                ...options.dialogProps,
-                onBackdropClick: () => dispatch( closeDialog() )
+                ...dialogProps,
+                onBackdropClick: () => dispatch( closeDialog() ),
             },
             closeButton: true
         } ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 
 const onOpenYesDialog = ( options: YesDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
+            dialogProps,
             buttons: {
                 buttonYes: { buttonProps: { onClick: onClickYes } },
-            } = { buttonYes: { buttonProps: { onClick: null } } }
+            } = { buttonYes: { buttonProps: { onClick: null } } },
+            ...other
         } = options;
 
-        dispatch( openDialog( Object.assign(
-            options, { buttons: {
+        dispatch( openDialog( Object.assign( other,
+            { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
                     ...Object( options.buttons ).buttonYes,
@@ -46,25 +53,31 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
                         }
                     }
                 }
-            } }
+            } },
+            { dialogProps: { ...dialogProps } }
         ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 
 const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
+            dialogProps,
             buttons: {
                 buttonYes: { buttonProps: { onClick: onClickYes } },
                 buttonCancel: { buttonProps: { onClick: onClickCancel } }
             } = {
                 buttonYes: { buttonProps: { onClick: null } },
                 buttonCancel: { buttonProps: { onClick: null } }
-            }
+            },
+            ...other
         } = options;
 
-        dispatch( openDialog( Object.assign(
-            options, { buttons: {
+        dispatch( openDialog( Object.assign( other,
+            { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
                     ...Object( options.buttons ).buttonYes,
@@ -95,8 +108,12 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                         }
                     },
                 }
-            } }
+            } },
+            { dialogProps: { ...dialogProps } }
         ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 
