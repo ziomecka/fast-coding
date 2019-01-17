@@ -59,27 +59,27 @@ export default {
     overrides: {
         MuiTypography: {
             h1: {
-                fontSize: FONT_SIZE_h1,
+                fontSize: `${ FONT_SIZE_h1 }em`,
                 lineHeight: LINE_HEIGHT_H
             },
             h2: {
-                fontSize: FONT_SIZE_h2,
+                fontSize: ` ${ FONT_SIZE_h2 }em`,
                 lineHeight: LINE_HEIGHT_H
             },
             h3: {
-                fontSize: FONT_SIZE_h3,
+                fontSize: ` ${ FONT_SIZE_h3 }em`,
                 lineHeight: LINE_HEIGHT_H
             },
             h4: {
-                fontSize: FONT_SIZE_h4,
+                fontSize: ` ${ FONT_SIZE_h4 }em`,
                 lineHeight: LINE_HEIGHT
             },
             h5: {
-                fontSize: FONT_SIZE_h5,
+                fontSize: ` ${ FONT_SIZE_h5 }em`,
                 lineHeight: LINE_HEIGHT
             },
             h6: {
-                fontSize: FONT_SIZE_h6,
+                fontSize: ` ${ FONT_SIZE_h6 }em`,
                 lineHeight: LINE_HEIGHT
             }
         },

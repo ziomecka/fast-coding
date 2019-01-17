@@ -52,10 +52,10 @@ export const FONT_WEIGHT_BOLD = 600;
  *  lineHeight: 1.3 times FONT_SIZE
 */
 export const FONT_SIZE = {
-    FONT_SIZE_h1: '3em',
-    FONT_SIZE_h2: '3em',
-    FONT_SIZE_h3: '2em',
-    FONT_SIZE_h4: '1.4em',
-    FONT_SIZE_h5: '1.2em',
-    FONT_SIZE_h6: '1em',
+    FONT_SIZE_h1: 3, // em
+    FONT_SIZE_h2: 3, // em
+    FONT_SIZE_h3: 2, // em
+    FONT_SIZE_h4: 1.4, // em
+    FONT_SIZE_h5: 1.2, // em
+    FONT_SIZE_h6: 1, // em
 };

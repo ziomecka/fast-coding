@@ -93,33 +93,33 @@ const palette = {
         'lineHeight': LINE_HEIGHT,
         'fontWeightMedium': FONT_WEIGHT_BOLD,
         'h1': {
-            'fontSize': FONT_SIZE_h1,
+            'fontSize': ` ${ FONT_SIZE_h1 }em`,
             'lineHeight': LINE_HEIGHT_H,
             'letterSpacing': '-.02em'
         },
         'h2': {
-            'fontSize': FONT_SIZE_h2,
+            'fontSize': ` ${ FONT_SIZE_h2 }em`,
             'lineHeight': LINE_HEIGHT_H,
             'letterSpacing': '-.02em',
         },
         'h3': {
-            'fontSize': FONT_SIZE_h3,
+            'fontSize': ` ${ FONT_SIZE_h3 }em`,
             'lineHeight': LINE_HEIGHT_H,
             'letterSpacing': '-.02em',
         },
         'h4': {
-            'fontSize': FONT_SIZE_h4,
+            'fontSize': ` ${ FONT_SIZE_h4 }em`,
             'lineHeight': LINE_HEIGHT,
             'fontWeight': FONT_WEIGHT,
             'letterSpacing': '-.02em',
         },
         'h5': {
-            'fontSize': FONT_SIZE_h5,
+            'fontSize': ` ${ FONT_SIZE_h5 }em`,
             'lineHeight': LINE_HEIGHT,
             'letterSpacing': '-.02em'
         },
         'h6': {
-            'fontSize': FONT_SIZE_h6,
+            'fontSize': ` ${ FONT_SIZE_h6 }em`,
             'lineHeight': LINE_HEIGHT,
             'fontWeight': FONT_WEIGHT
         },
