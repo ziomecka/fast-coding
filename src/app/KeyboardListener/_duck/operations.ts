@@ -30,11 +30,12 @@ const removeAllKeyDownListeners = ( listeners: [ KeyboardListenerContainerListen
     if ( listeners[ 0 ].size ) {
         listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
         listeners[ 0 ].clear();
+        return true;
     }
-    return true;
+    return false;
 };
 
-export const onAddListener = ( options: AddListener ): any => (
+export const onAddListener = ( options: AddListener ): number => (
     addKeyDownListener( LISTENERS.get( options.container ), options.listener )
 );
 
