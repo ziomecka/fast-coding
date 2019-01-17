@@ -5,18 +5,12 @@ import { ApplicationState } from '@appStore';
 
 import { DialogState } from './_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
-
 import { WithStyles } from '@material-ui/core/styles';
 
 import { DialogDispatch, mapDispatchToProps } from '@shared/dialog';
-const { app } = ApplicationContainersEnum;
-const { dialog } = AppContainersEnum;
-
 
 const mapStateToProps = ( state: ApplicationState ): DialogState => ( {
-    ...state[ app ][ dialog ]
+    ...state.app.dialog
 } );
 
 const DialogContainer = connect( mapStateToProps, mapDispatchToProps )( Dialog );

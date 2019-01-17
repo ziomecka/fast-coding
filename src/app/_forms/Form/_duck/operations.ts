@@ -3,17 +3,13 @@ import { setFormHelperText } from '@forms/FormHelperText/_duck/actions';
 import { SendFormI } from './types';
 import { post as postData, PostResponseI } from '@app/api/';
 
-import { ThunkGetStateType, ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
+import { ThunkGetStateType } from '@applicationTypes';
 
 import { onOpenNotification } from '@app/Notification/_duck/operations';
 
 import history from '@shared/history';
 
 import { closeDialog } from '@app/Dialog/';
-
-const { app } = ApplicationContainersEnum;
-const { user } = AppContainersEnum;
 
 export const onFormInvalid = (): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
@@ -26,7 +22,7 @@ export const onSendForm = ( options: SendFormI ): any => (
         /** Add login to each request */
         // @ts-ignore
         const { request: { body: { login } }, success: { value: success, redirectUrl, successNotification, errorNotifications } } = options;
-        Object.assign( options.request.body, { login: login || getState()[ app ][ user ].login } );
+        Object.assign( options.request.body, { login: login || getState().app.user.login } );
 
         /** removes formInvalid message */
         dispatch( setFormHelperText( 'formBeingSent' ) );

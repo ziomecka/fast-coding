@@ -9,16 +9,8 @@ import { ApplicationState } from '@appStore';
 import { LessonState } from '../_duck/reducers';
 import { LessonButtonsState } from './_duck/reducers';
 
-import { AppContainersEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
-import { ApplicationContainersEnum } from '@applicationTypes';
-
 import { pausedLessonListener } from '../Comparator/_duck/operations/life';
 import { onRestartLesson, onPauseLesson, onUnpauseLesson, onReset } from '../_duck/operations/life';
-
-const { components, app } = ApplicationContainersEnum;
-const { lesson, lessonButtons } = ComponentsContainersEnum;
-const { dialog } = AppContainersEnum;
 
 import { WithStyles } from '@material-ui/core/styles';
 
@@ -44,9 +36,9 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
 } );
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[ components ][ lesson ],
-    ...state[ components ][ lessonButtons ],
-    dialogOpened: state[ app ][ dialog ].dialogProps.open,
+    ...state.components.lesson,
+    ...state.components.lessonButtons,
+    dialogOpened: state.app.dialog.dialogProps.open,
     localize: state.localize
 } );
 

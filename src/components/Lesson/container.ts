@@ -11,12 +11,9 @@ import { restoreState } from './_duck/actions';
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 
 import { LocalStorageItemEnum } from '@appTypes';
-import { ComponentsContainersEnum, ComparatorContainersEnum } from '@componentsTypes';
-import { ApplicationContainersEnum } from '@applicationTypes';
+import { ComponentsContainersEnum } from '@componentsTypes';
 
-const { components } = ApplicationContainersEnum;
-const { lesson, comparator } = ComponentsContainersEnum;
-const { stats } = ComparatorContainersEnum;
+const { lesson } = ComponentsContainersEnum;
 
 import { onReset } from './_duck/operations/life';
 import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
@@ -29,10 +26,10 @@ import { LocalizeState } from 'react-localize-redux';
 import { onStartLeaving } from './LessonButtons/_duck/operations';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
-    const { time, start, stop, running } = state[ components ][ comparator ][ stats ];
+    const { time, start, stop, running } = state.components.comparator.stats;
 
     return {
-        ...state[ components ][ lesson ],
+        ...state.components.lesson,
         time,
         start,
         stop,

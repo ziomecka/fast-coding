@@ -3,15 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as ContentTitle } from './component';
 import { ApplicationState } from '@appStore';
-
-import { AppContainersEnum } from '@appTypes';
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
-
-const { app, components } = ApplicationContainersEnum;
-const { content } = AppContainersEnum;
-const { lesson } = ComponentsContainersEnum;
-
+import { TextTranslationsI } from '@applicationTypes';
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
@@ -19,8 +11,8 @@ import { ILocationContextProps } from '@app/AppLocation/';
 
 const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: { ...state.localize },
-    lessonTitle: state[ components ][ lesson ].title,
-    lessonNo: state[ components ][ lesson ].no
+    lessonTitle: state.components.lesson.title,
+    lessonNo: state.components.lesson.no
 } );
 
 // @ts-ignore
@@ -30,7 +22,7 @@ export default ContentTitleContainer;
 
 interface IMapStateToProps {
     localize: LocalizeState;
-    lessonTitle: string;
+    lessonTitle: TextTranslationsI;
     lessonNo: number;
 }
 

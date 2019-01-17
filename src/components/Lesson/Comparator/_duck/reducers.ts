@@ -11,9 +11,6 @@ import {
     INITIAL_STATE as STATS_INITIAL_STATE
 } from '../../Stats/_duck/reducers';
 
-import { ComparatorContainersEnum } from '@componentsTypes';
-const { stats } = ComparatorContainersEnum;
-
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
     COMPONENTS_COMPARATOR_REGISTER_ERROR,
@@ -40,7 +37,7 @@ export const INITIAL_STATE: ComparatorState = {
     errors: [],
     allErrors: [],
     correctedErrors: [],
-    [ stats ]: { ...STATS_INITIAL_STATE }
+    stats: { ...STATS_INITIAL_STATE }
 };
 
 const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_STATE, action ) => {
@@ -89,7 +86,7 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_S
         case COMPONENTS_STATS_RESET: {
             return {
                 ...state,
-                [ stats ]: statsReducer( state[ stats ], action )
+                stats: statsReducer( state.stats, action )
             };
 
         }
@@ -124,5 +121,5 @@ export interface ComparatorState {
     errors: number[];
     allErrors: number[];
     correctedErrors: number[];
-    [stats]: StatsState;
+    stats: StatsState;
 }

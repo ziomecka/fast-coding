@@ -7,8 +7,6 @@ import { ApplicationState } from '@appStore';
 
 import { RemindPasswordState } from './_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
 import { reset, setEmail, SetEmailAction, SetEmail } from './_duck/actions';
 import { SendFormRemindPasswordI } from './_duck/types';
 
@@ -21,11 +19,8 @@ import { mapDispatchToProps as mapDialogDispatchToProps, DialogDispatch } from '
 
 import { IWithMedia } from '@app/Media/';
 
-const { app } = ApplicationContainersEnum;
-const { remindPasswordForm } = AppContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): RemindPasswordState => ( {
-    ...state[ app ][ remindPasswordForm ]
+    ...state.app.remindPasswordForm
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): RemindPasswordDispatch => ( {

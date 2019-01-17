@@ -6,8 +6,6 @@ import { ApplicationState } from '@appStore';
 
 import { ChangePasswordFormState } from './_duck/reducers';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { AppContainersEnum } from '@appTypes';
 import { onSendForm } from './_duck/operations';
 import { onFormInvalid } from '@appForm/_duck/operations';
 
@@ -17,11 +15,8 @@ import { SendFormChangePasswordI } from './_duck/types';
 import { WithStyles } from '@material-ui/core/styles/withStyles';
 import { IWithMedia } from '@app/Media/';
 
-const { app } = ApplicationContainersEnum;
-const { changePasswordForm } = AppContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): ChangePasswordFormState => ( {
-    ...state[ app ][ changePasswordForm ]
+    ...state.app.changePasswordForm
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ChangePasswordFormDispatch => ( {

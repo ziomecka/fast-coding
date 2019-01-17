@@ -7,7 +7,6 @@ import { AppState } from '@app/_reducers/';
 
 import { setPassword, SetPasswordAction } from './_duck/actions';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
 import { RulesErrorEnum } from '@sharedTypes';
 import { AppContainersEnum, PasswordsEnum } from '@appTypes';
 
@@ -17,10 +16,8 @@ import { LocalizeState } from 'react-localize-redux';
 
 import { onValidatePassword } from './_duck/operations';
 
-const { app } = ApplicationContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state[ app ],
+    ...state.app,
     localize: state.localize
 } );
 

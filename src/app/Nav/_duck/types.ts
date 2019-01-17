@@ -3,9 +3,9 @@ import { MenuListItemType } from '@app/MenuList/container';
 import { MediaEnum } from '@app/Media';
 
 export enum MenuContainersEnum {
-    userMenu = 'USER_MENU',
-    mainMenu = 'MAIN_MENU',
-    languagesMenu = 'LANGUAGES_MENU'
+    userMenu = 'userMenu',
+    mainMenu = 'mainMenu',
+    languagesMenu = 'languagesMenu'
 }
 
 export type NavMenuType = MenuButtonOptionsI | MenuListItemType;

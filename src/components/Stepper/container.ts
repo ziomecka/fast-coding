@@ -4,9 +4,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { default as Stepper } from './component';
 
-import { ApplicationContainersEnum } from '@applicationTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
-
 import { ApplicationState } from '@appStore';
 
 import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
@@ -18,12 +15,9 @@ import { AddListener, RemoveListener } from '@app/KeyboardListener/_duck/actions
 
 import { IWithMedia } from '@app/Media';
 
-const { components } = ApplicationContainersEnum;
-const { lessonsLoader, lessons } = ComponentsContainersEnum;
-
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
-    ...state[ components ][ lessonsLoader ],
-    ...state[ components ][ lessons ]
+    ...state.components.lessonsLoader,
+    ...state.components.lessons
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
