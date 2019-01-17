@@ -9,13 +9,15 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import { ViewsContainersEnum } from '@viewsTypes';
 
 const { dialog, welcome } = AppContainersEnum;
-const { lesson, lessonStepper } = ComponentsContainersEnum;
+const { comparator, lesson, lessonStepper } = ComponentsContainersEnum;
 const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 
 export const INITIAL_STATE: KeyboardListenerState = {
     listeners: new Map( [
         [ dialog, new Map() ],
+        // @ts-ignore
+        [ comparator, new Map() ],
         // @ts-ignore
         [ lesson, new Map( [] ) ],
         // @ts-ignore
