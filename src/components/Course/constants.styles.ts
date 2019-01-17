@@ -19,3 +19,4 @@ export const GRID: CourseGrid = new Map( [
 ] );
 
 export const COURSE_BACKGROUND_GREY = 100;
+export const SUMMARY_DESCRIPTION_PADDING_TOP = '1em';

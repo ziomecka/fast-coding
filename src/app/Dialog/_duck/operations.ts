@@ -1,18 +1,35 @@
 import { Dispatch, Action } from 'redux';
 import { closeDialog, openDialog } from './actions';
-import { YesDialogOptions, YesCancelDialogOptions, DialogsEnum, OpenDialogOptions } from './types';
+import {
+    SimpleDialogOptions,
+    YesDialogOptions,
+    YesCancelDialogOptions,
+    DialogsEnum,
+    OpenDialogOptions
+} from './types';
 
 const { simple, yes, yesCancel } = DialogsEnum;
 
-const onOpenSimpleDialog = ( options: YesDialogOptions ): any => (
+const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
-        dispatch( openDialog( Object.assign( options, {
+        let {
+            closeOnBackdrop = true,
+            closeOnEscape = true,
+            dialogProps,
+            ...other
+        } = options;
+
+        dispatch( openDialog( Object.assign( other, {
             dialogProps: {
-                ...options.dialogProps,
-                onBackdropClick: () => dispatch( closeDialog() )
+                ...dialogProps,
+                onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
             },
             closeButton: true
         } ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 
@@ -21,11 +38,15 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
         let {
             buttons: {
                 buttonYes: { buttonProps: { onClick: onClickYes } },
-            } = { buttonYes: { buttonProps: { onClick: null } } }
+            } = { buttonYes: { buttonProps: { onClick: null } } },
+            closeOnBackdrop,
+            closeOnEscape,
+            dialogProps,
+            ...other
         } = options;
 
-        dispatch( openDialog( Object.assign(
-            options, { buttons: {
+        dispatch( openDialog( Object.assign( other,
+            { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
                     ...Object( options.buttons ).buttonYes,
@@ -40,8 +61,18 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
                         }
                     }
                 }
-            } }
+            } },
+            {
+                dialogProps: {
+                    ...dialogProps,
+                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                }
+            }
         ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 
@@ -54,11 +85,15 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
             } = {
                 buttonYes: { buttonProps: { onClick: null } },
                 buttonCancel: { buttonProps: { onClick: null } }
-            }
+            },
+            closeOnBackdrop,
+            closeOnEscape,
+            dialogProps,
+            ...other
         } = options;
 
-        dispatch( openDialog( Object.assign(
-            options, { buttons: {
+        dispatch( openDialog( Object.assign( other,
+            { buttons: {
                 buttonYes: {
                     translationId: 'buttonYes',
                     ...Object( options.buttons ).buttonYes,
@@ -89,8 +124,18 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                         }
                     },
                 }
-            } }
+            } },
+            {
+                dialogProps: {
+                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
+                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                    ...dialogProps
+                }
+            }
         ) ) );
+
+        dialogProps = null;
+        other = null; // GC
     }
 );
 

@@ -44,6 +44,8 @@ type ExtractOptions<D, V> = D extends {variant: V} ? D : never;
 type DialogCommonOptions = {
     dialogProps?: AppDialogProps;
     titleId?: string;
+    closeOnEscape?: boolean;
+    closeOnBackdrop?: boolean;
 };
 
 type DialogComponentOptions =
