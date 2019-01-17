@@ -11,8 +11,11 @@ import {
 import {
     PAPER_PADDING_LG,
     PAPER_PADDING_MD,
-    PAPER_PADDING_XS
+    PAPER_PADDING_XS,
+    FONT_SIZE
 } from '@constantsStyles';
+
+const { FONT_SIZE_h3, FONT_SIZE_h4 } = FONT_SIZE;
 
 import { MediaEnum } from '@app/Media';
 const { xs, md, lg, sm } = MediaEnum;
@@ -21,8 +24,8 @@ const styles = createStyles( theme => {
     const {
         typography: {
             fontWeightMedium,
-            h3: { fontSize: h3FontSize },
-            h4: { fontSize: labelFontSize }
+            h3: { fontSize: h3FontSize, lineHeight: h3LineHeight },
+            h4: { fontSize: labelFontSize, lineHeight: h4LineHeight }
         },
         spacing: { unit: spacingUnit },
         palette: {
@@ -42,6 +45,13 @@ const styles = createStyles( theme => {
     const { rows: smRows, cellHeight: smCellHeight } = GRID.get( sm );
     const { rows: mdRows, cellHeight: mdCellHeight } = GRID.get( md );
     const { rows: lgRows, cellHeight: lgCellHeight } = GRID.get( lg );
+
+    const paddingsXS = `${ PAPER_PADDING_XS } + ${ PAPER_PADDING_XS }`;
+    const paddingsMD = `${ PAPER_PADDING_MD } + ${ PAPER_PADDING_MD }`;
+    const paddingsLG = `${ PAPER_PADDING_LG } + ${ PAPER_PADDING_LG }`;
+    const paddingTopH4 = `${ SUMMARY_DESCRIPTION_PADDING_TOP } * ${ FONT_SIZE_h4 }`;
+    const h3Height = `${ h3LineHeight } * ${ FONT_SIZE_h3 * 2 }`; // 2 lines assumed
+    const h4Height = `${ h4LineHeight } * ${ FONT_SIZE_h4 * 2 }`; // 2 lines assumed
 
     return {
         panelClass: {
@@ -89,12 +99,18 @@ const styles = createStyles( theme => {
             width: '100%',
             paddingRight: 0,
             position: 'relative', // for Stepper,
-            minHeight: `calc( ${ PAPER_PADDING_XS } + ${ PAPER_PADDING_XS } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`,
+            /** Include:
+             *  + paddings top and bottom
+             *  + paddings above h4
+             *  + two lines of h3
+             *  + two lines of h4
+             * */
+            minHeight: `calc( ${ paddingsXS } + ${ paddingTopH4 } + ${ h3Height } + ${ h4Height } )`,
             [ theme.breakpoints.up( 'sm' ) ]: {
-                minHeight: `calc( ${ PAPER_PADDING_MD } + ${ PAPER_PADDING_MD } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`
+                minHeight: `calc( ${ paddingsMD } + ${ paddingTopH4 } + ${ h3Height } + ${ h4Height } )`,
             },
             [ theme.breakpoints.up( 'lg' ) ]: {
-                minHeight: `calc( ${ PAPER_PADDING_LG } + ${ PAPER_PADDING_LG } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`
+                minHeight: `calc( ${ paddingsLG } + ${ paddingTopH4 } + ${ h3Height } + ${ h4Height } )`,
             }
         },
         summaryHeadingClass: {
