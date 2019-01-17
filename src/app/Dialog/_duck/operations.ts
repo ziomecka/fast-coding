@@ -1,10 +1,16 @@
 import { Dispatch, Action } from 'redux';
 import { closeDialog, openDialog } from './actions';
-import { YesDialogOptions, YesCancelDialogOptions, DialogsEnum, OpenDialogOptions } from './types';
+import {
+    SimpleDialogOptions,
+    YesDialogOptions,
+    YesCancelDialogOptions,
+    DialogsEnum,
+    OpenDialogOptions
+} from './types';
 
 const { simple, yes, yesCancel } = DialogsEnum;
 
-const onOpenSimpleDialog = ( options: YesDialogOptions ): any => (
+const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         dispatch( openDialog( Object.assign( options, {
             dialogProps: {
