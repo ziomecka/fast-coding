@@ -1,5 +1,3 @@
-// Use ComponentsContainersEnum enum in '@@components_
-// Important for components reducer
 import { TextTranslationsI } from '@componentsTypes';
 
 export enum LessonActionsEnum {

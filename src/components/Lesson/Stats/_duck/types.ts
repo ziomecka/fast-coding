@@ -1,6 +1,3 @@
-// Use ComponentsContainersEnum enum in '@@components_
-// Important for components reducer
-
 export enum StatsActionsEnum {
     COMPONENTS_STATS_TIMER_START = '@@components_stats/TIMER_START',
     COMPONENTS_STATS_TIMER_STOP = '@@components_stats/TIMER_STOP',

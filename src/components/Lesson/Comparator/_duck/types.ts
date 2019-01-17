@@ -1,5 +1,3 @@
-// Use ComponentsContainersEnum enum in '@@components_
-// Important for components reducer
 export enum ComparatorActionsEnum {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY = '@@components_comparator/REGISTER_NEW_KEY',
     COMPONENTS_COMPARATOR_REGISTER_ERROR = '@@components_comparator/REGISTER_ERROR',
