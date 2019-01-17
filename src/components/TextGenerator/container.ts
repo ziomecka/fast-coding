@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import { default as TextGenerator } from './component';
 import { ApplicationState } from '@appStore';
 
-import { TextGeneratorState } from './_duck/reducers';
+import { ITextGeneratorState, onSendText } from './_duck/';
 import { LessonState } from '@components/Lesson/_duck/reducers';
 
-import { onSendText } from './_duck/operations';
-
-const mapStateToProps = ( state: ApplicationState ): TextGeneratorState & LessonState => ( {
+const mapStateToProps = ( state: ApplicationState ): ITextGeneratorState & LessonState => ( {
     ...state.components.textGenerator,
     ...state.components.lesson
 } );
@@ -26,4 +24,4 @@ export interface TextGeneratorDispatch {
     sendText: ( text: string ) => Action;
 }
 
-export interface TextGeneratorProps extends TextGeneratorDispatch, TextGeneratorState, LessonState {}
+export interface TextGeneratorProps extends TextGeneratorDispatch, ITextGeneratorState, LessonState {}

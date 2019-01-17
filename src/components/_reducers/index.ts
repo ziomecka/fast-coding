@@ -13,10 +13,10 @@ import {
 } from '@components/Lesson/_duck/reducers';
 
 import {
-    TextGeneratorState,
+    ITextGeneratorState,
     textGeneratorReducer,
     INITIAL_STATE as TEXT_GENERATOR_INITIAL_STATE
-} from '@components/TextGenerator/_duck/reducers';
+} from '@components/TextGenerator/_duck/';
 
 import {
     LessonsLoaderState,
@@ -60,7 +60,7 @@ export interface ComponentsState {
     comparator: ComparatorState;
     lessons: ILessonsState;
     lesson: LessonState;
-    textGenerator: TextGeneratorState;
+    textGenerator: ITextGeneratorState;
     lessonsLoader: LessonsLoaderState;
     lessonButtons: LessonButtonsState;
 }
