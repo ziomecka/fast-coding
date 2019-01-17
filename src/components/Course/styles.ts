@@ -4,7 +4,8 @@ import {
     TRANSITION_DURATION,
     SVG_SIZE_MD,
     COURSE_BACKGROUND_GREY,
-    GRID
+    GRID,
+    SUMMARY_DESCRIPTION_PADDING_TOP
 } from './constants.styles';
 
 import {
@@ -20,6 +21,7 @@ const styles = createStyles( theme => {
     const {
         typography: {
             fontWeightMedium,
+            h3: { fontSize: h3FontSize },
             h4: { fontSize: labelFontSize }
         },
         spacing: { unit: spacingUnit },
@@ -81,19 +83,25 @@ const styles = createStyles( theme => {
             }
         },
         summaryRootClass: {
-            alignItems: 'flex-start',
+            alignItems: 'center',
             justifyContent: 'flex-start',
             flexDirection: 'row',
             width: '100%',
             paddingRight: 0,
-            position: 'relative' // for Stepper
+            position: 'relative', // for Stepper,
+            minHeight: `calc( ${ PAPER_PADDING_XS } + ${ PAPER_PADDING_XS } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`,
+            [ theme.breakpoints.up( 'sm' ) ]: {
+                minHeight: `calc( ${ PAPER_PADDING_MD } + ${ PAPER_PADDING_MD } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`
+            },
+            [ theme.breakpoints.up( 'lg' ) ]: {
+                minHeight: `calc( ${ PAPER_PADDING_LG } + ${ PAPER_PADDING_LG } + ${ SUMMARY_DESCRIPTION_PADDING_TOP } + ${ h3FontSize } * 2 + ${ labelFontSize } * 2 )`
+            }
         },
         summaryHeadingClass: {
-            paddingTop: '1em',
             fontWeight: fontWeightMedium
         },
         summaryDescriptionClass: {
-            paddingTop: '1em',
+            paddingTop: SUMMARY_DESCRIPTION_PADDING_TOP,
         },
         detailsLessonsClass: {
             overflowY: 'scroll',
