@@ -80,6 +80,8 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
                                 translationId="privacyPolicy"
                                 options={{
                                     variant: yes,
+                                    closeOnBackdrop: true,
+                                    closeOnEscape: true,
                                     Component: () => <PrivacyPolicy variant={ dialog } />
                                 }}
                             />
@@ -89,6 +91,8 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
                             <OpenDialogButton
                                 translationId="termsOfService"
                                 options={{
+                                    closeOnBackdrop: true,
+                                    closeOnEscape: true,
                                     variant: yes,
                                     Component: () => <TermsOfService variant={ dialog } />
                                 }}
