@@ -34,7 +34,7 @@ import {
     ILessonsState,
     lessonsReducer,
     INITIAL_STATE as LESSONS_INITIAL_STATE
-} from '@components/Lessons/_duck/reducers';
+} from '@components/Lessons/';
 
 export const INITIAL_STATE = {
     comparator: { ...COMPARATOR_INITIAL_STATE },

@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { LessonsActions } from './actions';
-import { LessonsActionsEnum } from './types';
+import { LessonsActionsEnum, ILessonsState } from './types';
 
 const {
     COMPONENTS_LESSONS_OPEN_COURSE,
@@ -53,8 +53,3 @@ const reducer: Reducer<ILessonsState, LessonsActions> = ( state = INITIAL_STATE,
 };
 
 export { reducer as lessonsReducer };
-
-export interface ILessonsState {
-    openedCourseId: string;
-    activeLessonId: string;
-}

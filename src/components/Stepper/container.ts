@@ -7,7 +7,7 @@ import { default as Stepper } from './component';
 import { ApplicationState } from '@appStore';
 
 import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
-import { ILessonsState } from '@components/Lessons/_duck/reducers';
+import { ILessonsState } from '@components/Lessons/';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';

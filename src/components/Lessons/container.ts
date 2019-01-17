@@ -5,7 +5,7 @@ import { default as Lessons } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { ILessonsState } from './_duck/reducers';
+import { ILessonsState } from './_duck/';
 
 import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
 

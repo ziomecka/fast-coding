@@ -9,3 +9,8 @@ export enum LessonsActionsEnum {
 
 // TODO one type for grids
 export type LessonsGrid = Map<MediaEnum, { cols: number }>;
+
+export interface ILessonsState {
+    openedCourseId: string;
+    activeLessonId: string;
+}
