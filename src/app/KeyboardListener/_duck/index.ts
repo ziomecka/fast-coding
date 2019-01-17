@@ -5,10 +5,13 @@ export {
 } from './operations';
 
 export {
-    AddListener,
     AddListenerAction,
-    RemoveAllListeners,
     RemoveAllListenersAction,
-    RemoveListener,
     RemoveListenerAction
 } from './actions';
+
+export {
+    AddListener,
+    RemoveAllListeners,
+    RemoveListener
+} from './types'

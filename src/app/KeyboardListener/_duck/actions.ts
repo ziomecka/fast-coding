@@ -1,21 +1,14 @@
 import { Action } from 'redux';
-import { KeyboardListenerContainersType, ListenerType } from './types';
+import {
+    AddListener,
+    RemoveAllListeners,
+    RemoveListener,
+} from './types';
 
 export const actions = {};
 
-export interface AddListener {
-    container: KeyboardListenerContainersType;
-    listener: ListenerType;
-}
 
-export interface RemoveListener {
-    container: KeyboardListenerContainersType;
-    listenerId: number;
-}
 
-export interface RemoveAllListeners {
-    container: KeyboardListenerContainersType;
-}
 
 export interface AddListenerAction extends RemoveListener, Action {}
 export interface RemoveListenerAction extends RemoveListener, Action {}

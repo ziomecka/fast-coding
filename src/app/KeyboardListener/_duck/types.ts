@@ -26,3 +26,17 @@ export type KeyboardListenerContainerListenersType = Map< number, ListenerType >
 
 export type KeyboardListenerListenersType =
     Map< KeyboardListenerContainersType, KeyboardListenerContainerListenersType >;
+
+export interface AddListener {
+    container: KeyboardListenerContainersType;
+    listener: ListenerType;
+}
+
+export interface RemoveListener {
+    container: KeyboardListenerContainersType;
+    listenerId: number;
+}
+
+export interface RemoveAllListeners {
+    container: KeyboardListenerContainersType;
+}
