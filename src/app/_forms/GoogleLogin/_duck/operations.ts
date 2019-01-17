@@ -37,7 +37,7 @@ const {
     termsOfService: tosUrl
 } = AppRoutesEnum;
 
-export const onStartUi = (ui: any): any => (
+export const onStartUi = ( ui: any ): any => (
     async ( dispatch: Dispatch ): Promise<void> => {
         ui.start( `#${ htmlId }`, {
             callbacks: {

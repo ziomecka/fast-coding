@@ -27,7 +27,7 @@ interface MapStateToPropsI {
 }
 
 export interface GoogleLoginDispatch {
-    startUI: (ui: any) => void;
+    startUI: ( ui: any ) => void;
     setTranslations: () => void;
 }
 
