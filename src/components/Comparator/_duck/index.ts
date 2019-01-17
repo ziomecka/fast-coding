@@ -1,10 +1,9 @@
 export {
-    addEventListener,
-    handleKeyboardDown,
+    listenKeys,
     pausedLessonListener,
     pauseComparator,
-    removeEventListener,
     resetComparator,
+    stopListenKeys,
     turnOffComparator,
     turnOnComparator,
     unpauseComparator

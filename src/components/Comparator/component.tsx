@@ -18,12 +18,12 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
     }
 
     componentDidMount() {
-        this.props.addEventListener();
+        this.props.listenKeys();
         this.props.restoreState();
     }
 
     componentWillUnmount() {
-        this.props.removeEventListener();
+        this.props.stopListenKeys();
         this.props.keepState();
     }
 

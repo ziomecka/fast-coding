@@ -6,10 +6,9 @@ import { ApplicationState } from '@appStore';
 
 import {
     ComparatorState,
-    addEventListener,
-    handleKeyboardDown,
+    listenKeys,
+    stopListenKeys,
     turnOnComparator,
-    removeEventListener,
     restoreState
 } from './_duck/';
 
@@ -36,10 +35,10 @@ const mapDispatchToProps = ( dispatch: Dispatch ): ComparatorDispatch => ( {
     turnOnComparator: () => dispatch( turnOnComparator() ),
     startLesson: () => dispatch( onStartLesson() ),
     endingLesson: () => dispatch( onEndingLesson() ),
-    addEventListener: () => dispatch( addEventListener( handleKeyboardDown ) ),
-    removeEventListener: () => dispatch( removeEventListener() ),
     keepState: () => dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) ),
-    restoreState: () => dispatch( onRestoreState( LocalStorageItemEnum.comparator, restoreState ) )
+    listenKeys: () => dispatch( listenKeys() ),
+    restoreState: () => dispatch( onRestoreState( LocalStorageItemEnum.comparator, restoreState ) ),
+    stopListenKeys: () => dispatch( stopListenKeys() )
 } );
 
 const ComparatorContainer = connect( mapStateToProps, mapDispatchToProps )( Comparator );
@@ -50,10 +49,10 @@ export interface ComparatorDispatch {
     turnOnComparator: () => Action;
     startLesson: () => Action;
     endingLesson: () => Action;
-    addEventListener: () => Action;
-    removeEventListener: () => Action;
     keepState: () => Action;
+    listenKeys: () => Action;
     restoreState: () => Action;
+    stopListenKeys: () => Action;
 }
 
 export interface ComparatorProps extends

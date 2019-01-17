@@ -4,16 +4,12 @@ import { default as life } from './life';
 export default { ...handleKeys, ...life };
 
 export {
-    handleKeyboardDown
-} from './handle.keys';
-
-export {
-    onAddEventListener as addEventListener,
     onPauseComparator as pauseComparator,
-    onRemoveEventListener as removeEventListener,
     onResetComparator as resetComparator,
     onTurnOffComparator as turnOffComparator,
     onTurnOnComparator as turnOnComparator,
     onUnpauseComparator as unpauseComparator,
-    pausedLessonListener as pausedLessonListener
+    pausedLessonListener as pausedLessonListener,
+    onListenKeys as listenKeys,
+    onStopListenKeys as stopListenKeys
 } from './life';

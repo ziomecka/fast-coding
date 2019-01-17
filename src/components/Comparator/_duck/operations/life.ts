@@ -48,16 +48,24 @@ export const onResetComparator = (): any => ( dispatch: Dispatch, getState: Thun
     dispatch( resetComparator() );
 };
 
-export const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     if ( listener ) {
         listeners.push( [ event, ( e: KeyboardEvent ) => listener( e, dispatch, getState ) ] );
         document.addEventListener( event, listeners[ listeners.length - 1 ][ 1 ] );
     }
 };
 
-export const onRemoveEventListener = (): any => () => {
+const onRemoveEventListener = (): any => () => {
     listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
     listeners = [];
+};
+
+export const onListenKeys = (): any => ( dispatch: Dispatch ) => {
+    dispatch ( onAddEventListener( handleKeyboardDown ) );
+};
+
+export const onStopListenKeys = (): any => ( dispatch: Dispatch ) => {
+    dispatch ( onRemoveEventListener() );
 };
 
 /** Listen to escape - start leaving lesson. Listen to validCode or backspace - unpause lesson */
@@ -94,8 +102,6 @@ export default {
     onTurnOnComparator,
     onTurnOffComparator,
     onResetComparator,
-    onAddEventListener,
-    onRemoveEventListener,
     onPauseComparator,
     onUnpauseComparator
 };
