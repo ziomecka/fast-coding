@@ -19,10 +19,10 @@ import {
 } from '@components/TextGenerator/_duck/';
 
 import {
-    LessonsLoaderState,
+    ILessonsLoaderState,
     lessonsLoaderReducer,
     INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
-} from '@components/LessonsLoader/_duck/reducers';
+} from '@components/LessonsLoader/_duck/';
 
 import {
     LessonButtonsState,
@@ -61,6 +61,6 @@ export interface ComponentsState {
     lessons: ILessonsState;
     lesson: LessonState;
     textGenerator: ITextGeneratorState;
-    lessonsLoader: LessonsLoaderState;
+    lessonsLoader: ILessonsLoaderState;
     lessonButtons: LessonButtonsState;
 }

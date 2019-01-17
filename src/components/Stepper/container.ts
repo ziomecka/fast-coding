@@ -6,7 +6,7 @@ import { default as Stepper } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
+import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
 import { ILessonsState } from '@components/Lessons/_duck/reducers';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
@@ -30,14 +30,14 @@ const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProp
 
 export default StepperContainer;
 
-interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
+interface MapStateToProps extends ILessonsLoaderState, ILessonsState {}
 
 export interface IStepperDispatch {
     addListener: ( options: AddListener ) => Action;
     removeListener: ( options: RemoveListener ) => Action;
 }
 export interface StepperProps extends
-    LessonsLoaderState,
+    ILessonsLoaderState,
     IStepperDispatch,
     RouteComponentProps<{}>,
     MapStateToProps,

@@ -2,9 +2,7 @@ import { Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as LessonsLoader } from './component';
-import { LessonsLoaderState } from './_duck/reducers';
-
-import { onLoadLessons } from './_duck/operations';
+import { ILessonsLoaderState, onLoadLessons } from './_duck/';
 
 import { ApplicationState } from '@appStore';
 
@@ -21,7 +19,7 @@ const LessonsLoaderContainer = connect( mapStateToProps, mapDispatchToProps )( L
 
 export default LessonsLoaderContainer;
 
-interface MapStateToPropsI extends LessonsLoaderState {
+interface MapStateToPropsI extends ILessonsLoaderState {
     authorized: boolean;
 }
 

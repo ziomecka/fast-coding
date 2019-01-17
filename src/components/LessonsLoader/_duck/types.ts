@@ -26,3 +26,9 @@ export enum LessonsCategoriesEnum {
     JS = 'js',
     basics = 'basics'
 }
+
+export interface ILessonsLoaderState {
+    loading: boolean;
+    error: string;
+    lessons: LessonsDataI[];
+}

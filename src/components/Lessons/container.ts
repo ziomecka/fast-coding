@@ -7,7 +7,7 @@ import { ApplicationState } from '@appStore';
 
 import { ILessonsState } from './_duck/reducers';
 
-import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
+import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state.components.lessonsLoader,
@@ -19,10 +19,10 @@ const LessonsContainer = withRouter( connect( mapStateToProps )( Lessons ) );
 
 export default LessonsContainer;
 
-interface MapStateToProps extends LessonsLoaderState, ILessonsState {
+interface MapStateToProps extends ILessonsLoaderState, ILessonsState {
 }
 
 export interface LessonsProps extends
-    LessonsLoaderState,
+    ILessonsLoaderState,
     RouteComponentProps<{}>,
     MapStateToProps {}
