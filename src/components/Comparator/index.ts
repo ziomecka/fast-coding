@@ -2,12 +2,17 @@ export { default } from './container';
 export {
     ComparatorActions,
     ComparatorState,
-    comparatorReducer,
     INITIAL_STATE,
     RestoreStateAction,
-    onPauseComparator,
-    onResetComparator,
-    onTurnOffComparator,
-    onUnpauseComparator,
-    pausedLessonListener
+    addEventListener,
+    comparatorReducer,
+    handleKeyboardDown,
+    pauseComparator,
+    pausedLessonListener,
+    removeEventListener,
+    resetComparator,
+    restoreState,
+    turnOffComparator,
+    turnOnComparator,
+    unpauseComparator
 } from './_duck/';

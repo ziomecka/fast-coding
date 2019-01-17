@@ -1,13 +1,13 @@
 export {
+    addEventListener,
     handleKeyboardDown,
-    onAddEventListener,
-    onPauseComparator,
-    onRemoveEventListener,
-    onResetComparator,
-    onTurnOffComparator,
-    onTurnOnComparator,
-    onUnpauseComparator,
     pausedLessonListener,
+    pauseComparator,
+    removeEventListener,
+    resetComparator,
+    turnOffComparator,
+    turnOnComparator,
+    unpauseComparator
 } from './operations/';
 
 export { ComparatorState, INITIAL_STATE, comparatorReducer } from './reducers';

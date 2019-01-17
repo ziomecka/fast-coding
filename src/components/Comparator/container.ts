@@ -6,10 +6,10 @@ import { ApplicationState } from '@appStore';
 
 import {
     ComparatorState,
+    addEventListener,
     handleKeyboardDown,
-    onAddEventListener,
-    onTurnOnComparator,
-    onRemoveEventListener,
+    turnOnComparator,
+    removeEventListener,
     restoreState
 } from './_duck/';
 
@@ -33,11 +33,11 @@ const mapStateToProps = ( state: ApplicationState ): ComparatorState & LessonSta
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): ComparatorDispatch => ( {
-    turnOnComparator: () => dispatch( onTurnOnComparator() ),
+    turnOnComparator: () => dispatch( turnOnComparator() ),
     startLesson: () => dispatch( onStartLesson() ),
     endingLesson: () => dispatch( onEndingLesson() ),
-    addEventListener: () => dispatch( onAddEventListener( handleKeyboardDown ) ),
-    removeEventListener: () => dispatch( onRemoveEventListener() ),
+    addEventListener: () => dispatch( addEventListener( handleKeyboardDown ) ),
+    removeEventListener: () => dispatch( removeEventListener() ),
     keepState: () => dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) ),
     restoreState: () => dispatch( onRestoreState( LocalStorageItemEnum.comparator, restoreState ) )
 } );

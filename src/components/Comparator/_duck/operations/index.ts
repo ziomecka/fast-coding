@@ -8,12 +8,12 @@ export {
 } from './handle.keys';
 
 export {
-    onAddEventListener,
-    onPauseComparator,
-    onRemoveEventListener,
-    onResetComparator,
-    onTurnOffComparator,
-    onTurnOnComparator,
-    onUnpauseComparator,
-    pausedLessonListener,
+    onAddEventListener as addEventListener,
+    onPauseComparator as pauseComparator,
+    onRemoveEventListener as removeEventListener,
+    onResetComparator as resetComparator,
+    onTurnOffComparator as turnOffComparator,
+    onTurnOnComparator as turnOnComparator,
+    onUnpauseComparator as unpauseComparator,
+    pausedLessonListener as pausedLessonListener
 } from './life';

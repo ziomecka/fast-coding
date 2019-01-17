@@ -22,10 +22,10 @@ import {
 } from './../actions';
 
 import {
-    onPauseComparator,
-    onResetComparator,
-    onTurnOffComparator,
-    onUnpauseComparator,
+    pauseComparator,
+    resetComparator,
+    turnOffComparator,
+    unpauseComparator
 } from '@components/Comparator/';
 
 import {
@@ -92,7 +92,7 @@ const _endLesson = ( dispatch, getState ) => {
 
     if ( ( state.lesson.lessonText.length - 1 ) <= state.comparator.currentSignIndex ) {
         /** Comparator ends lesson after switching off keyboardListener and stats */
-        dispatch( onTurnOffComparator() );
+        dispatch( turnOffComparator() );
     }
     clearTimeout( timeout );
 };
@@ -117,7 +117,7 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 };
 
 export const onReset = (): any => ( dispatch: Dispatch ) => {
-    dispatch( onResetComparator() );
+    dispatch( resetComparator() );
     dispatch( resetStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
@@ -130,7 +130,7 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( onResetComparator() );
+    dispatch( resetComparator() );
     dispatch( resetStats() );
     dispatch( restartLesson() );
     clearTimeout( timeout );
@@ -141,14 +141,14 @@ export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
     dispatch( pauseStats() );
-    dispatch( onPauseComparator( listener ) );
+    dispatch( pauseComparator( listener ) );
     dispatch( pauseLesson() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };
 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( onUnpauseComparator() );
+    dispatch( unpauseComparator() );
     dispatch( unpauseLesson() );
     dispatch( unpauseStats() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
