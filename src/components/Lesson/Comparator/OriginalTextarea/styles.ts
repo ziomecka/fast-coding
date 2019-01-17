@@ -86,7 +86,7 @@ const styles = createStyles( theme => {
             }
         },
         fontClass: {
-            boxSizing: 'border-box',
+            boxSizing: 'content-box',
             display: 'inline-block',
             margin: `${ LETTER_MARGIN }em`,
             width: '1em',
