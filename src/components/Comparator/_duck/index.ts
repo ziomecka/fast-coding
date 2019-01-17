@@ -11,4 +11,8 @@ export {
 } from './operations/';
 
 export { ComparatorState, INITIAL_STATE, comparatorReducer } from './reducers';
-export { ComparatorActions, restoreState } from './actions';
+export {
+    ComparatorActions,
+    RestoreStateAction,
+    restoreState
+} from './actions';

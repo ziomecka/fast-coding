@@ -4,6 +4,7 @@ export {
     ComparatorState,
     comparatorReducer,
     INITIAL_STATE,
+    RestoreStateAction,
     onPauseComparator,
     onResetComparator,
     onTurnOffComparator,

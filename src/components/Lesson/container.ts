@@ -23,7 +23,7 @@ const { lesson } = ComponentsContainersEnum;
 import {
     moveLessonButtons,
     onStartLeaving
-} from './LessonButtons/';
+} from '@components/LessonButtons/';
 
 import { registerOnDrop, deregisterOnDrop } from '@app/Content/_duck/actions';
 

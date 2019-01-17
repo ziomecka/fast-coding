@@ -5,12 +5,12 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
 import { LessonState } from '../';
-import { StatsState } from '@components/Lesson/Stats';
-import { ComparatorState } from '@components/Lesson/Comparator/';
+import { StatsState } from '@components/Stats';
+import { ComparatorState } from '@components/Comparator/';
 
 import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
-import { RestoreStateAction as StatsRestoreStateAction } from '../../Stats/_duck/actions';
-import { RestoreStateAction as ComparatorRestoreStateAction } from '../../Comparator/_duck/actions';
+import { RestoreStateAction as StatsRestoreStateAction } from '@components/Stats/';
+import { RestoreStateAction as ComparatorRestoreStateAction } from '@components/Comparator/';
 
 import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 

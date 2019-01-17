@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { ComparatorActions, RestoreStateAction } from './actions';
 
 import { ComparatorActionsEnum } from './types';
-import { StatsActionsEnum } from '@components/Lesson/Stats/';
+import { StatsActionsEnum } from '@components/Stats/';
 
 import {
     statsReducer,

@@ -3,7 +3,7 @@ import { ThunkGetStateType } from '@applicationTypes';
 
 import { resetComparator } from '../actions';
 
-import { onStartTimer, onStopTimer } from '@components/Lesson/Stats/';
+import { onStartTimer, onStopTimer } from '@components/Stats/';
 import { onEndLesson, onUnpauseLesson } from '@components/Lesson/';
 import { default as handleKeys, handleEscape } from './handle.keys';
 

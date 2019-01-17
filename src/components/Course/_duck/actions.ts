@@ -1,7 +1,8 @@
 import { Action, ActionCreator } from 'redux';
-import { CourseActionsEnum } from './types';
-
-import { CourseDataType } from './reducers';
+import {
+    CourseActionsEnum,
+    CourseDataType
+} from './types';
 
 const {
     COMPONENTS_COURSE_UPDATE

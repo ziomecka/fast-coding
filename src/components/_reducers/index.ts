@@ -4,7 +4,7 @@ import {
     ComparatorState,
     comparatorReducer,
     INITIAL_STATE as COMPARATOR_INITIAL_STATE
-} from '@components/Lesson/Comparator/';
+} from '@components/Comparator/';
 
 import {
     LessonState,
@@ -28,7 +28,7 @@ import {
     LessonButtonsState,
     lessonButtonsReducer,
     INITIAL_STATE as LESSONBUTTONS_INITIAL_STATE
-} from '@components/Lesson/LessonButtons/';
+} from '@components/LessonButtons/';
 
 import {
     ILessonsState,

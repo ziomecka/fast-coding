@@ -20,7 +20,7 @@ import {
 } from '@components/Lesson/';
 
 import history from '@shared/history';
-import { onStartLeaving } from '@components/Lesson/LessonButtons/';
+import { onStartLeaving } from '@components/LessonButtons/';
 
 
 // TODO - keycode differs between browsers

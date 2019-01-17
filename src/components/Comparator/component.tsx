@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComparatorProps } from './container';
 
-import OriginalTextarea from './OriginalTextarea/';
+import OriginalTextarea from '@components/OriginalTextarea/';
 
 class ComparatorComponent extends React.Component<ComparatorProps> {
     constructor( props ) {

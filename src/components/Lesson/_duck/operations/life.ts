@@ -26,15 +26,15 @@ import {
     onResetComparator,
     onTurnOffComparator,
     onUnpauseComparator,
-} from '@components/Lesson/Comparator/';
+} from '@components/Comparator/';
 
 import {
     onPauseTimer,
     onUnpauseTimer,
     resetStats
-} from '@components/Lesson/Stats/';
+} from '@components/Stats/';
 
-import { resetDraggableLessonButtons } from '@components/Lesson/LessonButtons/';
+import { resetDraggableLessonButtons } from '@components/LessonButtons/';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';

@@ -14,7 +14,7 @@ import {
     onUnpauseLesson
 } from '@components/Lesson/';
 
-import { pausedLessonListener } from '@components/Lesson/Comparator/';
+import { pausedLessonListener } from '@components/Comparator/';
 
 import { WithStyles } from '@material-ui/core/styles';
 
