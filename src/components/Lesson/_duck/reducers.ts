@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonActionsEnum } from './types';
+import { LessonActionsEnum, LessonState } from './types';
 import {
     LessonActions,
     OpenLessonAction,
@@ -11,7 +11,7 @@ import {
 
 import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../constants';
 
-import { TextTranslationsI } from '@componentsTypes';
+
 import { LanguagesEnum } from '@applicationTypes';
 
 const { en, pl } = LanguagesEnum;
@@ -154,23 +154,4 @@ const reducer: Reducer<LessonState, LessonActions> = ( state = INITIAL_STATE, ac
 
 export { reducer as lessonReducer };
 
-// TODO improve. Has to be either text or translatedTexts
-export interface OriginalLessonData {
-    _id: string;
-    no: number;
-    title: TextTranslationsI;
-    text?: string;
-    translatedTexts?: TextTranslationsI;
-    signs: string[];
-    otherSigns: string[];
-}
 
-export interface LessonData extends OriginalLessonData {
-    lessonText: string;
-    started: boolean;
-    paused: boolean;
-    ended: boolean;
-    ending: boolean;
-}
-
-export interface LessonState extends LessonData {}

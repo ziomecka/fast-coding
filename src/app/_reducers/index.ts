@@ -61,12 +61,6 @@ import {
 } from '@forms/ChangePasswordForm/_duck/reducers';
 
 import {
-    INITIAL_STATE as KEYBOARD_LISTENER_INITIAL_STATE,
-    keyboardListenerReducer,
-    KeyboardListenerState
-} from '@app/KeyboardListener/_duck/reducers';
-
-import {
     INITIAL_STATE as REMIND_PASSWORD_INITIAL_STATE,
     remindPasswordReducer,
     RemindPasswordState
@@ -103,7 +97,6 @@ export const INITIAL_STATE = {
     user: USER_INITIAL_STATE,
     formHelperText: FORM_HELPER_TEXT_INITIAL_STATE,
     changePasswordForm: CHANGEPASSWORDFORM_INITIAL_STATE,
-    keyboardListener: KEYBOARD_LISTENER_INITIAL_STATE,
     remindPasswordForm: REMIND_PASSWORD_INITIAL_STATE,
     translationsLoader: TRANSLATIONS_LOADER_INITIAL_STATE
 };
@@ -129,7 +122,6 @@ const combinedReducers = combineReducers( {
     appMenu: menuReducer,
     user: userReducer,
     changePasswordForm: changePasswordFormReducer,
-    keyboardListener: keyboardListenerReducer,
     remindPasswordForm: remindPasswordReducer,
     translationsLoader: translationsLoaderReducer
 } );
@@ -192,7 +184,6 @@ export interface AppState {
     [user]: UserState;
     [formHelperText]: FormHelperTextState;
     [changePasswordForm]: ChangePasswordFormState;
-    [keyboardListener]: KeyboardListenerState;
     [remindPasswordForm]: RemindPasswordState;
     [translationsLoader]: TranslationsLoaderState;
 }

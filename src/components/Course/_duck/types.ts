@@ -10,3 +10,19 @@ export enum LessonsTypesEnum {
 }
 
 export type CourseGrid = Map< MediaEnum, { cols: number, cellHeight: number, rows: number }>;
+
+interface ILessonData {
+    allErrors: number[][];
+}
+
+interface ICourseCourseData {
+    [lessonId: string]: ILessonData;
+}
+
+export type CourseDataType = ICourseCourseData & {
+    lastLesson: number;
+};
+
+export interface ICourseState {
+    [ courseId: string ]: CourseDataType
+}

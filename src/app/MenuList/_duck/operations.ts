@@ -19,12 +19,12 @@ let callback;
 export const onSetNavAnchorEl = ( container: MenuContainersEnum, element?: HTMLElement ): any => ( dispatch: Dispatch ) => {
     if ( element ) {
         callback = keyDownCallback.bind( null, dispatch, container );
-        listenerId = dispatch( manageKeydownListeners.onAddListener( {
+        listenerId = manageKeydownListeners.onAddListener( {
             container,
             listener: [ 'keydown', callback ]
-        } ) );
+        } );
     } else {
-        dispatch( manageKeydownListeners.onRemoveListener( { container, listenerId } ) );
+        manageKeydownListeners.onRemoveListener( { container, listenerId } );
     }
 
     dispatch( setNavAnchorEl( container, element || null ) );

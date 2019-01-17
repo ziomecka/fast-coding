@@ -10,6 +10,7 @@ export enum KeyboardListenerActionsEnum {
 }
 
 export type KeyboardListenerContainersType =
+    ComponentsContainersEnum.comparator |
     ComponentsContainersEnum.lesson |
     ComponentsContainersEnum.lessonStepper |
     ViewsContainersEnum.homeView |
@@ -24,4 +25,18 @@ export type ListenerType = [ string, EventListener ];
 export type KeyboardListenerContainerListenersType = Map< number, ListenerType >;
 
 export type KeyboardListenerListenersType =
-    Map< KeyboardListenerContainersType, KeyboardListenerContainerListenersType >;
+    Map< KeyboardListenerContainersType, [ KeyboardListenerContainerListenersType, number] >;
+
+export interface AddListener {
+    container: KeyboardListenerContainersType;
+    listener: ListenerType;
+}
+
+export interface RemoveListener {
+    container: KeyboardListenerContainersType;
+    listenerId: number;
+}
+
+export interface RemoveAllListeners {
+    container: KeyboardListenerContainersType;
+}

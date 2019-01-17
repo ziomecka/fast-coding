@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { CourseProps } from './container';
-import { LessonData } from '@components/Lesson/_duck/reducers';
+import { LessonData } from '@components/Lesson/';
 import Stepper from '@components/Stepper/';
 
 import { AppRoutesEnum } from '@appTypes';
@@ -39,7 +39,7 @@ import {
     NAV_HEIGHT_MD,
 } from '@constantsStyles';
 
-import { LessonsTypesEnum, CourseGrid } from './_duck/types';
+import { LessonsTypesEnum, CourseGrid } from './_duck/';
 
 require( './style.sass' );
 

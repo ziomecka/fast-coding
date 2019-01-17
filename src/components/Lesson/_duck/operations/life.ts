@@ -21,17 +21,20 @@ import {
     startLesson
 } from './../actions';
 
-import { default as comparatorOperations } from '../../Comparator/_duck/operations/index';
+import {
+    pauseComparator,
+    resetComparator,
+    turnOffComparator,
+    unpauseComparator
+} from '@components/Comparator/';
 
-const { onResetComparator,
-    onPauseComparator,
-    onUnpauseComparator,
-    onTurnOffComparator
-} = comparatorOperations;
+import {
+    pauseStats,
+    resetStats,
+    unpauseStats
+} from '@components/Stats/';
 
-import { resetStats } from '../../Stats/_duck/actions';
-import { onPauseTimer, onUnpauseTimer } from '../../Stats/_duck/operations';
-import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
+import { resetDraggableLessonButtons } from '@components/LessonButtons/';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
@@ -73,15 +76,15 @@ const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
 let listenerId;
 
 const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
-    listenerId = dispatch( manageKeydownListeners.onAddListener( {
+    listenerId = manageKeydownListeners.onAddListener( {
         container,
         listener: [ 'keydown', ( e: KeyboardEvent ) => escapeReturnListener( e, dispatch ) ]
-    } ) );
+    } );
     return listenerId;
 };
 
-const removeAllKeyDownListeners = ( dispatch: Dispatch ): boolean => {
-    return dispatch( manageKeydownListeners.onRemoveListener( { container, listenerId } ) );
+const removeAllKeyDownListeners = (): boolean => {
+    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
 };
 
 const _endLesson = ( dispatch, getState ) => {
@@ -89,7 +92,7 @@ const _endLesson = ( dispatch, getState ) => {
 
     if ( ( state.lesson.lessonText.length - 1 ) <= state.comparator.currentSignIndex ) {
         /** Comparator ends lesson after switching off keyboardListener and stats */
-        dispatch( onTurnOffComparator() );
+        dispatch( turnOffComparator() );
     }
     clearTimeout( timeout );
 };
@@ -114,12 +117,12 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 };
 
 export const onReset = (): any => ( dispatch: Dispatch ) => {
-    dispatch( onResetComparator() );
+    dispatch( resetComparator() );
     dispatch( resetStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
     clearTimeout( timeout );
-    removeAllKeyDownListeners( dispatch );
+    removeAllKeyDownListeners();
 
     dispatch( onRemoveState( LocalStorageItemEnum.lesson ) );
     dispatch( onRemoveState( LocalStorageItemEnum.comparator ) );
@@ -127,27 +130,27 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( onResetComparator() );
+    dispatch( resetComparator() );
     dispatch( resetStats() );
     dispatch( restartLesson() );
     clearTimeout( timeout );
-    removeAllKeyDownListeners( dispatch );
+    removeAllKeyDownListeners();
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
-    dispatch( onPauseTimer() );
-    dispatch( onPauseComparator( listener ) );
+    dispatch( pauseStats() );
+    dispatch( pauseComparator( listener ) );
     dispatch( pauseLesson() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };
 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( onUnpauseComparator() );
+    dispatch( unpauseComparator() );
     dispatch( unpauseLesson() );
-    dispatch( onUnpauseTimer() );
+    dispatch( unpauseStats() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };

@@ -39,15 +39,15 @@ const manageFocus = ( e: KeyboardEvent ): void => manageButtonFocus( e );
 
 let listenerId;
 
-export const onAddKeyDownListener = (): any => ( dispatch: Dispatch ): number => {
-    listenerId = dispatch( manageKeydownListeners.onAddListener( {
+export const onAddKeyDownListener = (): number => {
+    listenerId = manageKeydownListeners.onAddListener( {
         container,
         listener: [ 'keydown', manageFocus ]
-    } ) );
+    } );
 
     return listenerId;
 };
 
-export const onRemoveKeyDownListener = (): any => ( dispatch: Dispatch ): boolean => {
-    return dispatch( manageKeydownListeners.onRemoveListener( { container, listenerId } ) );
+export const onRemoveKeyDownListener = (): boolean => {
+    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
 };

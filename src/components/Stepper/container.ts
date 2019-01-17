@@ -1,4 +1,4 @@
-import { Dispatch, Action } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -6,12 +6,16 @@ import { default as Stepper } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { LessonsLoaderState } from '@components/LessonsLoader/_duck/reducers';
-import { ILessonsState } from '@components/Lessons/_duck/reducers';
+import { ILessonsLoaderState } from '@components/LessonsLoader/';
+import { ILessonsState } from '@components/Lessons/';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
-import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';
-import { AddListener, RemoveListener } from '@app/KeyboardListener/_duck/actions';
+import {
+    AddListener,
+    RemoveListener,
+    addListener,
+    removeListener
+} from '@app/KeyboardListener/';
 
 import { IWithMedia } from '@app/Media';
 
@@ -20,9 +24,9 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state.components.lessons
 } );
 
-const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
-    addListener: options => dispatch( onAddListener( options ) ),
-    removeListener: options => dispatch( onRemoveListener( options ) )
+const mapDispatchToProps = (): IStepperDispatch => ( {
+    addListener: options => addListener( options ),
+    removeListener: options => removeListener( options )
 } );
 
 // @ts-ignore
@@ -30,14 +34,14 @@ const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProp
 
 export default StepperContainer;
 
-interface MapStateToProps extends LessonsLoaderState, ILessonsState {}
+interface MapStateToProps extends ILessonsLoaderState, ILessonsState {}
 
 export interface IStepperDispatch {
-    addListener: ( options: AddListener ) => Action;
-    removeListener: ( options: RemoveListener ) => Action;
+    addListener: ( options: AddListener ) => number;
+    removeListener: ( options: RemoveListener ) => boolean;
 }
 export interface StepperProps extends
-    LessonsLoaderState,
+    ILessonsLoaderState,
     IStepperDispatch,
     RouteComponentProps<{}>,
     MapStateToProps,

@@ -1,21 +1,18 @@
 import { Dispatch } from 'redux';
-import {
-    ApplicationContainersEnum,
-    ThunkGetStateType
-} from '@applicationTypes';
+import { ThunkGetStateType } from '@applicationTypes';
 
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
-const { components } = ApplicationContainersEnum;
-
-import { LessonState } from '../reducers';
-import { StatsState } from '../../Stats/_duck/reducers';
-import { ComparatorState } from '../../Comparator/_duck/reducers';
+import { LessonState } from '../';
+import { StatsState } from '@components/Stats';
 
 import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
-import { RestoreStateAction as StatsRestoreStateAction } from '../../Stats/_duck/actions';
-import { RestoreStateAction as ComparatorRestoreStateAction } from '../../Comparator/_duck/actions';
+import { RestoreStateAction as StatsRestoreStateAction } from '@components/Stats/';
+import {
+    ComparatorState,
+    RestoreStateAction as ComparatorRestoreStateAction
+} from '@components/Comparator/';
 
 import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 

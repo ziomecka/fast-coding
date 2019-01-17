@@ -1,4 +1,4 @@
-import { LessonsGrid } from './_duck/types';
+import { LessonsGrid } from './_duck/';
 
 import { MediaEnum } from '@app/Media/';
 

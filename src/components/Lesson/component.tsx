@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { LessonProps } from './container';
 
-import Comparator from './Comparator/';
-import LessonButtons from './LessonButtons/';
-import Stats from './Stats/';
+import Comparator from '@components/Comparator/';
+import LessonButtons from '@components/LessonButtons/';
+import Stats from '@components/Stats/';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
