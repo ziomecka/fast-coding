@@ -10,10 +10,8 @@ import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
 import TranslationsLoader from '@app/TranslationsLoader/';
 
-
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import firebaseui from 'firebaseui';
 
 import {
     projectId,
