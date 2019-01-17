@@ -33,6 +33,13 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
         this.goToLessons = this.goToLessons.bind( this );
     }
 
+    componentDidMount() {
+        if ( this.props.appLocation === this.props.isHome ) {
+            /** Listener to left /right arrows and modified tab listener */
+            this.props.addEventListener();
+        }
+    }
+
     componentDidUpdate( prevProps: WelcomeProps ) {
         const { appLocation } = this.props;
 
@@ -43,6 +50,13 @@ class WelcomeComponent extends React.Component<WelcomeProps> {
                 this.props.removeEventListener();
             }
         }
+    }
+
+    /** At present - component does not unmount
+     *  If it unmounts in future versions - event listners should be removed
+    */
+    componentWillUnmount () {
+        this.props.removeEventListener();
     }
 
     async goToDemo () {
