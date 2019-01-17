@@ -40,7 +40,7 @@ export const handleKeyboardDown
     if ( isEscape( keyCode ) ) handleEscape( dispatch, getState );
 };
 
-export const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
+const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     let state = getState().components;
 
     let { errors, correctedErrors, currentSignIndex } = state.comparator;
@@ -88,7 +88,7 @@ export const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetSta
     return true;
 };
 
-export const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
+const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     let state = getState().components;
     let { errors, allErrors, currentSignIndex } = state.comparator;
     let { lessonText: text } = state.lesson;
@@ -143,8 +143,6 @@ export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateT
 };
 
 export default {
-    handleKeyboardDown,
-    handleBackSpace
     handleEscape,
     handleKeyboardDown
 };
