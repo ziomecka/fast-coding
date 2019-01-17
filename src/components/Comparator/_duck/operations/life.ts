@@ -5,9 +5,16 @@ import { resetComparator } from '../actions';
 
 import { onStartTimer, onStopTimer } from '@components/Stats/';
 import { onEndLesson, onUnpauseLesson } from '@components/Lesson/';
-import { default as handleKeys, handleEscape } from './handle.keys';
 
-const { handleKeyboardDown, isValidCode, isBackspace } = handleKeys;
+import {
+    handleEscape,
+    handleKeyboardDown
+} from './handle.keys';
+
+import {
+    isBackspace,
+    isValidCode
+} from './helpers';
 
 const event = 'keydown';
 let listeners: [string, EventListenerOrEventListenerObject][] = [];

@@ -23,20 +23,10 @@ import history from '@shared/history';
 import { onStartLeaving } from '@components/LessonButtons/';
 
 import {
-    backspace,
-    escape,
-    validCodes
-} from './constants';
-
-export const isValidCode = ( code: number ): boolean => {
-    return validCodes.some( range => (
-        ( code >= range[ 0 ] ) &&
-        ( code <= range[ 1 ] )
-    ) );
-};
-
-export const isBackspace = ( code: number ): boolean => code === backspace;
-export const isEscape = ( code: number ): boolean => code === escape;
+    isBackspace,
+    isEscape,
+    isValidCode
+} from './helpers';
 
 export const handleKeyboardDown
 = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
@@ -153,9 +143,8 @@ export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateT
 };
 
 export default {
-    isValidCode,
-    isBackspace,
-    isEscape,
     handleKeyboardDown,
     handleBackSpace
+    handleEscape,
+    handleKeyboardDown
 };
