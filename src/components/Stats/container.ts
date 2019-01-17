@@ -15,7 +15,7 @@ const mapStateToProps = ( state: ApplicationState ): ExtendedStatsState => ( {
     errors: state.components.comparator.errors,
     text: state.components.lesson.lessonText,
     endedLesson: state.components.lesson.ended,
-    ...state.components.comparator.stats,
+    ...state.components.stats,
     localize: state.localize
 } );
 

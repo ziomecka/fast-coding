@@ -36,13 +36,20 @@ import {
     INITIAL_STATE as LESSONS_INITIAL_STATE
 } from '@components/Lessons/';
 
+import {
+    INITIAL_STATE as STATS_INITIAL_STATE,
+    statsReducer,
+    StatsState
+} from '@components/Stats/';
+
 export const INITIAL_STATE = {
     comparator: { ...COMPARATOR_INITIAL_STATE },
     lesson: { ...LESSON_INITIAL_STATE },
     lessons: { ...LESSONS_INITIAL_STATE },
     textGenerator: { ...TEXT_GENERATOR_INITIAL_STATE },
     lessonsLoader: { ...LESSONSLOADER_INITIAL_STATE },
-    lessonButtons: { ...LESSONBUTTONS_INITIAL_STATE }
+    lessonButtons: { ...LESSONBUTTONS_INITIAL_STATE },
+    stats: { ...STATS_INITIAL_STATE }
 };
 
 const reducer = combineReducers( {
@@ -51,7 +58,8 @@ const reducer = combineReducers( {
     textGenerator: textGeneratorReducer,
     lessons: lessonsReducer,
     lessonButtons: lessonButtonsReducer,
-    lessonsLoader: lessonsLoaderReducer
+    lessonsLoader: lessonsLoaderReducer,
+    stats: statsReducer
 } );
 
 export { reducer as componentsReducer };
@@ -63,4 +71,5 @@ export interface ComponentsState {
     textGenerator: ITextGeneratorState;
     lessonsLoader: ILessonsLoaderState;
     lessonButtons: LessonButtonsState;
+    stats: StatsState;
 }

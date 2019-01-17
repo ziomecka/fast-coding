@@ -3,13 +3,6 @@ import { Reducer } from 'redux';
 import { ComparatorActions, RestoreStateAction } from './actions';
 
 import { ComparatorActionsEnum } from './types';
-import { StatsActionsEnum } from '@components/Stats/';
-
-import {
-    statsReducer,
-    StatsState,
-    INITIAL_STATE as STATS_INITIAL_STATE
-} from '../../Stats/';
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
@@ -20,14 +13,6 @@ const {
     COMPONENTS_COMPARATOR_RESTORE_STATE
 } = ComparatorActionsEnum;
 
-const {
-    COMPONENTS_STATS_TIMER_START,
-    COMPONENTS_STATS_TIMER_STOP,
-    COMPONENTS_STATS_RESET,
-    COMPONENTS_STATS_PAUSE,
-    COMPONENTS_STATS_UNPAUSE
-} = StatsActionsEnum;
-
 /**
  * @param errors - Errors that are still not corrected
  * @param allErrors - All errors that were made, no matter if corrected
@@ -37,7 +22,6 @@ export const INITIAL_STATE: ComparatorState = {
     errors: [],
     allErrors: [],
     correctedErrors: [],
-    stats: { ...STATS_INITIAL_STATE }
 };
 
 const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_STATE, action ) => {
@@ -79,18 +63,6 @@ const reducer: Reducer<ComparatorState, ComparatorActions> = ( state = INITIAL_S
             };
         }
 
-        case COMPONENTS_STATS_PAUSE:
-        case COMPONENTS_STATS_UNPAUSE:
-        case COMPONENTS_STATS_TIMER_START:
-        case COMPONENTS_STATS_TIMER_STOP:
-        case COMPONENTS_STATS_RESET: {
-            return {
-                ...state,
-                stats: statsReducer( state.stats, action )
-            };
-
-        }
-
         case COMPONENTS_COMPARATOR_RESET: {
             return {
                 ...state,
@@ -121,5 +93,4 @@ export interface ComparatorState {
     errors: number[];
     allErrors: number[];
     correctedErrors: number[];
-    stats: StatsState;
 }
