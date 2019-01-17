@@ -1,4 +1,4 @@
-import { Dispatch, Action } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -10,8 +10,12 @@ import { ILessonsLoaderState } from '@components/LessonsLoader/';
 import { ILessonsState } from '@components/Lessons/';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
-import { onAddListener, onRemoveListener } from '@app/KeyboardListener/_duck/operations';
-import { AddListener, RemoveListener } from '@app/KeyboardListener/_duck/actions';
+import {
+    AddListener,
+    RemoveListener,
+    addListener,
+    removeListener
+} from '@app/KeyboardListener/';
 
 import { IWithMedia } from '@app/Media';
 
@@ -21,8 +25,8 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): IStepperDispatch => ( {
-    addListener: options => dispatch( onAddListener( options ) ),
-    removeListener: options => dispatch( onRemoveListener( options ) )
+    addListener: options => dispatch( addListener( options ) ),
+    removeListener: options => dispatch( removeListener( options ) )
 } );
 
 // @ts-ignore
@@ -33,8 +37,8 @@ export default StepperContainer;
 interface MapStateToProps extends ILessonsLoaderState, ILessonsState {}
 
 export interface IStepperDispatch {
-    addListener: ( options: AddListener ) => Action;
-    removeListener: ( options: RemoveListener ) => Action;
+    addListener: ( options: AddListener ) => number;
+    removeListener: ( options: RemoveListener ) => boolean;
 }
 export interface StepperProps extends
     ILessonsLoaderState,
