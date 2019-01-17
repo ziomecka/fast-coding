@@ -4,26 +4,27 @@ import { connect } from 'react-redux';
 import { default as Comparator } from './component';
 import { ApplicationState } from '@appStore';
 
-import { ComparatorState } from './_duck/reducers';
-import { LessonState } from '../_duck/reducers';
+import {
+    ComparatorState,
+    handleKeyboardDown,
+    onAddEventListener,
+    onTurnOnComparator,
+    onRemoveEventListener,
+    restoreState
+} from './_duck/';
+
+import {
+    LessonState,
+    onEndingLesson,
+    onKeepState,
+    onRestoreState,
+    onStartLesson
+} from '@components/Lesson/';
 
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
 const { comparator } = ComponentsContainersEnum;
-
-import { onEndingLesson, onStartLesson } from '../_duck/operations/life';
-import { onKeepState, onRestoreState } from '../_duck/operations/restore.state';
-
-import { default as operations } from './_duck/operations/index';
-const {
-    onAddEventListener,
-    onTurnOnComparator,
-    onRemoveEventListener,
-    handleKeyboardDown
-} = operations;
-
-import { restoreState } from './_duck/actions';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): ComparatorState & LessonState => ( {

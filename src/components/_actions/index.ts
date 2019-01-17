@@ -1,5 +1,5 @@
 
-import { ComparatorActions } from '@components/Lesson/Comparator/_duck/actions';
+import { ComparatorActions } from '@components/Lesson/Comparator/';
 
 export const actions = {
 };

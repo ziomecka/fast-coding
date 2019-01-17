@@ -21,17 +21,20 @@ import {
     startLesson
 } from './../actions';
 
-import { default as comparatorOperations } from '../../Comparator/_duck/operations/index';
-
-const { onResetComparator,
+import {
     onPauseComparator,
+    onResetComparator,
+    onTurnOffComparator,
     onUnpauseComparator,
-    onTurnOffComparator
-} = comparatorOperations;
+} from '@components/Lesson/Comparator/';
 
-import { resetStats } from '../../Stats/_duck/actions';
-import { onPauseTimer, onUnpauseTimer } from '../../Stats/_duck/operations';
-import { resetDraggableLessonButtons } from '../../LessonButtons/_duck/actions';
+import {
+    onPauseTimer,
+    onUnpauseTimer,
+    resetStats
+} from '@components/Lesson/Stats/';
+
+import { resetDraggableLessonButtons } from '@components/Lesson/LessonButtons/';
 
 /** Keyboard listener imports */
 import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';

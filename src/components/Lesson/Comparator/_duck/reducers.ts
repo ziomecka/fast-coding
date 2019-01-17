@@ -3,13 +3,13 @@ import { Reducer } from 'redux';
 import { ComparatorActions, RestoreStateAction } from './actions';
 
 import { ComparatorActionsEnum } from './types';
-import { StatsActionsEnum } from '../../Stats/_duck/types';
+import { StatsActionsEnum } from '@components/Lesson/Stats/';
 
 import {
     statsReducer,
     StatsState,
     INITIAL_STATE as STATS_INITIAL_STATE
-} from '../../Stats/_duck/reducers';
+} from '../../Stats/';
 
 const {
     COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { LessonButtonsProps } from './container';
 
-import { INITIAL_STATE } from './_duck/reducers';
+import { INITIAL_STATE } from './_duck/';
 import { AppRoutesEnum } from '@appTypes';
 
 import ButtonWithHint from '@app/ButtonWithHint/';

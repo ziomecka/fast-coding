@@ -6,21 +6,25 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as LessonButtons } from './component';
 import { ApplicationState } from '@appStore';
 
-import { LessonState } from '../_duck/reducers';
-import { LessonButtonsState } from './_duck/reducers';
+import {
+    LessonState,
+    onPauseLesson,
+    onReset,
+    onRestartLesson,
+    onUnpauseLesson
+} from '@components/Lesson/';
 
-import { pausedLessonListener } from '../Comparator/_duck/operations/life';
-import { onRestartLesson, onPauseLesson, onUnpauseLesson, onReset } from '../_duck/operations/life';
+import { pausedLessonListener } from '@components/Lesson/Comparator/';
 
 import { WithStyles } from '@material-ui/core/styles';
 
 import {
-    turnOnDraggableLessonButtons,
+    LessonButtonsState,
+    onStartLeaving,
+    resetDraggableLessonButtons,
     turnOffDraggableLessonButtons,
-    resetDraggableLessonButtons
-} from './_duck/actions';
-
-import { onStartLeaving } from './_duck/operations';
+    turnOnDraggableLessonButtons
+} from './_duck/';
 
 import { LocalizeState } from 'react-localize-redux';
 

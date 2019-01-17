@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import { LessonButtonsActions, MoveLessonButtonsAction } from './actions';
-import { LessonButtonsActionsEnum } from './types';
+import { LessonButtonsActionsEnum, LessonButtonsState } from './types';
 
 const {
     COMPONENTS_LESSON_BUTTONS_MOVE,
@@ -55,8 +55,3 @@ const reducer: Reducer<LessonButtonsState, LessonButtonsActions> = ( state = INI
 
 export { reducer as lessonButtonsReducer };
 
-export interface LessonButtonsState {
-    left: number | 'auto';
-    top: number | 'auto';
-    draggable: boolean;
-}

@@ -14,12 +14,14 @@ import {
     correctError,
 } from '../actions';
 
-import { onNotEndingLesson } from '../../../_duck/operations/life';
+import {
+    onKeepState,
+    onNotEndingLesson
+} from '@components/Lesson/';
 
 import history from '@shared/history';
-import { onStartLeaving } from '../../../LessonButtons/_duck/operations';
+import { onStartLeaving } from '@components/Lesson/LessonButtons/';
 
-import { onKeepState } from '../../../_duck/operations/restore.state';
 
 // TODO - keycode differs between browsers
 /**

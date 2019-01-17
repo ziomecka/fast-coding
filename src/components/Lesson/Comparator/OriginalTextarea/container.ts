@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { default as OriginalTextArea } from './component';
 import { ApplicationState } from '@appStore';
 
-import { ComparatorState } from '../_duck/reducers';
-import { LessonState } from '../../_duck/reducers';
+import { ComparatorState } from '@components/Lesson/Comparator/';
+import { LessonState } from '@components/Lesson/';
 
 import { WithStyles } from '@material-ui/core/styles';
 

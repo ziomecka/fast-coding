@@ -7,7 +7,7 @@ import { ApplicationState } from '@appStore';
 
 import { ILessonsState } from './_duck/';
 
-import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
+import { ILessonsLoaderState } from '@components/LessonsLoader/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state.components.lessonsLoader,

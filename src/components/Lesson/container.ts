@@ -5,8 +5,13 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as Lesson } from './component';
 import { ApplicationState } from '@appStore';
 
-import { LessonState } from './_duck/reducers';
-import { restoreState } from './_duck/actions';
+import {
+    LessonState,
+    onKeepState,
+    onReset,
+    onRestoreState,
+    restoreState
+} from './_duck/';
 
 import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
 
@@ -15,15 +20,16 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 
 const { lesson } = ComponentsContainersEnum;
 
-import { onReset } from './_duck/operations/life';
-import { onRestoreState, onKeepState } from './_duck/operations/restore.state';
-import { moveLessonButtons } from './LessonButtons/_duck/actions';
+import {
+    moveLessonButtons,
+    onStartLeaving
+} from './LessonButtons/';
+
 import { registerOnDrop, deregisterOnDrop } from '@app/Content/_duck/actions';
 
 import { WithStyles } from '@material-ui/core/styles';
 
 import { LocalizeState } from 'react-localize-redux';
-import { onStartLeaving } from './LessonButtons/_duck/operations';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { time, start, stop, running } = state.components.comparator.stats;

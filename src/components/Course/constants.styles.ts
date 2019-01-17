@@ -1,5 +1,5 @@
 import { MediaEnum } from '@app/Media';
-import { CourseGrid } from './_duck/types';
+import { CourseGrid } from './_duck/';
 
 const { lg, md, sm, xl, xs } = MediaEnum;
 

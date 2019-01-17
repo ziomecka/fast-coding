@@ -1,7 +1,10 @@
 import { Reducer } from 'redux';
 
 import { StatsActions } from './actions';
-import { StatsActionsEnum } from './types';
+import {
+    StatsActionsEnum,
+    StatsState
+} from './types';
 
 const {
     COMPONENTS_STATS_TIMER_START,
@@ -83,10 +86,3 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
 };
 
 export { reducer as statsReducer };
-
-export interface StatsState {
-    running: boolean;
-    start: number;
-    stop: number;
-    time: number;
-}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { default as Stats } from './component';
 import { ApplicationState } from '@appStore';
 
-import { StatsState } from './_duck/reducers';
+import { StatsState } from './_duck/';
 
 import { WithStyles } from '@material-ui/core/styles';
 import { WithTableProps } from '@app/Table/';

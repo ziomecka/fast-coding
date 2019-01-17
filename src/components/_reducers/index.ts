@@ -4,31 +4,31 @@ import {
     ComparatorState,
     comparatorReducer,
     INITIAL_STATE as COMPARATOR_INITIAL_STATE
-} from '@components/Lesson/Comparator/_duck/reducers';
+} from '@components/Lesson/Comparator/';
 
 import {
     LessonState,
     lessonReducer,
     INITIAL_STATE as LESSON_INITIAL_STATE
-} from '@components/Lesson/_duck/reducers';
+} from '@components/Lesson/';
 
 import {
     ITextGeneratorState,
     textGeneratorReducer,
     INITIAL_STATE as TEXT_GENERATOR_INITIAL_STATE
-} from '@components/TextGenerator/_duck/';
+} from '@components/TextGenerator/';
 
 import {
     ILessonsLoaderState,
     lessonsLoaderReducer,
     INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
-} from '@components/LessonsLoader/_duck/';
+} from '@components/LessonsLoader/';
 
 import {
     LessonButtonsState,
     lessonButtonsReducer,
     INITIAL_STATE as LESSONBUTTONS_INITIAL_STATE
-} from '@components/Lesson/LessonButtons/_duck/reducers';
+} from '@components/Lesson/LessonButtons/';
 
 import {
     ILessonsState,

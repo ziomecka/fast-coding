@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { startTimer, stopTimer, pauseStats, unpauseStats } from './actions';
-import { onKeepState } from '../../_duck/operations/restore.state';
+import { onKeepState } from '@components/Lesson/';
 import { LocalStorageItemEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 

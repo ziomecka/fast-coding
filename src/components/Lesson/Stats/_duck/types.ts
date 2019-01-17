@@ -15,3 +15,10 @@ export enum StatsTimeUnitsEnum {
     Minutes = 'Minutes',
     Hours = 'Hours'
 }
+
+export interface StatsState {
+    running: boolean;
+    start: number;
+    stop: number;
+    time: number;
+}

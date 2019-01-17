@@ -1,3 +1,16 @@
-import { default as life } from './life';
+export {
+    onEndLesson,
+    onEndingLesson,
+    onNotEndingLesson,
+    onPauseLesson,
+    onReset,
+    onRestartLesson,
+    onStartLesson,
+    onUnpauseLesson
+} from './life';
 
-export default { ...life };
+export {
+    onKeepState,
+    onRemoveState,
+    onRestoreState
+} from './restore.state';

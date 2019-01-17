@@ -4,7 +4,7 @@ import { CourseActions } from './actions';
 import {
     CourseActionsEnum,
     ICourseState,
- } from './types';
+} from './types';
 
 const {
     COMPONENTS_COURSE_UPDATE,

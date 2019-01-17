@@ -6,7 +6,7 @@ import { default as Stepper } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
+import { ILessonsLoaderState } from '@components/LessonsLoader/';
 import { ILessonsState } from '@components/Lessons/';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 

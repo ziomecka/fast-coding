@@ -1,3 +1,12 @@
 export { default } from './container';
 export { LESSONS_GRID } from './constants.styles';
-export { ILessonsState, lessonsReducer, INITIAL_STATE } from './_duck/';
+export {
+    ILessonsState,
+    INITIAL_STATE,
+    LessonsGrid,
+    OpenCourseAction,
+    activateLesson,
+    lessonsReducer,
+    onCloseCourse,
+    openCourse,
+} from './_duck/';

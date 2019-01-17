@@ -1,6 +1,5 @@
 import { Action, ActionCreator } from 'redux';
-import { StatsActionsEnum } from './types';
-import { StatsState } from './reducers';
+import { StatsActionsEnum, StatsState } from './types';
 
 const {
     COMPONENTS_STATS_TIMER_START,

@@ -3,8 +3,8 @@ import { ThunkGetStateType } from '@applicationTypes';
 
 import { resetComparator } from '../actions';
 
-import { onStartTimer, onStopTimer } from '../../../Stats/_duck/operations';
-import { onEndLesson, onUnpauseLesson } from '../../../_duck/operations/life';
+import { onStartTimer, onStopTimer } from '@components/Lesson/Stats/';
+import { onEndLesson, onUnpauseLesson } from '@components/Lesson/';
 import { default as handleKeys, handleEscape } from './handle.keys';
 
 const { handleKeyboardDown, isValidCode, isBackspace } = handleKeys;

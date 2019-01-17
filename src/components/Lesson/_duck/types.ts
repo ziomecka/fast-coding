@@ -1,5 +1,7 @@
 // Use ComponentsContainersEnum enum in '@@components_
 // Important for components reducer
+import { TextTranslationsI } from '@componentsTypes';
+
 export enum LessonActionsEnum {
     COMPONENTS_LESSON_UPDATE = '@@components_lesson/UPDATE',
     COMPONENTS_LESSON_OPEN = '@@components_lesson/OPEN',
@@ -15,3 +17,24 @@ export enum LessonActionsEnum {
     COMPONENTS_LESSON_RESTART = '@@components_lesson/RESTART',
     COMPONENTS_LESSON_RESTORE_STATE = '@@components_lesson/RESTORE_STATE'
 }
+
+// TODO improve. Has to be either text or translatedTexts
+interface OriginalLessonData {
+    _id: string;
+    no: number;
+    title: TextTranslationsI;
+    text?: string;
+    translatedTexts?: TextTranslationsI;
+    signs: string[];
+    otherSigns: string[];
+}
+
+export interface LessonData extends OriginalLessonData {
+    lessonText: string;
+    started: boolean;
+    paused: boolean;
+    ended: boolean;
+    ending: boolean;
+}
+
+export interface LessonState extends LessonData {}
