@@ -1,5 +1,7 @@
 import { Dispatch } from 'redux';
-import { ThunkGetStateType } from '@applicationTypes';
+import { ThunkGetStateType, ComponentsContainersEnum } from '@applicationTypes';
+
+const { comparator: container } = ComponentsContainersEnum;
 
 import { resetComparator } from '../actions';
 
@@ -22,16 +24,22 @@ import {
     isValidCode,
 } from './helpers';
 
-const event = 'keydown';
-let listeners: [string, EventListenerOrEventListenerObject][] = [];
+import {
+    addListener,
+    removeAllListeners,
+    removeListener
+} from '@app/KeyboardListener/';
+
+import { listenedEvent } from './constants';
+
+let keyboardDownListenerId: number;
 
 export const onTurnOnComparator = (): any => ( dispatch: Dispatch ) => {
     dispatch( startStats() );
 };
 
 export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
-    listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
-    listeners = [];
+    removeAllListeners( { container } );
 
     let timerStopped = await dispatch( stopStats() );
 
@@ -43,29 +51,17 @@ export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Prom
 };
 
 export const onResetComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    listeners.push( [ event, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] );
-    document.addEventListener( event, listeners[ listeners.length - 1 ][ 1 ] );
+    dispatch( onListenKeys() );
     dispatch( resetComparator() );
 };
 
-const onAddEventListener = ( listener ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    if ( listener ) {
-        listeners.push( [ event, ( e: KeyboardEvent ) => listener( e, dispatch, getState ) ] );
-        document.addEventListener( event, listeners[ listeners.length - 1 ][ 1 ] );
-    }
-};
 
-const onRemoveEventListener = (): any => () => {
-    listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
-    listeners = [];
-};
-
-export const onListenKeys = (): any => ( dispatch: Dispatch ) => {
-    dispatch ( onAddEventListener( handleKeyboardDown ) );
+export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+    keyboardDownListenerId = dispatch ( addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } ) );
 };
 
 export const onStopListenKeys = (): any => ( dispatch: Dispatch ) => {
-    dispatch ( onRemoveEventListener() );
+    dispatch ( removeListener( { container, listenerId: keyboardDownListenerId } ) );
 };
 
 /** Listen to escape - start leaving lesson. Listen to validCode or backspace - unpause lesson */
@@ -84,18 +80,19 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
     if ( isEscape( keyCode ) ) handleEscape( dispatch, getState );
 };
 
-/** When lesson is paused add eventListener */
+/** When lesson is paused */
 export const onPauseComparator = ( eventListener? ): any => ( dispatch: Dispatch ) => {
-    dispatch( onRemoveEventListener() );
-    /** Add eydown listener: if valid keyCode or backSpace then unpause lesson */
+    /** Remove current eventListener */
+    removeListener( { container, listenerId: keyboardDownListenerId } );
     if ( eventListener ) {
-        dispatch( onAddEventListener( eventListener ) );
+        /** Add keydown listener: if valid keyCode or backSpace then unpause lesson */
+        keyboardDownListenerId = dispatch( addListener( { container, listener: eventListener } ) );
     }
 };
 
-export const onUnpauseComparator = (): any => ( dispatch: Dispatch ) => {
-    dispatch( onRemoveEventListener() );
-    dispatch( onAddEventListener( handleKeyboardDown ) );
+export const onUnpauseComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+    dispatch( removeListener( { container, listenerId: keyboardDownListenerId } ) );
+    keyboardDownListenerId = dispatch( addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } ) );
 };
 
 export default {
