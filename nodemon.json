@@ -1,6 +1,9 @@
 {
     "verbose": true,
-    "ignore": [".git", "node_modules/**"],
-    "ext": "js",
-    "watch": [ "bundle/server/**/*", "src/server/**/*" ]
+    "ignore": [
+        ".git",
+        "node_modules/**",
+        "**/*.ts"
+    ],
+    "ext": "js"
 }
