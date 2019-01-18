@@ -13,9 +13,12 @@ import {
 
 import {
     INITIAL_STATE as LESSON_INITIAL_STATE,
-    LessonState,
     lessonReducer,
 } from '@lesson/_reducers/';
+
+import {
+    ILessonState,
+} from '@lesson/_types/';
 
 import {
     CSRActionsEnum,
@@ -101,6 +104,6 @@ export { reducers as applicationReducer };
 export interface ApplicationState {
     app: AppState;
     courses: CoursesState;
-    lesson: LessonState;
+    lesson: ILessonState;
     localize: LocalizeState;
 }

@@ -1,25 +1,21 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
 import {
-    LessonComparatorState,
     lessonComparatorReducer,
     INITIAL_STATE as LESSON_COMPARATOR_INITIAL_STATE
 } from '@lesson/LessonComparator/';
 
 import {
-    LessonState,
     lessonReducer,
     INITIAL_STATE as LESSON_INITIAL_STATE
 } from '@lesson/Lesson/';
 
 import {
-    ILessonTextGeneratorState,
     lessonTextGeneratorReducer,
     INITIAL_STATE as LESSON_TEXT_GENERATOR_INITIAL_STATE
 } from '@lesson/LessonTextGenerator/';
 
 import {
-    LessonButtonsState,
     lessonButtonsReducer,
     INITIAL_STATE as LESSONBUTTONS_INITIAL_STATE
 } from '@lesson/LessonButtons/';
@@ -27,8 +23,9 @@ import {
 import {
     INITIAL_STATE as LESSON_STATS_INITIAL_STATE,
     lessonStatsReducer,
-    LessonStatsState
 } from '@lesson/LessonStats/';
+
+import { ILessonState } from '../_types/index';
 
 export const INITIAL_STATE = {
     lessonComparator: { ...LESSON_COMPARATOR_INITIAL_STATE },
@@ -38,7 +35,7 @@ export const INITIAL_STATE = {
     lessonStats: { ...LESSON_STATS_INITIAL_STATE }
 };
 
-const reducer = combineReducers( {
+const reducer: Reducer<ILessonState> = combineReducers( {
     lesson: lessonReducer,
     lessonComparator: lessonComparatorReducer,
     lessonTextGenerator: lessonTextGeneratorReducer,
@@ -48,10 +45,3 @@ const reducer = combineReducers( {
 
 export { reducer as lessonReducer };
 
-export interface LessonState {
-    lessonComparator: LessonComparatorState;
-    lesson: LessonState;
-    lessonTextGenerator: ILessonTextGeneratorState;
-    lessonButtons: LessonButtonsState;
-    lessonStats: LessonStatsState;
-}
