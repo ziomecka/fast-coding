@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonComparatorActions, RestoreStateAction } from './actions';
+import { LessonComparatorActions } from './actions';
 
 import { LessonComparatorActionsEnum } from './types';
 
@@ -10,7 +10,6 @@ const {
     LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE,
     LESSON_LESSON_COMPARATOR_CORRECT_ERROR,
     LESSON_LESSON_COMPARATOR_RESET,
-    LESSON_LESSON_COMPARATOR_RESTORE_STATE
 } = LessonComparatorActionsEnum;
 
 /**
@@ -70,13 +69,6 @@ const reducer: Reducer<LessonComparatorState, LessonComparatorActions> = ( state
                 allErrors: [],
                 correctedErrors: [],
                 currentSignIndex: -1
-            };
-        }
-
-        case LESSON_LESSON_COMPARATOR_RESTORE_STATE: {
-            return {
-                ...state,
-                ...( action as RestoreStateAction ).state
             };
         }
 

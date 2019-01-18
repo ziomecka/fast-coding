@@ -12,9 +12,7 @@ export {
 } from './types';
 
 export {
-    RestoreStateAction,
     resetLessonStats,
-    restoreState
 } from './actions';
 
 export {

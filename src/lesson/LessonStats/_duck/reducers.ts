@@ -11,8 +11,7 @@ const {
     LESSON_LESSON_STATS_TIMER_STOP,
     LESSON_LESSON_STATS_RESET,
     LESSON_LESSON_STATS_PAUSE,
-    LESSON_LESSON_STATS_UNPAUSE,
-    LESSON_LESSON_STATS_RESTORE_STATE
+    LESSON_LESSON_STATS_UNPAUSE
 } = LessonStatsActionsEnum;
 
 export const INITIAL_STATE: LessonStatsState = {
@@ -77,14 +76,6 @@ const reducer: Reducer<LessonStatsState, LessonStatsActions> = ( state = INITIAL
                 running: true,
                 start: Date.now(),
                 stop: 0
-            };
-        }
-
-        case LESSON_LESSON_STATS_RESTORE_STATE: {
-            return {
-                ...state,
-                // @ts-ignore
-                ...action.state
             };
         }
 

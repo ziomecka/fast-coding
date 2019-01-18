@@ -1,6 +1,5 @@
 import { Action, ActionCreator } from 'redux';
 import { LessonComparatorActionsEnum } from './types';
-import { LessonComparatorState } from './reducers';
 
 const {
     LESSON_LESSON_COMPARATOR_REGISTER_NEW_KEY,
@@ -8,7 +7,6 @@ const {
     LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE,
     LESSON_LESSON_COMPARATOR_CORRECT_ERROR,
     LESSON_LESSON_COMPARATOR_RESET,
-    LESSON_LESSON_COMPARATOR_RESTORE_STATE
 } = LessonComparatorActionsEnum;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = ( currentSignIndex: number ) => ( {
@@ -36,11 +34,6 @@ export const resetLessonComparator: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_COMPARATOR_RESET
 } );
 
-export const restoreState: ActionCreator<RestoreStateAction> = ( state: LessonComparatorState ) => ( {
-    type: LESSON_LESSON_COMPARATOR_RESTORE_STATE,
-    state
-} );
-
 export default {
     registerNewKey,
     registerError,
@@ -66,12 +59,6 @@ export interface CorrectErrorAction extends Action {
     correctedErrors: number[];
 }
 
-export interface RestoreStateAction extends Action {
-    readonly type: string;
-    state: LessonComparatorState;
-}
-
 export type LessonComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |
-    CorrectErrorAction |
-    RestoreStateAction;
+    CorrectErrorAction;

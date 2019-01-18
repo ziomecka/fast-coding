@@ -15,8 +15,4 @@ export {
 
 export { LessonComparatorState, INITIAL_STATE, lessonComparatorReducer } from './reducers';
 
-export {
-    LessonComparatorActions,
-    RestoreStateAction,
-    restoreState
-} from './actions';
+export { LessonComparatorActions } from './actions';

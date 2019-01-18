@@ -3,7 +3,6 @@ export {
     LessonComparatorActions,
     LessonComparatorState,
     INITIAL_STATE,
-    RestoreStateAction,
     isBackspace,
     isEnter,
     isEscape,
@@ -12,7 +11,6 @@ export {
     pauseLessonComparator,
     pausedLessonListener,
     resetLessonComparator,
-    restoreState,
     turnOffLessonComparator,
     turnOnLessonComparator,
     unpauseLessonComparator

@@ -4,9 +4,6 @@ import {
     ILessonState,
 } from '../_types';
 
-import { restoreState as lessonComparatorRestoreState } from '@lesson/LessonComparator/';
-import { restoreState as lessonStatsRestoreState } from '@lesson/LessonStats/';
-
 const {
     LESSON_LESSON_START,
     LESSON_LESSON_PAUSE,
@@ -53,16 +50,10 @@ export const unpauseLesson: ActionCreator<Action> = () => ( {
 } );
 
 
-export const lessonRestoreState: ActionCreator<RestoreStateAction> = ( state: ILessonState ) => ( {
+export const restoreState: ActionCreator<RestoreStateAction> = ( state: ILessonState ) => ( {
     type: LESSON_LESSON_RESTORE_STATE,
     state
 } );
-
-export const restoreState = {
-    lesson: lessonRestoreState,
-    lessonComparator: lessonComparatorRestoreState,
-    lessonStats: lessonStatsRestoreState,
-};
 
 export default {
     endLesson,

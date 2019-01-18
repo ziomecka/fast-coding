@@ -7,7 +7,6 @@ const {
     LESSON_LESSON_STATS_RESET,
     LESSON_LESSON_STATS_PAUSE,
     LESSON_LESSON_STATS_UNPAUSE,
-    LESSON_LESSON_STATS_RESTORE_STATE
 } = LessonStatsActionsEnum;
 
 export const startTimer: ActionCreator<Action> = () => ( {
@@ -30,14 +29,6 @@ export const unpauseLessonStats: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_STATS_UNPAUSE
 } );
 
-export const restoreState: ActionCreator<RestoreStateAction> = ( state: LessonStatsState ) => ( {
-    type: LESSON_LESSON_STATS_RESTORE_STATE,
-    state
-} );
-
-export interface RestoreStateAction extends Action {
-    state: LessonStatsState
-}
 export default {
     startTimer,
     stopTimer
