@@ -20,6 +20,12 @@ import {
     onStartLesson
 } from '@lesson/Lesson/';
 
+import { LessonContainersEnum } from '@lessonTypes';
+import { LocalStorageItemEnum } from '@appTypes';
+
+const { lessonComparator: container } = LessonContainersEnum;
+const { lessonComparator: localStorageItem } = LocalStorageItemEnum;
+
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): LessonComparatorState & LessonState => ( {
     ...state.lesson.lessonComparator,
@@ -30,7 +36,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonComparatorDispatch => (
     turnOnLessonComparator: () => dispatch( turnOnLessonComparator() ),
     startLesson: () => dispatch( onStartLesson() ),
     endingLesson: () => dispatch( onEndingLesson() ),
-    keepState: () => dispatch( onKeepState() ),
+    keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
     listenKeys: () => dispatch( listenKeys() ),
     restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
     stopListenKeys: () => dispatch( stopListenKeys() )
