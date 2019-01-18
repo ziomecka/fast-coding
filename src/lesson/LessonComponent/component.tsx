@@ -106,7 +106,7 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
          *  to display time
          */
         if ( time !== prevProps.time ) {
-            this.setState({ time: this.time() });
+            this.setState( { time: this.time() } );
         }
     }
 
