@@ -1,12 +1,8 @@
-import {
-    localStorageRemoveItem,
-} from '@app/LocalStorage/_duck/operations';
+import { LocalStorageItemEnum, } from '@appTypes';
+import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
-import { LocalStorageItemEnum } from '@appTypes';
+const { lesson } = LocalStorageItemEnum;
 
-export const onRemoveState = ( localStorageItem: LocalStorageItemEnum ): any => (
-    (): boolean => localStorageRemoveItem( localStorageItem ) );
+export const onRemoveState = (): boolean => localStorageRemoveItem( lesson );
 
-export default {
-    onRemoveState
-};
+export default { onRemoveState };
