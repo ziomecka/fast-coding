@@ -3,8 +3,6 @@ import { ThunkGetStateType, LessonContainersEnum } from '@applicationTypes';
 
 const { lessonComparator: container } = LessonContainersEnum;
 
-import { resetLessonComparator } from '../actions';
-
 import {
     startLessonStats,
     stopLessonStats
@@ -50,10 +48,9 @@ export const onTurnOffLessonComparator = (): any => async ( dispatch: Dispatch )
     }
 };
 
-export const onResetLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    dispatch( onListenKeys() );
-    dispatch( resetLessonComparator() );
-};
+export const onResetLessonComparator = (): any => ( dispatch: Dispatch ) => (
+    dispatch( onListenKeys() )
+);
 
 export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );

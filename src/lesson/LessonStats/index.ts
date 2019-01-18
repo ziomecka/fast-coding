@@ -6,7 +6,6 @@ export {
     LessonStatsState,
     lessonStatsReducer,
     pauseLessonStats,
-    resetLessonStats,
     startLessonStats,
     stopLessonStats,
     unpauseLessonStats

@@ -1,10 +1,9 @@
 import { Action, ActionCreator } from 'redux';
-import { LessonStatsActionsEnum, LessonStatsState } from './types';
+import { LessonStatsActionsEnum } from './types';
 
 const {
     LESSON_LESSON_STATS_TIMER_START,
     LESSON_LESSON_STATS_TIMER_STOP,
-    LESSON_LESSON_STATS_RESET,
     LESSON_LESSON_STATS_PAUSE,
     LESSON_LESSON_STATS_UNPAUSE,
 } = LessonStatsActionsEnum;
@@ -15,10 +14,6 @@ export const startTimer: ActionCreator<Action> = () => ( {
 
 export const stopTimer: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_STATS_TIMER_STOP
-} );
-
-export const resetLessonStats: ActionCreator<Action> = () => ( {
-    type: LESSON_LESSON_STATS_RESET
 } );
 
 export const pauseLessonStats: ActionCreator<Action> = () => ( {

@@ -25,7 +25,6 @@ import {
 
 import {
     pauseLessonStats,
-    resetLessonStats,
     unpauseLessonStats
 } from '@lesson/LessonStats/';
 
@@ -95,7 +94,6 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 export const onReset = (): any => ( dispatch: Dispatch ) => {
     /** RESET */
     dispatch( resetLessonComparator() );
-    dispatch( resetLessonStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
 
@@ -110,7 +108,7 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
     /** RESET */
     dispatch( resetLessonComparator() );
-    dispatch( resetLessonStats() );
+    dispatch( onReset() );
 
     /** RESTART */
     dispatch( restartLesson() );

@@ -9,7 +9,6 @@ import {
 const {
     LESSON_LESSON_STATS_TIMER_START,
     LESSON_LESSON_STATS_TIMER_STOP,
-    LESSON_LESSON_STATS_RESET,
     LESSON_LESSON_STATS_PAUSE,
     LESSON_LESSON_STATS_UNPAUSE
 } = LessonStatsActionsEnum;
@@ -45,10 +44,6 @@ const reducer: Reducer<LessonStatsState, LessonStatsActions> = ( state = INITIAL
                     ? Date.now() - start + time
                     : time,
             };
-        }
-
-        case LESSON_LESSON_STATS_RESET: {
-            return { ...INITIAL_STATE };
         }
 
         case LESSON_LESSON_STATS_PAUSE: {

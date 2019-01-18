@@ -13,9 +13,7 @@ import {
 
 import { INITIAL_STATE as LESSON_BUTTONS_INITIAL_STATE } from '@lesson/LessonButtons/_duck/reducers';
 import { INITIAL_STATE as LESSON_COMPARATOR_INITIAL_STATE } from '@lesson/LessonComparator/_duck/reducers';
-import { INITIAL_STATE as LESSON_COMPONENT_INITIAL_STATE } from '@lesson/LessonComponent/_duck/reducers';
 import { INITIAL_STATE as LESSON_INITIAL_STATE } from './';
-import { INITIAL_STATE as LESSON_TEXT_GENERATOR_INITIAL_STATE } from '@lesson/LessonTextGenerator/_duck/reducers';
 import { INITIAL_STATE as LESSON_STATS_INITIAL_STATE } from '@lesson/LessonStats/_duck/reducers';
 
 const {
@@ -95,10 +93,16 @@ const reducer: Reducer<ILessonState, LessonCommonActions> = ( state = LESSON_INI
         case LESSON_LESSON_RESET: {
             return {
                 lessonButtons: { ...LESSON_BUTTONS_INITIAL_STATE },
-                lessonComparator: { ...LESSON_COMPARATOR_INITIAL_STATE },
-                lessonComponent: { ...LESSON_COMPONENT_INITIAL_STATE },
+                lessonComparator: {
+                    ...LESSON_COMPARATOR_INITIAL_STATE,
+                    errors: [],
+                    allErrors: [],
+                    correctedErrors: [],
+                    currentSignIndex: -1
+                },
+                lessonComponent: { ...state.lessonComponent },
                 lessonStats: { ...LESSON_STATS_INITIAL_STATE },
-                lessonTextGenerator: { ...LESSON_TEXT_GENERATOR_INITIAL_STATE },
+                lessonTextGenerator: { ...state.lessonTextGenerator },
                 ...LESSON_COMMON_INITIAL_STATE,
             };
         }

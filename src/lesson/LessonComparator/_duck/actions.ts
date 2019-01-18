@@ -5,8 +5,7 @@ const {
     LESSON_LESSON_COMPARATOR_REGISTER_NEW_KEY,
     LESSON_LESSON_COMPARATOR_REGISTER_ERROR,
     LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE,
-    LESSON_LESSON_COMPARATOR_CORRECT_ERROR,
-    LESSON_LESSON_COMPARATOR_RESET,
+    LESSON_LESSON_COMPARATOR_CORRECT_ERROR
 } = LessonComparatorActionsEnum;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = ( currentSignIndex: number ) => ( {
@@ -30,16 +29,11 @@ export const registerBackspace: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE
 } );
 
-export const resetLessonComparator: ActionCreator<Action> = () => ( {
-    type: LESSON_LESSON_COMPARATOR_RESET
-} );
-
 export default {
     registerNewKey,
     registerError,
     registerBackspace,
-    correctError,
-    resetLessonComparator
+    correctError
 };
 
 export interface RegisterNewKeyAction extends Action {

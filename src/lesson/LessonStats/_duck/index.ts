@@ -12,10 +12,6 @@ export {
 } from './types';
 
 export {
-    resetLessonStats,
-} from './actions';
-
-export {
     INITIAL_STATE,
     lessonStatsReducer
 } from './reducers';

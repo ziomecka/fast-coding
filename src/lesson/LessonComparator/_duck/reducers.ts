@@ -1,7 +1,6 @@
 import { Reducer } from 'redux';
 
 import { LessonComparatorActions } from './actions';
-
 import { LessonComparatorActionsEnum } from './types';
 
 const {
@@ -9,7 +8,6 @@ const {
     LESSON_LESSON_COMPARATOR_REGISTER_ERROR,
     LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE,
     LESSON_LESSON_COMPARATOR_CORRECT_ERROR,
-    LESSON_LESSON_COMPARATOR_RESET,
 } = LessonComparatorActionsEnum;
 
 /**
@@ -59,16 +57,6 @@ const reducer: Reducer<LessonComparatorState, LessonComparatorActions> = ( state
                 // @ts-ignore
                 correctedErrors: [ ...action.correctedErrors ],
                 currentSignIndex: state.currentSignIndex - 1
-            };
-        }
-
-        case LESSON_LESSON_COMPARATOR_RESET: {
-            return {
-                ...state,
-                errors: [],
-                allErrors: [],
-                correctedErrors: [],
-                currentSignIndex: -1
             };
         }
 
