@@ -55,19 +55,27 @@ app.use( helmet() );
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
-    const webpack = require('webpack');
-    const webpackPath = path.resolve(ROOT, '../webpack/webpack.bundle');
-    const webpackConfig = require(webpackPath);
-    const compiler = webpack(webpackConfig);
+    // const webpack = require('webpack');
+    // const webpackPath = path.resolve(ROOT, '../webpack/webpack.hmr');
+    // const webpackConfig = require(webpackPath);
+    // const compiler = webpack(webpackConfig);
 
-    app.use(
-        require('webpack-dev-middleware')(compiler, {
-            noInfo: true,
-            publicPath: webpackConfig.output.publicPath,
-        })
-    );
+    // app.use(
+    //     require('webpack-dev-middleware')(compiler, {
+    //         noInfo: true,
+    //         publicPath: webpackConfig.output.publicPath,
+    //     })
+    // );
 
-    app.use(require('webpack-hot-middleware')(compiler));
+    // app.use(require('webpack-hot-middleware')(compiler));
+
+} else {
+    app.get('*.js', (req, res, next) => {
+        req.url = req.url + '.gz';
+        res.set('Content-Encoding', 'gzip');
+        res.set('Content-Type', 'text/javascript');
+        next();
+    });
 }
 
 app.set('trust proxy', 1);
@@ -78,13 +86,6 @@ app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( ROUTES, getSession() );
-
-app.get('*.js', (req, res, next) => {
-    req.url = req.url + '.gz';
-    res.set('Content-Encoding', 'gzip');
-    res.set('Content-Type', 'text/javascript');
-    next();
-});
 
 app.use(express.static(ROOT, {
     setHeaders: (res, path) => {
