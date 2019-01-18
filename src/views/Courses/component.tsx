@@ -14,13 +14,13 @@ const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props =
     const { loading, classes } = props;
 
     const loader = (
-        <Paper className={classes.lessonsPaper}>
+        <Paper className={classes.paperClass}>
             <p>Courses are loading...</p>
             <Progress
                 color="secondary"
                 size={40}
                 thickness={4}
-                className={classes.lessonsProgress}
+                className={classes.progressClass}
             />
         </Paper>
     );

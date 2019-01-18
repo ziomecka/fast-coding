@@ -1,11 +1,11 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles( {
-    lessonsPaper: {
+    paperClass: {
         display: 'flex',
         alignItems: 'center'
     },
-    lessonsProgress: {
+    progressClass: {
         marginLeft: '2em'
     }
 } );
