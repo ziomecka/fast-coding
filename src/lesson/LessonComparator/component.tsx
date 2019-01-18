@@ -19,10 +19,12 @@ class LessonComparatorComponent extends React.Component<LessonComparatorProps> {
 
     componentDidMount() {
         this.props.listenKeys();
+        this.props.restoreState();
     }
 
     componentWillUnmount() {
         this.props.stopListenKeys();
+        this.props.keepState();
     }
 
     componentDidUpdate( prevProps: LessonComparatorProps ) {
