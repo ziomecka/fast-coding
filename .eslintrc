@@ -3,37 +3,14 @@
         "browser": true,
         "commonjs": true,
         "es6": true
-},
-"parser": "typescript-eslint-parser",
-  "plugins": [ "react", "typescript" ],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+    },
+    "parser": "typescript-eslint-parser",
+    "plugins": [ "react", "typescript" ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+        "jsx": true
+        }
     }
-  },
-  "rules": {
-    "no-duplicate-imports": "error",
-    "no-extra-semi": "error",
-    "no-empty": "error",
-    "no-console": "error",
-    "semi": "error",
-    "quotes": [ "error", "single" ],
-    "no-multi-spaces": "error",
-    "typescript/no-unused-vars": "error",
-    "no-multiple-empty-lines": "error",
-    "no-trailing-spaces": "error",
-    "semi-spacing": "error",
-    "comma-spacing": "error",
-    "key-spacing": "error",
-    "keyword-spacing": "error",
-    "space-in-parens": [ "error", "always" ],
-    "object-curly-spacing": [ "error", "always" ],
-    "array-bracket-spacing": [ "error", "always" ],
-    "computed-property-spacing": [ "error", "always" ],
-    "space-infix-ops": "error",
-    "eol-last": "error",
-    "indent": [ "error", 4, { "SwitchCase": 1 } ]
-  }
 }
