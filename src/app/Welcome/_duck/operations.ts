@@ -13,13 +13,9 @@ import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
 import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
 
-const { lessonComparator, lesson, lessonStats } = LocalStorageItemEnum;
+const { lesson } = LocalStorageItemEnum;
 
-const clearLocalStorage = () => {
-    localStorageRemoveItem( lessonComparator );
-    localStorageRemoveItem( lesson );
-    localStorageRemoveItem( lessonStats );
-};
+const clearLocalStorage = () => localStorageRemoveItem( lesson );
 
 export const onOpenDemoLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     const language = getActiveLanguage( getState().localize ).code;
