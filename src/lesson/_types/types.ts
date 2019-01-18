@@ -14,7 +14,7 @@ export enum LessonContainersEnum {
 
 export interface ILessonState {
     lessonComparator: LessonComparatorState;
-    lesson: ILessonComponentState;
+    lessonComponent: ILessonComponentState;
     lessonTextGenerator: ILessonTextGeneratorState;
     lessonButtons: LessonButtonsState;
     lessonStats: LessonStatsState;

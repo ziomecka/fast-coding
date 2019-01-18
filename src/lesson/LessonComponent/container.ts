@@ -29,7 +29,7 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { running, start, stop, time } = state.lesson.lessonStats;
 
     return {
-        ...state.lesson.lesson,
+        ...state.lesson.lessonComponent,
         localize: { ...state.localize },
         running,
         start,

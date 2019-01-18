@@ -82,7 +82,7 @@ export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: Thun
 };
 
 export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    if ( !getState().lesson.lesson.ending ) {
+    if ( !getState().lesson.lessonComponent.ending ) {
         dispatch( endingLesson() );
 
         timeout = setTimeout(

@@ -3,7 +3,7 @@ export {
     INITIAL_STATE,
     LessonData,
     ILessonComponentState,
-    lessonReducer,
+    lessonComponentReducer,
     onEndLesson,
     onEndingLesson,
     onKeepState,

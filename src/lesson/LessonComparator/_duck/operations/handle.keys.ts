@@ -42,7 +42,7 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     let state = getState().lesson;
 
     let { errors, correctedErrors, currentSignIndex } = state.lessonComparator;
-    let { ending } = state.lesson;
+    let { ending } = state.lessonComponent;
 
     const wasAnError = errors[ errors.length - 1 ] === currentSignIndex;
 
@@ -82,14 +82,14 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
 const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     let state = getState().lesson;
     let { errors, allErrors, currentSignIndex } = state.lessonComparator;
-    let { lessonText: text } = state.lesson;
+    let { lessonText: text } = state.lessonComponent;
 
     /** currentSignIndex cannot be higher then text.length - 1 */
     const nextCurrentSignIndex = ( currentSignIndex + 1 > text.length - 1 )
         ? currentSignIndex
         : currentSignIndex + 1;
 
-    const expectedSign = state.lesson.lessonText[ nextCurrentSignIndex ];
+    const expectedSign = state.lessonComponent.lessonText[ nextCurrentSignIndex ];
 
     /** To keep dispatch answer */
     let answer: any;

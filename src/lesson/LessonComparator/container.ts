@@ -20,7 +20,7 @@ import {
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): LessonComparatorState & ILessonComponentState => ( {
     ...state.lesson.lessonComparator,
-    ...state.lesson.lesson
+    ...state.lesson.lessonComponent
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonComparatorDispatch => ( {

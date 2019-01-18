@@ -9,7 +9,7 @@ import { ILessonComponentState } from '@lesson/LessonComponent/';
 
 const mapStateToProps = ( state: ApplicationState ): ILessonTextGeneratorState & ILessonComponentState => ( {
     ...state.lesson.lessonTextGenerator,
-    ...state.lesson.lesson
+    ...state.lesson.lessonComponent
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonTextGeneratorDispatch => ( {

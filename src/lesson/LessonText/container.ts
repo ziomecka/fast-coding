@@ -10,7 +10,7 @@ import { WithStyles } from '@material-ui/core/styles';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state.lesson.lessonComparator,
-    ...state.lesson.lesson
+    ...state.lesson.lessonComponent
 } );
 
 const LessonTextContainer = connect( mapStateToProps )( LessonText );

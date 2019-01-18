@@ -11,8 +11,8 @@ import { ILocationContextProps } from '@app/AppLocation/';
 
 const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: { ...state.localize },
-    lessonTitle: state.lesson.lesson.title,
-    lessonNo: state.lesson.lesson.no
+    lessonTitle: state.lesson.lessonComponent.title,
+    lessonNo: state.lesson.lessonComponent.no
 } );
 
 // @ts-ignore

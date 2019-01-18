@@ -13,8 +13,8 @@ import { LocalizeState } from 'react-localize-redux';
 const mapStateToProps = ( state: ApplicationState ): ExtendedLessonStatsState => ( {
     allErrors: state.lesson.lessonComparator.allErrors,
     errors: state.lesson.lessonComparator.errors,
-    text: state.lesson.lesson.lessonText,
-    endedLesson: state.lesson.lesson.ended,
+    text: state.lesson.lessonComponent.lessonText,
+    endedLesson: state.lesson.lessonComponent.ended,
     ...state.lesson.lessonStats,
     localize: state.localize
 } );

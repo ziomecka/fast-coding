@@ -6,8 +6,8 @@ import {
 } from '@lesson/LessonComparator/';
 
 import {
-    lessonReducer,
-    INITIAL_STATE as LESSON_INITIAL_STATE
+    lessonComponentReducer,
+    INITIAL_STATE as LESSON_COMPONENT_INITIAL_STATE
 } from '@lesson/LessonComponent/';
 
 import {
@@ -29,14 +29,14 @@ import { ILessonState } from '../_types/index';
 
 export const INITIAL_STATE = {
     lessonComparator: { ...LESSON_COMPARATOR_INITIAL_STATE },
-    lesson: { ...LESSON_INITIAL_STATE },
+    lessonComponent: { ...LESSON_COMPONENT_INITIAL_STATE },
     lessonTextGenerator: { ...LESSON_TEXT_GENERATOR_INITIAL_STATE },
     lessonButtons: { ...LESSONBUTTONS_INITIAL_STATE },
     lessonStats: { ...LESSON_STATS_INITIAL_STATE }
 };
 
 const reducer: Reducer<ILessonState> = combineReducers( {
-    lesson: lessonReducer,
+    lessonComponent: lessonComponentReducer,
     lessonComparator: lessonComparatorReducer,
     lessonTextGenerator: lessonTextGeneratorReducer,
     lessonButtons: lessonButtonsReducer,

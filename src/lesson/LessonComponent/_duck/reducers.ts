@@ -152,6 +152,6 @@ const reducer: Reducer<ILessonComponentState, LessonActions> = ( state = INITIAL
     }
 };
 
-export { reducer as lessonReducer };
+export { reducer as lessonComponentReducer };
 
 

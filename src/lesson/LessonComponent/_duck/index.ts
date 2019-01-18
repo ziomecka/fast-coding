@@ -1,6 +1,6 @@
 export { default } from './operations';
 
-export { INITIAL_STATE, lessonReducer } from './reducers';
+export { INITIAL_STATE, lessonComponentReducer } from './reducers';
 
 export { LessonData, ILessonComponentState } from './types';
 

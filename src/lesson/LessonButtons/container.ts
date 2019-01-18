@@ -40,7 +40,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
 } );
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
-    ...state.lesson.lesson,
+    ...state.lesson.lessonComponent,
     ...state.lesson.lessonButtons,
     dialogOpened: state.app.dialog.dialogProps.open,
     localize: state.localize
