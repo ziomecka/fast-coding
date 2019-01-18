@@ -1,4 +1,13 @@
-import { TextTranslationsI } from '@componentsTypes';
+import { ComponentsContainersEnum, TextTranslationsI } from '@componentsTypes';
+
+import {
+    RestoreStateAction as LessonComparatorRestoreStateAction,
+} from '@components/LessonComparator/';
+
+import { RestoreStateAction as LessonRestoreStateAction } from './actions';
+import { LessonState } from '../';
+import { RestoreStateAction as LessonStatsRestoreStateAction } from '@components/LessonStats/';
+import { LocalStorageItemEnum } from '@appTypes';
 
 export enum LessonActionsEnum {
     COMPONENTS_LESSON_UPDATE = '@@components_lesson/UPDATE',
@@ -36,3 +45,14 @@ export interface LessonData extends OriginalLessonData {
 }
 
 export interface LessonState extends LessonData {}
+
+export interface IRestoreStateOptions {
+    localStorageItem: LocalStorageItemEnum,
+    action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | LessonComparatorRestoreStateAction,
+    clearState?: boolean
+}
+
+export interface IKeepStateOptions {
+    localStorageItem: LocalStorageItemEnum,
+    container: ComponentsContainersEnum
+}

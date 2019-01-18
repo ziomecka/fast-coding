@@ -4,7 +4,8 @@ import { ThunkGetStateType } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';
 
-const { lessonComparator } = ComponentsContainersEnum;
+const { lessonComparator: container } = ComponentsContainersEnum;
+const { lessonComparator: localStorageItem } = LocalStorageItemEnum;
 const { lessons } = AppRoutesEnum;
 
 import {
@@ -70,14 +71,7 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
-        answer = null; // GC
-    }
-
-    /** Keep state in local storage. In case page is refreshed (like F5) */
-    /** currentSignIndex will be stored */
-    if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
+        await dispatch( onKeepState( { container, localStorageItem } ) );
         answer = null; // GC
     }
 
@@ -122,7 +116,7 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
+        await dispatch( onKeepState( { container, localStorageItem } ) );
         answer = null; // GC
     }
 

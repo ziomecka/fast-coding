@@ -5,5 +5,6 @@ export enum ComponentsContainersEnum {
     coursesLoader = 'coursesLoader',
     lessons = 'lessons',
     lessonButtons = 'lessonButtons',
+    lessonStats = 'lessonStats',
     coursesStepper = 'coursesStepper'
 }
