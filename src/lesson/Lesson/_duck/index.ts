@@ -10,7 +10,6 @@ export {
     onKeepState,
     onNotEndingLesson,
     onPauseLesson,
-    onRemoveState,
     onReset,
     onRestartLesson,
     onRestoreState,

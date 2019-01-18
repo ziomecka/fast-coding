@@ -11,7 +11,6 @@ export {
     onPauseLesson,
     onReset,
     onRestartLesson,
-    onRestoreState,
     onStartLesson,
     onUnpauseLesson,
     openLesson,
