@@ -18,7 +18,7 @@ export const onPauseTimer = (): any => ( dispatch: Dispatch ) => {
 };
 
 export const onUnpauseTimer = (): any => ( dispatch: Dispatch ) => {
-    dispatch( unpauseLessonStats( localStorageItem ) );
+    dispatch( unpauseLessonStats() );
     return dispatch( onKeepState() );
 };
 
