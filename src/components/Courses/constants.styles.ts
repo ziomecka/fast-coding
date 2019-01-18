@@ -1,10 +1,10 @@
-import { LessonsGrid } from './_duck/';
+import { CoursesGrid } from './_duck/';
 
 import { MediaEnum } from '@app/Media/';
 
 const { lg, md, sm, xl, xs } = MediaEnum;
 
-export const LESSONS_GRID: LessonsGrid = new Map( [
+export const COURSES_GRID: CoursesGrid = new Map( [
     [ xs, { cols: 1 } ],
     [ sm, { cols: 1 } ],
     [ md, { cols: 2 } ],

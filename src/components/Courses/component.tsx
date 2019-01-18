@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { LessonsProps } from './container';
+import { CoursesProps } from './container';
 import Course from '@components/Course/';
 
 /** Materials core */
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 
-const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
+const CoursesComponent: React.StatelessComponent<CoursesProps> = props => {
     return (
         <Grid
             container
@@ -31,4 +31,4 @@ const LessonsComponent: React.StatelessComponent<LessonsProps> = props => {
     );
 };
 
-export default LessonsComponent;
+export default CoursesComponent;

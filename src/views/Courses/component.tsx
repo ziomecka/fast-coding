@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LessonsViewProps } from './container';
-import Lessons from '@components/Lessons';
+import Courses from '@components/Courses';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';
@@ -15,7 +15,7 @@ const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props =
 
     const loader = (
         <Paper className={classes.lessonsPaper}>
-            <p>Lessons are loading...</p>
+            <p>Courses are loading...</p>
             <Progress
                 color="secondary"
                 size={40}
@@ -26,7 +26,7 @@ const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props =
     );
 
     if ( loading ) return loader;
-    return <Lessons />;
+    return <Courses />;
 };
 
 export default withStyles( styles )( LessonsViewComponent );

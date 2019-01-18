@@ -20,13 +20,13 @@ import {
     OpenCourseAction,
     onCloseCourse,
     openCourse
-} from '@components/Lessons/';
+} from '@components/Courses/';
 
 import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     localize: state.localize,
-    openedCourseId: state.components.lessons.openedCourseId
+    openedCourseId: state.components.courses.openedCourseId
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): CourseDispatch => ( {

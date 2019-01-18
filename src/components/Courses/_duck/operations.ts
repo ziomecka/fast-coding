@@ -6,7 +6,7 @@ export const onCloseCourse = ( id: string ): any => (
     async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
 
         /** If the course is still opened */
-        if ( id === getState().components.lessons.openedCourseId ) {
+        if ( id === getState().components.courses.openedCourseId ) {
             let answer = await dispatch( closeCourse() );
 
             if ( answer ) {

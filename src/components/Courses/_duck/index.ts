@@ -1,6 +1,6 @@
 export { onCloseCourse } from './operations';
-export { ILessonsState, LessonsGrid } from './types';
-export { INITIAL_STATE, lessonsReducer } from './reducers';
+export { ICoursesState, CoursesGrid } from './types';
+export { INITIAL_STATE, coursesReducer } from './reducers';
 export {
     activateLesson,
     openCourse,

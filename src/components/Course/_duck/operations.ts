@@ -14,7 +14,7 @@ import { LocalStorageItemEnum } from '@appTypes';
 import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
-import { activateLesson } from '@components/Lessons/';
+import { activateLesson } from '@components/Courses/';
 const { comparator, lesson, stats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {

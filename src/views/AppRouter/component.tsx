@@ -3,7 +3,7 @@ import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import history from '@shared/history';
 
 import HomeView from '@views/Home/';
-import LessonsView from '@views/Lessons/';
+import CoursesView from '@views/Courses/';
 import LessonView from '@views/Lesson/';
 import PrivacyPolicy from '@views/PrivacyPolicy/';
 import TermsOfService from '@views/TermsOfService/';
@@ -74,7 +74,7 @@ class Root extends React.Component<AppRouterPropsI, IAppRouterState> {
 
         return [
             <Route path={`${ lessons }/:id`} component={ LessonView } key="lessonView" />,
-            <Route exact path={`${ lessons }`} component={ LessonsView } key="lessonsView" />,
+            <Route exact path={`${ lessons }`} component={ CoursesView } key="CoursesView" />,
             <Route exact path={`${ privacyPolicy }`} component={ PrivacyPolicy } key="privacyPolicyView" />,
             <Route exact path={`${ termsOfService }`} component={ TermsOfService } key="termsOfServiceView" />,
             <Redirect from='/.+' to='/' key="redirectToHome" />
