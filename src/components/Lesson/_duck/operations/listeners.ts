@@ -5,17 +5,17 @@ import { Dispatch } from 'redux';
 import history from '@shared/history';
 import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
 import { onRestartLesson } from './life';
-
+import { isEnter, isEscape } from '@components/LessonComparator/';
 const { lessons } = AppRoutesEnum;
 const { lesson: container } = ComponentsContainersEnum;
 
 const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
-    if ( e.keyCode === 27 ) {
+    if ( isEscape( e.keyCode ) ) {
         // TODO reset everything
         history.push( lessons );
     }
 
-    if ( e.keyCode === 13 ) {
+    if ( isEnter( e.keyCode ) ) {
         dispatch( onRestartLesson() );
     }
 };
