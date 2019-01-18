@@ -115,9 +115,7 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
     removeAllKeyDownListeners();
 
     /** REMOVE STATE */
-    dispatch( onRemoveState( localStorageLesson ) );
-    dispatch( onRemoveState( localStorageLessonComparator ) );
-    dispatch( onRemoveState( localStorageLessonStats ) );
+    onRemoveState();
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
