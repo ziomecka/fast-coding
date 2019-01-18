@@ -1,3 +1,5 @@
+import { LESSON_STATS_HTML_ID, WAIT_FOR_LAST_SIGN } from './constants';
+
 import { addEscapeReturnListener, removeAllKeyDownListeners } from './listeners';
 
 import {
@@ -40,8 +42,6 @@ const {
     lessonStats: localStorageLessonStats
 } = LocalStorageItemEnum;
 
-/** Time to correct the last sign */
-const waitForLastSign = 800;
 let timeout;
 
 export const onStartLesson = (): any => async ( dispatch: Dispatch ) => {
@@ -54,7 +54,7 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
     let answer = dispatch( endLesson() );
     if ( answer ) {
         addEscapeReturnListener( dispatch );
-        document.getElementById( 'lessonLessonStats' ).scrollIntoView( true );
+        document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
         dispatch( onKeepState( localStorageLesson, lesson ) );
         dispatch( onKeepState( localStorageLessonComparator, lessonComparator ) );
     }
@@ -84,7 +84,7 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 
         timeout = setTimeout(
             () => _endLesson( dispatch, getState ),
-            waitForLastSign
+            WAIT_FOR_LAST_SIGN
         );
     }
 };
