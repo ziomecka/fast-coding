@@ -46,17 +46,24 @@ let timeout;
 
 export const onStartLesson = (): any => async ( dispatch: Dispatch ) => {
     await dispatch( startLesson() );
+
+    /** KEEP STATE */
     return dispatch( onKeepState( localStorageLesson, lesson ) );
 };
 
 export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
     clearTimeout( timeout );
+
     let answer = dispatch( endLesson() );
+
     if ( answer ) {
         addEscapeReturnListener( dispatch );
-        document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
+
+        /** KEEP STATE */
         dispatch( onKeepState( localStorageLesson, lesson ) );
         dispatch( onKeepState( localStorageLessonComparator, lessonComparator ) );
+
+        document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
     }
 };
 
@@ -67,12 +74,16 @@ const _endLesson = ( dispatch, getState ) => {
         /** LessonComparator ends lesson after switching off keyboardListener and lessonStats */
         dispatch( turnOffLessonComparator() );
     }
+
     clearTimeout( timeout );
 };
 
 export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     clearTimeout( timeout );
+
     dispatch( notEndingLesson() );
+
+    /** KEEP STATE */
     dispatch( onKeepState( localStorageLesson, lesson ) );
 };
 
@@ -90,40 +101,57 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 };
 
 export const onReset = (): any => ( dispatch: Dispatch ) => {
+    /** RESET */
     dispatch( resetLessonComparator() );
     dispatch( resetLessonStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
+
     clearTimeout( timeout );
+
     removeAllKeyDownListeners();
 
+    /** REMOVE STATE */
     dispatch( onRemoveState( localStorageLesson ) );
     dispatch( onRemoveState( localStorageLessonComparator ) );
     dispatch( onRemoveState( localStorageLessonStats ) );
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
+    /** RESET */
     dispatch( resetLessonComparator() );
     dispatch( resetLessonStats() );
+
+    /** RESTART */
     dispatch( restartLesson() );
+
     clearTimeout( timeout );
+
     removeAllKeyDownListeners();
+
+    /** KEEP STATE */
     dispatch( onKeepState( localStorageLesson, lesson ) );
     dispatch( onKeepState( localStorageLessonComparator, lessonComparator ) );
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
+    /** PAUSE */
     dispatch( pauseLessonStats() );
     dispatch( pauseLessonComparator( listener ) );
     dispatch( pauseLesson() );
+
+    /** KEEP STATE */
     dispatch( onKeepState( localStorageLesson, lesson ) );
     dispatch( onKeepState( localStorageLessonComparator, lessonComparator ) );
 };
 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
+    /** UNPAUSE */
     dispatch( unpauseLessonComparator() );
     dispatch( unpauseLesson() );
     dispatch( unpauseLessonStats() );
+
+    /** KEEP STATE */
     dispatch( onKeepState( localStorageLesson, lesson ) );
     dispatch( onKeepState( localStorageLessonComparator, lessonComparator ) );
 };
