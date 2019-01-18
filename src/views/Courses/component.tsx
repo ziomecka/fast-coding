@@ -11,16 +11,16 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
 const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props => {
-    const { loading, classes } = props;
+    const { loading, classes: { paperClass, progressClass } } = props;
 
     const loader = (
-        <Paper className={classes.paperClass}>
+        <Paper className={ paperClass }>
             <p>Courses are loading...</p>
             <Progress
                 color="secondary"
-                size={40}
-                thickness={4}
-                className={classes.progressClass}
+                size={ 40 }
+                thickness={ 4 }
+                className={ progressClass }
             />
         </Paper>
     );
