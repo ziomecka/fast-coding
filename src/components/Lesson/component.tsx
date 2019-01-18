@@ -1,21 +1,18 @@
 import * as React from 'react';
-import { LessonProps } from './container';
-
-import LessonComparator from '@components/LessonComparator/';
-import LessonButtons from '@components/LessonButtons/';
-import LessonStats from '@components/LessonStats/';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-
-import withStyles from '@material-ui/core/styles/withStyles';
-import styles from './styles';
-
-import { Translate } from 'react-localize-redux';
-import getTranslation from '@shared/get.translation';
-
-import { getSeconds } from '@shared/convert.time';
 
 import { LESSON_TIME_INTERVAL } from './constants';
+import LessonButtons from '@components/LessonButtons/';
+import LessonComparator from '@components/LessonComparator/';
+import { LessonProps } from './container';
+import LessonStats from '@components/LessonStats/';
+import Paper from '@material-ui/core/Paper';
+import { Translate } from 'react-localize-redux';
+import Typography from '@material-ui/core/Typography';
+
+import { getSeconds } from '@shared/convert.time';
+import getTranslation from '@shared/get.translation';
+import styles from './styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 /** Running time is calculate internally and kept in internal state.
  *  Could be got from LessonStats but it affects negatively the performance.

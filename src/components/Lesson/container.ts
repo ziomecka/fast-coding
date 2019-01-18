@@ -1,9 +1,4 @@
-import { Dispatch, Action } from 'redux';
-import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-
-import { default as Lesson } from './component';
-import { ApplicationState } from '@appStore';
+import { Action, Dispatch } from 'redux';
 
 import {
     LessonState,
@@ -13,46 +8,55 @@ import {
     restoreState
 } from './_duck/';
 
-import { mapDispatchToProps as notificationMapDiaptchToProps, NotificationDispatch } from '@shared/notification';
+import {
+    NotificationDispatch,
+    mapDispatchToProps as notificationMapDiaptchToProps,
+} from '@shared/notification';
 
-import { LocalStorageItemEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-const { lesson: container } = ComponentsContainersEnum;
-const { lesson: localStorageItem } = LocalStorageItemEnum;
+import {
+    deregisterOnDrop,
+    registerOnDrop
+} from '@app/Content/_duck/actions';
 
 import {
     moveLessonButtons,
     onStartLeaving
 } from '@components/LessonButtons/';
 
-import { registerOnDrop, deregisterOnDrop } from '@app/Content/_duck/actions';
-
-import { WithStyles } from '@material-ui/core/styles';
-
+import { ApplicationState } from '@appStore';
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { default as Lesson } from './component';
+import { LocalStorageItemEnum } from '@appTypes';
 import { LocalizeState } from 'react-localize-redux';
+import { WithStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+
+const { lesson: container } = ComponentsContainersEnum;
+const { lesson: localStorageItem } = LocalStorageItemEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
-    const { time, start, stop, running } = state.components.lessonStats;
+    const { running, start, stop, time } = state.components.lessonStats;
 
     return {
         ...state.components.lesson,
-        time,
+        localize: { ...state.localize },
+        running,
         start,
         stop,
-        running,
-        localize: { ...state.localize }
+        time,
     };
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
     ...notificationMapDiaptchToProps( dispatch ),
-    reset: () => dispatch( onReset() ),
-    registerOnDrop: ( fun ) => dispatch( registerOnDrop( fun ) ),
     deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
-    onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
-    restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
     keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
+    onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
+    registerOnDrop: ( fun ) => dispatch( registerOnDrop( fun ) ),
+    reset: () => dispatch( onReset() ),
+    restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
     startLeaving: () => dispatch( onStartLeaving() )
 } );
 
@@ -70,12 +74,12 @@ interface MapStateToPropsI extends LessonState {
 }
 
 export interface LessonDispatch extends NotificationDispatch {
-    reset: () => void;
-    registerOnDrop: ( fun: Function ) => void;
     deregisterOnDrop: ( fun: Function ) => void;
-    onMoveLesonButtons: ( x: number | 'auto', y: number | 'auto' ) => void;
-    restoreState: () => Action;
     keepState: () => Action;
+    onMoveLesonButtons: ( x: number | 'auto', y: number | 'auto' ) => void;
+    registerOnDrop: ( fun: Function ) => void;
+    reset: () => void;
+    restoreState: () => Action;
     startLeaving: () => Action;
 }
 
