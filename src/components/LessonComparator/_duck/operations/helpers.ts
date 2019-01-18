@@ -1,5 +1,6 @@
 import {
     backspace,
+    enter,
     escape,
     space,
     validCodes
@@ -15,3 +16,4 @@ export const isValidCode = ( code: number ): boolean => {
 export const isBackspace = ( code: number ): boolean => code === backspace;
 export const isEscape = ( code: number ): boolean => code === escape;
 export const isSpace = ( code: number ): boolean => code === space;
+export const isEnter = ( code: number ): boolean => code === enter;

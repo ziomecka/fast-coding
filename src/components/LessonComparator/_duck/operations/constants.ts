@@ -18,6 +18,7 @@ export const validCodes = [
 ];
 
 export const backspace = 8;
+export const enter = 13;
 export const escape = 27;
 export const space = 32;
 
