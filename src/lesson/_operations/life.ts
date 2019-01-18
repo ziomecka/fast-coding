@@ -11,7 +11,7 @@ import {
     restartLesson,
     startLesson,
     unpauseLesson,
-} from '@lesson/LessonComponent/_duck/actions';
+} from '@lesson/_actions/';
 
 import { onKeepState } from './state.keep';
 import { onRemoveState } from './state.remove';
@@ -59,10 +59,10 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
     answer = null; // GC
 };
 
-const _endLesson = ( dispatch, getState ) => {
+const _endLesson = ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     let state = getState().lesson;
 
-    if ( ( state.lesson.lessonText.length - 1 ) <= state.lessonComparator.currentSignIndex ) {
+    if ( ( state.lessonComponent.lessonText.length - 1 ) <= state.lessonComparator.currentSignIndex ) {
         /** LessonComparator ends lesson after switching off keyboardListener and lessonStats */
         dispatch( turnOffLessonComparator() );
     }
@@ -82,7 +82,7 @@ export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: Thun
 };
 
 export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    if ( !getState().lesson.lessonComponent.ending ) {
+    if ( !getState().lesson.ending ) {
         dispatch( endingLesson() );
 
         timeout = setTimeout(

@@ -24,7 +24,7 @@ const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props
     const { start, stop, time, allErrors, text,
         classes: { paperClass, noteClass },
         createTable,
-        endedLesson,
+        ended,
         errors
     } = props;
 
@@ -53,7 +53,7 @@ const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props
                 : `lessonLessonStatsUnit${unit}_more`
     );
 
-    return endedLesson && (
+    return ended && (
         <Paper className={paperClass} id="lessonLessonStats">
             <Typography variant="h4">
                 <Translate id="lessonLessonStatsHeading" />

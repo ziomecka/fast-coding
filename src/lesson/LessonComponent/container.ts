@@ -1,11 +1,11 @@
 import { Action, Dispatch } from 'redux';
 
+import { ILessonComponentState } from './_duck/';
 import {
-    ILessonComponentState,
     onKeepState,
     onReset,
     onRestoreState,
-} from './_duck/';
+} from '@lesson/_operations/';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
@@ -20,15 +20,19 @@ import {
 } from '@lesson/LessonButtons/';
 
 import { ApplicationState } from '@appStore';
+import { ILessonCommonState } from '@lessonTypes';
 import { default as Lesson } from './component';
 import { LocalizeState } from 'react-localize-redux';
 import { WithStyles } from '@material-ui/core/styles';
+
 import { connect } from 'react-redux';
+import { mapDispatchToProps as commonMapDispatchToProps } from '@lesson/_shared/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { running, start, stop, time } = state.lesson.lessonStats;
 
     return {
+        ...commonMapDispatchToProps( state ),
         ...state.lesson.lessonComponent,
         localize: { ...state.localize },
         running,
@@ -60,7 +64,9 @@ const LessonContainer = withRouter( connect( mapStateToProps, mapDispatchToProps
 
 export default LessonContainer;
 
-interface MapStateToPropsI extends ILessonComponentState {
+interface MapStateToPropsI extends
+ILessonCommonState,
+ILessonComponentState {
     start: number;
     time: number;
     stop: number;

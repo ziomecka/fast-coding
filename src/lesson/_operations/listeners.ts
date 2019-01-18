@@ -4,7 +4,7 @@ import { AppRoutesEnum } from '@appTypes';
 import { LessonContainersEnum } from '@lessonTypes';
 import { Dispatch } from 'redux';
 import history from '@shared/history';
-import { onRestartLesson } from './life';
+import { onRestartLesson } from '@lesson/_operations/';
 
 const { lessons } = AppRoutesEnum;
 const { lessonComponent: container } = LessonContainersEnum;

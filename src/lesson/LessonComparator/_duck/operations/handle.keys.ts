@@ -15,7 +15,7 @@ import {
 import {
     onKeepState,
     onNotEndingLesson
-} from '@lesson/LessonComponent/';
+} from '@lesson/_operations/';
 
 import history from '@shared/history';
 import { onStartLeaving } from '@lesson/LessonButtons/';
@@ -42,7 +42,7 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     let state = getState().lesson;
 
     let { errors, correctedErrors, currentSignIndex } = state.lessonComparator;
-    let { ending } = state.lessonComponent;
+    let { ending } = state;
 
     const wasAnError = errors[ errors.length - 1 ] === currentSignIndex;
 

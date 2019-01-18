@@ -6,14 +6,16 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { default as LessonButtons } from './component';
 import { ApplicationState } from '@appStore';
 
+import { ILessonCommonState } from '@lessonTypes';
+
 import {
-    ILessonComponentState,
     onPauseLesson,
     onReset,
     onRestartLesson,
     onUnpauseLesson
-} from '@lesson/LessonComponent/';
+} from '@lesson/_operations';
 
+import { ILessonComponentState } from '@lesson/LessonComponent/';
 import { pausedLessonListener } from '@lesson/LessonComparator/';
 
 import { WithStyles } from '@material-ui/core/styles';
@@ -28,6 +30,8 @@ import {
 
 import { LocalizeState } from 'react-localize-redux';
 
+import { mapDispatchToProps as commonMapDispatchToProps } from '@lesson/_shared/';
+
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
     restartLesson: () => dispatch( onRestartLesson() ),
     resetLesson: () => dispatch( onReset() ),
@@ -40,6 +44,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonButtonsDispatch => ( {
 } );
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
+    ...commonMapDispatchToProps( state ),
     ...state.lesson.lessonComponent,
     ...state.lesson.lessonButtons,
     dialogOpened: state.app.dialog.dialogProps.open,
@@ -50,7 +55,10 @@ const LessonButtonsContainer = withRouter( connect( mapStateToProps, mapDispatch
 
 export default LessonButtonsContainer;
 
-interface MapStateToPropsI extends ILessonComponentState, LessonButtonsState {
+interface MapStateToPropsI extends
+ILessonCommonState,
+ILessonComponentState,
+LessonButtonsState {
     localize: LocalizeState,
     dialogOpened: boolean;
 }

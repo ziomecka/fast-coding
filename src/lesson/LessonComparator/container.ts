@@ -12,13 +12,17 @@ import {
 } from './_duck/';
 
 import {
-    ILessonComponentState,
     onEndingLesson,
     onStartLesson
-} from '@lesson/LessonComponent/';
+} from '@lesson/_operations/';
+
+import { ILessonCommonState } from '@lessonTypes';
+import { ILessonComponentState } from '@lesson/LessonComponent/';
+import { mapDispatchToProps as commonMapDispatchToProps } from '@lesson/_shared/';
 
 // TODO chyba nie jest potrzebny cały state
-const mapStateToProps = ( state: ApplicationState ): LessonComparatorState & ILessonComponentState => ( {
+const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
+    ...commonMapDispatchToProps( state ),
     ...state.lesson.lessonComparator,
     ...state.lesson.lessonComponent
 } );
@@ -47,3 +51,8 @@ export interface LessonComparatorProps extends
     LessonComparatorState,
     LessonComparatorDispatch,
     ILessonComponentState {}
+
+interface IMapStateToProps extends
+LessonComparatorState,
+ILessonCommonState,
+ILessonComponentState {}

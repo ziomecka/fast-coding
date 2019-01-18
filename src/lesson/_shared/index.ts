@@ -1,0 +1,1 @@
+export { mapDispatchToProps } from './common';

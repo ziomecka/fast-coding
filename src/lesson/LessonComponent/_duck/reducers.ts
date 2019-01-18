@@ -5,8 +5,7 @@ import {
     LessonComponentActions,
     OpenLessonAction,
     UpdateTextAction,
-    OpenDemoLessonAction,
-    RestoreStateAction
+    OpenDemoLessonAction
 } from './actions';
 
 import { LESSON_DEMO_TITLE, LESSON_DEMO_TEXT } from '../constants';
@@ -20,16 +19,7 @@ const {
     LESSON_LESSON_OPEN,
     LESSON_LESSON_TEXT_UPDATE,
     LESSON_LESSON_UPDATE,
-    LESSON_LESSON_START,
-    LESSON_LESSON_PAUSE,
-    LESSON_LESSON_UNPAUSE,
-    LESSON_LESSON_END,
-    LESSON_LESSON_ENDING,
-    LESSON_LESSON_NOT_ENDING,
-    LESSON_LESSON_RESET,
     LESSON_LESSON_OPEN_DEMO,
-    LESSON_LESSON_RESTART,
-    LESSON_LESSON_RESTORE_STATE
 } = LessonComponentActionsEnum;
 
 export const INITIAL_STATE: ILessonComponentState = {
@@ -43,10 +33,6 @@ export const INITIAL_STATE: ILessonComponentState = {
     lessonText: '',
     signs: [],
     otherSigns: [],
-    started: false,
-    paused: false,
-    ended: false,
-    ending: false,
 };
 
 const reducer: Reducer<ILessonComponentState, LessonComponentActions> = ( state = INITIAL_STATE, action ) => {
@@ -66,53 +52,6 @@ const reducer: Reducer<ILessonComponentState, LessonComponentActions> = ( state 
             };
         }
 
-        case LESSON_LESSON_START: {
-            return {
-                ...state,
-                started: true
-            };
-        }
-
-        case LESSON_LESSON_ENDING: {
-            return {
-                ...state,
-                ended: false,
-                ending: true
-            };
-        }
-
-        case LESSON_LESSON_NOT_ENDING: {
-            return {
-                ...state,
-                ending: false,
-            };
-        }
-
-        case LESSON_LESSON_END: {
-            return {
-                ...state,
-                ending: false,
-                ended: true
-            };
-        }
-
-        case LESSON_LESSON_RESET: {
-            return {
-                ...INITIAL_STATE,
-                signs: [],
-                otherSigns: [],
-            };
-        }
-
-        case LESSON_LESSON_RESTART: {
-            return {
-                ...state,
-                started: false,
-                ended: false,
-                ending: false
-            };
-        }
-
         case LESSON_LESSON_OPEN_DEMO: {
             const { language } = action as OpenDemoLessonAction;
 
@@ -123,26 +62,6 @@ const reducer: Reducer<ILessonComponentState, LessonComponentActions> = ( state 
                 lessonText: LESSON_DEMO_TEXT[ language ],
                 text: '',
                 title: LESSON_DEMO_TITLE // language is selected in content
-            };
-        }
-
-        case LESSON_LESSON_PAUSE: {
-            return {
-                ...state,
-                paused: true
-            };
-        }
-
-        case LESSON_LESSON_UNPAUSE: {
-            return {
-                ...state,
-                paused: false
-            };
-        }
-
-        case LESSON_LESSON_RESTORE_STATE: {
-            return {
-                ...( action as RestoreStateAction ).state
             };
         }
 

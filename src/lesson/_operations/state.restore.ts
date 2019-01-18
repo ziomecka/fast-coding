@@ -3,7 +3,7 @@ import { LocalStorageItemEnum } from '@appTypes';
 import { LessonContainersEnum } from '@lessonTypes';
 
 import { localStorageGetItem } from '@app/LocalStorage/_duck/operations';
-import { restoreState } from '../actions';
+import { restoreState } from '../_actions/';
 
 /** Containers that require restoring state */
 const restoreStateContainers = [
@@ -15,7 +15,7 @@ const restoreStateContainers = [
 export const onRestoreState = (): any => (
     async ( dispatch: Dispatch ): Promise<void> => {
 
-        let data = localStorageGetItem( LocalStorageItemEnum.lesson );
+        let data = Object( localStorageGetItem( LocalStorageItemEnum.lesson ) );
 
         for ( let container of restoreStateContainers ) {
             let containerData = data[ container ];
