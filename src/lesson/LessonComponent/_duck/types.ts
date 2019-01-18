@@ -3,7 +3,7 @@ import { LessonContainersEnum } from '@lessonTypes';
 import { ILessonComponentState } from '../';
 import { TextTranslationsI } from '@applicationTypes';
 
-export enum LessonActionsEnum {
+export enum LessonComponentActionsEnum {
     LESSON_LESSON_UPDATE = '@@lesson_lesson/UPDATE',
     LESSON_LESSON_OPEN = '@@lesson_lesson/OPEN',
     LESSON_LESSON_TEXT_UPDATE = '@@lesson_lesson/TEXT_UPDATE',

@@ -1,6 +1,6 @@
 import { Action, ActionCreator } from 'redux';
 import {
-    LessonActionsEnum,
+    LessonComponentActionsEnum,
     LessonData,
     ILessonComponentState
 } from './types';
@@ -24,7 +24,7 @@ const {
     LESSON_LESSON_OPEN_DEMO,
     LESSON_LESSON_RESTART,
     LESSON_LESSON_RESTORE_STATE
-} = LessonActionsEnum;
+} = LessonComponentActionsEnum;
 
 export const openLesson: ActionCreator<OpenLessonAction> = ( lessonData: LessonData ) => ( {
     type: LESSON_LESSON_OPEN,

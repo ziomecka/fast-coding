@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonActionsEnum, ILessonComponentState } from './types';
+import { LessonComponentActionsEnum, ILessonComponentState } from './types';
 import {
     LessonActions,
     OpenLessonAction,
@@ -30,7 +30,7 @@ const {
     LESSON_LESSON_OPEN_DEMO,
     LESSON_LESSON_RESTART,
     LESSON_LESSON_RESTORE_STATE
-} = LessonActionsEnum;
+} = LessonComponentActionsEnum;
 
 export const INITIAL_STATE: ILessonComponentState = {
     _id: null,
