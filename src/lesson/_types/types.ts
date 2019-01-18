@@ -6,7 +6,7 @@ import { LessonStatsState } from '@lesson/LessonStats/';
 
 export enum LessonContainersEnum {
     lessonComparator = 'lessonComparator',
-    lesson = 'lesson',
+    lessonComponent = 'lessonComponent',
     lessonTextGenerator = 'lessonTextGenerator',
     lessonButtons = 'lessonButtons',
     lessonStats = 'lessonStats'

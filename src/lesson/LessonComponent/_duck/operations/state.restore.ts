@@ -7,7 +7,7 @@ import { restoreState } from '../actions';
 
 /** Containers that require restoring state */
 const restoreStateContainers = [
-    LessonContainersEnum.lesson,
+    LessonContainersEnum.lessonComponent,
     LessonContainersEnum.lessonComparator,
     LessonContainersEnum.lessonStats
 ];

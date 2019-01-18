@@ -7,7 +7,7 @@ import history from '@shared/history';
 import { onRestartLesson } from './life';
 
 const { lessons } = AppRoutesEnum;
-const { lesson: container } = LessonContainersEnum;
+const { lessonComponent: container } = LessonContainersEnum;
 
 let listenerId;
 
