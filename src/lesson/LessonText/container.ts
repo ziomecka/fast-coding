@@ -4,7 +4,7 @@ import { default as LessonText } from './component';
 import { ApplicationState } from '@appStore';
 
 import { LessonComparatorState } from '@lesson/LessonComparator/';
-import { LessonState } from '@lesson/LessonComponent/';
+import { ILessonComponentState } from '@lesson/LessonComponent/';
 
 import { WithStyles } from '@material-ui/core/styles';
 
@@ -17,7 +17,7 @@ const LessonTextContainer = connect( mapStateToProps )( LessonText );
 
 export default LessonTextContainer;
 
-interface MapStateToPropsI extends LessonComparatorState, LessonState {}
+interface MapStateToPropsI extends LessonComparatorState, ILessonComponentState {}
 
 export interface LessonTextProps extends
     MapStateToPropsI,

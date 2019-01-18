@@ -7,7 +7,7 @@ import { default as LessonButtons } from './component';
 import { ApplicationState } from '@appStore';
 
 import {
-    LessonState,
+    ILessonComponentState,
     onPauseLesson,
     onReset,
     onRestartLesson,
@@ -50,7 +50,7 @@ const LessonButtonsContainer = withRouter( connect( mapStateToProps, mapDispatch
 
 export default LessonButtonsContainer;
 
-interface MapStateToPropsI extends LessonState, LessonButtonsState {
+interface MapStateToPropsI extends ILessonComponentState, LessonButtonsState {
     localize: LocalizeState,
     dialogOpened: boolean;
 }

@@ -2,7 +2,7 @@ export { default } from './container';
 export {
     INITIAL_STATE,
     LessonData,
-    LessonState,
+    ILessonComponentState,
     lessonReducer,
     onEndLesson,
     onEndingLesson,

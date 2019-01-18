@@ -2,7 +2,7 @@ import { Action, ActionCreator } from 'redux';
 import {
     LessonActionsEnum,
     LessonData,
-    LessonState
+    ILessonComponentState
 } from './types';
 
 import { LanguagesEnum } from '@applicationTypes';
@@ -79,7 +79,7 @@ export const unpauseLesson: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_UNPAUSE
 } );
 
-export const lessonRestoreState: ActionCreator<RestoreStateAction> = ( state: LessonState ) => ( {
+export const lessonRestoreState: ActionCreator<RestoreStateAction> = ( state: ILessonComponentState ) => ( {
     type: LESSON_LESSON_RESTORE_STATE,
     state
 } );
@@ -112,7 +112,7 @@ export interface OpenDemoLessonAction extends Action {
 
 export interface RestoreStateAction extends Action {
     readonly type: string;
-    state: LessonState;
+    state: ILessonComponentState;
 }
 
 export type LessonActions = Action |

@@ -1,7 +1,7 @@
 import { Action, Dispatch } from 'redux';
 
 import {
-    LessonState,
+    ILessonComponentState,
     onKeepState,
     onReset,
     onRestoreState,
@@ -60,7 +60,7 @@ const LessonContainer = withRouter( connect( mapStateToProps, mapDispatchToProps
 
 export default LessonContainer;
 
-interface MapStateToPropsI extends LessonState {
+interface MapStateToPropsI extends ILessonComponentState {
     start: number;
     time: number;
     stop: number;

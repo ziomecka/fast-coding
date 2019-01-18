@@ -2,7 +2,7 @@ export { default } from './operations';
 
 export { INITIAL_STATE, lessonReducer } from './reducers';
 
-export { LessonData, LessonState } from './types';
+export { LessonData, ILessonComponentState } from './types';
 
 export {
     onEndLesson,

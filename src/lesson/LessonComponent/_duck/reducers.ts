@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { LessonActionsEnum, LessonState } from './types';
+import { LessonActionsEnum, ILessonComponentState } from './types';
 import {
     LessonActions,
     OpenLessonAction,
@@ -32,7 +32,7 @@ const {
     LESSON_LESSON_RESTORE_STATE
 } = LessonActionsEnum;
 
-export const INITIAL_STATE: LessonState = {
+export const INITIAL_STATE: ILessonComponentState = {
     _id: null,
     no: null,
     title: {
@@ -49,7 +49,7 @@ export const INITIAL_STATE: LessonState = {
     ending: false,
 };
 
-const reducer: Reducer<LessonState, LessonActions> = ( state = INITIAL_STATE, action ) => {
+const reducer: Reducer<ILessonComponentState, LessonActions> = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
         case LESSON_LESSON_UPDATE:
         case LESSON_LESSON_OPEN: {

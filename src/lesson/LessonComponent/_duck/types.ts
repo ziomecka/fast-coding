@@ -1,6 +1,6 @@
 
 import { LessonContainersEnum } from '@lessonTypes';
-import { LessonState } from '../';
+import { ILessonComponentState } from '../';
 import { TextTranslationsI } from '@applicationTypes';
 
 export enum LessonActionsEnum {
@@ -38,7 +38,7 @@ export interface LessonData extends OriginalLessonData {
     ending: boolean;
 }
 
-export interface LessonState extends LessonData {}
+export interface ILessonComponentState extends LessonData {}
 
 export interface IRestoreStateOptions {
     container: LessonContainersEnum,
