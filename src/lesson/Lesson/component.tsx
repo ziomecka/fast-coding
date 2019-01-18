@@ -127,7 +127,7 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
         return (
             /** ended - lessonStats state */
             this.props.ended
-            ? { aftertext: getTranslation( this.props.localize, 'lessonEnded' ) }
+                ? { aftertext: getTranslation( this.props.localize, 'lessonEnded' ) }
                 /** running - lessonStats state */
                 : !this.props.running
                     ? { aftertext: getTranslation( this.props.localize, 'lessonPaused' ) }
