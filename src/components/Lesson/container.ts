@@ -8,11 +8,6 @@ import {
     restoreState
 } from './_duck/';
 
-import {
-    NotificationDispatch,
-    mapDispatchToProps as notificationMapDiaptchToProps,
-} from '@shared/notification';
-
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import {
@@ -50,7 +45,6 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
-    ...notificationMapDiaptchToProps( dispatch ),
     deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
     keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
     onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
@@ -73,7 +67,7 @@ interface MapStateToPropsI extends LessonState {
     localize: LocalizeState;
 }
 
-export interface LessonDispatch extends NotificationDispatch {
+export interface LessonDispatch {
     deregisterOnDrop: ( fun: Function ) => void;
     keepState: () => Action;
     onMoveLesonButtons: ( x: number | 'auto', y: number | 'auto' ) => void;
