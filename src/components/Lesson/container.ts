@@ -45,12 +45,19 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
 };
 
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
+    /** deregisterOnDrop in componentWillUnmount */
     deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
+    /** keepState in componentDidMount */
     keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
+    /** onMoveLessonButtons in onDrop */
     onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
+    /** registerOnDrop in componentDidMount */
     registerOnDrop: ( fun ) => dispatch( registerOnDrop( fun ) ),
+    /** reset in componentWillUnmount */
     reset: () => dispatch( onReset() ),
+    /** restoreState in componentDidMount */
     restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
+    /** startLeaving in window.onpopstate */
     startLeaving: () => dispatch( onStartLeaving() )
 } );
 
