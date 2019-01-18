@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 
-import { default as LessonsView } from './component';
+import { default as CoursesView } from './component';
 import { ApplicationState } from '@appStore';
 import { WithStyles } from '@material-ui/core';
 
-import { ICoursesLoaderState } from '@components/CoursesLoader/_duck/';
+import { ICoursesLoaderState } from '@courses/CoursesLoader/_duck/';
 
 const mapStateToProps = ( state: ApplicationState ): ICoursesLoaderState => ( {
-    ...state.components.coursesLoader
+    ...state.courses.coursesLoader
 } );
 
-const LessonsViewContainer = connect( mapStateToProps )( LessonsView );
+const CoursesViewContainer = connect( mapStateToProps )( CoursesView );
 
-export default LessonsViewContainer;
+export default CoursesViewContainer;
 
-export interface LessonsViewProps extends ICoursesLoaderState, WithStyles {}
+export interface CoursesViewProps extends ICoursesLoaderState, WithStyles {}

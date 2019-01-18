@@ -6,7 +6,7 @@ import { changeLoadingState, updateData, reportError } from './actions';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum, LocalStorageItemEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
+import { CoursesContainersEnum } from '@coursesTypes';
 
 import {
     localStorageGetItem,
@@ -14,7 +14,7 @@ import {
 } from '@app/LocalStorage/_duck/operations';
 
 export const onLoadData =
-( url: string, applicationContainer: ApplicationContainersEnum, container: ComponentsContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string ): any => (
+( url: string, applicationContainer: ApplicationContainersEnum, container: CoursesContainersEnum | AppContainersEnum, lsItem: LocalStorageItemEnum, stateName: string ): any => (
     async ( dispatch: Dispatch ): Promise<any> => {
 
         /** Loading => true */

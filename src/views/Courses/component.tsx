@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { LessonsViewProps } from './container';
-import Courses from '@components/Courses';
+import { CoursesViewProps } from './container';
+import Courses from '@courses/Courses';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';
@@ -13,7 +13,7 @@ import styles from './styles';
 
 import { Translate } from 'react-localize-redux';
 
-const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props => {
+const CoursesViewComponent: React.StatelessComponent<CoursesViewProps> = props => {
     const { loading, classes: { progressClass } } = props;
 
     const loader = (
@@ -42,4 +42,4 @@ const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props =
     return <Courses />;
 };
 
-export default withStyles( styles )( LessonsViewComponent );
+export default withStyles( styles )( CoursesViewComponent );

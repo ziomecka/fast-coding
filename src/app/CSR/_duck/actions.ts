@@ -3,7 +3,7 @@ import { CSRActionsEnum } from './types';
 
 import { ApplicationContainersEnum } from '@applicationTypes';
 import { AppContainersEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
+import { CoursesContainersEnum } from '@coursesTypes';
 
 const {
     APP_CSR_CHANGE_LOADING_STATE,
@@ -11,21 +11,21 @@ const {
     APP_CSR_UPDATE_DATA
 } = CSRActionsEnum;
 
-export const changeLoadingState: ActionCreator<ChangeLoadingStateAction> = ( loading: boolean, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
+export const changeLoadingState: ActionCreator<ChangeLoadingStateAction> = ( loading: boolean, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | CoursesContainersEnum ) => ( {
     type: APP_CSR_CHANGE_LOADING_STATE,
     loading,
     applicationContainer,
     container,
 } );
 
-export const updateData: ActionCreator<UpdateDataAction> = ( data: Object | Array<Object>, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
+export const updateData: ActionCreator<UpdateDataAction> = ( data: Object | Array<Object>, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | CoursesContainersEnum ) => ( {
     type: APP_CSR_UPDATE_DATA,
     data,
     applicationContainer,
     container
 } );
 
-export const reportError: ActionCreator<ReportErrorAction> = ( error: string, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | ComponentsContainersEnum ) => ( {
+export const reportError: ActionCreator<ReportErrorAction> = ( error: string, applicationContainer: ApplicationContainersEnum, container: AppContainersEnum | CoursesContainersEnum ) => ( {
     type: APP_CSR_REPORT_ERROR,
     error,
     applicationContainer,
@@ -42,21 +42,21 @@ export interface ChangeLoadingStateAction extends Action {
     readonly type: string;
     loading?: boolean;
     applicationContainer: ApplicationContainersEnum;
-    container: AppContainersEnum | ComponentsContainersEnum;
+    container: AppContainersEnum | CoursesContainersEnum;
 }
 
 export interface UpdateDataAction extends Action {
     readonly type: string;
     data: Object | Array<Object>;
     applicationContainer: ApplicationContainersEnum;
-    container: AppContainersEnum | ComponentsContainersEnum;
+    container: AppContainersEnum | CoursesContainersEnum;
 }
 
 export interface ReportErrorAction extends Action {
     readonly type: string;
     error: string;
     applicationContainer: ApplicationContainersEnum;
-    container: AppContainersEnum | ComponentsContainersEnum;
+    container: AppContainersEnum | CoursesContainersEnum;
 }
 
 export type CSRActions = ChangeLoadingStateAction | UpdateDataAction | ReportErrorAction;

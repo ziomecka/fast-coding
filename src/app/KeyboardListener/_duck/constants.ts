@@ -1,11 +1,12 @@
 import { AppContainersEnum, MenuContainersEnum } from '@appTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
+import { CoursesContainersEnum, LessonContainersEnum } from '@applicationTypes';
 import { ViewsContainersEnum } from '@viewsTypes';
 
 import { KeyboardListenerListenersType } from './types';
 
 const { dialog, welcome } = AppContainersEnum;
-const { lessonComparator, lesson, coursesStepper } = ComponentsContainersEnum;
+const { coursesStepper } = CoursesContainersEnum;
+const { lessonComparator, lesson } = LessonContainersEnum;
 const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 

@@ -3,7 +3,7 @@ export {
     SPACING_BEETWEEN_LESSONS,
     COURSE_BACKGROUND_GREY,
     GRID
-} from '@components/Course/constants.styles';
+} from '@courses/Course/constants.styles';
 
 export { WELCOME_HEADING_OTHER_XS } from '@app/WelcomeHeading/constants.styles';
 

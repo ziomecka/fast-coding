@@ -6,10 +6,16 @@ import {
 } from '@app/_reducers/';
 
 import {
-    INITIAL_STATE as COMPONENTS_INITIAL_STATE,
-    ComponentsState,
-    componentsReducer,
-} from '@components/_reducers/';
+    INITIAL_STATE as COURSES_INITIAL_STATE,
+    CoursesState,
+    coursesReducer,
+} from '@courses/_reducers/';
+
+import {
+    INITIAL_STATE as LESSON_INITIAL_STATE,
+    LessonState,
+    lessonReducer,
+} from '@lesson/_reducers/';
 
 import {
     CSRActionsEnum,
@@ -22,13 +28,13 @@ import {
 
 import { CSRActions } from '@app/CSR/_duck/actions';
 import { INITIAL_STATE as LOCALIZA_INITIAL_STATE } from '@app/Localize/_duck/reducers';
-import { ComponentsActions } from '@components/_actions';
 import { Reducer } from 'redux';
 import { csrReducer } from '@app/CSR/_duck/reducers';
 
 export const INITIAL_STATE = {
-    components: { ...COMPONENTS_INITIAL_STATE },
     app: { ...APP_INITIAL_STATE },
+    courses: { ...COURSES_INITIAL_STATE },
+    lesson: { ...LESSON_INITIAL_STATE },
     localize: { ...LOCALIZA_INITIAL_STATE }
 };
 
@@ -63,20 +69,22 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
         }
 
         /** TODO Improve */
-        case ( actionType === '@@components' ): {
+        case ( actionType === '@@courses' ): {
             return {
                 ...state,
                 // @ts-ignore
-                components: { ...componentsReducer( state.components, action as ComponentsActions ) }
+                courses: { ...coursesReducer( state.courses, action ) }
             };
         }
 
-        // case actionType === '@@views': {
-        //     return {
-        //         ...state,
-        //         [views]: { ...viewsReducer(state[views], action as ViewsActions) },
-        //     };
-        // }
+        /** TODO Improve */
+        case ( actionType === '@@lesson' ): {
+            return {
+                ...state,
+                // @ts-ignore
+                lesson: { ...lessonReducer( state.lesson, action ) }
+            };
+        }
 
         default: {
             return {
@@ -91,7 +99,8 @@ const reducers: Reducer<ApplicationState> = ( state = INITIAL_STATE, action ): A
 export { reducers as applicationReducer };
 
 export interface ApplicationState {
-    components: ComponentsState,
     app: AppState;
+    courses: CoursesState;
+    lesson: LessonState;
     localize: LocalizeState;
 }

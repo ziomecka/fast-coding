@@ -1,6 +1,7 @@
 import { AppContainersEnum, MenuContainersEnum } from '@appTypes';
 import { ViewsContainersEnum } from '@viewsTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
+import { CoursesContainersEnum } from '@coursesTypes';
+import { LessonContainersEnum } from '@lessonTypes';
 
 // TODO out not needed?
 export enum KeyboardListenerActionsEnum {
@@ -10,9 +11,9 @@ export enum KeyboardListenerActionsEnum {
 }
 
 export type KeyboardListenerContainersType =
-    ComponentsContainersEnum.lessonComparator |
-    ComponentsContainersEnum.lesson |
-    ComponentsContainersEnum.coursesStepper |
+    LessonContainersEnum.lessonComparator |
+    LessonContainersEnum.lesson |
+    CoursesContainersEnum.coursesStepper |
     ViewsContainersEnum.homeView |
     AppContainersEnum.dialog |
     AppContainersEnum.welcome |

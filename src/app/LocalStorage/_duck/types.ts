@@ -1,9 +1,9 @@
-import { LessonsDataI } from '@components/CoursesLoader/_duck/types';
+import { ICourseData } from '@courses/CoursesLoader/_duck/types';
 
-export type LocalStorageDataTypes = LessonsDataI;
+export type LocalStorageDataTypes = ICourseData;
 
 export enum LocalStorageItemEnum {
-    lessons = 'LESSONS',
+    courses = 'COURSES',
     lessonComparator = 'LESSON_COMPARATOR',
     lesson = 'LESSON',
     lessonStats = 'LESSON_STATS'

@@ -4,8 +4,8 @@ import Nav from '@app/Nav';
 import { HomeViewProps } from './container';
 
 import Content from '@app/Content/';
-import LessonTextGenerator from '@components/LessonTextGenerator/';
-import CoursesLoader from '@components/CoursesLoader/';
+import LessonTextGenerator from '@lesson/LessonTextGenerator/';
+import CoursesLoader from '@courses/CoursesLoader/';
 import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
 import TranslationsLoader from '@app/TranslationsLoader/';
