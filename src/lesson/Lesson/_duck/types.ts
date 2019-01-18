@@ -52,8 +52,3 @@ export interface IRestoreStateOptions {
     action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | LessonComparatorRestoreStateAction,
     clearState?: boolean
 }
-
-export interface IKeepStateOptions {
-    localStorageItem: LocalStorageItemEnum,
-    container: LessonContainersEnum
-}

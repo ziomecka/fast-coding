@@ -1,16 +1,15 @@
-import {
-    localStorageSetItem,
-} from '@app/LocalStorage/_duck/operations';
-
 import { Dispatch } from 'redux';
-import { IKeepStateOptions } from '../types';
+import { ILessonState } from '@lessonTypes';
+import { LocalStorageItemEnum, } from '@appTypes';
 import { ThunkGetStateType } from '@applicationTypes';
+import { localStorageSetItem } from '@app/LocalStorage/_duck/operations';
 
-export const onKeepState = ( options: IKeepStateOptions ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
-    const { localStorageItem, container } = options;
-    return localStorageSetItem( localStorageItem, getState().lesson[ container ] );
-};
+const { lesson } = LocalStorageItemEnum;
 
-export default {
-    onKeepState
-};
+export const onKeepState = ( lessonState?: ILessonState ): any => (
+    ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => (
+        localStorageSetItem( lesson, lessonState || getState().lesson )
+    )
+);
+
+export default { onKeepState };
