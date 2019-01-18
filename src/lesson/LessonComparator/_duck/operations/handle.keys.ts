@@ -1,11 +1,8 @@
 import { Dispatch } from 'redux';
 
 import { ThunkGetStateType } from '@applicationTypes';
-import { LessonContainersEnum } from '@lessonTypes';
-import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
-const { lessonComparator: container } = LessonContainersEnum;
-const { lessonComparator: localStorageItem } = LocalStorageItemEnum;
 const { lessons } = AppRoutesEnum;
 
 import {
@@ -16,7 +13,6 @@ import {
 } from '../actions';
 
 import {
-    onKeepState,
     onNotEndingLesson
 } from '@lesson/Lesson/';
 
@@ -71,7 +67,6 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if ( answer ) {
-        await dispatch( onKeepState( { container, localStorageItem } ) );
         answer = null; // GC
     }
 
@@ -94,9 +89,6 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
 
     const expectedSign = state.lesson.lessonText[ nextCurrentSignIndex ];
 
-    /** To keep dispatch answer */
-    let answer: any;
-
     if ( key !== expectedSign ) {
         /** Add to all errors only if not already included */
         if ( !allErrors.includes( nextCurrentSignIndex ) ) {
@@ -108,16 +100,9 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
             errors.push( nextCurrentSignIndex );
         }
 
-        answer = await dispatch( registerError( errors, allErrors, nextCurrentSignIndex ) );
+        await dispatch( registerError( errors, allErrors, nextCurrentSignIndex ) );
     } else {
-        answer = await dispatch( registerNewKey( nextCurrentSignIndex ) );
-    }
-
-    /** Keep state in local storage. In case page is refreshed (like F5) */
-    /** errors, allErrors and /or currentSignIndex will be kept */
-    if ( answer ) {
-        await dispatch( onKeepState( { container, localStorageItem } ) );
-        answer = null; // GC
+        await dispatch( registerNewKey( nextCurrentSignIndex ) );
     }
 
     state = null; // TODO GC?
