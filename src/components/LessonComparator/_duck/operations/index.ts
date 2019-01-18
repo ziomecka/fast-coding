@@ -13,3 +13,10 @@ export {
     onListenKeys as listenKeys,
     onStopListenKeys as stopListenKeys
 } from './life';
+
+export {
+    isBackspace,
+    isEnter,
+    isEscape,
+    isSpace
+} from './helpers';

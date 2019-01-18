@@ -1,4 +1,8 @@
 export {
+    isBackspace,
+    isEnter,
+    isEscape,
+    isSpace,
     listenKeys,
     pausedLessonListener,
     pauseLessonComparator,
