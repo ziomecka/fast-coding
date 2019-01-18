@@ -4,11 +4,9 @@ import { LocalStorageItemEnum, } from '@appTypes';
 import { ThunkGetStateType } from '@applicationTypes';
 import { localStorageSetItem } from '@app/LocalStorage/_duck/operations';
 
-const { lesson } = LocalStorageItemEnum;
-
 export const onKeepState = ( lessonState?: ILessonState ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => (
-        localStorageSetItem( lesson, lessonState || getState().lesson )
+        localStorageSetItem( LocalStorageItemEnum.lesson, lessonState || getState().lesson )
     )
 );
 
