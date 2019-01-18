@@ -12,7 +12,7 @@ import {
     onReset,
     onRestartLesson,
     onUnpauseLesson
-} from '@lesson/Lesson/';
+} from '@lesson/LessonComponent/';
 
 import { pausedLessonListener } from '@lesson/LessonComparator/';
 

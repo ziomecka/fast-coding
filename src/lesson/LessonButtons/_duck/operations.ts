@@ -6,7 +6,7 @@ const { lessons } = AppRoutesEnum;
 
 import { openDialog, DialogsEnum } from '@app/Dialog/';
 const { yesCancel } = DialogsEnum;
-import { onReset, onPauseLesson, onUnpauseLesson } from '@lesson/Lesson/';
+import { onReset, onPauseLesson, onUnpauseLesson } from '@lesson/LessonComponent/';
 
 import history from '@shared/history';
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';

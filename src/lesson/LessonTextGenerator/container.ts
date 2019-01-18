@@ -5,7 +5,7 @@ import { default as LessonTextGenerator } from './component';
 import { ApplicationState } from '@appStore';
 
 import { ILessonTextGeneratorState, onSendText } from './_duck/';
-import { LessonState } from '@lesson/Lesson/';
+import { LessonState } from '@lesson/LessonComponent/';
 
 const mapStateToProps = ( state: ApplicationState ): ILessonTextGeneratorState & LessonState => ( {
     ...state.lesson.lessonTextGenerator,

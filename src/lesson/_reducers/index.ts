@@ -8,7 +8,7 @@ import {
 import {
     lessonReducer,
     INITIAL_STATE as LESSON_INITIAL_STATE
-} from '@lesson/Lesson/';
+} from '@lesson/LessonComponent/';
 
 import {
     lessonTextGeneratorReducer,

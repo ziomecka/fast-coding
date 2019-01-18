@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { CourseProps } from './container';
-import { LessonData } from '@lesson/Lesson/';
+import { LessonData } from '@lesson/LessonComponent/';
 import CoursesStepper from '@courses/CoursesStepper/';
 
 import { AppRoutesEnum } from '@appTypes';

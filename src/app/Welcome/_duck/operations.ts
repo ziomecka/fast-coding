@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { ThunkGetStateType } from '@applicationTypes';
 import { LocalStorageItemEnum, AppContainersEnum } from '@appTypes';
 
-import { openDemoLesson } from '@lesson/Lesson/_duck/actions';
+import { openDemoLesson } from '@lesson/LessonComponent/_duck/actions';
 
 import { getActiveLanguage } from 'react-localize-redux';
 

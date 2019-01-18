@@ -1,6 +1,6 @@
 import { CourseDataType } from '@courses/Course/';
 import { GetResponseI } from '@app/api/';
-import { LessonData } from '@lesson/Lesson/';
+import { LessonData } from '@lesson/LessonComponent/';
 import { TextTranslationsI } from '@applicationTypes';
 
 export interface IGetCoursesResponse extends GetResponseI {

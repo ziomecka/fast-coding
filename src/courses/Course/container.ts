@@ -6,7 +6,7 @@ import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
 import { default as Course } from './component';
 
-import { LessonData } from '@lesson/Lesson/';
+import { LessonData } from '@lesson/LessonComponent/';
 
 import { onOpenRandomLesson, onOpenLesson } from './_duck/';
 

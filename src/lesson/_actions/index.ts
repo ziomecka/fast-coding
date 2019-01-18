@@ -1,4 +1,4 @@
-import { LessonActions } from '@lesson/Lesson/_duck/actions';
+import { LessonActions } from '@lesson/LessonComponent/_duck/actions';
 import { LessonButtonsActions } from '@lesson/LessonButtons/_duck/actions';
 import { LessonComparatorActions } from '@lesson/LessonComparator/';
 import { LessonStatsActions } from '@lesson/LessonStats/_duck/actions';

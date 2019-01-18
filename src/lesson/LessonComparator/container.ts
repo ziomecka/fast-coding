@@ -15,7 +15,7 @@ import {
     LessonState,
     onEndingLesson,
     onStartLesson
-} from '@lesson/Lesson/';
+} from '@lesson/LessonComponent/';
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): LessonComparatorState & LessonState => ( {

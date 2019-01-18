@@ -15,7 +15,7 @@ import {
 import {
     onKeepState,
     onNotEndingLesson
-} from '@lesson/Lesson/';
+} from '@lesson/LessonComponent/';
 
 import history from '@shared/history';
 import { onStartLeaving } from '@lesson/LessonButtons/';

@@ -10,7 +10,7 @@ import {
     stopLessonStats
 } from '@lesson/LessonStats/';
 
-import { onEndLesson, onUnpauseLesson } from '@lesson/Lesson/';
+import { onEndLesson, onUnpauseLesson } from '@lesson/LessonComponent/';
 
 import {
     handleEscape,

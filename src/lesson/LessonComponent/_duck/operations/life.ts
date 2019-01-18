@@ -11,7 +11,7 @@ import {
     restartLesson,
     startLesson,
     unpauseLesson,
-} from '@lesson/Lesson/_duck/actions';
+} from '@lesson/LessonComponent/_duck/actions';
 
 import { onKeepState } from './state.keep';
 import { onRemoveState } from './state.remove';

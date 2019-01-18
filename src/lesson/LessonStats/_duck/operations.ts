@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { startTimer, stopTimer, pauseLessonStats, unpauseLessonStats } from './actions';
-import { onKeepState } from '@lesson/Lesson/';
+import { onKeepState } from '@lesson/LessonComponent/';
 
 export const onStartTimer = (): any => ( dispatch: Dispatch ) => {
     dispatch( startTimer() );

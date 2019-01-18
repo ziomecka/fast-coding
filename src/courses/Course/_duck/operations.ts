@@ -6,7 +6,7 @@ import {
     LessonData,
     openLesson,
     updateLesson
-} from '@lesson/Lesson/';
+} from '@lesson/LessonComponent/';
 
 import { ThunkGetStateType } from '@applicationTypes';
 import { LocalStorageItemEnum } from '@appTypes';
