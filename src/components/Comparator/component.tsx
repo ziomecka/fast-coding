@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComparatorProps } from './container';
 
-import OriginalTextarea from '@components/OriginalTextarea/';
+import LessonText from '@components/LessonText/';
 
 class ComparatorComponent extends React.Component<ComparatorProps> {
     constructor( props ) {
@@ -47,7 +47,7 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
 
     render () {
         return (
-            <OriginalTextarea />
+            <LessonText />
         );
     }
 }

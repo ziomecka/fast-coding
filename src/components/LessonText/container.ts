@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { default as OriginalTextArea } from './component';
+import { default as LessonText } from './component';
 import { ApplicationState } from '@appStore';
 
 import { ComparatorState } from '@components/Comparator/';
@@ -13,12 +13,12 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
     ...state.components.lesson
 } );
 
-const OriginalTextAreaContainer = connect( mapStateToProps )( OriginalTextArea );
+const LessonTextContainer = connect( mapStateToProps )( LessonText );
 
-export default OriginalTextAreaContainer;
+export default LessonTextContainer;
 
 interface MapStateToPropsI extends ComparatorState, LessonState {}
 
-export interface OriginalTextAreaProps extends
+export interface LessonTextProps extends
     MapStateToPropsI,
     WithStyles {}

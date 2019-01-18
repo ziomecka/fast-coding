@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { OriginalTextAreaProps } from './container';
+import { LessonTextProps } from './container';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';
@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps> = props => {
+const LessonTextComponent: React.StatelessComponent<LessonTextProps> = props => {
     const {
         errors,
         correctedErrors,
@@ -95,4 +95,4 @@ const OriginalTextareaComponent: React.StatelessComponent<OriginalTextAreaProps>
     );
 };
 
-export default withStyles( styles )( OriginalTextareaComponent );
+export default withStyles( styles )( LessonTextComponent );
