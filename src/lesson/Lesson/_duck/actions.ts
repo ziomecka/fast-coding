@@ -7,6 +7,9 @@ import {
 
 import { LanguagesEnum } from '@applicationTypes';
 
+import { restoreState as lessonComparatorRestoreState } from '@lesson/LessonComparator/';
+import { restoreState as lessonStatsRestoreState } from '@lesson/LessonStats/';
+
 const {
     LESSON_LESSON_OPEN,
     LESSON_LESSON_TEXT_UPDATE,
@@ -76,11 +79,16 @@ export const unpauseLesson: ActionCreator<Action> = () => ( {
     type: LESSON_LESSON_UNPAUSE
 } );
 
-export const restoreState: ActionCreator<RestoreStateAction> = ( state: LessonState ) => ( {
+export const lessonRestoreState: ActionCreator<RestoreStateAction> = ( state: LessonState ) => ( {
     type: LESSON_LESSON_RESTORE_STATE,
     state
 } );
 
+export const restoreState = {
+    lesson: lessonRestoreState,
+    lessonComparator: lessonComparatorRestoreState,
+    lessonStats: lessonStatsRestoreState
+};
 
 /**
  * Actions that require keeping the state in localStorage

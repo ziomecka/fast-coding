@@ -1,4 +1,5 @@
 export { default } from './container';
+
 export {
     INITIAL_STATE,
     RestoreStateAction,
@@ -7,6 +8,7 @@ export {
     lessonStatsReducer,
     pauseLessonStats,
     resetLessonStats,
+    restoreState,
     startLessonStats,
     stopLessonStats,
     unpauseLessonStats

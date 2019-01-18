@@ -13,7 +13,8 @@ export {
 
 export {
     RestoreStateAction,
-    resetLessonStats
+    resetLessonStats,
+    restoreState
 } from './actions';
 
 export {
