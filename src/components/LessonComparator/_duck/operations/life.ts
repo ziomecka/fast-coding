@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { ThunkGetStateType, ComponentsContainersEnum } from '@applicationTypes';
 
-const { comparator: container } = ComponentsContainersEnum;
+const { lessonComparator: container } = ComponentsContainersEnum;
 
-import { resetComparator } from '../actions';
+import { resetLessonComparator } from '../actions';
 
 import {
     startLessonStats,
@@ -34,11 +34,11 @@ import { listenedEvent } from './constants';
 
 let keyboardDownListenerId: number;
 
-export const onTurnOnComparator = (): any => ( dispatch: Dispatch ) => {
+export const onTurnOnLessonComparator = (): any => ( dispatch: Dispatch ) => {
     dispatch( startLessonStats() );
 };
 
-export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
+export const onTurnOffLessonComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
     removeAllListeners( { container } );
 
     let timerStopped = await dispatch( stopLessonStats() );
@@ -50,9 +50,9 @@ export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Prom
     }
 };
 
-export const onResetComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+export const onResetLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     dispatch( onListenKeys() );
-    dispatch( resetComparator() );
+    dispatch( resetLessonComparator() );
 };
 
 export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
@@ -80,7 +80,7 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
 };
 
 /** When lesson is paused */
-export const onPauseComparator = ( eventListener? ): any => () => {
+export const onPauseLessonComparator = ( eventListener? ): any => () => {
     /** Remove current eventListener */
     removeListener( { container, listenerId: keyboardDownListenerId } );
     if ( eventListener ) {
@@ -89,15 +89,15 @@ export const onPauseComparator = ( eventListener? ): any => () => {
     }
 };
 
-export const onUnpauseComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+export const onUnpauseLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     removeListener( { container, listenerId: keyboardDownListenerId } );
     keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );
 };
 
 export default {
-    onTurnOnComparator,
-    onTurnOffComparator,
-    onResetComparator,
-    onPauseComparator,
-    onUnpauseComparator
+    onTurnOnLessonComparator,
+    onTurnOffLessonComparator,
+    onResetLessonComparator,
+    onPauseLessonComparator,
+    onUnpauseLessonComparator
 };

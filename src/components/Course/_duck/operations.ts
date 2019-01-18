@@ -15,10 +15,10 @@ import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 import { activateLesson } from '@components/Courses/';
-const { comparator, lesson, lessonStats } = LocalStorageItemEnum;
+const { lessonComparator, lesson, lessonStats } = LocalStorageItemEnum;
 
 const clearLocalStorage = () => {
-    localStorageRemoveItem( comparator );
+    localStorageRemoveItem( lessonComparator );
     localStorageRemoveItem( lesson );
     localStorageRemoveItem( lessonStats );
 };

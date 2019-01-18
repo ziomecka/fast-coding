@@ -5,7 +5,7 @@ import { ViewsContainersEnum } from '@viewsTypes';
 import { KeyboardListenerListenersType } from './types';
 
 const { dialog, welcome } = AppContainersEnum;
-const { comparator, lesson, coursesStepper } = ComponentsContainersEnum;
+const { lessonComparator, lesson, coursesStepper } = ComponentsContainersEnum;
 const { homeView } = ViewsContainersEnum;
 const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 
@@ -17,7 +17,7 @@ const { languagesMenu, mainMenu, userMenu } = MenuContainersEnum;
 export const LISTENERS: KeyboardListenerListenersType = new Map( [
     [ dialog, [ new Map(), 0 ] ],
     // @ts-ignore
-    [ comparator, [ new Map(), 0 ] ],
+    [ lessonComparator, [ new Map(), 0 ] ],
     // @ts-ignore
     [ lesson, [ new Map(), 0 ] ],
     // @ts-ignore

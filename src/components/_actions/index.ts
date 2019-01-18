@@ -1,7 +1,7 @@
 
-import { ComparatorActions } from '@components/Comparator/';
+import { LessonComparatorActions } from '@components/LessonComparator/';
 
 export const actions = {
 };
 
-export type ComponentsActions = ComparatorActions;
+export type ComponentsActions = LessonComparatorActions;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { ComparatorProps } from './container';
+import { LessonComparatorProps } from './container';
 
 import LessonText from '@components/LessonText/';
 
-class ComparatorComponent extends React.Component<ComparatorProps> {
+class LessonComparatorComponent extends React.Component<LessonComparatorProps> {
     constructor( props ) {
         super( props );
     }
@@ -27,14 +27,14 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
         this.props.keepState();
     }
 
-    componentDidUpdate( prevProps: ComparatorProps ) {
+    componentDidUpdate( prevProps: LessonComparatorProps ) {
         const { currentSignIndex, lessonText } = this.props;
         const prevCurrentSignIndex = prevProps.currentSignIndex;
 
         if ( currentSignIndex !== prevCurrentSignIndex ) {
             if ( currentSignIndex === 0 ) {
                 this.props.startLesson();
-                this.props.turnOnComparator();
+                this.props.turnOnLessonComparator();
             }
 
             if ( currentSignIndex >= lessonText.length - 1 ) {
@@ -52,4 +52,4 @@ class ComparatorComponent extends React.Component<ComparatorProps> {
     }
 }
 
-export default ComparatorComponent;
+export default LessonComparatorComponent;

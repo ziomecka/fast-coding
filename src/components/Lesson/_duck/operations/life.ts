@@ -3,7 +3,7 @@ import { ThunkGetStateType } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { AppRoutesEnum, LocalStorageItemEnum } from '@appTypes';
 
-const { comparator, lesson } = ComponentsContainersEnum;
+const { lessonComparator, lesson } = ComponentsContainersEnum;
 const { lessons } = AppRoutesEnum;
 
 import history from '@shared/history';
@@ -22,11 +22,11 @@ import {
 } from './../actions';
 
 import {
-    pauseComparator,
-    resetComparator,
-    turnOffComparator,
-    unpauseComparator
-} from '@components/Comparator/';
+    pauseLessonComparator,
+    resetLessonComparator,
+    turnOffLessonComparator,
+    unpauseLessonComparator
+} from '@components/LessonComparator/';
 
 import {
     pauseLessonStats,
@@ -56,7 +56,7 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
         addEscapeReturnListener( dispatch );
         document.getElementById( 'lessonLessonStats' ).scrollIntoView( true );
         dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
-        dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+        dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
     }
 };
 
@@ -90,9 +90,9 @@ const removeAllKeyDownListeners = (): boolean => {
 const _endLesson = ( dispatch, getState ) => {
     let state = getState().components;
 
-    if ( ( state.lesson.lessonText.length - 1 ) <= state.comparator.currentSignIndex ) {
-        /** Comparator ends lesson after switching off keyboardListener and lessonStats */
-        dispatch( turnOffComparator() );
+    if ( ( state.lesson.lessonText.length - 1 ) <= state.lessonComparator.currentSignIndex ) {
+        /** LessonComparator ends lesson after switching off keyboardListener and lessonStats */
+        dispatch( turnOffLessonComparator() );
     }
     clearTimeout( timeout );
 };
@@ -117,7 +117,7 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 };
 
 export const onReset = (): any => ( dispatch: Dispatch ) => {
-    dispatch( resetComparator() );
+    dispatch( resetLessonComparator() );
     dispatch( resetLessonStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
@@ -125,34 +125,34 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
     removeAllKeyDownListeners();
 
     dispatch( onRemoveState( LocalStorageItemEnum.lesson ) );
-    dispatch( onRemoveState( LocalStorageItemEnum.comparator ) );
+    dispatch( onRemoveState( LocalStorageItemEnum.lessonComparator ) );
     dispatch( onRemoveState( LocalStorageItemEnum.lessonStats ) );
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( resetComparator() );
+    dispatch( resetLessonComparator() );
     dispatch( resetLessonStats() );
     dispatch( restartLesson() );
     clearTimeout( timeout );
     removeAllKeyDownListeners();
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
-    dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+    dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
     dispatch( pauseLessonStats() );
-    dispatch( pauseComparator( listener ) );
+    dispatch( pauseLessonComparator( listener ) );
     dispatch( pauseLesson() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
-    dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+    dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
 };
 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
-    dispatch( unpauseComparator() );
+    dispatch( unpauseLessonComparator() );
     dispatch( unpauseLesson() );
     dispatch( unpauseLessonStats() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
-    dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+    dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
 };
 
 export default {

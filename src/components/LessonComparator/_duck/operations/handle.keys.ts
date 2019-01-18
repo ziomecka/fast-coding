@@ -4,7 +4,7 @@ import { ThunkGetStateType } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';
 
-const { comparator } = ComponentsContainersEnum;
+const { lessonComparator } = ComponentsContainersEnum;
 const { lessons } = AppRoutesEnum;
 
 import {
@@ -43,7 +43,7 @@ export const handleKeyboardDown
 const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     let state = getState().components;
 
-    let { errors, correctedErrors, currentSignIndex } = state.comparator;
+    let { errors, correctedErrors, currentSignIndex } = state.lessonComparator;
     let { ending } = state.lesson;
 
     const wasAnError = errors[ errors.length - 1 ] === currentSignIndex;
@@ -70,14 +70,14 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
         answer = null; // GC
     }
 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
         answer = null; // GC
     }
 
@@ -90,7 +90,7 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
 
 const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
     let state = getState().components;
-    let { errors, allErrors, currentSignIndex } = state.comparator;
+    let { errors, allErrors, currentSignIndex } = state.lessonComparator;
     let { lessonText: text } = state.lesson;
 
     /** currentSignIndex cannot be higher then text.length - 1 */
@@ -122,7 +122,7 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if ( answer ) {
-        await dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
+        await dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
         answer = null; // GC
     }
 
@@ -133,7 +133,7 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
 };
 
 export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
-    if ( getState().components.comparator.currentSignIndex >= 0 ) {
+    if ( getState().components.lessonComparator.currentSignIndex >= 0 ) {
         await dispatch( onStartLeaving() );
     } else {
         await history.push( lessons );

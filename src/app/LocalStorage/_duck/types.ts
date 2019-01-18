@@ -4,7 +4,7 @@ export type LocalStorageDataTypes = LessonsDataI;
 
 export enum LocalStorageItemEnum {
     lessons = 'LESSONS',
-    comparator = 'COMPARATOR',
+    lessonComparator = 'LESSON_COMPARATOR',
     lesson = 'LESSON',
     lessonStats = 'LESSON_STATS'
 }

@@ -1,5 +1,5 @@
 export enum ComponentsContainersEnum {
-    comparator = 'comparator',
+    lessonComparator = 'lessonComparator',
     lesson = 'lesson',
     lessonTextGenerator = 'lessonTextGenerator',
     coursesLoader = 'coursesLoader',

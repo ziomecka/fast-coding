@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
 import {
-    ComparatorState,
-    comparatorReducer,
-    INITIAL_STATE as COMPARATOR_INITIAL_STATE
-} from '@components/Comparator/';
+    LessonComparatorState,
+    lessonComparatorReducer,
+    INITIAL_STATE as LESSON_COMPARATOR_INITIAL_STATE
+} from '@components/LessonComparator/';
 
 import {
     LessonState,
@@ -43,7 +43,7 @@ import {
 } from '@components/LessonStats/';
 
 export const INITIAL_STATE = {
-    comparator: { ...COMPARATOR_INITIAL_STATE },
+    lessonComparator: { ...LESSON_COMPARATOR_INITIAL_STATE },
     lesson: { ...LESSON_INITIAL_STATE },
     courses: { ...COURSES_INITIAL_STATE },
     lessonTextGenerator: { ...LESSON_TEXT_GENERATOR_INITIAL_STATE },
@@ -54,7 +54,7 @@ export const INITIAL_STATE = {
 
 const reducer = combineReducers( {
     lesson: lessonReducer,
-    comparator: comparatorReducer,
+    lessonComparator: lessonComparatorReducer,
     lessonTextGenerator: lessonTextGeneratorReducer,
     courses: coursesReducer,
     lessonButtons: lessonButtonsReducer,
@@ -65,7 +65,7 @@ const reducer = combineReducers( {
 export { reducer as componentsReducer };
 
 export interface ComponentsState {
-    comparator: ComparatorState;
+    lessonComparator: LessonComparatorState;
     courses: ICoursesState;
     lesson: LessonState;
     lessonTextGenerator: ILessonTextGeneratorState;

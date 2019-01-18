@@ -11,8 +11,8 @@ import { WithTableProps } from '@app/Table/';
 import { LocalizeState } from 'react-localize-redux';
 
 const mapStateToProps = ( state: ApplicationState ): ExtendedLessonStatsState => ( {
-    allErrors: state.components.comparator.allErrors,
-    errors: state.components.comparator.errors,
+    allErrors: state.components.lessonComparator.allErrors,
+    errors: state.components.lessonComparator.errors,
     text: state.components.lesson.lessonText,
     endedLesson: state.components.lesson.ended,
     ...state.components.lessonStats,

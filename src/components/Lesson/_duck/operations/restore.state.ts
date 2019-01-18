@@ -10,9 +10,9 @@ import { LessonStatsState } from '@components/LessonStats';
 import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
 import { RestoreStateAction as LessonStatsRestoreStateAction } from '@components/LessonStats/';
 import {
-    ComparatorState,
-    RestoreStateAction as ComparatorRestoreStateAction
-} from '@components/Comparator/';
+    LessonComparatorState,
+    RestoreStateAction as LessonComparatorRestoreStateAction
+} from '@components/LessonComparator/';
 
 import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
@@ -24,17 +24,17 @@ export const onRemoveState = ( localStorageItem: LocalStorageItemEnum ): any => 
 
 export const onRestoreState = (
     localStorageItem: LocalStorageItemEnum,
-    action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | ComparatorRestoreStateAction,
+    action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | LessonComparatorRestoreStateAction,
     clearState: boolean = false
 ): any => (
     async ( dispatch: Dispatch ): Promise<boolean> => {
         let data = localStorageGetItem( localStorageItem );
 
         if ( data ) {
-            let answer = await dispatch( action( data as LessonState | LessonStatsState | ComparatorState ) );
+            let answer = await dispatch( action( data as LessonState | LessonStatsState | LessonComparatorState ) );
 
             /**
-             * Comparator and lessonStats require clearing state
+             * LessonComparator and lessonStats require clearing state
              * But it is done when new lesson is opened. Not here.
              * */
             if ( clearState ) {

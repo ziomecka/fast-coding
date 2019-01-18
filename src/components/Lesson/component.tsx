@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LessonProps } from './container';
 
-import Comparator from '@components/Comparator/';
+import LessonComparator from '@components/LessonComparator/';
 import LessonButtons from '@components/LessonButtons/';
 import LessonStats from '@components/LessonStats/';
 import Paper from '@material-ui/core/Paper';
@@ -164,7 +164,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                         }
                     </Typography>
 
-                    <Comparator />
+                    <LessonComparator />
                 </Paper>
                 <LessonButtons />
                 <LessonStats />

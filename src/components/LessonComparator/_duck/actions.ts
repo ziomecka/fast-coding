@@ -1,43 +1,43 @@
 import { Action, ActionCreator } from 'redux';
-import { ComparatorActionsEnum } from './types';
-import { ComparatorState } from './reducers';
+import { LessonComparatorActionsEnum } from './types';
+import { LessonComparatorState } from './reducers';
 
 const {
-    COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
-    COMPONENTS_COMPARATOR_REGISTER_ERROR,
-    COMPONENTS_COMPARATOR_REGISTER_BACKSPACE,
-    COMPONENTS_COMPARATOR_CORRECT_ERROR,
-    COMPONENTS_COMPARATOR_RESET,
-    COMPONENTS_COMPARATOR_RESTORE_STATE
-} = ComparatorActionsEnum;
+    COMPONENTS_LESSON_COMPARATOR_REGISTER_NEW_KEY,
+    COMPONENTS_LESSON_COMPARATOR_REGISTER_ERROR,
+    COMPONENTS_LESSON_COMPARATOR_REGISTER_BACKSPACE,
+    COMPONENTS_LESSON_COMPARATOR_CORRECT_ERROR,
+    COMPONENTS_LESSON_COMPARATOR_RESET,
+    COMPONENTS_LESSON_COMPARATOR_RESTORE_STATE
+} = LessonComparatorActionsEnum;
 
 export const registerNewKey: ActionCreator<RegisterNewKeyAction> = ( currentSignIndex: number ) => ( {
-    type: COMPONENTS_COMPARATOR_REGISTER_NEW_KEY,
+    type: COMPONENTS_LESSON_COMPARATOR_REGISTER_NEW_KEY,
     currentSignIndex
 } );
 
 export const registerError: ActionCreator<RegisterErrorAction> = ( errors: number[], allErrors: number[], currentSignIndex: number ) => ( {
-    type: COMPONENTS_COMPARATOR_REGISTER_ERROR,
+    type: COMPONENTS_LESSON_COMPARATOR_REGISTER_ERROR,
     errors,
     allErrors,
     currentSignIndex
 } );
 
 export const correctError: ActionCreator<CorrectErrorAction> = ( correctedErrors: number[] ) => ( {
-    type: COMPONENTS_COMPARATOR_CORRECT_ERROR,
+    type: COMPONENTS_LESSON_COMPARATOR_CORRECT_ERROR,
     correctedErrors
 } );
 
 export const registerBackspace: ActionCreator<Action> = () => ( {
-    type: COMPONENTS_COMPARATOR_REGISTER_BACKSPACE
+    type: COMPONENTS_LESSON_COMPARATOR_REGISTER_BACKSPACE
 } );
 
-export const resetComparator: ActionCreator<Action> = () => ( {
-    type: COMPONENTS_COMPARATOR_RESET
+export const resetLessonComparator: ActionCreator<Action> = () => ( {
+    type: COMPONENTS_LESSON_COMPARATOR_RESET
 } );
 
-export const restoreState: ActionCreator<RestoreStateAction> = ( state: ComparatorState ) => ( {
-    type: COMPONENTS_COMPARATOR_RESTORE_STATE,
+export const restoreState: ActionCreator<RestoreStateAction> = ( state: LessonComparatorState ) => ( {
+    type: COMPONENTS_LESSON_COMPARATOR_RESTORE_STATE,
     state
 } );
 
@@ -46,7 +46,7 @@ export default {
     registerError,
     registerBackspace,
     correctError,
-    resetComparator
+    resetLessonComparator
 };
 
 export interface RegisterNewKeyAction extends Action {
@@ -68,10 +68,10 @@ export interface CorrectErrorAction extends Action {
 
 export interface RestoreStateAction extends Action {
     readonly type: string;
-    state: ComparatorState;
+    state: LessonComparatorState;
 }
 
-export type ComparatorActions = RegisterNewKeyAction |
+export type LessonComparatorActions = RegisterNewKeyAction |
     RegisterErrorAction |
     CorrectErrorAction |
     RestoreStateAction;
