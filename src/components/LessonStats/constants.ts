@@ -1,0 +1,1 @@
+export const LESSON_STATS_AVERAGE_WORD_LENGTH = 5;

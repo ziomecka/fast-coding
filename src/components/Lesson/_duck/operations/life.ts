@@ -29,10 +29,10 @@ import {
 } from '@components/Comparator/';
 
 import {
-    pauseStats,
-    resetStats,
-    unpauseStats
-} from '@components/Stats/';
+    pauseLessonStats,
+    resetLessonStats,
+    unpauseLessonStats
+} from '@components/LessonStats/';
 
 import { resetDraggableLessonButtons } from '@components/LessonButtons/';
 
@@ -54,7 +54,7 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
     let answer = dispatch( endLesson() );
     if ( answer ) {
         addEscapeReturnListener( dispatch );
-        document.getElementById( 'lessonStats' ).scrollIntoView( true );
+        document.getElementById( 'lessonLessonStats' ).scrollIntoView( true );
         dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
         dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
     }
@@ -91,7 +91,7 @@ const _endLesson = ( dispatch, getState ) => {
     let state = getState().components;
 
     if ( ( state.lesson.lessonText.length - 1 ) <= state.comparator.currentSignIndex ) {
-        /** Comparator ends lesson after switching off keyboardListener and stats */
+        /** Comparator ends lesson after switching off keyboardListener and lessonStats */
         dispatch( turnOffComparator() );
     }
     clearTimeout( timeout );
@@ -118,7 +118,7 @@ export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGe
 
 export const onReset = (): any => ( dispatch: Dispatch ) => {
     dispatch( resetComparator() );
-    dispatch( resetStats() );
+    dispatch( resetLessonStats() );
     dispatch( resetLesson() );
     dispatch( resetDraggableLessonButtons() );
     clearTimeout( timeout );
@@ -126,12 +126,12 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
 
     dispatch( onRemoveState( LocalStorageItemEnum.lesson ) );
     dispatch( onRemoveState( LocalStorageItemEnum.comparator ) );
-    dispatch( onRemoveState( LocalStorageItemEnum.stats ) );
+    dispatch( onRemoveState( LocalStorageItemEnum.lessonStats ) );
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
     dispatch( resetComparator() );
-    dispatch( resetStats() );
+    dispatch( resetLessonStats() );
     dispatch( restartLesson() );
     clearTimeout( timeout );
     removeAllKeyDownListeners();
@@ -140,7 +140,7 @@ export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
-    dispatch( pauseStats() );
+    dispatch( pauseLessonStats() );
     dispatch( pauseComparator( listener ) );
     dispatch( pauseLesson() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
@@ -150,7 +150,7 @@ export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
     dispatch( unpauseComparator() );
     dispatch( unpauseLesson() );
-    dispatch( unpauseStats() );
+    dispatch( unpauseLessonStats() );
     dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
     dispatch( onKeepState( LocalStorageItemEnum.comparator, comparator ) );
 };

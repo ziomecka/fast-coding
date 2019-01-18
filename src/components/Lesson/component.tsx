@@ -3,7 +3,7 @@ import { LessonProps } from './container';
 
 import Comparator from '@components/Comparator/';
 import LessonButtons from '@components/LessonButtons/';
-import Stats from '@components/Stats/';
+import LessonStats from '@components/LessonStats/';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -18,7 +18,7 @@ import { getSeconds } from '@shared/convert.time';
 import { LESSON_TIME_INTERVAL } from './constants';
 
 /** Running time is calculate internally and kept in internal state.
- *  Could be got from Stats but it affects negatively the performance.
+ *  Could be got from LessonStats but it affects negatively the performance.
  */
 interface LessonComponentState {
     time: string;
@@ -61,7 +61,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     time() {
         const { props: { start, time, ended } } = this;
 
-        /** Check start because it may have not bee set by stats i.e. may equal 0 */
+        /** Check start because it may have not bee set by lessonStats i.e. may equal 0 */
         let _time = !ended && start
             ? Date.now() - start + time
             : time;
@@ -126,10 +126,10 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
     /** Display after time:
      *  either a pseudoElement with content 'paused' or 'ended' or
      * nothing
-     * Depneding on stats state
+     * Depneding on lessonStats state
      * */
     get timeAfterText() {
-        /** Stats state */
+        /** LessonStats state */
         const { props: { ended, running } } = this;
 
         return (
@@ -167,7 +167,7 @@ class LessonComponent extends React.Component<LessonProps, LessonComponentState>
                     <Comparator />
                 </Paper>
                 <LessonButtons />
-                <Stats />
+                <LessonStats />
             </React.Fragment>
         );
     }

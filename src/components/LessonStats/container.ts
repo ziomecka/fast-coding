@@ -1,29 +1,29 @@
 import { connect } from 'react-redux';
 
-import { default as Stats } from './component';
+import { default as LessonStats } from './component';
 import { ApplicationState } from '@appStore';
 
-import { StatsState } from './_duck/';
+import { LessonStatsState } from './_duck/';
 
 import { WithStyles } from '@material-ui/core/styles';
 import { WithTableProps } from '@app/Table/';
 
 import { LocalizeState } from 'react-localize-redux';
 
-const mapStateToProps = ( state: ApplicationState ): ExtendedStatsState => ( {
+const mapStateToProps = ( state: ApplicationState ): ExtendedLessonStatsState => ( {
     allErrors: state.components.comparator.allErrors,
     errors: state.components.comparator.errors,
     text: state.components.lesson.lessonText,
     endedLesson: state.components.lesson.ended,
-    ...state.components.stats,
+    ...state.components.lessonStats,
     localize: state.localize
 } );
 
-const StatsContainer = connect( mapStateToProps )( Stats );
+const LessonStatsContainer = connect( mapStateToProps )( LessonStats );
 
-export default StatsContainer;
+export default LessonStatsContainer;
 
-interface ExtendedStatsState extends StatsState {
+interface ExtendedLessonStatsState extends LessonStatsState {
     allErrors: number[];
     errors: number[];
     text: string;
@@ -31,4 +31,4 @@ interface ExtendedStatsState extends StatsState {
     localize: LocalizeState;
 }
 
-export interface StatsProps extends ExtendedStatsState, WithStyles, WithTableProps {}
+export interface LessonStatsProps extends ExtendedLessonStatsState, WithStyles, WithTableProps {}

@@ -1,29 +1,29 @@
 import { Reducer } from 'redux';
 
-import { StatsActions } from './actions';
+import { LessonStatsActions } from './actions';
 import {
-    StatsActionsEnum,
-    StatsState
+    LessonStatsActionsEnum,
+    LessonStatsState
 } from './types';
 
 const {
-    COMPONENTS_STATS_TIMER_START,
-    COMPONENTS_STATS_TIMER_STOP,
-    COMPONENTS_STATS_RESET,
-    COMPONENTS_STATS_PAUSE,
-    COMPONENTS_STATS_UNPAUSE
-} = StatsActionsEnum;
+    COMPONENTS_LESSON_STATS_TIMER_START,
+    COMPONENTS_LESSON_STATS_TIMER_STOP,
+    COMPONENTS_LESSON_STATS_RESET,
+    COMPONENTS_LESSON_STATS_PAUSE,
+    COMPONENTS_LESSON_STATS_UNPAUSE
+} = LessonStatsActionsEnum;
 
-export const INITIAL_STATE: StatsState = {
+export const INITIAL_STATE: LessonStatsState = {
     running: false,
     start: 0,
     stop: 0,
     time: 0
 };
 
-const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, action ) => {
+const reducer: Reducer<LessonStatsState, LessonStatsActions> = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
-        case COMPONENTS_STATS_TIMER_START: {
+        case COMPONENTS_LESSON_STATS_TIMER_START: {
             return {
                 ...state,
                 running: true,
@@ -32,7 +32,7 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
             };
         }
 
-        case COMPONENTS_STATS_TIMER_STOP: {
+        case COMPONENTS_LESSON_STATS_TIMER_STOP: {
             const { start, time } = state;
 
             /** Set time once. In case page is refreshed */
@@ -47,11 +47,11 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
             };
         }
 
-        case COMPONENTS_STATS_RESET: {
+        case COMPONENTS_LESSON_STATS_RESET: {
             return { ...INITIAL_STATE };
         }
 
-        case COMPONENTS_STATS_PAUSE: {
+        case COMPONENTS_LESSON_STATS_PAUSE: {
             const { start, time } = state;
 
             /** Time: check if start exists
@@ -70,7 +70,7 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
             };
         }
 
-        case COMPONENTS_STATS_UNPAUSE: {
+        case COMPONENTS_LESSON_STATS_UNPAUSE: {
             return {
                 ...state,
                 running: true,
@@ -85,4 +85,4 @@ const reducer: Reducer<StatsState, StatsActions> = ( state = INITIAL_STATE, acti
     }
 };
 
-export { reducer as statsReducer };
+export { reducer as lessonStatsReducer };

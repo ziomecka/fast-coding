@@ -32,7 +32,7 @@ import { WithStyles } from '@material-ui/core/styles';
 import { LocalizeState } from 'react-localize-redux';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
-    const { time, start, stop, running } = state.components.stats;
+    const { time, start, stop, running } = state.components.lessonStats;
 
     return {
         ...state.components.lesson,

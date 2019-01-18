@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StatsProps } from './container';
+import { LessonStatsProps } from './container';
 
 /** Materials */
 import Paper from '@material-ui/core/Paper';
@@ -14,13 +14,13 @@ import { Translate } from 'react-localize-redux';
 import withTable from '@app/Table';
 
 import { getTime } from '@shared/convert.time';
-import { StatsTimeUnitsEnum } from './_duck/';
-import { STATS_AVERAGE_WORD_LENGTH } from './constants';
+import { LessonStatsTimeUnitsEnum } from './_duck/';
+import { LESSON_STATS_AVERAGE_WORD_LENGTH } from './constants';
 
 import getTranslation from '@shared/get.translation';
-const { Hours, Minutes, Seconds } = StatsTimeUnitsEnum;
+const { Hours, Minutes, Seconds } = LessonStatsTimeUnitsEnum;
 
-const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
+const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props ) => {
     const { start, stop, time, allErrors, text,
         classes: { paperClass, noteClass },
         createTable,
@@ -34,7 +34,7 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
 
     const accuracy = Math.round( 100 - 100 * ( errors.length / text.length ) );
     const realAccuracy = Math.round( 100 - 100 * ( allErrors.length / text.length ) );
-    const WPM = Math.round( text.length / STATS_AVERAGE_WORD_LENGTH / ( minutes + seconds / 60 ) );
+    const WPM = Math.round( text.length / LESSON_STATS_AVERAGE_WORD_LENGTH / ( minutes + seconds / 60 ) );
 
     const renderTime = ( time: number, id: string ): JSX.Element => (
         time > 0 && (
@@ -45,25 +45,25 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
         )
     );
 
-    const getUnitId = ( time: number, unit: StatsTimeUnitsEnum ) => (
+    const getUnitId = ( time: number, unit: LessonStatsTimeUnitsEnum ) => (
         ( time === 1 )
-            ? `lessonStatsUnit${unit}_1`
+            ? `lessonLessonStatsUnit${unit}_1`
             : ( time < 5 )
-                ? `lessonStatsUnit${unit}_4`
-                : `lessonStatsUnit${unit}_more`
+                ? `lessonLessonStatsUnit${unit}_4`
+                : `lessonLessonStatsUnit${unit}_more`
     );
 
     return endedLesson && (
-        <Paper className={paperClass} id="lessonStats">
+        <Paper className={paperClass} id="lessonLessonStats">
             <Typography variant="h4">
-                <Translate id="lessonStatsHeading" />
+                <Translate id="lessonLessonStatsHeading" />
             </Typography>
 
             {createTable( {
                 body: [
                     [
                         <span className={noteClass}>
-                            <Translate id="lessonStatsTime" />
+                            <Translate id="lessonLessonStatsTime" />
                         </span>,
                         <React.Fragment>
                             { renderTime( hours, getUnitId( hours, Hours ) ) }
@@ -72,27 +72,27 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
                         </React.Fragment>,
                     ],
                     [
-                        <Tooltip title={getTranslation( props.localize, 'lessonStatsAccuracyNote' )}>
+                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsAccuracyNote' )}>
                             <span className={noteClass}>
-                                <Translate id="lessonStatsAccuracy" />
+                                <Translate id="lessonLessonStatsAccuracy" />
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
                         <React.Fragment>{ accuracy }</React.Fragment>
                     ],
                     [
-                        <Tooltip title={getTranslation( props.localize, 'lessonStatsRealAccuracyNote' )}>
+                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsRealAccuracyNote' )}>
                             <span className={noteClass}>
-                                <Translate id="lessonStatsRealAccuracy" />
+                                <Translate id="lessonLessonStatsRealAccuracy" />
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
                         <React.Fragment>{ realAccuracy }</React.Fragment>
                     ],
                     [
-                        <Tooltip title={getTranslation( props.localize, 'lessonStatsWPMNote' )}>
+                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsWPMNote' )}>
                             <span className={noteClass}>
-                                <Translate id="lessonStatsWPM" />
+                                <Translate id="lessonLessonStatsWPM" />
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
@@ -104,4 +104,4 @@ const StatsComponent: React.StatelessComponent<StatsProps> = ( props ) => {
     );
 };
 
-export default withStyles( styles )( withTable( StatsComponent ) );
+export default withStyles( styles )( withTable( LessonStatsComponent ) );

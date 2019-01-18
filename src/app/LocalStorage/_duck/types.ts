@@ -6,5 +6,5 @@ export enum LocalStorageItemEnum {
     lessons = 'LESSONS',
     comparator = 'COMPARATOR',
     lesson = 'LESSON',
-    stats = 'STATS'
+    lessonStats = 'LESSON_STATS'
 }

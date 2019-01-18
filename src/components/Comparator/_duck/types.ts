@@ -8,5 +8,5 @@ export enum ComparatorActionsEnum {
 }
 
 export enum ComparatorContainersEnum {
-    stats = 'STATS'
+    lessonStats = 'LESSON_STATS'
 }

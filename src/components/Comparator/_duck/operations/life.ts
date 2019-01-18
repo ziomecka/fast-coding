@@ -6,9 +6,9 @@ const { comparator: container } = ComponentsContainersEnum;
 import { resetComparator } from '../actions';
 
 import {
-    startStats,
-    stopStats
-} from '@components/Stats/';
+    startLessonStats,
+    stopLessonStats
+} from '@components/LessonStats/';
 
 import { onEndLesson, onUnpauseLesson } from '@components/Lesson/';
 
@@ -35,13 +35,13 @@ import { listenedEvent } from './constants';
 let keyboardDownListenerId: number;
 
 export const onTurnOnComparator = (): any => ( dispatch: Dispatch ) => {
-    dispatch( startStats() );
+    dispatch( startLessonStats() );
 };
 
 export const onTurnOffComparator = (): any => async ( dispatch: Dispatch ): Promise<Boolean> => {
     removeAllListeners( { container } );
 
-    let timerStopped = await dispatch( stopStats() );
+    let timerStopped = await dispatch( stopLessonStats() );
 
     if ( timerStopped ) {
         dispatch( onEndLesson() );

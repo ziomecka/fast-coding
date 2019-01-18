@@ -5,10 +5,10 @@ import { ComponentsContainersEnum } from '@componentsTypes';
 import { LocalStorageItemEnum } from '@appTypes';
 
 import { LessonState } from '../';
-import { StatsState } from '@components/Stats';
+import { LessonStatsState } from '@components/LessonStats';
 
 import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
-import { RestoreStateAction as StatsRestoreStateAction } from '@components/Stats/';
+import { RestoreStateAction as LessonStatsRestoreStateAction } from '@components/LessonStats/';
 import {
     ComparatorState,
     RestoreStateAction as ComparatorRestoreStateAction
@@ -24,17 +24,17 @@ export const onRemoveState = ( localStorageItem: LocalStorageItemEnum ): any => 
 
 export const onRestoreState = (
     localStorageItem: LocalStorageItemEnum,
-    action: ( data ) => LessonRestoreStateAction | StatsRestoreStateAction | ComparatorRestoreStateAction,
+    action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | ComparatorRestoreStateAction,
     clearState: boolean = false
 ): any => (
     async ( dispatch: Dispatch ): Promise<boolean> => {
         let data = localStorageGetItem( localStorageItem );
 
         if ( data ) {
-            let answer = await dispatch( action( data as LessonState | StatsState | ComparatorState ) );
+            let answer = await dispatch( action( data as LessonState | LessonStatsState | ComparatorState ) );
 
             /**
-             * Comparator and stats require clearing state
+             * Comparator and lessonStats require clearing state
              * But it is done when new lesson is opened. Not here.
              * */
             if ( clearState ) {
