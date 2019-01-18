@@ -1,12 +1,9 @@
 import { Dispatch } from 'redux';
 import { ThunkGetStateType } from '@applicationTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
-import { AppRoutesEnum, LocalStorageItemEnum } from '@appTypes';
-
+import { LocalStorageItemEnum } from '@appTypes';
+import { addEscapeReturnListener, removeAllKeyDownListeners } from './listeners';
 const { lessonComparator, lesson } = ComponentsContainersEnum;
-const { lessons } = AppRoutesEnum;
-
-import history from '@shared/history';
 
 import { onKeepState, onRemoveState } from './restore.state';
 
@@ -36,10 +33,6 @@ import {
 
 import { resetDraggableLessonButtons } from '@components/LessonButtons/';
 
-/** Keyboard listener imports */
-import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
-const { lesson: container } = ComponentsContainersEnum;
-
 /** Time to correct the last sign */
 const waitForLastSign = 800;
 let timeout;
@@ -58,33 +51,6 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
         dispatch( onKeepState( LocalStorageItemEnum.lesson, lesson ) );
         dispatch( onKeepState( LocalStorageItemEnum.lessonComparator, lessonComparator ) );
     }
-};
-
-// let manageKeyDownListeners = keydownListeners();
-
-const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
-    if ( e.keyCode === 27 ) {
-        // TODO reset everything
-        history.push( lessons );
-    }
-
-    if ( e.keyCode === 13 ) {
-        dispatch( onRestartLesson() );
-    }
-};
-
-let listenerId;
-
-const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
-    listenerId = manageKeydownListeners.onAddListener( {
-        container,
-        listener: [ 'keydown', ( e: KeyboardEvent ) => escapeReturnListener( e, dispatch ) ]
-    } );
-    return listenerId;
-};
-
-const removeAllKeyDownListeners = (): boolean => {
-    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
 };
 
 const _endLesson = ( dispatch, getState ) => {
