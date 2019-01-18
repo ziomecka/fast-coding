@@ -15,13 +15,10 @@ import { getActiveLanguage } from 'react-localize-redux';
 import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 import { activateLesson } from '@courses/Courses/';
-const { lessonComparator, lesson, lessonStats } = LocalStorageItemEnum;
 
-const clearLocalStorage = () => {
-    localStorageRemoveItem( lessonComparator );
-    localStorageRemoveItem( lesson );
-    localStorageRemoveItem( lessonStats );
-};
+const { lesson } = LocalStorageItemEnum;
+
+const clearLocalStorage = () => localStorageRemoveItem( lesson );
 
 export const onOpenRandomLesson = ( lesson: LessonData ): any => {
     /** When new lesson opened - clear local storage */

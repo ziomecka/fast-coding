@@ -1,4 +1,4 @@
-export enum  CoursesContainersEnum {
+export enum CoursesContainersEnum {
     coursesLoader = 'coursesLoader',
     coursesStepper = 'coursesStepper'
 }
