@@ -65,6 +65,8 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
 
         document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
     }
+
+    answer = null; // GC
 };
 
 const _endLesson = ( dispatch, getState ) => {
@@ -76,6 +78,8 @@ const _endLesson = ( dispatch, getState ) => {
     }
 
     clearTimeout( timeout );
+
+    state = null; // GC
 };
 
 export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
@@ -88,9 +92,7 @@ export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: Thun
 };
 
 export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    const { ending } = getState().components.lesson;
-
-    if ( !ending ) {
+    if ( !getState().components.lesson.ending ) {
         dispatch( endingLesson() );
 
         timeout = setTimeout(
