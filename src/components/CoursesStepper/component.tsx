@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { StepperProps } from './container';
-import { IStepperState } from './_duck/';
+import { CoursesStepperProps } from './container';
+import { ICoursesStepperState } from './_duck/';
 
 /** Materials core */
 import IconButton from '@material-ui/core/IconButton';
@@ -17,7 +17,7 @@ import styles from './styles';
 import { LessonData } from '@components/Lesson/';
 
 import { ComponentsContainersEnum } from '@componentsTypes';
-const { lessonStepper } = ComponentsContainersEnum;
+const { coursesStepper } = ComponentsContainersEnum;
 
 import { withMedia, MediaEnum } from '@app/Media/';
 import { GRID } from '@components/Course/';
@@ -32,9 +32,9 @@ import {
 
 const { xs } = MediaEnum;
 
-class StepperComponent extends React.Component<StepperProps, IStepperState> {
+class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICoursesStepperState> {
     listenerId: any;
-    container: ComponentsContainersEnum.lessonStepper;
+    container: ComponentsContainersEnum.coursesStepper;
     timeout: any;
     animationDuration: number;
     spacingBetweenLessons: number;
@@ -42,7 +42,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     constructor ( props ) {
         super( props );
 
-        this.container = lessonStepper;
+        this.container = coursesStepper;
         this.animationDuration = ANIMATION_DURATION;
         this.spacingBetweenLessons = props.theme.spacing.unit;
 
@@ -282,7 +282,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
             () => {
                 /** If is not within the displayed range */
                 if ( newSelectedLesson < selectedRange ) {
-                    this.moveStepperBackwards();
+                    this.moveCoursesStepperBackwards();
                 }
 
                 this.scroll( newSelectedLesson );
@@ -291,14 +291,14 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         );
     }
 
-    moveStepperBackwards(): void {
+    moveCoursesStepperBackwards(): void {
         if ( this.state.previous !== null ) {
             const {
                 props: { classes: { moveLeft, takeOffTransition } },
                 state: { previous, selectedRange, numberOfLessonsDisplayed }
             } = this;
 
-            this.stepperAddClass( `${ takeOffTransition }` );
+            this.coursesStepperAddClass( `${ takeOffTransition }` );
 
             let newPrevious = Math.max( selectedRange - numberOfLessonsDisplayed * 2, 0 );
             newPrevious = ( newPrevious === previous ) ? null : newPrevious;
@@ -310,25 +310,25 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
                     next: selectedRange
                 };
             }, () => {
-                this.stepperAddClass( `${ moveLeft }` );
+                this.coursesStepperAddClass( `${ moveLeft }` );
                 this.timeout = setTimeout( () => {
-                    this.stepperRemoveClass( `${ takeOffTransition }` );
-                    this.stepperRemoveClass( `${ moveLeft }` );
+                    this.coursesStepperRemoveClass( `${ takeOffTransition }` );
+                    this.coursesStepperRemoveClass( `${ moveLeft }` );
                     clearTimeout( this.timeout );
                 }, this.animationDuration );
             } );
         }
     }
 
-    /** Stepper is always moved by the number of lessons displayed */
-    moveStepperForward(): void {
+    /** CoursesStepper is always moved by the number of lessons displayed */
+    moveCoursesStepperForward(): void {
         if ( this.state.next !== null ) {
             const {
                 props: { classes: { moveRight, takeOffTransition } },
                 state: { selectedRange, next, numberOfLessonsDisplayed }
             } = this;
 
-            this.stepperAddClass( `${ takeOffTransition }` );
+            this.coursesStepperAddClass( `${ takeOffTransition }` );
 
             let newNext = Math.min( selectedRange + numberOfLessonsDisplayed * 2, this.numberOfLessons - 1 );
             newNext = ( newNext === next ) ? null : newNext;
@@ -340,10 +340,10 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
                     next: newNext
                 };
             }, () => {
-                this.stepperAddClass( `${ moveRight }` );
+                this.coursesStepperAddClass( `${ moveRight }` );
                 this.timeout = setTimeout( () => {
-                    this.stepperRemoveClass( `${ takeOffTransition }` );
-                    this.stepperRemoveClass( `${ moveRight }` );
+                    this.coursesStepperRemoveClass( `${ takeOffTransition }` );
+                    this.coursesStepperRemoveClass( `${ moveRight }` );
                     clearTimeout( this.timeout );
                 }, this.animationDuration );
             } );
@@ -359,7 +359,7 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
             () => {
                 /** If is not within the displayed range */
                 if ( newSelectedLesson > ( selectedRange + numberOfLessonsDisplayed - 1 ) ) {
-                    this.moveStepperForward();
+                    this.moveCoursesStepperForward();
                 }
                 this.scroll( newSelectedLesson );
                 this.focusLesson( newSelectedLesson, selectedLesson );
@@ -367,12 +367,12 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
         );
     }
 
-    stepperAddClass( className: string ): void {
-        document.getElementById( 'stepperWraper' ).classList.add( className );
+    coursesStepperAddClass( className: string ): void {
+        document.getElementById( 'coursesStepperWraper' ).classList.add( className );
     }
 
-    stepperRemoveClass( className: string ): void {
-        document.getElementById( 'stepperWraper' ).classList.remove( className );
+    coursesStepperRemoveClass( className: string ): void {
+        document.getElementById( 'coursesStepperWraper' ).classList.remove( className );
     }
 
     get iconPreviousSmall(): JSX.Element {
@@ -487,18 +487,18 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
 
     render () {
         const {
-            props: { openedCourseId, media, classes: { stepperPaper, stepperWraper, stepper } },
+            props: { openedCourseId, media, classes: { coursesStepperPaper, coursesStepperWraper, coursesStepper } },
             state: { selectedRange, previous, next },
             areHidden
         } = this;
 
         return ( openedCourseId && areHidden &&
-            <Paper className={ stepperPaper } >
-                <div className={ stepper }>
+            <Paper className={ coursesStepperPaper } >
+                <div className={ coursesStepper }>
                     { this.iconPreviousLarge }
                     { this.iconPreviousSmall }
 
-                    <div id="stepperWraper" className={ stepperWraper }>
+                    <div id="coursesStepperWraper" className={ coursesStepperWraper }>
                         { media !== xs && ( [
                             this.getStep( previous, 'previous' ),
                             this.getStep( selectedRange, 'selected' ),
@@ -514,4 +514,4 @@ class StepperComponent extends React.Component<StepperProps, IStepperState> {
     }
 }
 
-export default withStyles( styles )( withTheme()( withMedia( StepperComponent ) ) );
+export default withStyles( styles )( withTheme()( withMedia( CoursesStepperComponent ) ) );

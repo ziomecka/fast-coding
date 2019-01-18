@@ -19,7 +19,7 @@ const styles = createStyles( theme => {
             action: { hover },
             text: { disabled },
             grey: {
-                [ COURSE_BACKGROUND_GREY ]: stepperBackgroundColor,
+                [ COURSE_BACKGROUND_GREY ]: coursesStepperBackgroundColor,
                 [ 800 ]: rangeLabel
             },
             common: { black }
@@ -31,7 +31,7 @@ const styles = createStyles( theme => {
     } = theme;
 
     return {
-        stepperPaper: {
+        coursesStepperPaper: {
             position: 'absolute',
             left: '50%',
             height: STEPPER_HEIGHT,
@@ -45,7 +45,7 @@ const styles = createStyles( theme => {
             flexWrap: 'nowrap',
             width: '100%'
         },
-        stepper: {
+        coursesStepper: {
             position: 'relative',
             width: STEPPER_WIDTH_XS,
             [ theme.breakpoints.up( 'sm' ) ]: {
@@ -87,7 +87,7 @@ const styles = createStyles( theme => {
                 width: STEP_SM,
                 transform: 'initial',
             },
-            backgroundColor: stepperBackgroundColor,
+            backgroundColor: coursesStepperBackgroundColor,
             borderBottomLeftRadius: 0, // radius - overriden material design
             borderBottomRightRadius: 0, // radius - overriden material design
             borderTopRightRadius: 0, // radius - overriden material design
@@ -101,7 +101,7 @@ const styles = createStyles( theme => {
                 marginRight: '-.4em'
             },
             '&:hover': {
-                backgroundColor: stepperBackgroundColor,
+                backgroundColor: coursesStepperBackgroundColor,
             }
         },
         buttonDisabled: {
@@ -113,7 +113,7 @@ const styles = createStyles( theme => {
                 backgroundColor: hover
             }
         },
-        stepperWraper: {
+        coursesStepperWraper: {
             display: 'flex',
             alignItems: 'flex-start',
             position: 'absolute',

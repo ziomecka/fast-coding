@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { default as Stepper } from './component';
+import { default as CoursesStepper } from './component';
 
 import { ApplicationState } from '@appStore';
 
@@ -24,25 +24,25 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
     ...state.components.courses
 } );
 
-const mapDispatchToProps = (): IStepperDispatch => ( {
+const mapDispatchToProps = (): ICoursesStepperDispatch => ( {
     addListener: options => addListener( options ),
     removeListener: options => removeListener( options )
 } );
 
 // @ts-ignore
-const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( Stepper ) );
+const CoursesStepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProps )( CoursesStepper ) );
 
-export default StepperContainer;
+export default CoursesStepperContainer;
 
 interface MapStateToProps extends ICoursesLoaderState, ICoursesState {}
 
-export interface IStepperDispatch {
+export interface ICoursesStepperDispatch {
     addListener: ( options: AddListener ) => number;
     removeListener: ( options: RemoveListener ) => boolean;
 }
-export interface StepperProps extends
+export interface CoursesStepperProps extends
     ICoursesLoaderState,
-    IStepperDispatch,
+    ICoursesStepperDispatch,
     RouteComponentProps<{}>,
     MapStateToProps,
     WithStyles,

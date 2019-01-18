@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CourseProps } from './container';
 import { LessonData } from '@components/Lesson/';
-import Stepper from '@components/Stepper/';
+import CoursesStepper from '@components/CoursesStepper/';
 
 import { AppRoutesEnum } from '@appTypes';
 import styles from './styles';
@@ -177,7 +177,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
         return (
             <GridList
                 classes={{ root: this.props.classes.lessonsContainerClass }}
-                /** Id needed for scrolling within course window - stepper */
+                /** Id needed for scrolling within course window - coursesStepper */
                 id={ `details-${ this.id }` }
                 { ...{ spacing, cols, cellHeight } }
             >
@@ -282,7 +282,7 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                             { description }
                         </Typography>
                     </div>
-                    { isExpanded && <Stepper /> }
+                    { isExpanded && <CoursesStepper /> }
                 </ExpansionPanelSummary>
 
                 <Grid

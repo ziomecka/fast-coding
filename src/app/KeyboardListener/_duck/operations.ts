@@ -10,8 +10,8 @@ import { LISTENERS } from './constants';
 
 const addKeyDownListener = ( listeners: [ KeyboardListenerContainerListenersType, number ], listener: ListenerType ): number => {
     document.addEventListener( listener[ 0 ], listener[ 1 ] );
-    let i = listeners[1]++;
-    listeners[0].set( i, listener );
+    let i = listeners[ 1 ]++;
+    listeners[ 0 ].set( i, listener );
     return i;
 };
 

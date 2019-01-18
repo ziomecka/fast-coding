@@ -98,7 +98,7 @@ const styles = createStyles( theme => {
             flexDirection: 'row',
             width: '100%',
             paddingRight: 0,
-            position: 'relative', // for Stepper,
+            position: 'relative', // for CoursesStepper,
             /** Include:
              *  + paddings top and bottom
              *  + paddings above h4

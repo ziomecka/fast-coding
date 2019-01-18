@@ -12,7 +12,7 @@ export enum KeyboardListenerActionsEnum {
 export type KeyboardListenerContainersType =
     ComponentsContainersEnum.comparator |
     ComponentsContainersEnum.lesson |
-    ComponentsContainersEnum.lessonStepper |
+    ComponentsContainersEnum.coursesStepper |
     ViewsContainersEnum.homeView |
     AppContainersEnum.dialog |
     AppContainersEnum.welcome |
