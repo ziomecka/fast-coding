@@ -238,5 +238,9 @@
     "termsOfService": [
         "Terms of service",
         "Warunki korzystania"
+    ],
+    "coursesAreLoading": [
+        "Please wait, courses are loading",
+        "Proszę poczekaj, kursy są ładowane"
     ]
 }

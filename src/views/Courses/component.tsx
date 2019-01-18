@@ -6,22 +6,27 @@ import Courses from '@components/Courses';
 /** Materials */
 import Paper from '@material-ui/core/Paper';
 import Progress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from './styles';
+
+import { Translate } from 'react-localize-redux';
 
 const LessonsViewComponent: React.StatelessComponent<LessonsViewProps> = props => {
     const { loading, classes: { paperClass, progressClass } } = props;
 
     const loader = (
         <Paper className={ paperClass }>
-            <p>Courses are loading...</p>
-            <Progress
-                color="secondary"
-                size={ 40 }
-                thickness={ 4 }
-                className={ progressClass }
-            />
+            <Typography variant="h3">
+                <Translate id="coursesAreLoading" />
+                <Progress
+                    color="secondary"
+                    size={ 40 }
+                    thickness={ 4 }
+                    className={ progressClass }
+                />
+            </Typography>
         </Paper>
     );
 
