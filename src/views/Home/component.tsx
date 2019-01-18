@@ -4,7 +4,7 @@ import Nav from '@app/Nav';
 import { HomeViewProps } from './container';
 
 import Content from '@app/Content/';
-import TextGenerator from '@components/TextGenerator/';
+import LessonTextGenerator from '@components/LessonTextGenerator/';
 import CoursesLoader from '@components/CoursesLoader/';
 import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
@@ -40,7 +40,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
 
                 <Content>
                     {/* TODO nie powinien byc tutaj tylko w lessons, zastanowic sie */}
-                    <TextGenerator />
+                    <LessonTextGenerator />
                     { this.props.children }
                 </Content>
 

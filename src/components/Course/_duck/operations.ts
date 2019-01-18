@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 
-import { turnOnTextGenerator } from '@components/TextGenerator/';
+import { turnOnLessonTextGenerator } from '@components/LessonTextGenerator/';
 
 import {
     LessonData,
@@ -30,7 +30,7 @@ export const onOpenRandomLesson = ( lesson: LessonData ): any => {
     return async ( dispatch: Dispatch ) => {
         const response = await dispatch( updateLesson( lesson ) );
         if ( response ) {
-            return dispatch( turnOnTextGenerator() );
+            return dispatch( turnOnLessonTextGenerator() );
         }
         return response;
     };

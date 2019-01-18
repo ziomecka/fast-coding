@@ -1,13 +1,13 @@
 
 import * as React from 'react';
-import { TextGeneratorProps } from './container';
+import { LessonTextGeneratorProps } from './container';
 
-class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
+class LessonTextGeneratorComponent extends React.Component<LessonTextGeneratorProps> {
     constructor ( props ) {
         super( props );
     }
 
-    componentDidUpdate( prevProps: TextGeneratorProps ) {
+    componentDidUpdate( prevProps: LessonTextGeneratorProps ) {
         const { turnedOn } = this.props;
         const prevTurnedOn = prevProps.turnedOn;
         if ( turnedOn !== prevTurnedOn && turnedOn ) {
@@ -77,4 +77,4 @@ class TextGeneratorComponent extends React.Component<TextGeneratorProps> {
     }
 }
 
-export default TextGeneratorComponent;
+export default LessonTextGeneratorComponent;

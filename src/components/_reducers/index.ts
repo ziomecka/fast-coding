@@ -13,10 +13,10 @@ import {
 } from '@components/Lesson/';
 
 import {
-    ITextGeneratorState,
-    textGeneratorReducer,
-    INITIAL_STATE as TEXT_GENERATOR_INITIAL_STATE
-} from '@components/TextGenerator/';
+    ILessonTextGeneratorState,
+    lessonTextGeneratorReducer,
+    INITIAL_STATE as LESSON_TEXT_GENERATOR_INITIAL_STATE
+} from '@components/LessonTextGenerator/';
 
 import {
     ICoursesLoaderState,
@@ -46,7 +46,7 @@ export const INITIAL_STATE = {
     comparator: { ...COMPARATOR_INITIAL_STATE },
     lesson: { ...LESSON_INITIAL_STATE },
     courses: { ...COURSES_INITIAL_STATE },
-    textGenerator: { ...TEXT_GENERATOR_INITIAL_STATE },
+    lessonTextGenerator: { ...LESSON_TEXT_GENERATOR_INITIAL_STATE },
     coursesLoader: { ...COURSES_LOADER_INITIAL_STATE },
     lessonButtons: { ...LESSONBUTTONS_INITIAL_STATE },
     lessonStats: { ...LESSON_STATS_INITIAL_STATE }
@@ -55,7 +55,7 @@ export const INITIAL_STATE = {
 const reducer = combineReducers( {
     lesson: lessonReducer,
     comparator: comparatorReducer,
-    textGenerator: textGeneratorReducer,
+    lessonTextGenerator: lessonTextGeneratorReducer,
     courses: coursesReducer,
     lessonButtons: lessonButtonsReducer,
     coursesLoader: coursesLoaderReducer,
@@ -68,7 +68,7 @@ export interface ComponentsState {
     comparator: ComparatorState;
     courses: ICoursesState;
     lesson: LessonState;
-    textGenerator: ITextGeneratorState;
+    lessonTextGenerator: ILessonTextGeneratorState;
     coursesLoader: ICoursesLoaderState;
     lessonButtons: LessonButtonsState;
     lessonStats: LessonStatsState;

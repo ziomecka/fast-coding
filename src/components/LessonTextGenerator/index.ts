@@ -1,8 +1,8 @@
 export { default } from './container';
 export {
     INITIAL_STATE,
-    ITextGeneratorState,
+    ILessonTextGeneratorState,
     onSendText,
-    textGeneratorReducer,
-    turnOnTextGenerator
+    lessonTextGeneratorReducer,
+    turnOnLessonTextGenerator
 } from './_duck/';
