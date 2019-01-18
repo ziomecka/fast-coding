@@ -1,11 +1,8 @@
 import { Dispatch } from 'redux';
 
 import { ThunkGetStateType } from '@applicationTypes';
-import { LessonContainersEnum } from '@lessonTypes';
-import { LocalStorageItemEnum, AppRoutesEnum } from '@appTypes';
+import { AppRoutesEnum } from '@appTypes';
 
-const { lessonComparator: container } = LessonContainersEnum;
-const { lessonComparator: localStorageItem } = LocalStorageItemEnum;
 const { lessons } = AppRoutesEnum;
 
 import {
@@ -71,7 +68,7 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** currentSignIndex will be stored */
     if ( answer ) {
-        await dispatch( onKeepState( { container, localStorageItem } ) );
+        await dispatch( onKeepState() );
         answer = null; // GC
     }
 
@@ -116,7 +113,7 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if ( answer ) {
-        await dispatch( onKeepState( { container, localStorageItem } ) );
+        await dispatch( onKeepState() );
         answer = null; // GC
     }
 
