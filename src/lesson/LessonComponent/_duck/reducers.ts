@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { LessonComponentActionsEnum, ILessonComponentState } from './types';
 import {
-    LessonActions,
+    LessonComponentActions,
     OpenLessonAction,
     UpdateTextAction,
     OpenDemoLessonAction,
@@ -49,7 +49,7 @@ export const INITIAL_STATE: ILessonComponentState = {
     ending: false,
 };
 
-const reducer: Reducer<ILessonComponentState, LessonActions> = ( state = INITIAL_STATE, action ) => {
+const reducer: Reducer<ILessonComponentState, LessonComponentActions> = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
         case LESSON_LESSON_UPDATE:
         case LESSON_LESSON_OPEN: {

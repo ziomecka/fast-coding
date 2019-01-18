@@ -115,7 +115,7 @@ export interface RestoreStateAction extends Action {
     state: ILessonComponentState;
 }
 
-export type LessonActions = Action |
+export type LessonComponentActions = Action |
     OpenLessonAction |
     UpdateTextAction |
     OpenDemoLessonAction;
