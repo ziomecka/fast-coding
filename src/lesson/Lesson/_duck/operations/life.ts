@@ -29,28 +29,15 @@ import {
     unpauseLessonStats
 } from '@lesson/LessonStats/';
 
-import { LessonContainersEnum } from '@lessonTypes';
 import { Dispatch } from 'redux';
-import { LocalStorageItemEnum } from '@appTypes';
 import { ThunkGetStateType } from '@applicationTypes';
 import { resetDraggableLessonButtons } from '@lesson/LessonButtons/';
 
-const { lessonComparator: lessonComparatorContainer, lesson: lessonContainer } = LessonContainersEnum;
-
-const {
-    lesson: localStorageLesson,
-    lessonComparator: localStorageLessonComparator,
-    lessonStats: localStorageLessonStats
-} = LocalStorageItemEnum;
-
 let timeout;
 
-export const onStartLesson = (): any => async ( dispatch: Dispatch ) => {
-    await dispatch( startLesson() );
-
-    /** KEEP STATE */
-    return dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
-};
+export const onStartLesson = (): any => async ( dispatch: Dispatch ) => (
+    await dispatch( startLesson() )
+);
 
 export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
     clearTimeout( timeout );
@@ -59,10 +46,6 @@ export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
 
     if ( answer ) {
         addEscapeReturnListener( dispatch );
-
-        /** KEEP STATE */
-        dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
-        dispatch( onKeepState( { container: lessonComparatorContainer, localStorageItem: localStorageLessonComparator } ) );
 
         document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
     }
@@ -83,13 +66,10 @@ const _endLesson = ( dispatch, getState ) => {
     state = null; // GC
 };
 
-export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+export const onNotEndingLesson = (): any => ( dispatch: Dispatch ) => {
     clearTimeout( timeout );
 
-    dispatch( notEndingLesson() );
-
-    /** KEEP STATE */
-    dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
+    return dispatch( notEndingLesson() );
 };
 
 export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
@@ -115,9 +95,7 @@ export const onReset = (): any => ( dispatch: Dispatch ) => {
     removeAllKeyDownListeners();
 
     /** REMOVE STATE */
-    dispatch( onRemoveState( localStorageLesson ) );
-    dispatch( onRemoveState( localStorageLessonComparator ) );
-    dispatch( onRemoveState( localStorageLessonStats ) );
+    onRemoveState();
 };
 
 export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
@@ -131,10 +109,6 @@ export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
     clearTimeout( timeout );
 
     removeAllKeyDownListeners();
-
-    /** KEEP STATE */
-    dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
-    dispatch( onKeepState( { container: lessonComparatorContainer, localStorageItem: localStorageLessonComparator } ) );
 };
 
 export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
@@ -142,10 +116,6 @@ export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void 
     dispatch( pauseLessonStats() );
     dispatch( pauseLessonComparator( listener ) );
     dispatch( pauseLesson() );
-
-    /** KEEP STATE */
-    dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
-    dispatch( onKeepState( { container: lessonComparatorContainer, localStorageItem: localStorageLessonComparator } ) );
 };
 
 export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
@@ -153,10 +123,6 @@ export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
     dispatch( unpauseLessonComparator() );
     dispatch( unpauseLesson() );
     dispatch( unpauseLessonStats() );
-
-    /** KEEP STATE */
-    dispatch( onKeepState( { container: lessonContainer, localStorageItem: localStorageLesson } ) );
-    dispatch( onKeepState( { container: lessonComparatorContainer, localStorageItem: localStorageLessonComparator } ) );
 };
 
 export default {
