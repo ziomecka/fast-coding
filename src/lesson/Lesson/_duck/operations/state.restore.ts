@@ -1,44 +1,39 @@
-import {
-    LessonComparatorState,
-} from '@lesson/LessonComparator/';
-
-import {
-    localStorageGetItem,
-} from '@app/LocalStorage/_duck/operations';
-
 import { Dispatch } from 'redux';
-import { IRestoreStateOptions } from '../types';
-import { LessonState } from '../';
-import { LessonStatsState } from '@lesson/LessonStats';
+import { LocalStorageItemEnum } from '@appTypes';
+import { LessonContainersEnum } from '@lessonTypes';
 
-import { onRemoveState } from './state.remove';
-export const onRestoreState = ( options: IRestoreStateOptions ): any => async ( dispatch: Dispatch ): Promise<boolean> => {
-    let { localStorageItem, action, clearState = false } = options;
+import { localStorageGetItem } from '@app/LocalStorage/_duck/operations';
+import { restoreState } from '../actions';
 
-    let data = localStorageGetItem( localStorageItem );
+const { lesson: lessonLocalStorage } = LocalStorageItemEnum;
 
-    if ( data ) {
-        let answer = await dispatch( action( data as LessonState | LessonStatsState | LessonComparatorState ) );
+/** Containers that require restoring state */
+const restoreStateContainers = [
+    LessonContainersEnum.lesson,
+    LessonContainersEnum.lessonComparator,
+    LessonContainersEnum.lessonStats
+];
 
-        /**
-         * LessonComparator and lessonStats require clearing state
-         * But it is done when new lesson is opened. Not here.
-         * */
-        if ( clearState ) {
-            dispatch( onRemoveState( localStorageItem ) );
+export const onRestoreState = (): any => (
+    async ( dispatch: Dispatch ): Promise<void> => {
+
+        let data = localStorageGetItem( lessonLocalStorage );
+
+        for ( let container of restoreStateContainers ) {
+            let containerData = data[ container ];
+
+            if ( containerData ) {
+                let answer = dispatch( restoreState[ container ]( containerData ) );
+
+                if ( answer ) {
+                    containerData = null; // GC
+                    answer = null; // GC
+                }
+            }
         }
 
-        if ( answer ) {
-            data = null; // GC
-            answer = null; // GC
-            action = null; // GC
-            return true;
-        }
+        data = null;
     }
+);
 
-    return Promise.resolve( false );
-};
-
-export default {
-    onRestoreState,
-};
+export default { onRestoreState };

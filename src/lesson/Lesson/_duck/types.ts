@@ -48,7 +48,6 @@ export interface LessonData extends OriginalLessonData {
 export interface LessonState extends LessonData {}
 
 export interface IRestoreStateOptions {
-    localStorageItem: LocalStorageItemEnum,
-    action: ( data ) => LessonRestoreStateAction | LessonStatsRestoreStateAction | LessonComparatorRestoreStateAction,
+    container: LessonContainersEnum,
     clearState?: boolean
 }
