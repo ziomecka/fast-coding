@@ -9,22 +9,13 @@ import {
     listenKeys,
     stopListenKeys,
     turnOnLessonComparator,
-    restoreState
 } from './_duck/';
 
 import {
     LessonState,
     onEndingLesson,
-    onKeepState,
-    onRestoreState,
     onStartLesson
 } from '@lesson/Lesson/';
-
-import { LessonContainersEnum } from '@lessonTypes';
-import { LocalStorageItemEnum } from '@appTypes';
-
-const { lessonComparator: container } = LessonContainersEnum;
-const { lessonComparator: localStorageItem } = LocalStorageItemEnum;
 
 // TODO chyba nie jest potrzebny cały state
 const mapStateToProps = ( state: ApplicationState ): LessonComparatorState & LessonState => ( {
@@ -36,9 +27,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonComparatorDispatch => (
     turnOnLessonComparator: () => dispatch( turnOnLessonComparator() ),
     startLesson: () => dispatch( onStartLesson() ),
     endingLesson: () => dispatch( onEndingLesson() ),
-    keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
     listenKeys: () => dispatch( listenKeys() ),
-    restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
     stopListenKeys: () => dispatch( stopListenKeys() )
 } );
 
@@ -50,9 +39,7 @@ export interface LessonComparatorDispatch {
     turnOnLessonComparator: () => Action;
     startLesson: () => Action;
     endingLesson: () => Action;
-    keepState: () => Action;
     listenKeys: () => Action;
-    restoreState: () => Action;
     stopListenKeys: () => Action;
 }
 
