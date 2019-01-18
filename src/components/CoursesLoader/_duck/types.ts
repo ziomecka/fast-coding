@@ -27,7 +27,7 @@ export enum LessonsCategoriesEnum {
     basics = 'basics'
 }
 
-export interface ILessonsLoaderState {
+export interface ICoursesLoaderState {
     loading: boolean;
     error: string;
     lessons: LessonsDataI[];

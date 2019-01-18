@@ -2,7 +2,7 @@ export enum ComponentsContainersEnum {
     comparator = 'comparator',
     lesson = 'lesson',
     textGenerator = 'textGenerator',
-    lessonsLoader = 'lessonsLoader',
+    coursesLoader = 'coursesLoader',
     lessons = 'lessons',
     lessonButtons = 'lessonButtons',
     lessonStepper = 'lessonStepper'

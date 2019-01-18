@@ -6,7 +6,7 @@ import { default as Stepper } from './component';
 
 import { ApplicationState } from '@appStore';
 
-import { ILessonsLoaderState } from '@components/LessonsLoader/';
+import { ICoursesLoaderState } from '@components/CoursesLoader/';
 import { ICoursesState } from '@components/Courses/';
 import { WithStyles, WithTheme } from '@material-ui/core/styles';
 
@@ -20,7 +20,7 @@ import {
 import { IWithMedia } from '@app/Media';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
-    ...state.components.lessonsLoader,
+    ...state.components.coursesLoader,
     ...state.components.courses
 } );
 
@@ -34,14 +34,14 @@ const StepperContainer = withRouter( connect( mapStateToProps, mapDispatchToProp
 
 export default StepperContainer;
 
-interface MapStateToProps extends ILessonsLoaderState, ICoursesState {}
+interface MapStateToProps extends ICoursesLoaderState, ICoursesState {}
 
 export interface IStepperDispatch {
     addListener: ( options: AddListener ) => number;
     removeListener: ( options: RemoveListener ) => boolean;
 }
 export interface StepperProps extends
-    ILessonsLoaderState,
+    ICoursesLoaderState,
     IStepperDispatch,
     RouteComponentProps<{}>,
     MapStateToProps,

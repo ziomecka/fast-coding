@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { LessonsLoaderProps } from './container';
+import { CoursesLoaderProps } from './container';
 
 import CSR from '@app/CSR';
 
-class LessonsLoaderComponent extends React.Component<LessonsLoaderProps> {
+class CoursesLoaderComponent extends React.Component<CoursesLoaderProps> {
     constructor( props ) {
         super( props );
     }
@@ -28,4 +28,4 @@ class LessonsLoaderComponent extends React.Component<LessonsLoaderProps> {
     }
 }
 
-export default LessonsLoaderComponent;
+export default CoursesLoaderComponent;

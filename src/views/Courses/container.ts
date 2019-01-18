@@ -4,14 +4,14 @@ import { default as LessonsView } from './component';
 import { ApplicationState } from '@appStore';
 import { WithStyles } from '@material-ui/core';
 
-import { ILessonsLoaderState } from '@components/LessonsLoader/_duck/';
+import { ICoursesLoaderState } from '@components/CoursesLoader/_duck/';
 
-const mapStateToProps = ( state: ApplicationState ): ILessonsLoaderState => ( {
-    ...state.components.lessonsLoader
+const mapStateToProps = ( state: ApplicationState ): ICoursesLoaderState => ( {
+    ...state.components.coursesLoader
 } );
 
 const LessonsViewContainer = connect( mapStateToProps )( LessonsView );
 
 export default LessonsViewContainer;
 
-export interface LessonsViewProps extends ILessonsLoaderState, WithStyles {}
+export interface LessonsViewProps extends ICoursesLoaderState, WithStyles {}

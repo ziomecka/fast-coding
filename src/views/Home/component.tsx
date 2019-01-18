@@ -5,7 +5,7 @@ import { HomeViewProps } from './container';
 
 import Content from '@app/Content/';
 import TextGenerator from '@components/TextGenerator/';
-import LessonsLoader from '@components/LessonsLoader/';
+import CoursesLoader from '@components/CoursesLoader/';
 import User from '@app/User/';
 import KeyboardListener from '@app/KeyboardListener/';
 import TranslationsLoader from '@app/TranslationsLoader/';
@@ -35,7 +35,7 @@ class HomeViewComponent extends React.Component<HomeViewProps> {
             <React.Fragment>
                 <User />
                 <KeyboardListener />
-                <LessonsLoader />
+                <CoursesLoader />
                 <Nav />
 
                 <Content>

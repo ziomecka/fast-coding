@@ -1,7 +1,7 @@
 export { default } from './container';
 export {
-    ILessonsLoaderState,
+    ICoursesLoaderState,
     INITIAL_STATE,
-    lessonsLoaderReducer,
+    coursesLoaderReducer,
     onLoadLessons
 } from './_duck/';

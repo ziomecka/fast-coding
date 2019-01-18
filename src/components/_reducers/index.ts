@@ -19,10 +19,10 @@ import {
 } from '@components/TextGenerator/';
 
 import {
-    ILessonsLoaderState,
-    lessonsLoaderReducer,
-    INITIAL_STATE as LESSONSLOADER_INITIAL_STATE
-} from '@components/LessonsLoader/';
+    ICoursesLoaderState,
+    coursesLoaderReducer,
+    INITIAL_STATE as COURSES_LOADER_INITIAL_STATE
+} from '@components/CoursesLoader/';
 
 import {
     LessonButtonsState,
@@ -47,7 +47,7 @@ export const INITIAL_STATE = {
     lesson: { ...LESSON_INITIAL_STATE },
     courses: { ...COURSES_INITIAL_STATE },
     textGenerator: { ...TEXT_GENERATOR_INITIAL_STATE },
-    lessonsLoader: { ...LESSONSLOADER_INITIAL_STATE },
+    coursesLoader: { ...COURSES_LOADER_INITIAL_STATE },
     lessonButtons: { ...LESSONBUTTONS_INITIAL_STATE },
     stats: { ...STATS_INITIAL_STATE }
 };
@@ -58,7 +58,7 @@ const reducer = combineReducers( {
     textGenerator: textGeneratorReducer,
     courses: coursesReducer,
     lessonButtons: lessonButtonsReducer,
-    lessonsLoader: lessonsLoaderReducer,
+    coursesLoader: coursesLoaderReducer,
     stats: statsReducer
 } );
 
@@ -69,7 +69,7 @@ export interface ComponentsState {
     courses: ICoursesState;
     lesson: LessonState;
     textGenerator: ITextGeneratorState;
-    lessonsLoader: ILessonsLoaderState;
+    coursesLoader: ICoursesLoaderState;
     lessonButtons: LessonButtonsState;
     stats: StatsState;
 }
