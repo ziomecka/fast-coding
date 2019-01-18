@@ -4,25 +4,14 @@ import {
 
 import {
     localStorageGetItem,
-    localStorageRemoveItem,
-    localStorageSetItem,
 } from '@app/LocalStorage/_duck/operations';
 
 import { Dispatch } from 'redux';
-import { IKeepStateOptions, IRestoreStateOptions } from '../types';
+import { IRestoreStateOptions } from '../types';
 import { LessonState } from '../';
 import { LessonStatsState } from '@lesson/LessonStats';
-import { LocalStorageItemEnum } from '@appTypes';
-import { ThunkGetStateType } from '@applicationTypes';
 
-export const onKeepState = ( options: IKeepStateOptions ): any => ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => {
-    const { localStorageItem, container } = options;
-    return localStorageSetItem( localStorageItem, getState().lesson[ container ] );
-};
-
-export const onRemoveState = ( localStorageItem: LocalStorageItemEnum ): any => (
-    (): boolean => localStorageRemoveItem( localStorageItem ) );
-
+import { onRemoveState } from './state.remove';
 export const onRestoreState = ( options: IRestoreStateOptions ): any => async ( dispatch: Dispatch ): Promise<boolean> => {
     let { localStorageItem, action, clearState = false } = options;
 
@@ -51,7 +40,5 @@ export const onRestoreState = ( options: IRestoreStateOptions ): any => async ( 
 };
 
 export default {
-    onKeepState,
     onRestoreState,
-    onRemoveState
 };

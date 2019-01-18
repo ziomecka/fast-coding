@@ -13,7 +13,8 @@ import {
     unpauseLesson,
 } from '@lesson/Lesson/_duck/actions';
 
-import { onKeepState, onRemoveState } from './restore.state';
+import { onKeepState } from './state.keep';
+import { onRemoveState } from './state.remove';
 
 import {
     pauseLessonComparator,

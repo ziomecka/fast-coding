@@ -9,8 +9,5 @@ export {
     onUnpauseLesson
 } from './life';
 
-export {
-    onKeepState,
-    onRemoveState,
-    onRestoreState
-} from './restore.state';
+export { onKeepState } from './state.keep';
+export { onRestoreState } from './state.restore';
