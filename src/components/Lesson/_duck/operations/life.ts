@@ -1,22 +1,17 @@
-import { Dispatch } from 'redux';
-import { ThunkGetStateType } from '@applicationTypes';
-import { ComponentsContainersEnum } from '@componentsTypes';
-import { LocalStorageItemEnum } from '@appTypes';
 import { addEscapeReturnListener, removeAllKeyDownListeners } from './listeners';
-const { lessonComparator, lesson } = ComponentsContainersEnum;
-
-import { onKeepState, onRemoveState } from './restore.state';
 
 import {
-    resetLesson,
+    endLesson,
     endingLesson,
     notEndingLesson,
-    endLesson,
-    restartLesson,
     pauseLesson,
+    resetLesson,
+    restartLesson,
+    startLesson,
     unpauseLesson,
-    startLesson
-} from './../actions';
+} from '@components/Lesson/_duck/actions';
+
+import { onKeepState, onRemoveState } from './restore.state';
 
 import {
     pauseLessonComparator,
@@ -31,7 +26,13 @@ import {
     unpauseLessonStats
 } from '@components/LessonStats/';
 
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { Dispatch } from 'redux';
+import { LocalStorageItemEnum } from '@appTypes';
+import { ThunkGetStateType } from '@applicationTypes';
 import { resetDraggableLessonButtons } from '@components/LessonButtons/';
+
+const { lessonComparator, lesson } = ComponentsContainersEnum;
 
 /** Time to correct the last sign */
 const waitForLastSign = 800;

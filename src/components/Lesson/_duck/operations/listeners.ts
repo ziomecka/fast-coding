@@ -1,13 +1,15 @@
+import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
+import { isEnter, isEscape } from '@components/LessonComparator/';
 import { AppRoutesEnum } from '@appTypes';
 import { ComponentsContainersEnum } from '@componentsTypes';
 import { Dispatch } from 'redux';
-
 import history from '@shared/history';
-import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
 import { onRestartLesson } from './life';
-import { isEnter, isEscape } from '@components/LessonComparator/';
+
 const { lessons } = AppRoutesEnum;
 const { lesson: container } = ComponentsContainersEnum;
+
+let listenerId;
 
 const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
     if ( isEscape( e.keyCode ) ) {
@@ -19,8 +21,6 @@ const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
         dispatch( onRestartLesson() );
     }
 };
-
-let listenerId;
 
 export const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
     listenerId = manageKeydownListeners.onAddListener( {

@@ -1,20 +1,22 @@
-import { Dispatch } from 'redux';
-import { ThunkGetStateType } from '@applicationTypes';
-
-import { ComponentsContainersEnum } from '@componentsTypes';
-import { LocalStorageItemEnum } from '@appTypes';
-
-import { LessonState } from '../';
-import { LessonStatsState } from '@components/LessonStats';
-
-import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
-import { RestoreStateAction as LessonStatsRestoreStateAction } from '@components/LessonStats/';
 import {
+    RestoreStateAction as LessonComparatorRestoreStateAction,
     LessonComparatorState,
-    RestoreStateAction as LessonComparatorRestoreStateAction
 } from '@components/LessonComparator/';
 
-import { localStorageSetItem, localStorageGetItem, localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
+import {
+    localStorageGetItem,
+    localStorageRemoveItem,
+    localStorageSetItem,
+} from '@app/LocalStorage/_duck/operations';
+
+import { ComponentsContainersEnum } from '@componentsTypes';
+import { Dispatch } from 'redux';
+import { RestoreStateAction as LessonRestoreStateAction } from '../actions';
+import { LessonState } from '../';
+import { RestoreStateAction as LessonStatsRestoreStateAction } from '@components/LessonStats/';
+import { LessonStatsState } from '@components/LessonStats';
+import { LocalStorageItemEnum } from '@appTypes';
+import { ThunkGetStateType } from '@applicationTypes';
 
 export const onKeepState = ( localStorageItem: LocalStorageItemEnum, container: ComponentsContainersEnum ): any => (
     ( dispatch: Dispatch, getState: ThunkGetStateType ): boolean => localStorageSetItem( localStorageItem, getState().components[ container ] ) );
