@@ -5,7 +5,6 @@ import {
     onKeepState,
     onReset,
     onRestoreState,
-    restoreState
 } from './_duck/';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -21,15 +20,10 @@ import {
 } from '@lesson/LessonButtons/';
 
 import { ApplicationState } from '@appStore';
-import { LessonContainersEnum } from '@lessonTypes';
 import { default as Lesson } from './component';
-import { LocalStorageItemEnum } from '@appTypes';
 import { LocalizeState } from 'react-localize-redux';
 import { WithStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-
-const { lesson: container } = LessonContainersEnum;
-const { lesson: localStorageItem } = LocalStorageItemEnum;
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { running, start, stop, time } = state.lesson.lessonStats;
@@ -48,7 +42,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
     /** deregisterOnDrop in componentWillUnmount */
     deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
     /** keepState in componentDidMount */
-    keepState: () => dispatch( onKeepState( { container, localStorageItem } ) ),
+    keepState: () => dispatch( onKeepState() ),
     /** onMoveLessonButtons in onDrop */
     onMoveLesonButtons: ( x, y ) => dispatch( moveLessonButtons( x, y ) ),
     /** registerOnDrop in componentDidMount */
@@ -56,7 +50,7 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
     /** reset in componentWillUnmount */
     reset: () => dispatch( onReset() ),
     /** restoreState in componentDidMount */
-    restoreState: () => dispatch( onRestoreState( { action: restoreState, localStorageItem } ) ),
+    restoreState: () => dispatch( onRestoreState() ),
     /** startLeaving in window.onpopstate */
     startLeaving: () => dispatch( onStartLeaving() )
 } );
