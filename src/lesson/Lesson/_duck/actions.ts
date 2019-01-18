@@ -81,6 +81,27 @@ export const restoreState: ActionCreator<RestoreStateAction> = ( state: LessonSt
     state
 } );
 
+
+/**
+ * Actions that require keeping the state in localStorage
+ * Used in Lesson global reducer
+*/
+export const stateKeepActions = [
+    LessonActionsEnum.LESSON_LESSON_END,
+    LessonActionsEnum.LESSON_LESSON_ENDING,
+    LessonActionsEnum.LESSON_LESSON_NOT_ENDING,
+    LessonActionsEnum.LESSON_LESSON_OPEN,
+    LessonActionsEnum.LESSON_LESSON_OPEN_DEMO,
+    LessonActionsEnum.LESSON_LESSON_PAUSE,
+    LessonActionsEnum.LESSON_LESSON_RESET,
+    LessonActionsEnum.LESSON_LESSON_RESTART,
+    // LessonActionsEnum.LESSON_LESSON_RESTORE_STATE,
+    LessonActionsEnum.LESSON_LESSON_START,
+    LessonActionsEnum.LESSON_LESSON_TEXT_UPDATE,
+    LessonActionsEnum.LESSON_LESSON_UNPAUSE,
+    LessonActionsEnum.LESSON_LESSON_UPDATE
+];
+
 export default {
     endLesson,
     resetLesson

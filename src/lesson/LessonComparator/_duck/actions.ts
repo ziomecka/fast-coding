@@ -49,6 +49,19 @@ export default {
     resetLessonComparator
 };
 
+/**
+ * Actions that require keeping the state in localStorage
+ * Used in Lesson global reducer
+*/
+export const stateKeepActions = [
+    LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_CORRECT_ERROR,
+    LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_REGISTER_BACKSPACE,
+    LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_REGISTER_ERROR,
+    LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_REGISTER_NEW_KEY,
+    LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_RESET,
+    // LessonComparatorActionsEnum.LESSON_LESSON_COMPARATOR_RESTORE_STATE
+];
+
 export interface RegisterNewKeyAction extends Action {
     readonly type: string;
     currentSignIndex: number;
