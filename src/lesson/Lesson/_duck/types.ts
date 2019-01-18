@@ -1,13 +1,6 @@
 
-import {
-    RestoreStateAction as LessonComparatorRestoreStateAction,
-} from '@lesson/LessonComparator/';
-
 import { LessonContainersEnum } from '@lessonTypes';
-import { RestoreStateAction as LessonRestoreStateAction } from './actions';
 import { LessonState } from '../';
-import { RestoreStateAction as LessonStatsRestoreStateAction } from '@lesson/LessonStats/';
-import { LocalStorageItemEnum } from '@appTypes';
 import { TextTranslationsI } from '@applicationTypes';
 
 export enum LessonActionsEnum {
