@@ -15,7 +15,7 @@ import { LISTENERS } from './constants';
  * Add event listener to document and listeners' map
  *
  */
-export const onAddListener = ( options: AddListener ): number => {
+const addListener = ( options: AddListener ): number => {
     let { listener, container } = options;
     let listeners = LISTENERS.get( container );
 
@@ -36,7 +36,7 @@ export const onAddListener = ( options: AddListener ): number => {
  *
  * Remove event listener from document and listeners' map
  */
-export const onRemoveListener = ( options: RemoveListener ): boolean => {
+const removeListener = ( options: RemoveListener ): boolean => {
     const { container, listenerId } = options;
 
     let listeners = LISTENERS.get( container );
@@ -63,7 +63,7 @@ export const onRemoveListener = ( options: RemoveListener ): boolean => {
  *
  * Remove all listeners from document and map
  */
-export const onRemoveAllListeners = ( options: RemoveAllListeners ): boolean => {
+const removeAllListeners = ( options: RemoveAllListeners ): boolean => {
     let listeners = LISTENERS.get( options.container );
 
     if ( listeners[ 0 ].size ) {
@@ -80,7 +80,7 @@ export const onRemoveAllListeners = ( options: RemoveAllListeners ): boolean => 
 };
 
 export default {
-    onAddListener,
-    onRemoveListener,
-    onRemoveAllListeners
+    addListener,
+    removeListener,
+    removeAllListeners
 };

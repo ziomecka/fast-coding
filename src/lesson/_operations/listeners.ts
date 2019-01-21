@@ -1,4 +1,4 @@
-import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
+import { KeyboardListener } from '@app/KeyboardListener/';
 import { isEnter, isEscape } from '@lesson/LessonComparator/';
 import { AppRoutesEnum } from '@appTypes';
 import { LessonContainersEnum } from '@lessonTypes';
@@ -23,7 +23,7 @@ const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ): void => {
 };
 
 export const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
-    listenerId = manageKeydownListeners.onAddListener( {
+    listenerId = KeyboardListener.addListener( {
         container,
         listener: [ 'keydown', ( e: KeyboardEvent ) => {
             e.stopPropagation();
@@ -33,4 +33,4 @@ export const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
     return listenerId;
 };
 
-export const removeAllKeyDownListeners = (): boolean => manageKeydownListeners.onRemoveAllListeners( { container } );
+export const removeAllKeyDownListeners = (): boolean => KeyboardListener.removeAllListeners( { container } );

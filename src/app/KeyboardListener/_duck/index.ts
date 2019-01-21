@@ -1,8 +1,4 @@
-export {
-    onAddListener,
-    onRemoveAllListeners,
-    onRemoveListener
-} from './operations';
+export { default as KeyboardListener } from './operations';
 
 export {
     AddListener,

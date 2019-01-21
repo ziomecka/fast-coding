@@ -11,7 +11,7 @@ import { localStorageRemoveItem } from '@app/LocalStorage/_duck/operations';
 
 /** Keyboard listener imports */
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
-import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
+import { KeyboardListener } from '@app/KeyboardListener/';
 
 const { lesson } = LocalStorageItemEnum;
 
@@ -36,7 +36,7 @@ const manageFocus = ( e: KeyboardEvent ): void => manageButtonFocus( e );
 let listenerId;
 
 export const onAddKeyDownListener = (): number => {
-    listenerId = manageKeydownListeners.onAddListener( {
+    listenerId = KeyboardListener.addListener( {
         container,
         listener: [ 'keydown', manageFocus ]
     } );
@@ -45,5 +45,5 @@ export const onAddKeyDownListener = (): number => {
 };
 
 export const onRemoveKeyDownListener = (): boolean => {
-    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
+    return KeyboardListener.removeListener( { container, listenerId } );
 };

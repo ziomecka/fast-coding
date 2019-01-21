@@ -13,8 +13,7 @@ import { WithStyles, WithTheme } from '@material-ui/core/styles';
 import {
     AddListener,
     RemoveListener,
-    addListener,
-    removeListener
+    KeyboardListener
 } from '@app/KeyboardListener/';
 
 import { IWithMedia } from '@app/Media';
@@ -25,8 +24,8 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
 } );
 
 const mapDispatchToProps = (): ICoursesStepperDispatch => ( {
-    addListener: options => addListener( options ),
-    removeListener: options => removeListener( options )
+    addListener: options => KeyboardListener.addListener( options ),
+    removeListener: options => KeyboardListener.removeListener( options )
 } );
 
 // @ts-ignore

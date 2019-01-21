@@ -3,7 +3,7 @@ import { setNavAnchorEl } from './actions';
 import { MenuContainersEnum } from '@appTypes';
 
 /** Keyboard listener imports */
-import * as manageKeydownListeners from '@app/KeyboardListener/_duck/operations';
+import { KeyboardListener } from '@app/KeyboardListener/';
 
 let listenerId;
 
@@ -19,12 +19,12 @@ let callback;
 export const onSetNavAnchorEl = ( container: MenuContainersEnum, element?: HTMLElement ): any => ( dispatch: Dispatch ) => {
     if ( element ) {
         callback = keyDownCallback.bind( null, dispatch, container );
-        listenerId = manageKeydownListeners.onAddListener( {
+        listenerId = KeyboardListener.addListener( {
             container,
             listener: [ 'keydown', callback ]
         } );
     } else {
-        manageKeydownListeners.onRemoveListener( { container, listenerId } );
+        KeyboardListener.removeListener( { container, listenerId } );
     }
 
     dispatch( setNavAnchorEl( container, element || null ) );
