@@ -147,7 +147,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         <React.Fragment> { buttonLeave } { buttonRestart } </React.Fragment>
     );
 
-    const getButtons = (): JSX.Element => {
+    const getButtons = ( started: boolean, ended: boolean, paused: boolean ): JSX.Element => {
         if ( !started && !ended ) {
             return buttonsWhenNotStarted;
         }
@@ -178,7 +178,7 @@ const LessonButtonsComponent: React.StatelessComponent<LessonButtonsProps> = pro
         >
             {/* Lesson's buttons */}
             <React.Fragment>
-                { getButtons() }
+                { getButtons( started, ended, paused ) }
             </React.Fragment>
 
             {/* Buttons for managing draggable menu */}
