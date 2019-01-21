@@ -8,7 +8,11 @@ import {
     OpenDialogOptions
 } from './types';
 
+import history from '@shared/history';
+
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
+
+import { operations } from '@app/Welcome/';
 
 const { simple, yes, yesCancel } = DialogsEnum;
 
@@ -223,12 +227,29 @@ const map = new Map( [
 export const onOpenDialog = ( options: OpenDialogOptions ): any => (
     async ( dispatch: Dispatch ): Promise<Action> => {
         const { variant, ...other } = options;
+
+        /**
+         * If the location is home page then
+         * do not mangeFocus on home's buttons
+         *  */
+        if ( history.location.pathname === '/' ) {
+            operations.onRemoveKeyDownListener();
+        }
+
         return await dispatch( map.get( variant )( other ) );
     }
 );
 
 export const onCloseDialog = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
-    return await dispatch( closeDialog() )
+    /**
+     *  If the location is home page then
+     *  start to mangeFocus on home's buttons
+     * */
+    if ( history.location.pathname === '/' ) {
+        operations.onAddKeyDownListener();
+    }
+
+    return await dispatch( closeDialog() );
 };
 
 export default {
