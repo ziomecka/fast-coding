@@ -195,14 +195,21 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
             } },
             {
                 dialogProps: {
+                    ...dialogProps,
                     ...onBackdropEscapeClick( dispatch, options, () => manageButtonFocus = null ),
-                    onKeyDown: ( e ) => manageButtonFocus( e ),
-                    ...dialogProps
+                    onKeyDown: ( e ) => {
+                        manageButtonFocus( e );
+                        if ( dialogProps.onKeyDown ) {
+                            dialogProps.onKeyDown( e );
+                            dialogProps = null;
+
+                        }
+                    },
                 }
             }
         ) ) );
 
-        dialogProps = null;
+        // dialogProps = null; // GC - cannot be done here,
         other = null; // GC
     }
 );
