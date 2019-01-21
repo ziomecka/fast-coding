@@ -23,6 +23,7 @@ import { onStartLeaving } from '@lesson/LessonButtons/';
 import {
     isBackspace,
     isEscape,
+    isSpace,
     isValidCode
 } from './helpers';
 
@@ -32,7 +33,7 @@ export const handleKeyboardDown
     const { key, keyCode } = event;
 
     /** Do not scroll when space pressed */
-    if ( keyCode === 32 ) event.preventDefault();
+    if ( isSpace( keyCode ) ) event.preventDefault();
     if ( isValidCode( keyCode ) ) handleKeyDown( key, dispatch, getState );
     if ( isBackspace( keyCode ) ) handleBackSpace( dispatch, getState );
     if ( isEscape( keyCode ) ) handleEscape( dispatch, getState );
