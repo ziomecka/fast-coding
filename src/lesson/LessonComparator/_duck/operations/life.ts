@@ -27,7 +27,6 @@ import { KeyboardListener } from '@app/KeyboardListener/';
 import { listenedEvent } from './constants';
 
 let runningKeyboardDownListenerId: number;
-let pausedKeyboardDownListenerId: number;
 
 /** Start stats */
 export const onTurnOnLessonComparator = (): any => ( dispatch: Dispatch ): Promise<Action> => (
@@ -36,16 +35,13 @@ export const onTurnOnLessonComparator = (): any => ( dispatch: Dispatch ): Promi
 
 /** Remove listeners, stop stats, end lesson */
 export const onTurnOffLessonComparator = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
-    let answer = KeyboardListener.removeListener( { container, listenerId: runningKeyboardDownListenerId } );
+    KeyboardListener.removeListener( { container, listenerId: runningKeyboardDownListenerId } );
 
-    if ( answer ) {
-        answer = null;
-        let timerStopped = await dispatch( stopLessonStats() );
+    let timerStopped = await dispatch( stopLessonStats() );
 
-        if ( timerStopped ) {
-            timerStopped = null; // GC
-            return dispatch( onEndLesson() );
-        }
+    if ( timerStopped ) {
+        timerStopped = null; // GC
+        return dispatch( onEndLesson() );
     }
 };
 
@@ -99,18 +95,11 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
  *  add keydown listener: if valid keyCode or backSpace then unpause lesson
  *
  * */
-export const onPauseLessonComparator = ( eventListener? ): any => (): number => {
-    KeyboardListener.removeListener( { container, listenerId: runningKeyboardDownListenerId } );
-
-    if ( eventListener ) {
-        pausedKeyboardDownListenerId = KeyboardListener.addListener( { container, listener: eventListener } );
-        return pausedKeyboardDownListenerId;
-    }
-};
+export const onPauseLessonComparator = ( ): any => (): boolean => (
+    KeyboardListener.removeListener( { container, listenerId: runningKeyboardDownListenerId } )
+);
 
 export const onUnpauseLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ): number => {
-    KeyboardListener.removeListener( { container, listenerId: pausedKeyboardDownListenerId } );
-
     runningKeyboardDownListenerId = KeyboardListener.addListener( {
         container,
         listener: [ listenedEvent, ( e: KeyboardEvent ) => {

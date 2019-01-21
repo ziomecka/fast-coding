@@ -29,10 +29,14 @@ import {
 } from '@lesson/LessonStats/';
 
 import { Action, Dispatch } from 'redux';
-import { ThunkGetStateType } from '@applicationTypes';
+import { KeyboardListener } from '@app/KeyboardListener/';
+import { LessonContainersEnum, ThunkGetStateType } from '@applicationTypes';
 import { resetDraggableLessonButtons } from '@lesson/LessonButtons/';
 
+/**  */
+const { lessonComponent: container } = LessonContainersEnum;
 let timeout;
+let listenerId: number;
 
 export const onStartLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     await dispatch( startLesson() );
@@ -137,12 +141,23 @@ export const onRestartLesson = (): any => async ( dispatch: Dispatch ): Promise<
     }
 };
 
-export const onPauseLesson = ( listener? ): any => async ( dispatch: Dispatch ): Promise<Action> => {
+export const onPauseLesson = ( listener? ): any => async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
     /** PAUSE */
     let answer = await dispatch( pauseLessonStats() );
 
-    if ( answer ) answer = await dispatch( pauseLessonComparator( listener ) );
-    if ( answer ) answer = await dispatch( pauseLesson() );
+    if ( answer ) {
+        answer = null;
+        answer = await dispatch( pauseLessonComparator() );
+    }
+
+    if ( answer && listener ) {
+        listenerId = KeyboardListener.addListener( { container, listener: [ 'keydown', ( e ) => listener( e, dispatch, getState ) ] } );
+    }
+
+    if ( answer ) {
+        answer = null;
+        answer = await dispatch( pauseLesson() );
+    }
 
     if ( answer ) {
         answer = null; // GC
@@ -153,6 +168,8 @@ export const onPauseLesson = ( listener? ): any => async ( dispatch: Dispatch ):
 };
 
 export const onUnpauseLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
+    KeyboardListener.removeListener( { container, listenerId } );
+
     /** UNPAUSE */
     let answer = await dispatch( unpauseLessonComparator() );
     if ( answer ) answer = await dispatch( unpauseLesson() );
