@@ -378,18 +378,25 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
     get iconPreviousSmall(): JSX.Element {
         const {
             props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson },
+            state: { selectedLesson }
         } = this;
 
         const disabled = ( selectedLesson - 1 ) < 0;
 
         return (
-            <IconButton
-                onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
-                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+            <Tooltip
+                title={ disabled
+                    ? ''
+                    : `go to ${ ( selectedLesson ) }`
+                }
             >
-                <IconPrevious />
-            </IconButton>
+                <IconButton
+                    onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
+                    className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+                >
+                    <IconPrevious />
+                </IconButton>
+            </Tooltip>
         );
     }
 
@@ -429,13 +436,20 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
         const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
 
         return (
-            <IconButton
-                onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
-                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
-                style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
+            <Tooltip
+                title={ disabled
+                    ? ''
+                    : `go to ${ ( selectedLesson + 2 ) }`
+                }
             >
-                <IconNext />
-            </IconButton>
+                <IconButton
+                    onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
+                    className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+                    style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
+                >
+                    <IconNext />
+                </IconButton>
+            </Tooltip>
         );
     }
 
