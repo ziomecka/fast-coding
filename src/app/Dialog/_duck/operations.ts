@@ -86,12 +86,14 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     buttonProps: {
                         id: buttonYesId = 'dialogYesId',
                         onClick: onClickYes,
+                        tabIndex: tabIndexYes = 0
                     }
                 },
                 buttonCancel: {
                     buttonProps: {
                         id: buttonCancelId = 'dialogCancelId',
                         onClick: onClickCancel,
+                        tabIndex: tabIndexCancel = 1
                     }
                 } = {
                     buttonProps: {
@@ -130,6 +132,7 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonYes ).buttonProps,
                         id: buttonYesId,
+                        tabIndex: tabIndexYes,
                         onClick: async ( e ) => {
                             if ( typeof onClickYes === 'function' ) {
                                 onClickYes( e );
@@ -147,6 +150,7 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonCancel ).buttonProps,
                         id: buttonCancelId,
+                        tabIndex: tabIndexCancel,
                         onClick: async ( e ) => {
                             if ( typeof onClickCancel === 'function' ) {
                                 onClickCancel( e );

@@ -69,12 +69,16 @@ const DialogComponent: React.StatelessComponent<AppDialogProps> = props => {
 
             { Object.keys( buttons ).length !== 0 && (
                 <DialogActions>
-                    { Object.keys( buttons ).map( ( button, ind ) => (
-                        <ButtonWithHint
-                            key={`dialogButton-${ ind }`}
-                            { ...buttons[ button ] }
-                        />
-                    ) ) }
+                    {
+                        Object.keys( buttons )
+                            .map( ( button, ind ) => (
+                                <ButtonWithHint
+                                    key={`dialogButton-${ ind }`}
+                                    { ...buttons[ button ] }
+                                />
+                            ) )
+                            .sort( ( a, b ) => a.props.buttonProps.tabIndex - b.props.buttonProps.tabIndex )
+                    }
                 </DialogActions>
             ) }
         </Dialog>
