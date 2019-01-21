@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { AppRoutesEnum } from '@appTypes';
 import { ThunkGetStateType } from '@applicationTypes';
 
@@ -18,48 +18,44 @@ import Message from '../message';
 const buttonsIds = [ 'dialogLeave', 'dialogCancel' ];
 const manageButtonFocus = buttonFocus( buttonsIds, 1 );
 
-export const onStartLeaving = (): any => (
+export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
+    dispatch( onPauseLesson() );
 
-    ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+    const press = getTranslation( getState().localize, 'buttonsPress' );
 
-        dispatch( onPauseLesson() );
-
-        const press = getTranslation( getState().localize, 'buttonsPress' );
-
-        dispatch( openDialog( {
-            variant: yesCancel,
-            Component: Message,
-            buttons: {
-                buttonYes: {
-                    buttonProps: {
-                        id: buttonsIds[ 0 ],
-                        onClick: async () => {
-                            history.push( lessons );
-                            return await dispatch( onReset() );
-                        }
-                    },
-                    translationId: 'lessonDialogOKLeave',
-                    aftertext: `${ press } Enter`
+    return await dispatch( openDialog( {
+        variant: yesCancel,
+        Component: Message,
+        buttons: {
+            buttonYes: {
+                buttonProps: {
+                    id: buttonsIds[ 0 ],
+                    onClick: async () => {
+                        history.push( lessons );
+                        return await dispatch( onReset() );
+                    }
                 },
-                buttonCancel: {
-                    buttonProps: {
-                        id: buttonsIds[ 1 ],
-                        color: 'secondary',
-                        autoFocus: true,
-                        onClick: async () => await dispatch( onUnpauseLesson() )
-                    },
-                    translationId: 'lessonDialogCancelLeave',
-                    aftertext: `${ press } ESC`
-                }
+                translationId: 'lessonDialogOKLeave',
+                aftertext: `${ press } Enter`
             },
-            dialogProps: {
-                onClose: () => dispatch( onUnpauseLesson() ),
-                // @ts-ignore
-                onKeyDown: ( e ) => manageButtonFocus( e )
+            buttonCancel: {
+                buttonProps: {
+                    id: buttonsIds[ 1 ],
+                    color: 'secondary',
+                    autoFocus: true,
+                    onClick: async () => await dispatch( onUnpauseLesson() )
+                },
+                translationId: 'lessonDialogCancelLeave',
+                aftertext: `${ press } ESC`
             }
-        } ) );
-    }
-);
+        },
+        dialogProps: {
+            onClose: () => dispatch( onUnpauseLesson() ),
+            // @ts-ignore
+            onKeyDown: ( e ) => manageButtonFocus( e )
+        }
+    } ) );
+};
 
 export default {
     onStartLeaving
