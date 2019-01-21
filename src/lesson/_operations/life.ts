@@ -28,37 +28,36 @@ import {
     unpauseLessonStats
 } from '@lesson/LessonStats/';
 
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { ThunkGetStateType } from '@applicationTypes';
 import { resetDraggableLessonButtons } from '@lesson/LessonButtons/';
 
 let timeout;
 
-export const onStartLesson = (): any => async ( dispatch: Dispatch ) => {
+export const onStartLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     await dispatch( startLesson() );
 
     /** KEEP STATE */
-    return dispatch( onKeepState() );
+    return await dispatch( onKeepState() );
 };
 
-export const onEndLesson = (): any => ( dispatch: Dispatch ) => {
+export const onEndLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     clearTimeout( timeout );
 
     let answer = dispatch( endLesson() );
 
     if ( answer ) {
+        answer = null; // GC
         addEscapeReturnListener( dispatch );
 
-        /** KEEP STATE */
-        dispatch( onKeepState() );
-
         document.getElementById( LESSON_STATS_HTML_ID ).scrollIntoView( true );
-    }
 
-    answer = null; // GC
+        /** KEEP STATE */
+        return await dispatch( onKeepState() );
+    }
 };
 
-const _endLesson = ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+const _endLesson = ( dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     let state = getState().lesson;
 
     if ( ( state.lessonComponent.lessonText.length - 1 ) <= state.lessonComparator.currentSignIndex ) {
@@ -71,74 +70,100 @@ const _endLesson = ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
     state = null; // GC
 };
 
-export const onNotEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+export const onNotEndingLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     clearTimeout( timeout );
 
-    dispatch( notEndingLesson() );
+    let answer = await dispatch( notEndingLesson() );
 
-    /** KEEP STATE */
-    dispatch( onKeepState() );
+    if ( answer ) {
+        answer = null; // GC
+        /** KEEP STATE */
+        return await dispatch( onKeepState() );
+    }
 };
 
-export const onEndingLesson = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
+export const onEndingLesson = (): any => async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
     if ( !getState().lesson.ending ) {
-        dispatch( endingLesson() );
-
         timeout = setTimeout(
             () => _endLesson( dispatch, getState ),
             WAIT_FOR_LAST_SIGN
         );
+        return await dispatch( endingLesson() );
     }
 };
 
-export const onReset = (): any => ( dispatch: Dispatch ) => {
+export const onReset = (): any => async ( dispatch: Dispatch ): Promise<boolean> => {
     /** RESET */
-    dispatch( resetLessonComparator() );
-    dispatch( resetLesson() );
-    dispatch( resetDraggableLessonButtons() );
+
+    let answer;
+
+    answer = await dispatch( resetLesson() );
+
+    if ( answer ) {
+        answer = null;
+        answer = await dispatch( resetDraggableLessonButtons() );
+    }
 
     clearTimeout( timeout );
 
-    removeAllKeyDownListeners();
+    if ( answer ) {
+        answer = null;
+        answer = removeAllKeyDownListeners();
+    }
 
-    /** REMOVE STATE */
-    onRemoveState();
+    if ( answer ) {
+        answer = null; // GC
+
+        /** REMOVE STATE */
+        return onRemoveState();
+    }
 };
 
-export const onRestartLesson = (): any => ( dispatch: Dispatch ): void => {
+export const onRestartLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     /** RESET */
-    dispatch( resetLessonComparator() );
-    dispatch( onReset() );
+    let answer = await dispatch( onReset() );
 
     /** RESTART */
-    dispatch( restartLesson() );
+    if ( answer ) answer = await dispatch( restartLessonComparator() );
+    if ( answer ) answer = await dispatch( restartLesson() );
 
-    clearTimeout( timeout );
+    if ( answer ) answer = removeAllKeyDownListeners();
 
-    removeAllKeyDownListeners();
+    if ( answer ) {
+        answer = null; // GC
 
-    /** KEEP STATE */
-    dispatch( onKeepState() );
+        /** KEEP STATE */
+        return await dispatch( onKeepState() );
+    }
 };
 
-export const onPauseLesson = ( listener? ): any => ( dispatch: Dispatch ): void => {
+export const onPauseLesson = ( listener? ): any => async ( dispatch: Dispatch ): Promise<Action> => {
     /** PAUSE */
-    dispatch( pauseLessonStats() );
-    dispatch( pauseLessonComparator( listener ) );
-    dispatch( pauseLesson() );
+    let answer = await dispatch( pauseLessonStats() );
 
-    /** KEEP STATE */
-    dispatch( onKeepState() );
+    if ( answer ) answer = await dispatch( pauseLessonComparator( listener ) );
+    if ( answer ) answer = await dispatch( pauseLesson() );
+
+    if ( answer ) {
+        answer = null; // GC
+
+        /** KEEP STATE */
+        return await dispatch( onKeepState() );
+    }
 };
 
-export const onUnpauseLesson = (): any => ( dispatch: Dispatch ): void => {
+export const onUnpauseLesson = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     /** UNPAUSE */
-    dispatch( unpauseLessonComparator() );
-    dispatch( unpauseLesson() );
-    dispatch( unpauseLessonStats() );
+    let answer = await dispatch( unpauseLessonComparator() );
+    if ( answer ) answer = await dispatch( unpauseLesson() );
+    if ( answer ) answer = await dispatch( unpauseLessonStats() );
 
-    /** KEEP STATE */
-    dispatch( onKeepState() );
+    if ( answer ) {
+        answer = null; // GC
+
+        /** KEEP STATE */
+        return await dispatch( onKeepState() );
+    }
 };
 
 export default {

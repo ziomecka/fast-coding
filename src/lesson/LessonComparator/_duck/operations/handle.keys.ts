@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 
 import { ThunkGetStateType } from '@applicationTypes';
 import { AppRoutesEnum } from '@appTypes';
@@ -27,9 +27,7 @@ import {
     isValidCode
 } from './helpers';
 
-export const handleKeyboardDown
-= ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
-
+export const handleKeyboardDown = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     const { key, keyCode } = event;
 
     /** Do not scroll when space pressed */
@@ -66,21 +64,18 @@ const handleBackSpace = async ( dispatch: Dispatch, getState: ThunkGetStateType 
         }
     }
 
-    /** Keep state in local storage. In case page is refreshed (like F5) */
-    /** currentSignIndex will be stored */
+    /** Keep state in local storage */
     if ( answer ) {
-        await dispatch( onKeepState() );
         answer = null; // GC
+        state = null; // GC
+        errors = null; // GC
+        correctedErrors = null;
+
+        return await dispatch( onKeepState() );
     }
-
-    state = null; // TODO GC?ype
-    errors = null; // TODO GC?
-    correctedErrors = null;
-
-    return true;
 };
 
-const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
+const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
     let state = getState().lesson;
     let { errors, allErrors, currentSignIndex } = state.lessonComparator;
     let { lessonText: text } = state.lessonComponent;
@@ -114,24 +109,20 @@ const handleKeyDown = async ( key: string, dispatch: Dispatch, getState: ThunkGe
     /** Keep state in local storage. In case page is refreshed (like F5) */
     /** errors, allErrors and /or currentSignIndex will be kept */
     if ( answer ) {
-        await dispatch( onKeepState() );
         answer = null; // GC
+        state = null; // TODO GC?
+        allErrors = null;
+
+        return await dispatch( onKeepState() );
     }
-
-    state = null; // TODO GC?
-    allErrors = null;
-
-    return true;
 };
 
-export const handleEscape = async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<boolean> => {
+export const handleEscape = ( dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     if ( getState().lesson.lessonComparator.currentSignIndex >= 0 ) {
-        await dispatch( onStartLeaving() );
+        dispatch( onStartLeaving() );
     } else {
-        await history.push( lessons );
+        history.push( lessons );
     }
-
-    return true;
 };
 
 export default {

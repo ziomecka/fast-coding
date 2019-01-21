@@ -11,7 +11,7 @@ const { lessonComponent: container } = LessonContainersEnum;
 
 let listenerId;
 
-const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
+const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ): void => {
     if ( isEscape( e.keyCode ) ) {
         // TODO reset everything
         history.push( lessons );
@@ -25,11 +25,12 @@ const escapeReturnListener = ( e: KeyboardEvent, dispatch: Dispatch ) => {
 export const addEscapeReturnListener = ( dispatch: Dispatch ): number => {
     listenerId = manageKeydownListeners.onAddListener( {
         container,
-        listener: [ 'keydown', ( e: KeyboardEvent ) => escapeReturnListener( e, dispatch ) ]
+        listener: [ 'keydown', ( e: KeyboardEvent ) => {
+            e.stopPropagation();
+            return escapeReturnListener( e, dispatch );
+        } ]
     } );
     return listenerId;
 };
 
-export const removeAllKeyDownListeners = (): boolean => {
-    return manageKeydownListeners.onRemoveListener( { container, listenerId } );
-};
+export const removeAllKeyDownListeners = (): boolean => manageKeydownListeners.onRemoveAllListeners( { container } );
