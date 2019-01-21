@@ -30,7 +30,8 @@ import {
 
 import { listenedEvent } from './constants';
 
-let keyboardDownListenerId: number;
+let runningKeyboardDownListenerId: number;
+let pausedKeyboardDownListenerId: number;
 
 export const onTurnOnLessonComparator = (): any => ( dispatch: Dispatch ) => {
     dispatch( startLessonStats() );
@@ -52,8 +53,15 @@ export const onResetLessonComparator = (): any => ( dispatch: Dispatch ) => (
     dispatch( onListenKeys() )
 );
 
-export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );
+export const onListenKeys = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ): number => {
+    runningKeyboardDownListenerId = addListener( {
+        container,
+        listener: [ listenedEvent, ( e: KeyboardEvent ) => {
+            e.stopPropagation();
+            return handleKeyboardDown( e, dispatch, getState );
+        } ]
+    } );
+    return runningKeyboardDownListenerId;
 };
 
 export const onStopListenKeys = (): any => () => {
@@ -83,16 +91,27 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
 /** When lesson is paused */
 export const onPauseLessonComparator = ( eventListener? ): any => () => {
     /** Remove current eventListener */
-    removeListener( { container, listenerId: keyboardDownListenerId } );
+    removeListener( { container, listenerId: runningKeyboardDownListenerId } );
+
     if ( eventListener ) {
         /** Add keydown listener: if valid keyCode or backSpace then unpause lesson */
-        keyboardDownListenerId = addListener( { container, listener: eventListener } );
+        pausedKeyboardDownListenerId = addListener( { container, listener: eventListener } );
+        return pausedKeyboardDownListenerId;
     }
 };
 
-export const onUnpauseLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ) => {
-    removeListener( { container, listenerId: keyboardDownListenerId } );
-    keyboardDownListenerId = addListener( { container, listener: [ listenedEvent, ( e: KeyboardEvent ) => handleKeyboardDown( e, dispatch, getState ) ] } );
+export const onUnpauseLessonComparator = (): any => ( dispatch: Dispatch, getState: ThunkGetStateType ): number => {
+    removeListener( { container, listenerId: pausedKeyboardDownListenerId } );
+
+    runningKeyboardDownListenerId = addListener( {
+        container,
+        listener: [ listenedEvent, ( e: KeyboardEvent ) => {
+            e.stopPropagation();
+            return handleKeyboardDown( e, dispatch, getState );
+        } ]
+    } );
+
+    return runningKeyboardDownListenerId;
 };
 
 export default {
