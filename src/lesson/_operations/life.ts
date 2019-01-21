@@ -17,10 +17,8 @@ import { onKeepState } from './state.keep';
 import { onRemoveState } from './state.remove';
 
 import {
-    pauseLessonComparator,
     restartLessonComparator,
     turnOffLessonComparator,
-    unpauseLessonComparator
 } from '@lesson/LessonComparator/';
 
 import {
@@ -145,12 +143,7 @@ export const onPauseLesson = ( listener? ): any => async ( dispatch: Dispatch, g
     /** PAUSE */
     let answer = await dispatch( pauseLessonStats() );
 
-    if ( answer ) {
-        answer = null;
-        answer = await dispatch( pauseLessonComparator() );
-    }
-
-    if ( answer && listener ) {
+    if ( listener ) {
         listenerId = KeyboardListener.addListener( { container, listener: [ 'keydown', ( e ) => listener( e, dispatch, getState ) ] } );
     }
 
@@ -171,8 +164,7 @@ export const onUnpauseLesson = (): any => async ( dispatch: Dispatch ): Promise<
     KeyboardListener.removeListener( { container, listenerId } );
 
     /** UNPAUSE */
-    let answer = await dispatch( unpauseLessonComparator() );
-    if ( answer ) answer = await dispatch( unpauseLesson() );
+    let answer = await dispatch( unpauseLesson() );
     if ( answer ) answer = await dispatch( unpauseLessonStats() );
 
     if ( answer ) {
