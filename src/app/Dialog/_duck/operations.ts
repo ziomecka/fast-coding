@@ -127,8 +127,9 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
         dispatch( openDialog( Object.assign( other,
             { buttons: {
                 buttonYes: {
-                    translationId: 'buttonYes',
                     ...Object( options.buttons ).buttonYes,
+                    // TODO change the way the default value is received - can be done in destructuring
+                    translationId: Object( options.buttons ).buttonYes.translationId || 'buttonYes',
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonYes ).buttonProps,
                         id: buttonYesId,
@@ -145,8 +146,9 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     }
                 },
                 buttonCancel: {
-                    translationId: 'buttonCancel',
                     ...Object( options.buttons ).buttonCancel,
+                    // TODO change the way the default value is received - can be done in destructuring
+                    translationId: Object( options.buttons ).buttonCancel.translationId || 'buttonCancel',
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonCancel ).buttonProps,
                         id: buttonCancelId,
