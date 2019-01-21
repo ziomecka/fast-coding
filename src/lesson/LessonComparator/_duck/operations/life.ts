@@ -65,7 +65,9 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
     const { keyCode } = event;
 
     /** Do not scroll when space pressed */
-    if ( isSpace( keyCode ) ) event.preventDefault();
+    if ( isSpace( keyCode ) ) {
+        event.preventDefault();
+    }
 
     /** If valid code or backspace then unpause and handle keydown */
     if ( isValidCode( keyCode ) || isBackspace( keyCode ) ) {
@@ -73,7 +75,9 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
         handleKeyboardDown( event, dispatch, getState );
     }
 
-    if ( isEscape( keyCode ) ) handleEscape( dispatch, getState );
+    if ( isEscape( keyCode ) ) {
+        handleEscape( dispatch, getState );
+    }
 };
 
 /** When lesson is paused */
