@@ -32,10 +32,18 @@ const informXs = (): any => async ( dispatch: Dispatch, getState: ThunkGetStateT
                         history.push( lessons );
                         return await dispatch( onReset() );
                     },
-                    color: 'secondary'
+                    color: 'secondary',
+                    tabIndex: 1,
                 },
                 translationId: 'lessonDialogOKLeave',
             },
+            buttonCancel: {
+                buttonProps: {
+                    onClick: null,
+                    tabIndex: 0,
+                },
+                translationId: null
+            }
         }
     } ) );
 };
