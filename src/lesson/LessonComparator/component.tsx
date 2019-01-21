@@ -18,7 +18,9 @@ class LessonComparatorComponent extends React.Component<LessonComparatorProps> {
     }
 
     componentDidMount() {
-        this.props.listenKeys();
+        if ( !this.props.paused ) {
+            this.props.listenKeys();
+        }
     }
 
     componentWillUnmount() {
@@ -26,7 +28,9 @@ class LessonComparatorComponent extends React.Component<LessonComparatorProps> {
     }
 
     componentDidUpdate( prevProps: LessonComparatorProps ) {
-        const { currentSignIndex, lessonText } = this.props;
+        const {
+            props: { currentSignIndex, lessonText, paused }
+        } = this;
         const prevCurrentSignIndex = prevProps.currentSignIndex;
 
         if ( currentSignIndex !== prevCurrentSignIndex ) {
@@ -40,6 +44,14 @@ class LessonComparatorComponent extends React.Component<LessonComparatorProps> {
             }
 
             this.scroll( `letter-${currentSignIndex + 3}` );
+        }
+
+        if ( paused !== prevProps.paused ) {
+            if ( !paused ) {
+                this.props.unpauseLessonComparator();
+            } else {
+                this.props.pauseLessonComparator();
+            }
         }
     }
 

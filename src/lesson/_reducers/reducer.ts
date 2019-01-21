@@ -108,14 +108,18 @@ const reducer: Reducer<ILessonState, LessonCommonActions> = ( state = LESSON_INI
         }
 
         case LESSON_LESSON_RESTORE_STATE: {
-            return {
-                ...( action as RestoreStateAction ).state,
-                lessonButtons: { ...( action as RestoreStateAction ).state.lessonButtons },
-                lessonComparator: { ...( action as RestoreStateAction ).state.lessonComparator },
-                lessonComponent: { ...( action as RestoreStateAction ).state.lessonComponent },
-                lessonStats: { ...( action as RestoreStateAction ).state.lessonStats },
-                lessonTextGenerator: { ...( action as RestoreStateAction ).state.lessonTextGenerator },
-            };
+            if ( ( action as RestoreStateAction ).state ) {
+                return {
+                    ...( action as RestoreStateAction ).state,
+                    lessonButtons: { ...( action as RestoreStateAction ).state.lessonButtons },
+                    lessonComparator: { ...( action as RestoreStateAction ).state.lessonComparator },
+                    lessonComponent: { ...( action as RestoreStateAction ).state.lessonComponent },
+                    lessonStats: { ...( action as RestoreStateAction ).state.lessonStats },
+                    lessonTextGenerator: { ...( action as RestoreStateAction ).state.lessonTextGenerator },
+                };
+            } else {
+                return { ...state };
+            }
         }
 
         default: {

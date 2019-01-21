@@ -8,9 +8,43 @@ import {
     OpenDialogOptions
 } from './types';
 
+import history from '@shared/history';
+
 import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
 
+import { operations } from '@app/Welcome/';
+
 const { simple, yes, yesCancel } = DialogsEnum;
+
+const onBackdropEscapeClick = ( dispatch: Dispatch, options: SimpleDialogOptions | YesDialogOptions, callback?: () => any ) => {
+    let {
+        closeOnBackdrop = true,
+        closeOnEscape = true,
+        dialogProps,
+    } = options;
+
+    return {
+        onBackdropClick: ( e ) => {
+            if ( dialogProps.onBackdropClick ) dialogProps.onBackdropClick( e );
+
+            if ( closeOnBackdrop ) {
+                dispatch( closeDialog() );
+            }
+
+            if ( callback ) callback();
+        },
+        onEscapeKeyDown: ( e ) => {
+            if ( dialogProps.onEscapeKeyDown ) dialogProps.onEscapeKeyDown( e );
+
+            if ( closeOnEscape ) {
+                dispatch( closeDialog() );
+            }
+
+            if ( callback ) callback();
+        },
+    };
+};
+
 
 const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
@@ -24,8 +58,7 @@ const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
         dispatch( openDialog( Object.assign( other, {
             dialogProps: {
                 ...dialogProps,
-                onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
-                onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                ...onBackdropEscapeClick( dispatch, options )
             },
             closeButton: true
         } ) ) );
@@ -67,8 +100,7 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
             {
                 dialogProps: {
                     ...dialogProps,
-                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
-                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                    ...onBackdropEscapeClick( dispatch, options )
                 }
             }
         ) ) );
@@ -167,27 +199,21 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
             } },
             {
                 dialogProps: {
-                    onBackdropClick: () => {
-                        if ( closeOnBackdrop ) {
-                            manageButtonFocus = null; // GC
-                            dispatch( closeDialog() );
-                        }
-                    },
-                    onEscapeKeyDown: () => {
-                        if ( closeOnEscape ) {
-                            manageButtonFocus = null; // GC
-                            dispatch( closeDialog() );
-                        }
-                    },
+                    ...dialogProps,
+                    ...onBackdropEscapeClick( dispatch, options, () => manageButtonFocus = null ),
                     onKeyDown: ( e ) => {
                         manageButtonFocus( e );
+                        if ( dialogProps.onKeyDown ) {
+                            dialogProps.onKeyDown( e );
+                            dialogProps = null;
+
+                        }
                     },
-                    ...dialogProps
                 }
             }
         ) ) );
 
-        dialogProps = null;
+        // dialogProps = null; // GC - cannot be done here,
         other = null; // GC
     }
 );
@@ -199,13 +225,32 @@ const map = new Map( [
 ] );
 
 export const onOpenDialog = ( options: OpenDialogOptions ): any => (
-    ( dispatch: Dispatch ) => {
+    async ( dispatch: Dispatch ): Promise<Action> => {
         const { variant, ...other } = options;
-        dispatch( map.get( variant )( other ) );
+
+        /**
+         * If the location is home page then
+         * do not mangeFocus on home's buttons
+         *  */
+        if ( history.location.pathname === '/' ) {
+            operations.onRemoveKeyDownListener();
+        }
+
+        return await dispatch( map.get( variant )( other ) );
     }
 );
 
-export const onCloseDialog = (): any => ( dispatch: Dispatch ): Action => dispatch( closeDialog() );
+export const onCloseDialog = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
+    /**
+     *  If the location is home page then
+     *  start to mangeFocus on home's buttons
+     * */
+    if ( history.location.pathname === '/' ) {
+        operations.onAddKeyDownListener();
+    }
+
+    return await dispatch( closeDialog() );
+};
 
 export default {
     onCloseDialog,

@@ -20,88 +20,126 @@ import { LESSON_STATS_AVERAGE_WORD_LENGTH } from './constants';
 import getTranslation from '@shared/get.translation';
 const { Hours, Minutes, Seconds } = LessonStatsTimeUnitsEnum;
 
-const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props ) => {
-    const { start, stop, time, allErrors, text,
-        classes: { paperClass, noteClass },
-        createTable,
-        ended,
-        errors
-    } = props;
+class LessonStatsComponent extends React.Component<LessonStatsProps> {
+    constructor ( props ) {
+        super ( props );
+    }
 
-    const totalTime = getTime( stop - start + time );
+    componentDidMount() {
+        if ( this.props.paused ) {
+            this.props.pauseLessonStats();
+        }
+    }
 
-    const { hours, minutes, seconds } = totalTime;
+    componentDidUpdate( prevProps ) {
+        const { props: { paused } } = this;
 
-    const accuracy = Math.round( 100 - 100 * ( errors.length / text.length ) );
-    const realAccuracy = Math.round( 100 - 100 * ( allErrors.length / text.length ) );
-    const WPM = Math.round( text.length / LESSON_STATS_AVERAGE_WORD_LENGTH / ( minutes + seconds / 60 ) );
+        if ( paused !== prevProps.paused ) {
+            if ( paused ) {
+                this.props.pauseLessonStats();
+            } else {
+                this.props.unpauseLessonStats();
+            }
+        }
+    }
 
-    const renderTime = ( time: number, id: string ): JSX.Element => (
-        time > 0 && (
+    get totalTime (): { hours: number, minutes: number, seconds: number } {
+        return getTime( this.props.stop - this.props.start + this.props.time );
+    }
+
+    get accuracy (): number {
+        return Math.round( 100 - 100 * ( this.props.errors.length / this.props.text.length ) );
+    }
+
+
+    get realAccuracy (): number {
+        return Math.round( 100 - 100 * ( this.props.allErrors.length / this.props.text.length ) );
+    }
+
+    get WPM (): number {
+        const { minutes, seconds } = this.totalTime;
+        return Math.round( this.props.text.length / LESSON_STATS_AVERAGE_WORD_LENGTH / ( minutes + seconds / 60 ) );
+    }
+
+    renderTime ( time: number, id: string ): JSX.Element {
+        return time > 0 && (
             <React.Fragment>
                 { time }&nbsp;
                 <Translate {...{ id }} />&nbsp;
             </React.Fragment>
-        )
-    );
+        );
+    }
 
-    const getUnitId = ( time: number, unit: LessonStatsTimeUnitsEnum ) => (
-        ( time === 1 )
-            ? `lessonLessonStatsUnit${unit}_1`
+    getUnitId ( time: number, unit: LessonStatsTimeUnitsEnum ) {
+        return ( time === 1 )
+            ? `lessonLessonStatsUnit${ unit }_1`
             : ( time < 5 )
-                ? `lessonLessonStatsUnit${unit}_4`
-                : `lessonLessonStatsUnit${unit}_more`
-    );
+                ? `lessonLessonStatsUnit${ unit }_4`
+                : `lessonLessonStatsUnit${ unit }_more`;
+    }
 
-    return ended && (
-        <Paper className={paperClass} id="lessonLessonStats">
-            <Typography variant="h4">
-                <Translate id="lessonLessonStatsHeading" />
-            </Typography>
+    render () {
+        const {
+            props: {
+                classes: { paperClass, noteClass },
+                createTable,
+                ended,
+            },
+            totalTime: { hours, minutes, seconds },
+            WPM
+        } = this;
 
-            {createTable( {
-                body: [
-                    [
-                        <span className={noteClass}>
-                            <Translate id="lessonLessonStatsTime" />
-                        </span>,
-                        <React.Fragment>
-                            { renderTime( hours, getUnitId( hours, Hours ) ) }
-                            { renderTime( minutes, getUnitId( minutes, Minutes ) ) }
-                            { renderTime( seconds, getUnitId( seconds, Seconds ) ) }
-                        </React.Fragment>,
-                    ],
-                    [
-                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsAccuracyNote' )}>
-                            <span className={noteClass}>
-                                <Translate id="lessonLessonStatsAccuracy" />
-                                <sup>*</sup>
-                            </span>
-                        </Tooltip>,
-                        <React.Fragment>{ accuracy } %</React.Fragment>
-                    ],
-                    [
-                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsRealAccuracyNote' )}>
-                            <span className={noteClass}>
-                                <Translate id="lessonLessonStatsRealAccuracy" />
-                                <sup>*</sup>
-                            </span>
-                        </Tooltip>,
-                        <React.Fragment>{ realAccuracy } %</React.Fragment>
-                    ],
-                    [
-                        <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsWPMNote' )}>
-                            <span className={noteClass}>
-                                <Translate id="lessonLessonStatsWPM" />
-                                <sup>*</sup>
-                            </span>
-                        </Tooltip>,
-                        <React.Fragment>{ Number.isFinite( WPM ) ? WPM : '-' }</React.Fragment>
+
+        return ended && (
+            <Paper className={ paperClass } id="lessonLessonStats">
+                <Typography variant="h4">
+                    <Translate id="lessonLessonStatsHeading" />
+                </Typography>
+
+                {createTable( {
+                    body: [
+                        [
+                            <span className={ noteClass }>
+                                <Translate id="lessonLessonStatsTime" />
+                            </span>,
+                            <React.Fragment>
+                                { this.renderTime( hours, this.getUnitId( hours, Hours ) ) }
+                                { this.renderTime( minutes, this.getUnitId( minutes, Minutes ) ) }
+                                { this.renderTime( seconds, this.getUnitId( seconds, Seconds ) ) }
+                            </React.Fragment>,
+                        ],
+                        [
+                            <Tooltip title={ getTranslation( this.props.localize, 'lessonLessonStatsAccuracyNote' ) }>
+                                <span className={ noteClass }>
+                                    <Translate id="lessonLessonStatsAccuracy" />
+                                    <sup>*</sup>
+                                </span>
+                            </Tooltip>,
+                            <React.Fragment>{ this.accuracy } %</React.Fragment>
+                        ],
+                        [
+                            <Tooltip title={ getTranslation( this.props.localize, 'lessonLessonStatsRealAccuracyNote' ) }>
+                                <span className={ noteClass }>
+                                    <Translate id="lessonLessonStatsRealAccuracy" />
+                                    <sup>*</sup>
+                                </span>
+                            </Tooltip>,
+                            <React.Fragment>{ this.realAccuracy } %</React.Fragment>
+                        ],
+                        [
+                            <Tooltip title={ getTranslation( this.props.localize, 'lessonLessonStatsWPMNote' ) }>
+                                <span className={ noteClass }>
+                                    <Translate id="lessonLessonStatsWPM" />
+                                    <sup>*</sup>
+                                </span>
+                            </Tooltip>,
+                            <React.Fragment>{ Number.isFinite( WPM ) ? WPM : '-' }</React.Fragment>
+                        ]
                     ]
-                ]
-            } )}
-        </Paper>
-    );
-};
+                } )}
+            </Paper>
+        );
+    }
+}
 
 export default withStyles( styles )( withTable( LessonStatsComponent ) );

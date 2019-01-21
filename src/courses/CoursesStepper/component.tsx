@@ -19,6 +19,8 @@ import { LessonData } from '@lesson/LessonComponent/';
 import { CoursesContainersEnum } from '@coursesTypes';
 const { coursesStepper } = CoursesContainersEnum;
 
+import getTranslation from '@shared/get.translation';
+
 import { withMedia, MediaEnum } from '@app/Media/';
 import { GRID } from '@courses/Course/';
 
@@ -65,6 +67,10 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
 
     get numberOfRowsDisplayed() {
         return LESSONS_GRID.get( this.props.media ).rows;
+    }
+
+    get goTo() {
+        return getTranslation( this.props.localize, 'coursesStepperGoTo' );
     }
 
     getNext ( modifier: number ): number {
@@ -379,24 +385,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
         const {
             props: { classes: { buttonDisabled, iconDense } },
             state: { selectedLesson },
-        } = this;
-
-        const disabled = ( selectedLesson - 1 ) < 0;
-
-        return (
-            <IconButton
-                onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
-                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
-            >
-                <IconPrevious />
-            </IconButton>
-        );
-    }
-
-    get iconPreviousLarge(): JSX.Element {
-        const {
-            props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson, numberOfLessonsDisplayed }
+            goTo
         } = this;
 
         const disabled = ( selectedLesson - 1 ) < 0;
@@ -405,7 +394,33 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ Math.max( selectedLesson - numberOfLessonsDisplayed + 1, 1 ) }`
+                    : `${ goTo } ${ ( selectedLesson ) }`
+                }
+            >
+                <IconButton
+                    onClick={ e => disabled ? e.stopPropagation() : this.goToPreviousSmall( e ) }
+                    className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+                >
+                    <IconPrevious />
+                </IconButton>
+            </Tooltip>
+        );
+    }
+
+    get iconPreviousLarge(): JSX.Element {
+        const {
+            props: { classes: { buttonDisabled, iconDense } },
+            state: { selectedLesson, numberOfLessonsDisplayed },
+            goTo
+        } = this;
+
+        const disabled = ( selectedLesson - 1 ) < 0;
+
+        return (
+            <Tooltip
+                title={ disabled
+                    ? ''
+                    : `${ goTo } ${ Math.max( selectedLesson - numberOfLessonsDisplayed + 1, 1 ) }`
                 }
             >
                 <IconButton
@@ -423,27 +438,8 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
         const {
             props: { classes: { buttonDisabled, iconDense }, media },
             state: { selectedLesson },
-            numberOfLessons
-        } = this;
-
-        const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
-
-        return (
-            <IconButton
-                onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
-                className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
-                style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
-            >
-                <IconNext />
-            </IconButton>
-        );
-    }
-
-    get iconNextLarge(): JSX.Element {
-        const {
-            props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson, numberOfLessonsDisplayed },
             numberOfLessons,
+            goTo
         } = this;
 
         const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
@@ -452,7 +448,35 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ Math.min( selectedLesson + numberOfLessonsDisplayed + 1, numberOfLessons ) }`
+                    : `${ goTo } ${ ( selectedLesson + 2 ) }`
+                }
+            >
+                <IconButton
+                    onClick={ e => disabled ? e.stopPropagation() : this.goToNextSmall( e ) }
+                    className={ `${ iconDense } ${ disabled ? buttonDisabled : null }` }
+                    style={ { position: 'absolute', right: ( media === xs ) ? STEP_XS : STEP_SM } }
+                >
+                    <IconNext />
+                </IconButton>
+            </Tooltip>
+        );
+    }
+
+    get iconNextLarge(): JSX.Element {
+        const {
+            props: { classes: { buttonDisabled, iconDense } },
+            state: { selectedLesson, numberOfLessonsDisplayed },
+            numberOfLessons,
+            goTo
+        } = this;
+
+        const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
+
+        return (
+            <Tooltip
+                title={ disabled
+                    ? ''
+                    : `${ goTo } ${ Math.min( selectedLesson + numberOfLessonsDisplayed + 1, numberOfLessons ) }`
                 }
             >
                 <IconButton

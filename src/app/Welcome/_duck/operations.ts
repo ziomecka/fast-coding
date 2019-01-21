@@ -47,3 +47,5 @@ export const onAddKeyDownListener = (): number => {
 export const onRemoveKeyDownListener = (): boolean => {
     return KeyboardListener.removeListener( { container, listenerId } );
 };
+
+export default { onAddKeyDownListener, onRemoveKeyDownListener };

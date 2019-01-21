@@ -7,8 +7,10 @@ import { ApplicationState } from '@appStore';
 import {
     LessonComparatorState,
     listenKeys,
+    pauseLessonComparator,
     stopListenKeys,
     turnOnLessonComparator,
+    unpauseLessonComparator
 } from './_duck/';
 
 import {
@@ -32,7 +34,9 @@ const mapDispatchToProps = ( dispatch: Dispatch ): LessonComparatorDispatch => (
     startLesson: () => dispatch( onStartLesson() ),
     endingLesson: () => dispatch( onEndingLesson() ),
     listenKeys: () => dispatch( listenKeys() ),
-    stopListenKeys: () => dispatch( stopListenKeys() )
+    pauseLessonComparator: () => dispatch( pauseLessonComparator () ),
+    stopListenKeys: () => dispatch( stopListenKeys() ),
+    unpauseLessonComparator: () => dispatch( unpauseLessonComparator() )
 } );
 
 const LessonComparatorContainer = connect( mapStateToProps, mapDispatchToProps )( LessonComparator );
@@ -44,15 +48,16 @@ export interface LessonComparatorDispatch {
     startLesson: () => Action;
     endingLesson: () => Action;
     listenKeys: () => Action;
+    pauseLessonComparator: () => Action;
     stopListenKeys: () => Action;
+    unpauseLessonComparator: () => Action;
 }
 
 export interface LessonComparatorProps extends
-    LessonComparatorState,
     LessonComparatorDispatch,
-    ILessonComponentState {}
+    IMapStateToProps {}
 
 interface IMapStateToProps extends
-LessonComparatorState,
-ILessonCommonState,
-ILessonComponentState {}
+    LessonComparatorState,
+    ILessonCommonState,
+    ILessonComponentState {}

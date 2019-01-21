@@ -55,10 +55,11 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
 
         /** If back or forward button is pressed redirect the user to the same lesson */
         this.props.history.push( location.href );
-        window.onpopstate = this.backForwardButton;
 
         if ( this.props.media === xs ){
             this.props.informXs();
+        } else {
+            window.onpopstate = this.backForwardButton;
         }
     }
 
@@ -116,8 +117,13 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
             this.setState( { time: this.time() } );
         }
 
-        if ( media !== prevProps.media && media === xs ) {
-            this.props.informXs();
+        if ( media !== prevProps.media ) {
+            if ( media === xs ) {
+                this.props.informXs();
+                window.onpopstate = null;
+            } else {
+                window.onpopstate = this.backForwardButton;
+            }
         }
     }
 

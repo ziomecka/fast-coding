@@ -4,7 +4,7 @@ import { ThunkGetStateType } from '@applicationTypes';
 
 const { lessons } = AppRoutesEnum;
 
-import { openDialog, DialogsEnum } from '@app/Dialog/';
+import { closeDialog, openDialog, DialogsEnum } from '@app/Dialog/';
 const { yesCancel } = DialogsEnum;
 import { onReset, onPauseLesson, onUnpauseLesson } from '@lesson/_operations/';
 
@@ -13,6 +13,8 @@ import history from '@shared/history';
 import getTranslation from '@shared/get.translation';
 
 import Message from '../message';
+
+import { LEAVE_LESSON_BUTTON } from './constants';
 
 export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
     dispatch( onPauseLesson() );
@@ -31,7 +33,7 @@ export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: T
                     }
                 },
                 translationId: 'lessonDialogOKLeave',
-                aftertext: `${ press } Enter`
+                aftertext: `${ press } ${ LEAVE_LESSON_BUTTON }`
             },
             buttonCancel: {
                 buttonProps: {
@@ -44,8 +46,18 @@ export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: T
             }
         },
         dialogProps: {
-            onClose: () => dispatch( onUnpauseLesson() )
-        }
+            onClose: () => dispatch( onUnpauseLesson() ),
+            onEscapeKeyDown: () => dispatch( onUnpauseLesson() ),
+            onKeyDown: ( e ) => {
+                /** Leve lesson if y is pressed */
+                if ( e.key === LEAVE_LESSON_BUTTON.toUpperCase() || e.key === LEAVE_LESSON_BUTTON.toLowerCase() ) {
+                    history.push( lessons );
+                    dispatch( closeDialog() );
+                    dispatch( onReset() );
+                }
+            }
+        },
+        closeOnEscape: true
     } ) );
 };
 
