@@ -8,6 +8,8 @@ import {
     OpenDialogOptions
 } from './types';
 
+import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
+
 const { simple, yes, yesCancel } = DialogsEnum;
 
 const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
@@ -80,17 +82,19 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
-                buttonYes: { buttonProps: { onClick: onClickYes } },
-                buttonCancel: { buttonProps: { onClick: onClickCancel } }
+                buttonYes: { buttonProps: { id: buttonYesId = 'dialogYesId', onClick: onClickYes } },
+                buttonCancel: { buttonProps: { id: buttonCancelId = 'dialogCancelId', onClick: onClickCancel } } = { buttonProps: { onClick: null, id: buttonCancelId = 'dialogCancelId' } }
             } = {
-                buttonYes: { buttonProps: { onClick: null } },
-                buttonCancel: { buttonProps: { onClick: null } }
+                buttonYes: { buttonProps: { onClick: null, id: 'dialogYesId' } },
+                buttonCancel: { buttonProps: { onClick: null, id: 'dialogCancelId' } }
             },
             closeOnBackdrop,
             closeOnEscape,
             dialogProps,
             ...other
         } = options;
+
+        let manageButtonFocus = buttonFocus( [ buttonYesId, buttonCancelId ], 1 );
 
         dispatch( openDialog( Object.assign( other,
             { buttons: {
@@ -99,12 +103,14 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     ...Object( options.buttons ).buttonYes,
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonYes ).buttonProps,
+                        id: buttonYesId,
                         onClick: async ( e ) => {
                             if ( typeof onClickYes === 'function' ) {
                                 onClickYes( e );
                                 onClickYes = null; // GC
                             }
                             onClickCancel = null; // GC
+                            manageButtonFocus = null; // GC
                             dispatch( closeDialog() );
                         }
                     }
@@ -114,12 +120,14 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
                     ...Object( options.buttons ).buttonCancel,
                     buttonProps: {
                         ...Object( Object( options.buttons ).buttonCancel ).buttonProps,
+                        id: buttonCancelId,
                         onClick: async ( e ) => {
                             if ( typeof onClickCancel === 'function' ) {
                                 onClickCancel( e );
                                 onClickCancel = null; // GC
                             }
                             onClickYes = null; // GC
+                            manageButtonFocus = null; // GC
                             dispatch( closeDialog() );
                         }
                     },
@@ -127,8 +135,21 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
             } },
             {
                 dialogProps: {
-                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
-                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                    onBackdropClick: () => {
+                        if ( closeOnBackdrop ) {
+                            manageButtonFocus = null; // GC
+                            dispatch( closeDialog() );
+                        }
+                    },
+                    onEscapeKeyDown: () => {
+                        if ( closeOnEscape ) {
+                            manageButtonFocus = null; // GC
+                            dispatch( closeDialog() );
+                        }
+                    },
+                    onKeyDown: ( e ) => {
+                        manageButtonFocus( e );
+                    },
                     ...dialogProps
                 }
             }
