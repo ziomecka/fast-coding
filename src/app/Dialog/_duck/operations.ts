@@ -221,13 +221,15 @@ const map = new Map( [
 ] );
 
 export const onOpenDialog = ( options: OpenDialogOptions ): any => (
-    ( dispatch: Dispatch ) => {
+    async ( dispatch: Dispatch ): Promise<Action> => {
         const { variant, ...other } = options;
-        dispatch( map.get( variant )( other ) );
+        return await dispatch( map.get( variant )( other ) );
     }
 );
 
-export const onCloseDialog = (): any => ( dispatch: Dispatch ): Action => dispatch( closeDialog() );
+export const onCloseDialog = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
+    return await dispatch( closeDialog() )
+};
 
 export default {
     onCloseDialog,
