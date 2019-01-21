@@ -12,6 +12,36 @@ import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
 
 const { simple, yes, yesCancel } = DialogsEnum;
 
+const onBackdropEscapeClick = ( dispatch: Dispatch, options: SimpleDialogOptions | YesDialogOptions, callback?: () => any ) => {
+    let {
+        closeOnBackdrop = true,
+        closeOnEscape = true,
+        dialogProps,
+    } = options;
+
+    return {
+        onBackdropClick: ( e ) => {
+            if ( dialogProps.onBackdropClick ) dialogProps.onBackdropClick( e );
+
+            if ( closeOnBackdrop ) {
+                dispatch( closeDialog() );
+            }
+
+            if ( callback ) callback();
+        },
+        onEscapeKeyDown: ( e ) => {
+            if ( dialogProps.onEscapeKeyDown ) dialogProps.onEscapeKeyDown( e );
+
+            if ( closeOnEscape ) {
+                dispatch( closeDialog() );
+            }
+
+            if ( callback ) callback();
+        },
+    };
+};
+
+
 const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
@@ -24,8 +54,7 @@ const onOpenSimpleDialog = ( options: SimpleDialogOptions ): any => (
         dispatch( openDialog( Object.assign( other, {
             dialogProps: {
                 ...dialogProps,
-                onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
-                onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                ...onBackdropEscapeClick( dispatch, options )
             },
             closeButton: true
         } ) ) );
@@ -67,8 +96,7 @@ const onOpenYesDialog = ( options: YesDialogOptions ): any => (
             {
                 dialogProps: {
                     ...dialogProps,
-                    onBackdropClick: () => closeOnBackdrop ? dispatch( closeDialog() ) : null,
-                    onEscapeKeyDown: () => closeOnEscape ? dispatch( closeDialog() ) : null,
+                    ...onBackdropEscapeClick( dispatch, options )
                 }
             }
         ) ) );
@@ -167,21 +195,8 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
             } },
             {
                 dialogProps: {
-                    onBackdropClick: () => {
-                        if ( closeOnBackdrop ) {
-                            manageButtonFocus = null; // GC
-                            dispatch( closeDialog() );
-                        }
-                    },
-                    onEscapeKeyDown: () => {
-                        if ( closeOnEscape ) {
-                            manageButtonFocus = null; // GC
-                            dispatch( closeDialog() );
-                        }
-                    },
-                    onKeyDown: ( e ) => {
-                        manageButtonFocus( e );
-                    },
+                    ...onBackdropEscapeClick( dispatch, options, () => manageButtonFocus = null ),
+                    onKeyDown: ( e ) => manageButtonFocus( e ),
                     ...dialogProps
                 }
             }
