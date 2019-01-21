@@ -1,51 +1,83 @@
 import {
     AddListener,
-    KeyboardListenerContainerListenersType,
-    ListenerType,
     RemoveListener,
     RemoveAllListeners
 } from './types';
 
 import { LISTENERS } from './constants';
 
-const addKeyDownListener = ( listeners: [ KeyboardListenerContainerListenersType, number ], listener: ListenerType ): number => {
+/**
+ *
+ * @param options {Object}
+ * @param options.listener {Array}
+ * @param options.container {string}
+ *
+ * Add event listener to document and listeners' map
+ *
+ */
+export const onAddListener = ( options: AddListener ): number => {
+    let { listener, container } = options;
+    let listeners = LISTENERS.get( container );
+
     document.addEventListener( listener[ 0 ], listener[ 1 ] );
+
     let i = listeners[ 1 ]++;
     listeners[ 0 ].set( i, listener );
+    listeners = null; //GC
+
     return i;
 };
 
-const removeKeyDownListener = ( listeners: [ KeyboardListenerContainerListenersType, number ], listenerId: number ): boolean => {
-    try {
-        let listener = listeners[ 0 ].get( listenerId );
+/**
+ *
+ * @param options {Object}
+ * @param options.container {string}
+ * @param options.listenerId {number}
+ *
+ * Remove event listener from document and listeners' map
+ */
+export const onRemoveListener = ( options: RemoveListener ): boolean => {
+    const { container, listenerId } = options;
+
+    let listeners = LISTENERS.get( container );
+    let listener = listeners[ 0 ].get( listenerId );
+
+    if ( listener ) {
+        /** Remove from document */
         document.removeEventListener( listener[ 0 ], listener[ 1 ] );
-        listener = null; // GC
-        return listeners[ 0 ].delete( listenerId );
-    } catch ( err ) {
-        return false;
     }
+
+    /** Remove from map */
+    let result = listeners[ 0 ].delete( listenerId );
+
+    listeners = null; //GC
+    listener = null; // GC
+
+    return result;
 };
 
-const removeAllKeyDownListeners = ( listeners: [ KeyboardListenerContainerListenersType, number ] ): boolean => {
+/**
+ *
+ * @param options {Object}
+ * @param options.container {string}
+ *
+ * Remove all listeners from document and map
+ */
+export const onRemoveAllListeners = ( options: RemoveAllListeners ): boolean => {
+    let listeners = LISTENERS.get( options.container );
+
     if ( listeners[ 0 ].size ) {
         listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
         listeners[ 0 ].clear();
+
+        listeners = null; //GC
+
         return true;
     }
+
+    listeners = null; //GC
     return false;
 };
-
-export const onAddListener = ( options: AddListener ): number => (
-    addKeyDownListener( LISTENERS.get( options.container ), options.listener )
-);
-
-export const onRemoveListener = ( options: RemoveListener ): boolean => (
-    removeKeyDownListener( LISTENERS.get( options.container ), options.listenerId )
-);
-
-export const onRemoveAllListeners = ( options: RemoveAllListeners ): boolean => (
-    removeAllKeyDownListeners( LISTENERS.get( options.container ) )
-);
 
 export default {
     onAddListener,
