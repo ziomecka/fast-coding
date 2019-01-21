@@ -11,13 +11,18 @@ import {
 import {
     FOOTER_HEIGHT_MD,
     FOOTER_HEIGHT_LG,
+    FOOTER_GO_DOWN
 } from './constants.styles';
 
 const styles = createStyles( theme => {
     const {
         palette: {
             grey: { [ 100 ]: backgroundColor },
-        }
+        },
+        transitions: {
+            duration: { complex },
+            easing: { easeOut }
+        },
     } = theme;
 
     return {
@@ -27,6 +32,8 @@ const styles = createStyles( theme => {
             width: '100%',
             paddingTop: PAPER_PADDING_XS,
             height: FOOTER_HEIGHT_MD,
+            transition: `${ theme.transitions.create(
+                [ 'bottom' ], { duration: complex * FOOTER_GO_DOWN, easing: easeOut } ) }`,
             [ theme.breakpoints.up( 'md' ) ]: {
                 height: FOOTER_HEIGHT_LG,
                 paddingTop: PAPER_PADDING_MD
@@ -34,6 +41,15 @@ const styles = createStyles( theme => {
             [ theme.breakpoints.up( 'lg' ) ]: {
                 height: FOOTER_HEIGHT_LG,
                 paddingTop: PAPER_PADDING_LG
+            },
+        },
+        footerLessonClass: {
+            bottom: `${ -FOOTER_HEIGHT_MD }px`,
+            [ theme.breakpoints.up( 'md' ) ]: {
+                bottom: `${ -FOOTER_HEIGHT_LG }px`,
+            },
+            [ theme.breakpoints.up( 'lg' ) ]: {
+                bottom: `${ -FOOTER_HEIGHT_LG }px`,
             },
         },
         footerGrid: {

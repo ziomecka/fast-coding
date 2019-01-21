@@ -22,6 +22,8 @@ import { DialogsEnum } from '@app/Dialog/';
 
 import { InfoEnum } from '@app/Info';
 
+import { withLocation } from '@app/AppLocation';
+
 const { dialog } = InfoEnum;
 const { yes } = DialogsEnum;
 
@@ -32,12 +34,15 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
     const {
         classes: {
             footerPaper,
+            footerLessonClass,
             footerGrid,
             footerGridList,
             footerColumnItem,
             footerColumnContainer,
             footerListItem
-        }
+        },
+        isLesson,
+        appLocation
     } = props;
 
     const columnProps = {
@@ -53,7 +58,7 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
     };
 
     return (
-        <Paper className={ footerPaper } >
+        <Paper className={ `${ footerPaper } ${ appLocation === isLesson ? footerLessonClass : '' }` } >
             <Grid
                 container
                 direction="row"
@@ -105,4 +110,4 @@ const FooterComponent: React.StatelessComponent< FooterProps > = props => {
     );
 };
 
-export default withStyles( styles )( FooterComponent );
+export default withStyles( styles )( withLocation( FooterComponent ) );
