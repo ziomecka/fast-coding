@@ -9,14 +9,10 @@ const { yesCancel } = DialogsEnum;
 import { onReset, onPauseLesson, onUnpauseLesson } from '@lesson/_operations/';
 
 import history from '@shared/history';
-import { manageButtonFocus as buttonFocus } from '@shared/button.focus';
 
 import getTranslation from '@shared/get.translation';
 
 import Message from '../message';
-
-const buttonsIds = [ 'dialogLeave', 'dialogCancel' ];
-const manageButtonFocus = buttonFocus( buttonsIds, 1 );
 
 export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: ThunkGetStateType ): Promise<Action> => {
     dispatch( onPauseLesson() );
@@ -29,7 +25,6 @@ export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: T
         buttons: {
             buttonYes: {
                 buttonProps: {
-                    id: buttonsIds[ 0 ],
                     onClick: async () => {
                         history.push( lessons );
                         return await dispatch( onReset() );
@@ -40,7 +35,6 @@ export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: T
             },
             buttonCancel: {
                 buttonProps: {
-                    id: buttonsIds[ 1 ],
                     color: 'secondary',
                     autoFocus: true,
                     onClick: async () => await dispatch( onUnpauseLesson() )
@@ -50,9 +44,7 @@ export const onStartLeaving = (): any => async ( dispatch: Dispatch, getState: T
             }
         },
         dialogProps: {
-            onClose: () => dispatch( onUnpauseLesson() ),
-            // @ts-ignore
-            onKeyDown: ( e ) => manageButtonFocus( e )
+            onClose: () => dispatch( onUnpauseLesson() )
         }
     } ) );
 };
