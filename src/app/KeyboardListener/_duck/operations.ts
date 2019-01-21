@@ -67,7 +67,7 @@ const removeAllListeners = ( options: RemoveAllListeners ): boolean => {
     let listeners = LISTENERS.get( options.container );
 
     if ( listeners[ 0 ].size ) {
-        listeners.forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
+        listeners[ 0 ].forEach( listener => document.removeEventListener( listener[ 0 ], listener[ 1 ] ) );
         listeners[ 0 ].clear();
 
         listeners = null; //GC
