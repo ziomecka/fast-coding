@@ -78,7 +78,7 @@ const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <React.Fragment>{ accuracy }</React.Fragment>
+                        <React.Fragment>{ accuracy } %</React.Fragment>
                     ],
                     [
                         <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsRealAccuracyNote' )}>
@@ -87,7 +87,7 @@ const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <React.Fragment>{ realAccuracy }</React.Fragment>
+                        <React.Fragment>{ realAccuracy } %</React.Fragment>
                     ],
                     [
                         <Tooltip title={getTranslation( props.localize, 'lessonLessonStatsWPMNote' )}>
@@ -96,7 +96,7 @@ const LessonStatsComponent: React.StatelessComponent<LessonStatsProps> = ( props
                                 <sup>*</sup>
                             </span>
                         </Tooltip>,
-                        <React.Fragment>{ WPM }</React.Fragment>
+                        <React.Fragment>{ Number.isFinite( WPM ) ? WPM : '-' }</React.Fragment>
                     ]
                 ]
             } )}
