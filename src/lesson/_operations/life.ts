@@ -18,7 +18,7 @@ import { onRemoveState } from './state.remove';
 
 import {
     pauseLessonComparator,
-    resetLessonComparator,
+    restartLessonComparator,
     turnOffLessonComparator,
     unpauseLessonComparator
 } from '@lesson/LessonComparator/';
