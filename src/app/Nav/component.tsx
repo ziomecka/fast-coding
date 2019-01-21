@@ -20,6 +20,7 @@ import { MenuProvider } from '@app/MenuRulesHoc/index';
 import MenuList from '@app/MenuList';
 import MenuButton from '@app/MenuButton';
 import Welcome from '@app/Welcome/';
+import { withLocation } from '@app/AppLocation/';
 import { withMedia, MediaEnum } from '@app/Media';
 
 import LoginForm from '@forms/LoginForm';
@@ -199,17 +200,15 @@ class NavComponent extends React.Component<NavProps, INavState> {
         };
     }
 
-    get isLesson() {
-        return RegExp( /.*lessons\/lesson-.*/ ).test( this.props.location.pathname );
-    }
-
     render() {
         const {
             props: {
                 classes: { navClass, navLessonClass },
-                media
+                media,
+                isLesson,
+                appLocation
             },
-            isLesson, appBarColor, xs
+            appBarColor, xs
         } = this;
 
         let { localize } = this.props;
@@ -227,7 +226,7 @@ class NavComponent extends React.Component<NavProps, INavState> {
             <AppBar
                 position={ media === xs ? 'absolute' : 'fixed' }
                 color={ appBarColor }
-                className={` ${ navClass } ${ isLesson ? navLessonClass : '' }` }
+                className={` ${ navClass } ${ appLocation === isLesson ? navLessonClass : '' }` }
             >
                 <MenuProvider>
                     <Welcome { ... { heading } } />
@@ -238,4 +237,4 @@ class NavComponent extends React.Component<NavProps, INavState> {
     }
 }
 
-export default withStyles( style )( withLocalize( withMedia( NavComponent ) ) );
+export default withStyles( style )( withLocalize( withMedia( withLocation( NavComponent ) ) ) );

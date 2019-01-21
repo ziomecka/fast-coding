@@ -10,6 +10,7 @@ import { onLogOut } from './_duck/operations';
 
 import { DialogDispatch, mapDispatchToProps as dialogMapDispatchToProps } from '@shared/dialog';
 
+import { ILocationContextProps } from '@app/AppLocation';
 import { IWithMedia } from '@app/Media/';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
@@ -29,6 +30,7 @@ export default withRouter( connect( mapStateToProps, mapDispatchToProps )( NavCo
 export interface NavProps extends
 MapStateToPropsI,
 WithStyles,
+ILocationContextProps,
 LocalizeContextProps,
 RouteComponentProps<{}>,
 NavDispatchI,
