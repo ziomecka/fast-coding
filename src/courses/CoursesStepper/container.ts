@@ -18,7 +18,10 @@ import {
 
 import { IWithMedia } from '@app/Media';
 
+import { LocalizeState } from 'react-localize-redux';
+
 const mapStateToProps = ( state: ApplicationState ): MapStateToProps => ( {
+    localize: state.localize,
     ...state.courses.coursesLoader,
     ...state.courses.courses
 } );
@@ -33,12 +36,15 @@ const CoursesStepperContainer = withRouter( connect( mapStateToProps, mapDispatc
 
 export default CoursesStepperContainer;
 
-interface MapStateToProps extends ICoursesLoaderState, ICoursesState {}
+interface MapStateToProps extends ICoursesLoaderState, ICoursesState {
+    localize: LocalizeState
+}
 
 export interface ICoursesStepperDispatch {
     addListener: ( options: AddListener ) => number;
     removeListener: ( options: RemoveListener ) => boolean;
 }
+
 export interface CoursesStepperProps extends
     ICoursesLoaderState,
     ICoursesStepperDispatch,

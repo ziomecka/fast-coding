@@ -19,6 +19,8 @@ import { LessonData } from '@lesson/LessonComponent/';
 import { CoursesContainersEnum } from '@coursesTypes';
 const { coursesStepper } = CoursesContainersEnum;
 
+import getTranslation from '@shared/get.translation';
+
 import { withMedia, MediaEnum } from '@app/Media/';
 import { GRID } from '@courses/Course/';
 
@@ -65,6 +67,10 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
 
     get numberOfRowsDisplayed() {
         return LESSONS_GRID.get( this.props.media ).rows;
+    }
+
+    get goTo() {
+        return getTranslation( this.props.localize, 'coursesStepperGoTo' );
     }
 
     getNext ( modifier: number ): number {
@@ -378,7 +384,8 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
     get iconPreviousSmall(): JSX.Element {
         const {
             props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson }
+            state: { selectedLesson },
+            goTo
         } = this;
 
         const disabled = ( selectedLesson - 1 ) < 0;
@@ -387,7 +394,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ ( selectedLesson ) }`
+                    : `${ goTo } ${ ( selectedLesson ) }`
                 }
             >
                 <IconButton
@@ -403,7 +410,8 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
     get iconPreviousLarge(): JSX.Element {
         const {
             props: { classes: { buttonDisabled, iconDense } },
-            state: { selectedLesson, numberOfLessonsDisplayed }
+            state: { selectedLesson, numberOfLessonsDisplayed },
+            goTo
         } = this;
 
         const disabled = ( selectedLesson - 1 ) < 0;
@@ -412,7 +420,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ Math.max( selectedLesson - numberOfLessonsDisplayed + 1, 1 ) }`
+                    : `${ goTo } ${ Math.max( selectedLesson - numberOfLessonsDisplayed + 1, 1 ) }`
                 }
             >
                 <IconButton
@@ -430,7 +438,8 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
         const {
             props: { classes: { buttonDisabled, iconDense }, media },
             state: { selectedLesson },
-            numberOfLessons
+            numberOfLessons,
+            goTo
         } = this;
 
         const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
@@ -439,7 +448,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ ( selectedLesson + 2 ) }`
+                    : `${ goTo } ${ ( selectedLesson + 2 ) }`
                 }
             >
                 <IconButton
@@ -458,6 +467,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             props: { classes: { buttonDisabled, iconDense } },
             state: { selectedLesson, numberOfLessonsDisplayed },
             numberOfLessons,
+            goTo
         } = this;
 
         const disabled = ( selectedLesson + 1 ) > numberOfLessons - 1;
@@ -466,7 +476,7 @@ class CoursesStepperComponent extends React.Component<CoursesStepperProps, ICour
             <Tooltip
                 title={ disabled
                     ? ''
-                    : `go to ${ Math.min( selectedLesson + numberOfLessonsDisplayed + 1, numberOfLessons ) }`
+                    : `${ goTo } ${ Math.min( selectedLesson + numberOfLessonsDisplayed + 1, numberOfLessons ) }`
                 }
             >
                 <IconButton
