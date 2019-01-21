@@ -1,10 +1,11 @@
+import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { default as LessonStats } from './component';
 import { ApplicationState } from '@appStore';
 
 import { ILessonCommonState } from '@lessonTypes';
-import { LessonStatsState } from './_duck/';
+import { LessonStatsState, pauseLessonStats, unpauseLessonStats } from './_duck/';
 
 import { WithStyles } from '@material-ui/core/styles';
 import { WithTableProps } from '@app/Table/';
@@ -22,7 +23,12 @@ const mapStateToProps = ( state: ApplicationState ): IMapStateToProps => ( {
     localize: state.localize
 } );
 
-const LessonStatsContainer = connect( mapStateToProps )( LessonStats );
+const mapDispatchToProps = ( dispatch: Dispatch ): IMapDispatchToProps => ( {
+    pauseLessonStats: () => dispatch( pauseLessonStats() ),
+    unpauseLessonStats: () => dispatch( unpauseLessonStats() )
+} );
+
+const LessonStatsContainer = connect( mapStateToProps, mapDispatchToProps )( LessonStats );
 
 export default LessonStatsContainer;
 
@@ -35,4 +41,13 @@ LessonStatsState {
     localize: LocalizeState;
 }
 
-export interface LessonStatsProps extends IMapStateToProps, WithStyles, WithTableProps {}
+interface IMapDispatchToProps {
+    pauseLessonStats: () => Action;
+    unpauseLessonStats: () => Action;
+}
+
+export interface LessonStatsProps extends
+IMapDispatchToProps,
+IMapStateToProps,
+WithStyles,
+WithTableProps {}

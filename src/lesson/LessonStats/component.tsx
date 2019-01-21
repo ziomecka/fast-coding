@@ -25,6 +25,24 @@ class LessonStatsComponent extends React.Component<LessonStatsProps> {
         super ( props );
     }
 
+    componentDidMount() {
+        if ( this.props.paused ) {
+            this.props.pauseLessonStats();
+        }
+    }
+
+    componentDidUpdate( prevProps ) {
+        const { props: { paused } } = this;
+
+        if ( paused !== prevProps.paused ) {
+            if ( paused ) {
+                this.props.pauseLessonStats();
+            } else {
+                this.props.unpauseLessonStats();
+            }
+        }
+    }
+
     get totalTime (): { hours: number, minutes: number, seconds: number } {
         return getTime( this.props.stop - this.props.start + this.props.time );
     }
