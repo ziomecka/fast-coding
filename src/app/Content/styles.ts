@@ -54,6 +54,10 @@ const styles = createStyles( theme => {
         },
         boxLessonClass: {
             paddingTop: PAPER_PADDING_MAX_XS,
+            paddingBottom: PAPER_PADDING_MAX_MD,
+            [ theme.breakpoints.up( 'lg' ) ]: {
+                paddingBottom: PAPER_PADDING_MAX_LG,
+            }
         },
     };
 } );

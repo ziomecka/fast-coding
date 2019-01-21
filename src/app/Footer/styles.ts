@@ -32,8 +32,6 @@ const styles = createStyles( theme => {
             width: '100%',
             paddingTop: PAPER_PADDING_XS,
             height: FOOTER_HEIGHT_MD,
-            transition: `${ theme.transitions.create(
-                [ 'bottom' ], { duration: complex * FOOTER_GO_DOWN, easing: easeOut } ) }`,
             [ theme.breakpoints.up( 'md' ) ]: {
                 height: FOOTER_HEIGHT_LG,
                 paddingTop: PAPER_PADDING_MD
@@ -44,13 +42,7 @@ const styles = createStyles( theme => {
             },
         },
         footerLessonClass: {
-            bottom: `${ -FOOTER_HEIGHT_MD }px`,
-            [ theme.breakpoints.up( 'md' ) ]: {
-                bottom: `${ -FOOTER_HEIGHT_LG }px`,
-            },
-            [ theme.breakpoints.up( 'lg' ) ]: {
-                bottom: `${ -FOOTER_HEIGHT_LG }px`,
-            },
+            display: 'none'
         },
         footerGrid: {
             height: '100%',
