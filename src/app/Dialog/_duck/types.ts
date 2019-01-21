@@ -9,7 +9,7 @@ export enum DialogActionsEnum {
 }
 
 interface AppButtonProps extends ButtonProps {
-    onClick: ( e?: React.MouseEvent<HTMLButtonElement> ) => Promise<Action>
+    onClick: ( e?: React.MouseEvent<HTMLButtonElement> ) => Promise< Action | number | void >;
 }
 
 export interface DialogButtonsProps extends ButtonProps {
