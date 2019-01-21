@@ -14,6 +14,9 @@ import getTranslation from '@shared/get.translation';
 import styles from './styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { withMedia, MediaEnum } from '@app/Media/';
+const { xs } = MediaEnum;
+
 /** Running time is calculate internally and kept in internal state.
  *  Could be got from LessonStats but it affects negatively the performance.
  */
@@ -53,6 +56,10 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
         /** If back or forward button is pressed redirect the user to the same lesson */
         this.props.history.push( location.href );
         window.onpopstate = this.backForwardButton;
+
+        if ( this.props.media === xs ){
+            this.props.informXs();
+        }
     }
 
     time() {
@@ -85,7 +92,7 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
 
     componentDidUpdate( prevProps ) {
         const {
-            props: { ended, running, time }
+            props: { ended, running, time, media }
         } = this;
 
         /** Calculate time only if timer is running */
@@ -107,6 +114,10 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
          */
         if ( time !== prevProps.time ) {
             this.setState( { time: this.time() } );
+        }
+
+        if ( media !== prevProps.media && media === xs ) {
+            this.props.informXs();
         }
     }
 
@@ -148,7 +159,7 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
         const {
             props: {
                 started,
-                classes: { paperClass, inviteClass, timeClass }
+                classes: { paperClass, inviteClass, timeClass },
             },
             state: { time }
         } = this;
@@ -176,4 +187,4 @@ class LessonComponent extends React.Component<LessonProps, ILessonState> {
     }
 }
 
-export default withStyles( styles )( LessonComponent );
+export default withStyles( styles )( withMedia( LessonComponent ) );

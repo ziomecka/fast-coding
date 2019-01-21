@@ -21,12 +21,14 @@ import {
 
 import { ApplicationState } from '@appStore';
 import { ILessonCommonState } from '@lessonTypes';
+import { IWithMedia } from '@app/Media/';
 import { default as Lesson } from './component';
 import { LocalizeState } from 'react-localize-redux';
 import { WithStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
 import { mapDispatchToProps as commonMapDispatchToProps } from '@lesson/_shared/';
+import { operations } from './_duck';
 
 const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
     const { running, start, stop, time } = state.lesson.lessonStats;
@@ -45,6 +47,8 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => {
 const mapDispatchToProps = ( dispatch: Dispatch ): LessonDispatch => ( {
     /** deregisterOnDrop in componentWillUnmount */
     deregisterOnDrop: ( fun ) => dispatch( deregisterOnDrop( fun ) ),
+    /** inform about xs media if mounted or media becomes xs */
+    informXs: () => dispatch( operations.informXs() ),
     /** keepState in componentDidMount */
     keepState: () => dispatch( onKeepState() ),
     /** onMoveLessonButtons in onDrop */
@@ -76,6 +80,7 @@ ILessonComponentState {
 
 export interface LessonDispatch {
     deregisterOnDrop: ( fun: Function ) => void;
+    informXs(): () => Action;
     keepState: () => Action;
     onMoveLesonButtons: ( x: number | 'auto', y: number | 'auto' ) => void;
     registerOnDrop: ( fun: Function ) => void;
@@ -84,7 +89,9 @@ export interface LessonDispatch {
     startLeaving: () => Action;
 }
 
-export interface LessonProps extends LessonDispatch,
+export interface LessonProps extends
+    IWithMedia,
+    LessonDispatch,
     MapStateToPropsI,
     RouteComponentProps<{}>,
     WithStyles {}

@@ -45,6 +45,10 @@
     "lessonLessonStatsRealAccuracyNote": [ "Corrected errors are considered.", "Poprawione błędy są brane pod uwagę." ],
     "lessonLessonStatsWPM": [ "Words per minute", "Liczba słów na minutę" ],
     "lessonLessonStatsWPMNote": [ "Five signs word", "Pięcioznakowy wyraz" ],
+    "lessonSmallScreen": [
+        "Your screen is too small to use the lesson. Do you want to leave the lesson?",
+        "Twój ekran jest za mały do korzystania z lekcji. Czy chcesz wyjść z lekcji?"
+    ],
     "submenuGoToHome": [ "return to home", "wróć do strony początkowej"],
     "submenuChangeLanguage": [ "language", "język"],
     "submenuGoToCourses": [ "courses", "kursy"],

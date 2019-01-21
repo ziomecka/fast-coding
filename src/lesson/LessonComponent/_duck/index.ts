@@ -7,3 +7,5 @@ export {
     updateLesson,
     updateText
 } from './actions';
+
+export { default as operations } from './operations';
