@@ -33,10 +33,12 @@ import { listenedEvent } from './constants';
 let runningKeyboardDownListenerId: number;
 let pausedKeyboardDownListenerId: number;
 
+/** Start stats */
 export const onTurnOnLessonComparator = (): any => ( dispatch: Dispatch ): Promise<Action> => (
     dispatch( startLessonStats() )
 );
 
+/** Remove listeners, stop stats, end lesson */
 export const onTurnOffLessonComparator = (): any => async ( dispatch: Dispatch ): Promise<Action> => {
     let answer = removeListener( { container, listenerId: runningKeyboardDownListenerId } );
 
@@ -51,6 +53,7 @@ export const onTurnOffLessonComparator = (): any => async ( dispatch: Dispatch )
     }
 };
 
+/** Add listeners */
 export const onRestartLessonComparator = (): any => ( dispatch: Dispatch ): Promise<void> => (
     dispatch( onListenKeys() )
 );
@@ -70,7 +73,10 @@ export const onStopListenKeys = (): any => (): boolean => (
     removeListener( { container, listenerId: runningKeyboardDownListenerId } )
 );
 
-/** Listen to escape - start leaving lesson. Listen to validCode or backspace - unpause lesson */
+/**
+ * Listen to escape - start leaving lesson.
+ * Listen to validCode or backspace - unpause lesson
+ * */
 export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, getState: ThunkGetStateType ): void => {
     const { keyCode } = event;
 
@@ -85,18 +91,22 @@ export const pausedLessonListener = ( event: KeyboardEvent, dispatch: Dispatch, 
         handleKeyboardDown( event, dispatch, getState );
     }
 
+    /** If escape then start leaving lesson */
     if ( isEscape( keyCode ) ) {
         handleEscape( dispatch, getState );
     }
 };
 
-/** When lesson is paused */
+/**
+ * When lesson is paused:
+ *  remove current eventListener
+ *  add keydown listener: if valid keyCode or backSpace then unpause lesson
+ *
+ * */
 export const onPauseLessonComparator = ( eventListener? ): any => (): number => {
-    /** Remove current eventListener */
     removeListener( { container, listenerId: runningKeyboardDownListenerId } );
 
     if ( eventListener ) {
-        /** Add keydown listener: if valid keyCode or backSpace then unpause lesson */
         pausedKeyboardDownListenerId = addListener( { container, listener: eventListener } );
         return pausedKeyboardDownListenerId;
     }

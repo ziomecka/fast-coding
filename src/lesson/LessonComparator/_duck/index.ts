@@ -6,7 +6,7 @@ export {
     listenKeys,
     pausedLessonListener,
     pauseLessonComparator,
-    resetLessonComparator,
+    restartLessonComparator,
     stopListenKeys,
     turnOffLessonComparator,
     turnOnLessonComparator,

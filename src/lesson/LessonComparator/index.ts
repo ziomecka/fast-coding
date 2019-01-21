@@ -10,7 +10,7 @@ export {
     lessonComparatorReducer,
     pauseLessonComparator,
     pausedLessonListener,
-    resetLessonComparator,
+    restartLessonComparator,
     turnOffLessonComparator,
     turnOnLessonComparator,
     unpauseLessonComparator

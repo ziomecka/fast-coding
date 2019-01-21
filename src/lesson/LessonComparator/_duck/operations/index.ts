@@ -5,7 +5,7 @@ export default { ...handleKeys, ...life };
 
 export {
     onPauseLessonComparator as pauseLessonComparator,
-    onResetLessonComparator as resetLessonComparator,
+    onRestartLessonComparator as restartLessonComparator,
     onTurnOffLessonComparator as turnOffLessonComparator,
     onTurnOnLessonComparator as turnOnLessonComparator,
     onUnpauseLessonComparator as unpauseLessonComparator,
