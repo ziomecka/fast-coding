@@ -82,11 +82,37 @@ const onOpenYesCancelDialog = ( options: YesCancelDialogOptions ): any => (
     ( dispatch: Dispatch ) => {
         let {
             buttons: {
-                buttonYes: { buttonProps: { id: buttonYesId = 'dialogYesId', onClick: onClickYes } },
-                buttonCancel: { buttonProps: { id: buttonCancelId = 'dialogCancelId', onClick: onClickCancel } } = { buttonProps: { onClick: null, id: buttonCancelId = 'dialogCancelId' } }
+                buttonYes: {
+                    buttonProps: {
+                        id: buttonYesId = 'dialogYesId',
+                        onClick: onClickYes,
+                    }
+                },
+                buttonCancel: {
+                    buttonProps: {
+                        id: buttonCancelId = 'dialogCancelId',
+                        onClick: onClickCancel,
+                    }
+                } = {
+                    buttonProps: {
+                        onClick: null,
+                        id: buttonCancelId = 'dialogCancelId'
+                    }
+                }
             } = {
-                buttonYes: { buttonProps: { onClick: null, id: 'dialogYesId' } },
-                buttonCancel: { buttonProps: { onClick: null, id: 'dialogCancelId' } }
+                buttonYes: {
+                    buttonProps: {
+                        onClick: null,
+                        id: 'dialogYesId'
+                    },
+                },
+                buttonCancel: {
+                    translationId: 'buttonCancel',
+                    buttonProps: {
+                        onClick: null,
+                        id: 'dialogCancelId'
+                    }
+                }
             },
             closeOnBackdrop,
             closeOnEscape,
