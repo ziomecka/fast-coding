@@ -46,9 +46,11 @@ const styles = theme => {
                 borderRadius: `${ borderRadius }px`,
                 width: '100%',
                 padding: '.5rem 1rem',
+                position: 'relative',
                 margin: '1rem auto',
                 maxHeight: '3rem',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                overflow: 'hidden'
             },
             '& .firebaseui-idp-icon-wrapper': {
                 display: 'inline-block',
