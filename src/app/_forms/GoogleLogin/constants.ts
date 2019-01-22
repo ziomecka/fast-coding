@@ -10,6 +10,15 @@ export const facebookScopes = [
     'email',
 ];
 
+/** tabIndex listeners */
+export const GOOGLE_FORM = '#firebaseui-auth-container';
+export const GOOGLE_BUTTON = 'button[data-provider-id="google.com"]';
+export const FACEBOOK_BUTTON = 'button[data-provider-id="facebook.com"]';
+
+export const RIPPLE_CLASS_PARENT = 'fcRipple';
+export const RIPPLE_CLASS_CHILD = 'fcRipple-child';
+export const RIPPLE_CLASS_PULSATE = 'fcRipple-pulsate';
+
 export default {
     htmlId,
     googleClass,

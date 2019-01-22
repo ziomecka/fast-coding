@@ -1,0 +1,56 @@
+.fcRipple
+    display: block
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    opacity: 0
+    background-color: #e0e0e0
+    border-radius: 50%
+
+.fcRipple-child
+    display: block
+    position: absolute
+    width: 100%
+    height: 200%
+    top: 50%
+    left: 50%
+    transform: translate( -50%, -50% )
+    background-color: #f5f5f5
+
+// .fcRipple-enter
+//     opacity: .3
+//     transform: scale(1)
+//     animation: fcRipple-enter 500ms ease-in-out
+
+// .fcRipple-leave
+//     opacity: 0
+//     animation: fcRipple-leave 500ms ease-in-out
+
+.fcRipple-pulsate
+    opacity: .3
+    animation: fcRipple-pulsate 2500ms infinite alternate
+
+@keyframes fcRipple-pulsate
+    0%
+        transform: scale(1)
+        opacity: .1
+    50%
+        transform: scale(.8)
+    100%
+        transform: scale(1)
+
+// @keyframes fcRripple-enter
+//     0%
+//         transform: scale(0)
+//         opacity: .1
+//     100%
+//         transform: scale(1)
+//         opacity: .3
+
+// @keyframes fcRipple-leave
+//     0%
+//         opacity: 1
+//     100%
+//         opacity: 0

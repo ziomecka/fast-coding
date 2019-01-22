@@ -13,6 +13,8 @@ import { getActiveLanguage } from 'react-localize-redux';
 
 import { htmlId } from './constants';
 
+require( './styles.sass' );
+
 class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
     id: string;
     ui: any;
@@ -25,6 +27,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
         // @ts-ignore
         this.ui = new firebaseui.auth.AuthUI( firebase.auth() );
         this.props.startUI( this.ui );
+        this.props.addTabIndex();
     }
 
     componentDidUpdate( prevProps ) {
@@ -38,6 +41,7 @@ class GoogleLoginComponent extends React.Component<GoogleLoginProps> {
 
     componentWillUnmount() {
         this.ui.delete();
+        this.props.removeTabIndex();
     }
 
     render() {

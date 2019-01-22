@@ -6,6 +6,8 @@ import { ApplicationState } from '@appStore';
 
 import { onSetTranslations, onStartUi } from './_duck/operations';
 
+import { listeners } from './_duck';
+
 import { LocalizeState } from 'react-localize-redux';
 import { WithStyles } from '@material-ui/core/styles/withStyles';
 
@@ -14,8 +16,11 @@ const mapStateToProps = ( state: ApplicationState ): MapStateToPropsI => ( {
 } );
 
 const mapDispatchToProps = ( dispatch: Dispatch ): GoogleLoginDispatch => ( {
+    addTabIndex: () => listeners.onAddTabIndex(),
+    removeTabIndex: () => listeners.onRemoveTabIndex(),
     startUI: ui => dispatch( onStartUi ( ui ) ),
     setTranslations: () => dispatch( onSetTranslations() )
+
 } );
 
 const GoogleLoginContainer = connect( mapStateToProps, mapDispatchToProps )( GoogleLogin );
@@ -27,6 +32,8 @@ interface MapStateToPropsI {
 }
 
 export interface GoogleLoginDispatch {
+    addTabIndex: () => void;
+    removeTabIndex: () => void;
     startUI: ( ui: any ) => void;
     setTranslations: () => void;
 }
