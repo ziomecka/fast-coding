@@ -11,6 +11,7 @@ import Message from '@forms/FormHelperText/';
 import GoogleLogin from '@forms/GoogleLogin/';
 import RemindPasswordForm from '@forms/RemindPasswordForm';
 import { DialogsEnum } from '@app/Dialog';
+import { FORM_ID } from './constants';
 const { simple } = DialogsEnum;
 
 /* Materials */
@@ -28,12 +29,14 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     container: AppContainersEnum;
     xs: MediaEnum;
     redirectUrl: AppRoutesEnum;
+    id: string;
     constructor ( props ) {
         super( props );
         this.container = loginForm;
 
         this.xs = MediaEnum.xs;
         this.redirectUrl = AppRoutesEnum.remindPassword;
+        this.id = FORM_ID;
 
         this.loginOnChange = this.loginOnChange.bind( this );
         this.submit = this.submit.bind( this );
@@ -70,14 +73,19 @@ class LoginFormComponent extends React.Component<LoginFormPropsI> {
     }
 
     render() {
-        const { container, xs, props: {
+        const { container, id, xs, props: {
             login,
             classes: { FCForm, FCFormButton, form, FCFormButtonText },
             media
         } } = this;
 
         return (
-            <form onSubmit={ e => e.preventDefault() } className={ `${ FCForm } ${ form }` } >
+            <form
+                onSubmit={ e => e.preventDefault() }
+                className={ `${ FCForm } ${ form }` }
+                {...{ id } }
+                tabIndex={ -1 }
+            >
                 <Login
                     onChange={ this.loginOnChange }
                     value={ login }
