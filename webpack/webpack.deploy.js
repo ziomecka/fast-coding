@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const base = require('./webpack.base.js');
 
-const DIR = path.resolve(__dirname, '..', 'deploy');
+const DIR = path.resolve(__dirname, '..', '_deploy');
 
 const CompressionPlugin = require('compression-webpack-plugin');
 

@@ -1,8 +1,8 @@
 const path = require('path');
-const APP_DIR = path.resolve(__dirname, '..', 'src');
+const APP_DIR = path.resolve(__dirname, '..', 'front');
 
 module.exports = {
-    app: `${APP_DIR}/index.tsx`,
+    app: `${ APP_DIR }/index.tsx`,
     // app_appMenu: `${APP_DIR}/app/AppMenu/index.ts`,
     // app_buttonWithHint: `${APP_DIR}/app/ButtonWithHint/index.ts`,
     // app_changePasswordForm: `${APP_DIR}/app/ChangePasswordForm/index.ts`,

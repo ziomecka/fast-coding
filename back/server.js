@@ -48,27 +48,26 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 const ROOT = path.resolve(__dirname, '../');
 
 const HTML_PATH = !PROD_ENV
-    ? path.resolve(ROOT, '/')
-    : path.resolve(ROOT, '../../../index.html');
+    ? path.resolve(ROOT, '../../../../_bundleFront/index.html')
+    : path.resolve(ROOT, '../../../_bundleFront/index.html');
 
 app.use( helmet() );
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
-    // const webpack = require('webpack');
-    // const webpackPath = path.resolve(ROOT, '../webpack/webpack.hmr');
-    // const webpackConfig = require(webpackPath);
-    // const compiler = webpack(webpackConfig);
+    const webpack = require('webpack');
+    const webpackPath = path.resolve(ROOT, './webpack/webpack.bundle');
+    const webpackConfig = require(webpackPath);
+    const compiler = webpack(webpackConfig);
 
-    // app.use(
-    //     require('webpack-dev-middleware')(compiler, {
-    //         noInfo: true,
-    //         publicPath: webpackConfig.output.publicPath,
-    //     })
-    // );
+    app.use(
+        require('webpack-dev-middleware')(compiler, {
+            noInfo: true,
+            publicPath: webpackConfig.output.publicPath,
+        })
+    );
 
-    // app.use(require('webpack-hot-middleware')(compiler));
-
+    app.use(require('webpack-hot-middleware')(compiler));
 } else {
     app.get('*.js', (req, res, next) => {
         req.url = req.url + '.gz';

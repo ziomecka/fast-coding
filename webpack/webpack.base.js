@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 /** DIRECTORIES */
-const APP_DIR = path.resolve(__dirname, '..', 'src');
+const APP_DIR = path.resolve(__dirname, '..', 'front');
 
 /** ENV */
 const PROD_ENV = process && process.env.NODE_ENV
@@ -53,8 +53,8 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new WebpackCopyPlugin([
         {
-          from: 'src/server',
-          to: './server/'
+          from: './back/',
+          to: '../_bundleBack/'
         }
     ]),
     new Dotenv({
@@ -63,7 +63,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
-      template: `${APP_DIR}/index.hbs`,
+      template: `${ APP_DIR }/index.hbs`,
       chunksSortMode: "dependency"
     }),
     new MiniCssExtractPlugin({
