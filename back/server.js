@@ -51,8 +51,8 @@ console.log('ROOT');
 console.log(ROOT);
 
 const HTML_PATH = !PROD_ENV
-? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
-: path.resolve(ROOT, '../../../../../_deploy/index.html');
+    ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
+    : path.resolve(ROOT, '../../../../../_deploy/index.html');
 
 console.log('HTML_PATH');
 console.log(HTML_PATH);
@@ -133,6 +133,6 @@ app.post( REMIND_PASSWORD, serverRemindPassword );
 /** New password */
 app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
 
-app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: ROOT }));
+app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: path.resolve(ROOT, '../deploy/') }));
 
 server.listen(PORT, console.log(`Listening on ${ PORT }`));
