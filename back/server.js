@@ -47,9 +47,12 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
 const ROOT = path.resolve(__dirname, './');
 
+console.log('ROOT');
+console.log(ROOT);
+
 const HTML_PATH = !PROD_ENV
 ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
-: path.resolve(ROOT, '../_deploy/index.html');
+: path.resolve(ROOT, '../../../../../_deploy/index.html');
 
 console.log('HTML_PATH');
 console.log(HTML_PATH);
