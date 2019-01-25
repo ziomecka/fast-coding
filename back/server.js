@@ -91,6 +91,21 @@ app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( ROUTES, getSession() );
 
+app.use( '/*.js',express.static( path.resolve( ROOT, '../_deploy/' ), {
+    setHeaders: (res, path) => {
+        res.set('Access-Control-Allow-Headers', 'cache-control');
+
+        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
+            res.set("Cache-Control", "public, max-age=31536000");
+        } else {
+            res.set("Cache-Control", "public, max-age=0");
+        }
+    }
+}));
+
+console.log("path.resolve( ROOT, '../_deploy/' )")
+console.log(path.resolve( ROOT, '../_deploy/' ))
+
 app.use(express.static(ROOT, {
     setHeaders: (res, path) => {
         res.set('Access-Control-Allow-Headers', 'cache-control');
