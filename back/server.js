@@ -47,15 +47,10 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
 const ROOT = path.resolve(__dirname, './');
 
-console.log('ROOT');
-console.log(ROOT);
-
 const HTML_PATH = !PROD_ENV
     ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
     : path.resolve(ROOT, '../../../../../_deploy/index.html');
 
-console.log('HTML_PATH');
-console.log(HTML_PATH);
 app.use( helmet() );
 
 /** Turn on hot module replacement. */
@@ -91,22 +86,7 @@ app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( ROUTES, getSession() );
 
-app.use( '/*.js',express.static( path.resolve( ROOT, '../_deploy/' ), {
-    setHeaders: (res, path) => {
-        res.set('Access-Control-Allow-Headers', 'cache-control');
-
-        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
-            res.set("Cache-Control", "public, max-age=31536000");
-        } else {
-            res.set("Cache-Control", "public, max-age=0");
-        }
-    }
-}));
-
-console.log("path.resolve( ROOT, '../_deploy/' )")
-console.log(path.resolve( ROOT, '../_deploy/' ))
-
-app.use(express.static(ROOT, {
+app.use('/*.js',express.static( path.resolve( ROOT, '../_deploy/' ), {
     setHeaders: (res, path) => {
         res.set('Access-Control-Allow-Headers', 'cache-control');
 
