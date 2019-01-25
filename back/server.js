@@ -23,6 +23,7 @@ const serverTranslationsGet = require('./server.translations.get');
 const serverIsAuthorized = require('./server.is.authorized.get');
 const serverLoginFirebase = require('./server.login.firebase.post');
 const serverLogOutGet = require('./server.logout.get');
+const serverSideRendering = require('./server.side.rendering');
 
 const {
     PORT: _PORT,
@@ -47,27 +48,41 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
 const ROOT = path.resolve(__dirname, './');
 
-const HTML_PATH = !PROD_ENV
-    ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
-    : path.resolve(ROOT, '../../../../../_deploy/index.html');
+// const HTML_PATH = !PROD_ENV
+//     ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
+//     : path.resolve(ROOT, '../../../../../_deploy/index.html');
 
 app.use( helmet() );
 
+app.set('trust proxy', 1);
+
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
-    const webpack = require('webpack');
-    const webpackPath = path.resolve(ROOT, '../webpack/webpack.bundle');
-    const webpackConfig = require(webpackPath);
-    const compiler = webpack(webpackConfig);
+    // const webpack = require('webpack');
+    // const webpackPath = path.resolve(ROOT, '../webpack/webpack.bundle');
+    // const webpackConfig = require(webpackPath);
+    // const compiler = webpack(webpackConfig);
 
-    app.use(
-        require('webpack-dev-middleware')(compiler, {
-            noInfo: true,
-            publicPath: webpackConfig.output.publicPath,
-        })
-    );
+    // app.use(
+    //     require('webpack-dev-middleware')(compiler, {
+    //         noInfo: true,
+    //         publicPath: webpackConfig.output.publicPath,
+    //     })
+    // );
 
-    app.use(require('webpack-hot-middleware')(compiler));
+    // app.use(require('webpack-hot-middleware')(compiler));
+
+    app.use(express.static( path.resolve( ROOT, '../_bundleFront/' ), {
+        setHeaders: (res, path) => {
+            res.set('Access-Control-Allow-Headers', 'cache-control');
+
+            if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
+                res.set("Cache-Control", "public, max-age=31536000");
+            } else {
+                res.set("Cache-Control", "public, max-age=0");
+            }
+        }
+    }));
 } else {
     app.get('/*.js', (req, res, next) => {
         req.url = req.url + '.gz';
@@ -75,9 +90,20 @@ if (!PROD_ENV) {
         res.set('Content-Type', 'text/javascript');
         next();
     });
+
+    app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
+        setHeaders: (res, path) => {
+            res.set('Access-Control-Allow-Headers', 'cache-control');
+
+            if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
+                res.set("Cache-Control", "public, max-age=31536000");
+            } else {
+                res.set("Cache-Control", "public, max-age=0");
+            }
+        }
+    }));
 }
 
-app.set('trust proxy', 1);
 
 app.use( serverCors() );
 
@@ -86,17 +112,6 @@ app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
 app.use( ROUTES, getSession() );
 
-app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
-    setHeaders: (res, path) => {
-        res.set('Access-Control-Allow-Headers', 'cache-control');
-
-        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
-            res.set("Cache-Control", "public, max-age=31536000");
-        } else {
-            res.set("Cache-Control", "public, max-age=0");
-        }
-    }
-}));
 
 /** Check if authorized */
 app.get( IS_AUTHORIZED, serverIsAuthorized );
@@ -128,6 +143,7 @@ app.post( REMIND_PASSWORD, serverRemindPassword );
 /** New password */
 app.post( NEW_PASSWORD, serverNewPassword );
 
-app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: path.resolve(ROOT, '../') }));
+// app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: path.resolve(ROOT, '../') }));
+app.get('*', serverSideRendering );
 
 server.listen(PORT, console.log(`Listening on ${ PORT }`));
