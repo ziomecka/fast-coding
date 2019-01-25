@@ -53,27 +53,6 @@ const HTML_PATH = !PROD_ENV
 
 app.use( helmet() );
 
-app.set('trust proxy', 1);
-
-app.use( serverCors() );
-
-app.use( express.json() );
-app.use( express.urlencoded({ extended: false }) );
-app.use( cookieParser() );
-app.use( ROUTES, getSession() );
-
-app.use('/*.js', express.static( path.resolve( ROOT, '../_deploy/' ), {
-    setHeaders: (res, path) => {
-        res.set('Access-Control-Allow-Headers', 'cache-control');
-
-        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
-            res.set("Cache-Control", "public, max-age=31536000");
-        } else {
-            res.set("Cache-Control", "public, max-age=0");
-        }
-    }
-}));
-
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
     const webpack = require('webpack');
@@ -90,13 +69,34 @@ if (!PROD_ENV) {
 
     app.use(require('webpack-hot-middleware')(compiler));
 } else {
-    app.get('*.js', (req, res, next) => {
+    app.get('/*.js', (req, res, next) => {
         req.url = req.url + '.gz';
         res.set('Content-Encoding', 'gzip');
         res.set('Content-Type', 'text/javascript');
         next();
     });
 }
+
+app.set('trust proxy', 1);
+
+app.use( serverCors() );
+
+app.use( express.json() );
+app.use( express.urlencoded({ extended: false }) );
+app.use( cookieParser() );
+app.use( ROUTES, getSession() );
+
+app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
+    setHeaders: (res, path) => {
+        res.set('Access-Control-Allow-Headers', 'cache-control');
+
+        if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
+            res.set("Cache-Control", "public, max-age=31536000");
+        } else {
+            res.set("Cache-Control", "public, max-age=0");
+        }
+    }
+}));
 
 /** Check if authorized */
 app.get( IS_AUTHORIZED, serverIsAuthorized );
