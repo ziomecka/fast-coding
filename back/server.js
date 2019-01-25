@@ -126,7 +126,7 @@ app.post( CHANGE_PASSWORD, serverChangePassword );
 app.post( REMIND_PASSWORD, serverRemindPassword );
 
 /** New password */
-app.post( `${ NEW_PASSWORD }/set`, serverNewPassword );
+app.post( NEW_PASSWORD, serverNewPassword );
 
 app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: path.resolve(ROOT, '../') }));
 
