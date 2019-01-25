@@ -48,15 +48,17 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 const ROOT = path.resolve(__dirname, './');
 
 const HTML_PATH = !PROD_ENV
-    ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
-    : path.resolve(ROOT, '../../../../../_deploy/index.html');
+? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
+: path.resolve(ROOT, '../_deploy/index.html');
 
+console.log('HTML_PATH');
+console.log(HTML_PATH);
 app.use( helmet() );
 
 /** Turn on hot module replacement. */
 if (!PROD_ENV) {
     const webpack = require('webpack');
-    const webpackPath = path.resolve(ROOT, './webpack/webpack.bundle');
+    const webpackPath = path.resolve(ROOT, '../webpack/webpack.bundle');
     const webpackConfig = require(webpackPath);
     const compiler = webpack(webpackConfig);
 

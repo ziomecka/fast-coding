@@ -21,7 +21,7 @@
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
     "inspectNode": "node --inspect  ./bundle/server/server.js",
-    "nodemon": "nodemon ./_bundleBack/server.js --config ./nodemon.json --watch ./back/** | pino-colada",
+    "nodemon": "nodemon ./back/server.js --config ./nodemon.json --watch ./back/**/* | pino-colada",
     "start": "node --optimize_for_size back/server.js $PORT",
     "lint": "eslint --fix --config .eslintrc.used './src/**/*.ts{,?}'",
     "lintImports": "eslint --fix --config .eslintrc.sort.imports './src/**/*.ts{,?}'"
