@@ -21,7 +21,7 @@
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
     "webpackDevServer": "webpack-dev-server --hot --config ./webpack/webpack.bundle.js",
     "inspectNode": "node --inspect  ./bundle/server/server.js",
-    "nodemon": "nodemon ./back/server.js --config ./nodemon.json --watch ./back/**/* | pino-colada",
+    "nodemon": "nodemon --exec babel-node ./back/index.js --config ./nodemon.json --watch ./back/** | pino-colada",
     "start": "node --optimize_for_size back/server.js $PORT",
     "lint": "eslint --fix --config .eslintrc.used './src/**/*.ts{,?}'",
     "lintImports": "eslint --fix --config .eslintrc.sort.imports './src/**/*.ts{,?}'"
@@ -33,8 +33,6 @@
   "homepage": "https://fast-coding.herokuapp.com/",
   "devDependencies": {
     "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/node": "7.2.2",
     "@babel/plugin-transform-modules-commonjs": "7.2.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
@@ -123,6 +121,8 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/node": "7.2.2",
     "@firebase/auth": "^0.9.1",
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "3.0.1",
