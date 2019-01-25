@@ -51,12 +51,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
-    new WebpackCopyPlugin([
-        {
-          from: './back/',
-          to: '../_bundleBack/'
-        }
-    ]),
     new Dotenv({
       systemvars: true,
       path: path.resolve( __dirname, envFilePath )

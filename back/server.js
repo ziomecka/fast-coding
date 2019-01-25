@@ -45,11 +45,11 @@ const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() ==
 
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
-const ROOT = path.resolve(__dirname, '../');
+const ROOT = path.resolve(__dirname, './');
 
 const HTML_PATH = !PROD_ENV
-    ? path.resolve(ROOT, '../../../../_bundleFront/index.html')
-    : path.resolve(ROOT, '../../../_deploy/index.html');
+    ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
+    : path.resolve(ROOT, '../../../../_deploy/index.html');
 
 app.use( helmet() );
 

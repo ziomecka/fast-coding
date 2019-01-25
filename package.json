@@ -13,7 +13,7 @@
   "scripts": {
     "bundle": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle'",
     "bundleStats": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle' --profile --json > webpack/webpack-bundle-stats.json",
-    "bundleWatch": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle'",
+    "bundleWatch": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='_bundleFront'",
     "deploy": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy'",
     "deployStats": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy' --profile --json > webpack/webpack-deploy-stats.json",
     "aBundle": "webpack-bundle-analyzer ./webpack/webpack-bundle-stats.json",
