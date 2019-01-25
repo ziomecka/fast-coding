@@ -65,5 +65,20 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new CLEAN_WEBPACK_PLUGIN( pathsToClean , cleanOptions),
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    splitChunks: {
+        chunks: "all",
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendor',
+                chunks: 'all'
+            }
+        }
+    }
+  }
 };
