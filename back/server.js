@@ -49,7 +49,7 @@ const ROOT = path.resolve(__dirname, '../');
 
 const HTML_PATH = !PROD_ENV
     ? path.resolve(ROOT, '../../../../_bundleFront/index.html')
-    : path.resolve(ROOT, '../../../_bundleFront/index.html');
+    : path.resolve(ROOT, '../../../_deploy/index.html');
 
 app.use( helmet() );
 
