@@ -8,8 +8,8 @@ const cssMqpacker = require('css-mqpacker');
 
 module.exports = [
     {
-        test: /\.(ts|tsx)?$/,
-        use: ["babel-loader", 'ts-loader'],
+        test: /\.(js|jsx)?$/,
+        use: [ 'babel-loader' ],
         exclude: /node_modules/,
     },
     {

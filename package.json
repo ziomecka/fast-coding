@@ -11,11 +11,11 @@
     "heroku"
   ],
   "scripts": {
-    "bundle": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle'",
-    "bundleStats": "webpack --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='bundle' --profile --json > webpack/webpack-bundle-stats.json",
-    "bundleWatch": "webpack --watch --progress --config ./webpack/webpack.bundle.js --PATH_TO_CLEAN='_bundleFront'",
-    "deploy": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy'",
-    "deployStats": "webpack --config ./webpack/webpack.deploy.js --PATH_TO_CLEAN='deploy' --profile --json > webpack/webpack-deploy-stats.json",
+    "bundle": "rm -rf _bundleFront && webpack --config ./webpack/webpack.bundle.js",
+    "bundleStats": "rm -rf _bundleFront && webpack --config ./webpack/webpack.bundle.js --profile --json > webpack/webpack-bundle-stats.json",
+    "bundleWatch": "rm -rf _bundleFront && webpack --watch --progress --config ./webpack/webpack.bundle.js",
+    "deploy": "rm -rf deploy && webpack --config ./webpack/webpack.deploy.js",
+    "deployStats": "rm -rf deploy && webpack --config ./webpack/webpack.deploy.js --profile --json > webpack/webpack-deploy-stats.json",
     "aBundle": "webpack-bundle-analyzer ./webpack/webpack-bundle-stats.json",
     "aDeploy": "webpack-bundle-analyzer ./webpack/webpack-deploy-stats.json",
     "prewebpackDevServer": "webpack --config ./webpack/webpack.bundle.js",
@@ -24,7 +24,8 @@
     "nodemon": "nodemon --exec babel-node ./back/index.js --config ./nodemon.json --watch ./back/** | pino-colada",
     "start": "node --optimize_for_size back/server.js $PORT",
     "lint": "eslint --fix --config .eslintrc.used './src/**/*.ts{,?}'",
-    "lintImports": "eslint --fix --config .eslintrc.sort.imports './src/**/*.ts{,?}'"
+    "lintImports": "eslint --fix --config .eslintrc.sort.imports './src/**/*.ts{,?}'",
+    "tsc": "tsc -p ./front/tsconfig.json && cd front && find . -name '*.sass' -type f -exec cp --parents {} ../_jsFront \\;"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,7 @@
     "@types/firebase": "^3.2.1",
     "@types/history": "^4.7.2",
     "@types/material-ui": "0.21.5",
-    "@types/node": "^10.12.10",
+    "@types/node": "10.12.19",
     "@types/react": "^16.7.7",
     "@types/react-dom": "^16.0.10",
     "@types/react-redux": "^6.0.10",
@@ -55,9 +56,7 @@
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.2.0",
     "chai-enzyme": "^1.0.0-beta.1",
-    "clean-webpack-plugin": "^1.0.0",
     "compression-webpack-plugin": "^2.0.0",
-    "copy-webpack-plugin": "^4.6.0",
     "cors": "^2.8.5",
     "css-declaration-sorter": "^4.0.1",
     "css-loader": "^1.0.1",
@@ -107,7 +106,6 @@
     "testcafe": "^0.21.1",
     "testcafe-react-selectors": "^3.0.0",
     "ts-jest": "^23.10.5",
-    "ts-loader": "^4.5.0",
     "typescript": "^3.1.6",
     "typescript-eslint-parser": "^18.0.0",
     "uuid": "^3.3.2",

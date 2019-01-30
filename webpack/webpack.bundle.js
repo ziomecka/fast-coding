@@ -5,12 +5,12 @@ const webpack = require('webpack');
 const base = require('./webpack.base.js');
 
 /** DIRECTORIES */
-const DIR = path.resolve(__dirname, '..', '_bundleFront');
+const output = path.resolve( __dirname, '../_bundleFront' );
 
 module.exports = merge(base, {
   devtool: 'inline-source-map',
   output: {
-    path: DIR,
+    path: output,
     publicPath: '/',
     filename: '[name].js'
   },
