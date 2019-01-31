@@ -25,6 +25,8 @@ const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() ==
 
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
+const ROOT = path.resolve(__dirname, './');
+
 app.use( helmet() );
 
 /** Turn on hot module replacement. */
@@ -42,23 +44,9 @@ if (!PROD_ENV) {
     );
 
     app.use(require('webpack-hot-middleware')(compiler));
-} else {
-    app.get('/*.js', (req, res, next) => {
-        req.url = req.url + '.gz';
-        res.set('Content-Encoding', 'gzip');
-        res.set('Content-Type', 'text/javascript');
-        next();
-    });
 }
 
 app.set('trust proxy', 1);
-
-app.use( serverCors() );
-
-app.use( express.json() );
-app.use( express.urlencoded({ extended: false }) );
-app.use( cookieParser() );
-app.use( ROUTES, getSession() );
 
 app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
     setHeaders: (res, path) => {
@@ -71,6 +59,13 @@ app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
         }
     }
 }));
+
+app.use( serverCors() );
+
+app.use( express.json() );
+app.use( express.urlencoded({ extended: false }) );
+app.use( cookieParser() );
+app.use( ROUTES, getSession() );
 
 app.use ( '/', router );
 

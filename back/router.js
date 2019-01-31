@@ -19,6 +19,7 @@ const router = require('express').Router();
 const serverChangePassword = require('./server.change.password');
 const serverFavicon = require('./server.favicon');
 const serverIsAuthorized = require('./server.is.authorized.get');
+const serverJavascript = require('./server.javascript');
 const serverLessonsGet = require('./server.lessons.get');
 const serverLoginFirebase = require('./server.login.firebase.post');
 const serverLoginLog = require('./server.login.log');
