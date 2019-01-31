@@ -21,9 +21,11 @@ const {
     SESSION: { ROUTES }
 } = constants;
 
-const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
+const PROD_ENV = process.env.NODE_ENV;
 
-const PORT = !PROD_ENV ? _PORT : process.env.PORT;
+const PORT = PROD_ENV
+    ? process.env.PORT
+    : _PORT;
 
 app.use( helmet() );
 
