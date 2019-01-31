@@ -17,6 +17,7 @@ const serverNewUserSet = require('./server.newuser.set');
 const serverLoginLog = require('./server.login.log');
 const serverLessonsGet = require('./server.lessons.get');
 const serverChangePassword = require('./server.change.password');
+const serverFavicon = require('./server.favicon');
 const serverRemindPassword = require('./server.remind.password');
 const serverNewPassword = require('./server.new.password');
 const serverTranslationsGet = require('./server.translations.get');
@@ -128,6 +129,7 @@ app.post( REMIND_PASSWORD, serverRemindPassword );
 /** New password */
 app.post( NEW_PASSWORD, serverNewPassword );
 
+app.get( '/favicon.ico', serverFavicon );
 app.get('*', (req, res) => res.sendFile(HTML_PATH, { root: path.resolve(ROOT, '../') }));
 
 server.listen(PORT, console.log(`Listening on ${ PORT }`));
