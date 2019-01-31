@@ -27,10 +27,6 @@ const PORT = !PROD_ENV ? _PORT : process.env.PORT;
 
 const ROOT = path.resolve(__dirname, './');
 
-// const HTML_PATH = !PROD_ENV
-//     ? path.resolve(ROOT, '../../../../../_bundleFront/index.html')
-//     : path.resolve(ROOT, '../../../../../_deploy/index.html');
-
 app.use( helmet() );
 
 app.set('trust proxy', 1);
@@ -63,13 +59,6 @@ if (!PROD_ENV) {
         }
     }));
 } else {
-    app.get('/*.js', (req, res, next) => {
-        req.url = req.url + '.gz';
-        res.set('Content-Encoding', 'gzip');
-        res.set('Content-Type', 'text/javascript');
-        next();
-    });
-
     app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
         setHeaders: (res, path) => {
             res.set('Access-Control-Allow-Headers', 'cache-control');
@@ -82,7 +71,6 @@ if (!PROD_ENV) {
         }
     }));
 }
-
 
 app.use( serverCors() );
 
