@@ -30,20 +30,8 @@ app.use( helmet() );
 app.set('trust proxy', 1);
 
 /** Turn on hot module replacement. */
-if (!PROD_ENV) {
-    // const webpack = require('webpack');
-    // const webpackPath = path.resolve(ROOT, '../webpack/webpack.bundle');
-    // const webpackConfig = require(webpackPath);
-    // const compiler = webpack(webpackConfig);
-
-    // app.use(
-    //     require('webpack-dev-middleware')(compiler, {
-    //         noInfo: true,
-    //         publicPath: webpackConfig.output.publicPath,
-    //     })
-    // );
-
-    // app.use(require('webpack-hot-middleware')(compiler));
+if ( !PROD_ENV && process.env.HMR ) {
+    require('./server.hmr')();
 }
 
 app.use( serverStatic() );
