@@ -1,7 +1,6 @@
 require('mime');
 require('./Redis/');
 
-const path = require('path');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -13,6 +12,7 @@ const constants = require('./constants');
 const getSession = require('./server.session');
 
 const serverCors = require('./server.cors');
+const serverStatic = require('./server.static');
 
 const router = require('./router');
 
@@ -24,8 +24,6 @@ const {
 const PROD_ENV = process && process.env.NODE_ENV? process.env.NODE_ENV.trim() === 'production' : false;
 
 const PORT = !PROD_ENV ? _PORT : process.env.PORT;
-
-const ROOT = path.resolve(__dirname, './');
 
 app.use( helmet() );
 
@@ -46,34 +44,10 @@ if (!PROD_ENV) {
     // );
 
     // app.use(require('webpack-hot-middleware')(compiler));
-
-    app.use(express.static( path.resolve( ROOT, '../_bundleFront/' ), {
-        setHeaders: (res, path) => {
-            res.set('Access-Control-Allow-Headers', 'cache-control');
-
-            if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
-                res.set("Cache-Control", "public, max-age=31536000");
-            } else {
-                res.set("Cache-Control", "public, max-age=0");
-            }
-        }
-    }));
-} else {
-    app.use(express.static( path.resolve( ROOT, '../_deploy/' ), {
-        setHeaders: (res, path) => {
-            res.set('Access-Control-Allow-Headers', 'cache-control');
-
-            if (RegExp(/(.*npm\..*)|(.*vendor.*)/).test(path)) {
-                res.set("Cache-Control", "public, max-age=31536000");
-            } else {
-                res.set("Cache-Control", "public, max-age=0");
-            }
-        }
-    }));
 }
 
+app.use( serverStatic() );
 app.use( serverCors() );
-
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
 app.use( cookieParser() );
