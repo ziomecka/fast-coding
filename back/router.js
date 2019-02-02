@@ -29,11 +29,9 @@ const serverNewUserSet = require('./server.newuser.set');
 const serverRemindPassword = require('./server.remind.password');
 const serverTranslationsGet = require('./server.translations.get');
 
-const ROOT = path.resolve(__dirname, './');
-
-const HTML_PATH = !process.env.NODE_ENV
-    ? path.resolve(ROOT, '../_bundleFront/index.html')
-    : path.resolve(ROOT, '../_deploy/index.html');
+const HTML_PATH = process.env.NODE_ENV
+    ? path.resolve( __dirname, '../_deploy/index.html')
+    : path.resolve( __dirname, '../_bundleFront/index.html' );
 
 router.get( '/favicon.ico', serverFavicon );
 router.get( IS_AUTHORIZED, serverIsAuthorized );
@@ -41,7 +39,7 @@ router.get( LESSONS_GET, serverLessonsGet );
 router.get ( LOGOUT, serverLogoutGet );
 router.get( TRANSLATIONS_GET, serverTranslationsGet );
 router.get( '/*.js', serverJavascript );
-router.get('*', (req, res) => res.sendFile( HTML_PATH, { root: ROOT } ) );
+router.get('*', ( req, res ) => res.sendFile( HTML_PATH, { root: __dirname } ) );
 
 router.post( CHANGE_PASSWORD, serverChangePassword );
 router.post ( LOGIN_FIREBASE, serverLoginFirebase );

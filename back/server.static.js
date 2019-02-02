@@ -3,13 +3,12 @@ const express = require('express');
 const path = require('path');
 
 module.exports = () => {
-    const ROOT = path.resolve( __dirname, './' );
     const STATIC_PATH = process.env.NODE_ENV
-        ? '../_deploy/'
-        : '../_bundleFront/';
+        ? path.resolve( __dirname, '../_deploy/' )
+        : path.resolve( __dirname, '../_bundleFront/' );
 
-    return express.static( path.resolve( ROOT, STATIC_PATH ), {
-        setHeaders: (res, path) => {
+    return express.static( STATIC_PATH, {
+        setHeaders: ( res, path ) => {
             res.set('Access-Control-Allow-Headers', 'cache-control');
             res.set('Access-Control-Allow-Headers', 'cache-control');
 
