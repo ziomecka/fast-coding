@@ -36,7 +36,6 @@ if ( !PROD_ENV && process.env.HMR ) {
 
 app.set('trust proxy', 1);
 
-app.use( serverStatic() );
 app.use( serverCors() );
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }) );
@@ -44,6 +43,7 @@ app.use( cookieParser() );
 app.use( ROUTES, getSession() );
 
 app.use ( '/', router );
+app.use( serverStatic() );
 
 server.listen(PORT, console.log(`Listening on ${ PORT }`));
 
