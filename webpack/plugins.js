@@ -4,18 +4,6 @@ const webpack = require('webpack');
 
 const envFilePath = '../.env';
 
-// CLEAN
-let pathToClean = process.argv
-    .filter(item => RegExp(/.*PATH_TO_CLEAN.*/).test(item))[0] || '';
-pathToClean = pathToClean.substr(pathToClean.search('=') + 1) || '';
-
-const CLEAN_WEBPACK_PLUGIN = require('clean-webpack-plugin');
-const pathsToClean = [ pathToClean ];
-const cleanOptions = {
-    root: '/home/kasia/Dokumenty/fast-coding/',
-    verbose: true
-};
-
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -38,5 +26,4 @@ module.exports = [
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new CLEAN_WEBPACK_PLUGIN( pathsToClean , cleanOptions),
 ];
