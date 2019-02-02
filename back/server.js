@@ -21,9 +21,9 @@ const {
     SESSION: { ROUTES }
 } = constants;
 
-const PROD_ENV = process.env.NODE_ENV;
+const { NODE_ENV, HMR } = process.env;
 
-const PORT = PROD_ENV
+const PORT = NODE_ENV
     ? process.env.PORT
     : _PORT;
 
@@ -32,7 +32,7 @@ app.use( helmet() );
 app.set('trust proxy', 1);
 
 /** Turn on hot module replacement. */
-if ( !PROD_ENV && process.env.HMR ) {
+if ( !NODE_ENV && HMR ) {
     require('./server.hmr')();
 }
 
