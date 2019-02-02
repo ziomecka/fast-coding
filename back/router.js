@@ -39,7 +39,17 @@ router.get( LESSONS_GET, serverLessonsGet );
 router.get ( LOGOUT, serverLogoutGet );
 router.get( TRANSLATIONS_GET, serverTranslationsGet );
 router.get( '/*.js', serverJavascript );
-router.get('*', ( req, res ) => res.sendFile( HTML_PATH, { root: __dirname } ) );
+
+router.get('*', ( req, res, next ) => {
+    /** if not js file requested then send index.html
+     *  else go to next i.e. express static
+     */
+    if ( !/\.(js|gz)$/.test( req.url ) ) {
+        res.sendFile( HTML_PATH );
+    } else {
+        next();
+    }
+} );
 
 router.post( CHANGE_PASSWORD, serverChangePassword );
 router.post ( LOGIN_FIREBASE, serverLoginFirebase );
