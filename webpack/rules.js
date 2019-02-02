@@ -29,10 +29,6 @@ module.exports = [
         ]
     },
   {
-    test: /\.hbs$/,
-    loader: 'handlebars-loader',
-  },
-  {
     test: /\.sass$/,
     exclude: /node_modules/,
     use: [

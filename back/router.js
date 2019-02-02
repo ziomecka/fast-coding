@@ -13,6 +13,7 @@ const {
     },
 } = require('./constants');
 
+const path = require('path');
 const router = require('express').Router();
 
 const serverChangePassword = require('./server.change.password');
@@ -26,8 +27,11 @@ const serverLogoutGet = require('./server.logout.get');
 const serverNewPassword = require('./server.new.password');
 const serverNewUserSet = require('./server.newuser.set');
 const serverRemindPassword = require('./server.remind.password');
-const serverSideRendering = require('./server.side.rendering');
 const serverTranslationsGet = require('./server.translations.get');
+
+const HTML_PATH = process.env.NODE_ENV
+    ? path.resolve( __dirname, '../_deploy/index.html')
+    : path.resolve( __dirname, '../_bundleFront/index.html' );
 
 router.get( '/favicon.ico', serverFavicon );
 router.get( IS_AUTHORIZED, serverIsAuthorized );
@@ -35,7 +39,17 @@ router.get( LESSONS_GET, serverLessonsGet );
 router.get ( LOGOUT, serverLogoutGet );
 router.get( TRANSLATIONS_GET, serverTranslationsGet );
 router.get( '/*.js', serverJavascript );
-router.get( '*', serverSideRendering );
+
+router.get('*', ( req, res, next ) => {
+    /** if not js file requested then send index.html
+     *  else go to next i.e. express static
+     */
+    if ( !/\.(js|gz)$/.test( req.url ) ) {
+        res.sendFile( HTML_PATH );
+    } else {
+        next();
+    }
+} );
 
 router.post( CHANGE_PASSWORD, serverChangePassword );
 router.post ( LOGIN_FIREBASE, serverLoginFirebase );

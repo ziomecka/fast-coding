@@ -1,3 +1,4 @@
+const optimization = require('./optimization');
 const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
@@ -13,6 +14,7 @@ module.exports = merge(base, {
     path: DIR
   },
   devtool: false,
+  optimization,
   plugins: [
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     new CompressionPlugin({

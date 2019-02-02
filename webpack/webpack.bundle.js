@@ -1,8 +1,6 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-
 const base = require('./webpack.base.js');
+const merge = require('webpack-merge');
+const path = require('path');
 
 /** DIRECTORIES */
 const output = path.resolve( __dirname, '../_bundleFront' );
@@ -13,9 +11,5 @@ module.exports = merge(base, {
     path: output,
     publicPath: '/',
     filename: '[name].js'
-  },
-  plugins: [
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
-  ]
+  }
 });
