@@ -1,3 +1,4 @@
+const optimization = require('./optimization');
 const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
@@ -13,6 +14,7 @@ module.exports = merge(base, {
     path: DIR
   },
   devtool: false,
+  optimization,
   plugins: [
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     new CompressionPlugin({
@@ -21,26 +23,5 @@ module.exports = merge(base, {
         exclude: /server.*/,
         deleteOriginalAssets: true
     }),
-    // new webpack.HashedModuleIdsPlugin()
-  ],
-  optimization: {
-    minimize: true,
-    // runtimeChunk: "single",
-    splitChunks: {
-        chunks: "all",
-        maxInitialRequests: Infinity,
-        minSize: 0,
-        cacheGroups: {
-            vendor: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendor',
-                chunks: 'all'
-                // name(module) {
-                //     const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-                //     return `npm.${ packageName.replace('@', '') }`;
-                // }
-            }
-        }
-    }
-  }
+  ]
 });
