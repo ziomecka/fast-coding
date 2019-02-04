@@ -16,6 +16,7 @@ const PasswordComponent: React.StatelessComponent<PasswordProps> = props => {
         setPassword,
         container,
         passwordType,
+        // @ts-ignore
         [ container ]: {
             [ passwordType ]: { password, passwordValid }
         },
