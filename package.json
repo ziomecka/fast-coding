@@ -102,6 +102,7 @@
     "sass-loader": "^7.1.0",
     "sinon": "^6.3.5",
     "style-loader": "^0.21.0",
+    "terser": "3.14.1",
     "testcafe": "^0.21.1",
     "testcafe-react-selectors": "^3.0.0",
     "ts-jest": "^23.10.5",
