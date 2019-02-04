@@ -331,7 +331,9 @@ class CourseComponent extends React.Component<CourseProps, ICourseState> {
                     id={ `card-${ no }` }
                     tabIndex={ -1 } // single lesson is focusable
                 >
-                    <GridListTile component='div' className={ lessonTileContainerClass }>
+                    {/*
+                    // @ts-ignore */}
+                    <GridListTile component='div'  className={ lessonTileContainerClass }>
                         <Button
                             onClick={ () => this.handleOnClick( lesson ) }
                             classes={ {
